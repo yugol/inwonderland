@@ -43,11 +43,11 @@ public class MorphologicalAnalyser {
             prop.lemma = prop.lemma.substring(0, 1).toUpperCase() + prop.lemma.substring(1);
         }
 
-        // type
+        // posType
         if (Character.isUpperCase(prop.lemma.charAt(0))) {
-            prop.type = EngineKnowledgeBase.ctLabel2ctId("NnPRP");
+            prop.posType = EngineKnowledgeBase.ctLabel2ctId("NnPRP");
         } else {
-            prop.type = EngineKnowledgeBase.ctLabel2ctId("NnCOM");
+            prop.posType = EngineKnowledgeBase.ctLabel2ctId("NnCOM");
         }
 
         // case
@@ -68,10 +68,12 @@ public class MorphologicalAnalyser {
         PosProp prop = new PosProp();
         prop.lemma = wordForm.toLowerCase();
         if (prop.lemma.equals("the")) {
-            prop.type = EngineKnowledgeBase.ctLabel2ctId("ArDEF");
+            prop.posType = EngineKnowledgeBase.ctLabel2ctId("ArDEF");
         } else if (prop.lemma.equals("a") || prop.lemma.equals("an")) {
             prop.lemma = "a";
-            prop.type = EngineKnowledgeBase.ctLabel2ctId("ArIDF");
+            prop.posType = EngineKnowledgeBase.ctLabel2ctId("ArIDF");
+        } else if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, prop.lemma) >= 0) {
+            return MorphologicalDatabase.getPronoun(prop);
         }
         return prop;
     }
@@ -89,6 +91,9 @@ public class MorphologicalAnalyser {
         PosProp prop = new PosProp();
         prop.lemma = wordForm.toLowerCase();
         if (Arrays.binarySearch(MorphologicalDatabase.possesivePronouns, prop.lemma) >= 0) {
+            return MorphologicalDatabase.getPronoun(prop);
+        }
+        if (prop.lemma.equals("former") || prop.lemma.equals("former")) {
             return MorphologicalDatabase.getPronoun(prop);
         }
         return prop;

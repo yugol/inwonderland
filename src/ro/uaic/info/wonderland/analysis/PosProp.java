@@ -13,18 +13,22 @@ import net.didion.jwnl.data.Synset;
  */
 public class PosProp {
 
+    public String form = null; // word form
     public String lemma = null; // dictionary form
-    public Synset[] senses = null; // from WordNet
-    public String type = null; // depends on the part of speech
+    public String posType = null; // depends on the part of speech
+    public String gender = null; // masculine, feminine, neuter, common
     public String number = null; // singular, plural
     public String theCase = null; // nominative, genitive, dative, accusative
-    public String gender = null; // masculine, feminine, neuter, common
     public String person = null; // first, second, third
+    public String comparison = null; // comparative, superlative
+    public String mood = null; // indicative, subjunctive, conditional, ...
+    public String tense = null; // present, past, future, ...
+    public Synset[] senses = null; // from WordNet
 
     public String[] getTypes() {
         ArrayList<String> types = new ArrayList<String>();
-        if (type != null) {
-            types.add(type);
+        if (posType != null) {
+            types.add(posType);
         }
         if (person != null) {
             types.add(person);
@@ -37,6 +41,15 @@ public class PosProp {
         }
         if (gender != null) {
             types.add(gender);
+        }
+        if (comparison != null) {
+            types.add(comparison);
+        }
+        if (mood != null) {
+            types.add(mood);
+        }
+        if (tense != null) {
+            types.add(tense);
         }
         return types.toArray(new String[]{});
     }

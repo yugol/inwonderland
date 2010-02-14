@@ -62,7 +62,7 @@ public class MessageProcessor {
         personality.setKb(ekb);
     }
 
-    EngineKnowledgeBase getKb() {
+    public EngineKnowledgeBase getKb() {
         return ekb;
     }
 }
