@@ -4,7 +4,9 @@
  */
 package ro.uaic.info.wonderland.engine;
 
-import ro.uaic.info.wonderland.engine.MessageProcessor;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
@@ -13,6 +15,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
 import org.junit.Test;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.util.Corpus;
 import static org.junit.Assert.*;
 
 /**
@@ -20,6 +23,19 @@ import static org.junit.Assert.*;
  * @author Iulian
  */
 public class MessageProcessorTest {
+
+    static File candidateFile = new File("gold_candidate.xml");
+
+    public MessageProcessorTest() {
+        candidateFile.delete();
+    }
+
+    private void mergeToCandidate(MessageProcessor instance) throws ParserConfigurationException, SAXException, IOException {
+        Corpus candidate = new Corpus();
+        candidate.buildFrom(candidateFile);
+        candidate.addKnowledgeBase(instance.getKb());
+        candidate.writeToFile(candidateFile);
+    }
 
     // @Test
     public void testKbWorks() throws Exception {
@@ -63,6 +79,49 @@ public class MessageProcessorTest {
         instance.saveKb(file);
     }
 
+    /*
+    resp = instance.processMessage("Is he the singer you were telling me about?");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("The film was very interesting.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("Open the door please!");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("This is the boy who broke my window.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("This is the road to Swansea.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("The elephant is a big animal.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("Elephants are big animals.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("I remember the Sunday we left London.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("The winter of 1954 lasted five months.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("I think I met her in the January of 1980.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("She visited us several times during the spring of that year.");
+    assertEquals("Done.", resp);
+    resp = instance.processMessage("And do you call this a car?");
+    assertEquals("Done.", resp);
+     */
+    @Test
+    public void testArticles() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        resp = instance.processMessage("The elephant is a big animal.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("We have a few friends here.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I want to put an end to it.");
+        assertEquals("Done.", resp);
+
+        File file = new File("articles.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
     // @Test
     public void testNouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
@@ -80,20 +139,6 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
 
         File file = new File("nouns.cogxml");
-        instance.saveKb(file);
-    }
-
-    // @Test
-    public void testArticles() throws Exception {
-        MessageProcessor instance = new MessageProcessor();
-        String resp;
-
-        resp = instance.processMessage("The boy took a knife and an apple.");
-        assertEquals("Done.", resp);
-        resp = instance.processMessage("Another one bites the dust.");
-        assertEquals("Done.", resp);
-
-        File file = new File("articles.cogxml");
         instance.saveKb(file);
     }
 
@@ -135,7 +180,7 @@ public class MessageProcessorTest {
         instance.saveKb(file);
     }
 
-    @Test
+    // @Test
     public void testDemonstrativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;

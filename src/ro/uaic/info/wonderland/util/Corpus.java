@@ -4,15 +4,21 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import edu.stanford.nlp.util.StringUtils;
+import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import ro.uaic.info.wonderland.analysis.PosProp;
 import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
 
@@ -22,61 +28,95 @@ import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
  */
 public class Corpus {
 
+    public static final String rootTag = "wonderland_corpus";
+    public static final String sentenceTag = "sentence";
+    public static final String wordTag = "word";
+    public static final String stcIdxTag = "idx";
+    public static final String idxTag = "_idx";
+    public static final String lemmaTag = "lemma";
+    public static final String posTag = "_pos";
+    public static final String genTag = "gen";
+    public static final String numTag = "num";
+    public static final String caseTag = "case";
+    public static final String persTag = "pers";
+    public static final String compTag = "comp";
+    public static final String moodTag = "mood";
+    public static final String tenseTag = "tense";
     Document xmlDoc;
 
     public Corpus() {
     }
 
-    public int addSentence(EngineKnowledgeBase ekb, int idx) {
+    public void addSentence(EngineKnowledgeBase ekb, int idx) {
         Node root = xmlDoc.getDocumentElement();
-        CGraph cg = ekb.getSentenceFact(idx);
-
-        Element sentence = xmlDoc.createElement("sentence");
-        sentence.setAttribute("idx", "" + (root.getChildNodes().getLength() + 1));
+        Element sentence = xmlDoc.createElement(sentenceTag);
+        sentence.setAttribute(stcIdxTag, "" + (root.getChildNodes().getLength() + 1));
         root.appendChild(sentence);
 
-        for (int j = 1; j <= cg.getConcepts().size(); ++j) {
-            PosProp prop = ekb.conceptLabels2posProp(getConcept(cg, j));
-            Element word = xmlDoc.createElement("word");
-            word.setAttribute("idx", "" + j);
-            word.setAttribute("lemma", prop.lemma);
+        PosProp[] props = ekb.getSentencePosProps(idx);
+        for (int j = 0; j < props.length; ++j) {
+            PosProp prop = props[j];
+            Element word = xmlDoc.createElement(wordTag);
+            word.setAttribute(idxTag, "" + (j + 1));
+            word.setAttribute(lemmaTag, prop.lemma);
             if (prop.posType != null) {
-                word.setAttribute("pos", prop.posType);
+                word.setAttribute(posTag, prop.posType);
             }
             if (prop.gender != null) {
-                word.setAttribute("gen", prop.gender);
+                word.setAttribute(genTag, prop.gender);
             }
             if (prop.number != null) {
-                word.setAttribute("num", prop.number);
+                word.setAttribute(numTag, prop.number);
             }
             if (prop.theCase != null) {
-                word.setAttribute("case", prop.theCase);
+                word.setAttribute(caseTag, prop.theCase);
             }
             if (prop.person != null) {
-                word.setAttribute("pers", prop.person);
+                word.setAttribute(persTag, prop.person);
             }
             if (prop.comparison != null) {
-                word.setAttribute("comp", prop.comparison);
+                word.setAttribute(compTag, prop.comparison);
             }
             if (prop.mood != null) {
-                word.setAttribute("mood", prop.mood);
+                word.setAttribute(moodTag, prop.mood);
+            }
+            if (prop.tense != null) {
+                word.setAttribute(tenseTag, prop.tense);
             }
             word.setTextContent(prop.form);
             sentence.appendChild(word);
         }
-        return idx;
     }
 
-    public void buildFrom(EngineKnowledgeBase ekb) {
-        createMarkupDocument();
+    public void addKnowledgeBase(EngineKnowledgeBase ekb) {
         for (int i = 1; i <= ekb.getSentenceFactCount(); ++i) {
             addSentence(ekb, i);
         }
     }
 
+    public void buildFrom(EngineKnowledgeBase ekb) {
+        createMarkupDocument();
+        addKnowledgeBase(ekb);
+    }
+
+    public void buildFrom(File corpusFile) throws ParserConfigurationException, SAXException {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            xmlDoc = db.parse(corpusFile);
+            xmlDoc.getDocumentElement().normalize();
+        } catch (IOException ex) {
+            createMarkupDocument();
+        }
+    }
+
+    public void writeToFile(File corpusFile) throws IOException {
+        IO.writeStringToFile(toString(), corpusFile);
+    }
+
     private void createMarkupDocument() {
         xmlDoc = new DocumentImpl();
-        Element root = xmlDoc.createElement("wanderland_corpus");
+        Element root = xmlDoc.createElement(rootTag);
         xmlDoc.appendChild(root);
     }
 
@@ -97,13 +137,92 @@ public class Corpus {
         return null;
     }
 
-    private Concept getConcept(CGraph cg, int j) {
-        for (Concept c : cg.getConcepts()) {
-            int index = Integer.parseInt(c.getId().split("-")[1]);
-            if (index == j) {
-                return c;
+    private Element getSentenceByIndex(int idx) {
+        NodeList sentences = xmlDoc.getElementsByTagName(sentenceTag);
+        for (int i = 0; i < sentences.getLength(); ++i) {
+            Element sentence = (Element) sentences.item(i);
+            int sIdx = Integer.parseInt(sentence.getAttribute(stcIdxTag));
+            if (idx == sIdx) {
+                return sentence;
             }
         }
         return null;
+    }
+
+    private Element getWordByIndex(Element sentence, int idx) {
+        NodeList words = sentence.getElementsByTagName(wordTag);
+        for (int i = 0; i < words.getLength(); ++i) {
+            Element word = (Element) words.item(i);
+            int sIdx = Integer.parseInt(word.getAttribute(idxTag));
+            if (idx == sIdx) {
+                return word;
+            }
+        }
+        return null;
+    }
+
+    public String getSentenceStringByIndex(int idx) {
+        Element sentence = getSentenceByIndex(idx);
+        if (sentence != null) {
+            NodeList words = sentence.getElementsByTagName(wordTag);
+            String[] chunks = new String[words.getLength()];
+            for (int i = 0; i < words.getLength(); ++i) {
+                Element word = (Element) words.item(i);
+                int sIdx = Integer.parseInt(word.getAttribute(idxTag));
+                chunks[sIdx - 1] = word.getTextContent();
+            }
+            return StringUtils.join(chunks, " ");
+        }
+        return null;
+    }
+
+    int getSentenceCount() {
+        return xmlDoc.getElementsByTagName(sentenceTag).getLength();
+    }
+
+    public PosProp[] getSentencePosProps(int idx) {
+        Element sentence = getSentenceByIndex(idx);
+        NodeList words = sentence.getElementsByTagName(wordTag);
+        PosProp[] props = new PosProp[words.getLength()];
+        for (int i = 1; i <= props.length; ++i) {
+            Element word = getWordByIndex(sentence, i);
+            PosProp prop = new PosProp();
+            prop.form = word.getTextContent();
+            prop.lemma = word.getAttribute(lemmaTag);
+            prop.comparison = word.getAttribute(compTag);
+            if (prop.comparison.length() == 0) {
+                prop.comparison = null;
+            }
+            prop.gender = word.getAttribute(genTag);
+            if (prop.gender.length() == 0) {
+                prop.gender = null;
+            }
+            prop.mood = word.getAttribute(moodTag);
+            if (prop.mood.length() == 0) {
+                prop.mood = null;
+            }
+            prop.number = word.getAttribute(numTag);
+            if (prop.number.length() == 0) {
+                prop.number = null;
+            }
+            prop.person = word.getAttribute(persTag);
+            if (prop.person.length() == 0) {
+                prop.person = null;
+            }
+            prop.posType = word.getAttribute(posTag);
+            if (prop.posType.length() == 0) {
+                prop.posType = null;
+            }
+            prop.tense = word.getAttribute(tenseTag);
+            if (prop.tense.length() == 0) {
+                prop.tense = null;
+            }
+            prop.theCase = word.getAttribute(caseTag);
+            if (prop.theCase.length() == 0) {
+                prop.theCase = null;
+            }
+            props[i - 1] = prop;
+        }
+        return props;
     }
 }
