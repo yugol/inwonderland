@@ -2,11 +2,11 @@
 <wonderland_corpus>
     <sentence idx="1">
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
-        <word _idx="2" _pos="NnCOM" lemma="elephant" num="sng">elephant</word>
+        <word _idx="2" lemma="elephant">elephant</word>
         <word _idx="3" lemma="is">is</word>
         <word _idx="4" _pos="ArIDF" lemma="a">a</word>
         <word _idx="5" lemma="big">big</word>
-        <word _idx="6" _pos="NnCOM" lemma="animal" num="sng">animal</word>
+        <word _idx="6" lemma="animal">animal</word>
         <word _idx="7" lemma=".">.</word>
     </sentence>
     <sentence idx="2">
@@ -14,7 +14,7 @@
         <word _idx="2" lemma="have">have</word>
         <word _idx="3" _pos="ArIDF" lemma="a">a</word>
         <word _idx="4" lemma="few">few</word>
-        <word _idx="5" _pos="NnCOM" lemma="friend" num="plu">friends</word>
+        <word _idx="5" lemma="friends">friends</word>
         <word _idx="6" lemma="here">here</word>
         <word _idx="7" lemma=".">.</word>
     </sentence>
@@ -24,9 +24,142 @@
         <word _idx="3" lemma="to">to</word>
         <word _idx="4" lemma="put">put</word>
         <word _idx="5" _pos="ArIDF" lemma="a">an</word>
-        <word _idx="6" _pos="NnCOM" lemma="end" num="sng">end</word>
+        <word _idx="6" lemma="end">end</word>
         <word _idx="7" lemma="to">to</word>
         <word _idx="8" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
         <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="4">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="must">must</word>
+        <word _idx="3" lemma="see">see</word>
+        <word _idx="4" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="5" lemma="now">now</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="5">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" lemma="gave">gave</word>
+        <word _idx="3" _pos="PnPRS" lemma="me" num="sng" pers="st">me</word>
+        <word _idx="4" lemma="some">some</word>
+        <word _idx="5" lemma="flowers">flowers</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="6">
+        <word _idx="1" lemma="Thank">Thank</word>
+        <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="3" lemma="!">!</word>
+    </sentence>
+    <sentence idx="7">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" lemma="shell">shell</word>
+        <word _idx="3" lemma="visit">visit</word>
+        <word _idx="4" lemma="London">London</word>
+        <word _idx="5" lemma="tomorrow">tomorrow</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="8">
+        <word _idx="1" _pos="PnPRS" lemma="you" pers="nd">You</word>
+        <word _idx="2" lemma="are">are</word>
+        <word _idx="3" lemma="very">very</word>
+        <word _idx="4" lemma="tired">tired</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="9">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" lemma="go">go</word>
+        <word _idx="3" lemma="to">to</word>
+        <word _idx="4" lemma="work">work</word>
+        <word _idx="5" lemma="by">by</word>
+        <word _idx="6" lemma="tube">tube</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="10">
+        <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
+        <word _idx="2" lemma="offered">offered</word>
+        <word _idx="3" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="4" lemma="some">some</word>
+        <word _idx="5" lemma="nice">nice</word>
+        <word _idx="6" lemma="flowers">flowers</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="11">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="saw">saw</word>
+        <word _idx="3" _pos="PnPRS" gen="msc" lemma="him" num="sng" pers="rd">him</word>
+        <word _idx="4" lemma="here">here</word>
+        <word _idx="5" lemma="yesterday">yesterday</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="12">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="looked">looked</word>
+        <word _idx="3" lemma="at">at</word>
+        <word _idx="4" _pos="PnPRS" lemma="them" num="plu" pers="rd">them</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="13">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" lemma="told">told</word>
+        <word _idx="3" _pos="PnPRS" lemma="us" num="plu" pers="st">us</word>
+        <word _idx="4" lemma="what">what</word>
+        <word _idx="5" lemma="happened">happened</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="14">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="will">will</word>
+        <word _idx="3" lemma="never">never</word>
+        <word _idx="4" lemma="forget">forget</word>
+        <word _idx="5" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+    </sentence>
+    <sentence idx="15">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="car">car</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" lemma="mine" num="sng" pers="st">mine</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="16">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="house">house</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" lemma="yours" pers="nd">yours</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="17">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="dog">dog</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" gen="msc" lemma="his" num="sng" pers="rd">his</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="18">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="jewelry">jewelry</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" gen="fem" lemma="hers" num="sng" pers="rd">hers</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="19">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="children">children</word>
+        <word _idx="3" lemma="are">are</word>
+        <word _idx="4" _pos="PnPOS" lemma="ours" num="plu" pers="st">ours</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="20">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="television">television</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" lemma="theirs" num="plu" pers="rd">theirs</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="21">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="globe">globe</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" _pos="PnPOS" lemma="thine" pers="nd">thine</word>
+        <word _idx="5" lemma=".">.</word>
     </sentence>
 </wonderland_corpus>

@@ -50,7 +50,7 @@ public class Corpus {
     public void addSentence(EngineKnowledgeBase ekb, int idx) {
         Node root = xmlDoc.getDocumentElement();
         Element sentence = xmlDoc.createElement(sentenceTag);
-        sentence.setAttribute(stcIdxTag, "" + (root.getChildNodes().getLength() + 1));
+        sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
         PosProp[] props = ekb.getSentencePosProps(idx);
@@ -224,5 +224,13 @@ public class Corpus {
             props[i - 1] = prop;
         }
         return props;
+    }
+
+    public void reIndexSentences() {
+        NodeList sentences = xmlDoc.getElementsByTagName(sentenceTag);
+        for (int i = 0; i < sentences.getLength(); ++i) {
+            Element sentence = (Element) sentences.item(i);
+            sentence.setAttribute(stcIdxTag, "" + (i + 1));
+        }
     }
 }

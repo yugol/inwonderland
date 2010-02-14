@@ -12,65 +12,51 @@ import ro.uaic.info.wonderland.analysis.PosProp;
  */
 public class PosUtil {
 
-    public static boolean areConsistent(PosProp gold, PosProp auto) {
-        boolean consistent = true;
-        if (!gold.form.equals(auto.form)) {
-            System.out.println("form: " + gold.form + " / " + auto.form);
-            consistent = false;
-        }
-        if (!gold.lemma.equals(auto.lemma)) {
-            System.out.println("lemma: " + gold.lemma + " / " + auto.lemma);
-            consistent = false;
-        }
+    private static String indent = "        ";
+
+    public static String areConsistent(PosProp gold, PosProp auto) {
+        StringBuilder sb = new StringBuilder();
         if (gold.comparison != null) {
             if (!gold.comparison.equals(auto.comparison)) {
-                System.out.println("comparison: " + gold.comparison + " / " + auto.comparison);
-                consistent = false;
+                sb.append(indent + Corpus.compTag + ": " + gold.comparison + " / " + auto.comparison + "\n");
             }
         }
         if (gold.gender != null) {
             if (!gold.gender.equals(auto.gender)) {
-                System.out.println("gender: " + gold.gender + " / " + auto.gender);
-                consistent = false;
+                sb.append(indent + Corpus.genTag + ": " + gold.gender + " / " + auto.gender + "\n");
             }
         }
         if (gold.mood != null) {
             if (!gold.mood.equals(auto.mood)) {
-                System.out.println("mood: " + gold.mood + " / " + auto.mood);
-                consistent = false;
+                sb.append(indent + Corpus.moodTag + ": " + gold.mood + " / " + auto.mood + "\n");
             }
         }
         if (gold.number != null) {
             if (!gold.number.equals(auto.number)) {
-                System.out.println("number: " + gold.number + " / " + auto.number);
-                consistent = false;
+                sb.append(indent + Corpus.numTag + ": " + gold.number + " / " + auto.number + "\n");
             }
         }
         if (gold.person != null) {
             if (!gold.person.equals(auto.person)) {
-                System.out.println("person: " + gold.person + " / " + auto.person);
-                consistent = false;
+                sb.append(indent + Corpus.persTag + ": " + gold.person + " / " + auto.person + "\n");
             }
         }
         if (gold.posType != null) {
             if (!gold.posType.equals(auto.posType)) {
-                System.out.println("posType: " + gold.posType + " / " + auto.posType);
-                consistent = false;
+                sb.append(indent + Corpus.posTag + ": " + gold.posType + " / " + auto.posType + "\n");
             }
         }
         if (gold.tense != null) {
             if (!gold.tense.equals(auto.tense)) {
-                System.out.println("tense: " + gold.tense + " / " + auto.tense);
-                consistent = false;
+                sb.append(indent + Corpus.tenseTag + ": " + gold.tense + " / " + auto.tense + "\n");
             }
         }
         if (gold.theCase != null) {
             if (!gold.theCase.equals(auto.theCase)) {
-                System.out.println("theCase: " + gold.theCase + " / " + auto.theCase);
-                consistent = false;
+                sb.append(indent + Corpus.caseTag + ": " + gold.theCase + " / " + auto.theCase + "\n");
             }
         }
 
-        return consistent;
+        return ((sb.length() > 0) ? (sb.toString()) : (null));
     }
 }

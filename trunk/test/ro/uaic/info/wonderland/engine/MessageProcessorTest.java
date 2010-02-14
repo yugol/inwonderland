@@ -105,7 +105,7 @@ public class MessageProcessorTest {
     resp = instance.processMessage("And do you call this a car?");
     assertEquals("Done.", resp);
      */
-    @Test
+    // @Test
     public void testArticles() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -123,37 +123,36 @@ public class MessageProcessorTest {
     }
 
     // @Test
-    public void testNouns() throws Exception {
-        MessageProcessor instance = new MessageProcessor();
-        String resp;
-
-        // It  >'s< are probleme la proiectie
-
-        resp = instance.processMessage("The ice melts in the sun."); // NN
-        assertEquals("Done.", resp);
-        resp = instance.processMessage("It is raining with cats and dogs."); // NNS
-        assertEquals("Done.", resp);
-        resp = instance.processMessage("Shannon goes to Liverpool."); // NNP
-        assertEquals("Done.", resp);
-        resp = instance.processMessage("Americans live in Americas."); // NNPS
-        assertEquals("Done.", resp);
-
-        File file = new File("nouns.cogxml");
-        instance.saveKb(file);
-    }
-
-    // @Test
     public void testPersonalPronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
 
-        resp = instance.processMessage("I am, you are, he is, she is, it is, we are, they are, thou are, ye are.");
+        resp = instance.processMessage("I must see her now.");
         assertEquals("Done.", resp);
-        resp = instance.processMessage("Give it to me, to you, to him, to her, to it, to us, to them, to thee.");
+        resp = instance.processMessage("They gave me some flowers.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Thank you!");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("We shell visit London tomorrow.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("You are very tired.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("They go to work by tube.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("He offered her some nice flowers.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I saw him here yesterday.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I looked at them.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She told us what happened.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I will never forget it");
         assertEquals("Done.", resp);
 
         File file = new File("personal_pronouns.cogxml");
         instance.saveKb(file);
+        mergeToCandidate(instance);
     }
 
     // @Test
@@ -178,9 +177,10 @@ public class MessageProcessorTest {
 
         File file = new File("possesive_pronouns.cogxml");
         instance.saveKb(file);
+        mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testDemonstrativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -215,6 +215,27 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
 
         File file = new File("demonstrative_pronouns.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
+    // @Test
+    public void testNouns() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        // It  >'s< are probleme la proiectie
+
+        resp = instance.processMessage("The ice melts in the sun."); // NN
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("It is raining with cats and dogs."); // NNS
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Shannon goes to Liverpool."); // NNP
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Americans live in Americas."); // NNPS
+        assertEquals("Done.", resp);
+
+        File file = new File("nouns.cogxml");
         instance.saveKb(file);
     }
 }
