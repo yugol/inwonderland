@@ -134,7 +134,7 @@ public class EngineKnowledgeBase {
             PosProp prop = null;
 
             if (wordTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
-                prop = ma.analyzeNoun(wordLabel, wordTag);
+                // prop = ma.analyzeNoun(wordLabel, wordTag);
             } else if (wordTag.equals("DT")) {
                 prop = ma.analyzeDeterminer(wordLabel, wordTag);
             } else if (wordTag.indexOf("PRP") == 0) { // PRP, PRP$
