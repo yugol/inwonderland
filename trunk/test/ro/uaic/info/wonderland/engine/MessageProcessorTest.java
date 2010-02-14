@@ -201,7 +201,7 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
         resp = instance.processMessage("George learns in the same school as his friend.");
         assertEquals("Done.", resp);
-        resp = instance.processMessage("You say that she is a  good pianist but I don't think so.");
+        resp = instance.processMessage("You say that she is a good pianist but I don't think so.");
         assertEquals("Done.", resp);
         resp = instance.processMessage("Such is the present situation.");
         assertEquals("Done.", resp);

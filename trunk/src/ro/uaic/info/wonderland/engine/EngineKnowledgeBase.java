@@ -242,7 +242,8 @@ public class EngineKnowledgeBase {
 
     private Concept getConcept(CGraph cg, int j) {
         for (Concept c : cg.getConcepts()) {
-            int index = Integer.parseInt(c.getId().split("-")[1]);
+            int idxPos = c.getId().lastIndexOf('-') + 1;
+            int index = Integer.parseInt(c.getId().substring(idxPos));
             if (index == j) {
                 return c;
             }
