@@ -4,7 +4,6 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import ro.uaic.wonderland.util.KB;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

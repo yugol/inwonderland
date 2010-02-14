@@ -254,7 +254,7 @@ public class Gui extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = textFileChooser.getSelectedFile();
             try {
-                String message = ro.uaic.wonderland.util.IO.getFileContentAsString(file);
+                String message = ro.uaic.info.wonderland.util.IO.getFileContentAsString(file);
                 inputTextArea.setText(message);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex);
