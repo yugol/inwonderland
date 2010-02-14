@@ -15,10 +15,10 @@ import static org.junit.Assert.*;
  *
  * @author Iulian
  */
-public class NounPropTest {
+public class NounLookupTest {
 
     @Test
-    public void testSomeMethod() throws JWNLException {
+    public void testLookupNoun() throws JWNLException {
         IndexWord word = WordNetWrapper.lookup("bubla", POS.NOUN);
         assertNull(word);
 

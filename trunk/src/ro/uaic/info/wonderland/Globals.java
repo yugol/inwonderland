@@ -31,7 +31,6 @@ public final class Globals {
 
     public static String getStanfordParserPath() {
         return getDataFolder() + "/englishPCFG.ser.gz";
-        // return getDataFolder() + "/englishPCFG.ser.gz";
     }
 
     public static String getDefaultParseKBPath() {
@@ -45,6 +44,10 @@ public final class Globals {
 
     public static String getJwnlPropertiesPath() {
         return getDataFolder() + "/jwnl_properties.xml";
+    }
+
+    public static File getGoldCorpusFile() {
+        return new File(dataFolder, "corpora/gold.xml");
     }
 
     public static void exit() {

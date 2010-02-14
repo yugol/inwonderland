@@ -9,8 +9,10 @@ import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.io.File;
 import java.util.List;
+import ro.uaic.info.wonderland.analysis.PosProp;
 import ro.uaic.info.wonderland.analysis.StanfordParserWrapper;
 
 /**

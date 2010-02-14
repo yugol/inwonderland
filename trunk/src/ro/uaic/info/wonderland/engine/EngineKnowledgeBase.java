@@ -199,7 +199,7 @@ public class EngineKnowledgeBase {
         return sentenceFactCount;
     }
 
-    public PosProp conceptLabels2posProp(Concept c) {
+    private PosProp conceptLabels2posProp(Concept c) {
         PosProp prop = new PosProp();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         for (String type : c.getType()) {
@@ -229,5 +229,24 @@ public class EngineKnowledgeBase {
         prop.form = c.getId().split("-")[0];
         prop.lemma = c.getIndividual();
         return prop;
+    }
+
+    public PosProp[] getSentencePosProps(int idx) {
+        CGraph cg = getSentenceFact(idx);
+        PosProp[] props = new PosProp[cg.getConcepts().size()];
+        for (int j = 1; j <= props.length; ++j) {
+            props[j - 1] = conceptLabels2posProp(getConcept(cg, j));
+        }
+        return props;
+    }
+
+    private Concept getConcept(CGraph cg, int j) {
+        for (Concept c : cg.getConcepts()) {
+            int index = Integer.parseInt(c.getId().split("-")[1]);
+            if (index == j) {
+                return c;
+            }
+        }
+        return null;
     }
 }
