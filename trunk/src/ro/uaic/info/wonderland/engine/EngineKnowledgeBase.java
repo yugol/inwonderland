@@ -15,6 +15,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -34,6 +35,14 @@ public class EngineKnowledgeBase {
     static final String sentenceSetName = "sentences";
     static NumberFormat formatter = new DecimalFormat("000");
     static String posConceptType = ctLabel2ctId("Pos");
+    static String spTagConceptType = ctLabel2ctId("SpTag");
+    static String caseConceptType = ctLabel2ctId("Case");
+    static String comparisonConceptType = ctLabel2ctId("Comparison");
+    static String genderConceptType = ctLabel2ctId("Gender");
+    static String moodConceptType = ctLabel2ctId("Mood");
+    static String numberConceptType = ctLabel2ctId("Number");
+    static String personConceptType = ctLabel2ctId("Person");
+    static String tenseConceptType = ctLabel2ctId("Tense");
 
     static String toSentenceIndex(int num) {
         return formatter.format(num);
@@ -134,7 +143,7 @@ public class EngineKnowledgeBase {
                 prop = ma.analyzeAdjective(wordLabel, wordTag);
             }
 
-            if (prop != null && prop.type != null) {
+            if (prop != null && prop.posType != null) {
                 pos2concept(prop, c);
             } else {
                 String conceptType = ctLabel2ctId(wordTag);
@@ -178,11 +187,47 @@ public class EngineKnowledgeBase {
         c.setIndividual(a.lemma);
     }
 
-    public CGraph getSentence(int idx) {
+    public CGraph getSentenceFact(int idx) {
         return kb.getFactGraph(toSentenceId(idx));
     }
 
     public String getConceptTypeLabel(String ct) {
         return vocabulary.getConceptTypeLabel(ct, language);
+    }
+
+    public int getSentenceFactCount() {
+        return sentenceFactCount;
+    }
+
+    public PosProp conceptLabels2posProp(Concept c) {
+        PosProp prop = new PosProp();
+        Hierarchy cth = vocabulary.getConceptTypeHierarchy();
+        for (String type : c.getType()) {
+            if (cth.isKindOf(type, posConceptType)) {
+                if (cth.isKindOf(type, spTagConceptType)) {
+                    prop = new PosProp();
+                    break;
+                } else {
+                    prop.posType = vocabulary.getConceptTypeLabel(type, language);
+                }
+            } else if (cth.isKindOf(type, caseConceptType)) {
+                prop.theCase = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, comparisonConceptType)) {
+                prop.comparison = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, genderConceptType)) {
+                prop.gender = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, moodConceptType)) {
+                prop.mood = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, numberConceptType)) {
+                prop.number = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, personConceptType)) {
+                prop.person = vocabulary.getConceptTypeLabel(type, language);
+            } else if (cth.isKindOf(type, tenseConceptType)) {
+                prop.tense = vocabulary.getConceptTypeLabel(type, language);
+            }
+        }
+        prop.form = c.getId().split("-")[0];
+        prop.lemma = c.getIndividual();
+        return prop;
     }
 }
