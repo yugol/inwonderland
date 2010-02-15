@@ -4,9 +4,11 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import edu.stanford.nlp.util.StringUtils;
+import edu2.stanford.nlp.util.StringUtils;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -17,18 +19,15 @@ import java.io.IOException;
 public class IO {
 
     public static String getFileContentAsString(File file) throws IOException {
-        return StringUtils.slurpFile(file);
-        /*
         BufferedReader in = new BufferedReader(new FileReader(file));
         String str;
         StringBuffer sb = new StringBuffer();
         while ((str = in.readLine()) != null) {
-        sb.append(str);
-        sb.append("\n");
+            sb.append(str);
+            sb.append("\n");
         }
         in.close();
         return sb.toString();
-         */
     }
 
     public static void writeStringToFile(String str, File file) throws IOException {

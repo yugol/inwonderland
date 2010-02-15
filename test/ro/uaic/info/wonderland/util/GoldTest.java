@@ -39,7 +39,7 @@ public class GoldTest {
 
             msgProc.processMessage(sentence);
             PosProp[] expected = gold.getSentencePosProps(i);
-            PosProp[] actual = msgProc.getKb().getSentencePosProps(i);
+            PosProp[] actual = msgProc.getKb().getSentencePosProps(i, false);
             assertEquals(expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {
@@ -49,6 +49,7 @@ public class GoldTest {
                         System.out.println("");
                         System.out.println("ERROR in sentence [" + i + "]:");
                         System.out.println(sentence);
+                        printed = true;
                     }
                     System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].form);
                     System.out.println(err);

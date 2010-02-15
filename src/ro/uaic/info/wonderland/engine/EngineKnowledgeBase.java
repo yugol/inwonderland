@@ -199,12 +199,12 @@ public class EngineKnowledgeBase {
         return sentenceFactCount;
     }
 
-    private PosProp conceptLabels2posProp(Concept c) {
+    private PosProp conceptLabels2posProp(Concept c, boolean newTagsOnly) {
         PosProp prop = new PosProp();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         for (String type : c.getType()) {
             if (cth.isKindOf(type, posConceptType)) {
-                if (cth.isKindOf(type, spTagConceptType)) {
+                if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
                     prop = new PosProp();
                     break;
                 } else {
@@ -231,11 +231,11 @@ public class EngineKnowledgeBase {
         return prop;
     }
 
-    public PosProp[] getSentencePosProps(int idx) {
+    public PosProp[] getSentencePosProps(int idx, boolean newTagsOnly) {
         CGraph cg = getSentenceFact(idx);
         PosProp[] props = new PosProp[cg.getConcepts().size()];
         for (int j = 1; j <= props.length; ++j) {
-            props[j - 1] = conceptLabels2posProp(getConcept(cg, j));
+            props[j - 1] = conceptLabels2posProp(getConcept(cg, j), newTagsOnly);
         }
         return props;
     }

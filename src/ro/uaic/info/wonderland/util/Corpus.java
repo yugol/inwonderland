@@ -4,7 +4,7 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import edu.stanford.nlp.util.StringUtils;
+import edu2.stanford.nlp.util.StringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -53,7 +53,7 @@ public class Corpus {
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
-        PosProp[] props = ekb.getSentencePosProps(idx);
+        PosProp[] props = ekb.getSentencePosProps(idx, true);
         for (int j = 0; j < props.length; ++j) {
             PosProp prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
