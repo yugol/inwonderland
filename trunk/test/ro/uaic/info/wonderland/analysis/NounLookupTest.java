@@ -4,7 +4,7 @@
  */
 package ro.uaic.info.wonderland.analysis;
 
-import ro.uaic.info.wonderland.nlp.WordNetWrapper;
+import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;

@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class WTagger {
 
-    Lemmatiser lemmatiser = new Lemmatiser();
     MorphologicalAnalyser ma = new MorphologicalAnalyser();
 
     WTagging[] getWTagsByForm(List<TaggedWord> tSent) {
@@ -24,7 +23,7 @@ public class WTagger {
 
             tagging.form = word.word();
             tagging.pos = word.tag();
-            tagging.lemma = lemmatiser.getLemma(tagging);
+            tagging.lemma = tagging.form.toLowerCase();
 
             if (tagging.pos.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 // prop = ma.analyzeNoun(wordLabel, wordTag);

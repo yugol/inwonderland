@@ -4,6 +4,8 @@
  */
 package ro.uaic.info.wonderland.nlp;
 
+import ro.uaic.info.wonderland.nlp.resources.StanfordParserWrapper;
+import ro.uaic.info.wonderland.nlp.resources.StanfordPostaggerWrapper;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.Tree;

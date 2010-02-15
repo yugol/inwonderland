@@ -65,7 +65,7 @@ public class MessageProcessorTest {
         instance.saveKb(file);
     }
 
-    @Test
+    // @Test
     public void testMessage() throws Exception {
         String msg = "They like each other";
         Globals.testDebug = true;
@@ -180,7 +180,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testDemonstrativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -195,7 +195,7 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
         resp = instance.processMessage("Andy and Janet are cousins : the former is a student, the latter is a pupil.");
         assertEquals("Done.", resp);
-        resp = instance.processMessage("I don't need this pencil, give me the other one!");
+        resp = instance.processMessage("She eats this half of the pear and you may eat the other.");
         assertEquals("Done.", resp);
         resp = instance.processMessage("Some guests drank beer, the others drank wine.");
         assertEquals("Done.", resp);
