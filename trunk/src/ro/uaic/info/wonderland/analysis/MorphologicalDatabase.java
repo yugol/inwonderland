@@ -5,7 +5,6 @@
 package ro.uaic.info.wonderland.analysis;
 
 import java.util.Arrays;
-import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
 
 /**
  *
@@ -21,146 +20,146 @@ public abstract class MorphologicalDatabase {
         Arrays.sort(demonstrativePronouns);
     }
 
-    public static PosProp getPronoun(PosProp prop) {
+    public static WTagging getPronoun(WTagging prop) {
 
         // personal pronoun
         if (prop.lemma.equals("I")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.person = "st";
         } else if (prop.lemma.equals("me")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.person = "st";
         } else if (prop.lemma.equals("we")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPRS";
+            prop.number = "plu";
+            prop.person = "st";
         } else if (prop.lemma.equals("us")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPRS";
+            prop.number = "plu";
+            prop.person = "st";
         } else if (prop.lemma.equals("you")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPRS";
+            prop.person = "nd";
         } else if (prop.lemma.equals("he")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("msc");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.gender = "msc";
+            prop.person = "rd";
         } else if (prop.lemma.equals("she")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("fem");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.gender = "fem";
+            prop.person = "rd";
         } else if (prop.lemma.equals("it")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("neu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.gender = "neu";
+            prop.person = "rd";
         } else if (prop.lemma.equals("him")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("msc");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.gender = "msc";
+            prop.person = "rd";
         } else if (prop.lemma.equals("her")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("fem");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.gender = "fem";
+            prop.person = "rd";
         } else if (prop.lemma.equals("they")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "plu";
+            prop.person = "rd";
         } else if (prop.lemma.equals("them")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPRS";
+            prop.number = "plu";
+            prop.person = "rd";
         } else if (prop.lemma.equals("thou")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.person = "nd";
         } else if (prop.lemma.equals("thee")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPRS";
+            prop.number = "sng";
+            prop.person = "nd";
         } else if (prop.lemma.equals("ye")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPRS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPRS";
+            prop.number = "plu";
+            prop.person = "nd";
             //
             //
             // possessive pronoun
         } else if (prop.lemma.equals("mine")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPOS";
+            prop.number = "sng";
+            prop.person = "st";
         } else if (prop.lemma.equals("yours")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPOS";
+            prop.person = "nd";
         } else if (prop.lemma.equals("thine")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("nd");
+            prop.pos = "PnPOS";
+            prop.pos = "PnPOS";
+            prop.person = "nd";
         } else if (prop.lemma.equals("his")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("msc");
+            prop.pos = "PnPOS";
+            prop.number = "sng";
+            prop.person = "rd";
+            prop.gender = "msc";
         } else if (prop.lemma.equals("hers")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
-            prop.gender = EngineKnowledgeBase.ctLabel2ctId("fem");
+            prop.pos = "PnPOS";
+            prop.number = "sng";
+            prop.person = "rd";
+            prop.gender = "fem";
         } else if (prop.lemma.equals("ours")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("st");
+            prop.pos = "PnPOS";
+            prop.number = "plu";
+            prop.person = "st";
         } else if (prop.lemma.equals("theirs")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnPOS");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
-            prop.person = EngineKnowledgeBase.ctLabel2ctId("rd");
+            prop.pos = "PnPOS";
+            prop.number = "plu";
+            prop.person = "rd";
             //
             //
             // demonstrative pronouns
         } else if (prop.lemma.equals("this")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
+            prop.pos = "PnDEM";
+            prop.number = "sng";
         } else if (prop.lemma.equals("these")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
+            prop.pos = "PnDEM";
+            prop.number = "plu";
         } else if (prop.lemma.equals("that")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
+            prop.pos = "PnDEM";
+            prop.number = "sng";
         } else if (prop.lemma.equals("those")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
+            prop.pos = "PnDEM";
+            prop.number = "plu";
         } else if (prop.lemma.equals("former")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("latter")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("other")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
+            prop.pos = "PnDEM";
+            prop.number = "sng";
         } else if (prop.lemma.equals("others")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
+            prop.pos = "PnDEM";
+            prop.number = "plu";
         } else if (prop.lemma.equals("same")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("so")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("such")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("such-and-such")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("suchlike")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
+            prop.pos = "PnDEM";
         } else if (prop.lemma.equals("one")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("sng");
+            prop.pos = "PnDEM";
+            prop.number = "sng";
         } else if (prop.lemma.equals("ones")) {
-            prop.posType = EngineKnowledgeBase.ctLabel2ctId("PnDEM");
-            prop.number = EngineKnowledgeBase.ctLabel2ctId("plu");
+            prop.pos = "PnDEM";
+            prop.number = "plu";
         }
         return prop;
     }

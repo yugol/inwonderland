@@ -11,11 +11,11 @@ import net.didion.jwnl.data.Synset;
  *
  * @author Iulian
  */
-public class PosProp {
+public class WTagging {
 
     public String form = null; // word form
     public String lemma = null; // dictionary form
-    public String posType = null; // depends on the part of speech
+    public String pos = null; // depends on the part of speech
     public String gender = null; // masculine, feminine, neuter, common
     public String number = null; // singular, plural
     public String theCase = null; // nominative, genitive, dative, accusative
@@ -25,10 +25,10 @@ public class PosProp {
     public String tense = null; // present, past, future, ...
     public Synset[] senses = null; // from WordNet
 
-    public String[] getTypes() {
+    public String[] asStringArray() {
         ArrayList<String> types = new ArrayList<String>();
-        if (posType != null) {
-            types.add(posType);
+        if (pos != null) {
+            types.add(pos);
         }
         if (person != null) {
             types.add(person);

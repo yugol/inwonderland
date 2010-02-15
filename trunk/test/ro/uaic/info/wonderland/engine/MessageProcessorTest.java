@@ -65,7 +65,7 @@ public class MessageProcessorTest {
         instance.saveKb(file);
     }
 
-    // @Test
+    @Test
     public void testMessage() throws Exception {
         String msg = "They like each other";
         Globals.testDebug = true;
@@ -180,7 +180,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testDemonstrativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;

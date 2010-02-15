@@ -7,7 +7,7 @@ package ro.uaic.info.wonderland.util;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ro.uaic.info.wonderland.Globals;
-import ro.uaic.info.wonderland.analysis.PosProp;
+import ro.uaic.info.wonderland.analysis.WTagging;
 import ro.uaic.info.wonderland.engine.MessageProcessor;
 
 /**
@@ -38,8 +38,8 @@ public class GoldTest {
             String sentence = gold.getSentenceStringByIndex(i);
 
             msgProc.processMessage(sentence);
-            PosProp[] expected = gold.getSentencePosProps(i);
-            PosProp[] actual = msgProc.getKb().getSentencePosProps(i, false);
+            WTagging[] expected = gold.getSentencePosProps(i);
+            WTagging[] actual = msgProc.getKb().getSentencePosProps(i, false);
             assertEquals(expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {

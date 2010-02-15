@@ -7,7 +7,7 @@ package ro.uaic.info.wonderland.util;
 import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
+import ro.uaic.info.wonderland.kb.EngineKnowledgeBase;
 import ro.uaic.info.wonderland.engine.MessageProcessor;
 
 /**
