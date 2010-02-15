@@ -16,7 +16,7 @@ import ro.uaic.info.wonderland.engine.MessageProcessor;
  */
 public class GoldTest {
 
-    // @Test
+    @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("reIndexGoldCorpus");
         Corpus gold = new Corpus();

@@ -180,7 +180,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testDemonstrativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -215,6 +215,35 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
 
         File file = new File("demonstrative_pronouns.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
+    @Test
+    public void testReflexivePronouns() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        resp = instance.processMessage("The one who noticed this for the first time was myself.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Talk about yourself.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Accidentally, the hunter shot himself.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She cooked herself a big breakfast.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("The trouble is in the machine itself.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("One may cut oneself with such a sharp knife.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Mrs. Brown, like ourselves, had no ideea about the accident.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Make yourself at home!");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("The cooks themselves eat after all the guests have finished.");
+        assertEquals("Done.", resp);
+
+        File file = new File("reflexive_pronouns.cogxml");
         instance.saveKb(file);
         mergeToCandidate(instance);
     }
