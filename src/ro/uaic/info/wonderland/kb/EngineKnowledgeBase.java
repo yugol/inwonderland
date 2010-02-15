@@ -21,7 +21,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ro.uaic.info.wonderland.Globals;
-import ro.uaic.info.wonderland.analysis.WTagging;
+import ro.uaic.info.wonderland.nlp.WTagging;
 
 /**
  *

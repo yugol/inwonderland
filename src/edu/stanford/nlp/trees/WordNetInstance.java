@@ -4,7 +4,7 @@
  */
 package edu.stanford.nlp.trees;
 
-import ro.uaic.info.wonderland.analysis.WordNetWrapper;
+import ro.uaic.info.wonderland.nlp.WordNetWrapper;
 
 /**
  *
