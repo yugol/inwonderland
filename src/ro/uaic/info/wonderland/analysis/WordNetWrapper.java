@@ -19,7 +19,7 @@ import ro.uaic.info.wonderland.Globals;
  *
  * @author Iulian
  */
-public class WordNetWrapper {
+public abstract class WordNetWrapper {
 
     static Dictionary dict;
 

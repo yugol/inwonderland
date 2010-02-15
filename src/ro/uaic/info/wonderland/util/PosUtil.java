@@ -4,7 +4,7 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import ro.uaic.info.wonderland.analysis.PosProp;
+import ro.uaic.info.wonderland.analysis.WTagging;
 
 /**
  *
@@ -14,7 +14,7 @@ public class PosUtil {
 
     private static String indent = "        ";
 
-    public static String areConsistent(PosProp gold, PosProp auto) {
+    public static String areConsistent(WTagging gold, WTagging auto) {
         StringBuilder sb = new StringBuilder();
         if (gold.comparison != null) {
             if (!gold.comparison.equals(auto.comparison)) {
@@ -41,9 +41,9 @@ public class PosUtil {
                 sb.append(indent + Corpus.persTag + ": " + gold.person + " / " + auto.person + "\n");
             }
         }
-        if (gold.posType != null) {
-            if (!gold.posType.equals(auto.posType)) {
-                sb.append(indent + Corpus.posTag + ": " + gold.posType + " / " + auto.posType + "\n");
+        if (gold.pos != null) {
+            if (!gold.pos.equals(auto.pos)) {
+                sb.append(indent + Corpus.posTag + ": " + gold.pos + " / " + auto.pos + "\n");
             }
         }
         if (gold.tense != null) {

@@ -4,16 +4,13 @@
  */
 package ro.uaic.info.wonderland.engine;
 
+import ro.uaic.info.wonderland.kb.EngineKnowledgeBase;
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.ling.TaggedWord;
-import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.io.File;
 import java.util.List;
-import ro.uaic.info.wonderland.analysis.PosProp;
-import ro.uaic.info.wonderland.analysis.StanfordParserWrapper;
+import ro.uaic.info.wonderland.analysis.Pipeline;
+import ro.uaic.info.wonderland.analysis.WTagging;
 
 /**
  *
@@ -32,11 +29,11 @@ public class MessageProcessor {
     public String processMessage(String msg) {
         String resp = "Done.";
 
-        for (List<? extends HasWord> sent : StanfordParserWrapper.getSentences(msg)) {
-            Sentence<TaggedWord> posTags = StanfordParserWrapper.getPOSTags(sent);
-            Tree parse = StanfordParserWrapper.parse(posTags);
-            List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
-            ekb.addSentenceFact(posTags, deps);
+        for (List<? extends HasWord> sent : Pipeline.getTokenisedSentences(msg)) {
+            Object[] parse = Pipeline.parse(sent);
+            WTagging[] wTags = (WTagging[]) parse[0];
+            List<TypedDependency> deps = (List<TypedDependency>) parse[1];
+            ekb.addSentenceFact(wTags, deps);
         }
 
         return resp;

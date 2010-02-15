@@ -4,6 +4,7 @@
  */
 package ro.uaic.info.wonderland.engine;
 
+import ro.uaic.info.wonderland.kb.EngineKnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 
 /*

@@ -19,8 +19,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import ro.uaic.info.wonderland.analysis.PosProp;
-import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
+import ro.uaic.info.wonderland.analysis.WTagging;
+import ro.uaic.info.wonderland.kb.EngineKnowledgeBase;
 
 /**
  *
@@ -53,14 +53,14 @@ public class Corpus {
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
-        PosProp[] props = ekb.getSentencePosProps(idx, true);
+        WTagging[] props = ekb.getSentencePosProps(idx, true);
         for (int j = 0; j < props.length; ++j) {
-            PosProp prop = props[j];
+            WTagging prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
             word.setAttribute(idxTag, "" + (j + 1));
             word.setAttribute(lemmaTag, prop.lemma);
-            if (prop.posType != null) {
-                word.setAttribute(posTag, prop.posType);
+            if (prop.pos != null) {
+                word.setAttribute(posTag, prop.pos);
             }
             if (prop.gender != null) {
                 word.setAttribute(genTag, prop.gender);
@@ -180,13 +180,13 @@ public class Corpus {
         return xmlDoc.getElementsByTagName(sentenceTag).getLength();
     }
 
-    public PosProp[] getSentencePosProps(int idx) {
+    public WTagging[] getSentencePosProps(int idx) {
         Element sentence = getSentenceByIndex(idx);
         NodeList words = sentence.getElementsByTagName(wordTag);
-        PosProp[] props = new PosProp[words.getLength()];
+        WTagging[] props = new WTagging[words.getLength()];
         for (int i = 1; i <= props.length; ++i) {
             Element word = getWordByIndex(sentence, i);
-            PosProp prop = new PosProp();
+            WTagging prop = new WTagging();
             prop.form = word.getTextContent();
             prop.lemma = word.getAttribute(lemmaTag);
             prop.comparison = word.getAttribute(compTag);
@@ -209,9 +209,9 @@ public class Corpus {
             if (prop.person.length() == 0) {
                 prop.person = null;
             }
-            prop.posType = word.getAttribute(posTag);
-            if (prop.posType.length() == 0) {
-                prop.posType = null;
+            prop.pos = word.getAttribute(posTag);
+            if (prop.pos.length() == 0) {
+                prop.pos = null;
             }
             prop.tense = word.getAttribute(tenseTag);
             if (prop.tense.length() == 0) {

@@ -2,11 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.uaic.info.wonderland.engine;
+package ro.uaic.info.wonderland.kb;
 
-import ro.uaic.info.wonderland.analysis.MorphologicalAnalyser;
-import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
@@ -24,7 +21,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ro.uaic.info.wonderland.Globals;
-import ro.uaic.info.wonderland.analysis.PosProp;
+import ro.uaic.info.wonderland.analysis.WTagging;
 
 /**
  *
@@ -69,7 +66,6 @@ public class EngineKnowledgeBase {
     int sentenceFactCount = 0;
     File lastFile = null;
     boolean dirty = false;
-    MorphologicalAnalyser ma = new MorphologicalAnalyser();
 
     public EngineKnowledgeBase() throws Exception {
         openKb(null);
@@ -121,37 +117,20 @@ public class EngineKnowledgeBase {
         return lastFile;
     }
 
-    CGraph addSentenceFact(Sentence<TaggedWord> words, List<TypedDependency> deps) {
+    public CGraph addSentenceFact(WTagging[] words, List<TypedDependency> deps) {
         String sentId = toSentenceIndex(++sentenceFactCount);
         CGraph cg = new CGraph(toSentenceId(sentId), sentId, sentenceSetName, "fact");
 
-        for (int i = 0; i < words.size(); ++i) {
-            TaggedWord word = words.get(i);
-            String wordLabel = word.word();
-            String wordTag = word.tag();
-            String wordId = wordLabel + "-" + (i + 1);
-            Concept c = new Concept(wordId);
-            PosProp prop = null;
-
-            if (wordTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
-                // prop = ma.analyzeNoun(wordLabel, wordTag);
-            } else if (wordTag.equals("DT")) {
-                prop = ma.analyzeDeterminer(wordLabel, wordTag);
-            } else if (wordTag.indexOf("PRP") == 0) { // PRP, PRP$
-                prop = ma.analyzePersonalPronoun(wordLabel, wordTag);
-            } else if (wordTag.indexOf("JJ") == 0) { // JJ, JJS, JJC
-                prop = ma.analyzeAdjective(wordLabel, wordTag);
+        for (int i = 0; i < words.length; ++i) {
+            WTagging tagging = words[i];
+            Concept c = new Concept(tagging.form + "-" + (i + 1));
+            vocabulary.addIndividual(tagging.lemma, tagging.lemma, posConceptType, language);
+            String[] types = tagging.asStringArray();
+            for (int t = 0; t < types.length; ++t) {
+                types[t] = ctLabel2ctId(types[t]);
             }
-
-            if (prop != null && prop.posType != null) {
-                pos2concept(prop, c);
-            } else {
-                String conceptType = ctLabel2ctId(wordTag);
-                vocabulary.addIndividual(wordLabel, wordLabel, posConceptType, language);
-                c.setType(conceptType);
-                c.setIndividual(wordLabel);
-            }
-
+            c.setType(types);
+            c.setIndividual(tagging.lemma);
             cg.addVertex(c);
         }
 
@@ -181,12 +160,6 @@ public class EngineKnowledgeBase {
         return cg;
     }
 
-    private void pos2concept(PosProp a, Concept c) {
-        vocabulary.addIndividual(a.lemma, a.lemma, posConceptType, language);
-        c.setType(a.getTypes());
-        c.setIndividual(a.lemma);
-    }
-
     public CGraph getSentenceFact(int idx) {
         return kb.getFactGraph(toSentenceId(idx));
     }
@@ -199,16 +172,16 @@ public class EngineKnowledgeBase {
         return sentenceFactCount;
     }
 
-    private PosProp conceptLabels2posProp(Concept c, boolean newTagsOnly) {
-        PosProp prop = new PosProp();
+    private WTagging conceptLabelsToWTagging(Concept c, boolean newTagsOnly) {
+        WTagging prop = new WTagging();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         for (String type : c.getType()) {
             if (cth.isKindOf(type, posConceptType)) {
                 if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
-                    prop = new PosProp();
+                    prop = new WTagging();
                     break;
                 } else {
-                    prop.posType = vocabulary.getConceptTypeLabel(type, language);
+                    prop.pos = vocabulary.getConceptTypeLabel(type, language);
                 }
             } else if (cth.isKindOf(type, caseConceptType)) {
                 prop.theCase = vocabulary.getConceptTypeLabel(type, language);
@@ -231,11 +204,11 @@ public class EngineKnowledgeBase {
         return prop;
     }
 
-    public PosProp[] getSentencePosProps(int idx, boolean newTagsOnly) {
+    public WTagging[] getSentencePosProps(int idx, boolean newTagsOnly) {
         CGraph cg = getSentenceFact(idx);
-        PosProp[] props = new PosProp[cg.getConcepts().size()];
+        WTagging[] props = new WTagging[cg.getConcepts().size()];
         for (int j = 1; j <= props.length; ++j) {
-            props[j - 1] = conceptLabels2posProp(getConcept(cg, j), newTagsOnly);
+            props[j - 1] = conceptLabelsToWTagging(getConcept(cg, j), newTagsOnly);
         }
         return props;
     }

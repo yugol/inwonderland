@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
-import ro.uaic.info.wonderland.engine.EngineKnowledgeBase;
+import ro.uaic.info.wonderland.kb.EngineKnowledgeBase;
 
 /**
  *

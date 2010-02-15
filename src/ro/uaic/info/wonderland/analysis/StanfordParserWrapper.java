@@ -5,7 +5,6 @@
 package ro.uaic.info.wonderland.analysis;
 
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.ling.Word;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
@@ -30,17 +29,10 @@ public abstract class StanfordParserWrapper {
     static GrammaticalStructureFactory gsf;
 
     static {
-        try {
-            new MaxentTagger(Globals.getStanfordPostaggerPath());
-            lp = new LexicalizedParser(Globals.getStanfordParserPath());
-            lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
-            dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
-            gsf = lp.getOp().langpack().grammaticalStructureFactory();
-        } catch (Exception ex) {
-            System.out.println("Error initializing Stanford Parser or Postagger");
-            System.out.println(ex);
-            Globals.exit();
-        }
+        lp = new LexicalizedParser(Globals.getStanfordParserPath());
+        lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
+        dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
+        gsf = lp.getOp().langpack().grammaticalStructureFactory();
     }
 
     public static LexicalizedParser getParser() {
@@ -55,10 +47,6 @@ public abstract class StanfordParserWrapper {
         return lp.apply(sent);
     }
 
-    public static Sentence<TaggedWord> getPOSTags(List<? extends HasWord> sent) {
-        return MaxentTagger.tagSentence(sent);
-    }
-
     public static List<TypedDependency> getDependencies(Tree parseTree) {
         GrammaticalStructure gs = gsf.newGrammaticalStructure(parseTree);
         return gs.typedDependencies(true);
@@ -66,5 +54,9 @@ public abstract class StanfordParserWrapper {
 
     public static List<Word> tokenize(String text) {
         return dp.getWordsFromString(text);
+    }
+
+    public static List<TaggedWord> getPennPosTags(Tree parse) {
+        return parse.taggedYield();
     }
 }
