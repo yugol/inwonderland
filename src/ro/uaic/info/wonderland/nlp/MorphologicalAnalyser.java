@@ -4,6 +4,7 @@
  */
 package ro.uaic.info.wonderland.nlp;
 
+import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
 import java.util.Arrays;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
@@ -16,6 +17,11 @@ import net.didion.jwnl.data.POS;
 public class MorphologicalAnalyser {
 
     public void analyzeNoun(WTagging tagging) {
+        if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.lemma) >= 0) {
+            MorphologicalDatabase.getPronoun(tagging);
+            return;
+        }
+
         String pennTag = tagging.pos;
 
         IndexWord word = null;

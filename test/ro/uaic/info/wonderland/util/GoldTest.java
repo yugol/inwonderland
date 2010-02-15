@@ -59,6 +59,5 @@ public class GoldTest {
             System.out.print(".");
         }
         assertEquals(0, errors);
-
     }
 }

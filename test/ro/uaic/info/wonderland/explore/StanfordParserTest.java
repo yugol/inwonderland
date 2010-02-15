@@ -4,7 +4,7 @@
  */
 package ro.uaic.info.wonderland.explore;
 
-import ro.uaic.info.wonderland.nlp.StanfordParserWrapper;
+import ro.uaic.info.wonderland.nlp.resources.StanfordParserWrapper;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
