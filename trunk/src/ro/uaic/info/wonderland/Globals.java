@@ -33,6 +33,11 @@ public final class Globals {
         return getDataFolder() + "/englishPCFG.ser.gz";
     }
 
+    public static String getStanfordPostaggerPath() {
+        return getDataFolder() + "/bidirectional-distsim-wsj-0-18.tagger";
+        // return getDataFolder() + "/left3words-wsj-0-18.tagger";
+    }
+
     public static String getDefaultParseKBPath() {
 
         return getDataFolder() + "/defaultparsekb.cogxml";

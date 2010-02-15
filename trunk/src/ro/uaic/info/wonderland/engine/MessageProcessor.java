@@ -33,8 +33,8 @@ public class MessageProcessor {
         String resp = "Done.";
 
         for (List<? extends HasWord> sent : StanfordParserWrapper.getSentences(msg)) {
-            Tree parse = StanfordParserWrapper.parse(sent);
-            Sentence<TaggedWord> posTags = StanfordParserWrapper.getPOSTags(parse);
+            Sentence<TaggedWord> posTags = StanfordParserWrapper.getPOSTags(sent);
+            Tree parse = StanfordParserWrapper.parse(posTags);
             List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
             ekb.addSentenceFact(posTags, deps);
         }
