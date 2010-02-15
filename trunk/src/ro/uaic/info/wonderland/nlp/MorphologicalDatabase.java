@@ -14,10 +14,12 @@ public abstract class MorphologicalDatabase {
 
     public static String[] possesivePronouns = new String[]{"mine", "yours", "thine", "his", "hers", "ours", "theirs"};
     public static String[] demonstrativePronouns = new String[]{"this", "these", "that", "those", "former", "latter", "other", "others", "same", "so", "such", "such-and-such", "suchlike", "one", "ones"};
+    public static String[] reflexivePronouns = new String[]{"myself", "yourself", "himself", "herself", "itself", "oneself", "ourselves", "yourselves", "themselves"};
 
     static {
         Arrays.sort(possesivePronouns);
         Arrays.sort(demonstrativePronouns);
+        Arrays.sort(reflexivePronouns);
     }
 
     public static WTagging getPronoun(WTagging prop) {
@@ -160,6 +162,48 @@ public abstract class MorphologicalDatabase {
         } else if (prop.lemma.equals("ones")) {
             prop.pos = "PnDEM";
             prop.number = "plu";
+            //
+            //
+            // reflexive pronouns
+        } else if (prop.lemma.equals("myself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "st";
+        } else if (prop.lemma.equals("yourself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "nd";
+        } else if (prop.lemma.equals("himself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "rd";
+            prop.gender = "msc";
+        } else if (prop.lemma.equals("herself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "rd";
+            prop.gender = "fem";
+        } else if (prop.lemma.equals("itself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "rd";
+            prop.gender = "neu";
+        } else if (prop.lemma.equals("oneself")) {
+            prop.pos = "PnREF";
+            prop.number = "sng";
+            prop.person = "rd";
+        } else if (prop.lemma.equals("ourselves")) {
+            prop.pos = "PnREF";
+            prop.number = "plu";
+            prop.person = "st";
+        } else if (prop.lemma.equals("yourselves")) {
+            prop.pos = "PnREF";
+            prop.number = "plu";
+            prop.person = "nd";
+        } else if (prop.lemma.equals("themselves")) {
+            prop.pos = "PnREF";
+            prop.number = "plu";
+            prop.person = "rd";
         }
         return prop;
     }
