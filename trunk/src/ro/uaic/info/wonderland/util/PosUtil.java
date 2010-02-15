@@ -4,7 +4,7 @@
  */
 package ro.uaic.info.wonderland.util;
 
-import ro.uaic.info.wonderland.analysis.WTagging;
+import ro.uaic.info.wonderland.nlp.WTagging;
 
 /**
  *

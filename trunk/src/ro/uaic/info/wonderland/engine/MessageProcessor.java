@@ -9,8 +9,8 @@ import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.trees.TypedDependency;
 import java.io.File;
 import java.util.List;
-import ro.uaic.info.wonderland.analysis.Pipeline;
-import ro.uaic.info.wonderland.analysis.WTagging;
+import ro.uaic.info.wonderland.nlp.Pipeline;
+import ro.uaic.info.wonderland.nlp.WTagging;
 
 /**
  *

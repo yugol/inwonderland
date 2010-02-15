@@ -7,7 +7,7 @@ package ro.uaic.info.wonderland.util;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ro.uaic.info.wonderland.Globals;
-import ro.uaic.info.wonderland.analysis.WTagging;
+import ro.uaic.info.wonderland.nlp.WTagging;
 import ro.uaic.info.wonderland.engine.MessageProcessor;
 
 /**
