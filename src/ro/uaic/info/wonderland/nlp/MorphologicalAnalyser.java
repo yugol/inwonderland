@@ -128,4 +128,22 @@ public class MorphologicalAnalyser {
 
         return tagging;
     }
+
+    WTagging analyzeCoordConj(String word, String tag) {
+         WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging cjcrd = MorphologicalDatabase.cjcrd.get(word);
+
+        if (cjcrd != null) {
+            tagging.setLemma(cjcrd.getLemma());
+            tagging.setPos(cjcrd.getPos());
+        } else {
+            tagging.setLemma(noLemma);
+            tagging.setPos("CjCRD");
+        }
+
+        return tagging;
+    }
 }

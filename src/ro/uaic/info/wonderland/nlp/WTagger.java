@@ -31,6 +31,8 @@ public class WTagger {
                 tagging = ma.analyzePrepOrSubConj(word, tag);
             } else if (tag.equals("DT")) { // DT
                 tagging = ma.analyzeDeterminer(word, tag);
+            } else if (tag.equals("CC")) { // CC
+                tagging = ma.analyzeCoordConj(word, tag);
             }
 
             if (tagging == null) {

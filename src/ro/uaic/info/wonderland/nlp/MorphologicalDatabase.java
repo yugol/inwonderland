@@ -38,7 +38,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> cjsub;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
-        formFile = Globals.getMorphologyFolder() + "pos/" + formFile;
+        formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
         Map<String, WTagging> map = new HashMap<String, WTagging>();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
         try {

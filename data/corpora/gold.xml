@@ -8,4 +8,18 @@
         <word _idx="5" _pos="NnCOM" lemma="sun" num="sng">sun</word>
         <word _idx="6" lemma=".">.</word>
     </sentence>
+    <sentence idx="2">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="sun" num="sng">sun</word>
+        <word _idx="3" _pos="Vb" lemma="rise" mood="ind" num="sng" pers="rd" tense="ps">rises</word>
+        <word _idx="4" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnPRP" lemma="East" num="sng">East</word>
+        <word _idx="7" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="8" _pos="Vb" lemma="set" mood="ind" num="sng" pers="rd" tense="ps">sets</word>
+        <word _idx="9" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="10" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="11" _pos="NnPRP" lemma="West" num="sng">West</word>
+        <word _idx="12" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>
