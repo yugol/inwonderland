@@ -17,6 +17,7 @@ public abstract class MorphologicalDatabase {
     public static String[] reflexivePronouns = new String[]{"myself", "yourself", "himself", "herself", "itself", "oneself", "ourselves", "yourselves", "themselves"};
     public static String[] indefinitePronouns = new String[]{"all", "both", "either", "neither", "each", "much", "many", "more", "most", "another", "others", "several", "enough", "everybody", "everything", "everyone", "some", "any", "none", "somebody", "something", "someone", "anybody", "anything", "anyone", "nobody", "nothing", "enough", "several", "one", "you", "they"};
     public static String[] relativePronouns = new String[]{"who", "whom", "whose", "whoever", "which", "whichever", "that", "what", "as"};
+    public static String[] interrogativePronouns = new String[]{"who", "whose", "whom", "what", "which"};
 
     static {
         Arrays.sort(possesivePronouns);
