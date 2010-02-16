@@ -44,16 +44,30 @@ public class SmallUtilities {
 
     // @Test
     public void findTaggingDuplicates() {
-        System.out.println("Findin polysemy entries in morphological database");
+        System.out.println("Find polysemy entries in morphological database");
         for (String form : MorphologicalDatabase.getAllForms()) {
             List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
             if (taggings.size() > 1) {
-                System.out.println("");
-                System.out.println(form);
-                for (WTagging tagging : taggings) {
-                    System.out.println(tagging.toCsvString());
-                }
+                displayTaggings(taggings, form);
             }
+        }
+    }
+
+    // @Test
+    public void findFormInDatabase() {
+        System.out.println("Find form in morphological database");
+        String form = "every";
+        List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
+        if (taggings.size() > 0) {
+            displayTaggings(taggings, form);
+        }
+    }
+
+    private void displayTaggings(List<WTagging> taggings, String form) {
+        System.out.println("");
+        System.out.println(form);
+        for (WTagging tagging : taggings) {
+            System.out.println(tagging.toCsvString());
         }
     }
 }

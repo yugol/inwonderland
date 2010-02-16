@@ -7,6 +7,7 @@ package ro.uaic.info.wonderland.nlp;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> pr;
     static Map<String, WTagging> cjcrd;
     static Map<String, WTagging> cjsub;
+    static Map<String, WTagging> jjind;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
@@ -54,89 +56,15 @@ public abstract class MorphologicalDatabase {
     }
 
     static {
-        try {
-            ar = readDataFile("ar.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'ar'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnprs = readDataFile("pnprs.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnprs'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnpos = readDataFile("pnpos.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnpos'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pndem = readDataFile("pndem.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pndem'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnref = readDataFile("pnref.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnref'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnind = readDataFile("pnind.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnind'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnrec = readDataFile("pnrec.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnrec'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnrel = readDataFile("pnrel.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnrel'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pnint = readDataFile("pnint.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pnint'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            pr = readDataFile("pr.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'pr'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            cjcrd = readDataFile("cjcrd.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'cjcrd'");
-            System.out.println(ex);
-            Globals.exit();
-        }
-        try {
-            cjsub = readDataFile("cjsub.csv");
-        } catch (Exception ex) {
-            System.out.println("Error reading 'cjsub'");
-            System.out.println(ex);
-            Globals.exit();
+        for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+            String name = f.getName();
+            try {
+                f.set(null, readDataFile(name + ".csv"));
+            } catch (Exception ex) {
+                System.out.println("Error reading '" + name + "'");
+                System.out.println(ex);
+                Globals.exit();
+            }
         }
     }
 
@@ -145,71 +73,35 @@ public abstract class MorphologicalDatabase {
         List<WTagging> tags = new ArrayList<WTagging>();
         WTagging tagging = null;
 
-        tagging = ar.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
+        try {
+            for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+                tagging = ((Map<String, WTagging>) f.get(null)).get(word);
+                if (tagging != null) {
+                    tags.add(tagging);
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Error in MorphologicalDatabase.getAllTagings");
+            System.out.println(ex);
+            Globals.exit();
         }
-        tagging = pndem.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnind.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnint.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnpos.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnprs.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnrec.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnref.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pnrel.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = pr.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = cjcrd.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
-        tagging = cjsub.get(word);
-        if (tagging != null) {
-            tags.add(tagging);
-        }
+
         return tags;
     }
 
     public static Set<String> getAllForms() {
         Set<String> forms = new HashSet<String>();
-        forms.addAll(ar.keySet());
-        forms.addAll(pnprs.keySet());
-        forms.addAll(pnpos.keySet());
-        forms.addAll(pndem.keySet());
-        forms.addAll(pnref.keySet());
-        forms.addAll(pnind.keySet());
-        forms.addAll(pnrec.keySet());
-        forms.addAll(pnrel.keySet());
-        forms.addAll(pnint.keySet());
-        forms.addAll(pr.keySet());
-        forms.addAll(cjcrd.keySet());
-        forms.addAll(cjsub.keySet());
+
+        try {
+            for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+                forms.addAll(((Map<String, WTagging>) f.get(null)).keySet());
+            }
+        } catch (Exception ex) {
+            System.out.println("Error in MorphologicalDatabase.getAllForms");
+            System.out.println(ex);
+            Globals.exit();
+        }
+
         return forms;
     }
 }

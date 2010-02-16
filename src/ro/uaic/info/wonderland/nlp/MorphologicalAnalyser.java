@@ -82,6 +82,13 @@ public class MorphologicalAnalyser {
             tagging.setNumber("sng");
             tagging.setPerson("rd");
             tagging.setTense("ps");
+        } else if (tag.equals("VBP")) {
+            tagging.setMood("ind");
+            tagging.setNumber("sng");
+            tagging.setPerson("stnd");
+            tagging.setTense("ps");
+        } else {
+            return null;
         }
 
         return tagging;
@@ -118,10 +125,14 @@ public class MorphologicalAnalyser {
         word = word.toLowerCase();
 
         WTagging ar = MorphologicalDatabase.ar.get(word);
+        WTagging jjind = MorphologicalDatabase.jjind.get(word);
 
-        if (ar != null) {
+        if (ar != null && jjind == null) {
             tagging.setLemma(ar.getLemma());
             tagging.setPos(ar.getPos());
+        } else if (ar == null && jjind != null) {
+            tagging.setLemma(jjind.getLemma());
+            tagging.setPos(jjind.getPos());
         } else {
             return null;
         }
@@ -130,7 +141,7 @@ public class MorphologicalAnalyser {
     }
 
     WTagging analyzeCoordConj(String word, String tag) {
-         WTagging tagging = new WTagging();
+        WTagging tagging = new WTagging();
 
         word = word.toLowerCase();
 
@@ -142,6 +153,47 @@ public class MorphologicalAnalyser {
         } else {
             tagging.setLemma(noLemma);
             tagging.setPos("CjCRD");
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzePersPron(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+        if (word.equals("i")) {
+            word = "I";
+        }
+
+        WTagging pnprs = MorphologicalDatabase.pnprs.get(word);
+
+        if (pnprs != null) {
+            tagging.setLemma(pnprs.getLemma());
+            tagging.setPos(pnprs.getPos());
+            tagging.setGender(pnprs.getGender());
+            tagging.setNumber(pnprs.getNumber());
+            tagging.setWcase(pnprs.getWcase());
+            tagging.setPerson(pnprs.getPerson());
+        } else {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeTo(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging pr = MorphologicalDatabase.pr.get(word);
+
+        if (pr != null && pr.getLemma().equals("to")) {
+            tagging.setLemma(pr.getLemma());
+            tagging.setPos(pr.getPos());
+        } else {
+            return null;
         }
 
         return tagging;
