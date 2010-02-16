@@ -22,6 +22,7 @@ public class GoldTest {
         Corpus gold = new Corpus();
         gold.buildFrom(Globals.getGoldCorpusFile());
         gold.reIndexSentences();
+        gold.removePennAttributes();
         gold.writeToFile(Globals.getGoldCorpusFile());
     }
 
@@ -43,7 +44,7 @@ public class GoldTest {
             assertEquals(expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {
-                String err = PosUtil.areConsistent(expected[j], actual[j]);
+                String err = WTaggingUtil.areConsistent(expected[j], actual[j]);
                 if (err != null) {
                     if (!printed) {
                         System.out.println("");

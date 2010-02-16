@@ -123,7 +123,7 @@ public class EngineKnowledgeBase {
 
         for (int i = 0; i < words.length; ++i) {
             WTagging tagging = words[i];
-            Concept c = new Concept(tagging.form + "-" + (i + 1));
+            Concept c = new Concept(tagging.form + "-" + tagging.pennTag + "-" + (i + 1));
             vocabulary.addIndividual(tagging.lemma, tagging.lemma, posConceptType, language);
             String[] types = tagging.asStringArray();
             for (int t = 0; t < types.length; ++t) {
@@ -137,8 +137,8 @@ public class EngineKnowledgeBase {
         for (int i = 0; i < deps.size(); ++i) {
             TypedDependency tdep = deps.get(i);
 
-            String gov = tdep.gov().nodeString();
-            String dep = tdep.dep().nodeString();
+            String gov = getConcept(cg, getConceptIndex(tdep.gov().nodeString())).getId();
+            String dep = getConcept(cg, getConceptIndex(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = rtLabel2rtId(relationTypeLabel);
             String relationId = relationTypeLabel + "~" + (i + 1);
@@ -181,7 +181,7 @@ public class EngineKnowledgeBase {
                     prop = new WTagging();
                     break;
                 } else {
-                    prop.pos = vocabulary.getConceptTypeLabel(type, language);
+                    prop.wTag = vocabulary.getConceptTypeLabel(type, language);
                 }
             } else if (cth.isKindOf(type, caseConceptType)) {
                 prop.theCase = vocabulary.getConceptTypeLabel(type, language);
@@ -201,6 +201,7 @@ public class EngineKnowledgeBase {
         }
         prop.form = c.getId().split("-")[0];
         prop.lemma = c.getIndividual();
+        prop.pennTag = getPennTag(c.getId());
         return prop;
     }
 
@@ -215,12 +216,22 @@ public class EngineKnowledgeBase {
 
     private Concept getConcept(CGraph cg, int j) {
         for (Concept c : cg.getConcepts()) {
-            int idxPos = c.getId().lastIndexOf('-') + 1;
-            int index = Integer.parseInt(c.getId().substring(idxPos));
-            if (index == j) {
+            if (j == getConceptIndex(c.getId())) {
                 return c;
             }
         }
         return null;
+    }
+
+    private String getPennTag(String id) {
+        int to = id.lastIndexOf('-');
+        int from = id.lastIndexOf('-', to - 1) + 1;
+        return id.substring(from, to);
+    }
+
+    private int getConceptIndex(String id) {
+        int idxPos = id.lastIndexOf('-') + 1;
+        int index = Integer.parseInt(id.substring(idxPos));
+        return index;
     }
 }

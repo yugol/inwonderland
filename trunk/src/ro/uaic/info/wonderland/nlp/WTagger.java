@@ -22,16 +22,16 @@ public class WTagger {
             TaggedWord word = tSent.get(i);
 
             tagging.form = word.word();
-            tagging.pos = word.tag();
+            tagging.pennTag = word.tag();
             tagging.lemma = tagging.form.toLowerCase();
 
-            if (tagging.pos.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
+            if (tagging.pennTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 // prop = ma.analyzeNoun(wordLabel, wordTag);
-            } else if (tagging.pos.equals("DT")) {
+            } else if (tagging.pennTag.equals("DT") || tagging.pennTag.equals("PDT")) {
                 ma.analyzeDeterminer(tagging);
-            } else if (tagging.pos.indexOf("PRP") == 0) { // PRP, PRP$
+            } else if (tagging.pennTag.indexOf("PRP") == 0) { // PRP, PRP$
                 ma.analyzePersonalPronoun(tagging);
-            } else if (tagging.pos.indexOf("JJ") == 0) { // JJ, JJS, JJC
+            } else if (tagging.pennTag.indexOf("JJ") == 0) { // JJ, JJS, JJC
                 ma.analyzeAdjective(tagging);
             }
 

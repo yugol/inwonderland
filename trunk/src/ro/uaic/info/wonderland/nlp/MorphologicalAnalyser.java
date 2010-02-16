@@ -18,11 +18,9 @@ public class MorphologicalAnalyser {
 
     public void analyzeNoun(WTagging tagging) {
         if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.lemma) >= 0) {
-            MorphologicalDatabase.getPronoun(tagging);
+            MorphologicalDatabase.tagPronoun(tagging);
             return;
         }
-
-        String pennTag = tagging.pos;
 
         IndexWord word = null;
         try {
@@ -43,21 +41,21 @@ public class MorphologicalAnalyser {
                 System.out.println(ex);
             }
         }
-        if (pennTag.indexOf("NNP") == 0) {
+        if (tagging.pennTag.indexOf("NNP") == 0) {
             tagging.lemma = tagging.lemma.substring(0, 1).toUpperCase() + tagging.lemma.substring(1);
         }
 
-        // pos
+        // wTag
         if (Character.isUpperCase(tagging.lemma.charAt(0))) {
-            tagging.pos = "NnPRP";
+            tagging.wTag = "NnPRP";
         } else {
-            tagging.pos = "NnCOM";
+            tagging.wTag = "NnCOM";
         }
 
         // case
 
         // number
-        if (pennTag.charAt(pennTag.length() - 1) == 'S') {
+        if (tagging.pennTag.charAt(tagging.pennTag.length() - 1) == 'S') {
             tagging.number = "plu";
         } else {
             tagging.number = "sng";
@@ -69,12 +67,14 @@ public class MorphologicalAnalyser {
 
     public void analyzeDeterminer(WTagging tagging) {
         if (tagging.lemma.equals("the")) {
-            tagging.pos = "ArDEF";
+            tagging.wTag = "ArDEF";
         } else if (tagging.lemma.equals("a") || tagging.lemma.equals("an")) {
             tagging.lemma = "a";
-            tagging.pos = "ArIDF";
+            tagging.wTag = "ArIDF";
         } else if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.lemma) >= 0) {
-            MorphologicalDatabase.getPronoun(tagging);
+            MorphologicalDatabase.tagPronoun(tagging);
+        } else if (Arrays.binarySearch(MorphologicalDatabase.indefinitePronouns, tagging.lemma) >= 0) {
+            MorphologicalDatabase.tagIndefinitePronoun(tagging);
         }
     }
 
@@ -82,15 +82,15 @@ public class MorphologicalAnalyser {
         if (tagging.lemma.equals("i")) {
             tagging.lemma = "I";
         }
-        MorphologicalDatabase.getPronoun(tagging);
+        MorphologicalDatabase.tagPronoun(tagging);
     }
 
     public void analyzeAdjective(WTagging tagging) {
         if (Arrays.binarySearch(MorphologicalDatabase.possesivePronouns, tagging.lemma) >= 0) {
-            MorphologicalDatabase.getPronoun(tagging);
+            MorphologicalDatabase.tagPronoun(tagging);
         }
         if (tagging.lemma.equals("former") || tagging.lemma.equals("former")) {
-            MorphologicalDatabase.getPronoun(tagging);
+            MorphologicalDatabase.tagPronoun(tagging);
         }
     }
 }
