@@ -34,7 +34,8 @@ public class Corpus {
     public static final String stcIdxTag = "idx";
     public static final String idxTag = "_idx";
     public static final String lemmaTag = "lemma";
-    public static final String posTag = "_pos";
+    public static final String wTag = "_pos";
+    public static final String pennTag = "_p";
     public static final String genTag = "gen";
     public static final String numTag = "num";
     public static final String caseTag = "case";
@@ -59,8 +60,11 @@ public class Corpus {
             Element word = xmlDoc.createElement(wordTag);
             word.setAttribute(idxTag, "" + (j + 1));
             word.setAttribute(lemmaTag, prop.lemma);
-            if (prop.pos != null) {
-                word.setAttribute(posTag, prop.pos);
+            if (prop.pennTag != null) {
+                word.setAttribute(pennTag, prop.pennTag);
+            }
+            if (prop.wTag != null) {
+                word.setAttribute(wTag, prop.wTag);
             }
             if (prop.gender != null) {
                 word.setAttribute(genTag, prop.gender);
@@ -209,9 +213,13 @@ public class Corpus {
             if (prop.person.length() == 0) {
                 prop.person = null;
             }
-            prop.pos = word.getAttribute(posTag);
-            if (prop.pos.length() == 0) {
-                prop.pos = null;
+            prop.wTag = word.getAttribute(wTag);
+            if (prop.wTag.length() == 0) {
+                prop.wTag = null;
+            }
+            prop.pennTag = word.getAttribute(pennTag);
+            if (prop.pennTag.length() == 0) {
+                prop.pennTag = null;
             }
             prop.tense = word.getAttribute(tenseTag);
             if (prop.tense.length() == 0) {
@@ -231,6 +239,14 @@ public class Corpus {
         for (int i = 0; i < sentences.getLength(); ++i) {
             Element sentence = (Element) sentences.item(i);
             sentence.setAttribute(stcIdxTag, "" + (i + 1));
+        }
+    }
+
+    void removePennAttributes() {
+        NodeList words = xmlDoc.getElementsByTagName(wordTag);
+        for (int i = 0; i < words.getLength(); ++i) {
+            Element word = (Element) words.item(i);
+            word.removeAttribute(pennTag);
         }
     }
 }

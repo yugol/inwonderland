@@ -444,4 +444,325 @@
         <word _idx="10" lemma="finished">finished</word>
         <word _idx="11" lemma=".">.</word>
     </sentence>
+    <sentence idx="45">
+        <word _idx="1" _pos="PnIDF" lemma="all">All</word>
+        <word _idx="2" _pos="PnDEM" lemma="that" num="sng">that</word>
+        <word _idx="3" lemma="glitters">glitters</word>
+        <word _idx="4" lemma="is">is</word>
+        <word _idx="5" lemma="not">not</word>
+        <word _idx="6" lemma="gold">gold</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="46">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" lemma="boys">boys</word>
+        <word _idx="3" lemma="are">are</word>
+        <word _idx="4" _pos="PnIDF" lemma="both">both</word>
+        <word _idx="5" lemma="sleeping">sleeping</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="47">
+        <word _idx="1" _pos="PnIDF" lemma="either">Either</word>
+        <word _idx="2" lemma="will">will</word>
+        <word _idx="3" lemma="be">be</word>
+        <word _idx="4" lemma="fine">fine</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="48">
+        <word _idx="1" _pos="PnIDF" lemma="neither">Neither</word>
+        <word _idx="2" lemma="shoe">shoe</word>
+        <word _idx="3" lemma="feels">feels</word>
+        <word _idx="4" lemma="comfortable">comfortable</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="49">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" lemma="were">were</word>
+        <word _idx="3" lemma="fined">fined</word>
+        <word _idx="4" lemma="50">50</word>
+        <word _idx="5" lemma="dollars">dollars</word>
+        <word _idx="6" _pos="PnIDF" lemma="each">each</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="50">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" lemma="still">still</word>
+        <word _idx="3" lemma="have">have</word>
+        <word _idx="4" _pos="PnIDF" lemma="much">much</word>
+        <word _idx="5" lemma="to">to</word>
+        <word _idx="6" lemma="learn">learn</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="51">
+        <word _idx="1" _pos="ArIDF" lemma="a">A</word>
+        <word _idx="2" lemma="few">few</word>
+        <word _idx="3" lemma="people">people</word>
+        <word _idx="4" lemma="survived">survived</word>
+        <word _idx="5" lemma=",">,</word>
+        <word _idx="6" lemma="but">but</word>
+        <word _idx="7" _pos="PnIDF" lemma="many">many</word>
+        <word _idx="8" lemma="died">died</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="52">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" lemma="gave">gave</word>
+        <word _idx="3" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="4" lemma="child">child</word>
+        <word _idx="5" lemma="two">two</word>
+        <word _idx="6" lemma="cakes">cakes</word>
+        <word _idx="7" lemma="but">but</word>
+        <word _idx="8" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="9" lemma="asked">asked</word>
+        <word _idx="10" lemma="for">for</word>
+        <word _idx="11" _pos="PnIDF" lemma="more">more</word>
+        <word _idx="12" lemma=".">.</word>
+    </sentence>
+    <sentence idx="53">
+        <word _idx="1" _pos="PnIDF" lemma="most">Most</word>
+        <word _idx="2" lemma="of">of</word>
+        <word _idx="3" lemma="my">my</word>
+        <word _idx="4" lemma="friends">friends</word>
+        <word _idx="5" lemma="will">will</word>
+        <word _idx="6" lemma="be">be</word>
+        <word _idx="7" lemma="here">here</word>
+        <word _idx="8" lemma="at">at</word>
+        <word _idx="9" lemma="5">5</word>
+        <word _idx="10" lemma="o'clock">o'clock</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="54">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="do">do</word>
+        <word _idx="3" lemma="n't">n't</word>
+        <word _idx="4" lemma="like">like</word>
+        <word _idx="5" _pos="PnDEM" lemma="this" num="sng">this</word>
+        <word _idx="6" lemma="tie">tie</word>
+        <word _idx="7" lemma=";">;</word>
+        <word _idx="8" lemma="show">show</word>
+        <word _idx="9" _pos="PnPRS" lemma="me" num="sng" pers="st">me</word>
+        <word _idx="10" _pos="PnIDF" lemma="another">another</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="55">
+        <word _idx="1" _pos="PnIDF" lemma="some">Some</word>
+        <word _idx="2" lemma="books">books</word>
+        <word _idx="3" lemma="are">are</word>
+        <word _idx="4" lemma="cheap">cheap</word>
+        <word _idx="5" lemma=",">,</word>
+        <word _idx="6" _pos="PnIDF" lemma="others">others</word>
+        <word _idx="7" lemma="are">are</word>
+        <word _idx="8" lemma="expensive">expensive</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="56">
+        <word _idx="1" lemma="when">When</word>
+        <word _idx="2" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="3" lemma="opened">opened</word>
+        <word _idx="4" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="5" lemma="box">box</word>
+        <word _idx="6" lemma="of">of</word>
+        <word _idx="7" lemma="eggs">eggs</word>
+        <word _idx="8" lemma=",">,</word>
+        <word _idx="9" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="10" lemma="found">found</word>
+        <word _idx="11" lemma="that">that</word>
+        <word _idx="12" _pos="PnIDF" lemma="several">several</word>
+        <word _idx="13" lemma="of">of</word>
+        <word _idx="14" _pos="PnPRS" lemma="them" num="plu" pers="rd">them</word>
+        <word _idx="15" lemma="were">were</word>
+        <word _idx="16" lemma="broken">broken</word>
+        <word _idx="17" lemma=".">.</word>
+    </sentence>
+    <sentence idx="57">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" lemma="has">has</word>
+        <word _idx="3" lemma="had">had</word>
+        <word _idx="4" _pos="PnIDF" lemma="enough">enough</word>
+        <word _idx="5" lemma="to">to</word>
+        <word _idx="6" lemma="eat">eat</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="58">
+        <word _idx="1" _pos="PnIDF" lemma="everybody">Everybody</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="at">at</word>
+        <word _idx="4" lemma="home">home</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="59">
+        <word _idx="1" _pos="PnIDF" lemma="everything">Everything</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="possible">possible</word>
+        <word _idx="4" lemma="here">here</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="60">
+        <word _idx="1" _pos="PnIDF" lemma="everyone">Everyone</word>
+        <word _idx="2" lemma="needs">needs</word>
+        <word _idx="3" _pos="PnIDF" lemma="some">some</word>
+        <word _idx="4" lemma="free">free</word>
+        <word _idx="5" lemma="time">time</word>
+        <word _idx="6" lemma="for">for</word>
+        <word _idx="7" lemma="rest">rest</word>
+        <word _idx="8" lemma="and">and</word>
+        <word _idx="9" lemma="relaxation">relaxation</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="61">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" lemma="took">took</word>
+        <word _idx="3" _pos="PnIDF" lemma="some">some</word>
+        <word _idx="4" lemma="of">of</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" lemma="books">books</word>
+        <word _idx="7" lemma="to">to</word>
+        <word _idx="8" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="9" lemma="auction">auction</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="62">
+        <word _idx="1" lemma="do">Do</word>
+        <word _idx="2" lemma="n't">n't</word>
+        <word _idx="3" lemma="give">give</word>
+        <word _idx="4" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="5" _pos="PnIDF" lemma="any">any</word>
+        <word _idx="6" lemma="!">!</word>
+    </sentence>
+    <sentence idx="63">
+        <word _idx="1" _pos="PnIDF" lemma="none">None</word>
+        <word _idx="2" lemma="dared">dared</word>
+        <word _idx="3" lemma="to">to</word>
+        <word _idx="4" lemma="do">do</word>
+        <word _idx="5" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="64">
+        <word _idx="1" lemma="there">There</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" _pos="PnIDF" lemma="somebody">somebody</word>
+        <word _idx="4" lemma="in">in</word>
+        <word _idx="5" lemma="front">front</word>
+        <word _idx="6" lemma="of">of</word>
+        <word _idx="7" lemma="our">our</word>
+        <word _idx="8" lemma="house">house</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="65">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="have">have</word>
+        <word _idx="3" _pos="PnIDF" lemma="something">something</word>
+        <word _idx="4" lemma="to">to</word>
+        <word _idx="5" lemma="tell">tell</word>
+        <word _idx="6" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="66">
+        <word _idx="1" _pos="PnIDF" lemma="everybody">Everybody</word>
+        <word _idx="2" lemma="likes">likes</word>
+        <word _idx="3" _pos="PnIDF" lemma="someone">someone</word>
+        <word _idx="4" lemma=".">.</word>
+    </sentence>
+    <sentence idx="67">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" lemma="did">did</word>
+        <word _idx="3" lemma="n't">n't</word>
+        <word _idx="4" lemma="see">see</word>
+        <word _idx="5" _pos="PnIDF" lemma="anybody">anybody</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="68">
+        <word _idx="1" _pos="PnPRS" lemma="you" pers="nd">You</word>
+        <word _idx="2" lemma="can">can</word>
+        <word _idx="3" lemma="eat">eat</word>
+        <word _idx="4" _pos="PnIDF" lemma="anything">anything</word>
+        <word _idx="5" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="6" lemma="like">like</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="69">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="4" lemma="most">most</word>
+        <word _idx="5" lemma="thrifty">thrifty</word>
+        <word _idx="6" lemma="person">person</word>
+        <word _idx="7" lemma="of">of</word>
+        <word _idx="8" _pos="PnIDF" lemma="anyone">anyone</word>
+        <word _idx="9" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="10" lemma="know">know</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="70">
+        <word _idx="1" _pos="PnIDF" lemma="nobody">Nobody</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="at">at</word>
+        <word _idx="4" lemma="home">home</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="71">
+        <word _idx="1" lemma="is">Is</word>
+        <word _idx="2" lemma="there">there</word>
+        <word _idx="3" _pos="PnIDF" lemma="nothing">nothing</word>
+        <word _idx="4" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="5" lemma="can">can</word>
+        <word _idx="6" lemma="do">do</word>
+        <word _idx="7" lemma="?">?</word>
+    </sentence>
+    <sentence idx="72">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" lemma="have">have</word>
+        <word _idx="3" _pos="PnIDF" lemma="enough">enough</word>
+        <word _idx="4" lemma="and">and</word>
+        <word _idx="5" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="6" lemma="do">do</word>
+        <word _idx="7" lemma="poorly">poorly</word>
+        <word _idx="8" lemma="live">live</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="73">
+        <word _idx="1" _pos="PnIDF" lemma="several">Several</word>
+        <word _idx="2" lemma="of">of</word>
+        <word _idx="3" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="4" lemma="workers">workers</word>
+        <word _idx="5" lemma="went">went</word>
+        <word _idx="6" lemma="home">home</word>
+        <word _idx="7" lemma="sick">sick</word>
+        <word _idx="8" lemma=".">.</word>
+    </sentence>
+    <sentence idx="74">
+        <word _idx="1" _pos="PnIDF" lemma="one" num="sng">One</word>
+        <word _idx="2" lemma="never">never</word>
+        <word _idx="3" lemma="knows">knows</word>
+        <word _idx="4" lemma="what">what</word>
+        <word _idx="5" _pos="PnIDF" lemma="one" num="sng">one</word>
+        <word _idx="6" lemma="can">can</word>
+        <word _idx="7" lemma="do">do</word>
+        <word _idx="8" lemma="till">till</word>
+        <word _idx="9" _pos="PnIDF" lemma="one" num="sng">one</word>
+        <word _idx="10" lemma="tries">tries</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="75">
+        <word _idx="1" _pos="PnIDF" lemma="you" pers="nd">You</word>
+        <word _idx="2" lemma="never">never</word>
+        <word _idx="3" lemma="know">know</word>
+        <word _idx="4" lemma="what">what</word>
+        <word _idx="5" _pos="PnIDF" lemma="you" pers="nd">you</word>
+        <word _idx="6" lemma="can">can</word>
+        <word _idx="7" lemma="do">do</word>
+        <word _idx="8" lemma="till">till</word>
+        <word _idx="9" _pos="PnIDF" lemma="you" pers="nd">you</word>
+        <word _idx="10" lemma="try">try</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="76">
+        <word _idx="1" _pos="PnIDF" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" lemma="speak">speak</word>
+        <word _idx="3" lemma="english">English</word>
+        <word _idx="4" lemma="in">in</word>
+        <word _idx="5" _pos="PnDEM" lemma="this" num="sng">this</word>
+        <word _idx="6" lemma="hotel">hotel</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>

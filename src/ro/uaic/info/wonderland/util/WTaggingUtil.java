@@ -10,7 +10,7 @@ import ro.uaic.info.wonderland.nlp.WTagging;
  *
  * @author Iulian
  */
-public class PosUtil {
+public class WTaggingUtil {
 
     private static String indent = "        ";
 
@@ -41,9 +41,15 @@ public class PosUtil {
                 sb.append(indent + Corpus.persTag + ": " + gold.person + " / " + auto.person + "\n");
             }
         }
-        if (gold.pos != null) {
-            if (!gold.pos.equals(auto.pos)) {
-                sb.append(indent + Corpus.posTag + ": " + gold.pos + " / " + auto.pos + "\n");
+        if (gold.wTag != null) {
+            if (!gold.wTag.equals(auto.wTag)) {
+                sb.append(indent + Corpus.wTag + ": " + gold.wTag + " / ");
+                if (auto.wTag == null) {
+                    sb.append(auto.pennTag);
+                } else {
+                    sb.append(auto.wTag);
+                }
+                sb.append("\n");
             }
         }
         if (gold.tense != null) {

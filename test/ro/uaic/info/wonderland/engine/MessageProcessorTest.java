@@ -219,7 +219,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testReflexivePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -244,6 +244,81 @@ public class MessageProcessorTest {
         assertEquals("Done.", resp);
 
         File file = new File("reflexive_pronouns.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
+    @Test
+    public void testIndefinitePronouns() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        resp = instance.processMessage("All that glitters is not gold.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("The boys are both sleeping.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Either will be fine.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Neither shoe feels comfortable.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("We were fined 50 dollars each.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("We still have much to learn.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("A few people survived, but many died.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She gave the child two cakes but he asked for more.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Most of my friends will be here at 5 o'clock.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I don't like this tie; show me another.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Some books are cheap, others are expensive.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("When I opened the box of eggs, I found that several of them were broken.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She has had enough to eat.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Everybody is at home.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Everything is possible here.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Everyone needs some free time for rest and relaxation.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("We took some of the books to the auction.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Don't give her any!");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("None dared to do it.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("There is somebody in front of our house.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I have something to tell you.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Everybody likes someone.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I didn't see anybody.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("You can eat anything you like.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She is the most thrifty person of anyone I know.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Nobody is at home.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Is there nothing she can do?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("They have enough and we do poorly live.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Several of the workers went home sick.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("One never knows what one can do till one tries.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("You never know what you can do till you try.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("They speak English in this hotel.");
+        assertEquals("Done.", resp);
+
+        File file = new File("indefinite_pronouns.cogxml");
         instance.saveKb(file);
         mergeToCandidate(instance);
     }
