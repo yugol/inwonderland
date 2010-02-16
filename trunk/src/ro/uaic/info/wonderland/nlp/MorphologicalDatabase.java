@@ -9,8 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
@@ -32,6 +34,7 @@ public abstract class MorphologicalDatabase {
     private static Map<String, WTagging> pnrel;
     private static Map<String, WTagging> pnint;
     private static Map<String, WTagging> pr;
+    private static Map<String, WTagging> cj;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder() + "pos/" + formFile;
@@ -114,9 +117,16 @@ public abstract class MorphologicalDatabase {
             Globals.exit();
         }
         try {
-            pnint = readDataFile("pr.csv");
+            pr = readDataFile("pr.csv");
         } catch (Exception ex) {
             System.out.println("Error reading 'pr'");
+            System.out.println(ex);
+            Globals.exit();
+        }
+        try {
+            cj = readDataFile("cj.csv");
+        } catch (Exception ex) {
+            System.out.println("Error reading 'cj'");
             System.out.println(ex);
             Globals.exit();
         }
@@ -167,7 +177,26 @@ public abstract class MorphologicalDatabase {
         if (tagging != null) {
             tags.add(tagging);
         }
-
+        tagging = cj.get(word);
+        if (tagging != null) {
+            tags.add(tagging);
+        }
         return tags;
+    }
+
+    public static Set<String> getAllForms() {
+        Set<String> forms = new HashSet<String>();
+        forms.addAll(ar.keySet());
+        forms.addAll(pnprs.keySet());
+        forms.addAll(pnpos.keySet());
+        forms.addAll(pndem.keySet());
+        forms.addAll(pnref.keySet());
+        forms.addAll(pnind.keySet());
+        forms.addAll(pnrec.keySet());
+        forms.addAll(pnrel.keySet());
+        forms.addAll(pnint.keySet());
+        forms.addAll(pr.keySet());
+        forms.addAll(cj.keySet());
+        return forms;
     }
 }
