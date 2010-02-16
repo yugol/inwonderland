@@ -27,7 +27,7 @@ public class WTagger {
             if (taggings.size() == 1) {
                 tagging = taggings.get(0);
             } else if (taggings.size() > 1) {
-                // try lub
+                // try LOWEST UPPER 
             } else {
                 tagging = new WTagging();
                 tagging.setLemma(word.toLowerCase());

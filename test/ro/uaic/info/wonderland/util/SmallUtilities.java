@@ -7,8 +7,11 @@ package ro.uaic.info.wonderland.util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import org.junit.Test;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.nlp.MorphologicalDatabase;
+import ro.uaic.info.wonderland.nlp.WTagging;
 
 /**
  *
@@ -38,4 +41,17 @@ public class SmallUtilities {
         gold.writeToFile(Globals.getGoldCorpusFile());
     }
 
+    @Test
+    public void findTaggingDuplicates() {
+        for (String form : MorphologicalDatabase.getAllForms()) {
+            List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
+            if (taggings.size() > 1) {
+                System.out.println("");
+                System.out.println(form);
+                for (WTagging tagging : taggings) {
+                    System.out.println(tagging.toCsvString());
+                }
+            }
+        }
+    }
 }
