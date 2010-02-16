@@ -123,14 +123,19 @@ public class EngineKnowledgeBase {
 
         for (int i = 0; i < words.length; ++i) {
             WTagging tagging = words[i];
-            Concept c = new Concept(tagging.form + "-" + tagging.pennTag + "-" + (i + 1));
-            vocabulary.addIndividual(tagging.lemma, tagging.lemma, posConceptType, language);
-            String[] types = tagging.asStringArray();
+            Concept c = new Concept(tagging.getForm() + "-" + tagging.getPennTag() + "-" + (i + 1));
+            vocabulary.addIndividual(tagging.getLemma(), tagging.getLemma(), posConceptType, language);
+            String[] types = null;
+            if (tagging.getPos() == null) {
+                types = new String[]{tagging.getPennTag()};
+            } else {
+                types = tagging.asStringArray();
+            }
             for (int t = 0; t < types.length; ++t) {
                 types[t] = ctLabel2ctId(types[t]);
             }
             c.setType(types);
-            c.setIndividual(tagging.lemma);
+            c.setIndividual(tagging.getLemma());
             cg.addVertex(c);
         }
 
@@ -181,27 +186,27 @@ public class EngineKnowledgeBase {
                     prop = new WTagging();
                     break;
                 } else {
-                    prop.pos = vocabulary.getConceptTypeLabel(type, language);
+                    prop.setPos(vocabulary.getConceptTypeLabel(type, language));
                 }
             } else if (cth.isKindOf(type, caseConceptType)) {
-                prop.wcase = vocabulary.getConceptTypeLabel(type, language);
+                prop.setWcase(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, comparisonConceptType)) {
-                prop.comp = vocabulary.getConceptTypeLabel(type, language);
+                prop.setComp(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, genderConceptType)) {
-                prop.gender = vocabulary.getConceptTypeLabel(type, language);
+                prop.setGender(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, moodConceptType)) {
-                prop.mood = vocabulary.getConceptTypeLabel(type, language);
+                prop.setMood(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, numberConceptType)) {
-                prop.number = vocabulary.getConceptTypeLabel(type, language);
+                prop.setNumber(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, personConceptType)) {
-                prop.person = vocabulary.getConceptTypeLabel(type, language);
+                prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
             } else if (cth.isKindOf(type, tenseConceptType)) {
-                prop.tense = vocabulary.getConceptTypeLabel(type, language);
+                prop.setTense(vocabulary.getConceptTypeLabel(type, language));
             }
         }
-        prop.form = c.getId().split("-")[0];
-        prop.lemma = c.getIndividual();
-        prop.pennTag = getPennTag(c.getId());
+        prop.setForm(c.getId().split("-")[0]);
+        prop.setLemma(c.getIndividual());
+        prop.setPennTag(getPennTag(c.getId()));
         return prop;
     }
 

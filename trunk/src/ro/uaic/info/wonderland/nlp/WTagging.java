@@ -15,17 +15,17 @@ import net.didion.jwnl.data.Synset;
 public class WTagging {
 
     private static final String empty = "";
-    public String form = null; // word form
-    public String lemma = null; // dictionary form
-    public String pos = null; // POS tag by Wonderland
-    public String pennTag = null; // POS tag by Stanford Parser
-    public String gender = null; // masculine, feminine, neuter, common
-    public String number = null; // singular, plural
-    public String wcase = null; // nominative, genitive, dative, accusative
-    public String person = null; // first, second, third
-    public String comp = null; // comparative, superlative
-    public String mood = null; // indicative, subjunctive, conditional, ...
-    public String tense = null; // present, past, future, ...
+    private String form = null; // word form
+    private String lemma = null; // dictionary form
+    private String pos = null; // POS tag by Wonderland
+    private String pennTag = null; // POS tag by Stanford Parser
+    private String gender = null; // masculine, feminine, neuter, common
+    private String number = null; // singular, plural
+    private String wcase = null; // nominative, genitive, dative, accusative
+    private String person = null; // first, second, third
+    private String comp = null; // comparative, superlative
+    private String mood = null; // indicative, subjunctive, conditional, ...
+    private String tense = null; // present, past, future, ...
     private Synset[] senses = null; // from WordNet
 
     public String getComp() {

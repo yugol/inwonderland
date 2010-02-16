@@ -17,10 +17,6 @@ import net.didion.jwnl.data.POS;
 public class MorphologicalAnalyser {
 
     public void analyzeNoun(WTagging tagging) {
-        if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.getLemma()) >= 0) {
-            MorphologicalDatabase.tagPronoun(tagging);
-            return;
-        }
 
         IndexWord word = null;
         try {
@@ -63,34 +59,5 @@ public class MorphologicalAnalyser {
 
         // gender (look synsets for person or person name database)
 
-    }
-
-    public void analyzeDeterminer(WTagging tagging) {
-        if (tagging.getLemma().equals("the")) {
-            tagging.setPos("ArDEF");
-        } else if (tagging.getLemma().equals("a") || tagging.getLemma().equals("an")) {
-            tagging.setLemma("a");
-            tagging.setPos("ArIDF");
-        } else if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.getLemma()) >= 0) {
-            MorphologicalDatabase.tagPronoun(tagging);
-        } else if (Arrays.binarySearch(MorphologicalDatabase.indefinitePronouns, tagging.getLemma()) >= 0) {
-            MorphologicalDatabase.tagIndefinitePronoun(tagging);
-        }
-    }
-
-    public void analyzePersonalPronoun(WTagging tagging) {
-        if (tagging.getLemma().equals("i")) {
-            tagging.setLemma("I");
-        }
-        MorphologicalDatabase.tagPronoun(tagging);
-    }
-
-    public void analyzeAdjective(WTagging tagging) {
-        if (Arrays.binarySearch(MorphologicalDatabase.possesivePronouns, tagging.getLemma()) >= 0) {
-            MorphologicalDatabase.tagPronoun(tagging);
-        }
-        if (tagging.getLemma().equals("former") || tagging.getLemma().equals("former")) {
-            MorphologicalDatabase.tagPronoun(tagging);
-        }
     }
 }

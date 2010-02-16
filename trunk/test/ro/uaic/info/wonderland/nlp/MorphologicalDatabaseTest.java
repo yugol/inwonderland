@@ -20,16 +20,4 @@ public class MorphologicalDatabaseTest {
         Map result = MorphologicalDatabase.readDataFile(formFile);
         assertEquals(3, result.keySet().size());
     }
-
-    // @Test
-    public void buildDatabese() {
-        String[] words = MorphologicalDatabase.indefinitePronouns;
-        for (String word : words) {
-            WTagging tagging = new WTagging();
-            tagging.setForm(word);
-            tagging.setLemma(word);
-            MorphologicalDatabase.tagIndefinitePronoun(tagging);
-            System.out.println(tagging.toCsvString());
-        }
-    }
 }
