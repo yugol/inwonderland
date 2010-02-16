@@ -26,7 +26,7 @@ public class GoldTest {
         gold.buildFrom(goldFile);
 
         int errors = 0;
-        for (int i = 1; i < gold.getSentenceCount(); ++i) {
+        for (int i = 1; i <= gold.getSentenceCount(); ++i) {
             boolean printed = false;
             String sentence = gold.getSentenceStringByIndex(i);
 
