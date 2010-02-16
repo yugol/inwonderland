@@ -240,7 +240,7 @@ public class Gui extends javax.swing.JFrame {
                 // coGui.waitFor();
                 // setVisible(true);
 
-                Runtime.getRuntime().exec(Globals.getCoGuiLauncherPath());
+                Runtime.getRuntime().exec(Globals.getCoGuiLauncherFile().getAbsolutePath());
                 Globals.exit();
             }
         } catch (Exception ex) {

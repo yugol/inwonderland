@@ -4,8 +4,8 @@
  */
 package ro.uaic.info.wonderland.nlp;
 
+import edu.stanford.nlp.util.StringUtils;
 import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
-import java.util.Arrays;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
@@ -16,29 +16,24 @@ import net.didion.jwnl.data.POS;
  */
 public class MorphologicalAnalyser {
 
-    public void analyzeNoun(WTagging tagging) {
+    static final String noLemma = "_~_";
 
-        IndexWord word = null;
+    WTagging analyzeNoun(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        IndexWord wnWord = null;
         try {
-            word = WordNetWrapper.lookup(tagging.getForm(), POS.NOUN);
+            wnWord = WordNetWrapper.lookup(word, POS.NOUN);
         } catch (JWNLException ex) {
             System.out.println(ex);
         }
 
         // lemma
-
-        if (word != null) {
-            tagging.setLemma(word.getLemma());
-
-            // senses
-            try {
-                tagging.setSenses(word.getSenses());
-            } catch (JWNLException ex) {
-                System.out.println(ex);
-            }
+        if (wnWord != null) {
+            tagging.setLemma(wnWord.getLemma());
         }
-        if (tagging.getPennTag().indexOf("NNP") == 0) {
-            tagging.setLemma(tagging.getLemma().substring(0, 1).toUpperCase() + tagging.getLemma().substring(1));
+        if (tag.indexOf("NNP") == 0) {
+            tagging.setLemma(StringUtils.capitalize(word));
         }
 
         // pos
@@ -48,16 +43,89 @@ public class MorphologicalAnalyser {
             tagging.setPos("NnCOM");
         }
 
-        // case
-
         // number
-        if (tagging.getPennTag().charAt(tagging.getPennTag().length() - 1) == 'S') {
+        if (tag.charAt(tag.length() - 1) == 'S') {
             tagging.setNumber("plu");
         } else {
             tagging.setNumber("sng");
         }
 
-        // gender (look synsets for person or person name database)
+        return tagging;
+    }
 
+    WTagging analyzeVerb(String word, String tag) {
+        // mood
+        // number
+        // person
+        // tense
+
+        WTagging tagging = new WTagging();
+
+        IndexWord wnWord = null;
+        try {
+            wnWord = WordNetWrapper.lookup(word, POS.VERB);
+        } catch (JWNLException ex) {
+            System.out.println(ex);
+        }
+
+        // lemma
+        if (wnWord != null) {
+            tagging.setLemma(wnWord.getLemma());
+        } else {
+            tagging.setLemma(noLemma);
+        }
+
+        tagging.setPos("Vb");
+
+        if (tag.equals("VBZ")) {
+            tagging.setMood("ind");
+            tagging.setNumber("sng");
+            tagging.setPerson("rd");
+            tagging.setTense("ps");
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzePrepOrSubConj(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging pr = MorphologicalDatabase.pr.get(word);
+        WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
+
+        if (pr == null && cjsub == null) {
+            tagging.setLemma(noLemma);
+            tagging.setPos("PrCjSUB");
+        } else if (pr != null && cjsub != null) {
+            tagging.setLemma(pr.getLemma());
+            tagging.setPos("PrCjSUB");
+        } else if (pr != null) {
+            tagging.setLemma(pr.getLemma());
+            tagging.setPos(pr.getPos());
+        } else {
+            tagging.setLemma(cjsub.getLemma());
+            tagging.setPos(cjsub.getPos());
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeDeterminer(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging ar = MorphologicalDatabase.ar.get(word);
+
+        if (ar != null) {
+            tagging.setLemma(ar.getLemma());
+            tagging.setPos(ar.getPos());
+        } else {
+            return null;
+        }
+
+        return tagging;
     }
 }

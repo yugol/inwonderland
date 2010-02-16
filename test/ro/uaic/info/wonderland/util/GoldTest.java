@@ -4,6 +4,7 @@
  */
 package ro.uaic.info.wonderland.util;
 
+import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ro.uaic.info.wonderland.Globals;
@@ -21,7 +22,8 @@ public class GoldTest {
         System.out.println("testGoldCorpus");
         MessageProcessor msgProc = new MessageProcessor();
         Corpus gold = new Corpus();
-        gold.buildFrom(Globals.getGoldCorpusFile());
+        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
+        gold.buildFrom(goldFile);
 
         int errors = 0;
         for (int i = 1; i < gold.getSentenceCount(); ++i) {

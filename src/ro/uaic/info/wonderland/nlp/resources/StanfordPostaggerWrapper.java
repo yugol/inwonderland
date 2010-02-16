@@ -18,7 +18,7 @@ public abstract class StanfordPostaggerWrapper {
 
     static {
         try {
-            new MaxentTagger(Globals.getStanfordPostaggerPath());
+            new MaxentTagger(Globals.getStanfordPostaggerFile().getAbsolutePath());
         } catch (Exception ex) {
             System.out.println("Error initializing Stanford Parser or Postagger");
             System.out.println(ex);

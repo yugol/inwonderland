@@ -23,12 +23,17 @@ public class WTagger {
             String tag = tWord.tag();
 
             WTagging tagging = null;
-            List<WTagging> taggings = MorphologicalDatabase.getAllTagings(word);
-            if (taggings.size() == 1) {
-                tagging = taggings.get(0);
-            } else if (taggings.size() > 1) {
-                // try LOWEST UPPER 
-            } else {
+            if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
+                tagging = ma.analyzeNoun(word, tag);
+            } else if (tag.indexOf("VB") == 0) { // VB, VBD, VBG, VBN, VBP, VBZ
+                tagging = ma.analyzeVerb(word, tag);
+            } else if (tag.equals("IN")) { // IN
+                tagging = ma.analyzePrepOrSubConj(word, tag);
+            } else if (tag.equals("DT")) { // DT
+                tagging = ma.analyzeDeterminer(word, tag);
+            }
+
+            if (tagging == null) {
                 tagging = new WTagging();
                 tagging.setLemma(word.toLowerCase());
             }

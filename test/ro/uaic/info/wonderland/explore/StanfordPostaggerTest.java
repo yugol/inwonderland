@@ -22,7 +22,7 @@ public class StanfordPostaggerTest {
 
     @Test
     public void testPostagger() throws Exception {
-        new MaxentTagger(Globals.getStanfordPostaggerPath());
+        new MaxentTagger(Globals.getStanfordPostaggerFile().getAbsolutePath());
         StringReader r = new StringReader("The world is mine.");
         List<Sentence<? extends HasWord>> sentences = MaxentTagger.tokenizeText(r);
         for (Sentence<? extends HasWord> sentence : sentences) {

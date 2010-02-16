@@ -54,7 +54,7 @@ public class StanfordParserTest {
 
     @Test
     public void testDemo() {
-        LexicalizedParser lp = new LexicalizedParser(Globals.getStanfordParserPath());
+        LexicalizedParser lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
         String[] sent = {"They", "left", "one", "by", "one", "."};

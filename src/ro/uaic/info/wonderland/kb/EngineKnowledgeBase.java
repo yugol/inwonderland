@@ -73,7 +73,7 @@ public class EngineKnowledgeBase {
 
     public void openKb(File file) throws Exception {
         if (file == null) {
-            file = new File(Globals.getDefaultParseKBPath());
+            file = Globals.getDefaultParseKBFile();
         } else {
             lastFile = file;
         }
