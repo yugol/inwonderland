@@ -31,6 +31,7 @@ public abstract class MorphologicalDatabase {
     private static Map<String, WTagging> pnrec;
     private static Map<String, WTagging> pnrel;
     private static Map<String, WTagging> pnint;
+    private static Map<String, WTagging> pr;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder() + "pos/" + formFile;
@@ -112,9 +113,16 @@ public abstract class MorphologicalDatabase {
             System.out.println(ex);
             Globals.exit();
         }
+        try {
+            pnint = readDataFile("pr.csv");
+        } catch (Exception ex) {
+            System.out.println("Error reading 'pr'");
+            System.out.println(ex);
+            Globals.exit();
+        }
     }
 
-    public static List<WTagging> getTags(String word, String hint) {
+    public static List<WTagging> getAllTagings(String word) {
         word = word.toLowerCase();
         List<WTagging> tags = new ArrayList<WTagging>();
         WTagging tagging = null;
@@ -152,6 +160,10 @@ public abstract class MorphologicalDatabase {
             tags.add(tagging);
         }
         tagging = pnrel.get(word);
+        if (tagging != null) {
+            tags.add(tagging);
+        }
+        tagging = pr.get(word);
         if (tagging != null) {
             tags.add(tagging);
         }
