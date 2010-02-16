@@ -198,4 +198,62 @@ public class MorphologicalAnalyser {
 
         return tagging;
     }
+
+    WTagging analyzeAdverb(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        IndexWord wnWord = null;
+        try {
+            wnWord = WordNetWrapper.lookup(word, POS.ADVERB);
+        } catch (JWNLException ex) {
+            System.out.println(ex);
+        }
+
+        tagging.setPos("Rb");
+
+        // lemma
+        if (wnWord != null) {
+            word = wnWord.getLemma();
+            tagging.setLemma(word);
+        } else {
+            tagging.setLemma(noLemma);
+            word = word.toLowerCase();
+        }
+
+        // comparison
+        if (!tag.equals("RB")) {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeAdjective(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        IndexWord wnWord = null;
+        try {
+            wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
+        } catch (JWNLException ex) {
+            System.out.println(ex);
+        }
+
+        tagging.setPos("Jj");
+
+        // lemma
+        if (wnWord != null) {
+            word = wnWord.getLemma();
+            tagging.setLemma(word);
+        } else {
+            tagging.setLemma(noLemma);
+            word = word.toLowerCase();
+        }
+
+        // comparison
+        if (!tag.equals("JJ")) {
+            return null;
+        }
+
+        return tagging;
+    }
 }

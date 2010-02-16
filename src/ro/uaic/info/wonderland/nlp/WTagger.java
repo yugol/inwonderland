@@ -37,6 +37,10 @@ public class WTagger {
                 tagging = ma.analyzePersPron(word, tag);
             } else if (tag.equals("TO")) { // TO
                 tagging = ma.analyzeTo(word, tag);
+            } else if (tag.indexOf("RB") == 0) { // RB
+                tagging = ma.analyzeAdverb(word, tag);
+            } else if (tag.indexOf("JJ") == 0) { // JJ
+                tagging = ma.analyzeAdjective(word, tag);
             }
 
             if (tagging == null) {
