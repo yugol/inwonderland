@@ -24,7 +24,7 @@ public class WTagger {
             tagging.form = word.word();
             tagging.pennTag = word.tag();
             tagging.lemma = tagging.form.toLowerCase();
-
+/*
             if (tagging.pennTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 // prop = ma.analyzeNoun(wordLabel, wordTag);
             } else if (tagging.pennTag.equals("DT") || tagging.pennTag.equals("PDT")) {
@@ -34,6 +34,8 @@ public class WTagger {
             } else if (tagging.pennTag.indexOf("JJ") == 0) { // JJ, JJS, JJC
                 ma.analyzeAdjective(tagging);
             }
+ *
+ */
 
             wTags[i] = tagging;
         }

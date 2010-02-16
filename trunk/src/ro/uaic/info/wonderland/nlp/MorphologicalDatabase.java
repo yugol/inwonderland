@@ -16,12 +16,14 @@ public abstract class MorphologicalDatabase {
     public static String[] demonstrativePronouns = new String[]{"this", "these", "that", "those", "former", "latter", "other", "others", "same", "so", "such", "such-and-such", "suchlike", "one", "ones"};
     public static String[] reflexivePronouns = new String[]{"myself", "yourself", "himself", "herself", "itself", "oneself", "ourselves", "yourselves", "themselves"};
     public static String[] indefinitePronouns = new String[]{"all", "both", "either", "neither", "each", "much", "many", "more", "most", "another", "others", "several", "enough", "everybody", "everything", "everyone", "some", "any", "none", "somebody", "something", "someone", "anybody", "anything", "anyone", "nobody", "nothing", "enough", "several", "one", "you", "they"};
+    public static String[] relativePronouns = new String[]{"who", "whom", "whose", "whoever", "which", "whichever", "that", "what", "as"};
 
     static {
         Arrays.sort(possesivePronouns);
         Arrays.sort(demonstrativePronouns);
         Arrays.sort(reflexivePronouns);
         Arrays.sort(indefinitePronouns);
+        Arrays.sort(relativePronouns);
     }
 
     public static WTagging tagPronoun(WTagging prop) {
@@ -217,5 +219,13 @@ public abstract class MorphologicalDatabase {
 
     public static void tagIndefinitePronoun(WTagging prop) {
         prop.wTag = "PnIDF";
+    }
+
+    public static void tagRelativePronoun(WTagging prop) {
+        prop.wTag = "PnREL";
+    }
+
+    public static void tagInterrogativePronoun(WTagging prop) {
+        prop.wTag = "PnINT";
     }
 }

@@ -765,4 +765,115 @@
         <word _idx="6" lemma="hotel">hotel</word>
         <word _idx="7" lemma=".">.</word>
     </sentence>
+    <sentence idx="77">
+        <word _idx="1" lemma="this">This</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="the">the</word>
+        <word _idx="4" lemma="girl">girl</word>
+        <word _idx="5" _pos="PnREL" lemma="who">who</word>
+        <word _idx="6" lemma="we">we</word>
+        <word _idx="7" lemma="met">met</word>
+        <word _idx="8" lemma="yesterday">yesterday</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="78">
+        <word _idx="1" lemma="these">These</word>
+        <word _idx="2" lemma="are">are</word>
+        <word _idx="3" lemma="the">the</word>
+        <word _idx="4" lemma="boys">boys</word>
+        <word _idx="5" _pos="PnREL" lemma="whom">whom</word>
+        <word _idx="6" lemma="i">I</word>
+        <word _idx="7" lemma="talked">talked</word>
+        <word _idx="8" lemma="to">to</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="79">
+        <word _idx="1" lemma="jimmy">Jimmy</word>
+        <word _idx="2" lemma=",">,</word>
+        <word _idx="3" lemma="a">a</word>
+        <word _idx="4" lemma="boy">boy</word>
+        <word _idx="5" lemma="to">to</word>
+        <word _idx="6" _pos="PnREL" lemma="whom">whom</word>
+        <word _idx="7" lemma="i">I</word>
+        <word _idx="8" lemma="lent">lent</word>
+        <word _idx="9" lemma="twenty">twenty</word>
+        <word _idx="10" lemma="pounds">pounds</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="80">
+        <word _idx="1" lemma="the">The</word>
+        <word _idx="2" lemma="woman">woman</word>
+        <word _idx="3" _pos="PnREL" lemma="whose">whose</word>
+        <word _idx="4" lemma="hat">hat</word>
+        <word _idx="5" lemma="is">is</word>
+        <word _idx="6" lemma="red">red</word>
+        <word _idx="7" lemma="is">is</word>
+        <word _idx="8" lemma="our">our</word>
+        <word _idx="9" lemma="neighbor">neighbor</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="81">
+        <word _idx="1" lemma="i">I</word>
+        <word _idx="2" lemma="'ll">'ll</word>
+        <word _idx="3" lemma="help">help</word>
+        <word _idx="4" _pos="PnREL" lemma="whoever">whoever</word>
+        <word _idx="5" lemma="needs">needs</word>
+        <word _idx="6" lemma="my">my</word>
+        <word _idx="7" lemma="help">help</word>
+        <word _idx="8" lemma=".">.</word>
+    </sentence>
+    <sentence idx="82">
+        <word _idx="1" lemma="the">The</word>
+        <word _idx="2" lemma="book">book</word>
+        <word _idx="3" _pos="PnREL" lemma="which">which</word>
+        <word _idx="4" lemma="i">I</word>
+        <word _idx="5" lemma="bought">bought</word>
+        <word _idx="6" lemma="yesterday">yesterday</word>
+        <word _idx="7" lemma="is">is</word>
+        <word _idx="8" lemma="very">very</word>
+        <word _idx="9" lemma="expensive">expensive</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="83">
+        <word _idx="1" lemma="she">She</word>
+        <word _idx="2" lemma="will">will</word>
+        <word _idx="3" lemma="take">take</word>
+        <word _idx="4" _pos="PnREL" lemma="whichever">whichever</word>
+        <word _idx="5" lemma="books">books</word>
+        <word _idx="6" lemma="you">you</word>
+        <word _idx="7" lemma="do">do</word>
+        <word _idx="8" lemma="n't">n't</word>
+        <word _idx="9" lemma="want">want</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="84">
+        <word _idx="1" lemma="this">This</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="the">the</word>
+        <word _idx="4" lemma="girl">girl</word>
+        <word _idx="5" _pos="PnREL" lemma="that">that</word>
+        <word _idx="6" lemma="jack">Jack</word>
+        <word _idx="7" lemma="loves">loves</word>
+        <word _idx="8" lemma=".">.</word>
+    </sentence>
+    <sentence idx="85">
+        <word _idx="1" lemma="listen">Listen</word>
+        <word _idx="2" lemma="to">to</word>
+        <word _idx="3" _pos="PnREL" lemma="what">what</word>
+        <word _idx="4" lemma="i">I</word>
+        <word _idx="5" lemma="tell">tell</word>
+        <word _idx="6" lemma="you">you</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="86">
+        <word _idx="1" lemma="i">I</word>
+        <word _idx="2" lemma="received">received</word>
+        <word _idx="3" lemma="the">the</word>
+        <word _idx="4" lemma="same">same</word>
+        <word _idx="5" lemma="grade">grade</word>
+        <word _idx="6" _pos="PnREL" lemma="as">as</word>
+        <word _idx="7" lemma="you">you</word>
+        <word _idx="8" lemma="did">did</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>

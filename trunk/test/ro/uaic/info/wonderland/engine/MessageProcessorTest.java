@@ -248,7 +248,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testIndefinitePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -323,6 +323,50 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
+    @Test
+    public void testRelativePronouns() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        resp = instance.processMessage("This is the girl who we met yesterday.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("These are the boys whom I talked to.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Jimmy, a boy to whom I lent twenty pounds.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("The woman whose hat is red is our neighbour.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I'll help whoever needs my help.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("The book which I bought yesterday is very expensive.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("She will take whichever books you don't want.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("This is the girl that Jack loves.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Listen to what I tell you.");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I received the same grade as you did.");
+        assertEquals("Done.", resp);
+
+        File file = new File("relative_pronouns.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
+    // @Test
+    public void testInterrogativePronouns() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+        String resp;
+
+        resp = instance.processMessage("");
+        assertEquals("Done.", resp);
+
+        File file = new File("interrogative_pronouns.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
     // @Test
     public void testNouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
@@ -341,5 +385,6 @@ public class MessageProcessorTest {
 
         File file = new File("nouns.cogxml");
         instance.saveKb(file);
+        mergeToCandidate(instance);
     }
 }
