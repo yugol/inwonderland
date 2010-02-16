@@ -26,7 +26,7 @@ public class GoldTest {
         gold.writeToFile(Globals.getGoldCorpusFile());
     }
 
-    @Test
+    // @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
         MessageProcessor msgProc = new MessageProcessor();
