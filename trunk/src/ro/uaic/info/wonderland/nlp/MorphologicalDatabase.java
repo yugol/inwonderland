@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public abstract class MorphologicalDatabase {
 
+    public static String[] articles = new String[]{"a", "an", "the"};
+    public static String[] personalPronouns = new String[]{"I", "me", "we", "us", "you", "he", "she", "it", "him", "her", "they", "them", "thou", "thee", "ye"};
     public static String[] possesivePronouns = new String[]{"mine", "yours", "thine", "his", "hers", "ours", "theirs"};
     public static String[] demonstrativePronouns = new String[]{"this", "these", "that", "those", "former", "latter", "other", "others", "same", "so", "such", "such-and-such", "suchlike", "one", "ones"};
     public static String[] reflexivePronouns = new String[]{"myself", "yourself", "himself", "herself", "itself", "oneself", "ourselves", "yourselves", "themselves"};
@@ -20,11 +22,14 @@ public abstract class MorphologicalDatabase {
     public static String[] interrogativePronouns = new String[]{"who", "whose", "whom", "what", "which"};
 
     static {
+        Arrays.sort(articles);
+        Arrays.sort(possesivePronouns);
         Arrays.sort(possesivePronouns);
         Arrays.sort(demonstrativePronouns);
         Arrays.sort(reflexivePronouns);
         Arrays.sort(indefinitePronouns);
         Arrays.sort(relativePronouns);
+        Arrays.sort(interrogativePronouns);
     }
 
     public static WTagging tagPronoun(WTagging prop) {
