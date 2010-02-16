@@ -876,4 +876,57 @@
         <word _idx="8" lemma="did">did</word>
         <word _idx="9" lemma=".">.</word>
     </sentence>
+    <sentence idx="87">
+        <word _idx="1" _pos="PnINT" lemma="who">Who</word>
+        <word _idx="2" lemma="has">has</word>
+        <word _idx="3" lemma="broken">broken</word>
+        <word _idx="4" lemma="this">this</word>
+        <word _idx="5" lemma="vase">vase</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="88">
+        <word _idx="1" lemma="i">I</word>
+        <word _idx="2" lemma="have">have</word>
+        <word _idx="3" lemma="found">found</word>
+        <word _idx="4" lemma="a">a</word>
+        <word _idx="5" lemma="pen">pen</word>
+        <word _idx="6" lemma=";">;</word>
+        <word _idx="7" _pos="PnINT" lemma="whose">whose</word>
+        <word _idx="8" lemma="is">is</word>
+        <word _idx="9" lemma="it">it</word>
+        <word _idx="10" lemma="?">?</word>
+    </sentence>
+    <sentence idx="89">
+        <word _idx="1" _pos="PnINT" lemma="whom">Whom</word>
+        <word _idx="2" lemma="did">did</word>
+        <word _idx="3" lemma="you">you</word>
+        <word _idx="4" lemma="meet">meet</word>
+        <word _idx="5" lemma="there">there</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="90">
+        <word _idx="1" _pos="PnINT" lemma="what">What</word>
+        <word _idx="2" lemma="is">is</word>
+        <word _idx="3" lemma="she">she</word>
+        <word _idx="4" lemma="doing">doing</word>
+        <word _idx="5" lemma="now">now</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="91">
+        <word _idx="1" _pos="PnINT" lemma="which">Which</word>
+        <word _idx="2" lemma="of">of</word>
+        <word _idx="3" lemma="you">you</word>
+        <word _idx="4" lemma="saw">saw</word>
+        <word _idx="5" lemma="her">her</word>
+        <word _idx="6" lemma="yesterday">yesterday</word>
+        <word _idx="7" lemma="?">?</word>
+    </sentence>
+    <sentence idx="92">
+        <word _idx="1" lemma="to">To</word>
+        <word _idx="2" _pos="PnINT" lemma="whom">whom</word>
+        <word _idx="3" lemma="is">is</word>
+        <word _idx="4" lemma="she">she</word>
+        <word _idx="5" lemma="engaged">engaged</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
 </wonderland_corpus>

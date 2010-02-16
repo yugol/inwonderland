@@ -323,7 +323,7 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testRelativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
@@ -354,12 +354,22 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testInterrogativePronouns() throws Exception {
         MessageProcessor instance = new MessageProcessor();
         String resp;
 
-        resp = instance.processMessage("");
+        resp = instance.processMessage("Who has broken this vase?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("I have found a pen ; whose is it?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Whom did you meet there?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("What is she doing now?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("Which of you saw her yesterday?");
+        assertEquals("Done.", resp);
+        resp = instance.processMessage("To whom is she engaged?");
         assertEquals("Done.", resp);
 
         File file = new File("interrogative_pronouns.cogxml");
