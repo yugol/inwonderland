@@ -1,0 +1,8 @@
+form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+mine,mine,PnPOS,,sng,,st,,,
+yours,yours,PnPOS,,,,nd,,,
+thine,thine,PnPOS,,,,nd,,,
+his,his,PnPOS,msc,sng,,rd,,,
+hers,hers,PnPOS,fem,sng,,rd,,,
+ours,ours,PnPOS,,plu,,st,,,
+theirs,theirs,PnPOS,,plu,,rd,,,

@@ -1,0 +1,10 @@
+form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+who,who,PnREL,,,,,,,
+whom,whom,PnREL,,,,,,,
+whose,whose,PnREL,,,,,,,
+whoever,whoever,PnREL,,,,,,,
+which,which,PnREL,,,,,,,
+whichever,whichever,PnREL,,,,,,,
+that,that,PnREL,,,,,,,
+what,what,PnREL,,,,,,,
+as,as,PnREL,,,,,,,

@@ -17,14 +17,14 @@ import net.didion.jwnl.data.POS;
 public class MorphologicalAnalyser {
 
     public void analyzeNoun(WTagging tagging) {
-        if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.lemma) >= 0) {
+        if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.getLemma()) >= 0) {
             MorphologicalDatabase.tagPronoun(tagging);
             return;
         }
 
         IndexWord word = null;
         try {
-            word = WordNetWrapper.lookup(tagging.form, POS.NOUN);
+            word = WordNetWrapper.lookup(tagging.getForm(), POS.NOUN);
         } catch (JWNLException ex) {
             System.out.println(ex);
         }
@@ -32,33 +32,33 @@ public class MorphologicalAnalyser {
         // lemma
 
         if (word != null) {
-            tagging.lemma = word.getLemma();
+            tagging.setLemma(word.getLemma());
 
             // senses
             try {
-                tagging.senses = word.getSenses();
+                tagging.setSenses(word.getSenses());
             } catch (JWNLException ex) {
                 System.out.println(ex);
             }
         }
-        if (tagging.pennTag.indexOf("NNP") == 0) {
-            tagging.lemma = tagging.lemma.substring(0, 1).toUpperCase() + tagging.lemma.substring(1);
+        if (tagging.getPennTag().indexOf("NNP") == 0) {
+            tagging.setLemma(tagging.getLemma().substring(0, 1).toUpperCase() + tagging.getLemma().substring(1));
         }
 
-        // wTag
-        if (Character.isUpperCase(tagging.lemma.charAt(0))) {
-            tagging.wTag = "NnPRP";
+        // pos
+        if (Character.isUpperCase(tagging.getLemma().charAt(0))) {
+            tagging.setPos("NnPRP");
         } else {
-            tagging.wTag = "NnCOM";
+            tagging.setPos("NnCOM");
         }
 
         // case
 
         // number
-        if (tagging.pennTag.charAt(tagging.pennTag.length() - 1) == 'S') {
-            tagging.number = "plu";
+        if (tagging.getPennTag().charAt(tagging.getPennTag().length() - 1) == 'S') {
+            tagging.setNumber("plu");
         } else {
-            tagging.number = "sng";
+            tagging.setNumber("sng");
         }
 
         // gender (look synsets for person or person name database)
@@ -66,30 +66,30 @@ public class MorphologicalAnalyser {
     }
 
     public void analyzeDeterminer(WTagging tagging) {
-        if (tagging.lemma.equals("the")) {
-            tagging.wTag = "ArDEF";
-        } else if (tagging.lemma.equals("a") || tagging.lemma.equals("an")) {
-            tagging.lemma = "a";
-            tagging.wTag = "ArIDF";
-        } else if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.lemma) >= 0) {
+        if (tagging.getLemma().equals("the")) {
+            tagging.setPos("ArDEF");
+        } else if (tagging.getLemma().equals("a") || tagging.getLemma().equals("an")) {
+            tagging.setLemma("a");
+            tagging.setPos("ArIDF");
+        } else if (Arrays.binarySearch(MorphologicalDatabase.demonstrativePronouns, tagging.getLemma()) >= 0) {
             MorphologicalDatabase.tagPronoun(tagging);
-        } else if (Arrays.binarySearch(MorphologicalDatabase.indefinitePronouns, tagging.lemma) >= 0) {
+        } else if (Arrays.binarySearch(MorphologicalDatabase.indefinitePronouns, tagging.getLemma()) >= 0) {
             MorphologicalDatabase.tagIndefinitePronoun(tagging);
         }
     }
 
     public void analyzePersonalPronoun(WTagging tagging) {
-        if (tagging.lemma.equals("i")) {
-            tagging.lemma = "I";
+        if (tagging.getLemma().equals("i")) {
+            tagging.setLemma("I");
         }
         MorphologicalDatabase.tagPronoun(tagging);
     }
 
     public void analyzeAdjective(WTagging tagging) {
-        if (Arrays.binarySearch(MorphologicalDatabase.possesivePronouns, tagging.lemma) >= 0) {
+        if (Arrays.binarySearch(MorphologicalDatabase.possesivePronouns, tagging.getLemma()) >= 0) {
             MorphologicalDatabase.tagPronoun(tagging);
         }
-        if (tagging.lemma.equals("former") || tagging.lemma.equals("former")) {
+        if (tagging.getLemma().equals("former") || tagging.getLemma().equals("former")) {
             MorphologicalDatabase.tagPronoun(tagging);
         }
     }
