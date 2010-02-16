@@ -17,16 +17,6 @@ import ro.uaic.info.wonderland.engine.MessageProcessor;
 public class GoldTest {
 
     @Test
-    public void reIndexGoldCorpus() throws Exception {
-        System.out.println("reIndexGoldCorpus");
-        Corpus gold = new Corpus();
-        gold.buildFrom(Globals.getGoldCorpusFile());
-        gold.reIndexSentences();
-        gold.removePennAttributes();
-        gold.writeToFile(Globals.getGoldCorpusFile());
-    }
-
-    // @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
         MessageProcessor msgProc = new MessageProcessor();
@@ -52,7 +42,7 @@ public class GoldTest {
                         System.out.println(sentence);
                         printed = true;
                     }
-                    System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].form);
+                    System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
                     System.out.println(err);
                     ++errors;
                 }

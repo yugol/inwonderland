@@ -59,35 +59,35 @@ public class Corpus {
             WTagging prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
             word.setAttribute(idxTag, "" + (j + 1));
-            word.setAttribute(lemmaTag, prop.lemma);
-            if (prop.pennTag != null) {
-                word.setAttribute(pennTag, prop.pennTag);
+            word.setAttribute(lemmaTag, prop.getLemma());
+            if (prop.getPennTag() != null) {
+                word.setAttribute(pennTag, prop.getPennTag());
             }
-            if (prop.pos != null) {
-                word.setAttribute(wTag, prop.pos);
+            if (prop.getPos() != null) {
+                word.setAttribute(wTag, prop.getPos());
             }
-            if (prop.gender != null) {
-                word.setAttribute(genTag, prop.gender);
+            if (prop.getGender() != null) {
+                word.setAttribute(genTag, prop.getGender());
             }
-            if (prop.number != null) {
-                word.setAttribute(numTag, prop.number);
+            if (prop.getNumber() != null) {
+                word.setAttribute(numTag, prop.getNumber());
             }
-            if (prop.wcase != null) {
-                word.setAttribute(caseTag, prop.wcase);
+            if (prop.getWcase() != null) {
+                word.setAttribute(caseTag, prop.getWcase());
             }
-            if (prop.person != null) {
-                word.setAttribute(persTag, prop.person);
+            if (prop.getPerson() != null) {
+                word.setAttribute(persTag, prop.getPerson());
             }
-            if (prop.comp != null) {
-                word.setAttribute(compTag, prop.comp);
+            if (prop.getComp() != null) {
+                word.setAttribute(compTag, prop.getComp());
             }
-            if (prop.mood != null) {
-                word.setAttribute(moodTag, prop.mood);
+            if (prop.getMood() != null) {
+                word.setAttribute(moodTag, prop.getMood());
             }
-            if (prop.tense != null) {
-                word.setAttribute(tenseTag, prop.tense);
+            if (prop.getTense() != null) {
+                word.setAttribute(tenseTag, prop.getTense());
             }
-            word.setTextContent(prop.form);
+            word.setTextContent(prop.getForm());
             sentence.appendChild(word);
         }
     }
@@ -191,44 +191,17 @@ public class Corpus {
         for (int i = 1; i <= props.length; ++i) {
             Element word = getWordByIndex(sentence, i);
             WTagging prop = new WTagging();
-            prop.form = word.getTextContent();
-            prop.lemma = word.getAttribute(lemmaTag);
-            prop.comp = word.getAttribute(compTag);
-            if (prop.comp.length() == 0) {
-                prop.comp = null;
-            }
-            prop.gender = word.getAttribute(genTag);
-            if (prop.gender.length() == 0) {
-                prop.gender = null;
-            }
-            prop.mood = word.getAttribute(moodTag);
-            if (prop.mood.length() == 0) {
-                prop.mood = null;
-            }
-            prop.number = word.getAttribute(numTag);
-            if (prop.number.length() == 0) {
-                prop.number = null;
-            }
-            prop.person = word.getAttribute(persTag);
-            if (prop.person.length() == 0) {
-                prop.person = null;
-            }
-            prop.pos = word.getAttribute(wTag);
-            if (prop.pos.length() == 0) {
-                prop.pos = null;
-            }
-            prop.pennTag = word.getAttribute(pennTag);
-            if (prop.pennTag.length() == 0) {
-                prop.pennTag = null;
-            }
-            prop.tense = word.getAttribute(tenseTag);
-            if (prop.tense.length() == 0) {
-                prop.tense = null;
-            }
-            prop.wcase = word.getAttribute(caseTag);
-            if (prop.wcase.length() == 0) {
-                prop.wcase = null;
-            }
+            prop.setForm(word.getTextContent());
+            prop.setLemma(word.getAttribute(lemmaTag));
+            prop.setComp(word.getAttribute(compTag));
+            prop.setGender(word.getAttribute(genTag));
+            prop.setMood(word.getAttribute(moodTag));
+            prop.setNumber(word.getAttribute(numTag));
+            prop.setPerson(word.getAttribute(persTag));
+            prop.setPos(word.getAttribute(wTag));
+            prop.setPennTag(word.getAttribute(pennTag));
+            prop.setTense(word.getAttribute(tenseTag));
+            prop.setWcase(word.getAttribute(caseTag));
             props[i - 1] = prop;
         }
         return props;

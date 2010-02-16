@@ -18,24 +18,34 @@ public class WTagger {
     WTagging[] getWTagsByForm(List<TaggedWord> tSent) {
         WTagging[] wTags = new WTagging[tSent.size()];
         for (int i = 0; i < wTags.length; ++i) {
-            WTagging tagging = new WTagging();
-            TaggedWord word = tSent.get(i);
+            TaggedWord tWord = tSent.get(i);
+            String word = tWord.word();
+            String tag = tWord.tag();
 
-            tagging.form = word.word();
-            tagging.pennTag = word.tag();
-            tagging.lemma = tagging.form.toLowerCase();
-/*
-            if (tagging.pennTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
-                // prop = ma.analyzeNoun(wordLabel, wordTag);
-            } else if (tagging.pennTag.equals("DT") || tagging.pennTag.equals("PDT")) {
-                ma.analyzeDeterminer(tagging);
-            } else if (tagging.pennTag.indexOf("PRP") == 0) { // PRP, PRP$
-                ma.analyzePersonalPronoun(tagging);
-            } else if (tagging.pennTag.indexOf("JJ") == 0) { // JJ, JJS, JJC
-                ma.analyzeAdjective(tagging);
+            WTagging tagging = null;
+            List<WTagging> taggings = MorphologicalDatabase.getTags(word, tag);
+            if (taggings.size() == 1) {
+                tagging = taggings.get(0);
+            } else {
+                tagging = new WTagging();
+                tagging.setLemma(word.toLowerCase());
             }
- *
- */
+            tagging.setForm(word);
+            tagging.setPennTag(tag);
+
+
+            /*
+            if (tagging.pennTag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
+            // prop = ma.analyzeNoun(wordLabel, wordTag);
+            } else if (tagging.pennTag.equals("DT") || tagging.pennTag.equals("PDT")) {
+            ma.analyzeDeterminer(tagging);
+            } else if (tagging.pennTag.indexOf("PRP") == 0) { // PRP, PRP$
+            ma.analyzePersonalPronoun(tagging);
+            } else if (tagging.pennTag.indexOf("JJ") == 0) { // JJ, JJS, JJC
+            ma.analyzeAdjective(tagging);
+            }
+             *
+             */
 
             wTags[i] = tagging;
         }

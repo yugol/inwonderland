@@ -22,7 +22,7 @@ public class SuperCSVTest {
 
     @Test
     public void testReadCsv() throws FileNotFoundException, IOException {
-        String dbFile = Globals.getMorphologyFolder() + "articles.csv";
+        String dbFile = Globals.getMorphologyFolder() + "pos/ar.csv";
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(dbFile), CsvPreference.EXCEL_PREFERENCE);
         try {
             final String[] header = inFile.getCSVHeader(true);
