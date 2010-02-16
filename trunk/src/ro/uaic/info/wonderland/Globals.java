@@ -55,6 +55,10 @@ public final class Globals {
         return new File(dataFolder, "corpora/gold.xml");
     }
 
+    public static String getMorphologyFolder() {
+        return getDataFolder() + "/morphology/";
+    }
+
     public static void exit() {
         System.exit(1);
     }

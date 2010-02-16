@@ -181,12 +181,12 @@ public class EngineKnowledgeBase {
                     prop = new WTagging();
                     break;
                 } else {
-                    prop.wTag = vocabulary.getConceptTypeLabel(type, language);
+                    prop.pos = vocabulary.getConceptTypeLabel(type, language);
                 }
             } else if (cth.isKindOf(type, caseConceptType)) {
-                prop.theCase = vocabulary.getConceptTypeLabel(type, language);
+                prop.wcase = vocabulary.getConceptTypeLabel(type, language);
             } else if (cth.isKindOf(type, comparisonConceptType)) {
-                prop.comparison = vocabulary.getConceptTypeLabel(type, language);
+                prop.comp = vocabulary.getConceptTypeLabel(type, language);
             } else if (cth.isKindOf(type, genderConceptType)) {
                 prop.gender = vocabulary.getConceptTypeLabel(type, language);
             } else if (cth.isKindOf(type, moodConceptType)) {

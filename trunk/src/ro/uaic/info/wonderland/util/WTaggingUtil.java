@@ -16,9 +16,9 @@ public class WTaggingUtil {
 
     public static String areConsistent(WTagging gold, WTagging auto) {
         StringBuilder sb = new StringBuilder();
-        if (gold.comparison != null) {
-            if (!gold.comparison.equals(auto.comparison)) {
-                sb.append(indent + Corpus.compTag + ": " + gold.comparison + " / " + auto.comparison + "\n");
+        if (gold.comp != null) {
+            if (!gold.comp.equals(auto.comp)) {
+                sb.append(indent + Corpus.compTag + ": " + gold.comp + " / " + auto.comp + "\n");
             }
         }
         if (gold.gender != null) {
@@ -41,13 +41,13 @@ public class WTaggingUtil {
                 sb.append(indent + Corpus.persTag + ": " + gold.person + " / " + auto.person + "\n");
             }
         }
-        if (gold.wTag != null) {
-            if (!gold.wTag.equals(auto.wTag)) {
-                sb.append(indent + Corpus.wTag + ": " + gold.wTag + " / ");
-                if (auto.wTag == null) {
+        if (gold.pos != null) {
+            if (!gold.pos.equals(auto.pos)) {
+                sb.append(indent + Corpus.wTag + ": " + gold.pos + " / ");
+                if (auto.pos == null) {
                     sb.append(auto.pennTag);
                 } else {
-                    sb.append(auto.wTag);
+                    sb.append(auto.pos);
                 }
                 sb.append("\n");
             }
@@ -57,9 +57,9 @@ public class WTaggingUtil {
                 sb.append(indent + Corpus.tenseTag + ": " + gold.tense + " / " + auto.tense + "\n");
             }
         }
-        if (gold.theCase != null) {
-            if (!gold.theCase.equals(auto.theCase)) {
-                sb.append(indent + Corpus.caseTag + ": " + gold.theCase + " / " + auto.theCase + "\n");
+        if (gold.wcase != null) {
+            if (!gold.wcase.equals(auto.wcase)) {
+                sb.append(indent + Corpus.caseTag + ": " + gold.wcase + " / " + auto.wcase + "\n");
             }
         }
 

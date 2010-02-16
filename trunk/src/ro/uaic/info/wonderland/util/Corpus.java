@@ -63,8 +63,8 @@ public class Corpus {
             if (prop.pennTag != null) {
                 word.setAttribute(pennTag, prop.pennTag);
             }
-            if (prop.wTag != null) {
-                word.setAttribute(wTag, prop.wTag);
+            if (prop.pos != null) {
+                word.setAttribute(wTag, prop.pos);
             }
             if (prop.gender != null) {
                 word.setAttribute(genTag, prop.gender);
@@ -72,14 +72,14 @@ public class Corpus {
             if (prop.number != null) {
                 word.setAttribute(numTag, prop.number);
             }
-            if (prop.theCase != null) {
-                word.setAttribute(caseTag, prop.theCase);
+            if (prop.wcase != null) {
+                word.setAttribute(caseTag, prop.wcase);
             }
             if (prop.person != null) {
                 word.setAttribute(persTag, prop.person);
             }
-            if (prop.comparison != null) {
-                word.setAttribute(compTag, prop.comparison);
+            if (prop.comp != null) {
+                word.setAttribute(compTag, prop.comp);
             }
             if (prop.mood != null) {
                 word.setAttribute(moodTag, prop.mood);
@@ -193,9 +193,9 @@ public class Corpus {
             WTagging prop = new WTagging();
             prop.form = word.getTextContent();
             prop.lemma = word.getAttribute(lemmaTag);
-            prop.comparison = word.getAttribute(compTag);
-            if (prop.comparison.length() == 0) {
-                prop.comparison = null;
+            prop.comp = word.getAttribute(compTag);
+            if (prop.comp.length() == 0) {
+                prop.comp = null;
             }
             prop.gender = word.getAttribute(genTag);
             if (prop.gender.length() == 0) {
@@ -213,9 +213,9 @@ public class Corpus {
             if (prop.person.length() == 0) {
                 prop.person = null;
             }
-            prop.wTag = word.getAttribute(wTag);
-            if (prop.wTag.length() == 0) {
-                prop.wTag = null;
+            prop.pos = word.getAttribute(wTag);
+            if (prop.pos.length() == 0) {
+                prop.pos = null;
             }
             prop.pennTag = word.getAttribute(pennTag);
             if (prop.pennTag.length() == 0) {
@@ -225,9 +225,9 @@ public class Corpus {
             if (prop.tense.length() == 0) {
                 prop.tense = null;
             }
-            prop.theCase = word.getAttribute(caseTag);
-            if (prop.theCase.length() == 0) {
-                prop.theCase = null;
+            prop.wcase = word.getAttribute(caseTag);
+            if (prop.wcase.length() == 0) {
+                prop.wcase = null;
             }
             props[i - 1] = prop;
         }
