@@ -29,34 +29,33 @@ public final class Globals {
         return dataPath;
     }
 
-    public static String getStanfordParserPath() {
-        return getDataFolder() + "/englishPCFG.ser.gz";
+    public static File getStanfordParserFile() {
+        return new File(getDataFolder(), "englishPCFG.ser.gz");
     }
 
-    public static String getStanfordPostaggerPath() {
-        return getDataFolder() + "/bidirectional-distsim-wsj-0-18.tagger";
+    public static File getStanfordPostaggerFile() {
+        return new File(getDataFolder(), "bidirectional-distsim-wsj-0-18.tagger");
         // return getDataFolder() + "/left3words-wsj-0-18.tagger";
     }
 
-    public static String getDefaultParseKBPath() {
-
-        return getDataFolder() + "/defaultparsekb.cogxml";
+    public static File getDefaultParseKBFile() {
+        return new File(getDataFolder(), "defaultparsekb.cogxml");
     }
 
-    public static String getCoGuiLauncherPath() {
-        return getDataFolder() + "/cogui-launcher.bat";
+    public static File getCoGuiLauncherFile() {
+        return new File(getDataFolder(), "cogui-launcher.bat");
     }
 
-    public static String getJwnlPropertiesPath() {
-        return getDataFolder() + "/jwnl_properties.xml";
+    public static File getJwnlPropertiesFile() {
+        return new File(getDataFolder(), "jwnl_properties.xml");
     }
 
-    public static File getGoldCorpusFile() {
-        return new File(dataFolder, "corpora/gold.xml");
+    public static File getCorporaFolder() {
+        return new File(dataFolder, "corpora");
     }
 
-    public static String getMorphologyFolder() {
-        return getDataFolder() + "/morphology/";
+    public static File getMorphologyFolder() {
+        return new File(getDataFolder(), "morphology");
     }
 
     public static void exit() {

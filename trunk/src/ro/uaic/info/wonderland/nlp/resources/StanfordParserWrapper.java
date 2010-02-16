@@ -29,7 +29,7 @@ public abstract class StanfordParserWrapper {
     static GrammaticalStructureFactory gsf;
 
     static {
-        lp = new LexicalizedParser(Globals.getStanfordParserPath());
+        lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
         dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
         gsf = lp.getOp().langpack().grammaticalStructureFactory();

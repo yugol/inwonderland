@@ -25,7 +25,7 @@ public abstract class WordNetWrapper {
 
     static {
         try {
-            JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesPath()));
+            JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();
         } catch (Exception ex) {
             System.out.println("Could not initialize WordNet");

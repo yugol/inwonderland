@@ -129,8 +129,9 @@ public class Corpus {
         try {
             StringWriter sw = new StringWriter();
             OutputFormat of = new OutputFormat("XML", null, true);
-            of.setIndent(4);
+            of.setIndent(2);
             of.setIndenting(true);
+            of.setLineWidth(1000);
             XMLSerializer serializer = new XMLSerializer(sw, of);
             serializer.asDOMSerializer();
             serializer.serialize(xmlDoc.getDocumentElement());

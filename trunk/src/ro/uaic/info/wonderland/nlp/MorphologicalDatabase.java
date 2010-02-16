@@ -24,17 +24,18 @@ import ro.uaic.info.wonderland.Globals;
  */
 public abstract class MorphologicalDatabase {
 
-    private static Map<String, WTagging> ar;
-    private static Map<String, WTagging> pnprs;
-    private static Map<String, WTagging> pnpos;
-    private static Map<String, WTagging> pndem;
-    private static Map<String, WTagging> pnref;
-    private static Map<String, WTagging> pnind;
-    private static Map<String, WTagging> pnrec;
-    private static Map<String, WTagging> pnrel;
-    private static Map<String, WTagging> pnint;
-    private static Map<String, WTagging> pr;
-    private static Map<String, WTagging> cj;
+    static Map<String, WTagging> ar;
+    static Map<String, WTagging> pnprs;
+    static Map<String, WTagging> pnpos;
+    static Map<String, WTagging> pndem;
+    static Map<String, WTagging> pnref;
+    static Map<String, WTagging> pnind;
+    static Map<String, WTagging> pnrec;
+    static Map<String, WTagging> pnrel;
+    static Map<String, WTagging> pnint;
+    static Map<String, WTagging> pr;
+    static Map<String, WTagging> cjcrd;
+    static Map<String, WTagging> cjsub;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder() + "pos/" + formFile;
@@ -124,9 +125,16 @@ public abstract class MorphologicalDatabase {
             Globals.exit();
         }
         try {
-            cj = readDataFile("cj.csv");
+            cjcrd = readDataFile("cjcrd.csv");
         } catch (Exception ex) {
-            System.out.println("Error reading 'cj'");
+            System.out.println("Error reading 'cjcrd'");
+            System.out.println(ex);
+            Globals.exit();
+        }
+        try {
+            cjsub = readDataFile("cjsub.csv");
+        } catch (Exception ex) {
+            System.out.println("Error reading 'cjsub'");
             System.out.println(ex);
             Globals.exit();
         }
@@ -177,7 +185,11 @@ public abstract class MorphologicalDatabase {
         if (tagging != null) {
             tags.add(tagging);
         }
-        tagging = cj.get(word);
+        tagging = cjcrd.get(word);
+        if (tagging != null) {
+            tags.add(tagging);
+        }
+        tagging = cjsub.get(word);
         if (tagging != null) {
             tags.add(tagging);
         }
@@ -196,7 +208,8 @@ public abstract class MorphologicalDatabase {
         forms.addAll(pnrel.keySet());
         forms.addAll(pnint.keySet());
         forms.addAll(pr.keySet());
-        forms.addAll(cj.keySet());
+        forms.addAll(cjcrd.keySet());
+        forms.addAll(cjsub.keySet());
         return forms;
     }
 }

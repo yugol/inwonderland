@@ -27,22 +27,24 @@ public class SmallUtilities {
     // @Test
     public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
         System.out.println("normalizeConceptTypes");
-        KB.normalizeConceptTypes(new File(Globals.getDefaultParseKBPath()));
-        KB.normalizeRelationTypes(new File(Globals.getDefaultParseKBPath()));
-    }
-
-    // @Test
-    public void reIndexGoldCorpus() throws Exception {
-        System.out.println("reIndexGoldCorpus");
-        Corpus gold = new Corpus();
-        gold.buildFrom(Globals.getGoldCorpusFile());
-        gold.reIndexSentences();
-        gold.removePennAttributes();
-        gold.writeToFile(Globals.getGoldCorpusFile());
+        KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
+        KB.normalizeRelationTypes(Globals.getDefaultParseKBFile());
     }
 
     @Test
+    public void reIndexGoldCorpus() throws Exception {
+        System.out.println("reIndexGoldCorpus");
+        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
+        Corpus gold = new Corpus();
+        gold.buildFrom(goldFile);
+        gold.reIndexSentences();
+        gold.removePennAttributes();
+        gold.writeToFile(goldFile);
+    }
+
+    // @Test
     public void findTaggingDuplicates() {
+        System.out.println("Findin polysemy entries in morphological database");
         for (String form : MorphologicalDatabase.getAllForms()) {
             List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
             if (taggings.size() > 1) {
