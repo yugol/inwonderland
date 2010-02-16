@@ -23,9 +23,11 @@ public class WTagger {
             String tag = tWord.tag();
 
             WTagging tagging = null;
-            List<WTagging> taggings = MorphologicalDatabase.getTags(word, tag);
+            List<WTagging> taggings = MorphologicalDatabase.getAllTagings(word);
             if (taggings.size() == 1) {
                 tagging = taggings.get(0);
+            } else if (taggings.size() > 1) {
+                // try lub
             } else {
                 tagging = new WTagging();
                 tagging.setLemma(word.toLowerCase());
