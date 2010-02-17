@@ -1,2 +1,6 @@
 form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+am,be,Vb,,sng,,st,,ind,ps
 's,be,Vb,,sng,,rd,,ind,ps
+is,be,Vb,,sng,,rd,,ind,ps
+'re,be,Vb,,,,,,ind,ps
+are,be,Vb,,,,,,ind,ps
