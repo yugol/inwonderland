@@ -181,6 +181,7 @@ public class EngineKnowledgeBase {
         WTagging prop = new WTagging();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         for (String type : c.getType()) {
+            // System.out.println(type + " : " + c.getId());
             if (cth.isKindOf(type, posConceptType)) {
                 if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
                     prop = new WTagging();

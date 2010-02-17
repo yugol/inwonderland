@@ -87,6 +87,7 @@ public class MorphologicalAnalyser {
             tagging.setNumber("sng");
             tagging.setPerson("stnd");
             tagging.setTense("ps");
+        } else if (tag.equals("VB")) {
         } else {
             return null;
         }
@@ -126,13 +127,18 @@ public class MorphologicalAnalyser {
 
         WTagging ar = MorphologicalDatabase.ar.get(word);
         WTagging jjind = MorphologicalDatabase.jjind.get(word);
+        WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
 
-        if (ar != null && jjind == null) {
+        if (ar != null && jjind == null && jjdem == null) {
             tagging.setLemma(ar.getLemma());
             tagging.setPos(ar.getPos());
-        } else if (ar == null && jjind != null) {
+        } else if (ar == null && jjind != null && jjdem == null) {
             tagging.setLemma(jjind.getLemma());
             tagging.setPos(jjind.getPos());
+        } else if (ar == null && jjind == null && jjdem != null) {
+            tagging.setLemma(jjdem.getLemma());
+            tagging.setPos(jjdem.getPos());
+            tagging.setNumber(jjdem.getNumber());
         } else {
             return null;
         }
@@ -251,6 +257,23 @@ public class MorphologicalAnalyser {
 
         // comparison
         if (!tag.equals("JJ")) {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeModal(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging md = MorphologicalDatabase.md.get(word);
+
+        if (md != null) {
+            tagging.setLemma(md.getLemma());
+            tagging.setPos(md.getPos());
+        } else {
             return null;
         }
 

@@ -41,6 +41,8 @@ public class WTagger {
                 tagging = ma.analyzeAdverb(word, tag);
             } else if (tag.indexOf("JJ") == 0) { // JJ
                 tagging = ma.analyzeAdjective(word, tag);
+            } else if (tag.equals("MD")) { // MD
+                tagging = ma.analyzeModal(word, tag);
             }
 
             if (tagging == null) {

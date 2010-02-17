@@ -38,4 +38,35 @@
         <word _idx="4" _pos="Rb" lemma="much">much</word>
         <word _idx="5" lemma=".">.</word>
     </sentence>
+    <sentence idx="5">
+        <word _idx="1" _pos="NnPRP" lemma="Jane" num="sng">Jane</word>
+        <word _idx="2" _pos="Vb" lemma="work" mood="ind" num="sng" pers="rd" tense="ps">works</word>
+        <word _idx="3" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="4" _pos="ArIDF" lemma="a">a</word>
+        <word _idx="5" _pos="Jj" lemma="big">big</word>
+        <word _idx="6" _pos="NnCOM" lemma="factory" num="sng">factory</word>
+        <word _idx="7" lemma=".">.</word>
+    </sentence>
+    <sentence idx="6">
+        <word _idx="1" _pos="NnPRP" lemma="Shakespeare" num="sng">Shakespeare</word>
+        <word _idx="2" _pos="Vb" lemma="say" mood="ind" num="sng" pers="rd" tense="ps">says</word>
+        <word _idx="3" lemma=":">:</word>
+        <word _idx="4" lemma="''">''</word>
+        <word _idx="5" _pos="Rb" lemma="not">Not</word>
+        <word _idx="6" _pos="NnCOM" lemma="marble" num="sng">marble</word>
+        <word _idx="7" lemma=",">,</word>
+        <word _idx="8" _pos="CjCRD" lemma="nor">nor</word>
+        <word _idx="9" lemma="the">the</word>
+        <word _idx="10" _pos="Jj" lemma="gilded">gilded</word>
+        <word _idx="11" _pos="NnCOM" lemma="monument" num="plu">monuments</word>
+        <word _idx="12" _pos="PrPRE" lemma="of">of</word>
+        <word _idx="13" _pos="NnCOM" lemma="prince" num="plu">princes</word>
+        <word _idx="14" _pos="Md" lemma="shall">shall</word>
+        <word _idx="15" _pos="Vb" lemma="outlive">outlive</word>
+        <word _idx="16" _pos="JjDEM" lemma="this" num="sng">this</word>
+        <word _idx="17" _pos="Jj" lemma="powerful">powerful</word>
+        <word _idx="18" _pos="NnCOM" lemma="rhyme" num="sng">rhyme</word>
+        <word _idx="19" lemma=".">.</word>
+        <word _idx="20" lemma="''">''</word>
+    </sentence>
 </wonderland_corpus>
