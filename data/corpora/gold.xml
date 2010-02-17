@@ -125,4 +125,42 @@
         <word _idx="21" _pos="NnCOM" lemma="mirror" num="sng">mirror</word>
         <word _idx="22" lemma=".">.</word>
     </sentence>
+    <sentence idx="10">
+        <word _idx="1" _pos="Rb" lemma="first">First</word>
+        <word _idx="2" lemma=",">,</word>
+        <word _idx="3" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="4" _pos="Vb" lemma="take" mood="ind" num="sng" pers="stnd" tense="ps">take</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnCOM" lemma="potato" num="plu">potatoes</word>
+        <word _idx="7" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="8" _pos="Vb" lemma="slice" mood="ind" num="sng" pers="stnd" tense="ps">slice</word>
+        <word _idx="9" _pos="PnPRS" lemma="them" num="plu" pers="rd">them</word>
+        <word _idx="10" lemma=".">.</word>
+    </sentence>
+    <sentence idx="11">
+        <word _idx="1" _pos="Rb" lemma="then">Then</word>
+        <word _idx="2" lemma=",">,</word>
+        <word _idx="3" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="4" _pos="Vb" lemma="slice" mood="ind" num="sng" pers="stnd" tense="ps">slice</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnCOM" lemma="tomato" num="plu">tomatoes</word>
+        <word _idx="7" lemma=",">,</word>
+        <word _idx="8" _pos="Vb" lemma="fry" mood="ind" num="sng" pers="stnd" tense="ps">fry</word>
+        <word _idx="9" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="10" _pos="NnCOM" lemma="onion" num="sng">onion</word>
+        <word _idx="11" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="12" _pos="NnCOM" lemma="parsley" num="sng">parsley</word>
+        <word _idx="13" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="14" _pos="ArIDF" lemma="a">a</word>
+        <word _idx="15" _pos="Jj" lemma="little">little</word>
+        <word _idx="16" _pos="NnCOM" lemma="fat" num="sng">fat</word>
+        <word _idx="17" _pos="CjSUB" lemma="until">until</word>
+        <word _idx="18" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="19" _pos="NnCOM" lemma="onion" num="plu">onions</word>
+        <word _idx="20" _pos="Vb" lemma="be" mood="ind" num="sng" pers="stnd" tense="ps">are</word>
+        <word _idx="21" _pos="Jj" lemma="translucent">translucent</word>
+        <word _idx="22" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="23" _pos="Vb" lemma="finish" mood="ind" num="sng" pers="stnd" tense="ps">finish</word>
+        <word _idx="24" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>
