@@ -36,7 +36,7 @@ public class MessageProcessorTest {
         MessageProcessor instance = new MessageProcessor();
         String resp;
 
-        resp = instance.processMessage("Shakespeare says: 'Not marble, nor the gilded monuments of princes shall outlive this powerful rhyme.'");
+        resp = instance.processMessage("The witch is boiling something and is talking to a huge black cat that is looking at itself in a mirror.");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");

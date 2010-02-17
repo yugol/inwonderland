@@ -9,6 +9,7 @@ import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
+import ro.uaic.info.wonderland.Globals;
 
 /**
  *
@@ -26,13 +27,24 @@ public class MorphologicalAnalyser {
             wnWord = WordNetWrapper.lookup(word, POS.NOUN);
         } catch (JWNLException ex) {
             System.out.println(ex);
+            Globals.exit();
         }
 
+        word = word.toLowerCase();
+        WTagging pnind = MorphologicalDatabase.pnind.get(word);
+
         // lemma
-        if (wnWord != null) {
+        if (wnWord != null && pnind == null) {
             tagging.setLemma(wnWord.getLemma());
+        } else if (wnWord == null && pnind != null) {
+            tagging.setLemma(pnind.getLemma());
+            tagging.setPos(pnind.getPos());
+            return tagging;
+        } else {
+            tagging.setLemma(noLemma);
         }
         if (tag.indexOf("NNP") == 0) {
+            tagging.setLemma(word);
             tagging.setLemma(StringUtils.capitalize(word));
         }
 
@@ -88,6 +100,16 @@ public class MorphologicalAnalyser {
             tagging.setPerson("stnd");
             tagging.setTense("ps");
         } else if (tag.equals("VB")) {
+        } else if (tag.equals("VBD")) {
+            tagging.setMood("ind");
+            tagging.setTense("pt");
+        } else if (tag.equals("VBG")) {
+            word = word.toLowerCase();
+            if (word.lastIndexOf("ing") == word.length() - 3) {
+                tagging.setMood("ger");
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -173,14 +195,22 @@ public class MorphologicalAnalyser {
         }
 
         WTagging pnprs = MorphologicalDatabase.pnprs.get(word);
+        WTagging pnref = MorphologicalDatabase.pnref.get(word);
 
-        if (pnprs != null) {
+        if (pnprs != null && pnref == null) {
             tagging.setLemma(pnprs.getLemma());
             tagging.setPos(pnprs.getPos());
             tagging.setGender(pnprs.getGender());
             tagging.setNumber(pnprs.getNumber());
             tagging.setWcase(pnprs.getWcase());
             tagging.setPerson(pnprs.getPerson());
+        } else if (pnprs == null && pnref != null) {
+            tagging.setLemma(pnref.getLemma());
+            tagging.setPos(pnref.getPos());
+            tagging.setGender(pnref.getGender());
+            tagging.setNumber(pnref.getNumber());
+            tagging.setWcase(pnref.getWcase());
+            tagging.setPerson(pnref.getPerson());
         } else {
             return null;
         }
@@ -273,6 +303,23 @@ public class MorphologicalAnalyser {
         if (md != null) {
             tagging.setLemma(md.getLemma());
             tagging.setPos(md.getPos());
+        } else {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeWhDeterminer(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging pnrel = MorphologicalDatabase.pnrel.get(word);
+
+        if (pnrel != null) {
+            tagging.setLemma(pnrel.getLemma());
+            tagging.setPos(pnrel.getPos());
         } else {
             return null;
         }
