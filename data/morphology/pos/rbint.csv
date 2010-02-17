@@ -1,0 +1,5 @@
+form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+how,how,RbINT,,,,,,,
+when,when,RbINT,,,,,,,
+where,where,RbINT,,,,,,,
+why,why,RbINT,,,,,,,

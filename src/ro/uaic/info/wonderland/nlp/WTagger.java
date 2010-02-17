@@ -25,7 +25,7 @@ public class WTagger {
             WTagging tagging = null;
             if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 tagging = ma.analyzeNoun(word, tag);
-            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP
+            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP, VB
                 tagging = ma.analyzeVerb(word, tag);
             } else if (tag.equals("IN")) { // IN
                 tagging = ma.analyzePrepOrSubConj(word, tag);
@@ -49,6 +49,12 @@ public class WTagger {
                 tagging = ma.analyzeCardinalNumber(word, tag);
             } else if (tag.equals("PRP$")) { // PRP$
                 tagging = ma.analyzePossPron(word, tag);
+            } else if (tag.equals("WRB")) { // WRB
+                tagging = ma.analyzeWhAdverb(word, tag);
+            } else if (tag.equals("EX")) { // EX
+                tagging = ma.analyzeExThere(word, tag);
+            } else if (tag.equals("WP")) { // WP
+                tagging = ma.analyzeWhPron(word, tag);
             }
 
             if (tagging == null) {

@@ -56,7 +56,7 @@ public class SmallUtilities {
     // @Test
     public void findFormInDatabase() {
         System.out.println("Find form in morphological database");
-        String form = "until";
+        String form = "there";
         List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
         if (taggings.size() > 0) {
             displayTaggings(taggings, form);

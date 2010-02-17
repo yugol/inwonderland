@@ -16,6 +16,17 @@ public class WTaggingUtil {
 
     public static String areConsistent(WTagging gold, WTagging auto) {
         StringBuilder sb = new StringBuilder();
+        if (gold.getPos() != null) {
+            if (!gold.getPos().equals(auto.getPos())) {
+                sb.append(indent + Corpus.wTag + ": " + gold.getPos() + " / ");
+                if (auto.getPos() == null) {
+                    sb.append(auto.getPennTag());
+                } else {
+                    sb.append(auto.getPos());
+                }
+                sb.append("\n");
+            }
+        }
         if (gold.getComp() != null) {
             if (!gold.getComp().equals(auto.getComp())) {
                 sb.append(indent + Corpus.compTag + ": " + gold.getComp() + " / " + auto.getComp() + "\n");
@@ -39,17 +50,6 @@ public class WTaggingUtil {
         if (gold.getPerson() != null) {
             if (!gold.getPerson().equals(auto.getPerson())) {
                 sb.append(indent + Corpus.persTag + ": " + gold.getPerson() + " / " + auto.getPerson() + "\n");
-            }
-        }
-        if (gold.getPos() != null) {
-            if (!gold.getPos().equals(auto.getPos())) {
-                sb.append(indent + Corpus.wTag + ": " + gold.getPos() + " / ");
-                if (auto.getPos() == null) {
-                    sb.append(auto.getPennTag());
-                } else {
-                    sb.append(auto.getPos());
-                }
-                sb.append("\n");
             }
         }
         if (gold.getTense() != null) {

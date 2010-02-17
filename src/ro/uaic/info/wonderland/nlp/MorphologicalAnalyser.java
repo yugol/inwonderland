@@ -66,58 +66,54 @@ public class MorphologicalAnalyser {
     }
 
     WTagging analyzeVerb(String word, String tag) {
-        // mood
-        // number
-        // person
-        // tense
-
         WTagging tagging = new WTagging();
 
-        IndexWord wnWord = null;
-        try {
-            wnWord = WordNetWrapper.lookup(word, POS.VERB);
-        } catch (JWNLException ex) {
-            System.out.println(ex);
-        }
+        WTagging vb = MorphologicalDatabase.vb.get(word.toLowerCase());
 
-        // lemma
-        if (wnWord != null) {
-            tagging.setLemma(wnWord.getLemma());
+        if (vb != null) {
+            tagging.setLemma(vb.getLemma());
+            tagging.setPos(vb.getPos());
+            tagging.setMood(vb.getMood());
+            tagging.setNumber(vb.getNumber());
+            tagging.setPerson(vb.getPerson());
+            tagging.setTense(vb.getTense());
         } else {
-            word = word.toLowerCase();
-            WTagging vb = MorphologicalDatabase.vb.get(word);
-            if (vb != null) {
-                tagging.setLemma(vb.getLemma());
+            IndexWord wnWord = null;
+            try {
+                wnWord = WordNetWrapper.lookup(word, POS.VERB);
+            } catch (JWNLException ex) {
+                System.out.println(ex);
+            }
+
+            if (wnWord != null) {
+                tagging.setLemma(wnWord.getLemma());
             } else {
                 tagging.setLemma(noLemma);
             }
-        }
 
-        tagging.setPos("Vb");
-
-        if (tag.equals("VBZ")) {
-            tagging.setMood("ind");
-            tagging.setNumber("sng");
-            tagging.setPerson("rd");
-            tagging.setTense("ps");
-        } else if (tag.equals("VBP")) {
-            tagging.setMood("ind");
-            tagging.setNumber("sng");
-            tagging.setPerson("stnd");
-            tagging.setTense("ps");
-        } else if (tag.equals("VB")) {
-        } else if (tag.equals("VBD")) {
-            tagging.setMood("ind");
-            tagging.setTense("pt");
-        } else if (tag.equals("VBG")) {
-            word = word.toLowerCase();
-            if (word.lastIndexOf("ing") == word.length() - 3) {
-                tagging.setMood("ger");
+            tagging.setPos("Vb");
+            if (tag.equals("VBZ")) {
+                tagging.setMood("ind");
+                tagging.setNumber("sng");
+                tagging.setPerson("rd");
+                tagging.setTense("ps");
+            } else if (tag.equals("VBP")) {
+                tagging.setMood("ind");
+                tagging.setTense("ps");
+            } else if (tag.equals("VB")) {
+            } else if (tag.equals("VBD")) {
+                tagging.setMood("ind");
+                tagging.setTense("pt");
+            } else if (tag.equals("VBG")) {
+                word = word.toLowerCase();
+                if (word.lastIndexOf("ing") == word.length() - 3) {
+                    tagging.setMood("ger");
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
-        } else {
-            return null;
         }
 
         return tagging;
@@ -372,6 +368,50 @@ public class MorphologicalAnalyser {
             tagging.setNumber(jjpos.getNumber());
             tagging.setWcase(jjpos.getWcase());
             tagging.setPerson(jjpos.getPerson());
+        } else {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeWhAdverb(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging rbint = MorphologicalDatabase.rbint.get(word);
+
+        if (rbint != null) {
+            tagging.setLemma(rbint.getLemma());
+            tagging.setPos(rbint.getPos());
+        } else {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeExThere(String word, String tag) {
+        if (!word.toLowerCase().equals("there")) {
+            return null;
+        }
+        WTagging tagging = new WTagging();
+        tagging.setPos("RbEX");
+        tagging.setLemma("there");
+        return tagging;
+    }
+
+    WTagging analyzeWhPron(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging pnint = MorphologicalDatabase.pnint.get(word);
+
+        if (pnint != null) {
+            tagging.setLemma(pnint.getLemma());
+            tagging.setPos(pnint.getPos());
         } else {
             return null;
         }
