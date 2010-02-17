@@ -163,4 +163,97 @@
         <word _idx="23" _pos="Vb" lemma="finish" mood="ind" num="sng" pers="stnd" tense="ps">finish</word>
         <word _idx="24" lemma=".">.</word>
     </sentence>
+    <sentence idx="12">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="goalkeeper" num="sng">goal-keeper</word>
+        <word _idx="3" _pos="Vb" lemma="pass" mood="ind" num="sng" pers="rd" tense="ps">passes</word>
+        <word _idx="4" _pos="PrTo" lemma="to">to</word>
+        <word _idx="5" _pos="NnPRP" lemma="Maradona" num="sng">Maradona</word>
+        <word _idx="6" lemma=",">,</word>
+        <word _idx="7" _pos="CjCRD" lemma="but">but</word>
+        <word _idx="8" _pos="NnPRP" lemma="Hagi" num="sng">Hagi</word>
+        <word _idx="9" _pos="Vb" lemma="intercept" mood="ind" num="sng" pers="rd" tense="ps">intercepts</word>
+        <word _idx="10" lemma=";">;</word>
+        <word _idx="11" _pos="NnPRP" lemma="Hagi" num="sng">Hagi</word>
+        <word _idx="12" _pos="PrTo" lemma="to">to</word>
+        <word _idx="13" _pos="NnPRP" lemma="Lacatus" num="sng">Lacatus</word>
+        <word _idx="14" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="15" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="16" _pos="Vb" lemma="shoot" mood="ind" num="sng" pers="rd" tense="ps">shoots</word>
+        <word _idx="17" _pos="CjCRD" lemma="and">and</word>
+        <word _idx="18" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="19" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">'s</word>
+        <word _idx="20" _pos="ArIDF" lemma="a">a</word>
+        <word _idx="21" _pos="NnCOM" lemma="goal" num="sng">goal</word>
+        <word _idx="22" lemma="!">!</word>
+    </sentence>
+    <sentence idx="13">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnPRP" lemma="Romanians" num="plu">Romanians</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="ind" num="sng" pers="stnd" tense="ps">are</word>
+        <word _idx="4" _pos="Vb" lemma="lead" mood="ger">leading</word>
+        <word _idx="5" _pos="PrPRE" lemma="by">by</word>
+        <word _idx="6" _pos="NmCRD" lemma="3">three</word>
+        <word _idx="7" _pos="NnCOM" lemma="goal" num="plu">goals</word>
+        <word _idx="8" _pos="PrTo" lemma="to">to</word>
+        <word _idx="9" _pos="NnCOM" lemma="nil" num="sng">nil</word>
+        <word _idx="10" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="11" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="12" _pos="NmORD" lemma="2">second</word>
+        <word _idx="13" _pos="NnCOM" lemma="half" num="sng">half</word>
+        <word _idx="14" lemma=".">.</word>
+    </sentence>
+    <sentence idx="14">
+        <word _idx="1" _pos="NnPRP" lemma="Nastase" num="sng">Nastase</word>
+        <word _idx="2" _pos="Vb" lemma="serve" mood="ind" num="sng" pers="rd" tense="ps">serves</word>
+        <word _idx="3" lemma="!">!</word>
+    </sentence>
+    <sentence idx="15">
+        <word _idx="1" _pos="NnPRP" lemma="Nastase" num="sng">Nastase</word>
+        <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
+        <word _idx="3" _pos="Vb" lemma="serve" mood="ger">serving</word>
+        <word _idx="4" _pos="PrPRE" lemma="in">in</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnCOM" lemma="game" num="sng">game</word>
+        <word _idx="7" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="8" _pos="Vb" lemma="be" mood="ind" num="sng" pers="stnd" tense="ps">are</word>
+        <word _idx="9" _pos="Vb" lemma="watch" mood="ger">watching</word>
+        <word _idx="10" _pos="Rb" lemma="now">now</word>
+        <word _idx="11" lemma=".">.</word>
+    </sentence>
+    <sentence idx="16">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="championship" num="sng">championship</word>
+        <word _idx="3" _pos="Vb" lemma="start" mood="ind" num="sng" pers="rd" tense="ps">starts</word>
+        <word _idx="4" _pos="Jj" lemma="next">next</word>
+        <word _idx="5" _pos="NnPRP" lemma="Sunday" num="sng">Sunday</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="17">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="tourist" num="plu">tourists</word>
+        <word _idx="3" _pos="Vb" lemma="visit" mood="ind" num="sng" pers="stnd" tense="ps">visit</word>
+        <word _idx="4" _pos="NnPRP" lemma="British" num="sng">British</word>
+        <word _idx="5" _pos="NnPRP" lemma="Museum" num="sng">Museum</word>
+        <word _idx="6" _pos="Pr" lemma="on">on</word>
+        <word _idx="7" _pos="NnPRP" lemma="Friday" num="sng">Friday</word>
+        <word _idx="8" _pos="NnCOM" lemma="morning" num="sng">morning</word>
+        <word _idx="9" lemma=".">.</word>
+    </sentence>
+    <sentence idx="18">
+        <word _idx="1" _pos="CjSUB" lemma="if">If</word>
+        <word _idx="2" _pos="JjPOS" lemma="your" pers="nd">your</word>
+        <word _idx="3" _pos="NnCOM" lemma="cousin" num="sng">cousin</word>
+        <word _idx="4" _pos="Vb" lemma="come" mood="ind" num="sng" pers="rd" tense="ps">comes</word>
+        <word _idx="5" _pos="Rb" lemma="here">here</word>
+        <word _idx="6" _pos="NnCOM" lemma="tomorrow" num="sng">tomorrow</word>
+        <word _idx="7" lemma=",">,</word>
+        <word _idx="8" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="9" _pos="Md" lemma="will">'ll</word>
+        <word _idx="10" _pos="Vb" lemma="go">go</word>
+        <word _idx="11" _pos="PrTo" lemma="to">to</word>
+        <word _idx="12" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="13" _pos="NnCOM" lemma="cinema" num="sng">cinema</word>
+        <word _idx="14" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>

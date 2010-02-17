@@ -1,0 +1,8 @@
+form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+her,her,JjPOS,fem,sng,,rd,,,
+his,his,JjPOS,msc,sng,,rd,,,
+its,its,JjPOS,neu,sng,,rd,,,
+my,my,JjPOS,,sng,,st,,,
+our,our,JjPOS,,plu,,st,,,
+their,their,JjPOS,,plu,,rd,,,
+your,your,JjPOS,,,,nd,,,
