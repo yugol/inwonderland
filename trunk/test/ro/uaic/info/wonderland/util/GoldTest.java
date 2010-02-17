@@ -25,7 +25,9 @@ public class GoldTest {
         File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
         gold.buildFrom(goldFile);
 
-        int errors = 0;
+        int errorCount = 0;
+        int wordCount = 0;
+        int sentenceCount = 0;
         for (int i = 1; i <= gold.getSentenceCount(); ++i) {
             boolean printed = false;
             String sentence = gold.getSentenceStringByIndex(i);
@@ -36,8 +38,8 @@ public class GoldTest {
             assertEquals(expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {
-                String err = WTaggingUtil.areConsistent(expected[j], actual[j]);
-                if (err != null) {
+                String error = WTaggingUtil.areConsistent(expected[j], actual[j]);
+                if (error != null) {
                     if (!printed) {
                         System.out.println("");
                         System.out.println("ERROR in sentence [" + i + "]:");
@@ -45,12 +47,15 @@ public class GoldTest {
                         printed = true;
                     }
                     System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
-                    System.out.println(err);
-                    ++errors;
+                    System.out.println(error);
+                    ++errorCount;
                 }
+                ++wordCount;
             }
             System.out.print(".");
+            ++sentenceCount;
         }
-        assertEquals(0, errors);
+        System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
+        assertEquals(0, errorCount);
     }
 }

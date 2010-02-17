@@ -84,7 +84,13 @@ public class MorphologicalAnalyser {
         if (wnWord != null) {
             tagging.setLemma(wnWord.getLemma());
         } else {
-            tagging.setLemma(noLemma);
+            word = word.toLowerCase();
+            WTagging vb = MorphologicalDatabase.vb.get(word);
+            if (vb != null) {
+                tagging.setLemma(vb.getLemma());
+            } else {
+                tagging.setLemma(noLemma);
+            }
         }
 
         tagging.setPos("Vb");
@@ -267,6 +273,13 @@ public class MorphologicalAnalyser {
     WTagging analyzeAdjective(String word, String tag) {
         WTagging tagging = new WTagging();
 
+        String nmord = TextToNumber.getValue(word);
+        if (nmord != null) {
+            tagging.setLemma(nmord);
+            tagging.setPos("NmORD");
+            return tagging;
+        }
+
         IndexWord wnWord = null;
         try {
             wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
@@ -320,6 +333,45 @@ public class MorphologicalAnalyser {
         if (pnrel != null) {
             tagging.setLemma(pnrel.getLemma());
             tagging.setPos(pnrel.getPos());
+        } else {
+            return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeCardinalNumber(String word, String tag) {
+        WTagging tagging = new WTagging();
+        tagging.setPos("NmCRD");
+        tagging.setLemma(TextToNumber.getValue(word));
+        if (tagging.getLemma() == null) {
+            tagging.setLemma(noLemma);
+        }
+        return tagging;
+    }
+
+    WTagging analyzePossPron(String word, String tag) {
+        WTagging tagging = new WTagging();
+
+        word = word.toLowerCase();
+
+        WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
+        WTagging jjpos = MorphologicalDatabase.jjpos.get(word);
+
+        if (pnpos != null && jjpos == null) {
+            tagging.setLemma(pnpos.getLemma());
+            tagging.setPos(pnpos.getPos());
+            tagging.setGender(pnpos.getGender());
+            tagging.setNumber(pnpos.getNumber());
+            tagging.setWcase(pnpos.getWcase());
+            tagging.setPerson(pnpos.getPerson());
+        } else if (pnpos == null && jjpos != null) {
+            tagging.setLemma(jjpos.getLemma());
+            tagging.setPos(jjpos.getPos());
+            tagging.setGender(jjpos.getGender());
+            tagging.setNumber(jjpos.getNumber());
+            tagging.setWcase(jjpos.getWcase());
+            tagging.setPerson(jjpos.getPerson());
         } else {
             return null;
         }

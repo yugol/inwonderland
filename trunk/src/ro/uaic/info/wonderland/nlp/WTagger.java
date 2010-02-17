@@ -45,6 +45,10 @@ public class WTagger {
                 tagging = ma.analyzeModal(word, tag);
             } else if (tag.equals("WDT")) { // WHD
                 tagging = ma.analyzeWhDeterminer(word, tag);
+            } else if (tag.equals("CD")) { // CD
+                tagging = ma.analyzeCardinalNumber(word, tag);
+            } else if (tag.equals("PRP$")) { // PRP$
+                tagging = ma.analyzePossPron(word, tag);
             }
 
             if (tagging == null) {

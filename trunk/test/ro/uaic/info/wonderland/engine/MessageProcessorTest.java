@@ -36,7 +36,7 @@ public class MessageProcessorTest {
         MessageProcessor instance = new MessageProcessor();
         String resp;
 
-        resp = instance.processMessage("First, I take the potatoes and slice them. Then, I slice the tomatoes, fry the onion and parsley in a little fat until the onions are translucent and finish.");
+        resp = instance.processMessage("If your cousin comes here tomorrow, we'll go to the cinema.");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");
