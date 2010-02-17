@@ -43,6 +43,8 @@ public class WTagger {
                 tagging = ma.analyzeAdjective(word, tag);
             } else if (tag.equals("MD")) { // MD
                 tagging = ma.analyzeModal(word, tag);
+            } else if (tag.equals("WDT")) { // WHD
+                tagging = ma.analyzeWhDeterminer(word, tag);
             }
 
             if (tagging == null) {
