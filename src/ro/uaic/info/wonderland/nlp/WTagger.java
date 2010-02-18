@@ -60,6 +60,8 @@ public class WTagger {
                 tagging = ma.analyzeForeignWord(lcWord, tag);
             } else if (tag.equals("RP")) { // RP
                 tagging = ma.analyzeParticle(lcWord, tag);
+            } else if (tag.equals("POS")) { // POS
+                tagging = ma.analyzePossEnding(lcWord, tag);
             }
 
             if (tagging == null) {

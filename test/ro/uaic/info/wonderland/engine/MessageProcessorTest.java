@@ -34,11 +34,11 @@ public class MessageProcessorTest {
         candidate.writeToFile(candidateFile);
     }
 
-    @Test
+   // @Test
     public void testOne() throws Exception {
         MessageProcessor instance = new MessageProcessor();
 
-        String resp = instance.processMessage("It is getting dark .");
+        String resp = instance.processMessage("I'm seeing things.");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");
@@ -46,9 +46,9 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testMany() throws Exception {
-        int from = 96;
+        int from = 161;
         int to = -1;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "plain.txt"));
