@@ -27,6 +27,9 @@ public class WTaggingUtil {
                 sb.append("\n");
             }
         }
+        if (!gold.getLemma().equals(auto.getLemma())) {
+            sb.append(indent + Corpus.lemmaTag + ": " + gold.getLemma() + " / " + auto.getLemma() + "\n");
+        }
         if (gold.getComp() != null) {
             if (!gold.getComp().equals(auto.getComp())) {
                 sb.append(indent + Corpus.compTag + ": " + gold.getComp() + " / " + auto.getComp() + "\n");

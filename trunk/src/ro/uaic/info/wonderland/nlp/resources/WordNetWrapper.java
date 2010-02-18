@@ -5,13 +5,12 @@
 package ro.uaic.info.wonderland.nlp.resources;
 
 import java.io.FileInputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.IndexWordSet;
 import net.didion.jwnl.data.POS;
+import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.dictionary.Dictionary;
 import ro.uaic.info.wonderland.Globals;
 
@@ -37,6 +36,16 @@ public abstract class WordNetWrapper {
     public static IndexWord lookup(String word, POS posType) {
         try {
             return dict.lookupIndexWord(posType, word);
+        } catch (JWNLException ex) {
+            System.err.println(ex);
+            Globals.exit();
+            return null;
+        }
+    }
+
+    public static Synset[] senses(IndexWord word) {
+        try {
+            return word.getSenses();
         } catch (JWNLException ex) {
             System.err.println(ex);
             Globals.exit();

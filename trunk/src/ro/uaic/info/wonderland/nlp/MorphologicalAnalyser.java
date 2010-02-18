@@ -31,6 +31,11 @@ public class MorphologicalAnalyser {
         tagging.setMood("ger");
     }
 
+    private void fillParticiple(WTagging tagging) {
+        tagging.setPos("Vb");
+        tagging.setMood("par");
+    }
+
     WTagging analyzeNoun(String word, String tag) {
         WTagging tagging = new WTagging();
         IndexWord wnWord = WordNetWrapper.lookup(word, POS.NOUN);
@@ -128,6 +133,9 @@ public class MorphologicalAnalyser {
                 } else {
                     return null;
                 }
+            } else if (tag.equals("VBN")) {
+                fillParticiple(tagging);
+                tagging.setTense("pt");
             } else {
                 return null;
             }
@@ -186,13 +194,17 @@ public class MorphologicalAnalyser {
         WTagging ar = MorphologicalDatabase.ar.get(word);
         WTagging jjind = MorphologicalDatabase.jjind.get(word);
         WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
+        WTagging pndem = MorphologicalDatabase.pndem.get(word);
 
-        if (ar != null && jjind == null && jjdem == null) {
+        if (ar != null && jjind == null && jjdem == null && pndem == null) {
             tagging.copyNoFormNoPennNoSenses(ar);
-        } else if (ar == null && jjind != null && jjdem == null) {
+        } else if (ar == null && jjind != null && jjdem == null && pndem == null) {
             tagging.copyNoFormNoPennNoSenses(jjind);
-        } else if (ar == null && jjind == null && jjdem != null) {
+        } else if (ar == null && jjind == null && jjdem != null && pndem == null) {
             tagging.copyNoFormNoPennNoSenses(jjdem);
+        } else if (ar == null && jjind == null && jjdem != null && pndem != null) {
+            tagging.copyNoFormNoPennNoSenses(jjdem);
+            tagging.setPos("JjPnDEM");
         } else {
             return null;
         }
@@ -262,9 +274,12 @@ public class MorphologicalAnalyser {
     WTagging analyzeWhDeterminer(String word, String tag) {
         WTagging tagging = new WTagging();
         WTagging pnrel = MorphologicalDatabase.pnrel.get(word);
+        WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
 
-        if (pnrel != null) {
+        if (pnrel != null && cjsub == null) {
             tagging.copyNoFormNoPennNoSenses(pnrel);
+        } else if (pnrel == null && cjsub != null) {
+            tagging.copyNoFormNoPennNoSenses(cjsub);
         } else {
             return null;
         }
@@ -375,6 +390,13 @@ public class MorphologicalAnalyser {
             }
         }
 
+        return tagging;
+    }
+
+    WTagging analyzePossEnding(String lcWord, String tag) {
+        WTagging tagging = new WTagging();
+        tagging.setLemma("$");
+        tagging.setPos("MkPOS");
         return tagging;
     }
 }
