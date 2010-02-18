@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -28,6 +30,17 @@ public class IO {
         }
         in.close();
         return sb.toString();
+    }
+
+    public static List<String> getFileContentAsStringList(File file) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String str;
+        List<String> lines = new ArrayList<String>();
+        while ((str = in.readLine()) != null) {
+            lines.add(str);
+        }
+        in.close();
+        return lines;
     }
 
     public static void writeStringToFile(String str, File file) throws IOException {

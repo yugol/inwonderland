@@ -34,8 +34,14 @@ public abstract class WordNetWrapper {
         }
     }
 
-    public static IndexWord lookup(String word, POS posType) throws JWNLException {
-        return dict.lookupIndexWord(posType, word);
+    public static IndexWord lookup(String word, POS posType) {
+        try {
+            return dict.lookupIndexWord(posType, word);
+        } catch (JWNLException ex) {
+            System.err.println(ex);
+            Globals.exit();
+            return null;
+        }
     }
 
     public static boolean contains(String str) {

@@ -6,10 +6,8 @@ package ro.uaic.info.wonderland.nlp;
 
 import edu.stanford.nlp.util.StringUtils;
 import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
-import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
-import ro.uaic.info.wonderland.Globals;
 
 /**
  *
@@ -19,26 +17,29 @@ public class MorphologicalAnalyser {
 
     static final String noLemma = "_~_";
 
+    private void fillIndicative(WTagging tagging) {
+        tagging.setPos("Vb");
+        tagging.setMood("ind");
+    }
+
+    private boolean isGerundForm(String word) {
+        return word.lastIndexOf("ing") == word.length() - 3;
+    }
+
+    private void fillGerund(WTagging tagging) {
+        tagging.setPos("Vb");
+        tagging.setMood("ger");
+    }
+
     WTagging analyzeNoun(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        IndexWord wnWord = null;
-        try {
-            wnWord = WordNetWrapper.lookup(word, POS.NOUN);
-        } catch (JWNLException ex) {
-            System.out.println(ex);
-            Globals.exit();
-        }
-
-        word = word.toLowerCase();
+        IndexWord wnWord = WordNetWrapper.lookup(word, POS.NOUN);
         WTagging pnind = MorphologicalDatabase.pnind.get(word);
 
-        // lemma
         if (wnWord != null && pnind == null) {
             tagging.setLemma(wnWord.getLemma());
         } else if (wnWord == null && pnind != null) {
-            tagging.setLemma(pnind.getLemma());
-            tagging.setPos(pnind.getPos());
+            tagging.copyNoFormNoPennNoSenses(pnind);
             return tagging;
         } else {
             tagging.setLemma(noLemma);
@@ -48,14 +49,12 @@ public class MorphologicalAnalyser {
             tagging.setLemma(StringUtils.capitalize(word));
         }
 
-        // pos
         if (Character.isUpperCase(tagging.getLemma().charAt(0))) {
             tagging.setPos("NnPRP");
         } else {
             tagging.setPos("NnCOM");
         }
 
-        // number
         if (tag.charAt(tag.length() - 1) == 'S') {
             tagging.setNumber("plu");
         } else {
@@ -65,25 +64,44 @@ public class MorphologicalAnalyser {
         return tagging;
     }
 
-    WTagging analyzeVerb(String word, String tag) {
+    WTagging analyzeAdjective(String word, String tag) {
         WTagging tagging = new WTagging();
 
-        WTagging vb = MorphologicalDatabase.vb.get(word.toLowerCase());
+        // see if is not an ordinal numeral
+        String nmord = TextToNumber.getValue(word);
+        if (nmord != null) {
+            tagging.setLemma(nmord);
+            tagging.setPos("NmORD");
+            return tagging;
+        }
+
+        // lookup word in WordNet
+        IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
+        if (wnWord != null) {
+            tagging.setLemma(wnWord.getLemma());
+        } else {
+            tagging.setLemma(noLemma);
+        }
+
+        tagging.setPos("Jj");
+
+        if (tag.equals("JJR")) {
+            tagging.setComp("cmp");
+        } else if (tag.equals("JJS")) {
+            tagging.setComp("sup");
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeVerb(String word, String tag) {
+        WTagging tagging = new WTagging();
+        WTagging vb = MorphologicalDatabase.vb.get(word);
 
         if (vb != null) {
-            tagging.setLemma(vb.getLemma());
-            tagging.setPos(vb.getPos());
-            tagging.setMood(vb.getMood());
-            tagging.setNumber(vb.getNumber());
-            tagging.setPerson(vb.getPerson());
-            tagging.setTense(vb.getTense());
+            tagging.copyNoFormNoPennNoSenses(vb);
         } else {
-            IndexWord wnWord = null;
-            try {
-                wnWord = WordNetWrapper.lookup(word, POS.VERB);
-            } catch (JWNLException ex) {
-                System.out.println(ex);
-            }
+            IndexWord wnWord = wnWord = WordNetWrapper.lookup(word, POS.VERB);
 
             if (wnWord != null) {
                 tagging.setLemma(wnWord.getLemma());
@@ -91,23 +109,22 @@ public class MorphologicalAnalyser {
                 tagging.setLemma(noLemma);
             }
 
-            tagging.setPos("Vb");
             if (tag.equals("VBZ")) {
-                tagging.setMood("ind");
+                fillIndicative(tagging);
                 tagging.setNumber("sng");
                 tagging.setPerson("rd");
                 tagging.setTense("ps");
             } else if (tag.equals("VBP")) {
-                tagging.setMood("ind");
+                fillIndicative(tagging);
                 tagging.setTense("ps");
             } else if (tag.equals("VB")) {
+                tagging.setPos("Vb");
             } else if (tag.equals("VBD")) {
-                tagging.setMood("ind");
+                fillIndicative(tagging);
                 tagging.setTense("pt");
             } else if (tag.equals("VBG")) {
-                word = word.toLowerCase();
-                if (word.lastIndexOf("ing") == word.length() - 3) {
-                    tagging.setMood("ger");
+                if (isGerundForm(word)) {
+                    fillGerund(tagging);
                 } else {
                     return null;
                 }
@@ -119,11 +136,33 @@ public class MorphologicalAnalyser {
         return tagging;
     }
 
+    WTagging analyzeAdverb(String word, String tag) {
+        WTagging tagging = new WTagging();
+        WTagging rb = MorphologicalDatabase.rb.get(word);
+
+        if (rb != null) {
+            tagging.copyNoFormNoPennNoSenses(rb);
+        } else {
+            IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADVERB);
+            if (wnWord != null) {
+                tagging.setLemma(wnWord.getLemma());
+            } else {
+                tagging.setLemma(noLemma);
+            }
+            tagging.setPos("Rb");
+        }
+
+        if (tag.equals("RBR")) {
+            tagging.setComp("cmp");
+        } else if (tag.equals("RBS")) {
+            tagging.setComp("sup");
+        }
+
+        return tagging;
+    }
+
     WTagging analyzePrepOrSubConj(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging pr = MorphologicalDatabase.pr.get(word);
         WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
 
@@ -134,11 +173,9 @@ public class MorphologicalAnalyser {
             tagging.setLemma(pr.getLemma());
             tagging.setPos("PrCjSUB");
         } else if (pr != null) {
-            tagging.setLemma(pr.getLemma());
-            tagging.setPos(pr.getPos());
+            tagging.copyNoFormNoPennNoSenses(pr);
         } else {
-            tagging.setLemma(cjsub.getLemma());
-            tagging.setPos(cjsub.getPos());
+            tagging.copyNoFormNoPennNoSenses(cjsub);
         }
 
         return tagging;
@@ -146,23 +183,16 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeDeterminer(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging ar = MorphologicalDatabase.ar.get(word);
         WTagging jjind = MorphologicalDatabase.jjind.get(word);
         WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
 
         if (ar != null && jjind == null && jjdem == null) {
-            tagging.setLemma(ar.getLemma());
-            tagging.setPos(ar.getPos());
+            tagging.copyNoFormNoPennNoSenses(ar);
         } else if (ar == null && jjind != null && jjdem == null) {
-            tagging.setLemma(jjind.getLemma());
-            tagging.setPos(jjind.getPos());
+            tagging.copyNoFormNoPennNoSenses(jjind);
         } else if (ar == null && jjind == null && jjdem != null) {
-            tagging.setLemma(jjdem.getLemma());
-            tagging.setPos(jjdem.getPos());
-            tagging.setNumber(jjdem.getNumber());
+            tagging.copyNoFormNoPennNoSenses(jjdem);
         } else {
             return null;
         }
@@ -172,14 +202,10 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeCoordConj(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging cjcrd = MorphologicalDatabase.cjcrd.get(word);
 
         if (cjcrd != null) {
-            tagging.setLemma(cjcrd.getLemma());
-            tagging.setPos(cjcrd.getPos());
+            tagging.copyNoFormNoPennNoSenses(cjcrd);
         } else {
             tagging.setLemma(noLemma);
             tagging.setPos("CjCRD");
@@ -189,30 +215,17 @@ public class MorphologicalAnalyser {
     }
 
     WTagging analyzePersPron(String word, String tag) {
-        WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
         if (word.equals("i")) {
             word = "I";
         }
-
+        WTagging tagging = new WTagging();
         WTagging pnprs = MorphologicalDatabase.pnprs.get(word);
         WTagging pnref = MorphologicalDatabase.pnref.get(word);
 
         if (pnprs != null && pnref == null) {
-            tagging.setLemma(pnprs.getLemma());
-            tagging.setPos(pnprs.getPos());
-            tagging.setGender(pnprs.getGender());
-            tagging.setNumber(pnprs.getNumber());
-            tagging.setWcase(pnprs.getWcase());
-            tagging.setPerson(pnprs.getPerson());
+            tagging.copyNoFormNoPennNoSenses(pnprs);
         } else if (pnprs == null && pnref != null) {
-            tagging.setLemma(pnref.getLemma());
-            tagging.setPos(pnref.getPos());
-            tagging.setGender(pnref.getGender());
-            tagging.setNumber(pnref.getNumber());
-            tagging.setWcase(pnref.getWcase());
-            tagging.setPerson(pnref.getPerson());
+            tagging.copyNoFormNoPennNoSenses(pnref);
         } else {
             return null;
         }
@@ -222,80 +235,11 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeTo(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging pr = MorphologicalDatabase.pr.get(word);
 
         if (pr != null && pr.getLemma().equals("to")) {
-            tagging.setLemma(pr.getLemma());
-            tagging.setPos(pr.getPos());
+            tagging.copyNoFormNoPennNoSenses(pr);
         } else {
-            return null;
-        }
-
-        return tagging;
-    }
-
-    WTagging analyzeAdverb(String word, String tag) {
-        WTagging tagging = new WTagging();
-
-        IndexWord wnWord = null;
-        try {
-            wnWord = WordNetWrapper.lookup(word, POS.ADVERB);
-        } catch (JWNLException ex) {
-            System.out.println(ex);
-        }
-
-        tagging.setPos("Rb");
-
-        // lemma
-        if (wnWord != null) {
-            word = wnWord.getLemma();
-            tagging.setLemma(word);
-        } else {
-            tagging.setLemma(noLemma);
-            word = word.toLowerCase();
-        }
-
-        // comparison
-        if (!tag.equals("RB")) {
-            return null;
-        }
-
-        return tagging;
-    }
-
-    WTagging analyzeAdjective(String word, String tag) {
-        WTagging tagging = new WTagging();
-
-        String nmord = TextToNumber.getValue(word);
-        if (nmord != null) {
-            tagging.setLemma(nmord);
-            tagging.setPos("NmORD");
-            return tagging;
-        }
-
-        IndexWord wnWord = null;
-        try {
-            wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
-        } catch (JWNLException ex) {
-            System.out.println(ex);
-        }
-
-        tagging.setPos("Jj");
-
-        // lemma
-        if (wnWord != null) {
-            word = wnWord.getLemma();
-            tagging.setLemma(word);
-        } else {
-            tagging.setLemma(noLemma);
-            word = word.toLowerCase();
-        }
-
-        // comparison
-        if (!tag.equals("JJ")) {
             return null;
         }
 
@@ -304,14 +248,10 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeModal(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging md = MorphologicalDatabase.md.get(word);
 
         if (md != null) {
-            tagging.setLemma(md.getLemma());
-            tagging.setPos(md.getPos());
+            tagging.copyNoFormNoPennNoSenses(md);
         } else {
             return null;
         }
@@ -321,14 +261,10 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeWhDeterminer(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging pnrel = MorphologicalDatabase.pnrel.get(word);
 
         if (pnrel != null) {
-            tagging.setLemma(pnrel.getLemma());
-            tagging.setPos(pnrel.getPos());
+            tagging.copyNoFormNoPennNoSenses(pnrel);
         } else {
             return null;
         }
@@ -348,26 +284,16 @@ public class MorphologicalAnalyser {
 
     WTagging analyzePossPron(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
         WTagging jjpos = MorphologicalDatabase.jjpos.get(word);
 
         if (pnpos != null && jjpos == null) {
-            tagging.setLemma(pnpos.getLemma());
-            tagging.setPos(pnpos.getPos());
-            tagging.setGender(pnpos.getGender());
-            tagging.setNumber(pnpos.getNumber());
-            tagging.setWcase(pnpos.getWcase());
-            tagging.setPerson(pnpos.getPerson());
+            tagging.copyNoFormNoPennNoSenses(pnpos);
         } else if (pnpos == null && jjpos != null) {
-            tagging.setLemma(jjpos.getLemma());
-            tagging.setPos(jjpos.getPos());
-            tagging.setGender(jjpos.getGender());
-            tagging.setNumber(jjpos.getNumber());
-            tagging.setWcase(jjpos.getWcase());
-            tagging.setPerson(jjpos.getPerson());
+            tagging.copyNoFormNoPennNoSenses(jjpos);
+        } else if (pnpos != null && jjpos != null) {
+            tagging.setLemma(pnpos.getLemma());
+            tagging.setPos("PnJjPOS");
         } else {
             return null;
         }
@@ -377,14 +303,10 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeWhAdverb(String word, String tag) {
         WTagging tagging = new WTagging();
-
-        word = word.toLowerCase();
-
         WTagging rbint = MorphologicalDatabase.rbint.get(word);
 
         if (rbint != null) {
-            tagging.setLemma(rbint.getLemma());
-            tagging.setPos(rbint.getPos());
+            tagging.copyNoFormNoPennNoSenses(rbint);
         } else {
             return null;
         }
@@ -393,7 +315,7 @@ public class MorphologicalAnalyser {
     }
 
     WTagging analyzeExThere(String word, String tag) {
-        if (!word.toLowerCase().equals("there")) {
+        if (!word.equals("there")) {
             return null;
         }
         WTagging tagging = new WTagging();
@@ -405,15 +327,52 @@ public class MorphologicalAnalyser {
     WTagging analyzeWhPron(String word, String tag) {
         WTagging tagging = new WTagging();
 
-        word = word.toLowerCase();
-
         WTagging pnint = MorphologicalDatabase.pnint.get(word);
 
         if (pnint != null) {
-            tagging.setLemma(pnint.getLemma());
-            tagging.setPos(pnint.getPos());
+            tagging.copyNoFormNoPennNoSenses(pnint);
         } else {
             return null;
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeForeignWord(String word, String tag) {
+        WTagging tagging = null;
+
+        IndexWord wnWord = WordNetWrapper.lookup(word, POS.VERB);
+        if (wnWord != null) {
+            tagging = new WTagging();
+            tagging.setLemma(wnWord.getLemma());
+            if (isGerundForm(word)) {
+                fillGerund(tagging);
+            } else {
+                tagging.setPos("Pos");
+            }
+        }
+
+        return tagging;
+    }
+
+    WTagging analyzeParticle(String lcWord, String tag) {
+        WTagging tagging = new WTagging();
+        WTagging rb = MorphologicalDatabase.rb.get(lcWord);
+        WTagging pr = MorphologicalDatabase.pr.get(lcWord);
+
+        if (rb != null && pr == null) {
+            tagging.copyNoFormNoPennNoSenses(rb);
+        } else if (rb == null && pr != null) {
+            tagging.copyNoFormNoPennNoSenses(pr);
+        } else {
+            tagging.setPos("PrRbPLC_Dir");
+            if (rb != null) {
+                tagging.setLemma(rb.getLemma());
+
+            } else {
+                tagging.setLemma(noLemma);
+
+            }
         }
 
         return tagging;

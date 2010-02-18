@@ -28,6 +28,18 @@ public class WTagging {
     private String tense = null; // present, past, future, ...
     private Synset[] senses = null; // from WordNet
 
+    public void copyNoFormNoPennNoSenses(WTagging other) {
+        this.lemma = other.lemma;
+        this.pos = other.pos;
+        this.gender = other.gender;
+        this.number = other.number;
+        this.wcase = other.wcase;
+        this.person = other.person;
+        this.comp = other.comp;
+        this.mood = other.mood;
+        this.tense = other.tense;
+    }
+
     public String getComp() {
         return comp;
     }

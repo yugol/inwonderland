@@ -182,27 +182,32 @@ public class EngineKnowledgeBase {
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         for (String type : c.getType()) {
             // System.out.println(type + " : " + c.getId());
-            if (cth.isKindOf(type, posConceptType)) {
-                if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
-                    prop = new WTagging();
-                    break;
-                } else {
-                    prop.setPos(vocabulary.getConceptTypeLabel(type, language));
+            try {
+                if (cth.isKindOf(type, posConceptType)) {
+                    if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
+                        prop = new WTagging();
+                        break;
+                    } else {
+                        prop.setPos(vocabulary.getConceptTypeLabel(type, language));
+                    }
+                } else if (cth.isKindOf(type, caseConceptType)) {
+                    prop.setWcase(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, comparisonConceptType)) {
+                    prop.setComp(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, genderConceptType)) {
+                    prop.setGender(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, moodConceptType)) {
+                    prop.setMood(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, numberConceptType)) {
+                    prop.setNumber(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, personConceptType)) {
+                    prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, tenseConceptType)) {
+                    prop.setTense(vocabulary.getConceptTypeLabel(type, language));
                 }
-            } else if (cth.isKindOf(type, caseConceptType)) {
-                prop.setWcase(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, comparisonConceptType)) {
-                prop.setComp(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, genderConceptType)) {
-                prop.setGender(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, moodConceptType)) {
-                prop.setMood(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, numberConceptType)) {
-                prop.setNumber(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, personConceptType)) {
-                prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, tenseConceptType)) {
-                prop.setTense(vocabulary.getConceptTypeLabel(type, language));
+            } catch (RuntimeException ex) {
+                System.err.println("At concept: " + type + " : " + c.getId());
+                throw ex;
             }
         }
         prop.setForm(c.getId().split("-")[0]);
