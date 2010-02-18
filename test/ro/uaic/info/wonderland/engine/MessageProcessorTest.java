@@ -8,8 +8,11 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import java.io.File;
+import java.util.List;
 import org.junit.Test;
+import ro.uaic.info.wonderland.Globals;
 import ro.uaic.info.wonderland.util.Corpus;
+import ro.uaic.info.wonderland.util.IO;
 import static org.junit.Assert.*;
 
 /**
@@ -32,11 +35,10 @@ public class MessageProcessorTest {
     }
 
     @Test
-    public void testArticles() throws Exception {
+    public void testOne() throws Exception {
         MessageProcessor instance = new MessageProcessor();
-        String resp;
 
-        resp = instance.processMessage("What is going on there?");
+        String resp = instance.processMessage("It is getting dark .");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");
@@ -44,4 +46,35 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
+    // @Test
+    public void testMany() throws Exception {
+        int from = 96;
+        int to = -1;
+
+        List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "plain.txt"));
+        MessageProcessor instance = new MessageProcessor();
+
+        from -= 1;
+        to -= 1;
+        if (to < 0) {
+            to = lines.size() - 1;
+        }
+        if (to < from) {
+            to = from;
+        }
+
+        int kbIndex = 0;
+        for (int i = from; i <= to; ++i) {
+            ++kbIndex;
+            System.out.println("At line: [" + (i + 1) + "] -> (" + kbIndex + ")");
+            String line = lines.get(i);
+            System.out.println("  " + line);
+            String resp = instance.processMessage(line);
+            assertEquals("Done.", resp);
+        }
+
+        File file = new File("test.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
 }

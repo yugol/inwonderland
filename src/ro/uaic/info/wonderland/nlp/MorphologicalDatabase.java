@@ -43,6 +43,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> vb;
     static Map<String, WTagging> jjpos;
     static Map<String, WTagging> rbint;
+    static Map<String, WTagging> rb;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;

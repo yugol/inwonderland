@@ -23,43 +23,48 @@ public class WTagger {
             String tag = tWord.tag();
 
             WTagging tagging = null;
+            String lcWord = word.toLowerCase();
             if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
-                tagging = ma.analyzeNoun(word, tag);
-            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP, VB
-                tagging = ma.analyzeVerb(word, tag);
+                tagging = ma.analyzeNoun(lcWord, tag);
+            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP, VB, VBG
+                tagging = ma.analyzeVerb(lcWord, tag);
             } else if (tag.equals("IN")) { // IN
-                tagging = ma.analyzePrepOrSubConj(word, tag);
+                tagging = ma.analyzePrepOrSubConj(lcWord, tag);
             } else if (tag.equals("DT")) { // DT
-                tagging = ma.analyzeDeterminer(word, tag);
+                tagging = ma.analyzeDeterminer(lcWord, tag);
             } else if (tag.equals("CC")) { // CC
-                tagging = ma.analyzeCoordConj(word, tag);
+                tagging = ma.analyzeCoordConj(lcWord, tag);
             } else if (tag.equals("PRP")) { // PRP
-                tagging = ma.analyzePersPron(word, tag);
+                tagging = ma.analyzePersPron(lcWord, tag);
             } else if (tag.equals("TO")) { // TO
-                tagging = ma.analyzeTo(word, tag);
+                tagging = ma.analyzeTo(lcWord, tag);
             } else if (tag.indexOf("RB") == 0) { // RB
-                tagging = ma.analyzeAdverb(word, tag);
+                tagging = ma.analyzeAdverb(lcWord, tag);
             } else if (tag.indexOf("JJ") == 0) { // JJ
-                tagging = ma.analyzeAdjective(word, tag);
+                tagging = ma.analyzeAdjective(lcWord, tag);
             } else if (tag.equals("MD")) { // MD
-                tagging = ma.analyzeModal(word, tag);
-            } else if (tag.equals("WDT")) { // WHD
-                tagging = ma.analyzeWhDeterminer(word, tag);
+                tagging = ma.analyzeModal(lcWord, tag);
+            } else if (tag.equals("WDT")) { // WDT
+                tagging = ma.analyzeWhDeterminer(lcWord, tag);
             } else if (tag.equals("CD")) { // CD
-                tagging = ma.analyzeCardinalNumber(word, tag);
+                tagging = ma.analyzeCardinalNumber(lcWord, tag);
             } else if (tag.equals("PRP$")) { // PRP$
-                tagging = ma.analyzePossPron(word, tag);
+                tagging = ma.analyzePossPron(lcWord, tag);
             } else if (tag.equals("WRB")) { // WRB
-                tagging = ma.analyzeWhAdverb(word, tag);
+                tagging = ma.analyzeWhAdverb(lcWord, tag);
             } else if (tag.equals("EX")) { // EX
-                tagging = ma.analyzeExThere(word, tag);
+                tagging = ma.analyzeExThere(lcWord, tag);
             } else if (tag.equals("WP")) { // WP
-                tagging = ma.analyzeWhPron(word, tag);
+                tagging = ma.analyzeWhPron(lcWord, tag);
+            } else if (tag.equals("FW")) { // FW
+                tagging = ma.analyzeForeignWord(lcWord, tag);
+            } else if (tag.equals("RP")) { // RP
+                tagging = ma.analyzeParticle(lcWord, tag);
             }
 
             if (tagging == null) {
                 tagging = new WTagging();
-                tagging.setLemma(word.toLowerCase());
+                tagging.setLemma(lcWord);
             }
             tagging.setForm(word);
             tagging.setPennTag(tag);

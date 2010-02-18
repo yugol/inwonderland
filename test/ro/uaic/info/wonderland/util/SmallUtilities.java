@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 import ro.uaic.info.wonderland.Globals;
 import ro.uaic.info.wonderland.nlp.MorphologicalDatabase;
 import ro.uaic.info.wonderland.nlp.WTagging;
@@ -60,6 +62,19 @@ public class SmallUtilities {
         List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
         if (taggings.size() > 0) {
             displayTaggings(taggings, form);
+        }
+    }
+
+    // @Test
+    public void getSentencesFromCorpus() throws ParserConfigurationException, SAXException {
+        System.out.println("Getting sentences from corpus");
+        Corpus gold = new Corpus();
+        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
+        gold.buildFrom(goldFile);
+
+        for (int i = 1; i <= gold.getSentenceCount(); ++i) {
+            String sentence = gold.getSentenceStringByIndex(i);
+            System.out.println(sentence);
         }
     }
 
