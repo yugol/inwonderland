@@ -578,6 +578,62 @@ I shell ring you up after mother has come back.
 Little Paul will come here at once if Grannie has made a cake.
 Mary will not be permitted to go for a walk in the park unless she has done her homework.
 Jane has not eaten anything and so she is hungry now.
+I have been playing.
+You have been playing.
+We have been playing.
+They have been playing.
+He has been playing.
+She has been playing.
+It has been playing.
+I have not been playing.
+You have not been playing.
+We have not been playing.
+They have not been playing.
+He has not been playing.
+She has not been playing.
+It has not been playing.
+I haven't been playing.
+You haven't been playing.
+We haven't been playing.
+They haven't been playing.
+He hasn't been playing.
+She hasn't been playing.
+It hasn't been playing.
+Have I been playing?
+Have you been playing?
+Have we been playing?
+Have they been playing?
+Has he been playing?
+Has she been playing?
+Has it been playing?
+Have I not been playing?
+Have you not been playing?
+Have we not been playing?
+Have they not been playing?
+Has he not been playing?
+Has she not been playing?
+Has it not been playing?
+Haven't I been playing?
+Haven't you been playing?
+Haven't we been playing?
+Haven't they been playing?
+Hasn't he been playing?
+Hasn't she been playing?
+Hasn't it been playing?
+Mother has watered the flowers.
+Her job has just been done.
+Mother has been watering the flowers for half an hour.
+She is still doing the job.
+While Nick has been watching Judith, she has been drinking her glass of milk.
+I've been drinking tea since 5 o'clock.
+I've drunk three cups of tea since 5 o'clock.
+Jack has lived in this house for two years.
+Jack has been living in this house for two years.
+How long have you studied German?
+How long have you been studying German?
+I have known Jim for five years.
+She has loved you since that day.
+
 
 
 
