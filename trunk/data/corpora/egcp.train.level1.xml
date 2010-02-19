@@ -6101,4 +6101,415 @@
         <word _idx="15" _pos="PrTo" lemma="to">to</word>
         <word _idx="16" lemma=".">.</word>
     </sentence>
+    <sentence idx="749">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="750">
+        <word _idx="1" _pos="PnPRS" lemma="you" pers="nd">You</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="751">
+        <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="752">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="753">
+        <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="754">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="755">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma=".">.</word>
+    </sentence>
+    <sentence idx="756">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="757">
+        <word _idx="1" _pos="PnPRS" lemma="you" pers="nd">You</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="758">
+        <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="759">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="760">
+        <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="761">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="762">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="763">
+        <word _idx="1" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="764">
+        <word _idx="1" _pos="PnPRS" lemma="you" pers="nd">You</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="765">
+        <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="766">
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">She</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="767">
+        <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="768">
+        <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="769">
+        <word _idx="1" _pos="PnPRS" lemma="they" num="plu" pers="rd">They</word>
+        <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="3" _pos="Rb" lemma="not">n't</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma=".">.</word>
+    </sentence>
+    <sentence idx="770">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="771">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="772">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="773">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="774">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="775">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="776">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="5" lemma="?">?</word>
+    </sentence>
+    <sentence idx="777">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="778">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="779">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="780">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="781">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="782">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="783">
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
+        <word _idx="2" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
+        <word _idx="3" _pos="Rb" lemma="not">not</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="784">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="785">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="786">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="787">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="788">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="789">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="790">
+        <word _idx="1" _pos="NnPRP" lemma="Had" num="sng">Had</word>
+        <word _idx="2" _pos="Rb" lemma="not">n't</word>
+        <word _idx="3" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="speak" mood="ger">speaking</word>
+        <word _idx="6" lemma="?">?</word>
+    </sentence>
+    <sentence idx="791">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="pupil" num="plu">pupils</word>
+        <word _idx="3" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="read" mood="ger">reading</word>
+        <word _idx="6" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="7" _pos="NnCOM" lemma="lesson" num="sng">lesson</word>
+        <word _idx="8" _pos="PrPRE" lemma="for">for</word>
+        <word _idx="9" _pos="NmCRD" lemma="5">five</word>
+        <word _idx="10" _pos="NnCOM" lemma="minutes" num="plu">minutes</word>
+        <word _idx="11" _pos="RbREL" lemma="when">when</word>
+        <word _idx="12" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="13" _pos="NnCOM" lemma="school" num="sng">school</word>
+        <word _idx="14" _pos="NnCOM" lemma="master" num="sng">master</word>
+        <word _idx="15" _pos="Vb" lemma="enter" mood="ind" tense="pt">entered</word>
+        <word _idx="16" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="17" _pos="NnCOM" lemma="classroom" num="sng">classroom</word>
+        <word _idx="18" lemma=".">.</word>
+    </sentence>
+    <sentence idx="792">
+        <word _idx="1" lemma="``">``</word>
+        <word _idx="2" _pos="PnPRS" lemma="I" num="sng" pers="st">I</word>
+        <word _idx="3" _pos="Vb" lemma="be" mood="ind" num="sng" tense="pt">was</word>
+        <word _idx="4" _pos="Vb" lemma="watch" mood="ger">watching</word>
+        <word _idx="5" _pos="NnCOM" lemma="tv" num="sng">TV</word>
+        <word _idx="6" _pos="PrPRE" lemma="at">at</word>
+        <word _idx="7" _pos="NmCRD" lemma="7">seven</word>
+        <word _idx="8" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="9" lemma=",">,</word>
+        <word _idx="10" lemma="''">''</word>
+        <word _idx="11" _pos="NnPRP" lemma="Harry" num="sng">Harry</word>
+        <word _idx="12" _pos="Vb" lemma="explain" mood="ind" tense="pt">explained</word>
+        <word _idx="13" _pos="PrTo" lemma="to">to</word>
+        <word _idx="14" _pos="JjPOS" lemma="his">his</word>
+        <word _idx="15" _pos="NnCOM" lemma="mother" num="sng">mother</word>
+        <word _idx="16" lemma=".">.</word>
+    </sentence>
+    <sentence idx="793">
+        <word _idx="1" _pos="NnPRP" lemma="Harry" num="sng">Harry</word>
+        <word _idx="2" _pos="Vb" lemma="explain" mood="ind" tense="pt">explained</word>
+        <word _idx="3" _pos="PrTo" lemma="to">to</word>
+        <word _idx="4" _pos="PnJjPOS" lemma="his">his</word>
+        <word _idx="5" _pos="NnCOM" lemma="mother" num="sng">mother</word>
+        <word _idx="6" _pos="CjSUB" lemma="that">that</word>
+        <word _idx="7" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="8" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="9" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="10" _pos="Vb" lemma="watch" mood="ger">watching</word>
+        <word _idx="11" _pos="NnCOM" lemma="tv" num="sng">TV</word>
+        <word _idx="12" _pos="PrPRE" lemma="at">at</word>
+        <word _idx="13" _pos="NmCRD" lemma="7">7</word>
+        <word _idx="14" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="15" lemma=".">.</word>
+    </sentence>
+    <sentence idx="794">
+        <word _idx="1" lemma="``">``</word>
+        <word _idx="2" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
+        <word _idx="3" _pos="Vb" lemma="have" mood="ind" tense="ps">have</word>
+        <word _idx="4" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="5" _pos="Vb" lemma="learn" mood="ger">learning</word>
+        <word _idx="6" _pos="NnPRP" lemma="English" num="sng">English</word>
+        <word _idx="7" _pos="PrPRE" lemma="for">for</word>
+        <word _idx="8" _pos="NmCRD" lemma="2">two</word>
+        <word _idx="9" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="10" lemma=",">,</word>
+        <word _idx="11" lemma="''">''</word>
+        <word _idx="12" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="13" _pos="NnCOM" lemma="child" num="plu">children</word>
+        <word _idx="14" _pos="Vb" lemma="tell" mood="ind" tense="pt">told</word>
+        <word _idx="15" _pos="PnPRS" lemma="me" num="sng" pers="st">me</word>
+        <word _idx="16" lemma=".">.</word>
+    </sentence>
+    <sentence idx="795">
+        <word _idx="1" _pos="ArDEF" lemma="the">The</word>
+        <word _idx="2" _pos="NnCOM" lemma="child" num="plu">children</word>
+        <word _idx="3" _pos="Vb" lemma="tell" mood="ind" tense="pt">told</word>
+        <word _idx="4" _pos="PnPRS" lemma="me" num="sng" pers="st">me</word>
+        <word _idx="5" _pos="CjSUB" lemma="that">that</word>
+        <word _idx="6" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
+        <word _idx="7" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
+        <word _idx="8" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
+        <word _idx="9" _pos="Vb" lemma="learn" mood="ger">learning</word>
+        <word _idx="10" _pos="NnPRP" lemma="English" num="sng">English</word>
+        <word _idx="11" _pos="PrPRE" lemma="for">for</word>
+        <word _idx="12" _pos="NmCRD" lemma="2">two</word>
+        <word _idx="13" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="14" lemma=".">.</word>
+    </sentence>
 </wonderland_corpus>
