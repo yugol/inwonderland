@@ -447,4 +447,140 @@ While mother was cooking, father was reading a newspaper and the kittens were pl
 Little Kate explained that her doll was sleeping then.
 Our neighbours did not come to our place that evening because they were taking the night train to London.
 The two pupils were always laughing during my classes.
+I have played.
+You have played.
+We have played.
+They have played.
+He has played.
+She has played.
+It has played.
+I have not played.
+You have not played.
+We have not played.
+They have not played.
+He has not played.
+She has not played.
+It has not played.
+I haven't played.
+You haven't played.
+We haven't played.
+They haven't played.
+He hasn't played.
+She hasn't played.
+It hasn't played.
+Have I played?
+Have you played?
+Have we played?
+Have they played?
+Has he played?
+Has she played?
+Has it played?
+Have I not played?
+Have you not played?
+Have we not played?
+Have they not played?
+Has he not played?
+Has she not played?
+Has it not played?
+Haven't I played?
+Haven't you played?
+Haven't we played?
+Haven't they played?
+Hasn't he played?
+Hasn't she played?
+Hasn't it played?
+I have seen.
+You have seen.
+We have seen.
+They have seen.
+He has seen.
+She has seen.
+It has seen.
+I have not seen.
+You have not seen.
+We have not seen.
+They have not seen.
+He has not seen.
+She has not seen.
+It has not seen.
+I haven't seen.
+You haven't seen.
+We haven't seen.
+They haven't seen.
+He hasn't seen.
+She hasn't seen.
+It hasn't seen.
+Have I seen?
+Have you seen?
+Have we seen?
+Have they seen?
+Has he seen?
+Has she seen?
+Has it seen?
+Have I not seen?
+Have you not seen?
+Have we not seen?
+Have they not seen?
+Has he not seen?
+Has she not seen?
+Has it not seen?
+Haven't I seen?
+Haven't you seen?
+Haven't we seen?
+Haven't they seen?
+Hasn't he seen?
+Hasn't she seen?
+Hasn't it seen?
+I have visited an interesting museum.
+I still remember the things seen there.
+Many pupils have learnt in this school.
+In the past, some children learnt there, in the present others are learning and, of course, in the future, other pupils will learn here, too.
+The train has just left.
+It left a little time ago.
+We have not seen Jack lately.
+Mike just wanted to help us.
+Last week we wrote three letters, but this week we have written only one.
+I have seen a good film this morning.
+We are before 12 o'clock at noon.
+I saw a good film this morning.
+We are in the afternoon or in the evening.
+How long have you been ill?
+You are still ill.
+How long did you stay in London last year?
+How long had you known him when he died?
+We have never visited New York.
+Have you ever been to the North Pole?
+Did you ever meet his sister?
+When you spent your holiday in that town, etc.
+She always loved him.
+She loved him as long as he lived.
+Nobody ever helped David Copperfield when he worked in London.
+Did you ever see a more beautiful landscape?
+Tom usually gets up at seven o'clock in the morning.
+It's 7 o'clock.
+Mother gets into Tom's bedroom and asks: Have you got up yet?
+It is 6.30 in the morning.
+Mother sees that the light is on in Tom's bedroom.
+She opens the door and asks him: Have you got up already?
+The student has already translated the lesson.
+Albert has not learnt the poem yet.
+They have not seen Alice since 1989.
+They have not seen Alice since Christmas.
+They have not seen Alice since she went to London.
+I have known Maggie since she has been working in our factory.
+These boys have been here for half an hour.
+My neighbour has not repaired the roof of his house for a long time.
+My uncle lived in London for five years and then he moved to Paris.
+Has Peter had lunch?
+A terrible accident has happened; a car ran into a group of children and killed three of them.
+I shell ring you up as soon as mother has come back.
+I shell ring you up after mother has come back.
+Little Paul will come here at once if Grannie has made a cake.
+Mary will not be permitted to go for a walk in the park unless she has done her homework.
+Jane has not eaten anything and so she is hungry now.
+
+
+
+
+
 
