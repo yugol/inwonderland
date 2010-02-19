@@ -12,6 +12,7 @@ import java.util.Map;
  * @author Iulian
  */
 public class TextToNumber {
+
     static Map<String, String> cardinals = new HashMap<String, String>();
     static Map<String, String> ordinals = new HashMap<String, String>();
 
@@ -46,11 +47,16 @@ public class TextToNumber {
     }
 
     public static String getValue(String text) {
-        text = text.toLowerCase();
-        String value = cardinals.get(text);
-        if (value == null) {
-            value = ordinals.get(text);
+        text = text.trim().toLowerCase();
+        try {
+            Double.parseDouble(text);
+            return text;
+        } catch (RuntimeException rte) {
+            String value = cardinals.get(text);
+            if (value == null) {
+                value = ordinals.get(text);
+            }
+            return value;
         }
-        return value;
     }
 }
