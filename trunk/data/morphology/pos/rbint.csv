@@ -1,5 +1,6 @@
 form,lemma,pos,gender,number,wcase,person,comp,mood,tense
-how,how,RbINT,,,,,,,
-when,when,RbINT,,,,,,,
-where,where,RbINT,,,,,,,
-why,why,RbINT,,,,,,,
+how,how,RbINT_REL,,,,,,,
+when,when,RbINT_REL,,,,,,,
+where,where,RbINT_REL,,,,,,,
+why,why,RbINT_REL,,,,,,,
+did,do,Vb,,,,,,ind,pt

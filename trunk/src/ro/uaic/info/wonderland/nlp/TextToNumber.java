@@ -31,6 +31,7 @@ public class TextToNumber {
         cardinals.put("eight", "8");
         cardinals.put("nine", "9");
         cardinals.put("ten", "10");
+        cardinals.put("thirty-seven", "37");
 
         ordinals.put("first", "1");
         ordinals.put("second", "2");
