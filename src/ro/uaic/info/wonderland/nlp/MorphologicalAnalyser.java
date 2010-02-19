@@ -124,6 +124,9 @@ public class MorphologicalAnalyser {
                 tagging.setTense("ps");
             } else if (tag.equals("VB")) {
                 tagging.setPos("Vb");
+                if (word.equals(tagging.getLemma())) {
+                    tagging.setMood("sinf");
+                }
             } else if (tag.equals("VBD")) {
                 fillIndicative(tagging);
                 tagging.setTense("pt");
@@ -280,6 +283,9 @@ public class MorphologicalAnalyser {
             tagging.copyNoFormNoPennNoSenses(pnrel);
         } else if (pnrel == null && cjsub != null) {
             tagging.copyNoFormNoPennNoSenses(cjsub);
+        } else if (pnrel != null && cjsub != null) {
+            tagging.copyNoFormNoPennNoSenses(cjsub);
+            tagging.setPos("CjSUBPnREL");
         } else {
             return null;
         }
