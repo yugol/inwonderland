@@ -36,7 +36,7 @@ public class SmallUtilities {
     @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("reIndexGoldCorpus");
-        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
+        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
         Corpus gold = new Corpus();
         gold.buildFrom(goldFile);
         gold.reIndexSentences();

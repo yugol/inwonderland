@@ -5,6 +5,7 @@
 package ro.uaic.info.wonderland.util;
 
 import java.io.File;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ro.uaic.info.wonderland.Globals;
@@ -20,26 +21,27 @@ public class GoldTest {
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
+
+        List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.plain.txt"));
+        Corpus level1 = new Corpus();
+        level1.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
         MessageProcessor msgProc = new MessageProcessor();
-        Corpus gold = new Corpus();
-        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
-        gold.buildFrom(goldFile);
 
         int errorCount = 0;
         int wordCount = 0;
         int sentenceCount = 0;
-        for (int i = 1; i <= gold.getSentenceCount(); ++i) {
+        for (int i = 1; i <= level1.getSentenceCount(); ++i) {
             boolean printed = false;
-            String sentence = gold.getSentenceStringByIndex(i);
+            String sentence = plain.get(i - 1);
 
             msgProc.processMessage(sentence);
-            WTagging[] expected = gold.getSentencePosProps(i);
+            WTagging[] expected = level1.getSentencePosProps(i);
             WTagging[] actual = msgProc.getKb().getSentencePosProps(i, false);
             assertEquals(expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {
-                String error = WTaggingUtil.areConsistent(expected[j], actual[j]);
-                if (error != null) {
+                String errStr = WTaggingUtil.areConsistent(expected[j], actual[j]);
+                if (errStr != null) {
                     if (!printed) {
                         System.out.println("");
                         System.out.println("ERROR in sentence [" + i + "]:");
@@ -47,7 +49,7 @@ public class GoldTest {
                         printed = true;
                     }
                     System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
-                    System.out.println(error);
+                    System.out.println(errStr);
                     ++errorCount;
                 }
                 ++wordCount;
