@@ -46,6 +46,10 @@ public class MorphologicalAnalyser {
         } else if (wnWord == null && pnind != null) {
             tagging.copyNoFormNoPennNoSenses(pnind);
             return tagging;
+        } else if (wnWord != null && pnind != null) {
+            tagging.copyNoFormNoPennNoSenses(pnind);
+            tagging.setPos("NnCOMPnIDF");
+            return tagging;
         } else {
             tagging.setLemma(noLemma);
         }
@@ -71,6 +75,12 @@ public class MorphologicalAnalyser {
 
     WTagging analyzeAdjective(String word, String tag) {
         WTagging tagging = new WTagging();
+
+        WTagging jj = MorphologicalDatabase.jj.get(word);
+        if (jj != null) {
+            tagging.copyNoFormNoPennNoSenses(jj);
+            return tagging;
+        }
 
         // see if is not an ordinal numeral
         String nmord = TextToNumber.getValue(word);
