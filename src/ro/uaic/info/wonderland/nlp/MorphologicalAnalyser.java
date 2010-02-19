@@ -131,7 +131,11 @@ public class MorphologicalAnalyser {
                 tagging.setTense("ps");
             } else if (tag.equals("VBP")) {
                 fillIndicative(tagging);
-                tagging.setTense("ps");
+                if (word.equals("had")) {
+                    tagging.setTense("pt");
+                } else {
+                    tagging.setTense("ps");
+                }
             } else if (tag.equals("VB")) {
                 tagging.setPos("Vb");
                 if (word.equals(tagging.getLemma())) {
