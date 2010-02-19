@@ -42,6 +42,7 @@ public class SmallUtilities {
         gold.reIndexSentences();
         gold.removePennAttributes();
         gold.writeToFile(goldFile);
+        System.out.println("Reindexed " + gold.getSentenceCount() + " sentences.");
     }
 
     // @Test

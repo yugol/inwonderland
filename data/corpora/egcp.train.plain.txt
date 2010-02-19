@@ -163,8 +163,241 @@ I expect you know him.
 I suppose you know him.
 I'm expecting an important guest now.
 I'm waiting for an important guest now.
-
-
+I had.
+You had.
+He had.
+She had.
+It had.
+We had.
+They had.
+I had not.
+You had not.
+He had not.
+She had not.
+It had not.
+We had not.
+They had not.
+I hadn't.
+You hadn't.
+He hadn't.
+She hadn't.
+It hadn't.
+We hadn't.
+They hadn't.
+Had I?
+Had you?
+Had he?
+Had she?
+Had it?
+Had we?
+Had they?
+Had I not?
+Had you not?
+Had he not?
+Had she not?
+Had it not?
+Had we not?
+Had they not?
+Hadn't I?
+Hadn't you?
+Hadn't he?
+Hadn't she?
+Hadn't it?
+Hadn't we?
+Hadn't they?
+I was.
+He was.
+She was.
+It was.
+You were.
+We were.
+They were.
+I was not.
+He was not.
+She was not.
+It was not.
+You were not.
+We were not.
+They were not.
+I wasn't.
+He wasn't.
+She wasn't.
+It wasn't.
+You weren't.
+We weren't.
+They weren't.
+Was I?
+Was he?
+Was she?
+Was it?
+Were we?
+Were you?
+Were they?
+Was I not?
+Was he not?
+Was she not?
+Was it not?
+Were we not?
+Were you not?
+Were they not?
+Wasn't I?
+Wasn't he?
+Wasn't she?
+Wasn't it?
+Weren't we?
+Weren't you?
+Weren't they?
+I did.
+You did.
+He did.
+She did.
+It did.
+We did.
+They did.
+I did not.
+You did not.
+He did not.
+She did not.
+It did not.
+We did not.
+They did not.
+I didn't.
+You didn't.
+He didn't.
+She didn't.
+It didn't.
+We didn't.
+They didn't.
+Did I?
+Did you?
+Did he?
+Did she?
+Did it?
+Did we?
+Did they?
+Did I not?
+Did you not?
+Did he not?
+Did she not?
+Did it not?
+Did we not?
+Did they not?
+Didn't I?
+Didn't you?
+Didn't he?
+Didn't she?
+Didn't it?
+Didn't we?
+Didn't they?
+I played.
+You played.
+He played.
+She played.
+It played.
+We played.
+They played.
+I did not play.
+You did not play.
+He did not play.
+She did not play.
+It did not play.
+We did not play.
+They did not play.
+I didn't play.
+You didn't play.
+He didn't play.
+She didn't play.
+It didn't play.
+We didn't play.
+They didn't play.
+Did I play?
+Did you play?
+Did he play?
+Did she play?
+Did it play?
+Did we play?
+Did they play?
+Did I not play?
+Did you not play?
+Did he not play?
+Did she not play?
+Did it not play?
+Did we not play?
+Did they not play?
+Didn't I play?
+Didn't you play?
+Didn't he play?
+Didn't she play?
+Didn't it play?
+Didn't we play?
+Didn't they play?
+I went.
+You went.
+He went.
+She went.
+It went.
+We went.
+They went.
+I did not go.
+You did not go.
+He did not go.
+She did not go.
+It did not go.
+We did not go.
+They did not go.
+I didn't go.
+You didn't go.
+He didn't go.
+She didn't go.
+It didn't go.
+We didn't go.
+They didn't go.
+Did I go?
+Did you go?
+Did he go?
+Did she go?
+Did it go?
+Did we go?
+Did they go?
+Did I not go?
+Did you not go?
+Did he not go?
+Did she not go?
+Did it not go?
+Did we not go?
+Did they not go?
+Didn't I go?
+Didn't you go?
+Didn't he go?
+Didn't she go?
+Didn't it go?
+Didn't we go?
+Didn't they go?
+Yesterday I met my old friend Jack.
+When did the train arrive?
+Where has Tim been?
+He has been to the cinema.
+What film did he see?
+Shakespeare wrote thirty-seven plays.
+Grandmother drank three cups of coffee a day.
+We went to the theatre every Friday evening.
+"We live in a big house," the girl said.
+The girl said they lived in a big house.
+Mother asked "Where are the children?"
+My friend would help me if she were here.
+I wish I were on holiday now.
+He is speaking as if he knew everything about the accident.
+It's time my son learnt English, too.
+It's high time my son learnt English, too.
+Our neighbours would rather we didn't make so much noise in the afternoon.
+Paul would rather stay  here now than go there.
+He promised me that he would tell me the truth when he knew it.
+When he opened the door, he saw the dog.
+The little boy was very tired.
+Helen said she felt lonely before she met him.
+I would read that book if he gave it to me.
+I didn't know she loved music.
+The girl said that she would come here when she was free.
 
 
 
