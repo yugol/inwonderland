@@ -243,7 +243,7 @@
         <word _idx="3" _pos="NnCOM" lemma="cousin" num="sng">cousin</word>
         <word _idx="4" _pos="Vb" lemma="come" mood="ind" num="sng" pers="rd" tense="ps">comes</word>
         <word _idx="5" _pos="RbPLC_Pos" lemma="here">here</word>
-        <word _idx="6" _pos="NnCOM" lemma="tomorrow" num="sng">tomorrow</word>
+        <word _idx="6" _pos="Rb" lemma="tomorrow">tomorrow</word>
         <word _idx="7" lemma=",">,</word>
         <word _idx="8" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
         <word _idx="9" _pos="Md" lemma="will">'ll</word>
@@ -669,7 +669,7 @@
     </sentence>
     <sentence idx="79">
         <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
-        <word _idx="2" _pos="Rb" lemma="usually">usually</word>
+        <word _idx="2" _pos="RbMNN" lemma="usual">usually</word>
         <word _idx="3" _pos="Vb" lemma="go" mood="ind" tense="ps">go</word>
         <word _idx="4" _pos="PrTo" lemma="to">to</word>
         <word _idx="5" _pos="Vb" lemma="work" mood="sinf">work</word>
@@ -822,7 +822,7 @@
         <word _idx="2" _pos="Md" lemma="will">will</word>
         <word _idx="3" _pos="Rb" lemma="not">not</word>
         <word _idx="4" _pos="Vb" lemma="disturb" mood="sinf">disturb</word>
-        <word _idx="5" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="5" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">her</word>
         <word _idx="6" _pos="CjSUB" lemma="if">if</word>
         <word _idx="7" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
         <word _idx="8" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
@@ -842,9 +842,9 @@
         <word _idx="2" _pos="NnCOM" lemma="parent" num="plu">parents</word>
         <word _idx="3" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
         <word _idx="4" _pos="Vb" lemma="get" mood="ger">getting</word>
-        <word _idx="5" _pos="Jj" comp="cmp" lemma="older">older</word>
+        <word _idx="5" _pos="Jj" comp="cmp" lemma="old">older</word>
         <word _idx="6" _pos="CjCRD" lemma="and">and</word>
-        <word _idx="7" _pos="Jj" comp="cmp" lemma="older">older</word>
+        <word _idx="7" _pos="Jj" comp="cmp" lemma="old">older</word>
         <word _idx="8" lemma=".">.</word>
     </sentence>
     <sentence idx="97">

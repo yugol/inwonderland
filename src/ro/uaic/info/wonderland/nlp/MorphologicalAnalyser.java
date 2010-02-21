@@ -44,10 +44,10 @@ public class MorphologicalAnalyser {
         if (wnWord != null && pnind == null) {
             tagging.setLemma(wnWord.getLemma());
         } else if (wnWord == null && pnind != null) {
-            tagging.copyNoFormNoPennNoSenses(pnind);
+            tagging.copyWTagsAndLemma(pnind);
             return tagging;
         } else if (wnWord != null && pnind != null) {
-            tagging.copyNoFormNoPennNoSenses(pnind);
+            tagging.copyWTagsAndLemma(pnind);
             tagging.setPos("NnCOMPnIDF");
             return tagging;
         } else {
@@ -78,7 +78,7 @@ public class MorphologicalAnalyser {
 
         WTagging jj = MorphologicalDatabase.jj.get(word);
         if (jj != null) {
-            tagging.copyNoFormNoPennNoSenses(jj);
+            tagging.copyWTagsAndLemma(jj);
             return tagging;
         }
 
@@ -114,7 +114,7 @@ public class MorphologicalAnalyser {
         WTagging vb = MorphologicalDatabase.vb.get(word);
 
         if (vb != null) {
-            tagging.copyNoFormNoPennNoSenses(vb);
+            tagging.copyWTagsAndLemma(vb);
         } else {
             IndexWord wnWord = WordNetWrapper.lookup(word, POS.VERB);
 
@@ -166,7 +166,7 @@ public class MorphologicalAnalyser {
         WTagging rb = MorphologicalDatabase.rb.get(word);
 
         if (rb != null) {
-            tagging.copyNoFormNoPennNoSenses(rb);
+            tagging.copyWTagsAndLemma(rb);
         } else {
             IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADVERB);
             if (wnWord != null) {
@@ -198,9 +198,9 @@ public class MorphologicalAnalyser {
             tagging.setLemma(pr.getLemma());
             tagging.setPos("PrCjSUB");
         } else if (pr != null) {
-            tagging.copyNoFormNoPennNoSenses(pr);
+            tagging.copyWTagsAndLemma(pr);
         } else {
-            tagging.copyNoFormNoPennNoSenses(cjsub);
+            tagging.copyWTagsAndLemma(cjsub);
         }
 
         return tagging;
@@ -214,13 +214,13 @@ public class MorphologicalAnalyser {
         WTagging pndem = MorphologicalDatabase.pndem.get(word);
 
         if (ar != null && jjind == null && jjdem == null && pndem == null) {
-            tagging.copyNoFormNoPennNoSenses(ar);
+            tagging.copyWTagsAndLemma(ar);
         } else if (ar == null && jjind != null && jjdem == null && pndem == null) {
-            tagging.copyNoFormNoPennNoSenses(jjind);
+            tagging.copyWTagsAndLemma(jjind);
         } else if (ar == null && jjind == null && jjdem != null && pndem == null) {
-            tagging.copyNoFormNoPennNoSenses(jjdem);
+            tagging.copyWTagsAndLemma(jjdem);
         } else if (ar == null && jjind == null && jjdem != null && pndem != null) {
-            tagging.copyNoFormNoPennNoSenses(jjdem);
+            tagging.copyWTagsAndLemma(jjdem);
             tagging.setPos("JjPnDEM");
         } else {
             return null;
@@ -234,7 +234,7 @@ public class MorphologicalAnalyser {
         WTagging cjcrd = MorphologicalDatabase.cjcrd.get(word);
 
         if (cjcrd != null) {
-            tagging.copyNoFormNoPennNoSenses(cjcrd);
+            tagging.copyWTagsAndLemma(cjcrd);
         } else {
             tagging.setLemma(noLemma);
             tagging.setPos("CjCRD");
@@ -252,9 +252,9 @@ public class MorphologicalAnalyser {
         WTagging pnref = MorphologicalDatabase.pnref.get(word);
 
         if (pnprs != null && pnref == null) {
-            tagging.copyNoFormNoPennNoSenses(pnprs);
+            tagging.copyWTagsAndLemma(pnprs);
         } else if (pnprs == null && pnref != null) {
-            tagging.copyNoFormNoPennNoSenses(pnref);
+            tagging.copyWTagsAndLemma(pnref);
         } else {
             return null;
         }
@@ -267,7 +267,7 @@ public class MorphologicalAnalyser {
         WTagging pr = MorphologicalDatabase.pr.get(word);
 
         if (pr != null && pr.getLemma().equals("to")) {
-            tagging.copyNoFormNoPennNoSenses(pr);
+            tagging.copyWTagsAndLemma(pr);
         } else {
             return null;
         }
@@ -280,7 +280,7 @@ public class MorphologicalAnalyser {
         WTagging md = MorphologicalDatabase.md.get(word);
 
         if (md != null) {
-            tagging.copyNoFormNoPennNoSenses(md);
+            tagging.copyWTagsAndLemma(md);
         } else {
             return null;
         }
@@ -294,11 +294,11 @@ public class MorphologicalAnalyser {
         WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
 
         if (pnrel != null && cjsub == null) {
-            tagging.copyNoFormNoPennNoSenses(pnrel);
+            tagging.copyWTagsAndLemma(pnrel);
         } else if (pnrel == null && cjsub != null) {
-            tagging.copyNoFormNoPennNoSenses(cjsub);
+            tagging.copyWTagsAndLemma(cjsub);
         } else if (pnrel != null && cjsub != null) {
-            tagging.copyNoFormNoPennNoSenses(cjsub);
+            tagging.copyWTagsAndLemma(cjsub);
             tagging.setPos("CjSUBPnREL");
         } else {
             return null;
@@ -323,9 +323,9 @@ public class MorphologicalAnalyser {
         WTagging jjpos = MorphologicalDatabase.jjpos.get(word);
 
         if (pnpos != null && jjpos == null) {
-            tagging.copyNoFormNoPennNoSenses(pnpos);
+            tagging.copyWTagsAndLemma(pnpos);
         } else if (pnpos == null && jjpos != null) {
-            tagging.copyNoFormNoPennNoSenses(jjpos);
+            tagging.copyWTagsAndLemma(jjpos);
         } else if (pnpos != null && jjpos != null) {
             tagging.setLemma(pnpos.getLemma());
             tagging.setPos("PnJjPOS");
@@ -341,7 +341,7 @@ public class MorphologicalAnalyser {
         WTagging rbint = MorphologicalDatabase.rbint.get(word);
 
         if (rbint != null) {
-            tagging.copyNoFormNoPennNoSenses(rbint);
+            tagging.copyWTagsAndLemma(rbint);
         } else {
             return null;
         }
@@ -365,7 +365,7 @@ public class MorphologicalAnalyser {
         WTagging pnint = MorphologicalDatabase.pnint.get(word);
 
         if (pnint != null) {
-            tagging.copyNoFormNoPennNoSenses(pnint);
+            tagging.copyWTagsAndLemma(pnint);
         } else {
             return null;
         }
@@ -396,9 +396,9 @@ public class MorphologicalAnalyser {
         WTagging pr = MorphologicalDatabase.pr.get(lcWord);
 
         if (rb != null && pr == null) {
-            tagging.copyNoFormNoPennNoSenses(rb);
+            tagging.copyWTagsAndLemma(rb);
         } else if (rb == null && pr != null) {
-            tagging.copyNoFormNoPennNoSenses(pr);
+            tagging.copyWTagsAndLemma(pr);
         } else {
             tagging.setPos("PrRbPLC_Dir");
             if (rb != null) {
