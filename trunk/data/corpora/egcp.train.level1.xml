@@ -1348,7 +1348,7 @@
     <sentence idx="144">
         <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
         <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">'s</word>
-        <word _idx="3" _pos="Rb" lemma="rather">rather</word>
+        <word _idx="3" _pos="Rb" comp="cmp" lemma="rather">rather</word>
         <word _idx="4" _pos="Jj" lemma="cold">cold</word>
         <word _idx="5" _pos="Rb" lemma="today">today</word>
         <word _idx="6" lemma=",">,</word>
@@ -3008,7 +3008,7 @@
         <word _idx="1" _pos="JjPOS" lemma="our" num="plu" pers="st">Our</word>
         <word _idx="2" _pos="NnCOM" lemma="neighbour" num="plu">neighbors</word>
         <word _idx="3" _pos="Md" lemma="will" tense="pt">would</word>
-        <word _idx="4" _pos="Rb" lemma="rather">rather</word>
+        <word _idx="4" _pos="Rb" comp="cmp" lemma="rather">rather</word>
         <word _idx="5" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
         <word _idx="6" _pos="Vb" lemma="do" mood="ind" tense="pt">did</word>
         <word _idx="7" _pos="Rb" lemma="not">n't</word>
@@ -3024,7 +3024,7 @@
     <sentence idx="393">
         <word _idx="1" _pos="NnPRP" lemma="paul" num="sng">Paul</word>
         <word _idx="2" _pos="Md" lemma="will" tense="pt">would</word>
-        <word _idx="3" _pos="Rb" lemma="rather">rather</word>
+        <word _idx="3" _pos="Rb" comp="cmp" lemma="rather">rather</word>
         <word _idx="4" _pos="Vb" lemma="stay" mood="sinf">stay</word>
         <word _idx="5" _pos="RbPLC_Pos" lemma="here">here</word>
         <word _idx="6" _pos="Rb" lemma="now">now</word>
@@ -5702,7 +5702,7 @@
         <word _idx="1" _pos="RbREL" lemma="when">When</word>
         <word _idx="2" _pos="NnCOM" lemma="father" num="sng">father</word>
         <word _idx="3" _pos="Vb" lemma="come" mood="ind" tense="pt">came</word>
-        <word _idx="4" _pos="NnCOM" lemma="home" num="sng">home</word>
+        <word _idx="4" _pos="RbPLC_Dst" lemma="home">home</word>
         <word _idx="5" lemma=",">,</word>
         <word _idx="6" _pos="NnPRP" lemma="dick" num="sng">Dick</word>
         <word _idx="7" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
@@ -5712,7 +5712,7 @@
         <word _idx="11" lemma=".">.</word>
     </sentence>
     <sentence idx="722">
-        <word _idx="1" _pos="NnCOM" lemma="father" num="sng">Father</word>
+        <word _idx="1" _pos="NnPRP" lemma="father" num="sng">Father</word>
         <word _idx="2" _pos="Vb" lemma="come" mood="ind" tense="pt">came</word>
         <word _idx="3" _pos="RbPLC_Dst" lemma="home">home</word>
         <word _idx="4" _pos="CjSUB" lemma="after">after</word>
@@ -5732,7 +5732,7 @@
         <word _idx="6" _pos="CjSUB" lemma="before">before</word>
         <word _idx="7" _pos="NnCOM" lemma="father" num="sng">father</word>
         <word _idx="8" _pos="Vb" lemma="come" mood="ind" tense="pt">came</word>
-        <word _idx="9" _pos="NnCOM" lemma="home" num="sng">home</word>
+        <word _idx="9" _pos="RbPLC_Dst" lemma="home">home</word>
         <word _idx="10" lemma=".">.</word>
     </sentence>
     <sentence idx="724">
@@ -5747,7 +5747,7 @@
         <word _idx="9" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
         <word _idx="10" _pos="Vb" lemma="dig" mood="par" tense="pt">dug</word>
         <word _idx="11" _pos="ArDEF" lemma="the">the</word>
-        <word _idx="12" _pos="Jj" lemma="whole">whole</word>
+        <word _idx="12" _pos="JjIND" lemma="whole">whole</word>
         <word _idx="13" _pos="NnCOM" lemma="garden" num="sng">garden</word>
         <word _idx="14" lemma=".">.</word>
     </sentence>
@@ -5780,11 +5780,11 @@
     <sentence idx="727">
         <word _idx="1" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
-        <word _idx="3" _pos="Rb" lemma="hardly">hardly</word>
+        <word _idx="3" _pos="Rb" lemma="hard">hardly</word>
         <word _idx="4" _pos="Vb" lemma="enter" mood="par" tense="pt">entered</word>
         <word _idx="5" _pos="ArDEF" lemma="the">the</word>
         <word _idx="6" _pos="NnCOM" lemma="room" num="sng">room</word>
-        <word _idx="7" _pos="RbINT_REL" lemma="when">when</word>
+        <word _idx="7" _pos="RbREL" lemma="when">when</word>
         <word _idx="8" _pos="PnIDF" lemma="somebody">somebody</word>
         <word _idx="9" _pos="Vb" lemma="knock" mood="ind" tense="pt">knocked</word>
         <word _idx="10" _pos="PrPRE" lemma="at">at</word>
@@ -5795,11 +5795,11 @@
     <sentence idx="728">
         <word _idx="1" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
-        <word _idx="3" _pos="Rb" lemma="scarcely">scarcely</word>
+        <word _idx="3" _pos="RbMNN" lemma="scarce">scarcely</word>
         <word _idx="4" _pos="Vb" lemma="enter" mood="par" tense="pt">entered</word>
         <word _idx="5" _pos="ArDEF" lemma="the">the</word>
         <word _idx="6" _pos="NnCOM" lemma="room" num="sng">room</word>
-        <word _idx="7" _pos="RbINT_REL" lemma="when">when</word>
+        <word _idx="7" _pos="RbREL" lemma="when">when</word>
         <word _idx="8" _pos="PnIDF" lemma="somebody">somebody</word>
         <word _idx="9" _pos="Vb" lemma="knock" mood="ind" tense="pt">knocked</word>
         <word _idx="10" _pos="PrPRE" lemma="at">at</word>
@@ -5814,7 +5814,7 @@
         <word _idx="4" _pos="Vb" lemma="enter" mood="ind" tense="pt">entered</word>
         <word _idx="5" _pos="ArDEF" lemma="the">the</word>
         <word _idx="6" _pos="NnCOM" lemma="room" num="sng">room</word>
-        <word _idx="7" _pos="RbINT_REL" lemma="when">when</word>
+        <word _idx="7" _pos="RbREL" lemma="when">when</word>
         <word _idx="8" _pos="PnIDF" lemma="somebody">somebody</word>
         <word _idx="9" _pos="Vb" lemma="knock" mood="ind" tense="pt">knocked</word>
         <word _idx="10" _pos="PrPRE" lemma="at">at</word>
@@ -5823,7 +5823,7 @@
         <word _idx="13" lemma=".">.</word>
     </sentence>
     <sentence idx="730">
-        <word _idx="1" _pos="Rb" lemma="scarcely" num="sng">Scarcely</word>
+        <word _idx="1" _pos="Rb" lemma="scarcely">Scarcely</word>
         <word _idx="2" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
         <word _idx="3" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="4" _pos="Vb" lemma="enter" mood="ind" tense="pt">entered</word>
@@ -5839,7 +5839,7 @@
     </sentence>
     <sentence idx="731">
         <word _idx="1" _pos="Rb" lemma="no">No</word>
-        <word _idx="2" _pos="Jj" comp="cmp" lemma="sooner">sooner</word>
+        <word _idx="2" _pos="Rb" comp="cmp" lemma="sooner">sooner</word>
         <word _idx="3" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
         <word _idx="4" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
         <word _idx="5" _pos="Vb" lemma="see" mood="par" tense="pt">seen</word>
@@ -5864,7 +5864,7 @@
         <word _idx="7" _pos="NnCOM" lemma="teacher" num="sng">teacher</word>
         <word _idx="8" _pos="PrPRE" lemma="for">for</word>
         <word _idx="9" _pos="NmCRD" lemma="10">ten</word>
-        <word _idx="10" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="10" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="11" lemma=".">.</word>
     </sentence>
     <sentence idx="733">
@@ -5936,14 +5936,14 @@
         <word _idx="2" _pos="Md" lemma="will" tense="pt">would</word>
         <word _idx="3" _pos="Vb" lemma="have" mood="sinf">have</word>
         <word _idx="4" _pos="Vb" lemma="give" mood="par" tense="pt">given</word>
-        <word _idx="5" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="5" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">her</word>
         <word _idx="6" _pos="ArDEF" lemma="the">the</word>
         <word _idx="7" _pos="NnCOM" lemma="book" num="sng">book</word>
         <word _idx="8" _pos="CjSUB" lemma="if">if</word>
         <word _idx="9" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="10" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
         <word _idx="11" _pos="Vb" lemma="meet" mood="par" tense="pt">met</word>
-        <word _idx="12" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="12" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">her</word>
         <word _idx="13" lemma=".">.</word>
     </sentence>
     <sentence idx="739">
@@ -5954,7 +5954,7 @@
         <word _idx="5" _pos="Rb" lemma="not">n't</word>
         <word _idx="6" _pos="Vb" lemma="lie" mood="ind" tense="pt">lied</word>
         <word _idx="7" _pos="PrTo" lemma="to">to</word>
-        <word _idx="8" _pos="PnPRS" gen="fem" lemma="her" num="sng" pers="rd">her</word>
+        <word _idx="8" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">her</word>
         <word _idx="9" lemma="!">!</word>
     </sentence>
     <sentence idx="740">
@@ -5983,12 +5983,12 @@
         <word _idx="1" _pos="Rb" lemma="yesterday">Yesterday</word>
         <word _idx="2" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="3" _pos="Md" lemma="will" tense="pt">'d</word>
-        <word _idx="4" _pos="Rb" lemma="rather">rather</word>
+        <word _idx="4" _pos="Rb" comp="cmp" lemma="rather">rather</word>
         <word _idx="5" _pos="PnPRS" lemma="you" pers="nd">you</word>
         <word _idx="6" _pos="Vb" lemma="have" mood="ind" tense="pt">had</word>
         <word _idx="7" _pos="Vb" lemma="stay" mood="par" tense="pt">stayed</word>
         <word _idx="8" _pos="RbPLC_Pos" lemma="here">here</word>
-        <word _idx="9" _pos="PrCjSUB" lemma="than">than</word>
+        <word _idx="9" _pos="CjSUB" lemma="than">than</word>
         <word _idx="10" _pos="Vb" lemma="go" mood="par" tense="pt">gone</word>
         <word _idx="11" _pos="RbPLC_DstPos" lemma="there">there</word>
         <word _idx="12" lemma=".">.</word>
@@ -6426,7 +6426,7 @@
         <word _idx="7" _pos="NnCOM" lemma="lesson" num="sng">lesson</word>
         <word _idx="8" _pos="PrPRE" lemma="for">for</word>
         <word _idx="9" _pos="NmCRD" lemma="5">five</word>
-        <word _idx="10" _pos="NnCOM" lemma="minutes" num="plu">minutes</word>
+        <word _idx="10" _pos="NnCOM" lemma="minute" num="plu">minutes</word>
         <word _idx="11" _pos="RbREL" lemma="when">when</word>
         <word _idx="12" _pos="ArDEF" lemma="the">the</word>
         <word _idx="13" _pos="NnCOM" lemma="school" num="sng">school</word>
@@ -6458,7 +6458,7 @@
         <word _idx="1" _pos="NnPRP" lemma="harry" num="sng">Harry</word>
         <word _idx="2" _pos="Vb" lemma="explain" mood="ind" tense="pt">explained</word>
         <word _idx="3" _pos="PrTo" lemma="to">to</word>
-        <word _idx="4" _pos="PnJjPOS" lemma="his">his</word>
+        <word _idx="4" _pos="JjPOS" lemma="his">his</word>
         <word _idx="5" _pos="NnCOM" lemma="mother" num="sng">mother</word>
         <word _idx="6" _pos="CjSUB" lemma="that">that</word>
         <word _idx="7" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
@@ -6480,7 +6480,7 @@
         <word _idx="6" _pos="NnPRP" lemma="english" num="sng">English</word>
         <word _idx="7" _pos="PrPRE" lemma="for">for</word>
         <word _idx="8" _pos="NmCRD" lemma="2">two</word>
-        <word _idx="9" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="9" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="10" lemma=",">,</word>
         <word _idx="11" lemma="&quot;">"</word>
         <word _idx="12" _pos="ArDEF" lemma="the">the</word>
@@ -6502,7 +6502,7 @@
         <word _idx="10" _pos="NnPRP" lemma="english" num="sng">English</word>
         <word _idx="11" _pos="PrPRE" lemma="for">for</word>
         <word _idx="12" _pos="NmCRD" lemma="2">two</word>
-        <word _idx="13" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="13" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="14" lemma=".">.</word>
     </sentence>
 </wonderland_corpus>

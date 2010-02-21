@@ -226,6 +226,8 @@ public class MorphAdornerWrapper {
 
             } else if (token.equals("we'll")) {
                 splitPos(taggings, tOkEn, pos, "will");
+            } else if (token.equals("i'd")) {
+                splitPos(taggings, tOkEn, pos, "will");
 
             } else if (token.equals("o'clock")) {
                 justCopy(taggings, aWord);

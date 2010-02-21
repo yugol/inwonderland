@@ -36,6 +36,12 @@ public class TagMapper {
     }
 
     public void mapDT(WTagging tagging, String tag) {
+        String maTag = tagging.getPartsOfSpeech();
+        if ("av-dx".equals(maTag)) {
+            tagging.setPos("Rb");
+            return;
+        }
+
         String word = tagging.getForm().toLowerCase();
         WTagging ar = MorphologicalDatabase.ar.get(word);
         WTagging jjind = MorphologicalDatabase.jjind.get(word);
@@ -50,7 +56,6 @@ public class TagMapper {
             tagging.copyWTags(jjdem);
         } else if (ar == null && jjind == null && jjdem != null && pndem != null) {
             tagging.copyWTags(jjdem);
-            String maTag = tagging.getPartsOfSpeech();
             if (maTag != null && tagging.getPartsOfSpeech().charAt(0) == 'd') {
                 tagging.setPos("JjDEM");
             } else {
@@ -70,6 +75,14 @@ public class TagMapper {
             } else if (maTag.indexOf("av") == 0) {
                 mapRB(tagging, tag);
                 return;
+            } else if (maTag.indexOf("crd") == 0) {
+                String word = tagging.getForm().toLowerCase();
+                String number = TextToNumber.getValue(word);
+                if (number != null) {
+                    tagging.setLemma(number);
+                    tagging.setPos("NmCRD");
+                    return;
+                }
             } else if (maTag.indexOf("v") == 0) {
                 if (maTag.charAt(2) == 'g') {
                     fillGerund(tagging);
@@ -223,6 +236,9 @@ public class TagMapper {
                 } else if (maTag.equals("vvg")) {
                     fillGerund(tagging);
                     return;
+                } else if (maTag.equals("a-acp")) {
+                    tagging.setPos("Rb");
+                    return;
                 }
             }
             tagging.setPos("PrCjSUB");
@@ -280,9 +296,14 @@ public class TagMapper {
 
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
-            if ("av-j".equals(maTag)) {
-                if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
-                    tagging.setPos("RbMNN");
+            if (maTag.indexOf("av") == 0) {
+                if (maTag.indexOf("-j") == 2) {
+                    if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
+                        tagging.setPos("RbMNN");
+                    }
+                }
+                if (maTag.indexOf('c') > 0) {
+                    tagging.setComp("cmp");
                 }
             } else if (maTag.indexOf("n") == 0) {
                 tagging.setPos("NnCOM");
