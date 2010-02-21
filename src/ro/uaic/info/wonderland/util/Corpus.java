@@ -36,6 +36,7 @@ public class Corpus {
     public static final String lemmaTag = "lemma";
     public static final String wTag = "_pos";
     public static final String pennTag = "_p";
+    public static final String maTag = "_ma";
     public static final String genTag = "gen";
     public static final String numTag = "num";
     public static final String caseTag = "case";
@@ -62,6 +63,9 @@ public class Corpus {
             word.setAttribute(lemmaTag, prop.getLemma());
             if (prop.getPennTag() != null) {
                 word.setAttribute(pennTag, prop.getPennTag());
+            }
+            if (prop.getPartsOfSpeech() != null) {
+                word.setAttribute(maTag, prop.getPartsOfSpeech());
             }
             if (prop.getPos() != null) {
                 word.setAttribute(wTag, prop.getPos());
@@ -201,6 +205,7 @@ public class Corpus {
             prop.setPerson(word.getAttribute(persTag));
             prop.setPos(word.getAttribute(wTag));
             prop.setPennTag(word.getAttribute(pennTag));
+            prop.setPartsOfSpeech(word.getAttribute(maTag));
             prop.setTense(word.getAttribute(tenseTag));
             prop.setWcase(word.getAttribute(caseTag));
             props[i - 1] = prop;
@@ -216,11 +221,12 @@ public class Corpus {
         }
     }
 
-    void removePennAttributes() {
+    void removeMappingAttributes() {
         NodeList words = xmlDoc.getElementsByTagName(wordTag);
         for (int i = 0; i < words.getLength(); ++i) {
             Element word = (Element) words.item(i);
             word.removeAttribute(pennTag);
+            word.removeAttribute(maTag);
         }
     }
 }

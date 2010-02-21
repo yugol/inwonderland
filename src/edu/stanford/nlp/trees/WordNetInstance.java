@@ -13,10 +13,11 @@ import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
 public class WordNetInstance implements WordNetConnection {
 
     public boolean wordNetContains(String s) {
-        if (WordNetWrapper.contains(s)) {
-            System.out.println(s);
-            return true;
-        }
+        System.out.println(s);
+        //if (WordNetWrapper.contains(s)) {
+        //  System.out.println(s);
+        //     return true;
+        //}
         return false;
     }
 }

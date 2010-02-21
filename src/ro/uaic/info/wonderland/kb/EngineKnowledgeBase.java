@@ -117,13 +117,13 @@ public class EngineKnowledgeBase {
         return lastFile;
     }
 
-    public CGraph addSentenceFact(WTagging[] words, List<TypedDependency> deps) {
+    public CGraph addSentenceFact(List<WTagging> words, List<TypedDependency> deps) {
         String sentId = toSentenceIndex(++sentenceFactCount);
         CGraph cg = new CGraph(toSentenceId(sentId), sentId, sentenceSetName, "fact");
 
-        for (int i = 0; i < words.length; ++i) {
-            WTagging tagging = words[i];
-            Concept c = new Concept(tagging.getForm() + "-" + tagging.getPennTag() + "-" + (i + 1));
+        for (int i = 0; i < words.size(); ++i) {
+            WTagging tagging = words.get(i);
+            Concept c = new Concept(buildConceptId(tagging, i + 1));
             vocabulary.addIndividual(tagging.getLemma(), tagging.getLemma(), posConceptType, language);
             String[] types = null;
             if (tagging.getPos() == null) {
@@ -142,8 +142,8 @@ public class EngineKnowledgeBase {
         for (int i = 0; i < deps.size(); ++i) {
             TypedDependency tdep = deps.get(i);
 
-            String gov = getConcept(cg, getConceptIndex(tdep.gov().nodeString())).getId();
-            String dep = getConcept(cg, getConceptIndex(tdep.dep().nodeString())).getId();
+            String gov = getConcept(cg, getLabelIndex(tdep.gov().nodeString())).getId();
+            String dep = getConcept(cg, getLabelIndex(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = rtLabel2rtId(relationTypeLabel);
             String relationId = relationTypeLabel + "~" + (i + 1);
@@ -180,8 +180,8 @@ public class EngineKnowledgeBase {
     private WTagging conceptLabelsToWTagging(Concept c, boolean newTagsOnly) {
         WTagging prop = new WTagging();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
+        String id = c.getId();
         for (String type : c.getType()) {
-            // System.out.println(type + " : " + c.getId());
             try {
                 if (cth.isKindOf(type, posConceptType)) {
                     if (newTagsOnly && cth.isKindOf(type, spTagConceptType)) {
@@ -206,13 +206,14 @@ public class EngineKnowledgeBase {
                     prop.setTense(vocabulary.getConceptTypeLabel(type, language));
                 }
             } catch (RuntimeException ex) {
-                System.err.println("At concept: " + type + " : " + c.getId());
+                System.err.println("At concept: " + type + " : " + id);
                 throw ex;
             }
         }
-        prop.setForm(c.getId().split("-")[0]);
+        prop.setForm(getConceptForm(id));
         prop.setLemma(c.getIndividual());
-        prop.setPennTag(getPennTag(c.getId()));
+        prop.setPennTag(getConceptPennTag(id));
+        prop.setPartsOfSpeech(getConceptMaTag(id));
         return prop;
     }
 
@@ -234,15 +235,57 @@ public class EngineKnowledgeBase {
         return null;
     }
 
-    private String getPennTag(String id) {
-        int to = id.lastIndexOf('-');
-        int from = id.lastIndexOf('-', to - 1) + 1;
-        return id.substring(from, to);
+    private String getConceptForm(String id) {
+        int end = id.lastIndexOf("#");
+        return id.substring(0, end);
     }
 
     private int getConceptIndex(String id) {
-        int idxPos = id.lastIndexOf('-') + 1;
-        int index = Integer.parseInt(id.substring(idxPos));
+        int beg = id.lastIndexOf('#') + 1;
+        int end = id.lastIndexOf('=');
+        int index = Integer.parseInt(id.substring(beg, end));
         return index;
+    }
+
+    private String getConceptPennTag(String id) {
+        int beg = id.lastIndexOf("[") + 1;
+        int end = id.lastIndexOf("]");
+        if (beg < end) {
+            return id.substring(beg, end);
+        } else {
+            return null;
+        }
+    }
+
+    private String getConceptMaTag(String id) {
+        int beg = id.lastIndexOf("{") + 1;
+        int end = id.lastIndexOf("}");
+        if (beg < end) {
+            return id.substring(beg, end);
+        } else {
+            return null;
+        }
+    }
+
+    private String buildConceptId(WTagging tagging, int index) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(tagging.getForm());
+        sb.append("#");
+        sb.append(index);
+        sb.append("=[");
+        if (tagging.getPennTag() != null) {
+            sb.append(tagging.getPennTag());
+        }
+        sb.append("]{");
+        if (tagging.getPartsOfSpeech() != null) {
+            sb.append(tagging.getPartsOfSpeech());
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private int getLabelIndex(String label) {
+        int beg = label.lastIndexOf("-") + 1;
+        return Integer.parseInt(label.substring(beg));
     }
 }

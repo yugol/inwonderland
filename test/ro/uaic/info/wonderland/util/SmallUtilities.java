@@ -40,7 +40,7 @@ public class SmallUtilities {
         Corpus gold = new Corpus();
         gold.buildFrom(goldFile);
         gold.reIndexSentences();
-        gold.removePennAttributes();
+        gold.removeMappingAttributes();
         gold.writeToFile(goldFile);
         System.out.println("Reindexed " + gold.getSentenceCount() + " sentences.");
     }

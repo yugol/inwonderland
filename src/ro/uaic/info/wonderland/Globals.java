@@ -15,6 +15,7 @@ public final class Globals {
 
     public static boolean testDebug = false;
     private static File dataFolder = new File("./data/");
+    public static boolean useMorphAdornerTagsInWordForm = false;
 
     public static String getDataFolder() {
         String dataPath = System.getProperty("wonderland.data.path");
@@ -34,8 +35,8 @@ public final class Globals {
     }
 
     public static File getStanfordPostaggerFile() {
-        return new File(getDataFolder(), "bidirectional-distsim-wsj-0-18.tagger");
-        // return getDataFolder() + "/left3words-wsj-0-18.tagger";
+        // return new File(getDataFolder(), "bidirectional-distsim-wsj-0-18.tagger");
+        return new File(getDataFolder(), "/left3words-wsj-0-18.tagger");
     }
 
     public static File getDefaultParseKBFile() {
