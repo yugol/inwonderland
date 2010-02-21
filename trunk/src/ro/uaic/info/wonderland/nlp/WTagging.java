@@ -38,8 +38,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     // collocation mark
     private boolean collocation = false;
 
-    public void copyNoFormNoPennNoSenses(WTagging other) {
-        this.lemma = other.lemma;
+    public void copyWTags(WTagging other) {
         this.pos = other.pos;
         this.gender = other.gender;
         this.number = other.number;
@@ -50,15 +49,9 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         this.tense = other.tense;
     }
 
-    public void copyWTagsOnly(WTagging other) {
-        this.pos = other.pos;
-        this.gender = other.gender;
-        this.number = other.number;
-        this.wcase = other.wcase;
-        this.person = other.person;
-        this.comp = other.comp;
-        this.mood = other.mood;
-        this.tense = other.tense;
+    public void copyWTagsAndLemma(WTagging other) {
+        copyWTags(other);
+        this.lemma = other.lemma;
     }
 
     public String getComp() {

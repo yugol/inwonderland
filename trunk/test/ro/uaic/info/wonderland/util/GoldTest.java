@@ -29,7 +29,7 @@ public class GoldTest {
         MessageProcessor msgProc = new MessageProcessor();
 
         int firstSentence = 1;
-        int lastSentence = 50;
+        int lastSentence = 100;
         if (lastSentence < firstSentence) {
             lastSentence = level1.getSentenceCount();
         }
