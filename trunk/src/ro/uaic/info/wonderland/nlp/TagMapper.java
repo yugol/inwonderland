@@ -73,12 +73,13 @@ public class TagMapper {
             } else if (maTag.indexOf("vvg") == 0) {
                 fillGerund(tagging);
                 return;
-            } else if (maTag.indexOf("av") == 0) {
-                mapRB(tagging, tag);
+            } else if (maTag.indexOf("vvd") == 0) {
+                fillIndicative(tagging);
+                tagging.setTense("pt");
                 return;
-            } else if (maTag.indexOf("j") == 0) {
-                // mapJJ(tagging, tag);
-                // return;
+            } else if (maTag.indexOf("av") == 0) {
+                tagging.setPos("Rb");
+                return;
             }
         }
 
@@ -121,7 +122,7 @@ public class TagMapper {
             } else if (tag.equals("VBP")) {
                 if (maTag != null) {
                     if (maTag.indexOf("j") == 0) {
-                        mapJJ(tagging, tag);
+                        tagging.setPos("Jj");
                         return;
                     }
                 }
@@ -162,6 +163,13 @@ public class TagMapper {
                     tagging.setLemma("be");
                 }
             } else if (tag.equals("VBN")) {
+                if (maTag != null) {
+                    if (maTag.equals("vvd")) {
+                        fillIndicative(tagging);
+                        tagging.setTense("pt");
+                        return;
+                    }
+                }
                 fillParticiple(tagging);
                 tagging.setTense("pt");
             }
@@ -235,9 +243,19 @@ public class TagMapper {
             tagging.setComp("sup");
         }
 
-        if ("av-j".equals(tagging.getPartsOfSpeech())) {
-            if (word.lastIndexOf("ly") == (word.length() - 2)) {
-                tagging.setPos("RbMNN");
+        String maTag = tagging.getPartsOfSpeech();
+        if (maTag != null) {
+            if ("av-j".equals(maTag)) {
+                if (word.lastIndexOf("ly") == (word.length() - 2)) {
+                    tagging.setPos("RbMNN");
+                }
+            } else if (maTag.indexOf("n") == 0) {
+                tagging.setPos("NnCOM");
+                if (maTag.indexOf("1") > 0) {
+                    tagging.setNumber("sng");
+                } else if (maTag.indexOf("2") > 0) {
+                    tagging.setNumber("plu");
+                }
             }
         }
     }
@@ -277,7 +295,7 @@ public class TagMapper {
                     fillGerund(tagging);
                 }
             } else if (maTag.indexOf("av") == 0) {
-                mapRB(tagging, tag);
+                tagging.setPos("Rb");
                 return;
             }
         }
@@ -444,15 +462,11 @@ public class TagMapper {
     void mapPOS(WTagging tagging, String tag) {
         tagging.setLemma("$");
         tagging.setPos("MkPOS");
-
-
     }
 
     void mapCollocation(WTagging tagging) {
         String word = tagging.getForm().toLowerCase();
         WTagging collocation = MorphologicalDatabase.collocations.get(word);
-
-
 
         if (collocation != null) {
             tagging.copyWTags(collocation);
