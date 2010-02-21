@@ -573,8 +573,8 @@ My neighbour has not repaired the roof of his house for a long time.
 My uncle lived in London for five years and then he moved to Paris.
 Has Peter had lunch?
 A terrible accident has happened; a car ran into a group of children and killed three of them.
-I shell ring you up as soon as mother has come back.
-I shell ring you up after mother has come back.
+I shall ring you up as soon as mother has come back.
+I shall ring you up after mother has come back.
 Little Paul will come here at once if Grannie has made a cake.
 Mary will not be permitted to go for a walk in the park unless she has done her homework.
 Jane has not eaten anything and so she is hungry now.
@@ -793,3 +793,95 @@ The pupils had been reading the lesson for five minutes when the school master e
 Harry explained to his mother that he had been watching TV at 7 o'clock.
 "We have been learning English for two years," the children told me.
 The children told me that they had been learning English for two years.
+I shall go.
+We shall go.
+I shall not go.
+We shall not go.
+I shan't go.
+We shan't go.
+Shall I go?
+Shall we go?
+Shall I not go?
+Shall we not go?
+Shan't I go?
+Shan't we go?
+I will go.
+We will go.
+You will go.
+He will go.
+She will go.
+It will go.
+They will go.
+I'll go.
+We'll go.
+You'll go.
+He'll go.
+She'll go.
+It'll go.
+They'll go.
+I will not go.
+We will not go.
+You will not go.
+He will not go.
+She will not go.
+It will not go.
+They will not go.
+I won't go.
+We won't go.
+You won't go.
+He won't go.
+She won't go.
+It won't go.
+They won't go.
+Will I go?
+Will we go?
+Will you go?
+Will he go?
+Will she go?
+Will it go?
+Will they go?
+Will I not go?
+Will we not go?
+Will you not go?
+Will he not go?
+Will she not go?
+Will it not go?
+Will they not go?
+Won't I go?
+Won't we go?
+Won't you go?
+Won't he go?
+Won't she go?
+Won't it go?
+Won't they go?
+I shall go on an interesting trip next week.
+My friend will see a good film in the afternoon.
+I shall read this book if she gives it to me.
+If the rain stops, the boys will play in the garden.
+Shall I open this window?
+Shall we open this window?
+Would you like me to open this window?
+Would you like us to open this window?
+Will you help me with this translation?
+Are you willing to help me with this translation?
+Would you like to help me with this translation?
+We shall speak when we think fit.
+The enemy shall not pass!
+If you repair this car, you shall have a three days' holiday.
+As you have not taken care of the book you borrowed, you shall not have another one!
+If Mary has done such a thing, she shall pay dearly for it.
+"But thy eternal summer shall not die."
+I have decided that she shall go there at once.
+Payment shall be made in due time.
+I will pay you as much as you ask for.
+I will do this problem even if I have to stay up the whole night.
+I won't make such a mistake again.
+That girl under the tree will be his sister.
+This school will hold more than one thousand pupils.
+Boys will be boys.
+Sometimes she will look out of the window for hours without hearing anything around her.
+If you will help us, we shall be greteful to you.
+If you want to help us, we shall be grateful to you.
+If you help us, we shall finish our work in time.
+
+

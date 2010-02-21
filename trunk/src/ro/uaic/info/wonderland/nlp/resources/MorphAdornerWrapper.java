@@ -185,19 +185,19 @@ public class MorphAdornerWrapper {
                 splitPosesive(taggings, tOkEn, pos, aWord.getLemmata());
 
             } else if (token.equals("i'm")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "am", "be");
             } else if (token.equals("you're")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "are", "be");
             } else if (token.equals("he's")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "is", "be");
             } else if (token.equals("she's")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "is", "be");
             } else if (token.equals("it's")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "is", "be");
             } else if (token.equals("we're")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "are", "be");
             } else if (token.equals("they're")) {
-                splitPos(taggings, tOkEn, pos, "be");
+                splitPos(taggings, tOkEn, pos, "are", "be");
 
             } else if (token.equals("isn't")) {
                 splitNeg(taggings, tOkEn, pos, "be");
@@ -216,7 +216,7 @@ public class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "do");
 
             } else if (token.equals("i've")) {
-                splitPos(taggings, tOkEn, pos, "have");
+                splitPos(taggings, tOkEn, pos, "have", "have");
             } else if (token.equals("hasn't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
             } else if (token.equals("haven't")) {
@@ -224,12 +224,31 @@ public class MorphAdornerWrapper {
             } else if (token.equals("hadn't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
 
+            } else if (token.equals("shan't")) {
+                splitNeg(taggings, tOkEn, pos, "shell");
+
+            } else if (token.equals("i'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
             } else if (token.equals("we'll")) {
-                splitPos(taggings, tOkEn, pos, "will");
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("you'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("he'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("she'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("it'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("they'll")) {
+                splitPos(taggings, tOkEn, pos, "will", "will");
+            } else if (token.equals("won't")) {
+                splitNeg(taggings, tOkEn, pos, "will");
             } else if (token.equals("i'd")) {
-                splitPos(taggings, tOkEn, pos, "will");
+                splitPos(taggings, tOkEn, pos, "would", "will");
 
             } else if (token.equals("o'clock")) {
+                justCopy(taggings, aWord);
+            } else if (token.equals("'")) {
                 justCopy(taggings, aWord);
 
             } else {
@@ -246,7 +265,7 @@ public class MorphAdornerWrapper {
         taggings.add(tagging);
     }
 
-    private static void splitPos(List<WTagging> taggings, String contraction, String[] pos, String lemmata) {
+    private static void splitPos(List<WTagging> taggings, String contraction, String[] pos, String token, String lemmata) {
         String[] parts = contraction.split("'");
         WTagging tagging = new WTagging();
         tagging.setToken(parts[0]);
@@ -255,7 +274,7 @@ public class MorphAdornerWrapper {
         taggings.add(tagging);
 
         tagging = new WTagging();
-        tagging.setToken("'" + parts[1]);
+        tagging.setToken(token);
         tagging.setLemma(lemmata);
         tagging.setPartsOfSpeech(pos[1]);
         taggings.add(tagging);
