@@ -192,20 +192,30 @@ public class MorphAdornerWrapper {
                 splitPos(taggings, tOkEn, pos, "be");
             } else if (token.equals("they're")) {
                 splitPos(taggings, tOkEn, pos, "be");
+
             } else if (token.equals("isn't")) {
                 splitNeg(taggings, tOkEn, pos, "be");
             } else if (token.equals("aren't")) {
                 splitNeg(taggings, tOkEn, pos, "be");
+            } else if (token.equals("weren't")) {
+                splitNeg(taggings, tOkEn, pos, "be");
+            } else if (token.equals("wasn't")) {
+                splitNeg(taggings, tOkEn, pos, "be");
+
             } else if (token.equals("don't")) {
                 splitNeg(taggings, tOkEn, pos, "do");
             } else if (token.equals("doesn't")) {
                 splitNeg(taggings, tOkEn, pos, "do");
+            } else if (token.equals("didn't")) {
+                splitNeg(taggings, tOkEn, pos, "do");
+
             } else if (token.equals("hasn't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
             } else if (token.equals("haven't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
             } else if (token.equals("hadn't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
+
             } else if (token.equals("we'll")) {
                 splitPos(taggings, tOkEn, pos, "will");
             } else {
