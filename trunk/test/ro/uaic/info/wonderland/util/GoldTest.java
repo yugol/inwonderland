@@ -29,7 +29,7 @@ public class GoldTest {
         MessageProcessor msgProc = new MessageProcessor();
 
         int firstSentence = 1;
-        int lastSentence = 400;
+        int lastSentence = 500;
         if (lastSentence < firstSentence) {
             lastSentence = level1.getSentenceCount();
         }
@@ -60,8 +60,6 @@ public class GoldTest {
                 }
                 ++wordCount;
             }
-            System.out.print(".");
-            System.out.flush();
             ++sentenceCount;
         }
         TestUtil.saveKbAndMarkings(msgProc);

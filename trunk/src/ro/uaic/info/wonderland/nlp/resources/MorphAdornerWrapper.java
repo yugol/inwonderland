@@ -218,14 +218,22 @@ public class MorphAdornerWrapper {
 
             } else if (token.equals("we'll")) {
                 splitPos(taggings, tOkEn, pos, "will");
+
+            } else if (token.equals("o'clock")) {
+                justCopy(taggings, aWord);
+
             } else {
                 throw new RuntimeException("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata());
             }
         } else {
-            WTagging tagging = new WTagging();
-            copyAdornedWord(tagging, aWord);
-            taggings.add(tagging);
+            justCopy(taggings, aWord);
         }
+    }
+
+    private static void justCopy( List<WTagging> taggings, AdornedWord aWord) {
+        WTagging tagging = new WTagging();
+        copyAdornedWord(tagging, aWord);
+        taggings.add(tagging);
     }
 
     private static void splitPos(List<WTagging> taggings, String contraction, String[] pos, String lemmata) {

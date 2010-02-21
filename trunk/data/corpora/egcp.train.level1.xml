@@ -2995,15 +2995,14 @@
     <sentence idx="391">
         <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
         <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">'s</word>
-        <word _idx="3" _pos="Jj" lemma="high">high</word>
-        <word _idx="4" _pos="NnCOM" lemma="time" num="sng">time</word>
-        <word _idx="5" _pos="JjPOS" lemma="my" num="sng" pers="st">my</word>
-        <word _idx="6" _pos="NnCOM" lemma="son" num="sng">son</word>
-        <word _idx="7" _pos="Vb" lemma="learn" mood="ind" tense="pt">learned</word>
-        <word _idx="8" _pos="NnPRP" lemma="english" num="sng">English</word>
-        <word _idx="9" lemma=",">,</word>
-        <word _idx="10" _pos="Rb" lemma="too">too</word>
-        <word _idx="11" lemma=".">.</word>
+        <word _idx="3" _pos="NnCOM" lemma="high_time" num="sng">high_time</word>
+        <word _idx="4" _pos="JjPOS" lemma="my" num="sng" pers="st">my</word>
+        <word _idx="5" _pos="NnCOM" lemma="son" num="sng">son</word>
+        <word _idx="6" _pos="Vb" lemma="learn" mood="ind" tense="pt">learned</word>
+        <word _idx="7" _pos="NnPRP" lemma="english" num="sng">English</word>
+        <word _idx="8" lemma=",">,</word>
+        <word _idx="9" _pos="Rb" lemma="too">too</word>
+        <word _idx="10" lemma=".">.</word>
     </sentence>
     <sentence idx="392">
         <word _idx="1" _pos="JjPOS" lemma="our" num="plu" pers="st">Our</word>
@@ -3430,7 +3429,7 @@
         <word _idx="9" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
         <word _idx="10" _pos="Vb" lemma="see" mood="ind" tense="pt">saw</word>
         <word _idx="11" _pos="ArIDF" lemma="a">a</word>
-        <word _idx="12" _pos="Jj" lemma="flying">flying</word>
+        <word _idx="12" _pos="Jj" lemma="fly" mood="ger">flying</word>
         <word _idx="13" _pos="NnCOM" lemma="saucer" num="sng">saucer</word>
         <word _idx="14" _pos="PrPRE" lemma="in">in</word>
         <word _idx="15" _pos="ArDEF" lemma="the">the</word>
@@ -3486,7 +3485,7 @@
     </sentence>
     <sentence idx="448">
         <word _idx="1" _pos="JjPOS" lemma="our" num="plu" pers="st">Our</word>
-        <word _idx="2" _pos="NnCOM" lemma="neighbor" num="plu">neighbors</word>
+        <word _idx="2" _pos="NnCOM" lemma="neighbour" num="plu">neighbors</word>
         <word _idx="3" _pos="Vb" lemma="do" mood="ind" tense="pt">did</word>
         <word _idx="4" _pos="Rb" lemma="not">not</word>
         <word _idx="5" _pos="Vb" lemma="come" mood="sinf">come</word>
