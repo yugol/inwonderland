@@ -63,11 +63,8 @@ public class TagMapper {
 
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
-            String word = tagging.getForm().toLowerCase();
-            if (maTag.charAt(0) == 'p' && maTag.charAt(1) == 'i') {
-                WTagging pnidf = MorphologicalDatabase.pnidf.get(word);
-                if (pnidf != null) {
-                    tagging.copyWTags(pnidf);
+            if ((maTag.indexOf("pi") == 0) || (maTag.indexOf("n2-jn") == 0)) {
+                if (tryIndefinitePronoun(tagging)) {
                     return;
                 }
             } else if (maTag.indexOf("vvg") == 0) {
@@ -78,7 +75,6 @@ public class TagMapper {
                 tagging.setTense("pt");
                 return;
             } else if (maTag.indexOf("av") == 0) {
-                // tagging.setPos("Rb");
                 mapRB(tagging, tag);
                 return;
             }
@@ -203,11 +199,17 @@ public class TagMapper {
             tagging.copyWTags(cjsub);
         } else {
             String maTag = tagging.getPartsOfSpeech();
-            if (maTag != null && maTag.charAt(0) == 'c') {
-                tagging.setPos("CjSUB");
-            } else {
-                tagging.setPos("PrCjSUB");
+            if (maTag != null) {
+                if (maTag.indexOf("c") == 0) {
+                    tagging.setPos("CjSUB");
+                    return;
+                } else if (maTag.indexOf("p") == 0) {
+                    tagging.setPos("Pr");
+                    return;
+                }
             }
+            tagging.setPos("PrCjSUB");
+
         }
     }
 
@@ -248,7 +250,8 @@ public class TagMapper {
         WTagging rb = MorphologicalDatabase.rb.get(word);
 
         if (rb != null) {
-            tagging.copyWTags(rb);
+            tagging.copyWTagsAndLemma(rb);
+            return;
         } else {
             tagging.setPos("Rb");
         }
@@ -262,7 +265,7 @@ public class TagMapper {
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if ("av-j".equals(maTag)) {
-                if (word.lastIndexOf("ly") == (word.length() - 2)) {
+                if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
                     tagging.setPos("RbMNN");
                 }
             } else if (maTag.indexOf("n") == 0) {
@@ -278,10 +281,16 @@ public class TagMapper {
 
     void mapJJ(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
-        WTagging jj = MorphologicalDatabase.jj.get(word);
 
+        WTagging jj = MorphologicalDatabase.jj.get(word);
         if (jj != null) {
             tagging.copyWTags(jj);
+            return;
+        }
+
+        WTagging jjidf = MorphologicalDatabase.jjind.get(word);
+        if (jjidf != null) {
+            tagging.copyWTagsAndLemma(jjidf);
             return;
         }
 
@@ -408,12 +417,8 @@ public class TagMapper {
     void mapEX(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
 
-
-
         if (word.equals("there")) {
             tagging.setPos("RbEX");
-
-
         }
     }
 
@@ -421,12 +426,8 @@ public class TagMapper {
         String word = tagging.getForm().toLowerCase();
         WTagging pnint = MorphologicalDatabase.pnint.get(word);
 
-
-
         if (pnint != null) {
             tagging.copyWTags(pnint);
-
-
         }
     }
 
@@ -434,12 +435,9 @@ public class TagMapper {
         // String word = tagging.getForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
 
-
         if (maTag != null) {
             if (maTag.indexOf("vvg") >= 0) {
                 fillGerund(tagging);
-
-
             }
         }
     }
@@ -449,28 +447,16 @@ public class TagMapper {
         WTagging rb = MorphologicalDatabase.rb.get(word);
         WTagging pr = MorphologicalDatabase.pr.get(word);
 
-
-
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
-
-
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
-
-
         } else {
             tagging.setPos("PrRbPLC_Dir");
-
-
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
-
-
             } else {
                 tagging.setLemma(noLemma);
-
-
             }
         }
     }
@@ -488,5 +474,15 @@ public class TagMapper {
             tagging.copyWTags(collocation);
 
         }
+    }
+
+    private boolean tryIndefinitePronoun(WTagging tagging) {
+        String word = tagging.getForm().toLowerCase();
+        WTagging pnidf = MorphologicalDatabase.pnidf.get(word);
+        if (pnidf != null) {
+            tagging.copyWTagsAndLemma(pnidf);
+            return true;
+        }
+        return false;
     }
 }
