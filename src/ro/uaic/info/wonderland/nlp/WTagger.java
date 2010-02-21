@@ -65,6 +65,8 @@ public class WTagger {
                 tm.mapRP(tagging, tag);
             } else if (tag.equals("POS")) { // POS
                 tm.mapPOS(tagging, tag);
+            } else if (tag.equals("PDT")) { // PDT
+                tm.mapPDT(tagging, tag);
             }
         }
     }
@@ -115,6 +117,8 @@ public class WTagger {
             } else if (tag.equals("RP")) { // RP
                 tagging = ma.analyzeParticle(lcWord, tag);
             } else if (tag.equals("POS")) { // POS
+                tagging = ma.analyzePossEnding(lcWord, tag);
+            } else if (tag.equals("PDT")) { // PDT
                 tagging = ma.analyzePossEnding(lcWord, tag);
             }
 

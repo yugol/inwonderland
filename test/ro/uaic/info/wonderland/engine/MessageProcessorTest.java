@@ -34,7 +34,7 @@ public class MessageProcessorTest {
         candidate.writeToFile(candidateFile);
     }
 
-    @Test
+    // @Test
     public void testOne() throws Exception {
         MessageProcessor instance = new MessageProcessor();
 
@@ -46,10 +46,10 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testMany() throws Exception {
-        int from = 1;
-        int to = 1;
+        int from = 885;
+        int to = 0;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.plain.txt"));
         MessageProcessor instance = new MessageProcessor();
