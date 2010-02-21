@@ -883,5 +883,95 @@ Sometimes she will look out of the window for hours without hearing anything aro
 If you will help us, we shall be greteful to you.
 If you want to help us, we shall be grateful to you.
 If you help us, we shall finish our work in time.
+I shall be walking.
+We shall be walking.
+I shall not be walking.
+We shall not be walking.
+I shan't be walking.
+We shan't be walking.
+Shall I be walking?
+Shall we be walking?
+Shall I not be walking?
+Shall we not be walking?
+Shan't I be walking?
+Shan't we be walking?
+I will be walking.
+We will be walking.
+You will be walking.
+He will be walking.
+She will be walking.
+It will be walking.
+They will be walking.
+I'll be walking.
+We'll be walking.
+You'll be walking.
+He'll be walking.
+She'll be walking.
+It'll be walking.
+They'll be walking.
+I will not be walking.
+We will not be walking.
+You will not be walking.
+He will not be walking.
+She will not be walking.
+It will not be walking.
+They will not be walking.
+I won't be walking.
+We won't be walking.
+You won't be walking.
+He won't be walking.
+She won't be walking.
+It won't be walking.
+They won't be walking.
+Will I be walking?
+Will we be walking?
+Will you be walking?
+Will he be walking?
+Will she be walking?
+Will it be walking?
+Will they be walking?
+Will I not be walking?
+Will we not be walking?
+Will you not be walking?
+Will he not be walking?
+Will she not be walking?
+Will it not be walking?
+Will they not be walking?
+Won't I be walking?
+Won't we be walking?
+Won't you be walking?
+Won't he be walking?
+Won't she be walking?
+Won't it be walking?
+Won't they be walking?
+This time tomorrow we shall be watching TV.
+Lucy will be writting letters all day long.
+We shall be spending our next holiday in the mountains.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

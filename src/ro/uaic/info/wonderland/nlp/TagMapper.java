@@ -143,7 +143,7 @@ public class TagMapper {
                             tagging.setMood("ind");
                             tagging.setTense("pt");
                             return;
-                        } 
+                        }
                     }
                 }
                 tagging.setMood("ind");
@@ -163,8 +163,12 @@ public class TagMapper {
                         if (maTag.charAt(2) == 'i') {
                             tagging.setMood("sinf");
                         } else if (maTag.charAt(2) == 'b') {
-                            tagging.setMood("ind");
-                            tagging.setTense("ps");
+                            if (maTag.charAt(1) == 'b') {
+                                tagging.setMood("sinf");
+                            } else {
+                                tagging.setMood("ind");
+                                tagging.setTense("ps");
+                            }
                         } else if (maTag.charAt(2) == 'd') {
                             tagging.setMood("ind");
                             tagging.setTense("pt");
@@ -201,6 +205,14 @@ public class TagMapper {
                     tagging.setLemma("be");
                 }
             } else if (tag.equals("VBN")) {
+                if (maTag != null) {
+                    if (maTag.indexOf("v") == 0) {
+                        if (maTag.charAt(2) == 'g') {
+                            tagging.setMood("ger");
+                            return;
+                        }
+                    }
+                }
                 tagging.setMood("par");
                 tagging.setTense("pt");
             }
