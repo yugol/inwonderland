@@ -17,6 +17,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import java.io.StringReader;
 import java.util.List;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.util.CodeTimer;
 
 /**
  *
@@ -29,10 +30,12 @@ public abstract class StanfordParserWrapper {
     static GrammaticalStructureFactory gsf;
 
     static {
+        CodeTimer timer = new CodeTimer("initializing StanfordParserWrapper");
         lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
         dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
         gsf = lp.getOp().langpack().grammaticalStructureFactory();
+        timer.stop();
     }
 
     public static LexicalizedParser getParser() {

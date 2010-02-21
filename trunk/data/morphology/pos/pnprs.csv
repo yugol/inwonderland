@@ -1,5 +1,5 @@
 form,lemma,pos,gender,number,wcase,person,comp,mood,tense
-I,I,PnPRS,,sng,,st,,,
+i,i,PnPRS,,sng,,st,,,
 me,me,PnPRS,,sng,,st,,,
 we,we,PnPRS,,plu,,st,,,
 us,us,PnPRS,,plu,,st,,,

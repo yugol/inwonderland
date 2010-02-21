@@ -21,23 +21,29 @@ public class GoldTest {
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
+        Globals.useMorphAdornerTagsInWordForm = true;
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.plain.txt"));
         Corpus level1 = new Corpus();
         level1.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
         MessageProcessor msgProc = new MessageProcessor();
 
+        int firstSentence = 1;
+        int lastSentence = 50;
+        if (lastSentence < firstSentence) {
+            lastSentence = level1.getSentenceCount();
+        }
         int errorCount = 0;
         int wordCount = 0;
         int sentenceCount = 0;
-        for (int i = 1; i <= level1.getSentenceCount(); ++i) {
+        for (int i = firstSentence; i <= lastSentence; ++i) {
             boolean printed = false;
             String sentence = plain.get(i - 1);
 
             msgProc.processMessage(sentence);
             WTagging[] expected = level1.getSentencePosProps(i);
-            WTagging[] actual = msgProc.getKb().getSentencePosProps(i, false);
-            assertEquals(expected.length, actual.length);
+            WTagging[] actual = msgProc.getKb().getSentencePosProps(i - firstSentence + 1, false);
+            assertEquals("At sentence " + i, expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {
                 String errStr = WTaggingUtil.areConsistent(expected[j], actual[j]);
@@ -55,8 +61,10 @@ public class GoldTest {
                 ++wordCount;
             }
             System.out.print(".");
+            System.out.flush();
             ++sentenceCount;
         }
+        TestUtil.saveKbAndMarkings(msgProc);
         System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
         assertEquals(0, errorCount);
     }

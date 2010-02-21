@@ -29,11 +29,11 @@ public class MessageProcessor {
     public String processMessage(String msg) {
         String resp = "Done.";
 
-        for (List<? extends HasWord> sent : Pipeline.getTokenisedSentences(msg)) {
-            Object[] parse = Pipeline.parse(sent);
-            WTagging[] wTags = (WTagging[]) parse[0];
+        for (List<WTagging> sentence : Pipeline.getTokens(msg)) {
+            Object[] parse = Pipeline.parse(sentence);
+            sentence = (List<WTagging>) parse[0];
             List<TypedDependency> deps = (List<TypedDependency>) parse[1];
-            ekb.addSentenceFact(wTags, deps);
+            ekb.addSentenceFact(sentence, deps);
         }
 
         return resp;

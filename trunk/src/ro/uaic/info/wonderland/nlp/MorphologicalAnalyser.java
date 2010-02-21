@@ -39,7 +39,7 @@ public class MorphologicalAnalyser {
     WTagging analyzeNoun(String word, String tag) {
         WTagging tagging = new WTagging();
         IndexWord wnWord = WordNetWrapper.lookup(word, POS.NOUN);
-        WTagging pnind = MorphologicalDatabase.pnind.get(word);
+        WTagging pnind = MorphologicalDatabase.pnidf.get(word);
 
         if (wnWord != null && pnind == null) {
             tagging.setLemma(wnWord.getLemma());
@@ -116,7 +116,7 @@ public class MorphologicalAnalyser {
         if (vb != null) {
             tagging.copyNoFormNoPennNoSenses(vb);
         } else {
-            IndexWord wnWord = wnWord = WordNetWrapper.lookup(word, POS.VERB);
+            IndexWord wnWord = WordNetWrapper.lookup(word, POS.VERB);
 
             if (wnWord != null) {
                 tagging.setLemma(wnWord.getLemma());

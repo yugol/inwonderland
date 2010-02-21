@@ -4,6 +4,9 @@
  */
 package ro.uaic.info.wonderland.nlp;
 
+import edu.northwestern.at.utils.corpuslinguistics.adornedword.AdornedWord;
+import edu.stanford.nlp.ling.HasTag;
+import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.util.StringUtils;
 import java.util.ArrayList;
 import net.didion.jwnl.data.Synset;
@@ -12,13 +15,19 @@ import net.didion.jwnl.data.Synset;
  *
  * @author Iulian
  */
-public class WTagging {
+public class WTagging implements HasWord, HasTag, AdornedWord {
 
     private static final String empty = "";
+    // word form tags
     private String form = null; // word form
     private String lemma = null; // dictionary form
-    private String pos = null; // POS tag by Wonderland
-    private String pennTag = null; // POS tag by Stanford Parser
+    // mapping tags
+    private String pennTag = null; // Penn Treebank POS tag
+    private String maTag = null; // MorphAddorder POS tag
+    private String spelling = null;
+    private Synset[] senses = null; // from WordNet
+    // Wonderland tags
+    private String pos = null; // Wonderland POS tag
     private String gender = null; // masculine, feminine, neuter, common
     private String number = null; // singular, plural
     private String wcase = null; // nominative, genitive, dative, accusative
@@ -26,10 +35,22 @@ public class WTagging {
     private String comp = null; // comparative, superlative
     private String mood = null; // indicative, subjunctive, conditional, ...
     private String tense = null; // present, past, future, ...
-    private Synset[] senses = null; // from WordNet
+    // collocation mark
+    private boolean collocation = false;
 
     public void copyNoFormNoPennNoSenses(WTagging other) {
         this.lemma = other.lemma;
+        this.pos = other.pos;
+        this.gender = other.gender;
+        this.number = other.number;
+        this.wcase = other.wcase;
+        this.person = other.person;
+        this.comp = other.comp;
+        this.mood = other.mood;
+        this.tense = other.tense;
+    }
+
+    public void copyWTagsOnly(WTagging other) {
         this.pos = other.pos;
         this.gender = other.gender;
         this.number = other.number;
@@ -211,5 +232,92 @@ public class WTagging {
         chunks[8] = ((mood == null) ? ("") : (mood));
         chunks[9] = ((tense == null) ? ("") : (tense));
         return StringUtils.join(chunks, ",");
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(pennTag);
+        sb.append(" \t");
+        sb.append(maTag);
+        sb.append(" \t");
+        sb.append(form);
+        sb.append(" [");
+        sb.append(lemma);
+        sb.append("] \t\t");
+        sb.append(pos);
+        return sb.toString();
+    }
+
+    public String word() {
+        return form;
+    }
+
+    public void setWord(String word) {
+        setForm(word);
+    }
+
+    public String tag() {
+        return pennTag;
+    }
+
+    public void setTag(String tag) {
+        setPennTag(tag);
+    }
+
+    public String getToken() {
+        return form;
+    }
+
+    public void setToken(String token) {
+        setForm(token);
+    }
+
+    public String getSpelling() {
+        return spelling;
+    }
+
+    public void setSpelling(String spelling) {
+        this.spelling = spelling;
+    }
+
+    public String getStandardSpelling() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setStandardSpelling(String standardSpelling) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public String getLemmata() {
+        return lemma;
+    }
+
+    public void setLemmata(String lemmata) {
+        setLemma(lemmata);
+    }
+
+    public String getPartsOfSpeech() {
+        return maTag;
+    }
+
+    public void setPartsOfSpeech(String partsOfSpeech) {
+        maTag = partsOfSpeech;
+    }
+
+    public int getTokenType() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setTokenType(int tokenType) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public boolean isCollocation() {
+        return collocation;
+    }
+
+    public void setCollocation(boolean collocation) {
+        this.collocation = collocation;
     }
 }

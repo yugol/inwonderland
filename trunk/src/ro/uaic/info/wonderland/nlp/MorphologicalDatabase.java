@@ -18,6 +18,7 @@ import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.util.CodeTimer;
 
 /**
  *
@@ -30,7 +31,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> pnpos;
     static Map<String, WTagging> pndem;
     static Map<String, WTagging> pnref;
-    static Map<String, WTagging> pnind;
+    static Map<String, WTagging> pnidf;
     static Map<String, WTagging> pnrec;
     static Map<String, WTagging> pnrel;
     static Map<String, WTagging> pnint;
@@ -45,6 +46,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> rbint;
     static Map<String, WTagging> rb;
     static Map<String, WTagging> jj;
+    static Map<String, WTagging> collocations;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
@@ -63,6 +65,7 @@ public abstract class MorphologicalDatabase {
     }
 
     static {
+        CodeTimer timer = new CodeTimer("initializing MorphologicalDatabase");
         for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
             String name = f.getName();
             try {
@@ -73,6 +76,7 @@ public abstract class MorphologicalDatabase {
                 Globals.exit();
             }
         }
+        timer.stop();
     }
 
     public static List<WTagging> getAllTagings(String word) {

@@ -13,6 +13,7 @@ import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.dictionary.Dictionary;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.util.CodeTimer;
 
 /**
  *
@@ -24,8 +25,10 @@ public abstract class WordNetWrapper {
 
     static {
         try {
+            CodeTimer timer = new CodeTimer("initializing WordNetWrapper");
             JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();
+            timer.stop();
         } catch (Exception ex) {
             System.out.println("Could not initialize WordNet");
             System.out.println(ex);

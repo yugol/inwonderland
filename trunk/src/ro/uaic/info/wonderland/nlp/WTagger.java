@@ -14,6 +14,60 @@ import java.util.List;
 public class WTagger {
 
     MorphologicalAnalyser ma = new MorphologicalAnalyser();
+    TagMapper tm = new TagMapper();
+
+    void addWTags(List<WTagging> sentence) {
+        for (WTagging tagging : sentence) {
+            String tag = tagging.getPennTag();
+
+            if (tagging.isCollocation()) {
+                tm.mapCollocation(tagging);
+                if (tagging.getPos() != null) {
+                    continue;
+                }
+            }
+
+            if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
+                tm.mapNN(tagging, tag);
+            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP, VB, VBG
+                tm.mapVB(tagging, tag);
+            } else if (tag.equals("IN")) { // IN
+                tm.mapIN(tagging, tag);
+            } else if (tag.equals("DT")) { // DT
+                tm.mapDT(tagging, tag);
+            } else if (tag.equals("CC")) { // CC
+                tm.mapCC(tagging, tag);
+            } else if (tag.equals("PRP")) { // PRP
+                tm.mapPRP(tagging, tag);
+            } else if (tag.equals("TO")) { // TO
+                tm.mapTO(tagging, tag);
+            } else if (tag.indexOf("RB") == 0) { // RB
+                tm.mapRB(tagging, tag);
+            } else if (tag.indexOf("JJ") == 0) { // JJ
+                tm.mapJJ(tagging, tag);
+            } else if (tag.equals("MD")) { // MD
+                tm.mapMD(tagging, tag);
+            } else if (tag.equals("WDT")) { // WDT
+                tm.mapWDT(tagging, tag);
+            } else if (tag.equals("CD")) { // CD
+                tm.mapCD(tagging, tag);
+            } else if (tag.equals("PRP$")) { // PRP$
+                tm.mapPRPS(tagging, tag);
+            } else if (tag.equals("WRB")) { // WRB
+                tm.mapWRB(tagging, tag);
+            } else if (tag.equals("EX")) { // EX
+                tm.mapEX(tagging, tag);
+            } else if (tag.equals("WP")) { // WP
+                tm.mapWP(tagging, tag);
+            } else if (tag.equals("FW")) { // FW
+                tm.mapFW(tagging, tag);
+            } else if (tag.equals("RP")) { // RP
+                tm.mapRP(tagging, tag);
+            } else if (tag.equals("POS")) { // POS
+                tm.mapPOS(tagging, tag);
+            }
+        }
+    }
 
     WTagging[] getWTagsByForm(List<TaggedWord> tSent) {
         WTagging[] wTags = new WTagging[tSent.size()];
