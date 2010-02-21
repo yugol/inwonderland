@@ -354,25 +354,20 @@ public class TagMapper {
         String word = tagging.getForm().toLowerCase();
         WTagging rbint = MorphologicalDatabase.rbint.get(word);
 
-
-
         if (rbint != null) {
             tagging.copyWTags(rbint);
-
-
         }
 
         String maTag = tagging.getPartsOfSpeech();
-
-
-        if ("q-crq".equals(maTag)) {
-            tagging.setPos("RbINT");
-
-
-        } else if ("c-crq".equals(maTag)) {
-            tagging.setPos("RbREL");
-
-
+        if (maTag != null) {
+            if ("q-crq".equals(maTag)) {
+                tagging.setPos("RbINT");
+            } else if ("c-crq".equals(maTag)) {
+                tagging.setPos("RbREL");
+            } else if ("vhdx".equals(maTag)) {
+                fillIndicative(tagging);
+                tagging.setTense("pt");
+            }
         }
     }
 

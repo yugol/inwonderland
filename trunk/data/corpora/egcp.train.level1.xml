@@ -1772,43 +1772,43 @@
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="201">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="202">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" lemma="you" pers="nd">you</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="203">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="204">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="205">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="206">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="207">
-        <word _idx="1" lemma="had" mood="ind" tense="pt">Had</word>
+        <word _idx="1" _pos="Vb" lemma="have" mood="ind" tense="pt">Had</word>
         <word _idx="2" _pos="Rb" lemma="not">n't</word>
         <word _idx="3" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
         <word _idx="4" lemma="?">?</word>
