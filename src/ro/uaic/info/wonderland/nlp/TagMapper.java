@@ -78,7 +78,8 @@ public class TagMapper {
                 tagging.setTense("pt");
                 return;
             } else if (maTag.indexOf("av") == 0) {
-                tagging.setPos("Rb");
+                // tagging.setPos("Rb");
+                mapRB(tagging, tag);
                 return;
             }
         }
@@ -109,10 +110,13 @@ public class TagMapper {
             if (maTag.indexOf("vd") == 0) {
                 tagging.setLemma("do");
             }
-
-            if (word.equals("had")) {
+            if (maTag.indexOf("vh") == 0) {
                 tagging.setLemma("have");
             }
+
+            //if (word.equals("had")) {
+            //    tagging.setLemma("have");
+            //}
 
             if (tag.equals("VBZ")) {
                 fillIndicative(tagging);
@@ -140,6 +144,9 @@ public class TagMapper {
                         } else if (maTag.charAt(2) == 'd') {
                             tagging.setMood("ind");
                             tagging.setTense("pt");
+                        } else if (maTag.charAt(2) == 'n') {
+                            tagging.setMood("par");
+                            tagging.setTense("pt");
                         }
                     } else if (maTag.indexOf("j") == 0) {
                         IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
@@ -158,18 +165,27 @@ public class TagMapper {
                 fillIndicative(tagging);
                 tagging.setTense("pt");
             } else if (tag.equals("VBG")) {
+                if (maTag != null) {
+                    if (maTag.equals("j-vvg")) {
+                        tagging.setPos("Jj");
+                        tagging.setMood("ger");
+                        return;
+                    }
+                }
                 fillGerund(tagging);
                 if (word.equals("being")) {
                     tagging.setLemma("be");
                 }
             } else if (tag.equals("VBN")) {
+                /*
                 if (maTag != null) {
-                    if (maTag.equals("vvd")) {
-                        fillIndicative(tagging);
-                        tagging.setTense("pt");
-                        return;
-                    }
+                if (maTag.equals("vvd")) {
+                fillIndicative(tagging);
+                tagging.setTense("pt");
+                return;
                 }
+                }
+                 */
                 fillParticiple(tagging);
                 tagging.setTense("pt");
             }
