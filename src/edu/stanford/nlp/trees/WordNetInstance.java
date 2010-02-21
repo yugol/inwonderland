@@ -4,8 +4,6 @@
  */
 package edu.stanford.nlp.trees;
 
-import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
-
 /**
  *
  * @author Iulian
