@@ -67,16 +67,24 @@ public class TagMapper {
                 if (tryIndefinitePronoun(tagging)) {
                     return;
                 }
-            } else if (maTag.indexOf("vvg") == 0) {
-                fillGerund(tagging);
-                return;
-            } else if (maTag.indexOf("vvd") == 0) {
-                fillIndicative(tagging);
-                tagging.setTense("pt");
-                return;
             } else if (maTag.indexOf("av") == 0) {
                 mapRB(tagging, tag);
                 return;
+            } else if (maTag.indexOf("v") == 0) {
+                if (maTag.charAt(2) == 'g') {
+                    fillGerund(tagging);
+                    return;
+                } else if (maTag.charAt(2) == 'd') {
+                    fillIndicative(tagging);
+                    tagging.setTense("pt");
+                    return;
+                } else if (maTag.charAt(2) == 'z') {
+                    fillIndicative(tagging);
+                    tagging.setTense("ps");
+                    tagging.setNumber("sng");
+                    tagging.setPerson("rd");
+                    return;
+                }
             }
         }
 
@@ -124,6 +132,12 @@ public class TagMapper {
                     if (maTag.indexOf("j") == 0) {
                         tagging.setPos("Jj");
                         return;
+                    } else if (maTag.indexOf("v") == 0) {
+                        if (maTag.charAt(2) == 'd') {
+                            fillIndicative(tagging);
+                            tagging.setTense("pt");
+                            return;
+                        }
                     }
                 }
                 fillIndicative(tagging);
@@ -206,10 +220,12 @@ public class TagMapper {
                 } else if (maTag.indexOf("p") == 0) {
                     tagging.setPos("Pr");
                     return;
+                } else if (maTag.equals("vvg")) {
+                    fillGerund(tagging);
+                    return;
                 }
             }
             tagging.setPos("PrCjSUB");
-
         }
     }
 

@@ -4997,7 +4997,7 @@
         <word _idx="7" lemma=".">.</word>
     </sentence>
     <sentence idx="625">
-        <word _idx="1" _pos="NnCOM" lemma="mother" num="sng">Mother</word>
+        <word _idx="1" _pos="NnPRP" lemma="mother" num="sng">Mother</word>
         <word _idx="2" _pos="Vb" lemma="have" mood="ind" num="sng" pers="rd" tense="ps">has</word>
         <word _idx="3" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
         <word _idx="4" _pos="Vb" lemma="water" mood="ger">watering</word>
@@ -5069,7 +5069,7 @@
         <word _idx="6" _pos="NnCOM" lemma="house" num="sng">house</word>
         <word _idx="7" _pos="PrPRE" lemma="for">for</word>
         <word _idx="8" _pos="NmCRD" lemma="2">two</word>
-        <word _idx="9" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="9" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="10" lemma=".">.</word>
     </sentence>
     <sentence idx="631">
@@ -5082,12 +5082,12 @@
         <word _idx="7" _pos="NnCOM" lemma="house" num="sng">house</word>
         <word _idx="8" _pos="PrPRE" lemma="for">for</word>
         <word _idx="9" _pos="NmCRD" lemma="2">two</word>
-        <word _idx="10" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="10" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="11" lemma=".">.</word>
     </sentence>
     <sentence idx="632">
         <word _idx="1" _pos="RbINT" lemma="how">How</word>
-        <word _idx="2" _pos="Jj" lemma="long">long</word>
+        <word _idx="2" _pos="Rb" lemma="long">long</word>
         <word _idx="3" _pos="Vb" lemma="have" mood="ind" tense="ps">have</word>
         <word _idx="4" _pos="PnPRS" lemma="you" pers="nd">you</word>
         <word _idx="5" _pos="Vb" lemma="study" mood="par" tense="pt">studied</word>
@@ -5096,7 +5096,7 @@
     </sentence>
     <sentence idx="633">
         <word _idx="1" _pos="RbINT" lemma="how">How</word>
-        <word _idx="2" _pos="Jj" lemma="long">long</word>
+        <word _idx="2" _pos="Rb" lemma="long">long</word>
         <word _idx="3" _pos="Vb" lemma="have" mood="ind" tense="ps">have</word>
         <word _idx="4" _pos="PnPRS" lemma="you" pers="nd">you</word>
         <word _idx="5" _pos="Vb" lemma="be" mood="par" tense="pt">been</word>
@@ -5111,7 +5111,7 @@
         <word _idx="4" _pos="NnPRP" lemma="jim" num="sng">Jim</word>
         <word _idx="5" _pos="PrPRE" lemma="for">for</word>
         <word _idx="6" _pos="NmCRD" lemma="5">five</word>
-        <word _idx="7" _pos="NnCOM" lemma="years" num="plu">years</word>
+        <word _idx="7" _pos="NnCOM" lemma="year" num="plu">years</word>
         <word _idx="8" lemma=".">.</word>
     </sentence>
     <sentence idx="635">
@@ -5119,7 +5119,7 @@
         <word _idx="2" _pos="Vb" lemma="have" mood="ind" num="sng" pers="rd" tense="ps">has</word>
         <word _idx="3" _pos="Vb" lemma="love" mood="par" tense="pt">loved</word>
         <word _idx="4" _pos="PnPRS" lemma="you" pers="nd">you</word>
-        <word _idx="5" _pos="PrSUB" lemma="since">since</word>
+        <word _idx="5" _pos="Pr" lemma="since">since</word>
         <word _idx="6" _pos="JjDEM" lemma="that" num="sng">that</word>
         <word _idx="7" _pos="NnCOM" lemma="day" num="sng">day</word>
         <word _idx="8" lemma=".">.</word>
