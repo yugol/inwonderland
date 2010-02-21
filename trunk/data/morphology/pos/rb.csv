@@ -87,3 +87,4 @@ upwards,upwards,RbPLC_Dir,,,,,,,
 west,west,RbPLC_Dir,,,,,,,
 westward,westward,RbPLC_Dir,,,,,,,
 westwards,westwards,RbPLC_Dir,,,,,,,
+shell,shell,Md,,,,,,,ps

@@ -67,6 +67,9 @@ public class MorphAdornerWrapper {
 
     public static List<List<WTagging>> tagText(String text) {
         List<List<String>> sentences = splitter.extractSentences(text, tokenizer);
+        for (List<String> sentence : sentences) {
+            ensureSentenceEnd(sentence);
+        }
         List<List<AdornedWord>> taggedSentences = posTagger.tagSentences(sentences);
         List<List<WTagging>> taggingss = new ArrayList<List<WTagging>>();
         for (List<AdornedWord> taggedSentence : taggedSentences) {
@@ -176,8 +179,9 @@ public class MorphAdornerWrapper {
         if (tOkEn.indexOf('\'') >= 0) {
             String[] pos = aWord.getPartsOfSpeech().split(lemmaSeparatorRegex);
             String token = tOkEn.toLowerCase();
-            if (pos[0].indexOf("ng") == 0) {
+            if ((pos[0].indexOf("n") == 0) && (pos[0].indexOf("g") > 0)) {
                 splitPosesive(taggings, tOkEn, pos, aWord.getLemmata());
+
             } else if (token.equals("i'm")) {
                 splitPos(taggings, tOkEn, pos, "be");
             } else if (token.equals("you're")) {
@@ -223,14 +227,14 @@ public class MorphAdornerWrapper {
                 justCopy(taggings, aWord);
 
             } else {
-                throw new RuntimeException("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata());
+                throw new RuntimeException("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata() + "/" + aWord.getPartsOfSpeech());
             }
         } else {
             justCopy(taggings, aWord);
         }
     }
 
-    private static void justCopy( List<WTagging> taggings, AdornedWord aWord) {
+    private static void justCopy(List<WTagging> taggings, AdornedWord aWord) {
         WTagging tagging = new WTagging();
         copyAdornedWord(tagging, aWord);
         taggings.add(tagging);
@@ -269,7 +273,7 @@ public class MorphAdornerWrapper {
         String[] parts = contraction.split("'");
         WTagging tagging = new WTagging();
         tagging.setToken(parts[0]);
-        tagging.setLemma(lemmata);
+        tagging.setLemma(lemmata.split("'")[0]);
         tagging.setPartsOfSpeech(pos[0]);
         taggings.add(tagging);
 
@@ -278,5 +282,19 @@ public class MorphAdornerWrapper {
         tagging.setLemma(tagging.getToken().toLowerCase());
         tagging.setPartsOfSpeech(null);
         taggings.add(tagging);
+    }
+
+    private static void ensureSentenceEnd(List<String> sentence) {
+        int lastWordIndex = sentence.size() - 1;
+        String lastWord = sentence.get(lastWordIndex);
+        int lastCharIndex = lastWord.length() - 1;
+        if (lastCharIndex > 0 && lastWord.charAt(lastCharIndex) == '.') {
+            if (Character.isDigit(lastWord.charAt(lastCharIndex - 1))) {
+                lastWord = lastWord.substring(0, lastCharIndex);
+                sentence.remove(lastWordIndex);
+                sentence.add(lastWord);
+                sentence.add(".");
+            }
+        }
     }
 }

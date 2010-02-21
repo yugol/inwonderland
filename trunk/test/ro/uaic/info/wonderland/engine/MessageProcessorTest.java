@@ -38,7 +38,7 @@ public class MessageProcessorTest {
     public void testOne() throws Exception {
         MessageProcessor instance = new MessageProcessor();
 
-        String resp = instance.processMessage("It's high time my son learnt English , too .");
+        String resp = instance.processMessage("I shell ring you up after mother has come back.");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");
