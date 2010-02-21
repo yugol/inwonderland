@@ -176,7 +176,9 @@ public class MorphAdornerWrapper {
         if (tOkEn.indexOf('\'') >= 0) {
             String[] pos = aWord.getPartsOfSpeech().split(lemmaSeparatorRegex);
             String token = tOkEn.toLowerCase();
-            if (token.equals("i'm")) {
+            if (pos[0].indexOf("ng") == 0) {
+                splitPosesive(taggings, tOkEn, pos, aWord.getLemmata());
+            } else if (token.equals("i'm")) {
                 splitPos(taggings, tOkEn, pos, "be");
             } else if (token.equals("you're")) {
                 splitPos(taggings, tOkEn, pos, "be");
@@ -194,6 +196,16 @@ public class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "be");
             } else if (token.equals("aren't")) {
                 splitNeg(taggings, tOkEn, pos, "be");
+            } else if (token.equals("don't")) {
+                splitNeg(taggings, tOkEn, pos, "do");
+            } else if (token.equals("doesn't")) {
+                splitNeg(taggings, tOkEn, pos, "do");
+            } else if (token.equals("hasn't")) {
+                splitNeg(taggings, tOkEn, pos, "have");
+            } else if (token.equals("haven't")) {
+                splitNeg(taggings, tOkEn, pos, "have");
+            } else if (token.equals("hadn't")) {
+                splitNeg(taggings, tOkEn, pos, "have");
             } else if (token.equals("we'll")) {
                 splitPos(taggings, tOkEn, pos, "will");
             } else {
@@ -206,7 +218,7 @@ public class MorphAdornerWrapper {
         }
     }
 
-    private static void splitPos(List<WTagging> taggings, String contraction, String[] pos, String verb) {
+    private static void splitPos(List<WTagging> taggings, String contraction, String[] pos, String lemmata) {
         String[] parts = contraction.split("'");
         WTagging tagging = new WTagging();
         tagging.setToken(parts[0]);
@@ -216,15 +228,15 @@ public class MorphAdornerWrapper {
 
         tagging = new WTagging();
         tagging.setToken("'" + parts[1]);
-        tagging.setLemma(verb);
+        tagging.setLemma(lemmata);
         tagging.setPartsOfSpeech(pos[1]);
         taggings.add(tagging);
     }
 
-    private static void splitNeg(List<WTagging> taggings, String contraction, String[] pos, String verb) {
+    private static void splitNeg(List<WTagging> taggings, String contraction, String[] pos, String lemmata) {
         WTagging tagging = new WTagging();
         tagging.setToken(contraction.substring(0, contraction.length() - 3));
-        tagging.setLemma(verb);
+        tagging.setLemma(lemmata);
         tagging.setPartsOfSpeech(pos[0]);
         taggings.add(tagging);
 
@@ -232,6 +244,21 @@ public class MorphAdornerWrapper {
         tagging.setToken("n't");
         tagging.setLemma("not");
         tagging.setPartsOfSpeech("xx");
+        taggings.add(tagging);
+    }
+
+    private static void splitPosesive(List<WTagging> taggings, String contraction, String[] pos, String lemmata) {
+        String[] parts = contraction.split("'");
+        WTagging tagging = new WTagging();
+        tagging.setToken(parts[0]);
+        tagging.setLemma(lemmata);
+        tagging.setPartsOfSpeech(pos[0]);
+        taggings.add(tagging);
+
+        tagging = new WTagging();
+        tagging.setToken("'" + parts[1]);
+        tagging.setLemma(tagging.getToken().toLowerCase());
+        tagging.setPartsOfSpeech(null);
         taggings.add(tagging);
     }
 }

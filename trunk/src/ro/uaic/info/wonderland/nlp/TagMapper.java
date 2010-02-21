@@ -76,6 +76,9 @@ public class TagMapper {
             } else if (maTag.indexOf("av") == 0) {
                 mapRB(tagging, tag);
                 return;
+            } else if (maTag.indexOf("j") == 0) {
+                // mapJJ(tagging, tag);
+                // return;
             }
         }
 
@@ -100,28 +103,44 @@ public class TagMapper {
         if (vb != null) {
             tagging.copyWTagsAndLemma(vb);
         } else {
+            String maTag = tagging.getPartsOfSpeech();
+
+            if (maTag.indexOf("vd") == 0) {
+                tagging.setLemma("do");
+            }
+
+            if (word.equals("had")) {
+                tagging.setLemma("have");
+            }
+
             if (tag.equals("VBZ")) {
                 fillIndicative(tagging);
                 tagging.setNumber("sng");
                 tagging.setPerson("rd");
                 tagging.setTense("ps");
             } else if (tag.equals("VBP")) {
+                if (maTag != null) {
+                    if (maTag.indexOf("j") == 0) {
+                        mapJJ(tagging, tag);
+                        return;
+                    }
+                }
                 fillIndicative(tagging);
                 tagging.setTense("ps");
             } else if (tag.equals("VB")) {
                 tagging.setPos("Vb");
-                String maTag = tagging.getPartsOfSpeech();
                 if (maTag != null) {
-                    if (maTag.charAt(0) == 'v') {
-                        if (maTag.charAt(1) == 'v') {
-                            if (maTag.charAt(2) == 'i') {
-                                tagging.setMood("sinf");
-                            } else if (maTag.charAt(2) == 'b') {
-                                tagging.setMood("ind");
-                                tagging.setTense("ps");
-                            }
+                    if (maTag.length() >= 3) {
+                        if (maTag.charAt(2) == 'i') {
+                            tagging.setMood("sinf");
+                        } else if (maTag.charAt(2) == 'b') {
+                            tagging.setMood("ind");
+                            tagging.setTense("ps");
+                        } else if (maTag.charAt(2) == 'd') {
+                            tagging.setMood("ind");
+                            tagging.setTense("pt");
                         }
-                    } else if (maTag.charAt(0) == 'j') {
+                    } else if (maTag.indexOf("j") == 0) {
                         IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
                         if (wnWord == null) {
                             wnWord = WordNetWrapper.lookup(word, POS.NOUN);
@@ -139,6 +158,9 @@ public class TagMapper {
                 tagging.setTense("pt");
             } else if (tag.equals("VBG")) {
                 fillGerund(tagging);
+                if (word.equals("being")) {
+                    tagging.setLemma("be");
+                }
             } else if (tag.equals("VBN")) {
                 fillParticiple(tagging);
                 tagging.setTense("pt");
@@ -254,6 +276,9 @@ public class TagMapper {
                 if (maTag.equals("vvg")) {
                     fillGerund(tagging);
                 }
+            } else if (maTag.indexOf("av") == 0) {
+                mapRB(tagging, tag);
+                return;
             }
         }
     }
@@ -279,8 +304,12 @@ public class TagMapper {
         } else if (pnrel != null && cjsub != null) {
             tagging.copyWTags(cjsub);
             String maTag = tagging.getPartsOfSpeech();
-            if (maTag != null && maTag.charAt(0) == 'c' && maTag.charAt(1) == 's') {
-                tagging.setPos("CjSUB");
+            if (maTag != null) {
+                if (maTag.indexOf("cs") == 0) {
+                    tagging.setPos("CjSUB");
+                } else if (maTag.indexOf("r-crq") == 0) {
+                    tagging.setPos("PnREL");
+                }
             } else {
                 tagging.setPos("CjSUBPnREL");
             }
@@ -307,8 +336,17 @@ public class TagMapper {
         } else if (pnpos == null && jjpos != null) {
             tagging.copyWTags(jjpos);
         } else if (pnpos != null && jjpos != null) {
-            tagging.setLemma(pnpos.getLemma());
-            tagging.setPos("PnJjPOS");
+            String maTag = tagging.getPartsOfSpeech();
+            if (maTag != null) {
+                if (maTag.indexOf("png") == 0) {
+                    tagging.setPos("PnPOS");
+                } else if (maTag.indexOf("po") == 0) {
+                    tagging.setPos("JjPOS");
+                }
+            } else {
+                tagging.setLemma(pnpos.getLemma());
+                tagging.setPos("PnJjPOS");
+            }
         }
     }
 
@@ -316,20 +354,37 @@ public class TagMapper {
         String word = tagging.getForm().toLowerCase();
         WTagging rbint = MorphologicalDatabase.rbint.get(word);
 
+
+
         if (rbint != null) {
             tagging.copyWTags(rbint);
+
+
         }
 
-        if ("q-crq".equals(tagging.getPartsOfSpeech())) {
+        String maTag = tagging.getPartsOfSpeech();
+
+
+        if ("q-crq".equals(maTag)) {
             tagging.setPos("RbINT");
+
+
+        } else if ("c-crq".equals(maTag)) {
+            tagging.setPos("RbREL");
+
+
         }
     }
 
     void mapEX(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
 
+
+
         if (word.equals("there")) {
             tagging.setPos("RbEX");
+
+
         }
     }
 
@@ -337,17 +392,25 @@ public class TagMapper {
         String word = tagging.getForm().toLowerCase();
         WTagging pnint = MorphologicalDatabase.pnint.get(word);
 
+
+
         if (pnint != null) {
             tagging.copyWTags(pnint);
+
+
         }
     }
 
     void mapFW(WTagging tagging, String tag) {
         // String word = tagging.getForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
+
+
         if (maTag != null) {
             if (maTag.indexOf("vvg") >= 0) {
                 fillGerund(tagging);
+
+
             }
         }
     }
@@ -357,16 +420,28 @@ public class TagMapper {
         WTagging rb = MorphologicalDatabase.rb.get(word);
         WTagging pr = MorphologicalDatabase.pr.get(word);
 
+
+
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
+
+
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
+
+
         } else {
             tagging.setPos("PrRbPLC_Dir");
+
+
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
+
+
             } else {
                 tagging.setLemma(noLemma);
+
+
             }
         }
     }
@@ -374,14 +449,19 @@ public class TagMapper {
     void mapPOS(WTagging tagging, String tag) {
         tagging.setLemma("$");
         tagging.setPos("MkPOS");
+
+
     }
 
     void mapCollocation(WTagging tagging) {
         String word = tagging.getForm().toLowerCase();
         WTagging collocation = MorphologicalDatabase.collocations.get(word);
 
+
+
         if (collocation != null) {
             tagging.copyWTags(collocation);
+
         }
     }
 }
