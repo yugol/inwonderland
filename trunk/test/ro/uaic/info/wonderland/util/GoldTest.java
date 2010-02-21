@@ -29,7 +29,7 @@ public class GoldTest {
         MessageProcessor msgProc = new MessageProcessor();
 
         int firstSentence = 1;
-        int lastSentence = 600;
+        int lastSentence = 700;
         if (lastSentence < firstSentence) {
             lastSentence = level1.getSentenceCount();
         }
@@ -37,6 +37,8 @@ public class GoldTest {
         int wordCount = 0;
         int sentenceCount = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
+            // System.out.println("Sentence: " + i);
+
             boolean printed = false;
             String sentence = plain.get(i - 1);
 

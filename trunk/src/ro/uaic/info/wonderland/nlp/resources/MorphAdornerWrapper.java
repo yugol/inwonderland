@@ -21,6 +21,7 @@ import edu.northwestern.at.utils.corpuslinguistics.tokenizer.PennTreebankTokeniz
 import edu.northwestern.at.utils.corpuslinguistics.tokenizer.WordTokenizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 import ro.uaic.info.wonderland.Globals;
 import ro.uaic.info.wonderland.nlp.WTagging;
 import ro.uaic.info.wonderland.util.CodeTimer;
@@ -50,6 +51,7 @@ public class MorphAdornerWrapper {
             standardizer = new DefaultSpellingStandardizer();
             spellingTokenizer = new PennTreebankTokenizer();
             partOfSpeechTags = wordLexicon.getPartOfSpeechTags();
+            lemmatizer.setDictionary(new TreeSet<String>());
             timer.stop();
         } catch (Exception ex) {
             System.out.println("Error initializing MorphAdorner");
@@ -213,6 +215,8 @@ public class MorphAdornerWrapper {
             } else if (token.equals("didn't")) {
                 splitNeg(taggings, tOkEn, pos, "do");
 
+            } else if (token.equals("i've")) {
+                splitPos(taggings, tOkEn, pos, "have");
             } else if (token.equals("hasn't")) {
                 splitNeg(taggings, tOkEn, pos, "have");
             } else if (token.equals("haven't")) {
