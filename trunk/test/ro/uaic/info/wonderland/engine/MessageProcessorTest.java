@@ -48,7 +48,7 @@ public class MessageProcessorTest {
 
     @Test
     public void testMany() throws Exception {
-        int from = 885;
+        int from = 947;
         int to = 0;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.plain.txt"));
