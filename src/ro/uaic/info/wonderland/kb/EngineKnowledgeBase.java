@@ -33,7 +33,7 @@ public class EngineKnowledgeBase {
     static {
         try {
             CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
-            System.load(new File(Globals.getDataFolder(), "cogitant.dll").getCanonicalPath());
+            System.load(new File(Globals.getResFolder(), "cogitant.dll").getCanonicalPath());
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error loading cogitant.dll");
