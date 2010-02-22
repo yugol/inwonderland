@@ -11,12 +11,18 @@
 package ro.uaic.info.wonderland.ui;
 
 import com.jidesoft.plaf.LookAndFeelFactory;
+import edu.northwestern.at.morphadorner.MorphAdorner;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import ro.uaic.info.wonderland.kb.CoGuiWrapper;
+import ro.uaic.info.wonderland.nlp.resources.MorphAdornerWrapper;
+import ro.uaic.info.wonderland.nlp.resources.StanfordParserWrapper;
+import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
+import sun.swing.SwingUtilities2;
 
 /**
  *
@@ -29,6 +35,7 @@ public class Gui extends javax.swing.JFrame {
     /** Creates new form Gui */
     public Gui() {
         initComponents();
+        processMessageButton.setEnabled(false);
         CoGuiWrapper.instance().setWindowListener(new WindowAdapter() {
 
             @Override
@@ -352,12 +359,24 @@ public class Gui extends javax.swing.JFrame {
             System.err.println("Problem occurs when loading Default Look & Feel");
             return;
         }
+
+        final Gui gui = new Gui();
+
+
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Gui().setVisible(true);
+                gui.setVisible(true);
             }
         });
+        Thread libLoader = new Thread(new Runnable() {
+
+            public void run() {
+                MorphAdornerWrapper.init();
+                gui.processMessageButton.setEnabled(true);
+            }
+        });
+        libLoader.run();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;

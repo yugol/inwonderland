@@ -38,6 +38,9 @@ public final class StanfordParserWrapper {
         timer.stop();
     }
 
+    public static void init() {
+    }
+
     public static LexicalizedParser getParser() {
         return lp;
     }
