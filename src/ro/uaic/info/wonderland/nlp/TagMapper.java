@@ -4,6 +4,7 @@
  */
 package ro.uaic.info.wonderland.nlp;
 
+import java.util.List;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
 import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
@@ -14,9 +15,61 @@ import ro.uaic.info.wonderland.nlp.resources.WordNetWrapper;
  */
 public class TagMapper {
 
-    static final String noLemma = "_~_";
+    private static final String noLemma = "_~_";
 
-    private void fillParticiple_(WTagging tagging) {
+    void mapWTags(List<WTagging> sentence) {
+        for (WTagging tagging : sentence) {
+            String tag = tagging.getPennTag();
+
+            if (tagging.isCollocation()) {
+                mapCollocation(tagging);
+                if (tagging.getPos() != null) {
+                    continue;
+                }
+            }
+
+            if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
+                mapNN(tagging, tag);
+            } else if (tag.indexOf("VB") == 0) { // VBZ, VBP, VB, VBG
+                mapVB(tagging, tag);
+            } else if (tag.equals("IN")) { // IN
+                mapIN(tagging, tag);
+            } else if (tag.equals("DT")) { // DT
+                mapDT(tagging, tag);
+            } else if (tag.equals("CC")) { // CC
+                mapCC(tagging, tag);
+            } else if (tag.equals("PRP")) { // PRP
+                mapPRP(tagging, tag);
+            } else if (tag.equals("TO")) { // TO
+                mapTO(tagging, tag);
+            } else if (tag.indexOf("RB") == 0) { // RB
+                mapRB(tagging, tag);
+            } else if (tag.indexOf("JJ") == 0) { // JJ
+                mapJJ(tagging, tag);
+            } else if (tag.equals("MD")) { // MD
+                mapMD(tagging, tag);
+            } else if (tag.equals("WDT")) { // WDT
+                mapWDT(tagging, tag);
+            } else if (tag.equals("CD")) { // CD
+                mapCD(tagging, tag);
+            } else if (tag.equals("PRP$")) { // PRP$
+                mapPRPS(tagging, tag);
+            } else if (tag.equals("WRB")) { // WRB
+                mapWRB(tagging, tag);
+            } else if (tag.equals("EX")) { // EX
+                mapEX(tagging, tag);
+            } else if (tag.equals("WP")) { // WP
+                mapWP(tagging, tag);
+            } else if (tag.equals("FW")) { // FW
+                mapFW(tagging, tag);
+            } else if (tag.equals("RP")) { // RP
+                mapRP(tagging, tag);
+            } else if (tag.equals("POS")) { // POS
+                mapPOS(tagging, tag);
+            } else if (tag.equals("PDT")) { // PDT
+                mapPDT(tagging, tag);
+            }
+        }
     }
 
     public void mapDT(WTagging tagging, String tag) {

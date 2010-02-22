@@ -10,7 +10,7 @@ import ro.uaic.info.wonderland.nlp.WTagging;
  *
  * @author Iulian
  */
-public class WTaggingUtil {
+public final class WTaggingUtil {
 
     private static String indent = "        ";
 

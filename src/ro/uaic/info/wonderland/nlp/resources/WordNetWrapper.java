@@ -19,19 +19,19 @@ import ro.uaic.info.wonderland.util.CodeTimer;
  *
  * @author Iulian
  */
-public abstract class WordNetWrapper {
+public final class WordNetWrapper {
 
     static Dictionary dict;
 
     static {
         try {
-            CodeTimer timer = new CodeTimer("initializing WordNetWrapper");
+            CodeTimer timer = new CodeTimer("WordNetWrapper");
             JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();
             timer.stop();
         } catch (Exception ex) {
-            System.out.println("Could not initialize WordNet");
-            System.out.println(ex);
+            System.err.println("Error initializing WordNetWrapper");
+            System.err.println(ex);
             Globals.exit();
         }
     }

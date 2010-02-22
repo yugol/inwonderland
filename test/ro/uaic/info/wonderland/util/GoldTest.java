@@ -23,7 +23,7 @@ public class GoldTest {
         System.out.println("testGoldCorpus");
         Globals.useMorphAdornerTagsInWordForm = true;
 
-        List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.plain.txt"));
+        List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus level1 = new Corpus();
         level1.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
         MessageProcessor msgProc = new MessageProcessor();

@@ -15,16 +15,16 @@ import ro.uaic.info.wonderland.util.CodeTimer;
  *
  * @author Iulian
  */
-public abstract class StanfordPostaggerWrapper {
+public final class StanfordPostaggerWrapper {
 
     static {
         try {
-            CodeTimer timer = new CodeTimer("initializing StanfordPostaggerWrapper");
+            CodeTimer timer = new CodeTimer("StanfordPostaggerWrapper");
             new MaxentTagger(Globals.getStanfordPostaggerFile().getAbsolutePath());
             timer.stop();
         } catch (Exception ex) {
-            System.out.println("Error initializing Stanford Postagger");
-            System.out.println(ex);
+            System.err.println("Error initializing StanfordPostaggerWrapper");
+            System.err.println(ex);
             Globals.exit();
         }
     }

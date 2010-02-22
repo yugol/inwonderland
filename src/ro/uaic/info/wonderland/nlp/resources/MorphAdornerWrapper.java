@@ -26,7 +26,7 @@ import ro.uaic.info.wonderland.Globals;
 import ro.uaic.info.wonderland.nlp.WTagging;
 import ro.uaic.info.wonderland.util.CodeTimer;
 
-public class MorphAdornerWrapper {
+public final class MorphAdornerWrapper {
 
     private static String lemmaSeparator = "|";
     private static String lemmaSeparatorRegex = "\\|";
@@ -41,7 +41,7 @@ public class MorphAdornerWrapper {
 
     static {
         try {
-            CodeTimer timer = new CodeTimer("initializing MorphAdornerWrapper");
+            CodeTimer timer = new CodeTimer("MorphAdornerWrapper");
             tokenizer = new DefaultWordTokenizer();
             posTagger = new DefaultPartOfSpeechTagger();
             splitter = new DefaultSentenceSplitter();
@@ -54,8 +54,8 @@ public class MorphAdornerWrapper {
             lemmatizer.setDictionary(new TreeSet<String>());
             timer.stop();
         } catch (Exception ex) {
-            System.out.println("Error initializing MorphAdorner");
-            System.out.println(ex);
+            System.err.println("Error initializing MorphAdornerWrapper");
+            System.err.println(ex);
             Globals.exit();
         }
     }
@@ -245,6 +245,9 @@ public class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "will");
             } else if (token.equals("i'd")) {
                 splitPos(taggings, tOkEn, pos, "would", "will");
+
+            } else if (token.equals("can't")) {
+                splitNeg(taggings, tOkEn, pos, "can");
 
             } else if (token.equals("o'clock")) {
                 justCopy(taggings, aWord);

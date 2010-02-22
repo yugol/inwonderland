@@ -10,10 +10,13 @@
  */
 package ro.uaic.info.wonderland.ui;
 
+import com.jidesoft.plaf.LookAndFeelFactory;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.kb.CoGuiWrapper;
 
 /**
  *
@@ -26,6 +29,14 @@ public class Gui extends javax.swing.JFrame {
     /** Creates new form Gui */
     public Gui() {
         initComponents();
+        CoGuiWrapper.instance().setWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                CoGuiWrapper.instance().hideGui();
+                setVisible(true);
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -233,15 +244,10 @@ public class Gui extends javax.swing.JFrame {
                 saveKbAsMenuItemActionPerformed(null);
             }
             if (messageProcessor.getLastFile() != null) {
-                messageProcessor.saveKb(messageProcessor.getLastFile());
-
-                // setVisible(false);
-                // Process coGui = Runtime.getRuntime().exec(Globals.getCoGuiLauncher());
-                // coGui.waitFor();
-                // setVisible(true);
-
-                Runtime.getRuntime().exec(Globals.getCoGuiLauncherFile().getAbsolutePath());
-                Globals.exit();
+                File kbFile = messageProcessor.getLastFile();
+                messageProcessor.saveKb(kbFile);
+                CoGuiWrapper.instance().showGui(kbFile);
+                setVisible(false);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -278,6 +284,14 @@ public class Gui extends javax.swing.JFrame {
                 messageProcessor.openKb(file);
                 setTitle(baseTitle + " - " + file.getName());
                 historyTextArea.setText("");
+                StringBuffer report = new StringBuffer();
+                report.append("'");
+                report.append(file.getName());
+                report.append("' contains ");
+                int msgCount = messageProcessor.getKb().getSentenceFactCount();
+                report.append(msgCount);
+                report.append((msgCount == 1) ? (" message.") : (" messages."));
+                noteProgramResponse(report.toString());
                 inputTextArea.setText("");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex);
@@ -332,6 +346,12 @@ public class Gui extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        try {
+            LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
+        } catch (Throwable t) {
+            System.err.println("Problem occurs when loading Default Look & Feel");
+            return;
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
