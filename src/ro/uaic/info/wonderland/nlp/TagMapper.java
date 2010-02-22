@@ -288,7 +288,7 @@ public class TagMapper {
                     tagging.setPos("CjSUB");
                     return;
                 } else if (maTag.indexOf("p") == 0) {
-                    tagging.setPos("Pr");
+                    tagging.setPos("Pp");
                     return;
                 } else if (maTag.equals("vvg")) {
                     tagging.setPos("Vb");
@@ -299,7 +299,7 @@ public class TagMapper {
                     return;
                 }
             }
-            tagging.setPos("PrCjSUB");
+            tagging.setPos("PpCjSUB");
         }
     }
 
@@ -550,7 +550,7 @@ public class TagMapper {
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
         } else {
-            tagging.setPos("PrRbPLC_Dir");
+            tagging.setPos("PpRbPLC_Dir");
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
             } else {

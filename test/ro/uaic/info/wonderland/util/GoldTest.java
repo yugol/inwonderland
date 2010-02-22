@@ -44,7 +44,7 @@ public class GoldTest {
 
             msgProc.processMessage(sentence);
             WTagging[] expected = level1.getSentencePosProps(i);
-            WTagging[] actual = msgProc.getKb().getSentencePosProps(i - firstSentence + 1, false);
+            WTagging[] actual = msgProc.getKb().getSentenceWTaggings(i - firstSentence + 1, false);
             assertEquals("At sentence " + i, expected.length, actual.length);
 
             for (int j = 0; j < actual.length; ++j) {

@@ -177,6 +177,7 @@ public class EngineKnowledgeBase {
             }
             for (int t = 0; t < types.length; ++t) {
                 types[t] = toConceptTypeId(types[t]);
+                // System.out.println(types[t] + " : " + tagging.getForm());
             }
             c.setType(types);
             c.setIndividual(individualId);
@@ -191,10 +192,6 @@ public class EngineKnowledgeBase {
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = toRelationTypeId(relationTypeLabel);
             String relationId = toRelationId(relationTypeLabel, (i + 1));
-
-            if (Globals.testDebug) {
-                System.out.println(relationType + "(" + gov + ", " + dep + ")");
-            }
 
             Relation r = new Relation(relationId);
             r.addType(relationType);
@@ -250,7 +247,7 @@ public class EngineKnowledgeBase {
                     prop.setTense(vocabulary.getConceptTypeLabel(type, language));
                 }
             } catch (RuntimeException ex) {
-                System.err.println("At concept: " + type + " : " + id);
+                System.err.println("At concept: " + type + " : " + id + " -> " + getConceptForm(id));
                 throw ex;
             }
         }
@@ -261,7 +258,7 @@ public class EngineKnowledgeBase {
         return prop;
     }
 
-    public WTagging[] getSentencePosProps(int idx, boolean newTagsOnly) {
+    public WTagging[] getSentenceWTaggings(int idx, boolean newTagsOnly) {
         CGraph cg = getSentenceFact(idx);
         WTagging[] props = new WTagging[cg.getConcepts().size()];
         for (int j = 1; j <= props.length; ++j) {

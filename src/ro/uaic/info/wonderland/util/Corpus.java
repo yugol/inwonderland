@@ -55,7 +55,7 @@ public class Corpus {
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
-        WTagging[] props = ekb.getSentencePosProps(idx, true);
+        WTagging[] props = ekb.getSentenceWTaggings(idx, true);
         for (int j = 0; j < props.length; ++j) {
             WTagging prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
