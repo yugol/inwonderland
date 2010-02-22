@@ -14,16 +14,17 @@ import java.io.IOException;
 public final class Globals {
 
     public static boolean testDebug = false;
-    private static File dataFolder = new File("./data/");
+    private static File dataFolder = new File("./res/");
     public static boolean useMorphAdornerTagsInWordForm = false;
 
-    public static String getDataFolder() {
+    public static String getResFolder() {
         String dataPath = System.getProperty("wonderland.data.path");
         if (dataPath == null) {
             try {
                 dataPath = dataFolder.getCanonicalPath();
             } catch (IOException ex) {
-                System.out.println("Error reading the data folder.");
+                System.err.println("Error reading the data folder.");
+                System.err.println(ex);
                 exit();
             }
         }
@@ -31,24 +32,24 @@ public final class Globals {
     }
 
     public static File getStanfordParserFile() {
-        return new File(getDataFolder(), "englishPCFG.ser.gz");
+        return new File(getResFolder(), "englishPCFG.ser.gz");
     }
 
     public static File getStanfordPostaggerFile() {
-        // return new File(getDataFolder(), "bidirectional-distsim-wsj-0-18.tagger");
-        return new File(getDataFolder(), "/left3words-wsj-0-18.tagger");
+        // return new File(getResFolder(), "bidirectional-distsim-wsj-0-18.tagger");
+        return new File(getResFolder(), "/left3words-wsj-0-18.tagger");
     }
 
     public static File getDefaultParseKBFile() {
-        return new File(getDataFolder(), "defaultparsekb.cogxml");
+        return new File(getResFolder(), "defaultparsekb.cogxml");
     }
 
     public static File getCoGuiLauncherFile() {
-        return new File(getDataFolder(), "cogui-launcher.bat");
+        return new File(getResFolder(), "cogui-launcher.bat");
     }
 
     public static File getJwnlPropertiesFile() {
-        return new File(getDataFolder(), "jwnl_properties.xml");
+        return new File(getResFolder(), "jwnl_properties.xml");
     }
 
     public static File getCorporaFolder() {
@@ -56,7 +57,7 @@ public final class Globals {
     }
 
     public static File getMorphologyFolder() {
-        return new File(getDataFolder(), "morphology");
+        return new File(getResFolder(), "morphology");
     }
 
     public static void exit() {
