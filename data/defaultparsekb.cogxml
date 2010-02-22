@@ -2,8 +2,8 @@
 <cogxml>
 <support name="vocabulary">
 <conceptTypes>
-<ctype id="ct_JjIND" label="JjIND" x="460" y="2660">
-<translation descr="Indefinite adjective" label="JjIND" lang="en"/>
+<ctype id="ct_JjIDF" label="JjIDF" x="460" y="2660">
+<translation descr="Indefinite adjective" label="JjIDF" lang="en"/>
 </ctype>
 <ctype id="ct_SpVerb" label="SpVerb" x="460" y="3840">
 <translation descr="" label="SpVerb" lang="en"/>
@@ -464,8 +464,8 @@
 <ctype id="ct_Pn" label="Pn" x="350" y="1850">
 <translation descr="Pronoun" label="Pn" lang="en"/>
 </ctype>
-<ctype id="ct_PnJjPOS" label="PnJjPOS" x="580" y="1850">
-<translation descr="Possesive Pronoun or Adhective" label="PnJjPOS" lang="en"/>
+<ctype id="ct_JjPnPOS" label="JjPnPOS" x="580" y="1850">
+<translation descr="Possesive Pronoun or Adhective" label="JjPnPOS" lang="en"/>
 </ctype>
 <ctype id="ct_PpPOS" label="PpPOS" x="460" y="2100">
 <translation descr="Postposition" label="PpPOS" lang="en"/>
@@ -492,7 +492,7 @@
 <order id1="ct_Morphology" id2="ct_Top"/>
 <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Pos"/>
 <order id1="ct_NmORD" id2="ct_Nm"/>
-<order id1="ct_JjIND" id2="ct_Jj"/>
+<order id1="ct_JjIDF" id2="ct_Jj"/>
 <order id1="ct_NmRDI" id2="ct_Nm"/>
 <order id1="ct_Comparison" id2="ct_Att"/>
 <order id1="ct_CjSUBPnREL" id2="ct_CjSUB"/>
@@ -519,7 +519,7 @@
 <order id1="ct_linf" id2="ct_inf"/>
 <order id1="ct_PpRbPLC_Dir" id2="ct_RbPLC_Dir"/>
 <order id1="ct_PRP" id2="ct_SpPronoun"/>
-<order id1="ct_PnJjPOS" id2="ct_JjPOS"/>
+<order id1="ct_JjPnPOS" id2="ct_JjPOS"/>
 <order id1="ct_NmCRD" id2="ct_Nm"/>
 <order id1="ct_FW" id2="ct_SpTag"/>
 <order id1="ct_sbj" id2="ct_Mood"/>
@@ -638,7 +638,7 @@
 <order id1="ct_ArDEF" id2="ct_Ar"/>
 <order id1="ct_ftc" id2="ct_ft"/>
 <order id1="ct_-LRB-" id2="ct_("/>
-<order id1="ct_PnJjPOS" id2="ct_PnPOS"/>
+<order id1="ct_JjPnPOS" id2="ct_PnPOS"/>
 <order id1="ct_JjREL" id2="ct_Jj"/>
 <order id1="ct_RbPLC_Dir" id2="ct_RbPLC"/>
 <order id1="ct_NNP" id2="ct_Ppoper noun"/>

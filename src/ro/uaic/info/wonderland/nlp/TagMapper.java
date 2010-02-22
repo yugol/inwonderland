@@ -484,7 +484,7 @@ public class TagMapper {
                 }
             } else {
                 tagging.setLemma(pnpos.getLemma());
-                tagging.setPos("PnJjPOS");
+                tagging.setPos("JjPnPOS");
             }
         }
     }
