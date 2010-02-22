@@ -58,7 +58,7 @@ public class StanfordParserTest {
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
         // String[] sent = {"They", "left", "one", "by", "one", "."};
-        String[] sent = "Lucy will be writting letters all day long .".split(" ");
+        String[] sent = "The woman assured us that , in less than half an hour , her baby would be sleeping.".split(" ");
         Tree parse = (Tree) lp.apply(Arrays.asList(sent));
         CollocationFinder collo = new CollocationFinder(parse, new WordNetInstance());
         parse = collo.getMangledTree();
