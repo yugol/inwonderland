@@ -36,6 +36,9 @@ public final class WordNetWrapper {
         }
     }
 
+    public static void init() {
+    }
+
     public static IndexWord lookup(String word, POS posType) {
         try {
             return dict.lookupIndexWord(posType, word);

@@ -60,6 +60,9 @@ public final class MorphAdornerWrapper {
         }
     }
 
+    public static void init() {
+    }
+
     public static void copyAdornedWord(AdornedWord to, AdornedWord from) {
         to.setToken(from.getToken());
         to.setSpelling(from.getSpelling());
