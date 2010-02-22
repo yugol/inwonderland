@@ -31,7 +31,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKnowledgeBase.ctLabel2ctId(label));
+            replaces.put(ct, EngineKnowledgeBase.toConceptTypeId(label));
             pos = kb.indexOf("<ctype", pos);
         }
 
@@ -59,7 +59,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKnowledgeBase.rtLabel2rtId(label));
+            replaces.put(ct, EngineKnowledgeBase.toRelationTypeId(label));
             pos = kb.indexOf("<rtype", pos);
         }
 

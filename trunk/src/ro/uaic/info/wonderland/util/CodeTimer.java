@@ -16,13 +16,13 @@ public class CodeTimer {
 
     public CodeTimer(String msg) {
         this.msg = msg;
-        System.err.println("Starting " + msg + " ...");
+        System.out.println("Start " + msg + " ...");
         t0 = System.currentTimeMillis();
     }
 
     public void stop() {
         t1 = System.currentTimeMillis();
         double seconds = ((double) (t1 - t0)) / 1000;
-        System.err.println("Done " + msg + " in [" + seconds + "] seconds");
+        System.out.println(" Done " + msg + " in [" + seconds + "] seconds");
     }
 }

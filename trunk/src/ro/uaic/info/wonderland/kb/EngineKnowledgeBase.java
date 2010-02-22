@@ -22,6 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ro.uaic.info.wonderland.Globals;
 import ro.uaic.info.wonderland.nlp.WTagging;
+import ro.uaic.info.wonderland.util.CodeTimer;
 
 /**
  *
@@ -29,36 +30,78 @@ import ro.uaic.info.wonderland.nlp.WTagging;
  */
 public class EngineKnowledgeBase {
 
-    static final String sentenceSetName = "sentences";
-    static NumberFormat formatter = new DecimalFormat("000");
-    static String posConceptType = ctLabel2ctId("Pos");
-    static String spTagConceptType = ctLabel2ctId("SpTag");
-    static String caseConceptType = ctLabel2ctId("Case");
-    static String comparisonConceptType = ctLabel2ctId("Comparison");
-    static String genderConceptType = ctLabel2ctId("Gender");
-    static String moodConceptType = ctLabel2ctId("Mood");
-    static String numberConceptType = ctLabel2ctId("Number");
-    static String personConceptType = ctLabel2ctId("Person");
-    static String tenseConceptType = ctLabel2ctId("Tense");
+    static {
+        try {
+            CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
+            System.load(new File(Globals.getDataFolder(), "cogitant.dll").getCanonicalPath());
+            timer.stop();
+        } catch (Exception ex) {
+            System.err.println("Error loading cogitant.dll");
+            System.err.println(ex);
+            Globals.exit();
+        }
+
+    }
+    static final String sentenceSetName = "level1";
+    static NumberFormat formatter = new DecimalFormat("0000");
+    static String posConceptType = toConceptTypeId("Pos");
+    static String spTagConceptType = toConceptTypeId("SpTag");
+    static String caseConceptType = toConceptTypeId("Case");
+    static String comparisonConceptType = toConceptTypeId("Comparison");
+    static String genderConceptType = toConceptTypeId("Gender");
+    static String moodConceptType = toConceptTypeId("Mood");
+    static String numberConceptType = toConceptTypeId("Number");
+    static String personConceptType = toConceptTypeId("Person");
+    static String tenseConceptType = toConceptTypeId("Tense");
+
+    private static String removeQuotes(String ctl) {
+        if ("''".equals(ctl)) {
+            ctl = "-OPQ-";
+        } else if ("``".equals(ctl)) {
+            ctl = "-CLQ-";
+        }
+        return ctl.replace("'", "`");
+    }
 
     static String toSentenceIndex(int num) {
         return formatter.format(num);
     }
 
     static String toSentenceId(int num) {
-        return "_gs" + toSentenceIndex(num);
+        return "l1_" + toSentenceIndex(num);
     }
 
     static String toSentenceId(String num) {
-        return "_gs" + num;
+        return toSentenceId(Integer.parseInt(num));
     }
 
-    public static String ctLabel2ctId(String ctl) {
-        return "ct_" + ctl;
+    public static String toConceptTypeId(String ctl) {
+        return "ct_" + removeQuotes(ctl);
     }
 
-    public static String rtLabel2rtId(String ctl) {
+    public static String toRelationTypeId(String ctl) {
         return "rt_" + ctl;
+    }
+
+    private static String toConceptId(WTagging tagging, int index) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(removeQuotes(tagging.getForm()));
+        sb.append("#");
+        sb.append(index);
+        sb.append("=[");
+        if (tagging.getPennTag() != null) {
+            sb.append(removeQuotes(tagging.getPennTag()));
+        }
+        sb.append("]{");
+        if (tagging.getPartsOfSpeech() != null) {
+            sb.append(removeQuotes(tagging.getPartsOfSpeech()));
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private static String toRelationId(String label, int index) {
+        return label + "~" + index;
     }
     String language = "en";
     KnowledgeBase kb;
@@ -123,8 +166,9 @@ public class EngineKnowledgeBase {
 
         for (int i = 0; i < words.size(); ++i) {
             WTagging tagging = words.get(i);
-            Concept c = new Concept(buildConceptId(tagging, i + 1));
-            vocabulary.addIndividual(tagging.getLemma(), tagging.getLemma(), posConceptType, language);
+            Concept c = new Concept(toConceptId(tagging, i + 1));
+            String individualId = removeQuotes(tagging.getLemma());
+            vocabulary.addIndividual(individualId, individualId, posConceptType, language);
             String[] types = null;
             if (tagging.getPos() == null) {
                 types = new String[]{tagging.getPennTag()};
@@ -132,10 +176,10 @@ public class EngineKnowledgeBase {
                 types = tagging.asStringArray();
             }
             for (int t = 0; t < types.length; ++t) {
-                types[t] = ctLabel2ctId(types[t]);
+                types[t] = toConceptTypeId(types[t]);
             }
             c.setType(types);
-            c.setIndividual(tagging.getLemma());
+            c.setIndividual(individualId);
             cg.addVertex(c);
         }
 
@@ -145,8 +189,8 @@ public class EngineKnowledgeBase {
             String gov = getConcept(cg, getLabelIndex(tdep.gov().nodeString())).getId();
             String dep = getConcept(cg, getLabelIndex(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
-            String relationType = rtLabel2rtId(relationTypeLabel);
-            String relationId = relationTypeLabel + "~" + (i + 1);
+            String relationType = toRelationTypeId(relationTypeLabel);
+            String relationId = toRelationId(relationTypeLabel, (i + 1));
 
             if (Globals.testDebug) {
                 System.out.println(relationType + "(" + gov + ", " + dep + ")");
@@ -265,23 +309,6 @@ public class EngineKnowledgeBase {
         } else {
             return null;
         }
-    }
-
-    private String buildConceptId(WTagging tagging, int index) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(tagging.getForm());
-        sb.append("#");
-        sb.append(index);
-        sb.append("=[");
-        if (tagging.getPennTag() != null) {
-            sb.append(tagging.getPennTag());
-        }
-        sb.append("]{");
-        if (tagging.getPartsOfSpeech() != null) {
-            sb.append(tagging.getPartsOfSpeech());
-        }
-        sb.append("}");
-        return sb.toString();
     }
 
     private int getLabelIndex(String label) {

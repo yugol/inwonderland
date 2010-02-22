@@ -23,14 +23,14 @@ import ro.uaic.info.wonderland.util.CodeTimer;
  *
  * @author Iulian
  */
-public abstract class StanfordParserWrapper {
+public final class StanfordParserWrapper {
 
     static LexicalizedParser lp;
     static DocumentPreprocessor dp;
     static GrammaticalStructureFactory gsf;
 
     static {
-        CodeTimer timer = new CodeTimer("initializing StanfordParserWrapper");
+        CodeTimer timer = new CodeTimer("StanfordParserWrapper");
         lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
         dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());

@@ -3408,7 +3408,7 @@
         <word _idx="3" _pos="CjSUB" lemma="that">that</word>
         <word _idx="4" _pos="PrPRE" lemma="at">at</word>
         <word _idx="5" _pos="NmCRD" lemma="8">8</word>
-        <word _idx="6" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="6" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="7" _pos="JjPOS" lemma="my" num="sng" pers="st">my</word>
         <word _idx="8" _pos="NnCOM" lemma="brother" num="sng">brother</word>
         <word _idx="9" _pos="Vb" lemma="be" mood="ind" num="sng" tense="pt">was</word>
@@ -4207,7 +4207,7 @@
         <word _idx="2" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
         <word _idx="3" _pos="Pr" lemma="before">before</word>
         <word _idx="4" _pos="NmCRD" lemma="12">12</word>
-        <word _idx="5" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="5" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="6" _pos="PrPRE" lemma="at">at</word>
         <word _idx="7" _pos="NnCOM" lemma="noon" num="sng">noon</word>
         <word _idx="8" lemma=".">.</word>
@@ -4364,7 +4364,7 @@
         <word _idx="4" lemma="up">up</word>
         <word _idx="5" _pos="PrPRE" lemma="at">at</word>
         <word _idx="6" _pos="NmCRD" lemma="7">seven</word>
-        <word _idx="7" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="7" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="8" _pos="PrPRE" lemma="in">in</word>
         <word _idx="9" _pos="ArDEF" lemma="the">the</word>
         <word _idx="10" _pos="NnCOM" lemma="morning" num="sng">morning</word>
@@ -4374,7 +4374,7 @@
         <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
         <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">'s</word>
         <word _idx="3" _pos="NmCRD" lemma="7">7</word>
-        <word _idx="4" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="4" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="5" lemma=".">.</word>
     </sentence>
     <sentence idx="561">
@@ -5042,7 +5042,7 @@
         <word _idx="5" _pos="NnCOM" lemma="tea" num="sng">tea</word>
         <word _idx="6" _pos="CjSUB" lemma="since">since</word>
         <word _idx="7" _pos="NmCRD" lemma="5">5</word>
-        <word _idx="8" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="8" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="9" lemma=".">.</word>
     </sentence>
     <sentence idx="629">
@@ -5055,7 +5055,7 @@
         <word _idx="7" _pos="NnCOM" lemma="tea" num="sng">tea</word>
         <word _idx="8" _pos="CjSUB" lemma="since">since</word>
         <word _idx="9" _pos="NmCRD" lemma="5">5</word>
-        <word _idx="10" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="10" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="11" lemma=".">.</word>
     </sentence>
     <sentence idx="630">
@@ -6442,7 +6442,7 @@
         <word _idx="5" _pos="NnCOM" lemma="tv" num="sng">TV</word>
         <word _idx="6" _pos="PrPRE" lemma="at">at</word>
         <word _idx="7" _pos="NmCRD" lemma="7">seven</word>
-        <word _idx="8" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="8" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="9" lemma=",">,</word>
         <word _idx="10" lemma="&quot;">"</word>
         <word _idx="11" _pos="NnPRP" lemma="harry" num="sng">Harry</word>
@@ -6466,7 +6466,7 @@
         <word _idx="11" _pos="NnCOM" lemma="tv" num="sng">TV</word>
         <word _idx="12" _pos="PrPRE" lemma="at">at</word>
         <word _idx="13" _pos="NmCRD" lemma="7">7</word>
-        <word _idx="14" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="14" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="15" lemma=".">.</word>
     </sentence>
     <sentence idx="794">
@@ -7839,7 +7839,7 @@
         <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">It</word>
         <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
         <word _idx="3" _pos="NmCRD" lemma="9">nine</word>
-        <word _idx="4" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="4" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="5" lemma=".">.</word>
     </sentence>
     <sentence idx="957">
@@ -7855,7 +7855,7 @@
         <word _idx="10" _pos="NnCOM" lemma="composition" num="sng">composition</word>
         <word _idx="11" _pos="PrPRE" lemma="by">by</word>
         <word _idx="12" _pos="NmCRD" lemma="10">eleven</word>
-        <word _idx="13" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="13" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="14" lemma=".">.</word>
     </sentence>
     <sentence idx="958">
@@ -7953,7 +7953,7 @@
     <sentence idx="964">
         <word _idx="1" _pos="PrPRE" lemma="at">At</word>
         <word _idx="2" _pos="NmCRD" lemma="6">6</word>
-        <word _idx="3" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="3" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="4" _pos="JjPOS" lemma="your" pers="nd">your</word>
         <word _idx="5" _pos="NnCOM" lemma="sister" num="sng">sister</word>
         <word _idx="6" _pos="Md" lemma="will" tense="ps">will</word>
@@ -8048,7 +8048,7 @@
         <word _idx="3" _pos="Vb" lemma="leave" mood="ind" num="sng" pers="rd" tense="ps">leaves</word>
         <word _idx="4" _pos="PrPRE" lemma="at">at</word>
         <word _idx="5" _pos="NmCRD" lemma="10">10</word>
-        <word _idx="6" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="6" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="7" lemma=",">,</word>
         <word _idx="8" _pos="CjSUB" lemma="so">so</word>
         <word _idx="9" _pos="ArDEF" lemma="the">the</word>
@@ -8059,7 +8059,7 @@
         <word _idx="14" _pos="PrPRE" lemma="at">at</word>
         <word _idx="15" _pos="Rb" lemma="about">about</word>
         <word _idx="16" _pos="NmCRD" lemma="3">3</word>
-        <word _idx="17" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="17" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="18" _pos="Rb" lemma="p.m.">p.m.</word>
     </sentence>
     <sentence idx="972">
@@ -8142,7 +8142,7 @@
         <word _idx="5" _pos="Vb" lemma="arrive" mood="sinf">arrive</word>
         <word _idx="6" _pos="PrPRE" lemma="at">at</word>
         <word _idx="7" _pos="NmCRD" lemma="10">10</word>
-        <word _idx="8" _pos="Rb" lemma="o'clock">o'clock</word>
+        <word _idx="8" _pos="Rb" lemma="o`clock">o`clock</word>
         <word _idx="9" lemma=".">.</word>
     </sentence>
     <sentence idx="977">
