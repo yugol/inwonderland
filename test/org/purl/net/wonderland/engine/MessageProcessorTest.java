@@ -1,0 +1,81 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.purl.net.wonderland.engine;
+
+import org.purl.net.wonderland.engine.MessageProcessor;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
+import java.io.File;
+import java.util.List;
+import org.junit.Test;
+import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.util.Corpus;
+import org.purl.net.wonderland.util.IO;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Iulian
+ */
+public class MessageProcessorTest {
+
+    static File candidateFile = new File("test.xml");
+
+    public MessageProcessorTest() {
+        candidateFile.delete();
+    }
+
+    private void mergeToCandidate(MessageProcessor instance) throws ParserConfigurationException, SAXException, IOException {
+        Corpus candidate = new Corpus();
+        candidate.buildFrom(candidateFile);
+        candidate.addKnowledgeBase(instance.getKb());
+        candidate.writeToFile(candidateFile);
+    }
+
+    // @Test
+    public void testOne() throws Exception {
+        MessageProcessor instance = new MessageProcessor();
+
+        String resp = instance.processMessage("Mother has watered the flowers.");
+        assertEquals("Done.", resp);
+
+        File file = new File("test.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+
+    @Test
+    public void testMany() throws Exception {
+        int from = 971;
+        int to = 0;
+
+        List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
+        MessageProcessor instance = new MessageProcessor();
+
+        from -= 1;
+        to -= 1;
+        if (to < 0) {
+            to = lines.size() - 1;
+        }
+        if (to < from) {
+            to = from;
+        }
+
+        int kbIndex = 0;
+        for (int i = from; i <= to; ++i) {
+            ++kbIndex;
+            System.out.println("At line: [" + (i + 1) + "] -> (" + kbIndex + ")");
+            String line = lines.get(i);
+            System.out.println("  " + line);
+            String resp = instance.processMessage(line);
+            assertEquals("Done.", resp);
+        }
+
+        File file = new File("test.cogxml");
+        instance.saveKb(file);
+        mergeToCandidate(instance);
+    }
+}
