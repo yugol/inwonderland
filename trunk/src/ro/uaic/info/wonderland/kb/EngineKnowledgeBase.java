@@ -21,6 +21,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import ro.uaic.info.wonderland.Globals;
+import ro.uaic.info.wonderland.kb.transformations.ITransformation;
+import ro.uaic.info.wonderland.kb.transformations.TransformationManager;
 import ro.uaic.info.wonderland.nlp.WTagging;
 import ro.uaic.info.wonderland.util.CodeTimer;
 
@@ -42,7 +44,8 @@ public class EngineKnowledgeBase {
         }
 
     }
-    static final String sentenceSetName = "level1";
+    static final String level1 = "level1";
+    static final String transformationsSetName = "TRANSFORMATIONS";
     static NumberFormat formatter = new DecimalFormat("0000");
     static String posConceptType = toConceptTypeId("Pos");
     static String spTagConceptType = toConceptTypeId("SpTag");
@@ -63,16 +66,12 @@ public class EngineKnowledgeBase {
         return ctl.replace("'", "`");
     }
 
-    static String toSentenceIndex(int num) {
+    private static String toIdIndex(int num) {
         return formatter.format(num);
     }
 
-    static String toSentenceId(int num) {
-        return "l1_" + toSentenceIndex(num);
-    }
-
-    static String toSentenceId(String num) {
-        return toSentenceId(Integer.parseInt(num));
+    public static String toLevel1FactId(int num) {
+        return "l1_" + toIdIndex(num);
     }
 
     public static String toConceptTypeId(String ctl) {
@@ -103,12 +102,17 @@ public class EngineKnowledgeBase {
     private static String toRelationId(String label, int index) {
         return label + "~" + index;
     }
-    String language = "en";
-    KnowledgeBase kb;
-    Vocabulary vocabulary;
-    int sentenceFactCount = 0;
-    File lastFile = null;
-    boolean dirty = false;
+    private String language = "en";
+    private KnowledgeBase kb;
+    private Vocabulary vocabulary;
+    private int sentenceFactCount = 0;
+    private File lastFile = null;
+    private boolean dirty = false;
+    private TransformationManager tMgr = new TransformationManager();
+
+    public TransformationManager getTransformationManager() {
+        return tMgr;
+    }
 
     public EngineKnowledgeBase() throws Exception {
         openKb(null);
@@ -123,7 +127,7 @@ public class EngineKnowledgeBase {
         loadKb(file);
     }
 
-    void loadKb(File file) throws Exception {
+    private void loadKb(File file) throws Exception {
         Document doc = CogxmlReader.read(file);
         NodeList supportList = doc.getElementsByTagName("support");
         if (supportList.getLength() == 0) {
@@ -135,9 +139,13 @@ public class EngineKnowledgeBase {
         kb = CogxmlReader.buildKB(rootElement, vocabulary, language, true);
 
         sentenceFactCount = 0;
+        tMgr.setKb(kb);
         for (CGraph cg : kb.getFactGraphSet().values()) {
-            if (cg.getSet().equals(sentenceSetName)) {
+            String setName = cg.getSet();
+            if (setName.equals(level1)) {
                 sentenceFactCount++;
+            } else if (setName.equals(transformationsSetName)) {
+                tMgr.add(cg);
             }
         }
 
@@ -161,8 +169,8 @@ public class EngineKnowledgeBase {
     }
 
     public CGraph addSentenceFact(List<WTagging> words, List<TypedDependency> deps) {
-        String sentId = toSentenceIndex(++sentenceFactCount);
-        CGraph cg = new CGraph(toSentenceId(sentId), sentId, sentenceSetName, "fact");
+        String sentId = toIdIndex(++sentenceFactCount);
+        CGraph cg = new CGraph(toLevel1FactId(sentenceFactCount), sentId, level1, "fact");
 
         for (int i = 0; i < words.size(); ++i) {
             WTagging tagging = words.get(i);
@@ -207,11 +215,7 @@ public class EngineKnowledgeBase {
     }
 
     public CGraph getSentenceFact(int idx) {
-        return kb.getFactGraph(toSentenceId(idx));
-    }
-
-    public String getConceptTypeLabel(String ct) {
-        return vocabulary.getConceptTypeLabel(ct, language);
+        return kb.getFactGraph(toLevel1FactId(idx));
     }
 
     public int getSentenceFactCount() {
@@ -311,5 +315,10 @@ public class EngineKnowledgeBase {
     private int getLabelIndex(String label) {
         int beg = label.lastIndexOf("-") + 1;
         return Integer.parseInt(label.substring(beg));
+    }
+
+    public List<ITransformation> applyTransformations(String group, String graphId) throws Exception {
+        CGraph cg = kb.getFactGraph(graphId);
+        return tMgr.apply(group, cg);
     }
 }

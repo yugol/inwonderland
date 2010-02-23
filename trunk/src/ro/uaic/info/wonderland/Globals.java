@@ -60,6 +60,10 @@ public final class Globals {
         return new File(getResFolder(), "morphology");
     }
 
+    public static File getTestFolder() {
+        return new File(getResFolder(), "test");
+    }
+
     public static void exit() {
         System.exit(1);
     }

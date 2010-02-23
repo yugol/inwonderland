@@ -48,4 +48,10 @@ public class IO {
         out.write(str);
         out.close();
     }
+
+    public static String getClassPathRoot(Class<?> c) {
+        String cpr = c.getCanonicalName();
+        cpr = cpr.substring(0, cpr.lastIndexOf("."));
+        return cpr;
+    }
 }
