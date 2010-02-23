@@ -56,8 +56,8 @@ public class StanfordParserTest {
         LexicalizedParser lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
-        String[] sent = {"They", "left", "one", "by", "one", "."};
-        // String[] sent = "The woman assured us that , in less than half an hour , her baby would be sleeping.".split(" ");
+        // String[] sent = {"They", "left", "one", "by", "one", "."};
+        String[] sent = "They looked exactly alike .".split(" ");
         Tree parse = (Tree) lp.apply(Arrays.asList(sent));
         CollocationFinder collo = new CollocationFinder(parse, new WordNetInstance());
         parse = collo.getMangledTree();
