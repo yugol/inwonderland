@@ -2,13 +2,13 @@
 
 = Dependencies =
 
-see main page references
+see *Project Home* Links
 
 = Configuration =
 
 copy *englishPCFG.ser.gz* from _Stanford Parser_ distribution to `/res` folder
 
-copy *cogitant.dll* from _CoGui_ distribution to `/res` folder
+copy *cogitant.dll* from _ CoGui _ distribution to `/res` folder
 
-edit *jwnl_properties.xml* to indicate the _WordNet_ `dict` folder in 
+edit *jwnl_properties.xml* to indicate the _ WordNet _ `dict` folder in 
 <param name="dictionary_path" value="... here ..."/>
