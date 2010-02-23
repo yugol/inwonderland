@@ -10,5 +10,4 @@ copy *englishPCFG.ser.gz* from _Stanford Parser_ distribution to `/res` folder
 
 copy *cogitant.dll* from _ CoGui _ distribution to `/res` folder
 
-edit *jwnl_properties.xml* to indicate the _ WordNet _ `dict` folder in 
-<param name="dictionary_path" value="... here ..."/>
+edit *jwnl_properties.xml* to indicate the _ WordNet `dict` folder in <param name="dictionary_path" value="... here ..."/>
