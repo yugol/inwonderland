@@ -15,7 +15,6 @@ import edu.stanford.nlp.trees.GrammaticalStructureFactory;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreePrint;
 import edu.stanford.nlp.trees.TypedDependency;
-import edu.stanford.nlp.trees.WordNetInstance;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
@@ -57,8 +56,8 @@ public class StanfordParserTest {
         LexicalizedParser lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
-        // String[] sent = {"They", "left", "one", "by", "one", "."};
-        String[] sent = "The woman assured us that , in less than half an hour , her baby would be sleeping.".split(" ");
+        String[] sent = {"They", "left", "one", "by", "one", "."};
+        // String[] sent = "The woman assured us that , in less than half an hour , her baby would be sleeping.".split(" ");
         Tree parse = (Tree) lp.apply(Arrays.asList(sent));
         CollocationFinder collo = new CollocationFinder(parse, new WordNetInstance());
         parse = collo.getMangledTree();
