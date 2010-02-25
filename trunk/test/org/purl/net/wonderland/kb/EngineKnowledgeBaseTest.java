@@ -41,6 +41,9 @@ public class EngineKnowledgeBaseTest {
         String[] sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
         assertEquals(5, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
+        sTypes = kb.importWordNetHypernymHierarchy("be", POS.VERB);
+        assertEquals(13, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
         File cogxml = new File("test.cogxml");
         kb.saveKb(cogxml);
     }
