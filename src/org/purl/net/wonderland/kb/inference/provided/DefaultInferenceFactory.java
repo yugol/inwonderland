@@ -23,27 +23,27 @@
  */
 package org.purl.net.wonderland.kb.inference.provided;
 
+import org.purl.net.wonderland.kb.EngineKB;
 import org.purl.net.wonderland.kb.inference.InfFactory;
 import org.purl.net.wonderland.kb.inference.Inference;
-import org.purl.net.wonderland.util.IO;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class DefaultInfFactory implements InfFactory {
+public class DefaultInferenceFactory implements InfFactory {
 
-    String iPackage;
+    private String iPackage;
+    private final EngineKB ekb;
 
-    public DefaultInfFactory() {
-        this.iPackage = IO.getClassPathRoot(this.getClass());
-    }
-
-    public DefaultInfFactory(String iPackage) {
+    public DefaultInferenceFactory(String iPackage, EngineKB ekb) {
         this.iPackage = iPackage;
+        this.ekb = ekb;
     }
 
     public Inference createInference(String className) throws Exception {
-        return (Inference) Class.forName(iPackage + "." + className).newInstance();
+        DefaultInference inf = (DefaultInference) Class.forName(iPackage + "." + className).newInstance();
+        inf.setKb(ekb);
+        return inf;
     }
 }

@@ -24,7 +24,7 @@
 
 package org.purl.net.wonderland.engine;
 
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import org.purl.net.wonderland.kb.EngineKB;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 
 /*
@@ -42,9 +42,9 @@ Sneezy	Short beard	brown jacket, orange headpiece, red nose
  */
 public abstract class Personality {
 
-    EngineKnowledgeBase kb = null;
+    EngineKB kb = null;
 
-    public void setKb(EngineKnowledgeBase kb) {
+    public void setKb(EngineKB kb) {
         this.kb = kb;
     }
 

@@ -35,7 +35,7 @@ import java.util.List;
  */
 public interface Inference extends Comparator<Inference> {
 
-    public void init(KnowledgeBase kb, CGraph cg, int id);
+    public void init(CGraph cg, int id);
 
     public int getId();
 

@@ -27,7 +27,7 @@ package org.purl.net.wonderland.util;
 import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import org.purl.net.wonderland.kb.EngineKB;
 import org.purl.net.wonderland.engine.MessageProcessor;
 
 /**
@@ -44,7 +44,7 @@ public class CorpusTest {
         resp = msgProc.processMessage("This is the second message.");
         assertEquals("Done.", resp);
 
-        EngineKnowledgeBase ekb = msgProc.getKb();
+        EngineKB ekb = msgProc.getKb();
         Corpus corpus = new Corpus();
         corpus.buildFrom(ekb);
 

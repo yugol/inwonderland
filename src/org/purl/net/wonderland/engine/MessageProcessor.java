@@ -24,7 +24,7 @@
 
 package org.purl.net.wonderland.engine;
 
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import org.purl.net.wonderland.kb.EngineKB;
 import edu.stanford.nlp.trees.TypedDependency;
 import java.io.File;
 import java.util.List;
@@ -37,11 +37,11 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public class MessageProcessor {
 
-    EngineKnowledgeBase ekb;
+    EngineKB ekb;
     Personality personality;
 
     public MessageProcessor() throws Exception {
-        ekb = new EngineKnowledgeBase();
+        ekb = new EngineKB();
         setPersonality(new EtoGleem());
     }
 
@@ -80,7 +80,7 @@ public class MessageProcessor {
         personality.setKb(ekb);
     }
 
-    public EngineKnowledgeBase getKb() {
+    public EngineKB getKb() {
         return ekb;
     }
 }

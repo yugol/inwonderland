@@ -27,6 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.List;
+import org.purl.net.wonderland.kb.EngineKB;
 import org.purl.net.wonderland.kb.inference.Inference;
 
 /**
@@ -35,13 +36,13 @@ import org.purl.net.wonderland.kb.inference.Inference;
  */
 public abstract class DefaultInference implements Inference {
 
-    protected KnowledgeBase kb;
+    protected EngineKB kb;
     protected CGraph lhs;
     private int id;
     protected List<Projection> projections;
+    protected EngineKB ekb;
 
-    public void init(KnowledgeBase kb, CGraph lhs, int id) {
-        this.kb = kb;
+    public void init(CGraph lhs, int id) {
         this.lhs = lhs;
         this.id = id;
     }
@@ -61,5 +62,9 @@ public abstract class DefaultInference implements Inference {
 
     public void setProjections(List<Projection> projections) {
         this.projections = projections;
+    }
+
+    void setKb(EngineKB ekb) {
+        this.ekb = ekb;
     }
 }

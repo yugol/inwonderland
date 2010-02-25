@@ -23,24 +23,21 @@
  */
 package org.purl.net.wonderland.kb.inference;
 
-import org.purl.net.wonderland.kb.inference.provided.DefaultInfFactory;
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.io.File;
-import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.EngineKB;
 import org.purl.net.wonderland.util.IO;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class InfKBTest {
+public class InferenceTest {
 
-    public InfKBTest() {
+    public InferenceTest() {
     }
 
     @BeforeClass
@@ -54,22 +51,10 @@ public class InfKBTest {
     @Test
     public void testSomeMethod() throws Exception {
         File cogxml = new File(Globals.getTestFolder(), "bedtime.cogxml");
-        InfKB ikb = new InfKB(cogxml, new DefaultInfFactory(IO.getClassPathRoot(this.getClass())));
-        assertEquals(1, ikb.getInfMgr().getInfCount());
-        for (CGraph cg : ikb.getFactSetOrderedByNameIterator("level1")) {
-            String name = cg.getName();
-            System.out.println(name);
-            List<Inference> infs = ikb.findMatches("l1", cg);
-            int infCount = infs.size();
-            System.out.println("  " + infCount + " matches");
-            if (name.equals("0001")) {
-                assertEquals(1, infCount);
-            }
-            for (Inference inf : infs) {
-                inf.apply(ikb.getResultGraph());
-            }
-        }
+        EngineKB ikb = new EngineKB(IO.getClassPathRoot(this.getClass()));
+        ikb.openKb(cogxml);
+        ikb.applyInferences("l1", ikb.getSentenceFact(1));
         cogxml = new File(Globals.getTestFolder(), "bedtime.testout.cogxml");
-        ikb.save(cogxml);
+        ikb.saveKb(cogxml);
     }
 }
