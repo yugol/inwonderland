@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.kb.inference;
 
+import org.purl.net.wonderland.kb.inference.provided.DefaultInfFactory;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.io.File;
 import java.util.List;

@@ -24,23 +24,25 @@
 package org.purl.net.wonderland.kb;
 
 import edu.stanford.nlp.trees.TypedDependency;
-import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
-import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import net.didion.jwnl.data.POS;
+import net.didion.jwnl.data.Pointer;
+import net.didion.jwnl.data.PointerType;
+import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.inference.InfKB;
+import org.purl.net.wonderland.kb.inference.provided.DefaultInfFactory;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
  *
@@ -49,7 +51,6 @@ import org.purl.net.wonderland.nlp.WTagging;
 public class EngineKnowledgeBase {
 
     static final String level1 = "level1";
-    static final String transformationsSetName = "TRANSFORMATIONS";
     static NumberFormat formatter = new DecimalFormat("0000");
     static String posConceptType = toConceptTypeId("Pos");
     static String spTagConceptType = toConceptTypeId("SpTag");
@@ -107,11 +108,10 @@ public class EngineKnowledgeBase {
         return label + "~" + index;
     }
     private String language = "en";
-    private KnowledgeBase kb;
+    private InfKB kb;
     private Vocabulary vocabulary;
     private int sentenceFactCount = 0;
     private File lastFile = null;
-    private boolean dirty = false;
 
     public EngineKnowledgeBase() throws Exception {
         openKb(null);
@@ -127,37 +127,12 @@ public class EngineKnowledgeBase {
     }
 
     private void loadKb(File file) throws Exception {
-        Document doc = CogxmlReader.read(file);
-        NodeList supportList = doc.getElementsByTagName("support");
-        if (supportList.getLength() == 0) {
-            throw new Exception("vocabulary is not define in document");
-        }
-        Element support_elem = (Element) supportList.item(0);
-        vocabulary = CogxmlReader.buildVocabulary(support_elem, true, language);
-        Element rootElement = CogxmlReader.getRootElement(doc);
-        kb = CogxmlReader.buildKB(rootElement, vocabulary, language, true);
-
-        sentenceFactCount = 0;
-        for (CGraph cg : kb.getFactGraphSet().values()) {
-            String setName = cg.getSet();
-            if (setName.equals(level1)) {
-                sentenceFactCount++;
-            }
-        }
-
-        dirty = false;
+        kb = new InfKB(file, new DefaultInfFactory());
+        vocabulary = kb.getVocabulary();
     }
 
     public void saveKb(File file) throws Exception {
-        if (dirty || file != lastFile) {
-            CogxmlWriter.write(file, kb, language);
-            lastFile = file;
-        }
-        dirty = false;
-    }
-
-    public KnowledgeBase getKb() {
-        return kb;
+        kb.save(file);
     }
 
     public File getLastFile() {
@@ -206,7 +181,6 @@ public class EngineKnowledgeBase {
         }
 
         kb.addGraph(cg);
-        dirty = true;
         return cg;
     }
 
@@ -311,5 +285,58 @@ public class EngineKnowledgeBase {
     private int getLabelIndex(String label) {
         int beg = label.lastIndexOf("-") + 1;
         return Integer.parseInt(label.substring(beg));
+    }
+
+    private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
+        String senseName = particle + sense.getOffset();
+        String senseId = toConceptTypeId(senseName);
+
+        if (!vocabulary.conceptTypeIdExist(senseId)) {
+            String lemma = sense.getWord(0).getLemma().toLowerCase();
+
+            Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+            if (ptrs.length > 0) {
+                Synset hypernym = WordNetWrapper.lookup(ptrs[0].getTargetOffset(), posType);
+                parentId = importWordNetHypernymHierarchy(hypernym, posType, particle, parentId);
+            }
+
+            vocabulary.addConceptType(senseId, senseName, "[" + lemma + "] " + removeQuotes(sense.getGloss()), language);
+            vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);
+        }
+
+        return senseId;
+    }
+
+    public String[] importWordNetHypernymHierarchy(String word, POS posType) {
+        String parentLabel = null;
+        String particle = null;
+        if (posType == POS.NOUN) {
+            parentLabel = "wnNn";
+            particle = "n";
+        } else if (posType == POS.ADJECTIVE) {
+            parentLabel = "wnJj";
+            particle = "j";
+        } else if (posType == POS.ADVERB) {
+            parentLabel = "wnRb";
+            particle = "r";
+        } else if (posType == POS.VERB) {
+            parentLabel = null;
+            particle = "v";
+            throw new UnsupportedOperationException("Unsupported yet.");
+        } else {
+            return null;
+        }
+        String parentId = toConceptTypeId(parentLabel);
+        ArrayList<String> senseTypes = new ArrayList<String>(20);
+        try {
+            for (Synset sense : WordNetWrapper.getSenses(word, posType)) {
+                String senseType = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
+                senseTypes.add(senseType);
+            }
+        } catch (RuntimeException ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return senseTypes.toArray(new String[]{});
     }
 }

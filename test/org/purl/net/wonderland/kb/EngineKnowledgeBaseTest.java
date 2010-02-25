@@ -21,19 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.kb;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
-import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
+import edu.stanford.nlp.util.StringUtils;
 import java.io.File;
+import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.engine.MessageProcessor;
 
 /**
  *
@@ -42,39 +36,12 @@ import org.purl.net.wonderland.engine.MessageProcessor;
 public class EngineKnowledgeBaseTest {
 
     @Test
-    public void testKbWorks() throws Exception {
-        MessageProcessor instance = new MessageProcessor();
-
-        KnowledgeBase kb = instance.getKb().getKb();
-        Vocabulary voc = kb.getVocabulary();
-
-        voc.addIndividual("someIndividual", "the one", "_c25", "en");
-
-        CGraph cg = new CGraph("_gs001", "001", "sentences", "fact");
-        Concept c = new Concept("someConcept");
-        c.addType("_ct25");
-        c.setIndividual("someIndividual");
-
-        cg.addVertex(c);
-        Relation r = new Relation("someRelation");
-        r.addType("_rt25");
-        cg.addVertex(r);
-        cg.addEdge("someConcept", "someRelation", 1);
-
-        kb.addGraph(cg);
-        assertEquals(1, kb.getFactGraphSet().values().size());
-    }
-
-    @Test
-    public void testMessage() throws Exception {
-        String msg = "They like each other";
-        Globals.testDebug = true;
-        MessageProcessor instance = new MessageProcessor();
-
-        String resp = instance.processMessage(msg);
-        assertEquals("Done.", resp);
-
-        File file = new File("test.cogxml");
-        instance.saveKb(file);
+    public void testImportWordNetHierarchy() throws Exception {
+        EngineKnowledgeBase kb = new EngineKnowledgeBase();
+        String[] sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
+        assertEquals(5, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
+        File cogxml = new File("test.cogxml");
+        kb.saveKb(cogxml);
     }
 }

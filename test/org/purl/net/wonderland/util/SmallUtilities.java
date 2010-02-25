@@ -45,7 +45,7 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    @Test
+    // @Test
     public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
         System.out.println("normalizeConceptTypes");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
