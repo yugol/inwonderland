@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.kb;
 
 import edu.stanford.nlp.trees.TypedDependency;
@@ -41,10 +40,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.kb.transformations.ITransformation;
-import org.purl.net.wonderland.kb.transformations.TransformationManager;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.util.CodeTimer;
 
 /**
  *
@@ -52,18 +48,6 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public class EngineKnowledgeBase {
 
-    static {
-        try {
-            CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
-            System.load(new File(Globals.getResFolder(), "cogitant.dll").getCanonicalPath());
-            timer.stop();
-        } catch (Exception ex) {
-            System.err.println("Error loading cogitant.dll");
-            System.err.println(ex);
-            Globals.exit();
-        }
-
-    }
     static final String level1 = "level1";
     static final String transformationsSetName = "TRANSFORMATIONS";
     static NumberFormat formatter = new DecimalFormat("0000");
@@ -128,11 +112,6 @@ public class EngineKnowledgeBase {
     private int sentenceFactCount = 0;
     private File lastFile = null;
     private boolean dirty = false;
-    private TransformationManager tMgr = new TransformationManager();
-
-    public TransformationManager getTransformationManager() {
-        return tMgr;
-    }
 
     public EngineKnowledgeBase() throws Exception {
         openKb(null);
@@ -159,13 +138,10 @@ public class EngineKnowledgeBase {
         kb = CogxmlReader.buildKB(rootElement, vocabulary, language, true);
 
         sentenceFactCount = 0;
-        tMgr.setKb(kb);
         for (CGraph cg : kb.getFactGraphSet().values()) {
             String setName = cg.getSet();
             if (setName.equals(level1)) {
                 sentenceFactCount++;
-            } else if (setName.equals(transformationsSetName)) {
-                tMgr.add(cg);
             }
         }
 
@@ -196,7 +172,7 @@ public class EngineKnowledgeBase {
             WTagging tagging = words.get(i);
             Concept c = new Concept(toConceptId(tagging, i + 1));
             String individualId = removeQuotes(tagging.getLemma());
-            vocabulary.addIndividual(individualId, individualId, posConceptType, language);
+            vocabulary.addIndividual(individualId, individualId, null, language);
             String[] types = null;
             if (tagging.getPos() == null) {
                 types = new String[]{tagging.getPennTag()};
@@ -335,10 +311,5 @@ public class EngineKnowledgeBase {
     private int getLabelIndex(String label) {
         int beg = label.lastIndexOf("-") + 1;
         return Integer.parseInt(label.substring(beg));
-    }
-
-    public List<ITransformation> applyTransformations(String group, String graphId) throws Exception {
-        CGraph cg = kb.getFactGraph(graphId);
-        return tMgr.apply(group, cg);
     }
 }
