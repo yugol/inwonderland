@@ -24,10 +24,13 @@
 package org.purl.net.wonderland;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,37 +38,42 @@ import java.util.logging.Logger;
  */
 public final class Globals {
 
+    private static final String resFolderKey = "resFolder";
+    public static boolean testDebug = false;
+    private static String resFolder = null;
+
     static {
         Properties projProp = new Properties();
         try {
-            String[] paths = System.getProperty("java.class.path").split(";");
-            for (String path : paths) {
-                System.out.println(path);
+            File cfg = new File(System.getProperty("user.home"), "wonderland.properties");
+            if (!cfg.exists()) {
+                cfg.createNewFile();
             }
-            // projProp.load(ClassLoader.getSystemResourceAsStream("wonderland.properties"));
-            // projProp.list(System.out);
-        } catch (Exception ex) {
+
+            Reader reader = new FileReader(cfg);
+            projProp.load(reader);
+            reader.close();
+            resFolder = projProp.getProperty(resFolderKey);
+            System.out.println(resFolder);
+
+            if (resFolder == null) {
+                projProp.put(resFolderKey, new File(System.getProperty("user.dir"), "res").getCanonicalPath());
+                Writer writer = new FileWriter(cfg);
+                projProp.store(writer, "");
+                writer.close();
+                resFolder = projProp.getProperty(resFolderKey);
+                System.out.println(resFolder);
+            }
+
+        } catch (IOException ex) {
             System.err.println("Could not load properties file.");
             System.err.println(ex);
             exit();
         }
     }
-    public static boolean testDebug = false;
-    private static File resFolder = new File("./res/");
-    public static boolean useMorphAdornerTagsInWordForm = false;
 
     public static String getResFolder() {
-        String dataPath = System.getProperty("wonderland.data.path");
-        if (dataPath == null) {
-            try {
-                dataPath = resFolder.getCanonicalPath();
-            } catch (IOException ex) {
-                System.err.println("Error reading the data folder.");
-                System.err.println(ex);
-                exit();
-            }
-        }
-        return dataPath;
+        return resFolder;
     }
 
     public static File getStanfordParserFile() {
