@@ -52,6 +52,7 @@ public class EngineKnowledgeBase {
 
     static final String level1 = "level1";
     static NumberFormat formatter = new DecimalFormat("0000");
+    static String topConceptType = toConceptTypeId("Top");
     static String posConceptType = toConceptTypeId("Pos");
     static String spTagConceptType = toConceptTypeId("SpTag");
     static String caseConceptType = toConceptTypeId("Case");
@@ -289,18 +290,35 @@ public class EngineKnowledgeBase {
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
         String senseName = particle + sense.getOffset();
-        String senseId = toConceptTypeId(senseName);
+        String senseId = null;
 
-        if (!vocabulary.conceptTypeIdExist(senseId)) {
-            String lemma = sense.getWord(0).getLemma().toLowerCase();
-
-            Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
-            if (ptrs.length > 0) {
-                Synset hypernym = WordNetWrapper.lookup(ptrs[0].getTargetOffset(), posType);
-                parentId = importWordNetHypernymHierarchy(hypernym, posType, particle, parentId);
+        if (posType == POS.VERB) {
+            senseId = toRelationTypeId(senseName);
+            if (vocabulary.relationTypeIdExist(senseId)) {
+                return senseId;
             }
+        } else {
+            senseId = toConceptTypeId(senseName);
+            if (vocabulary.conceptTypeIdExist(senseId)) {
+                return senseId;
+            }
+        }
 
-            vocabulary.addConceptType(senseId, senseName, "[" + lemma + "] " + removeQuotes(sense.getGloss()), language);
+        Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+        if (ptrs.length > 0) {
+            Synset hypernym = WordNetWrapper.lookup(ptrs[0].getTargetOffset(), posType);
+            parentId = importWordNetHypernymHierarchy(hypernym, posType, particle, parentId);
+        }
+
+        String lemma = sense.getWord(0).getLemma().toLowerCase();
+        String label = "[" + lemma + "] " + removeQuotes(sense.getGloss());
+
+        if (posType == POS.VERB) {
+            vocabulary.addRelationType(senseId, senseName, label, language);
+            vocabulary.setConjunctiveSignature(senseId, vocabulary.getConjunctiveSignature(parentId));
+            vocabulary.getRelationTypeHierarchy().addEdge(senseId, parentId);
+        } else {
+            vocabulary.addConceptType(senseId, senseName, label, language);
             vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);
         }
 
@@ -309,24 +327,28 @@ public class EngineKnowledgeBase {
 
     public String[] importWordNetHypernymHierarchy(String word, POS posType) {
         String parentLabel = null;
+        String parentId = null;
         String particle = null;
         if (posType == POS.NOUN) {
             parentLabel = "wnNn";
             particle = "n";
+            parentId = toConceptTypeId(parentLabel);
         } else if (posType == POS.ADJECTIVE) {
             parentLabel = "wnJj";
             particle = "j";
+            parentId = toConceptTypeId(parentLabel);
         } else if (posType == POS.ADVERB) {
             parentLabel = "wnRb";
             particle = "r";
+            parentId = toConceptTypeId(parentLabel);
         } else if (posType == POS.VERB) {
-            parentLabel = null;
+            parentLabel = "wnVb";
             particle = "v";
-            throw new UnsupportedOperationException("Unsupported yet.");
+            parentId = toRelationTypeId(parentLabel);
         } else {
             return null;
         }
-        String parentId = toConceptTypeId(parentLabel);
+
         ArrayList<String> senseTypes = new ArrayList<String>(20);
         try {
             for (Synset sense : WordNetWrapper.getSenses(word, posType)) {

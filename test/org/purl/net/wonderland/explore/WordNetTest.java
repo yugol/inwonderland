@@ -23,8 +23,10 @@
  */
 package org.purl.net.wonderland.explore;
 
+import edu.stanford.nlp.util.StringUtils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.BitSet;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
@@ -40,11 +42,20 @@ import org.purl.net.wonderland.Globals;
 public class WordNetTest {
 
     @Test
-    public void testAirplane() throws JWNLException, FileNotFoundException {
+    public void testNonVerb() throws JWNLException, FileNotFoundException {
         JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
         Dictionary wn = Dictionary.getInstance();
-
         IndexWord word = wn.lookupIndexWord(POS.NOUN, "dog");
         System.out.println(word.getLemma());
     }
+
+    @Test
+    public void testVerb() throws JWNLException, FileNotFoundException {
+        JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
+        Dictionary wn = Dictionary.getInstance();
+        IndexWord word = wn.lookupIndexWord(POS.VERB, "gray");
+        String frames = StringUtils.join(word.getSense(1).getVerbFrames(), ", ");
+        System.out.println(frames);
+    }
+
 }
