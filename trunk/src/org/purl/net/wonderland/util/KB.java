@@ -29,7 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import org.purl.net.wonderland.kb.EngineKB;
 
 /**
  *
@@ -51,7 +51,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKnowledgeBase.toConceptTypeId(label));
+            replaces.put(ct, EngineKB.toConceptTypeId(label));
             pos = kb.indexOf("<ctype", pos);
         }
 
@@ -79,7 +79,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKnowledgeBase.toRelationTypeId(label));
+            replaces.put(ct, EngineKB.toRelationTypeId(label));
             pos = kb.indexOf("<rtype", pos);
         }
 

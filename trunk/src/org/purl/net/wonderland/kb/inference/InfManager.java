@@ -67,7 +67,7 @@ public class InfManager {
             int id = Integer.parseInt(chunks[1]);
             String className = toClassName(group, id);
             Inference inf = infFactory.createInference(className);
-            inf.init(kb, cg, id);
+            inf.init(cg, id);
             add(group, inf);
         } catch (Exception ex) {
             System.err.println("Error adding rule: " + cg.getName());

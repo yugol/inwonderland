@@ -40,7 +40,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import org.purl.net.wonderland.kb.EngineKB;
 
 /**
  *
@@ -69,7 +69,7 @@ public class Corpus {
     public Corpus() {
     }
 
-    public void addSentence(EngineKnowledgeBase ekb, int idx) {
+    public void addSentence(EngineKB ekb, int idx) {
         Node root = xmlDoc.getDocumentElement();
         Element sentence = xmlDoc.createElement(sentenceTag);
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
@@ -116,13 +116,13 @@ public class Corpus {
         }
     }
 
-    public void addKnowledgeBase(EngineKnowledgeBase ekb) {
+    public void addKnowledgeBase(EngineKB ekb) {
         for (int i = 1; i <= ekb.getSentenceFactCount(); ++i) {
             addSentence(ekb, i);
         }
     }
 
-    public void buildFrom(EngineKnowledgeBase ekb) {
+    public void buildFrom(EngineKB ekb) {
         createMarkupDocument();
         addKnowledgeBase(ekb);
     }

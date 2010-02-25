@@ -37,13 +37,17 @@ public class EngineKnowledgeBaseTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        EngineKnowledgeBase kb = new EngineKnowledgeBase();
+        EngineKB kb = new EngineKB();
         String[] sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
         assertEquals(5, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
+        sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
+        assertNull(sTypes);
         sTypes = kb.importWordNetHypernymHierarchy("be", POS.VERB);
         assertEquals(13, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
+        System.out.println(kb.addWRelation("my", null));
+        System.out.println(kb.addWRelation("my", null));
         File cogxml = new File("test.cogxml");
         kb.saveKb(cogxml);
     }

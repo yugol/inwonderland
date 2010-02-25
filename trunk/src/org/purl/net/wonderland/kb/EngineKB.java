@@ -40,15 +40,17 @@ import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.inference.InfKB;
-import org.purl.net.wonderland.kb.inference.provided.DefaultInfFactory;
+import org.purl.net.wonderland.kb.inference.Inference;
+import org.purl.net.wonderland.kb.inference.provided.DefaultInferenceFactory;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.util.IO;
 
 /**
  *
  * @author Iulian
  */
-public class EngineKnowledgeBase {
+public class EngineKB {
 
     static final String level1 = "level1";
     static NumberFormat formatter = new DecimalFormat("0000");
@@ -113,8 +115,14 @@ public class EngineKnowledgeBase {
     private Vocabulary vocabulary;
     private int sentenceFactCount = 0;
     private File lastFile = null;
+    private final DefaultInferenceFactory inferenceFactory;
 
-    public EngineKnowledgeBase() throws Exception {
+    public EngineKB() throws Exception {
+        this(IO.getClassPathRoot(DefaultInferenceFactory.class));
+    }
+
+    public EngineKB(String iPackage) throws Exception {
+        inferenceFactory = new DefaultInferenceFactory(iPackage, this);
         openKb(null);
     }
 
@@ -128,12 +136,22 @@ public class EngineKnowledgeBase {
     }
 
     private void loadKb(File file) throws Exception {
-        kb = new InfKB(file, new DefaultInfFactory());
+        kb = new InfKB(file, inferenceFactory);
         vocabulary = kb.getVocabulary();
+        if (Globals.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
+            lastFile = null;
+        } else {
+            lastFile = file;
+        }
     }
 
     public void saveKb(File file) throws Exception {
-        kb.save(file);
+        if (Globals.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
+            lastFile = null;
+        } else {
+            kb.save(file);
+            lastFile = file;
+        }
     }
 
     public File getLastFile() {
@@ -148,7 +166,7 @@ public class EngineKnowledgeBase {
             WTagging tagging = words.get(i);
             Concept c = new Concept(toConceptId(tagging, i + 1));
             String individualId = removeQuotes(tagging.getLemma());
-            vocabulary.addIndividual(individualId, individualId, null, language);
+            vocabulary.addIndividual(individualId, individualId, topConceptType, language);
             String[] types = null;
             if (tagging.getPos() == null) {
                 types = new String[]{tagging.getPennTag()};
@@ -360,5 +378,24 @@ public class EngineKnowledgeBase {
             return null;
         }
         return senseTypes.toArray(new String[]{});
+    }
+
+    public String addWRelation(String relName, String label) {
+        String relId = toRelationTypeId(relName);
+        if (vocabulary.relationTypeIdExist(relId)) {
+            return relId;
+        }
+        String parentId = toRelationTypeId("wVb");
+        vocabulary.addRelationType(relId, relName, label, language);
+        vocabulary.setConjunctiveSignature(relId, vocabulary.getConjunctiveSignature(parentId));
+        vocabulary.getRelationTypeHierarchy().addEdge(relId, parentId);
+        return relId;
+    }
+
+    public void applyInferences(String infSet, CGraph cg) throws Exception {
+        List<Inference> matches = kb.findMatches(infSet, cg);
+        for (Inference inf : matches) {
+            inf.apply(kb.getResultGraph());
+        }
     }
 }

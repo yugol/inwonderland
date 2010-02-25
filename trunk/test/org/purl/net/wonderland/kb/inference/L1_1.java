@@ -28,7 +28,8 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import org.purl.net.wonderland.kb.EngineKnowledgeBase;
+import net.didion.jwnl.data.POS;
+import org.purl.net.wonderland.kb.EngineKB;
 
 /**
  *
@@ -48,21 +49,25 @@ public class L1_1 extends DefaultInference {
         String obj = ((Concept) p.getTarget("_c3")).getIndividual();
 
         Concept c1 = new Concept("_c1");
-        c1.addType(EngineKnowledgeBase.toConceptTypeId("Word"));
+        c1.setType(ekb.importWordNetHypernymHierarchy(subj, POS.NOUN));
         c1.setIndividual(subj);
-        
-        Concept c2 = new Concept("_c2");
-        c2.addType(EngineKnowledgeBase.toConceptTypeId("Word"));
-        c2.setIndividual(obj);
-        
-        Relation r = new Relation("_r1");
-        r.addType(EngineKnowledgeBase.toRelationTypeId("Verb2"));
 
+        Concept c2 = new Concept("_c2");
+        c2.setType(ekb.importWordNetHypernymHierarchy(obj, POS.NOUN));
+        c2.setIndividual(obj);
+
+        Concept c3 = new Concept("_c3");
+        c3.setType(EngineKB.toConceptTypeId("aff"));
+
+        Relation r = new Relation("_r1");
+        r.addType(ekb.addWRelation(vb, null));
 
         resultGraph.addVertex(c1);
         resultGraph.addVertex(c2);
+        resultGraph.addVertex(c3);
         resultGraph.addVertex(r);
 
+        resultGraph.addEdge("_c3", "_r1", 1);
         resultGraph.addEdge("_c1", "_r1", 2);
         resultGraph.addEdge("_c2", "_r1", 3);
     }

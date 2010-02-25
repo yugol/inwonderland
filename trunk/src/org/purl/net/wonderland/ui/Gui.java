@@ -34,11 +34,8 @@ import com.jidesoft.plaf.LookAndFeelFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 
