@@ -21,10 +21,11 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp.resources;
 
 import java.io.FileInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
@@ -88,8 +89,27 @@ public final class WordNetWrapper {
             }
             return false;
         } catch (Exception ex) {
-            System.out.println(ex);
+            System.err.println(ex);
             return false;
+        }
+    }
+
+    public static Synset lookup(long offset, POS posType) {
+        try {
+            return dict.getSynsetAt(posType, offset);
+        } catch (JWNLException ex) {
+            System.err.println(ex);
+            Globals.exit();
+            return null;
+        }
+    }
+
+    public static Synset[] getSenses(String word, POS posType) {
+        try {
+            return dict.lookupIndexWord(posType, word).getSenses();
+        } catch (JWNLException ex) {
+            System.err.println(ex);
+            return null;
         }
     }
 }

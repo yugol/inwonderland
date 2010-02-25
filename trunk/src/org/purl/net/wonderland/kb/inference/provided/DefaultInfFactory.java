@@ -21,7 +21,11 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.inference;
+package org.purl.net.wonderland.kb.inference.provided;
+
+import org.purl.net.wonderland.kb.inference.InfFactory;
+import org.purl.net.wonderland.kb.inference.Inference;
+import org.purl.net.wonderland.util.IO;
 
 /**
  *
@@ -30,6 +34,10 @@ package org.purl.net.wonderland.kb.inference;
 public class DefaultInfFactory implements InfFactory {
 
     String iPackage;
+
+    public DefaultInfFactory() {
+        this.iPackage = IO.getClassPathRoot(this.getClass());
+    }
 
     public DefaultInfFactory(String iPackage) {
         this.iPackage = iPackage;

@@ -44,7 +44,6 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     private String pennTag = null; // Penn Treebank POS tag
     private String maTag = null; // MorphAddorder POS tag
     private String spelling = null;
-    private Synset[] senses = null; // from WordNet
     // Wonderland tags
     private String pos = null; // Wonderland POS tag
     private String gender = null; // masculine, feminine, neuter, common
@@ -192,14 +191,6 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
             pennTag = null;
         }
         this.pennTag = pennTag;
-    }
-
-    public Synset[] getSenses() {
-        return senses;
-    }
-
-    public void setSenses(Synset[] senses) {
-        this.senses = senses;
     }
 
     public String[] asStringArray() {

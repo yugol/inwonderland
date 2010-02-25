@@ -106,4 +106,16 @@ public class InfKB {
     public List<Inference> findMatches(String infSet, CGraph cg) throws Exception {
         return infMgr.findMatches(infSet, cg);
     }
+
+    public Vocabulary getVocabulary() {
+        return kb.getVocabulary();
+    }
+
+    public void addGraph(CGraph cg) {
+        kb.addGraph(cg);
+    }
+
+    public CGraph getFactGraph(String toLevel1FactId) {
+        return kb.getFactGraph(toLevel1FactId);
+    }
 }

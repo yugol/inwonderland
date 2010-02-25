@@ -43,6 +43,7 @@ public class WordNetTest {
     public void testAirplane() throws JWNLException, FileNotFoundException {
         JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
         Dictionary wn = Dictionary.getInstance();
+
         IndexWord word = wn.lookupIndexWord(POS.NOUN, "dog");
         System.out.println(word.getLemma());
     }
