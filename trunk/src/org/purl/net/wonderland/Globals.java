@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Properties;
+import org.purl.net.wonderland.util.CodeTimer;
 
 /**
  *
@@ -67,6 +68,16 @@ public final class Globals {
 
         } catch (IOException ex) {
             System.err.println("Could not load properties file.");
+            System.err.println(ex);
+            exit();
+        }
+
+        try {
+            CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
+            System.load(new File(Globals.getResFolder(), "cogitant.dll").getCanonicalPath());
+            timer.stop();
+        } catch (Exception ex) {
+            System.err.println("Error loading cogitant.dll");
             System.err.println(ex);
             exit();
         }

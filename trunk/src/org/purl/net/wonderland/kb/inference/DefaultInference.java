@@ -21,14 +21,44 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+package org.purl.net.wonderland.kb.inference;
 
-package org.purl.net.wonderland.kb;
-
-import org.purl.net.wonderland.kb.transformations.DefaultTransformation;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.List;
 
 /**
  *
  * @author Iulian
  */
-public class CGT_Test1 extends DefaultTransformation {
+public abstract class DefaultInference implements Inference {
+
+    protected KnowledgeBase kb;
+    protected CGraph lhs;
+    private int id;
+    protected List<Projection> projections;
+
+    public void init(KnowledgeBase kb, CGraph lhs, int id) {
+        this.kb = kb;
+        this.lhs = lhs;
+        this.id = id;
+    }
+
+    public int compare(Inference o1, Inference o2) {
+        Integer id1 = new Integer(o1.getId());
+        return id1.compareTo(o2.getId());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public CGraph getLhs() {
+        return lhs;
+    }
+
+    public void setProjections(List<Projection> projections) {
+        this.projections = projections;
+    }
 }
