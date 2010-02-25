@@ -41,7 +41,6 @@ public class GoldTest {
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
-        Globals.useMorphAdornerTagsInWordForm = true;
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus level1 = new Corpus();
