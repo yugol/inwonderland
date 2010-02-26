@@ -36,7 +36,6 @@ import org.purl.net.wonderland.kb.inference.Inference;
  */
 public abstract class DefaultInference implements Inference {
 
-    protected EngineKB kb;
     protected CGraph lhs;
     private int id;
     protected List<Projection> projections;
