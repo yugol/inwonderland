@@ -28,6 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import java.util.UUID;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.EngineKB;
 
@@ -48,27 +49,29 @@ public class L1_1 extends DefaultInference {
         String vb = ((Concept) p.getTarget("_c2")).getIndividual();
         String obj = ((Concept) p.getTarget("_c3")).getIndividual();
 
-        Concept c1 = new Concept("_c1");
+        Concept c1 = new Concept(UUID.randomUUID().toString());
         c1.setType(ekb.importWordNetHypernymHierarchy(subj, POS.NOUN));
         c1.setIndividual(subj);
+        resultGraph.addVertex(c1);
 
-        Concept c2 = new Concept("_c2");
+        Concept c2 = new Concept(UUID.randomUUID().toString());
         c2.setType(ekb.importWordNetHypernymHierarchy(obj, POS.NOUN));
         c2.setIndividual(obj);
-
-        Concept c3 = new Concept("_c3");
-        c3.setType(EngineKB.toConceptTypeId("aff"));
-
-        Relation r = new Relation("_r1");
-        r.addType(ekb.addWRelation(vb, null));
-
-        resultGraph.addVertex(c1);
         resultGraph.addVertex(c2);
-        resultGraph.addVertex(c3);
-        resultGraph.addVertex(r);
 
-        resultGraph.addEdge("_c3", "_r1", 1);
-        resultGraph.addEdge("_c1", "_r1", 2);
-        resultGraph.addEdge("_c2", "_r1", 3);
+        Concept c3 = new Concept(UUID.randomUUID().toString());
+        c3.setType(EngineKB.toConceptTypeId("aff"));
+        resultGraph.addVertex(c3);
+
+        for (String rt : ekb.importWordNetHypernymHierarchy(vb, POS.VERB)) {
+            Relation r = new Relation(UUID.randomUUID().toString());
+            r.addType(rt);
+            resultGraph.addVertex(r);
+
+            resultGraph.addEdge(c3.getId(), r.getId(), 1);
+            resultGraph.addEdge(c1.getId(), r.getId(), 2);
+            resultGraph.addEdge(c2.getId(), r.getId(), 3);
+        }
+
     }
 }
