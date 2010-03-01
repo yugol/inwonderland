@@ -53,7 +53,8 @@ import org.purl.net.wonderland.util.IO;
 public class EngineKB {
 
     static final String level1 = "level1";
-    static NumberFormat formatter = new DecimalFormat("0000");
+    static NumberFormat messageNumberFormatter = new DecimalFormat("0000");
+    static NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
     static String topConceptType = toConceptTypeId("Top");
     static String posConceptType = toConceptTypeId("Pos");
     static String spTagConceptType = toConceptTypeId("SpTag");
@@ -75,7 +76,7 @@ public class EngineKB {
     }
 
     private static String toIdIndex(int num) {
-        return formatter.format(num);
+        return messageNumberFormatter.format(num);
     }
 
     public static String toLevel1FactId(int num) {
@@ -307,7 +308,7 @@ public class EngineKB {
     }
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
-        String senseName = particle + sense.getOffset();
+        String senseName = particle + senseNumberFormatter.format(sense.getOffset());
         String senseId = null;
 
         if (posType == POS.VERB) {
@@ -353,7 +354,7 @@ public class EngineKB {
             parentId = toConceptTypeId(parentLabel);
         } else if (posType == POS.ADJECTIVE) {
             parentLabel = "wnJj";
-            particle = "j";
+            particle = "a";
             parentId = toConceptTypeId(parentLabel);
         } else if (posType == POS.ADVERB) {
             parentLabel = "wnRb";
