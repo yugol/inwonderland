@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- *
+ * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
- *
+ * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,32 +23,41 @@
  */
 package org.purl.net.wonderland.kb;
 
-import edu.stanford.nlp.util.StringUtils;
-import java.io.File;
-import net.didion.jwnl.data.POS;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import aminePlatform.kernel.lexicons.Identifier;
+import aminePlatform.kernel.lexicons.Lexicon;
+import aminePlatform.kernel.lexicons.LexiconException;
+import aminePlatform.kernel.ontology.Ontology;
+import aminePlatform.kernel.ontology.OntologyException;
+import aminePlatform.kernel.ontology.Type;
+import aminePlatform.util.parserGenerator.LFParserGenerator;
+import aminePlatform.util.parserGenerator.ParsingException;
 
 /**
  *
- * @author Iulian
+ * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class EngineKnowledgeBaseTest {
+public class LFCGParser extends LFParserGenerator {
 
-    @Test
-    public void testImportWordNetHierarchy() throws Exception {
-        EngineKB kb = new EngineKB();
-        String[] sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
-        assertEquals(5, sTypes.length);
-        System.out.println(StringUtils.join(sTypes, ", "));
-        sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
-        assertNull(sTypes);
-        sTypes = kb.importWordNetHypernymHierarchy("be", POS.VERB);
-        assertEquals(13, sTypes.length);
-        System.out.println(StringUtils.join(sTypes, ", "));
-        System.out.println(kb.addWRelation("my", null));
-        System.out.println(kb.addWRelation("my", null));
-        File cogxml = new File("test.cogxml");
-        kb.saveKb(cogxml);
+    public static class DummyLexicon extends Lexicon {
+
+        public DummyLexicon() throws LexiconException, OntologyException {
+            super(new Identifier(""), new Ontology());
+        }
+
+        @Override
+        public Type getTypeCS(Identifier typeIdentifier) {
+            System.out.println(typeIdentifier.getName());
+            Type t = super.getTypeCS(typeIdentifier);
+            if (t == null) {
+                addConceptTypeEntry(typeIdentifier);
+            }
+            return t;
+        }
+
+
+    }
+
+    public LFCGParser() throws ParsingException, LexiconException, OntologyException {
+        super(new DummyLexicon());
     }
 }

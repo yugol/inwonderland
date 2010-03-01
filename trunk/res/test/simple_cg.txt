@@ -1,0 +1,4 @@
+[Go]-
+  -Agnt->[Person: John],
+  -Dest->[City: Boston],
+  -Inst->[Bus]
