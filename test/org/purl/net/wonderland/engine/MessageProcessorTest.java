@@ -21,10 +21,8 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.engine;
 
-import org.purl.net.wonderland.engine.MessageProcessor;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
@@ -51,7 +49,7 @@ public class MessageProcessorTest {
     private void mergeToCandidate(MessageProcessor instance) throws ParserConfigurationException, SAXException, IOException {
         Corpus candidate = new Corpus();
         candidate.buildFrom(candidateFile);
-        candidate.addKnowledgeBase(instance.getKb());
+        candidate.addKnowledgeBase(instance);
         candidate.writeToFile(candidateFile);
     }
 

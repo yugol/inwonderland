@@ -28,7 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
-import org.purl.net.wonderland.kb.generators.KbUtil;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *

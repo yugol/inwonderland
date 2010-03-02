@@ -21,8 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
-
 /*
  * Gui.java
  *
@@ -310,7 +308,7 @@ public class Gui extends javax.swing.JFrame {
                 report.append("'");
                 report.append(file.getName());
                 report.append("' contains ");
-                int msgCount = messageProcessor.getKb().getSentenceFactCount();
+                int msgCount = messageProcessor.getSentenceFactCount();
                 report.append(msgCount);
                 report.append((msgCount == 1) ? (" message.") : (" messages."));
                 noteProgramResponse(report.toString());

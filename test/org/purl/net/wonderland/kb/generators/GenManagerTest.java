@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.kb.generators;
 
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 import java.io.File;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -49,7 +50,7 @@ public class GenManagerTest {
 
     @Test
     public void testReadGenerators() throws Exception {
-        GenKB kb = new GenKB(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
         GenManager gm = new GenManager(kb);
         gm.readGenerators(new File(Globals.getTestFolder(), "test_generators.xml"));
         assertEquals(1, gm.getGenCount());

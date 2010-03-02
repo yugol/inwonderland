@@ -21,8 +21,10 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.kb;
 
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -133,5 +135,14 @@ public final class KbUtil {
 
     public static String toSenseName(String particle, long offset) {
         return particle + senseNumberFormatter.format(offset);
+    }
+
+    public static Concept getConcept(CGraph cg, int j) {
+        for (Concept c : cg.getConcepts()) {
+            if (j == KbUtil.getConceptIndex(c.getId())) {
+                return c;
+            }
+        }
+        return null;
     }
 }

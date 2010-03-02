@@ -29,17 +29,16 @@ import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.kb.generators.GenKB;
 
 /**
  *
  * @author Iulian
  */
-public class EngineKBTest {
+public class WKbTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        GenKB kb = new GenKB(Globals.getDefaultParseKBFile());
+        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
         File cogxml = new File("test.cogxml");
 
         String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);

@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.util;
 
 import edu.stanford.nlp.util.StringUtils;
@@ -34,13 +33,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
+import org.purl.net.wonderland.engine.MessageProcessor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.kb.EngineKB;
 
 /**
  *
@@ -69,13 +68,13 @@ public class Corpus {
     public Corpus() {
     }
 
-    public void addSentence(EngineKB ekb, int idx) {
+    public void addSentence(MessageProcessor mp, int idx) {
         Node root = xmlDoc.getDocumentElement();
         Element sentence = xmlDoc.createElement(sentenceTag);
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
-        WTagging[] props = ekb.getSentenceWTaggings(idx, true);
+        WTagging[] props = mp.getSentenceWTaggings(idx, true);
         for (int j = 0; j < props.length; ++j) {
             WTagging prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
@@ -116,13 +115,13 @@ public class Corpus {
         }
     }
 
-    public void addKnowledgeBase(EngineKB ekb) {
-        for (int i = 1; i <= ekb.getSentenceFactCount(); ++i) {
-            addSentence(ekb, i);
+    public void addKnowledgeBase(MessageProcessor mp) {
+        for (int i = 1; i <= mp.getSentenceFactCount(); ++i) {
+            addSentence(mp, i);
         }
     }
 
-    public void buildFrom(EngineKB ekb) {
+    public void buildFrom(MessageProcessor ekb) {
         createMarkupDocument();
         addKnowledgeBase(ekb);
     }
