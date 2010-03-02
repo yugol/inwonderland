@@ -72,7 +72,7 @@ public class Gui extends javax.swing.JFrame {
         kbFileChooser = new javax.swing.JFileChooser();
         textFileFilter = new org.purl.net.wonderland.ui.TextFileFilter();
         try {
-            messageProcessor = new org.purl.net.wonderland.engine.MessageProcessor();
+            messageProcessor = new org.purl.net.wonderland.engine.Engine();
         } catch (java.lang.Exception e1) {
             e1.printStackTrace();
         }
@@ -409,7 +409,7 @@ public class Gui extends javax.swing.JFrame {
     private org.purl.net.wonderland.ui.KbFileFilter kbFileFilter;
     private javax.swing.JTabbedPane mainTabs;
     private javax.swing.JMenuBar menuBar;
-    private org.purl.net.wonderland.engine.MessageProcessor messageProcessor;
+    private org.purl.net.wonderland.engine.Engine messageProcessor;
     private javax.swing.JPanel messagesPanel;
     private javax.swing.JMenuItem openKbMenuItem;
     private javax.swing.JMenuItem openTextFileMenuItem;

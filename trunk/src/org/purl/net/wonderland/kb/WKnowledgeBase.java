@@ -54,14 +54,23 @@ public class WKnowledgeBase {
     private final String language;
     private final KnowledgeBase kb;
     private final Vocabulary vocabulary;
-    private int sentenceCount;
+    private int level1FactCount;
+    private int level2FactCount;
 
     public int getSentenceCount() {
-        return sentenceCount;
+        return level1FactCount;
     }
 
     public void setSentenceCount(int sentenceCount) {
-        this.sentenceCount = sentenceCount;
+        this.level1FactCount = sentenceCount;
+    }
+
+    public int getLevel2FactCount() {
+        return level2FactCount;
+    }
+
+    public void setLevel2FactCount(int level2FactCount) {
+        this.level2FactCount = level2FactCount;
     }
 
     public String getLanguage() {
@@ -74,7 +83,8 @@ public class WKnowledgeBase {
 
     public WKnowledgeBase(File cogxml, String lang) throws Exception {
         language = lang;
-        sentenceCount = 0;
+        level1FactCount = 0;
+        level2FactCount = 0;
 
         Document doc = CogxmlReader.read(cogxml);
         NodeList supportList = doc.getElementsByTagName("support");
@@ -88,7 +98,7 @@ public class WKnowledgeBase {
 
         for (CGraph cg : kb.getFactGraphSet().values()) {
             if (cg.getSet().equals(KbUtil.level1)) {
-                ++sentenceCount;
+                ++level1FactCount;
             }
         }
     }

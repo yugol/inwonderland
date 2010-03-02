@@ -26,7 +26,7 @@ package org.purl.net.wonderland.util;
 import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.purl.net.wonderland.engine.MessageProcessor;
+import org.purl.net.wonderland.engine.Engine;
 
 /**
  *
@@ -36,7 +36,7 @@ public class CorpusTest {
 
     @Test
     public void testCorpusSimpleOperations() throws Exception {
-        MessageProcessor msgProc = new MessageProcessor();
+        Engine msgProc = new Engine();
         String resp = msgProc.processMessage("This is an interesting book.");
         assertEquals("Done.", resp);
         resp = msgProc.processMessage("This is the second message.");

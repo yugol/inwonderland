@@ -46,7 +46,7 @@ public class MessageProcessorTest {
         candidateFile.delete();
     }
 
-    private void mergeToCandidate(MessageProcessor instance) throws ParserConfigurationException, SAXException, IOException {
+    private void mergeToCandidate(Engine instance) throws ParserConfigurationException, SAXException, IOException {
         Corpus candidate = new Corpus();
         candidate.buildFrom(candidateFile);
         candidate.addKnowledgeBase(instance);
@@ -55,7 +55,7 @@ public class MessageProcessorTest {
 
     // @Test
     public void testOne() throws Exception {
-        MessageProcessor instance = new MessageProcessor();
+        Engine instance = new Engine();
 
         String resp = instance.processMessage("Mother has watered the flowers.");
         assertEquals("Done.", resp);
@@ -71,7 +71,7 @@ public class MessageProcessorTest {
         int to = 0;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
-        MessageProcessor instance = new MessageProcessor();
+        Engine instance = new Engine();
 
         from -= 1;
         to -= 1;

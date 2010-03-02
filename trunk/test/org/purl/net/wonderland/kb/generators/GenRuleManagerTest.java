@@ -60,7 +60,7 @@ public class GenRuleManagerTest {
         assertEquals(1, matches.size());
     }
 
-    //@Test
+    @Test
     public void testReadGeneratorsFromFile() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
         GenRuleManager gm = new GenRuleManager(kb);
