@@ -30,8 +30,17 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
+import net.didion.jwnl.data.POS;
+import net.didion.jwnl.data.Pointer;
+import net.didion.jwnl.data.PointerType;
+import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.WonderlandException;
+import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -42,13 +51,20 @@ import org.w3c.dom.NodeList;
  */
 public class GenKB {
 
-    public static final String level1 = "level1";
-    public static final String level2 = "level2";
     private static final String allName = "all";
-    private static final String allId = level2 + "_" + allName;
+    private static final String allId = KbUtil.level2 + "_" + allName;
     private final String language;
     private final KnowledgeBase kb;
+    private final Vocabulary vocabulary;
     private int sentenceCount;
+
+    public int getSentenceCount() {
+        return sentenceCount;
+    }
+
+    public void setSentenceCount(int sentenceCount) {
+        this.sentenceCount = sentenceCount;
+    }
 
     public String getLanguage() {
         return language;
@@ -68,12 +84,12 @@ public class GenKB {
             throw new WonderlandException("vocabulary is not define in document");
         }
         Element support_elem = (Element) supportList.item(0);
-        Vocabulary voc = CogxmlReader.buildVocabulary(support_elem, true, language);
+        vocabulary = CogxmlReader.buildVocabulary(support_elem, true, language);
         Element rootElement = CogxmlReader.getRootElement(doc);
-        kb = CogxmlReader.buildKB(rootElement, voc, language, true);
+        kb = CogxmlReader.buildKB(rootElement, vocabulary, language, true);
 
         for (CGraph cg : kb.getFactGraphSet().values()) {
-            if (cg.getSet().equals(level1)) {
+            if (cg.getSet().equals(KbUtil.level1)) {
                 ++sentenceCount;
             }
         }
@@ -86,7 +102,7 @@ public class GenKB {
     public CGraph getResultGraph() {
         CGraph cg = kb.getFactGraph(allId);
         if (cg == null) {
-            cg = new CGraph(allId, allName, level2, "fact");
+            cg = new CGraph(allId, allName, KbUtil.level2, "fact");
             kb.addGraph(cg);
         }
         return cg;
@@ -106,5 +122,66 @@ public class GenKB {
 
     public CGraph getFactGraph(String toLevel1FactId) {
         return kb.getFactGraph(toLevel1FactId);
+    }
+
+    private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
+        String senseName = KbUtil.toSenseName(particle, sense.getOffset());
+        String senseId = null;
+
+        senseId = KbUtil.toConceptTypeId(senseName);
+        if (vocabulary.conceptTypeIdExist(senseId)) {
+            return senseId;
+        }
+
+        Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+        if (ptrs.length > 0) {
+            Synset hypernym = WordNetWrapper.lookup(ptrs[0].getTargetOffset(), posType);
+            parentId = importWordNetHypernymHierarchy(hypernym, posType, particle, parentId);
+        }
+
+        String lemma = sense.getWord(0).getLemma().toLowerCase();
+        String label = "[" + lemma + "] " + KbUtil.removeQuotes(sense.getGloss());
+
+        vocabulary.addConceptType(senseId, senseName, label, language);
+        vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);
+
+        return senseId;
+    }
+
+    public String[] importWordNetHypernymHierarchy(String word, POS posType) {
+        String parentLabel = null;
+        String parentId = null;
+        String particle = null;
+        if (posType == POS.NOUN) {
+            parentLabel = "wnNn";
+            particle = "n";
+            parentId = KbUtil.toConceptTypeId(parentLabel);
+        } else if (posType == POS.ADJECTIVE) {
+            parentLabel = "wnJj";
+            particle = "a";
+            parentId = KbUtil.toConceptTypeId(parentLabel);
+        } else if (posType == POS.ADVERB) {
+            parentLabel = "wnRb";
+            particle = "r";
+            parentId = KbUtil.toConceptTypeId(parentLabel);
+        } else if (posType == POS.VERB) {
+            parentLabel = "wnVb";
+            particle = "v";
+            parentId = KbUtil.toConceptTypeId(parentLabel);
+        } else {
+            return null;
+        }
+
+        ArrayList<String> senseTypes = new ArrayList<String>(20);
+        try {
+            for (Synset sense : WordNetWrapper.getSenses(word, posType)) {
+                String senseType = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
+                senseTypes.add(senseType);
+            }
+        } catch (RuntimeException ex) {
+            System.err.println(ex);
+            return null;
+        }
+        return senseTypes.toArray(new String[]{});
     }
 }

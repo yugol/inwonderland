@@ -28,6 +28,8 @@ import java.io.File;
 import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.generators.GenKB;
 
 /**
  *
@@ -37,18 +39,30 @@ public class EngineKBTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        EngineKB kb = new EngineKB();
-        String[] sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
+        GenKB kb = new GenKB(Globals.getDefaultParseKBFile());
+        File cogxml = new File("test.cogxml");
+
+        String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
+        assertNull(sTypes);
+
+        sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
+        kb.save(cogxml);
         assertEquals(5, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
-        sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
-        assertNull(sTypes);
-        sTypes = kb.importWordNetHypernymHierarchy("be", POS.VERB);
+
+        sTypes = kb.importWordNetHypernymHierarchy("can", POS.VERB);
+        kb.save(cogxml);
+        assertEquals(2, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
+
+        sTypes = kb.importWordNetHypernymHierarchy("big", POS.ADJECTIVE);
+        kb.save(cogxml);
         assertEquals(13, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
-        System.out.println(kb.addWRelation("my", null));
-        System.out.println(kb.addWRelation("my", null));
-        File cogxml = new File("test.cogxml");
-        kb.saveKb(cogxml);
+
+        sTypes = kb.importWordNetHypernymHierarchy("good", POS.ADVERB);
+        kb.save(cogxml);
+        assertEquals(2, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
     }
 }

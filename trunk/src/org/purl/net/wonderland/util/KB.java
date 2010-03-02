@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.util;
 
 import java.io.File;
@@ -29,7 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
-import org.purl.net.wonderland.kb.EngineKB;
+import org.purl.net.wonderland.kb.generators.KbUtil;
 
 /**
  *
@@ -51,7 +50,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKB.toConceptTypeId(label));
+            replaces.put(ct, KbUtil.toConceptTypeId(label));
             pos = kb.indexOf("<ctype", pos);
         }
 
@@ -79,7 +78,7 @@ public class KB {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, EngineKB.toRelationTypeId(label));
+            replaces.put(ct, KbUtil.toRelationTypeId(label));
             pos = kb.indexOf("<rtype", pos);
         }
 

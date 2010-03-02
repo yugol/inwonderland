@@ -151,7 +151,7 @@ public class GenManager {
                 System.out.println(ac.getDescriptor());
                 Concept cc = new Concept(UUID.randomUUID().toString());
                 for (int i = 0; i < types.length; ++i) {
-                    types[i] = EngineKB.toConceptTypeId(types[i]);
+                    types[i] = KbUtil.toConceptTypeId(types[i]);
                 }
                 cc.setType(types);
                 cogitantCG.addVertex(cc);
@@ -163,7 +163,7 @@ public class GenManager {
                 String type = parser.getTypeName(ar.getType());
                 // System.out.println(typees);
                 Relation cr = new Relation(UUID.randomUUID().toString());
-                cr.setType(EngineKB.toRelationTypeId(type));
+                cr.setType(KbUtil.toRelationTypeId(type));
                 cogitantCG.addVertex(cr);
                 cogitantCG.addEdge(acMap.get(ar.getSourceConcept()).getId(), cr.getId(), 1);
                 cogitantCG.addEdge(acMap.get(ar.getTargetConcept()).getId(), cr.getId(), 1);
