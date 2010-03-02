@@ -23,7 +23,7 @@
  */
 package org.purl.net.wonderland.kb.inference.provided;
 
-import org.purl.net.wonderland.kb.EngineKB;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.inference.InfFactory;
 import org.purl.net.wonderland.kb.inference.Inference;
 
@@ -34,9 +34,9 @@ import org.purl.net.wonderland.kb.inference.Inference;
 public class DefaultInferenceFactory implements InfFactory {
 
     private String iPackage;
-    private final EngineKB ekb;
+    private final WKnowledgeBase ekb;
 
-    public DefaultInferenceFactory(String iPackage, EngineKB ekb) {
+    public DefaultInferenceFactory(String iPackage, WKnowledgeBase ekb) {
         this.iPackage = iPackage;
         this.ekb = ekb;
     }

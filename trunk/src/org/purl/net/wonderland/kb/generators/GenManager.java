@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.kb.generators;
 
+import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.KbUtil;
 import aminePlatform.kernel.lexicons.Identifier;
 import aminePlatform.util.cg.CG;
 import edu.stanford.nlp.util.StringUtils;
@@ -39,7 +41,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import org.purl.net.wonderland.kb.EngineKB;
 
 /**
  *
@@ -49,9 +50,9 @@ public class GenManager {
 
     private List<Generator> generators = new ArrayList<Generator>();
     private final SolverCogitant solver = new SolverCogitant();
-    private final GenKB kb;
+    private final WKnowledgeBase kb;
 
-    public GenManager(GenKB kb) {
+    public GenManager(WKnowledgeBase kb) {
         this.kb = kb;
     }
 

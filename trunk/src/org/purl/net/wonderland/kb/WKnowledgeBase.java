@@ -21,8 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.kb;
 
+import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.inference.*;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
@@ -49,7 +50,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenKB {
+public class WKnowledgeBase {
 
     private static final String allName = "all";
     private static final String allId = KbUtil.level2 + "_" + allName;
@@ -70,11 +71,11 @@ public class GenKB {
         return language;
     }
 
-    public GenKB(File cogxml) throws Exception {
+    public WKnowledgeBase(File cogxml) throws Exception {
         this(cogxml, "en");
     }
 
-    public GenKB(File cogxml, String lang) throws Exception {
+    public WKnowledgeBase(File cogxml, String lang) throws Exception {
         language = lang;
         sentenceCount = 0;
 

@@ -21,11 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.engine;
 
-import org.purl.net.wonderland.kb.EngineKB;
-import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /*
 Bashful	Long beard	Brown top, green hat, long eyelashes
@@ -42,9 +40,9 @@ Sneezy	Short beard	brown jacket, orange headpiece, red nose
  */
 public abstract class Personality {
 
-    EngineKB kb = null;
+    WKnowledgeBase kb = null;
 
-    public void setKb(EngineKB kb) {
+    public void setKb(WKnowledgeBase kb) {
         this.kb = kb;
     }
 

@@ -40,7 +40,7 @@ public class TestUtil {
         candidateFile.delete();
         Corpus candidate = new Corpus();
         candidate.buildFrom(candidateFile);
-        candidate.addKnowledgeBase(mp.getKb());
+        candidate.addKnowledgeBase(mp);
         candidate.writeToFile(candidateFile);
     }
 }

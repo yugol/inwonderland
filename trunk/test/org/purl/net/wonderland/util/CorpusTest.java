@@ -21,13 +21,11 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.util;
 
 import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.purl.net.wonderland.kb.EngineKB;
 import org.purl.net.wonderland.engine.MessageProcessor;
 
 /**
@@ -44,9 +42,8 @@ public class CorpusTest {
         resp = msgProc.processMessage("This is the second message.");
         assertEquals("Done.", resp);
 
-        EngineKB ekb = msgProc.getKb();
         Corpus corpus = new Corpus();
-        corpus.buildFrom(ekb);
+        corpus.buildFrom(msgProc);
 
         String xml = corpus.toString();
         File cospusFile = new File("corpus.xml");
