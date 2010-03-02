@@ -21,42 +21,37 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.explore;
+package org.purl.net.wonderland.kb.generators;
 
-import aminePlatform.kernel.lexicons.Identifier;
-import aminePlatform.kernel.lexicons.LexiconException;
-import aminePlatform.kernel.ontology.OntologyException;
-import aminePlatform.util.AmineList;
-import aminePlatform.util.cg.CG;
-import aminePlatform.util.parserGenerator.ParsingException;
 import java.io.File;
-import java.io.IOException;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.kb.generators.GenParser.LFCGParser;
-import org.purl.net.wonderland.util.IO;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class AmineCGParserTest {
+public class GenManagerTest {
 
-    public AmineCGParserTest() {
+    public GenManagerTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
 
     @Test
-    public void parseLFCG() throws ParsingException, IOException, OntologyException, LexiconException {
-        File cgFile = new File(Globals.getTestFolder(), "simple_cg.txt");
-        String lf = IO.getFileContentAsString(cgFile);
-        System.out.println(lf);
-        LFCGParser parser = new LFCGParser();
-        parser.getLexicon().addRelationTypeEntry(new Identifier("Agnt"));
-        parser.getLexicon().addRelationTypeEntry(new Identifier("Dest"));
-        parser.getLexicon().addRelationTypeEntry(new Identifier("Inst"));
-        AmineList lst = new AmineList();
-        CG cg = parser.parse(lf, lst);
-        System.out.println(cg.getNbrConcepts());
-        System.out.println(cg.getNbrRelations());
+    public void testReadGenerators() throws Exception {
+        GenKB kb = new GenKB(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+        GenManager gm = new GenManager(kb);
+        gm.readGenerators(new File(Globals.getTestFolder(), "test_generators.xml"));
+        assertEquals(1, gm.getGenCount());
     }
 }
