@@ -31,6 +31,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
 import java.util.Iterator;
 import java.util.List;
+import org.purl.net.wonderland.kb.CGIterable;
 import org.purl.net.wonderland.kb.inference.InfManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -23,13 +23,11 @@
  */
 package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.kb.inference.*;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import fr.lirmm.rcr.cogui2.kernel.model.RuleSet;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
 import java.util.ArrayList;
