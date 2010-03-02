@@ -47,11 +47,12 @@ public final class KbUtil {
     public static final String tenseConceptType = toConceptTypeId("Tense");
     public static final String level1 = "level1";
     public static final String level2 = "level2";
-    private static final NumberFormat messageNumberFormatter = new DecimalFormat("0000");
+    public static final String gen = "gen_";
+    private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
 
     public static String toIdIndex(int num) {
-        return messageNumberFormatter.format(num);
+        return idLabelNumberFormatter.format(num);
     }
 
     public static String toLevel1FactId(int num) {

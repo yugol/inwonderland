@@ -23,24 +23,23 @@
  */
 package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.inference.*;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import fr.lirmm.rcr.cogui2.kernel.model.RuleSet;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.WonderlandException;
-import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -100,7 +99,7 @@ public class WKnowledgeBase {
         CogxmlWriter.write(cogxml, kb, language);
     }
 
-    public CGraph getResultGraph() {
+    public CGraph getKnowledgeGraph() {
         CGraph cg = kb.getFactGraph(allId);
         if (cg == null) {
             cg = new CGraph(allId, allName, KbUtil.level2, "fact");
@@ -184,5 +183,17 @@ public class WKnowledgeBase {
             return null;
         }
         return senseTypes.toArray(new String[]{});
+    }
+
+    public List<Rule> getGeneratorRules(String set) {
+        List<Rule> rules = new ArrayList<Rule>();
+        Iterator<CGraph> it = kb.getRuleSet().iteratorGraphs();
+        while (it.hasNext()) {
+            CGraph rule = it.next();
+            if (rule.getName().indexOf(set) == 0) {
+                rules.add((Rule) rule);
+            }
+        }
+        return rules;
     }
 }

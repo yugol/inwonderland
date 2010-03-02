@@ -21,13 +21,36 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.kb.generators;
+
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface Generator {
+public class GenRuleImpl implements GenRule {
 
+    private final CGraph lhs;
+    private final CGraph rhs;
+    private final Map<Concept, Concept> lhsRhsMap;
+    List<Projection> projections;
+
+    public GenRuleImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
+        this.lhs = lhs;
+        this.rhs = rhs;
+        this.lhsRhsMap = conceptMap;
+    }
+
+    public CGraph getLhs() {
+        return lhs;
+    }
+
+    public void setProjections(List<Projection> projections) {
+        this.projections = projections;
+    }
 }
