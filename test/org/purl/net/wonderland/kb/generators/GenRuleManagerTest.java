@@ -37,9 +37,9 @@ import static org.junit.Assert.*;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenManagerTest {
+public class GenRuleManagerTest {
 
-    public GenManagerTest() {
+    public GenRuleManagerTest() {
     }
 
     @BeforeClass

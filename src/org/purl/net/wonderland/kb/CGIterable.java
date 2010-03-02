@@ -21,10 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.inference;
+package org.purl.net.wonderland.kb;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.GraphSet;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import java.util.ArrayList;
 import java.util.Collections;
