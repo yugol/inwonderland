@@ -62,6 +62,7 @@ public class MessageProcessor {
     }
 
     public MessageProcessor() throws Exception {
+        personality = new EtoGleem();
         openKb(null);
     }
 

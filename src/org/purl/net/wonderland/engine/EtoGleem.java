@@ -34,8 +34,8 @@ public class EtoGleem extends Personality {
     public String getWelcomeMessage() {
         StringBuffer sb = new StringBuffer();
         sb.append("Hi!\n"
-                + "Welcome to Wanderland the place where meaning has no boundary. "
-                + "We are glad that you are interested in our world."
+                + "Welcome to Wanderland, the place where meaning has no boundary!\n"
+                + "We are glad that you are interested in our world.\n"
                 + "I will be your facilitator. My name is ");
         sb.append(getFullName());
         sb.append(" but you can call me ");

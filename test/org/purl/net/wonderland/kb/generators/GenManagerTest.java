@@ -25,10 +25,12 @@ package org.purl.net.wonderland.kb.generators;
 
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import java.io.File;
+import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.KbUtil;
 import static org.junit.Assert.*;
 
 /**
@@ -49,9 +51,19 @@ public class GenManagerTest {
     }
 
     @Test
-    public void testReadGenerators() throws Exception {
+    public void testReadGeneratorsFromKb() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        GenManager gm = new GenManager(kb);
+        GenRuleManager gm = new GenRuleManager(kb);
+        gm.readGenerators(KbUtil.level1);
+        assertEquals(1, gm.getGenCount());
+        List<GenRule> matches = gm.findMatches(KbUtil.level1, KbUtil.toLevel1FactId(1));
+        assertEquals(1, matches.size());
+    }
+
+    //@Test
+    public void testReadGeneratorsFromFile() throws Exception {
+        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+        GenRuleManager gm = new GenRuleManager(kb);
         gm.readGenerators(new File(Globals.getTestFolder(), "test_generators.xml"));
         assertEquals(1, gm.getGenCount());
     }
