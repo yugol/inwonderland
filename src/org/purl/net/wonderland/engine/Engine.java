@@ -30,6 +30,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
@@ -41,7 +42,7 @@ import org.purl.net.wonderland.nlp.WTagging;
  *
  * @author Iulian
  */
-public class MessageProcessor {
+public class Engine {
 
     private WKnowledgeBase kb;
     private Vocabulary vocabulary;
@@ -61,7 +62,7 @@ public class MessageProcessor {
         this.personality.setKb(kb);
     }
 
-    public MessageProcessor() throws Exception {
+    public Engine() throws Exception {
         personality = new EtoGleem();
         openKb(null);
     }
@@ -87,17 +88,17 @@ public class MessageProcessor {
         }
     }
 
-    public String processMessage(String msg) {
-        String resp = "Done.";
+    public String processMessage(String msg) throws Exception {
+        List<CGraph> messages = new ArrayList<CGraph>();
 
         for (List<WTagging> sentence : Pipeline.getTokens(msg)) {
             Object[] parse = Pipeline.parse(sentence);
             sentence = (List<WTagging>) parse[0];
             List<TypedDependency> deps = (List<TypedDependency>) parse[1];
-            addSentenceFact(sentence, deps);
+            messages.add(addSentenceFact(sentence, deps));
         }
 
-        return resp;
+        return personality.processMessages(messages);
     }
 
     public CGraph getSentenceFact(int idx) {

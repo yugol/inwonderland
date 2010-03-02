@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import java.util.List;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /*
@@ -53,4 +55,6 @@ public abstract class Personality {
     public abstract String getName();
 
     public abstract String getId();
+
+    public abstract String processMessages(List<CGraph> messages) throws Exception;
 }

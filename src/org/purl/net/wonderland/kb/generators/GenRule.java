@@ -38,4 +38,8 @@ public interface GenRule {
 
     public void setProjections(List<Projection> projections);
 
+    public List<Projection> getProjections();
+
+    public CGraph getRhs();
+
 }

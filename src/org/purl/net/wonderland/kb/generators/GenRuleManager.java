@@ -70,7 +70,7 @@ public class GenRuleManager {
         this.kb = kb;
     }
 
-    void readGenerators(String set) throws Exception {
+    public void readGenerators(String set) throws Exception {
         String setId = KbUtil.gen + KbUtil.level1 + "_";
         List<Rule> rules = kb.getGeneratorRules(setId);
         for (Rule rule : rules) {
@@ -244,9 +244,7 @@ public class GenRuleManager {
         return acMap;
     }
 
-    public List<GenRule> findMatches(String set, String id) throws Exception {
-        CGraph cg = kb.getFactGraph(id);
-
+    public List<GenRule> findMatches(String set, CGraph cg) throws Exception {
         if (!solver.isConnected()) {
             solver.connect();
             solver.commitVocabulary(kb.getVocabulary());
@@ -267,5 +265,9 @@ public class GenRuleManager {
         solver.removeGraph(cg);
 
         return matches;
+    }
+
+    public List<GenRule> findMatches(String set, String id) throws Exception {
+        return findMatches(set, kb.getFactGraph(id));
     }
 }

@@ -21,14 +21,24 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.engine;
+
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.List;
+import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.generators.GenRule;
+import org.purl.net.wonderland.kb.generators.GenRuleManager;
 
 /**
  *
  * @author Iulian
  */
 public class EtoGleem extends Personality {
+
+    private GenRuleManager genRuleMgr;
 
     @Override
     public String getWelcomeMessage() {
@@ -57,5 +67,42 @@ public class EtoGleem extends Personality {
     @Override
     public String getId() {
         return "etogleem";
+    }
+
+    @Override
+    public void setKb(WKnowledgeBase kb) {
+        super.setKb(kb);
+        genRuleMgr = new GenRuleManager(kb);
+        try {
+            genRuleMgr.readGenerators(KbUtil.level1);
+        } catch (Exception ex) {
+            System.err.println("Could not read generation rules from knowledge base");
+            System.err.println(ex);
+            Globals.exit();
+        }
+    }
+
+    @Override
+    public String processMessages(List<CGraph> messages) throws Exception {
+        for (CGraph message : messages) {
+            List<GenRule> rules = genRuleMgr.findMatches(KbUtil.level1, message);
+            for (GenRule rule : rules) {
+                List<Projection> matches = rule.getProjections();
+                for (Projection match : matches) {
+                    CGraph fact = extract(rule, match);
+                    apply(fact);
+                }
+            }
+        }
+        return "Done.";
+    }
+
+    private CGraph extract(GenRule rule, Projection match) {
+        return null;
+    }
+
+    private void apply(CGraph fact) {
+        fact.setSet(KbUtil.level2);
+        kb.addGraph(fact);
     }
 }

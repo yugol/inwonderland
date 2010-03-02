@@ -59,6 +59,10 @@ public final class KbUtil {
         return "l1_" + toIdIndex(num);
     }
 
+    public static String toLevel2FactId(int num) {
+        return "l2_" + toIdIndex(num);
+    }
+
     public static String toConceptTypeId(String ctl) {
         return "ct_" + removeQuotes(ctl);
     }

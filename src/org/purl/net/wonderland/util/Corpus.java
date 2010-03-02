@@ -33,7 +33,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
-import org.purl.net.wonderland.engine.MessageProcessor;
+import org.purl.net.wonderland.engine.Engine;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -68,7 +68,7 @@ public class Corpus {
     public Corpus() {
     }
 
-    public void addSentence(MessageProcessor mp, int idx) {
+    public void addSentence(Engine mp, int idx) {
         Node root = xmlDoc.getDocumentElement();
         Element sentence = xmlDoc.createElement(sentenceTag);
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
@@ -115,13 +115,13 @@ public class Corpus {
         }
     }
 
-    public void addKnowledgeBase(MessageProcessor mp) {
+    public void addKnowledgeBase(Engine mp) {
         for (int i = 1; i <= mp.getSentenceFactCount(); ++i) {
             addSentence(mp, i);
         }
     }
 
-    public void buildFrom(MessageProcessor ekb) {
+    public void buildFrom(Engine ekb) {
         createMarkupDocument();
         addKnowledgeBase(ekb);
     }

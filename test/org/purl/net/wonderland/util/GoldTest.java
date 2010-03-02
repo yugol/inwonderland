@@ -30,7 +30,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.engine.MessageProcessor;
+import org.purl.net.wonderland.engine.Engine;
 
 /**
  *
@@ -45,7 +45,7 @@ public class GoldTest {
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus level1 = new Corpus();
         level1.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
-        MessageProcessor msgProc = new MessageProcessor();
+        Engine msgProc = new Engine();
 
         int firstSentence = 1;
         int lastSentence = 0;

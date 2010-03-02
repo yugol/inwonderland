@@ -53,4 +53,12 @@ public class GenRuleImpl implements GenRule {
     public void setProjections(List<Projection> projections) {
         this.projections = projections;
     }
+
+    public List<Projection> getProjections() {
+        return projections;
+    }
+
+    public CGraph getRhs() {
+        return rhs;
+    }
 }
