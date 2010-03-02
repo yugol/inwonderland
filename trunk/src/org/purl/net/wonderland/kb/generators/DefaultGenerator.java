@@ -21,43 +21,25 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb;
+package org.purl.net.wonderland.kb.generators;
 
-import aminePlatform.kernel.lexicons.Identifier;
-import aminePlatform.kernel.lexicons.Lexicon;
-import aminePlatform.kernel.lexicons.LexiconException;
-import aminePlatform.kernel.ontology.Ontology;
-import aminePlatform.kernel.ontology.OntologyException;
-import aminePlatform.kernel.ontology.Type;
-import aminePlatform.util.parserGenerator.LFParserGenerator;
-import aminePlatform.util.parserGenerator.ParsingException;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class LFCGParser extends LFParserGenerator {
+public class DefaultGenerator implements Generator {
 
-    public static class DummyLexicon extends Lexicon {
+    private final CGraph lhs;
+    private final CGraph rhs;
+    private final Map<Concept, Concept> lhsRhsMap;
 
-        public DummyLexicon() throws LexiconException, OntologyException {
-            super(new Identifier(""), new Ontology());
-        }
-
-        @Override
-        public Type getTypeCS(Identifier typeIdentifier) {
-            System.out.println(typeIdentifier.getName());
-            Type t = super.getTypeCS(typeIdentifier);
-            if (t == null) {
-                addConceptTypeEntry(typeIdentifier);
-            }
-            return t;
-        }
-
-
-    }
-
-    public LFCGParser() throws ParsingException, LexiconException, OntologyException {
-        super(new DummyLexicon());
+    public DefaultGenerator(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
+        this.lhs = lhs;
+        this.rhs = rhs;
+        this.lhsRhsMap = conceptMap;
     }
 }

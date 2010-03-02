@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<generators>
+<generator name="first">
+<lhs><![CDATA[
+[Pos: var_26]-nsubj->[Vb__ind: have_var_1]<-comp-[ct_NN: alpha] 
+]]>
+</lhs>
+<rhs><![CDATA[
+[Pos]-nsubj->[Vb: var_1]<-comp-[ABC__other:var_26] 
+]]>
+</rhs>
+</generator>
+</generators>
