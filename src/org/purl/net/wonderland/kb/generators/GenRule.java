@@ -21,12 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.kb.generators;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -42,4 +43,5 @@ public interface GenRule {
 
     public CGraph getRhs();
 
+    public Map<Concept, Concept> getRhsLhsConceptMap();
 }

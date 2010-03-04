@@ -24,8 +24,13 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
@@ -89,7 +94,7 @@ public class EtoGleem extends Personality {
             for (GenRule rule : rules) {
                 List<Projection> matches = rule.getProjections();
                 for (Projection match : matches) {
-                    CGraph fact = extract(rule, match);
+                    CGraph fact = extractFact(rule, match);
                     apply(fact);
                 }
             }
@@ -97,12 +102,48 @@ public class EtoGleem extends Personality {
         return "Done.";
     }
 
-    private CGraph extract(GenRule rule, Projection match) {
-        return null;
+    private CGraph extractFact(GenRule rule, Projection match) {
+        CGraph fact = new CGraph(KbUtil.newUniqueId(), null, null, "fact");
+
+        CGraph rhs = rule.getRhs();
+        Map<String, String> idMap = new Hashtable<String, String>();
+
+        for (Concept rhsConcept : rhs.getConcepts()) {
+            Concept lhsConcept = rule.getRhsLhsConceptMap().get(rhsConcept);
+            Concept matchConcept = (Concept) match.getTarget(lhsConcept.getId());
+            String[] type = matchConcept.getType();
+            String individual = matchConcept.getIndividual();
+            // TODO: import WordNet hierarchy
+            Concept c = new Concept(KbUtil.newUniqueId());
+            c.setType(type);
+            c.setIndividual(individual);
+            fact.addVertex(c);
+            idMap.put(rhsConcept.getId(), c.getId());
+        }
+
+        for (Relation rhsRelation : rhs.getRelations()) {
+            Relation r = new Relation(KbUtil.newUniqueId());
+            r.setType(rhsRelation.getType());
+            fact.addVertex(r);
+            idMap.put(rhsRelation.getId(), r.getId());
+        }
+
+        for (CREdge rhsEdge : rhs.getEdges()) {
+            String conceptId = idMap.get(rhs.getConcept(rhsEdge).getId());
+            String relationId = idMap.get(rhs.getRelation(rhsEdge).getId());
+            int numOrder = rhsEdge.getNumOrder();
+            fact.addEdge(conceptId, relationId, numOrder);
+        }
+
+        return fact;
     }
 
     private void apply(CGraph fact) {
+        int factId = kb.getLevel2FactCount() + 1;
+        fact.setId(KbUtil.toLevel2FactId(factId));
+        fact.setName(KbUtil.toIdIndex(factId));
         fact.setSet(KbUtil.level2);
         kb.addGraph(fact);
+        kb.setLevel2FactCount(factId);
     }
 }

@@ -37,13 +37,13 @@ public class GenRuleImpl implements GenRule {
 
     private final CGraph lhs;
     private final CGraph rhs;
-    private final Map<Concept, Concept> lhsRhsMap;
+    private final Map<Concept, Concept> rhsLhsConceptMap;
     List<Projection> projections;
 
     public GenRuleImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
         this.lhs = lhs;
         this.rhs = rhs;
-        this.lhsRhsMap = conceptMap;
+        this.rhsLhsConceptMap = conceptMap;
     }
 
     public CGraph getLhs() {
@@ -60,5 +60,9 @@ public class GenRuleImpl implements GenRule {
 
     public CGraph getRhs() {
         return rhs;
+    }
+
+    public Map<Concept, Concept> getRhsLhsConceptMap() {
+        return rhsLhsConceptMap;
     }
 }
