@@ -27,6 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.UUID;
 import org.purl.net.wonderland.nlp.WTagging;
 
 /**
@@ -50,6 +51,10 @@ public final class KbUtil {
     public static final String gen = "gen_";
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
+
+    public static String newUniqueId() {
+        return UUID.randomUUID().toString();
+    }
 
     public static String toIdIndex(int num) {
         return idLabelNumberFormatter.format(num);

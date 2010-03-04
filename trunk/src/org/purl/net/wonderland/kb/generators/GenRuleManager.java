@@ -116,17 +116,17 @@ public class GenRuleManager {
             }
         }
 
-        Map<Concept, Concept> lhsRhsMap = new Hashtable<Concept, Concept>();
+        Map<Concept, Concept> rhsLhsMap = new Hashtable<Concept, Concept>();
         Iterator<String> it = rule.iteratorHypothesisFrontier();
         while (it.hasNext()) {
             String id = it.next();
             // System.out.println(id);
             Concept l = lhs.getConcept(id);
             Concept r = rhs.getConcept(rule.getConclusionOf(id));
-            lhsRhsMap.put(l, r);
+            rhsLhsMap.put(r, l);
         }
 
-        GenRule gen = new GenRuleImpl(lhs, rhs, lhsRhsMap);
+        GenRule gen = new GenRuleImpl(lhs, rhs, rhsLhsMap);
         return gen;
     }
 
@@ -151,7 +151,7 @@ public class GenRuleManager {
         CGraph rhsc = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
         Map<aminePlatform.util.cg.Concept, Concept> rhsMap = mapGraph(rhsa, rhsc, parser);
 
-        Map<Concept, Concept> lhsRhsMap = new Hashtable<Concept, Concept>();
+        Map<Concept, Concept> rhsLhsMap = new Hashtable<Concept, Concept>();
         for (aminePlatform.util.cg.Concept lac : lhsMap.keySet()) {
             // System.out.println(parser.getTypeName(lac.getType()));
             Object lObj = lac.getDescriptor();
@@ -170,7 +170,7 @@ public class GenRuleManager {
                             String[] rDesc = getDesc(((Identifier) rObj).getName());
                             if (lDesc[1].equals(rDesc[1])) {
                                 Concept rcc = rhsMap.get(rac);
-                                lhsRhsMap.put(lcc, rcc);
+                                rhsLhsMap.put(rcc, lcc);
                                 System.out.println("Added map: " + StringUtils.join(lcc.getType(), ";") + " : " + lcc.getIndividual() + " -> " + StringUtils.join(rcc.getType(), ";") + " : " + rcc.getIndividual());
                             }
                         }
@@ -189,7 +189,7 @@ public class GenRuleManager {
             }
         }
 
-        GenRule gen = new GenRuleImpl(lhsc, rhsc, lhsRhsMap);
+        GenRule gen = new GenRuleImpl(lhsc, rhsc, rhsLhsMap);
         return gen;
     }
 
