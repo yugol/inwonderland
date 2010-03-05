@@ -40,8 +40,16 @@ import org.purl.net.wonderland.util.CodeTimer;
 public final class Globals {
 
     private static final String resFolderKey = "resFolder";
+    private static final String lgParserFolderKey = "lgParserFolder";
     public static boolean testDebug = false;
     private static String resFolder = null;
+    private static String lgParserFolder = null;
+
+    private static void readParameters(Properties projProp) {
+        resFolder = projProp.getProperty(resFolderKey);
+        System.out.println(resFolder);
+        lgParserFolder = projProp.getProperty(lgParserFolderKey);
+    }
 
     static {
         Properties projProp = new Properties();
@@ -54,16 +62,15 @@ public final class Globals {
             Reader reader = new FileReader(cfg);
             projProp.load(reader);
             reader.close();
-            resFolder = projProp.getProperty(resFolderKey);
-            System.out.println(resFolder);
+            readParameters(projProp);
 
             if (resFolder == null) {
                 projProp.put(resFolderKey, new File(System.getProperty("user.dir"), "res").getCanonicalPath());
+                projProp.put(lgParserFolderKey, "%see - MorphAdorner%");
                 Writer writer = new FileWriter(cfg);
                 projProp.store(writer, "");
                 writer.close();
-                resFolder = projProp.getProperty(resFolderKey);
-                System.out.println(resFolder);
+                readParameters(projProp);
             }
 
         } catch (IOException ex) {
@@ -74,7 +81,7 @@ public final class Globals {
 
         try {
             CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
-            System.load(new File(Globals.getResFolder(), "cogitant.dll").getCanonicalPath());
+            System.load(new File(Globals.getResPath(), "cogitant.dll").getCanonicalPath());
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error loading cogitant.dll");
@@ -83,29 +90,33 @@ public final class Globals {
         }
     }
 
-    public static String getResFolder() {
+    public static String getResPath() {
         return resFolder;
     }
 
     public static File getStanfordParserFile() {
-        return new File(getResFolder(), "englishPCFG.ser.gz");
+        return new File(getResPath(), "englishPCFG.ser.gz");
+    }
+
+    public static File getCollocationsFile() {
+        return new File(getResPath(), "morphology/collocations.lst");
     }
 
     public static File getStanfordPostaggerFile() {
-        // return new File(getResFolder(), "bidirectional-distsim-wsj-0-18.tagger");
-        return new File(getResFolder(), "/left3words-wsj-0-18.tagger");
+        // return new File(getResPath(), "bidirectional-distsim-wsj-0-18.tagger");
+        return new File(getResPath(), "left3words-wsj-0-18.tagger");
     }
 
     public static File getDefaultParseKBFile() {
-        return new File(getResFolder(), "defaultparsekb.cogxml");
+        return new File(getResPath(), "defaultparsekb.cogxml");
     }
 
     public static File getCoGuiLauncherFile() {
-        return new File(getResFolder(), "cogui-launcher.bat");
+        return new File(getResPath(), "cogui-launcher.bat");
     }
 
     public static File getJwnlPropertiesFile() {
-        return new File(getResFolder(), "jwnl_properties.xml");
+        return new File(getResPath(), "jwnl_properties.xml");
     }
 
     public static File getCorporaFolder() {
@@ -113,11 +124,15 @@ public final class Globals {
     }
 
     public static File getMorphologyFolder() {
-        return new File(getResFolder(), "morphology");
+        return new File(getResPath(), "morphology");
     }
 
     public static File getTestFolder() {
-        return new File(getResFolder(), "test");
+        return new File(getResPath(), "test");
+    }
+
+    public static String getLgParserPath() {
+        return lgParserFolder;
     }
 
     public static void exit() {

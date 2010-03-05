@@ -66,7 +66,6 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> rbint;
     static Map<String, WTagging> rb;
     static Map<String, WTagging> jj;
-    static Map<String, WTagging> collocations;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
@@ -91,8 +90,8 @@ public abstract class MorphologicalDatabase {
             try {
                 f.set(null, readDataFile(name + ".csv"));
             } catch (Exception ex) {
-                System.out.println("Error reading '" + name + "'");
-                System.out.println(ex);
+                System.err.println("Error reading '" + name + "'");
+                System.err.println(ex);
                 Globals.exit();
             }
         }

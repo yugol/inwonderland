@@ -38,11 +38,11 @@ import static org.junit.Assert.*;
  *
  * @author Iulian
  */
-public class MessageProcessorTest {
+public class EngineTest {
 
     static File candidateFile = new File("test.xml");
 
-    public MessageProcessorTest() {
+    public EngineTest() {
         candidateFile.delete();
     }
 
@@ -53,11 +53,12 @@ public class MessageProcessorTest {
         candidate.writeToFile(candidateFile);
     }
 
-    // @Test
+    @Test
     public void testOne() throws Exception {
         Engine instance = new Engine();
+        instance.setPersonality(new Dummy());
 
-        String resp = instance.processMessage("Mother has watered the flowers.");
+        String resp = instance.processMessage("This school will hold more than one thousand pupils.");
         assertEquals("Done.", resp);
 
         File file = new File("test.cogxml");
@@ -65,13 +66,14 @@ public class MessageProcessorTest {
         mergeToCandidate(instance);
     }
 
-    @Test
+    // @Test
     public void testMany() throws Exception {
-        int from = 971;
-        int to = 0;
+        int from = 1;
+        int to = 983;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Engine instance = new Engine();
+        instance.setPersonality(new Dummy());
 
         from -= 1;
         to -= 1;

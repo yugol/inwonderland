@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp;
 
 import java.util.List;
@@ -40,13 +39,15 @@ public class TagMapper {
     void mapWTags(List<WTagging> sentence) {
         for (WTagging tagging : sentence) {
             String tag = tagging.getPennTag();
-
+            /*
             if (tagging.isCollocation()) {
-                mapCollocation(tagging);
-                if (tagging.getPos() != null) {
-                    continue;
-                }
+            mapCollocation(tagging);
+            if (tagging.getPos() != null) {
+            continue;
             }
+            }
+             * 
+             */
 
             if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 mapNN(tagging, tag);
@@ -185,11 +186,13 @@ public class TagMapper {
             tagging.setPos("Vb");
             String maTag = tagging.getPartsOfSpeech();
 
-            if (maTag.indexOf("vd") == 0) {
-                tagging.setLemma("do");
-            }
-            if (maTag.indexOf("vh") == 0) {
-                tagging.setLemma("have");
+            if (maTag != null) {
+                if (maTag.indexOf("vd") == 0) {
+                    tagging.setLemma("do");
+                }
+                if (maTag.indexOf("vh") == 0) {
+                    tagging.setLemma("have");
+                }
             }
 
             if (tag.equals("VBZ")) {
@@ -584,16 +587,18 @@ public class TagMapper {
         tagging.setPos("MkPOS");
     }
 
+    /*
     void mapCollocation(WTagging tagging) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging collocation = MorphologicalDatabase.collocations.get(word);
+    String word = tagging.getForm().toLowerCase();
+    WTagging collocation = MorphologicalDatabase.collocations.get(word);
 
-        if (collocation != null) {
-            tagging.copyWTags(collocation);
+    if (collocation != null) {
+    tagging.copyWTags(collocation);
 
-        }
     }
-
+    }
+     * 
+     */
     private boolean tryIndefinitePronoun(WTagging tagging) {
         String word = tagging.getForm().toLowerCase();
         WTagging pnidf = MorphologicalDatabase.pnidf.get(word);

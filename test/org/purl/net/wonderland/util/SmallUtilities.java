@@ -28,11 +28,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
+import net.didion.jwnl.data.POS;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
  *
@@ -45,14 +47,14 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    @Test
+    // @Test
     public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
         System.out.println("normalizeConceptTypes");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
         KB.normalizeRelationTypes(Globals.getDefaultParseKBFile());
     }
 
-    // @Test
+    @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("reIndexGoldCorpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
@@ -104,5 +106,10 @@ public class SmallUtilities {
         for (WTagging tagging : taggings) {
             System.out.println(tagging.toCsvString());
         }
+    }
+
+    // @Test
+    public void listWordNet() {
+        WordNetWrapper.listIndexWords(POS.NOUN);
     }
 }

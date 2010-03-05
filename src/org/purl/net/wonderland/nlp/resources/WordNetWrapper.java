@@ -23,7 +23,9 @@
  */
 package org.purl.net.wonderland.nlp.resources;
 
+import edu.stanford.nlp.util.StringUtils;
 import java.io.FileInputStream;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.didion.jwnl.JWNL;
@@ -110,6 +112,38 @@ public final class WordNetWrapper {
         } catch (JWNLException ex) {
             System.err.println(ex);
             return null;
+        }
+    }
+
+    public static void listIndexWords(POS posType) {
+        try {
+            String pos = null;
+
+            if (posType == POS.ADJECTIVE) {
+                pos = "Jj";
+            } else if (posType == POS.ADVERB) {
+                pos = "Rb";
+            } else if (posType == POS.NOUN) {
+                pos = "Nn";
+            } else if (posType == POS.VERB) {
+                pos = "Vb";
+            }
+
+            Iterator<IndexWord> it = dict.getIndexWordIterator(posType);
+            int count = 0;
+            while (it.hasNext()) {
+                IndexWord w = it.next();
+                String lemma = w.getLemma();
+                if (lemma.indexOf(" ") >= 0) {
+                    ++count;
+                    lemma = StringUtils.join(lemma.split(" "), "_");
+                    System.out.println(lemma + "," + lemma + "," + pos + ",,,,,,,");
+                }
+            }
+            // System.out.println("Total " + count + " collocations");
+        } catch (JWNLException ex) {
+            System.err.println(ex);
+            Globals.exit();
         }
     }
 }
