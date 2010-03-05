@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.ling.HasWord;
@@ -80,5 +79,8 @@ public final class StanfordParserWrapper {
 
     public static List<TaggedWord> getPennPosTags(Tree parse) {
         return parse.taggedYield();
+    }
+
+    public static void init() {
     }
 }

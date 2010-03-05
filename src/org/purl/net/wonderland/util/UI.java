@@ -22,39 +22,30 @@
  *  THE SOFTWARE.
  */
 
-package org.purl.net.wonderland.ui;
+package org.purl.net.wonderland.util;
 
-import org.purl.net.wonderland.util.UI;
 import java.io.File;
-import javax.swing.filechooser.FileFilter;
 
 /**
  *
  * @author Iulian
  */
-public class KbFileFilter extends FileFilter {
+public class UI {
 
-    @Override
-    public boolean accept(File f) {
-        if (f.isDirectory()) {
-            return true;
+    public final static String txt = "txt";
+    public final static String cogxml = "cogxml";
+
+    /*
+     * Get the extension of a file.
+     */
+    public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 && i < s.length() - 1) {
+            ext = s.substring(i + 1).toLowerCase();
         }
-
-        String extension = UI.getExtension(f);
-        if (extension != null) {
-            if (extension.equals(UI.cogxml)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        return false;
+        return ext;
     }
-
-    @Override
-    public String getDescription() {
-        return "Knowledge base files";
-    }
-
 }

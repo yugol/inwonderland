@@ -24,7 +24,6 @@
 package org.purl.net.wonderland;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,6 +31,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Properties;
 import org.purl.net.wonderland.util.CodeTimer;
+import org.purl.net.wonderland.util.IO;
 
 /**
  *
@@ -41,14 +41,18 @@ public final class Globals {
 
     private static final String resFolderKey = "resFolder";
     private static final String lgParserFolderKey = "lgParserFolder";
-    public static boolean testDebug = false;
+    private static final String vnDataFolderKey = "verbNetDataFolder";
     private static String resFolder = null;
     private static String lgParserFolder = null;
+    private static String vnDataFolder = null;
+    private static String wnDataFolder = null;
+    public static boolean testDebug = false;
 
     private static void readParameters(Properties projProp) {
         resFolder = projProp.getProperty(resFolderKey);
-        System.out.println(resFolder);
+        // System.out.println(resFolder);
         lgParserFolder = projProp.getProperty(lgParserFolderKey);
+        vnDataFolder = projProp.getProperty(vnDataFolderKey);
     }
 
     static {
@@ -66,7 +70,8 @@ public final class Globals {
 
             if (resFolder == null) {
                 projProp.put(resFolderKey, new File(System.getProperty("user.dir"), "res").getCanonicalPath());
-                projProp.put(lgParserFolderKey, "%see - MorphAdorner%");
+                projProp.put(lgParserFolderKey, "%MorphAdorner - LinkGrammar%");
+                projProp.put(vnDataFolderKey, "%VerbNet - data%");
                 Writer writer = new FileWriter(cfg);
                 projProp.store(writer, "");
                 writer.close();
@@ -90,6 +95,13 @@ public final class Globals {
         }
     }
 
+    public static void init() {
+    }
+
+    public static void exit() {
+        System.exit(1);
+    }
+
     public static String getResPath() {
         return resFolder;
     }
@@ -99,7 +111,7 @@ public final class Globals {
     }
 
     public static File getCollocationsFile() {
-        return new File(getResPath(), "morphology/collocations.lst");
+        return new File(getResPath(), "morphology/collocations.csv");
     }
 
     public static File getStanfordPostaggerFile() {
@@ -135,7 +147,39 @@ public final class Globals {
         return lgParserFolder;
     }
 
-    public static void exit() {
-        System.exit(1);
+    public static File getVerbNetDataFolder() {
+        return new File(vnDataFolder);
+    }
+
+    public static File getVerbNetIndexFolder() {
+        return new File(resFolder, "verbnet");
+    }
+
+    public static File getVerbNetFileIndexFile() {
+        return new File(getVerbNetIndexFolder(), "file_index.csv");
+    }
+
+    public static File getVerbNetVerbIndexFile() {
+        return new File(getVerbNetIndexFolder(), "verb_index.csv");
+    }
+
+    public static File getWordNetFolder() {
+        if (wnDataFolder == null) {
+            try {
+                String content = IO.getFileContentAsString(getJwnlPropertiesFile());
+                int pos = content.indexOf("dictionary_path");
+                pos = content.lastIndexOf("<param", pos);
+                pos = content.indexOf("value", pos);
+                int from = pos + 7;
+                pos = content.indexOf("\"", from);
+                wnDataFolder = content.substring(from, pos);
+                // System.out.println(wnDataFolder);
+            } catch (Exception ex) {
+                System.err.println("Error reading JWNL initialisation file");
+                System.err.println(ex);
+                Globals.exit();
+            }
+        }
+        return new File(wnDataFolder);
     }
 }

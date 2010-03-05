@@ -26,8 +26,6 @@ package org.purl.net.wonderland.nlp.resources;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
-import net.didion.jwnl.data.Pointer;
-import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -52,21 +50,47 @@ public class WordNetWrapperTest {
     }
 
     @Test
+    public void testSenseToId() {
+        String id = WordNetWrapper.senseToId("insolvent%1:18:00");
+        assertEquals("n09838370", id);
+        Synset sense = WordNetWrapper.lookup(id);
+        assertEquals("insolvent", sense.getWord(1).getLemma());
+
+        id = WordNetWrapper.senseToId("inspect%2:31:00");
+        assertEquals("v00697062", id);
+        sense = WordNetWrapper.lookup(id);
+        assertEquals("inspect", sense.getWord(3).getLemma());
+
+        id = WordNetWrapper.senseToId("insolvent%3:00:00");
+        assertEquals("a02026442", id);
+        sense = WordNetWrapper.lookup(id);
+        assertEquals("insolvent", sense.getWord(0).getLemma());
+
+        id = WordNetWrapper.senseToId("insomuch%4:02:00");
+        assertEquals("r00379233", id);
+        sense = WordNetWrapper.lookup(id);
+        assertEquals("insomuch", sense.getWord(0).getLemma());
+    }
+
+    @Test
     public void testLookup() throws JWNLException {
         String word = "door";
         IndexWord result = WordNetWrapper.lookup(word, POS.NOUN);
         assertNotNull(result);
+        Synset[] senses = result.getSenses();
+        assertEquals(5, senses.length);
+        /*
         System.out.println("Key: " + result.getKey());
         System.out.println("Lemma: " + result.getLemma());
-        Synset[] senses = result.getSenses();
         for (Synset sense : senses) {
-            System.out.println(sense.getGloss());
-            Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
-            for (Pointer ptr : ptrs) {
-                long offset = ptr.getTargetOffset();
-                sense = WordNetWrapper.lookup(offset, POS.NOUN);
-                System.out.println("   " + sense.getWord(0).getLemma());
-            }
+        System.out.println(sense.getGloss());
+        Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+        for (Pointer ptr : ptrs) {
+        long offset = ptr.getTargetOffset();
+        sense = WordNetWrapper.lookup(offset, POS.NOUN);
+        System.out.println("   " + sense.getWord(0).getLemma());
         }
+        }
+         */
     }
 }

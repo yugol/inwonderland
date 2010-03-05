@@ -34,6 +34,7 @@ import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
@@ -49,14 +50,14 @@ public class SmallUtilities {
 
     // @Test
     public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
-        System.out.println("normalizeConceptTypes");
+        System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
         KB.normalizeRelationTypes(Globals.getDefaultParseKBFile());
     }
 
-    @Test
+    // @Test
     public void reIndexGoldCorpus() throws Exception {
-        System.out.println("reIndexGoldCorpus");
+        System.out.println("Re-indexing gold corpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
         Corpus gold = new Corpus();
         gold.buildFrom(goldFile);
@@ -110,6 +111,16 @@ public class SmallUtilities {
 
     // @Test
     public void listWordNet() {
+        System.out.println("Collocations listing");
+        WordNetWrapper.listIndexWords(POS.ADJECTIVE);
+        WordNetWrapper.listIndexWords(POS.ADVERB);
         WordNetWrapper.listIndexWords(POS.NOUN);
+        WordNetWrapper.listIndexWords(POS.VERB);
+    }
+
+    @Test
+    public void buildVerbNetIndexes() throws FileNotFoundException {
+        System.out.println("Indexing VerbNet");
+        VerbNetWrapper.init();
     }
 }
