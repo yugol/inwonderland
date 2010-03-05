@@ -55,12 +55,18 @@ public class VerbNetWrapperTest {
 
     @Test
     public void testGetVerbClasses() {
-        VerbForm result = VerbNetWrapper.getVerbClasses("abound");
+        VerbForm result = VerbNetWrapper.getVerbClasses("make");
+        assertEquals(3, result.getVnClasses().size());
+        assertEquals(8, result.getWnSenses("build-26.1-1").size());
+
+        result = VerbNetWrapper.getVerbClasses("abound");
         assertEquals(1, result.getVnClasses().size());
         assertEquals(2, result.getWnSenses("swarm-47.5.1-2-1").size());
 
         result = VerbNetWrapper.getVerbClasses("wriggle_out");
         assertEquals(1, result.getVnClasses().size());
         assertEquals(0, result.getWnSenses("withdraw-82-1").size());
+
+
     }
 }

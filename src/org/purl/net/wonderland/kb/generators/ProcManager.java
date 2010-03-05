@@ -49,9 +49,9 @@ import java.util.UUID;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenRuleManager {
+public class ProcManager {
 
-    private Map<String, List<GenRule>> generators = new Hashtable<String, List<GenRule>>();
+    private Map<String, List<Procedure>> generators = new Hashtable<String, List<Procedure>>();
     private final SolverCogitant solver = new SolverCogitant();
     private final WKnowledgeBase kb;
 
@@ -59,14 +59,14 @@ public class GenRuleManager {
         return generators.size();
     }
 
-    private void addGenerator(String group, GenRule t) {
+    private void addGenerator(String group, Procedure t) {
         if (!generators.containsKey(group)) {
-            generators.put(group, new ArrayList<GenRule>());
+            generators.put(group, new ArrayList<Procedure>());
         }
         generators.get(group).add(t);
     }
 
-    public GenRuleManager(WKnowledgeBase kb) {
+    public ProcManager(WKnowledgeBase kb) {
         this.kb = kb;
     }
 
@@ -75,12 +75,12 @@ public class GenRuleManager {
         List<Rule> rules = kb.getGeneratorRules(setId);
         for (Rule rule : rules) {
             String name = rule.getName().substring(setId.length());
-            GenRule gen = buildGenerator(rule, name);
+            Procedure gen = buildGenerator(rule, name);
             addGenerator(set, gen);
         }
     }
 
-    private GenRule buildGenerator(Rule rule, String name) {
+    private Procedure buildGenerator(Rule rule, String name) {
         CGraph lhs = new CGraph(UUID.randomUUID().toString(), name, "lhs", "fact");
         CGraph rhs = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
 
@@ -126,12 +126,12 @@ public class GenRuleManager {
             rhsLhsMap.put(r, l);
         }
 
-        GenRule gen = new GenRuleImpl(lhs, rhs, rhsLhsMap);
+        Procedure gen = new ProcImpl(lhs, rhs, rhsLhsMap);
         return gen;
     }
 
     public void readGenerators(File file) throws Exception {
-        GenRuleParser parser = new GenRuleParser();
+        ProcParser parser = new ProcParser();
         Vocabulary voc = kb.getVocabulary();
         Iterator<String> r = voc.getRelationTypeHierarchy().iteratorVertex();
         while (r.hasNext()) {
@@ -140,12 +140,12 @@ public class GenRuleManager {
         }
         parser.parse(file);
         for (int i = 0; i < parser.getNameList().size(); ++i) {
-            GenRule gen = buildGenerator(parser, parser.getNameList().get(i), parser.getLhsList().get(i), parser.getRhsList().get(i));
+            Procedure gen = buildGenerator(parser, parser.getNameList().get(i), parser.getLhsList().get(i), parser.getRhsList().get(i));
             addGenerator("amine", gen);
         }
     }
 
-    private GenRule buildGenerator(GenRuleParser parser, String name, CG lhsa, CG rhsa) {
+    private Procedure buildGenerator(ProcParser parser, String name, CG lhsa, CG rhsa) {
         CGraph lhsc = new CGraph(UUID.randomUUID().toString(), name, "lhs", "fact");
         Map<aminePlatform.util.cg.Concept, Concept> lhsMap = mapGraph(lhsa, lhsc, parser);
         CGraph rhsc = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
@@ -189,7 +189,7 @@ public class GenRuleManager {
             }
         }
 
-        GenRule gen = new GenRuleImpl(lhsc, rhsc, rhsLhsMap);
+        Procedure gen = new ProcImpl(lhsc, rhsc, rhsLhsMap);
         return gen;
     }
 
@@ -207,7 +207,7 @@ public class GenRuleManager {
         return desc;
     }
 
-    private Map<aminePlatform.util.cg.Concept, Concept> mapGraph(CG amineCG, CGraph cogitantCG, GenRuleParser parser) {
+    private Map<aminePlatform.util.cg.Concept, Concept> mapGraph(CG amineCG, CGraph cogitantCG, ProcParser parser) {
         Map<aminePlatform.util.cg.Concept, Concept> acMap = new Hashtable<aminePlatform.util.cg.Concept, Concept>();
         if (amineCG != null) {
             Enumeration it = amineCG.getConcepts();
@@ -244,15 +244,15 @@ public class GenRuleManager {
         return acMap;
     }
 
-    public List<GenRule> findMatches(String set, CGraph cg) throws Exception {
+    public List<Procedure> findMatches(String set, CGraph cg) throws Exception {
         if (!solver.isConnected()) {
             solver.connect();
             solver.commitVocabulary(kb.getVocabulary());
             solver.resetCommitedGraphs();
         }
 
-        List<GenRule> matches = new ArrayList<GenRule>();
-        for (GenRule t : generators.get(set)) {
+        List<Procedure> matches = new ArrayList<Procedure>();
+        for (Procedure t : generators.get(set)) {
             CGraph lhs = t.getLhs();
             List<Projection> projections = solver.getProjections(lhs, cg);
             if (projections.size() > 0) {
@@ -267,7 +267,7 @@ public class GenRuleManager {
         return matches;
     }
 
-    public List<GenRule> findMatches(String set, String id) throws Exception {
+    public List<Procedure> findMatches(String set, String id) throws Exception {
         return findMatches(set, kb.getFactGraph(id));
     }
 }

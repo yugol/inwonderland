@@ -28,14 +28,17 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
-import org.purl.net.wonderland.kb.generators.GenRule;
-import org.purl.net.wonderland.kb.generators.GenRuleManager;
+import org.purl.net.wonderland.kb.generators.Procedure;
+import org.purl.net.wonderland.kb.generators.ProcManager;
 
 /**
  *
@@ -43,7 +46,7 @@ import org.purl.net.wonderland.kb.generators.GenRuleManager;
  */
 public class EtoGleem extends Personality {
 
-    private GenRuleManager genRuleMgr;
+    private ProcManager genRuleMgr;
 
     @Override
     public String getWelcomeMessage() {
@@ -77,7 +80,7 @@ public class EtoGleem extends Personality {
     @Override
     public void setKb(WKnowledgeBase kb) {
         super.setKb(kb);
-        genRuleMgr = new GenRuleManager(kb);
+        genRuleMgr = new ProcManager(kb);
         try {
             genRuleMgr.readGenerators(KbUtil.level1);
         } catch (Exception ex) {
@@ -90,8 +93,9 @@ public class EtoGleem extends Personality {
     @Override
     public String processMessages(List<CGraph> messages) throws Exception {
         for (CGraph message : messages) {
-            List<GenRule> rules = genRuleMgr.findMatches(KbUtil.level1, message);
-            for (GenRule rule : rules) {
+            findMeaning(message);
+            List<Procedure> rules = genRuleMgr.findMatches(KbUtil.level1, message);
+            for (Procedure rule : rules) {
                 List<Projection> matches = rule.getProjections();
                 for (Projection match : matches) {
                     CGraph fact = extractFact(rule, match);
@@ -102,7 +106,7 @@ public class EtoGleem extends Personality {
         return "Done.";
     }
 
-    private CGraph extractFact(GenRule rule, Projection match) {
+    private CGraph extractFact(Procedure rule, Projection match) {
         CGraph fact = new CGraph(KbUtil.newUniqueId(), null, null, "fact");
 
         CGraph rhs = rule.getRhs();
@@ -145,5 +149,34 @@ public class EtoGleem extends Personality {
         fact.setSet(KbUtil.level2);
         kb.addGraph(fact);
         kb.setLevel2FactCount(factId);
+    }
+
+    protected void findMeaning(CGraph message) {
+        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
+        Iterator<Concept> it = message.iteratorConcept();
+        while (it.hasNext()) {
+            Concept c = it.next();
+            String individual = c.getIndividual();
+            String[] types = c.getType();
+            String[] moreTypes = null;
+            if (cth.isKindOf(types, KbUtil.Nn)) {
+                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.NOUN);
+            } else if (cth.isKindOf(types, KbUtil.Vb)) {
+                moreTypes = kb.importVerbNetHierarchy(individual);
+                if (moreTypes == null) {
+                    moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.VERB);
+                }
+            } else if (cth.isKindOf(types, KbUtil.Jj)) {
+                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.ADJECTIVE);
+            } else if (cth.isKindOf(types, KbUtil.Rb)) {
+                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.ADVERB);
+            }
+            if (moreTypes != null) {
+                String[] allTypes = new String[types.length + moreTypes.length];
+                System.arraycopy(types, 0, allTypes, 0, types.length);
+                System.arraycopy(moreTypes, 0, allTypes, types.length, moreTypes.length);
+                c.setType(allTypes);
+            }
+        }
     }
 }

@@ -60,6 +60,9 @@ public class CollocationManager implements WordNetConnection {
         }
     }
 
+    public static void init() {
+    }
+
     static List<WTagging> buildSentenceWithCollocations(List<WTagging> sentence, List<TaggedWord> pennTags) {
         List<WTagging> newSentence = new ArrayList<WTagging>();
         int p = 0;

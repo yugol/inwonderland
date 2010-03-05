@@ -33,7 +33,7 @@ import java.util.Map;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface GenRule {
+public interface Procedure {
 
     public CGraph getLhs();
 

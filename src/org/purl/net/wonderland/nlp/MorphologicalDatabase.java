@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp;
 
 import java.io.FileNotFoundException;
@@ -81,6 +80,9 @@ public abstract class MorphologicalDatabase {
             inFile.close();
         }
         return map;
+    }
+
+    public static void init() {
     }
 
     static {

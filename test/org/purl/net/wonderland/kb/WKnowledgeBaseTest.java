@@ -34,12 +34,12 @@ import org.purl.net.wonderland.Globals;
  *
  * @author Iulian
  */
-public class WKbTest {
+public class WKnowledgeBaseTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
-        File cogxml = new File("test.cogxml");
+        File cogxml = new File("test_word_import.cogxml");
 
         String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
         assertNull(sTypes);
@@ -62,6 +62,30 @@ public class WKbTest {
         sTypes = kb.importWordNetHypernymHierarchy("good", POS.ADVERB);
         kb.save(cogxml);
         assertEquals(2, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
+    }
+
+    @Test
+    public void testImportVerbNetHierarchy() throws Exception {
+        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
+        File cogxml = new File("test_verb_import.cogxml");
+
+        String[] sTypes = kb.importVerbNetHierarchy("zzzb");
+        assertNull(sTypes);
+
+        sTypes = kb.importVerbNetHierarchy("atomize");
+        kb.save(cogxml);
+        assertEquals(1, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
+
+        sTypes = kb.importVerbNetHierarchy("blab");
+        kb.save(cogxml);
+        assertEquals(2, sTypes.length);
+        System.out.println(StringUtils.join(sTypes, ", "));
+
+        sTypes = kb.importVerbNetHierarchy("make");
+        kb.save(cogxml);
+        assertEquals(15, sTypes.length);
         System.out.println(StringUtils.join(sTypes, ", "));
     }
 }

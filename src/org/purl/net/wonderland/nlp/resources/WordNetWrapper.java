@@ -100,7 +100,7 @@ public final class WordNetWrapper {
             }
             return false;
         } catch (Exception ex) {
-            System.err.println(ex);
+            // System.err.println(ex);
             return false;
         }
     }
@@ -119,7 +119,7 @@ public final class WordNetWrapper {
         try {
             return dict.lookupIndexWord(posType, word).getSenses();
         } catch (JWNLException ex) {
-            System.err.println(ex);
+            // System.err.println(ex);
             return null;
         }
     }

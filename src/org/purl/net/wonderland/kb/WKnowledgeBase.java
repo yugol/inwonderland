@@ -38,7 +38,9 @@ import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.WonderlandException;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.nlp.resources.verbnet.VerbForm;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -134,9 +136,7 @@ public class WKnowledgeBase {
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
         String senseName = KbUtil.toSenseName(particle, sense.getOffset());
-        String senseId = null;
-
-        senseId = KbUtil.toConceptTypeId(senseName);
+        String senseId = KbUtil.toConceptTypeId(senseName);
         if (vocabulary.conceptTypeIdExist(senseId)) {
             return senseId;
         }
@@ -148,9 +148,9 @@ public class WKnowledgeBase {
         }
 
         String lemma = sense.getWord(0).getLemma().toLowerCase();
-        String label = "[" + lemma + "] " + KbUtil.removeQuotes(sense.getGloss());
+        // String label = "[" + lemma + "] " + KbUtil.removeQuotes(sense.getGloss());
 
-        vocabulary.addConceptType(senseId, senseName, label, language);
+        vocabulary.addConceptType(senseId, senseName, lemma, language);
         vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);
 
         return senseId;
@@ -203,5 +203,43 @@ public class WKnowledgeBase {
             }
         }
         return rules;
+    }
+
+    public String[] importVerbNetHierarchy(String verb) {
+        List<String> types = new ArrayList<String>();
+
+        VerbForm vf = VerbNetWrapper.getVerbClasses(verb);
+        if (vf == null) {
+            return null;
+        }
+
+        for (String vc : vf.getVnClasses()) {
+            String vcType = importVerbNetClassHierarchy(vc, KbUtil.toConceptTypeId("vnVb"));
+            types.add(vcType);
+            for (String vs : vf.getWnSenses(vc)) {
+                Synset sense = WordNetWrapper.lookup(vs);
+                String senseType = importWordNetHypernymHierarchy(sense, POS.VERB, "v", KbUtil.toConceptTypeId("wnVb"));
+                types.add(senseType);
+            }
+        }
+
+        return types.toArray(new String[]{});
+    }
+
+    private String importVerbNetClassHierarchy(String verbClassName, String parentId) {
+        String verbClassId = KbUtil.toConceptTypeId(verbClassName);
+        if (vocabulary.conceptTypeIdExist(verbClassId)) {
+            return verbClassId;
+        }
+
+        String parentName = verbClassName.substring(0, verbClassName.lastIndexOf('-'));
+        if (parentName.indexOf('-') >= 0) {
+            parentId = importVerbNetClassHierarchy(parentName, parentId);
+        }
+
+        vocabulary.addConceptType(verbClassId, verbClassName, "", language);
+        vocabulary.getConceptTypeHierarchy().addEdge(verbClassId, parentId);
+
+        return verbClassId;
     }
 }

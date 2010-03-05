@@ -48,7 +48,7 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    // @Test
+    @Test
     public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
         System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
@@ -118,7 +118,7 @@ public class SmallUtilities {
         WordNetWrapper.listIndexWords(POS.VERB);
     }
 
-    @Test
+    // @Test
     public void buildVerbNetIndexes() throws FileNotFoundException {
         System.out.println("Indexing VerbNet");
         VerbNetWrapper.init();
