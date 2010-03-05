@@ -24,10 +24,13 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.util.StringUtils;
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
@@ -36,6 +39,7 @@ import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.dictionary.Dictionary;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
@@ -44,10 +48,12 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public final class WordNetWrapper {
 
-    static Dictionary dict;
+    private static Dictionary dict;
+    private static Map<String, String> senseOffset = null;
 
     static {
         try {
+            Globals.init();
             CodeTimer timer = new CodeTimer("WordNetWrapper");
             JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();
@@ -57,6 +63,9 @@ public final class WordNetWrapper {
             System.err.println(ex);
             Globals.exit();
         }
+    }
+
+    public static void init() {
     }
 
     public static IndexWord lookup(String word, POS posType) {
@@ -145,5 +154,74 @@ public final class WordNetWrapper {
             System.err.println(ex);
             Globals.exit();
         }
+    }
+
+    public static String senseToId(String senseKey) {
+        String id = null;
+
+        try {
+            if (senseOffset == null) {
+                CodeTimer timer = new CodeTimer("WordNetWrapper sense-offset map");
+                senseOffset = new Hashtable<String, String>();
+                File indexSense = new File(Globals.getWordNetFolder(), "index.sense");
+                BufferedReader reader = new BufferedReader(new FileReader(indexSense));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    int endIndex = line.indexOf("::");
+                    if (endIndex >= 0) {
+                        senseOffset.put(line.substring(0, endIndex), line);
+                    }
+                }
+                reader.close();
+                timer.stop();
+            }
+
+            char senseType = senseKey.charAt(senseKey.indexOf("%") + 1);
+            switch (senseType) {
+                case '1':
+                    id = "n";
+                    break;
+                case '2':
+                    id = "v";
+                    break;
+                case '3':
+                    id = "a";
+                    break;
+                case '4':
+                    id = "r";
+                    break;
+                default:
+                    throw new WonderlandException("Unsupported type " + senseType);
+            }
+            String[] chunks = senseOffset.get(senseKey).split(" ");
+            id = id + chunks[1];
+        } catch (Exception ex) {
+            System.err.println("In WordNetWrapper.senseToId");
+            ex.printStackTrace(System.err);
+            Globals.exit();
+        }
+
+        return id;
+    }
+
+    public static Synset lookup(String id) {
+        char senseType = id.charAt(0);
+        POS posType = null;
+        switch (senseType) {
+            case 'n':
+                posType = POS.NOUN;
+                break;
+            case 'v':
+                posType = POS.VERB;
+                break;
+            case 'a':
+                posType = POS.ADJECTIVE;
+                break;
+            case 'r':
+                posType = POS.ADVERB;
+                break;
+        }
+        long offset = Long.parseLong(id.substring(1));
+        return lookup(offset, posType);
     }
 }

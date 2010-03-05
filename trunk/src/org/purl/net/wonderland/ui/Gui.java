@@ -28,14 +28,18 @@
  */
 package org.purl.net.wonderland.ui;
 
+import org.purl.net.wonderland.util.UI;
 import com.jidesoft.plaf.LookAndFeelFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
+import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 
 /**
  *
@@ -291,7 +295,11 @@ public class Gui extends javax.swing.JFrame {
     private void processMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processMessageButtonActionPerformed
         String message = noteUserMessage();
         if (message != null) {
-            message = messageProcessor.processMessage(message);
+            try {
+                message = messageProcessor.processMessage(message);
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
             noteProgramResponse(message);
         }
     }//GEN-LAST:event_processMessageButtonActionPerformed
@@ -323,8 +331,8 @@ public class Gui extends javax.swing.JFrame {
         int returnVal = kbFileChooser.showSaveDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = kbFileChooser.getSelectedFile();
-            if (!Utils.cogxml.equals(Utils.getExtension(file))) {
-                file = new File(file.getAbsolutePath() + "." + Utils.cogxml);
+            if (!UI.cogxml.equals(UI.getExtension(file))) {
+                file = new File(file.getAbsolutePath() + "." + UI.cogxml);
             }
             try {
                 messageProcessor.saveKb(file);
@@ -386,6 +394,7 @@ public class Gui extends javax.swing.JFrame {
 
             public void run() {
                 MorphAdornerWrapper.init();
+                StanfordParserWrapper.init();
                 gui.processMessageButton.setEnabled(true);
             }
         });

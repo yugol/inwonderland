@@ -24,6 +24,7 @@
 
 package org.purl.net.wonderland.ui;
 
+import org.purl.net.wonderland.util.UI;
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
@@ -44,9 +45,9 @@ public class TextFileFilter extends FileFilter {
             return true;
         }
 
-        String extension = Utils.getExtension(f);
+        String extension = UI.getExtension(f);
         if (extension != null) {
-            if (extension.equals(Utils.txt)) {
+            if (extension.equals(UI.txt)) {
                 return true;
             } else {
                 return false;
