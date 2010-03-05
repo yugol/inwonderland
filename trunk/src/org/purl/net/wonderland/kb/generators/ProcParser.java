@@ -50,7 +50,7 @@ import org.xml.sax.SAXException;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenRuleParser {
+public class ProcParser {
 
     public static class LFCGParser extends LFParserGenerator {
 
@@ -89,7 +89,7 @@ public class GenRuleParser {
     private List<CG> lhsList;
     private List<CG> rhsList;
 
-    public GenRuleParser() throws ParsingException, LexiconException, OntologyException {
+    public ProcParser() throws ParsingException, LexiconException, OntologyException {
         lfgcParser = new LFCGParser();
     }
 

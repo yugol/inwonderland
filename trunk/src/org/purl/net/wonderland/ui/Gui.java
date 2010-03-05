@@ -37,9 +37,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
+import org.purl.net.wonderland.nlp.CollocationManager;
+import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
  *
@@ -393,8 +398,13 @@ public class Gui extends javax.swing.JFrame {
         Thread libLoader = new Thread(new Runnable() {
 
             public void run() {
-                MorphAdornerWrapper.init();
+                Globals.init();
+                CollocationManager.init();
+                MorphologicalDatabase.init();
+                WordNetWrapper.init();
+                VerbNetWrapper.init();
                 StanfordParserWrapper.init();
+                MorphAdornerWrapper.init();
                 gui.processMessageButton.setEnabled(true);
             }
         });

@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 import org.purl.net.wonderland.Globals;
@@ -58,11 +59,19 @@ public final class VNUtil {
 
     public static void buildVerbNetVerbIndex(File verbIndex) throws Exception {
         PrintWriter fout = new PrintWriter(verbIndex);
-        Map<String, VerbForm> verbForms = new HashMap<String, VerbForm>();
+        Map<String, VerbForm> verbForms = new Hashtable<String, VerbForm>();
         for (String name : VerbNetWrapper.getFileList()) {
             VNClassFile verbClass = new VNClassFile(name);
             for (VerbForm member : verbClass.getMembers()) {
-                verbForms.put(member.getLemma(), member);
+                VerbForm vf = verbForms.get(member.getLemma());
+                if (vf == null) {
+                    verbForms.put(member.getLemma(), member);
+                } else {
+                    String vc = member.getVnClasses().iterator().next();
+                    for (String vs : member.getWnSenses(vc)) {
+                        vf.addWnSense(vc, vs);
+                    }
+                }
             }
         }
         for (VerbForm vf : verbForms.values()) {

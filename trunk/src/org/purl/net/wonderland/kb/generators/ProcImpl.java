@@ -33,14 +33,14 @@ import java.util.Map;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenRuleImpl implements GenRule {
+public class ProcImpl implements Procedure {
 
     private final CGraph lhs;
     private final CGraph rhs;
     private final Map<Concept, Concept> rhsLhsConceptMap;
     List<Projection> projections;
 
-    public GenRuleImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
+    public ProcImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
         this.lhs = lhs;
         this.rhs = rhs;
         this.rhsLhsConceptMap = conceptMap;

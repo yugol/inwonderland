@@ -33,7 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.kb.generators.GenRuleParser.LFCGParser;
+import org.purl.net.wonderland.kb.generators.ProcParser.LFCGParser;
 import org.purl.net.wonderland.util.IO;
 
 /**

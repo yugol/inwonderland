@@ -46,6 +46,12 @@ public final class KbUtil {
     public static final String numberConceptType = toConceptTypeId("Number");
     public static final String personConceptType = toConceptTypeId("Person");
     public static final String tenseConceptType = toConceptTypeId("Tense");
+    //
+    public static final String Nn = toConceptTypeId("Nn");
+    public static final String Vb = toConceptTypeId("Vb");
+    public static final String Jj = toConceptTypeId("Jj");
+    public static final String Rb = toConceptTypeId("Rb");
+    //
     public static final String level1 = "level1";
     public static final String level2 = "level2";
     public static final String gen = "gen_";
