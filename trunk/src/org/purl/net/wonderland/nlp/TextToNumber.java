@@ -55,6 +55,7 @@ public class TextToNumber {
         cardinals.put("eleven", "10");
         cardinals.put("twelve", "10");
         cardinals.put("thousand", "1000");
+        cardinals.put("one_thousand", "1000");
         cardinals.put("thirty-seven", "37");
 
         ordinals.put("first", "1");

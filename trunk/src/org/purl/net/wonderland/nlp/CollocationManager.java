@@ -21,21 +21,44 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp;
 
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.WordNetConnection;
 import edu.stanford.nlp.util.StringUtils;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
+import org.purl.net.wonderland.util.CodeTimer;
 
 /**
  *
  * @author Iulian
  */
-class CollocationManager implements WordNetConnection {
+public class CollocationManager implements WordNetConnection {
+
+    private static Set<String> collocations = new HashSet<String>();
+
+    static {
+        try {
+            CodeTimer timer = new CodeTimer("reading collocations");
+            BufferedReader reader = new BufferedReader(new FileReader(Globals.getCollocationsFile()));
+            String item = null;
+            while ((item = reader.readLine()) != null) {
+                collocations.add(item);
+            }
+            timer.stop();
+        } catch (Exception ex) {
+            System.err.println("Error reading collocations");
+            System.err.println(ex);
+            Globals.exit();
+        }
+    }
 
     static List<WTagging> buildSentenceWithCollocations(List<WTagging> sentence, List<TaggedWord> pennTags) {
         List<WTagging> newSentence = new ArrayList<WTagging>();
@@ -73,6 +96,6 @@ class CollocationManager implements WordNetConnection {
     }
 
     public boolean wordNetContains(String s) {
-        return (MorphologicalDatabase.collocations.get(s) != null);
+        return collocations.contains(s.toLowerCase());
     }
 }

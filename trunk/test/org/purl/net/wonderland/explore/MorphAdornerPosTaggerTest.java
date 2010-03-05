@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.explore;
 
 import edu.northwestern.at.utils.CharUtils;
@@ -33,6 +32,7 @@ import edu.northwestern.at.utils.corpuslinguistics.lexicon.Lexicon;
 import edu.northwestern.at.utils.corpuslinguistics.partsofspeech.PartOfSpeechTags;
 import edu.northwestern.at.utils.corpuslinguistics.postagger.DefaultPartOfSpeechTagger;
 import edu.northwestern.at.utils.corpuslinguistics.postagger.PartOfSpeechTagger;
+import edu.northwestern.at.utils.corpuslinguistics.postagger.hepple.HeppleTagger;
 import edu.northwestern.at.utils.corpuslinguistics.sentencesplitter.DefaultSentenceSplitter;
 import edu.northwestern.at.utils.corpuslinguistics.sentencesplitter.SentenceSplitter;
 import edu.northwestern.at.utils.corpuslinguistics.spellingstandardizer.DefaultSpellingStandardizer;
@@ -44,17 +44,16 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian
  */
-public class MorphAdornerTest {
+public class MorphAdornerPosTaggerTest {
 
     public static String lemmaSeparator = "|";
 
-    public MorphAdornerTest() {
+    public MorphAdornerPosTaggerTest() {
     }
 
     @BeforeClass
