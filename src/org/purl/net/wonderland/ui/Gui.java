@@ -321,7 +321,7 @@ public class Gui extends javax.swing.JFrame {
                 report.append("'");
                 report.append(file.getName());
                 report.append("' contains ");
-                int msgCount = messageProcessor.getSentenceFactCount();
+                int msgCount = messageProcessor.getFactCount();
                 report.append(msgCount);
                 report.append((msgCount == 1) ? (" message.") : (" messages."));
                 noteProgramResponse(report.toString());

@@ -92,16 +92,32 @@ public class Engine {
         return personality.processMessage(msg);
     }
 
-    public CGraph getSentenceFact(int idx) {
-        return kb.getFactGraph(KbUtil.toLevel1FactId(idx));
+    public CGraph getFact(int idx, String level) {
+        if (KbUtil.level1.equals(level)) {
+            return kb.getFactGraph(KbUtil.toLevel1FactId(idx));
+        }
+        if (KbUtil.level2.equals(level)) {
+            return kb.getFactGraph(KbUtil.toLevel2FactId(idx));
+        }
+        return null;
     }
 
-    public int getSentenceFactCount() {
-        return kb.getSentenceCount();
+    public int getFactCount(String level) {
+        if (KbUtil.level1.equals(level)) {
+            return kb.getLevel1FactCount();
+        }
+        if (KbUtil.level2.equals(level)) {
+            return kb.getLevel2FactCount();
+        }
+        return 0;
     }
 
-    public WTagging[] getSentenceWTaggings(int idx, boolean newTagsOnly) {
-        CGraph cg = getSentenceFact(idx);
+    public int getFactCount() {
+        return kb.getFactCount();
+    }
+
+    public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
+        CGraph cg = getFact(idx, level);
         WTagging[] props = new WTagging[cg.getConcepts().size()];
         for (int j = 1; j <= props.length; ++j) {
             props[j - 1] = conceptLabelsToWTagging(KbUtil.getConcept(cg, j), newTagsOnly);

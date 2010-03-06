@@ -32,6 +32,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.util.IO;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -45,12 +46,9 @@ public class VNClassFile {
 
     private final Document xmlDoc;
 
-    public VNClassFile(String verbClass) throws SAXException, ParserConfigurationException, IOException {
+    public VNClassFile(String verbClass) throws Exception {
         File classFile = new File(Globals.getVerbNetDataFolder(), verbClass);
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        xmlDoc = db.parse(classFile);
-        xmlDoc.getDocumentElement().normalize();
+        xmlDoc = IO.readXmlFile(classFile);
     }
 
     public List<VerbForm> getMembers() {

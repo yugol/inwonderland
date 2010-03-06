@@ -29,6 +29,9 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Map;
 import org.purl.net.wonderland.kb.KbUtil;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -89,5 +92,30 @@ public class KB {
         }
 
         IO.writeStringToFile(kb, kbFile);
+    }
+
+    public static void normalizeIndividuals(File kbFile) throws Exception {
+        Document xmlDoc = IO.readXmlFile(kbFile);
+        NodeList markers = xmlDoc.getElementsByTagName("marker");
+        for (int i = 0; i < markers.getLength(); ++i) {
+            Element marker = (Element) markers.item(i);
+            String label = marker.getAttribute("label");
+            String id = marker.getAttribute("id");
+            replaceIndividualsIds(xmlDoc, id, label);
+            marker.setAttribute("id", label);
+            marker.setAttribute("idType", KbUtil.Top);
+        }
+        IO.writeXmlFile(xmlDoc, kbFile);
+    }
+
+    private static void replaceIndividualsIds(Document xmlDoc, String id, String label) {
+        NodeList concepts = xmlDoc.getElementsByTagName("concept");
+        for (int i = 0; i < concepts.getLength(); ++i) {
+            Element concept = (Element) concepts.item(i);
+            String idMarker = concept.getAttribute("idMarker");
+            if (idMarker.equals(id)) {
+                concept.setAttribute("idMarker", label);
+            }
+        }
     }
 }

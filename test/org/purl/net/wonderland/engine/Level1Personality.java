@@ -31,7 +31,7 @@ import org.purl.net.wonderland.kb.KbUtil;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1TestPersonality extends Personality {
+public class Level1Personality extends Personality {
 
     @Override
     public String getWelcomeMessage() {

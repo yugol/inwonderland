@@ -30,6 +30,7 @@ import java.io.File;
 import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.util.Corpus;
 import org.purl.net.wonderland.util.IO;
 import static org.junit.Assert.*;
@@ -40,6 +41,8 @@ import static org.junit.Assert.*;
  */
 public class EngineTest {
 
+    Personality pers = new Level2Personality();
+    String level = KbUtil.level2;
     static File candidateFile = new File("test.xml");
 
     public EngineTest() {
@@ -49,14 +52,14 @@ public class EngineTest {
     private void mergeToCandidate(Engine instance) throws ParserConfigurationException, SAXException, IOException {
         Corpus candidate = new Corpus();
         candidate.buildFrom(candidateFile);
-        candidate.addKnowledgeBase(instance);
+        candidate.addKnowledgeBase(instance, level);
         candidate.writeToFile(candidateFile);
     }
 
-    @Test
+    // @Test
     public void testOne() throws Exception {
         Engine instance = new Engine();
-        instance.setPersonality(new Level1TestPersonality());
+        instance.setPersonality(pers);
 
         String resp = instance.processMessage("This school will hold more than one thousand pupils.");
         assertEquals("Done.", resp);
@@ -66,14 +69,14 @@ public class EngineTest {
         mergeToCandidate(instance);
     }
 
-    // @Test
+    @Test
     public void testMany() throws Exception {
-        int from = 1;
-        int to = 983;
+        int from = 28;
+        int to = 28;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Engine instance = new Engine();
-        instance.setPersonality(new Level1TestPersonality());
+        instance.setPersonality(pers);
 
         from -= 1;
         to -= 1;

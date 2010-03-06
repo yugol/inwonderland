@@ -51,36 +51,44 @@ import java.util.UUID;
  */
 public class ProcManager {
 
-    private Map<String, List<Procedure>> generators = new Hashtable<String, List<Procedure>>();
+    private Map<String, List<Procedure>> procs = new Hashtable<String, List<Procedure>>();
     private final SolverCogitant solver = new SolverCogitant();
     private final WKnowledgeBase kb;
 
-    public int getGenCount() {
-        return generators.size();
+    public int getProcCount() {
+        int count = 0;
+        for (List<Procedure> set : procs.values()) {
+            count += set.size();
+        }
+        return count;
     }
 
-    private void addGenerator(String group, Procedure t) {
-        if (!generators.containsKey(group)) {
-            generators.put(group, new ArrayList<Procedure>());
+    private void addProcedure(String group, Procedure t) {
+        if (!procs.containsKey(group)) {
+            procs.put(group, new ArrayList<Procedure>());
         }
-        generators.get(group).add(t);
+        procs.get(group).add(t);
     }
 
     public ProcManager(WKnowledgeBase kb) {
         this.kb = kb;
     }
 
-    public void readGenerators(String set) throws Exception {
-        String setId = KbUtil.proc + KbUtil.level1 + "_";
-        List<Rule> rules = kb.getGeneratorRules(setId);
+    public void readAllProceduresFromKb() throws Exception {
+        readProcedureSet(KbUtil.procSyntaxSet);
+    }
+
+    private void readProcedureSet(String set) throws Exception {
+        String setId = KbUtil.proc + "_" + set + "_";
+        List<Rule> rules = kb.getProcRules(setId);
         for (Rule rule : rules) {
             String name = rule.getName().substring(setId.length());
-            Procedure gen = buildGenerator(rule, name);
-            addGenerator(set, gen);
+            Procedure proc = buildProcedure(rule, name);
+            addProcedure(set, proc);
         }
     }
 
-    private Procedure buildGenerator(Rule rule, String name) {
+    private Procedure buildProcedure(Rule rule, String name) {
         CGraph lhs = new CGraph(UUID.randomUUID().toString(), name, "lhs", "fact");
         CGraph rhs = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
 
@@ -126,11 +134,11 @@ public class ProcManager {
             rhsLhsMap.put(r, l);
         }
 
-        Procedure gen = new ProcImpl(lhs, rhs, rhsLhsMap);
-        return gen;
+        Procedure proc = new ProcImpl(lhs, rhs, rhsLhsMap);
+        return proc;
     }
 
-    public void readGenerators(File file) throws Exception {
+    public void readProcedures(File file) throws Exception {
         ProcParser parser = new ProcParser();
         Vocabulary voc = kb.getVocabulary();
         Iterator<String> r = voc.getRelationTypeHierarchy().iteratorVertex();
@@ -140,12 +148,12 @@ public class ProcManager {
         }
         parser.parse(file);
         for (int i = 0; i < parser.getNameList().size(); ++i) {
-            Procedure gen = buildGenerator(parser, parser.getNameList().get(i), parser.getLhsList().get(i), parser.getRhsList().get(i));
-            addGenerator("amine", gen);
+            Procedure proc = buildProcedures(parser, parser.getNameList().get(i), parser.getLhsList().get(i), parser.getRhsList().get(i));
+            addProcedure("amine", proc);
         }
     }
 
-    private Procedure buildGenerator(ProcParser parser, String name, CG lhsa, CG rhsa) {
+    private Procedure buildProcedures(ProcParser parser, String name, CG lhsa, CG rhsa) {
         CGraph lhsc = new CGraph(UUID.randomUUID().toString(), name, "lhs", "fact");
         Map<aminePlatform.util.cg.Concept, Concept> lhsMap = mapGraph(lhsa, lhsc, parser);
         CGraph rhsc = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
@@ -189,8 +197,8 @@ public class ProcManager {
             }
         }
 
-        Procedure gen = new ProcImpl(lhsc, rhsc, rhsLhsMap);
-        return gen;
+        Procedure proc = new ProcImpl(lhsc, rhsc, rhsLhsMap);
+        return proc;
     }
 
     private String[] getDesc(String str) {
@@ -252,17 +260,19 @@ public class ProcManager {
         }
 
         List<Procedure> matches = new ArrayList<Procedure>();
-        for (Procedure t : generators.get(set)) {
-            CGraph lhs = t.getLhs();
-            List<Projection> projections = solver.getProjections(lhs, cg);
-            if (projections.size() > 0) {
-                t.setProjections(projections);
-                matches.add(t);
-            } else {
-                t.setProjections(null);
+        if (procs.get(set) != null) {
+            for (Procedure t : procs.get(set)) {
+                CGraph lhs = t.getLhs();
+                List<Projection> projections = solver.getProjections(lhs, cg);
+                if (projections.size() > 0) {
+                    t.setProjections(projections);
+                    matches.add(t);
+                } else {
+                    t.setProjections(null);
+                }
             }
+            solver.removeGraph(cg);
         }
-        solver.removeGraph(cg);
 
         return matches;
     }

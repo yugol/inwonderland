@@ -44,4 +44,6 @@ public interface Procedure {
     public CGraph getRhs();
 
     public Map<Concept, Concept> getRhsLhsConceptMap();
+
+    public String getId();
 }

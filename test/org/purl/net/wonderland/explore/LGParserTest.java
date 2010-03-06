@@ -52,7 +52,7 @@ public class LGParserTest {
     public static void tearDownClass() throws Exception {
     }
 
-    @Test
+    // @Test
     public void parseTest() {
         LGParser parser = new LGParser(Globals.getLgParserPath());
         Sentence sent = parser.parse("How do you do?");

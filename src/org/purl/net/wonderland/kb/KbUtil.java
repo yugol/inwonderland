@@ -36,6 +36,7 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public final class KbUtil {
 
+    // some concept types from the knowledge base support
     public static final String Top = toConceptTypeId("Top");
     public static final String Pos = toConceptTypeId("Pos");
     public static final String SpTag = toConceptTypeId("SpTag");
@@ -46,15 +47,18 @@ public final class KbUtil {
     public static final String Number = toConceptTypeId("Number");
     public static final String Person = toConceptTypeId("Person");
     public static final String Tense = toConceptTypeId("Tense");
-    //
+    // POS concept types
     public static final String Nn = toConceptTypeId("Nn");
     public static final String Vb = toConceptTypeId("Vb");
     public static final String Jj = toConceptTypeId("Jj");
     public static final String Rb = toConceptTypeId("Rb");
-    //
+    // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";
-    public static final String proc = "gen_";
+    // procedures
+    public static final String proc = "proc";
+    public static final String procSyntaxSet = "syn";
+    // other
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
 

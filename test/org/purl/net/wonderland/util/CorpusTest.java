@@ -27,6 +27,8 @@ import java.io.File;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.engine.Engine;
+import org.purl.net.wonderland.engine.Level1Personality;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *
@@ -37,13 +39,14 @@ public class CorpusTest {
     @Test
     public void testCorpusSimpleOperations() throws Exception {
         Engine msgProc = new Engine();
+        msgProc.setPersonality(new Level1Personality());
         String resp = msgProc.processMessage("This is an interesting book.");
         assertEquals("Done.", resp);
         resp = msgProc.processMessage("This is the second message.");
         assertEquals("Done.", resp);
 
         Corpus corpus = new Corpus();
-        corpus.buildFrom(msgProc);
+        corpus.buildFrom(msgProc, KbUtil.level1);
 
         String xml = corpus.toString();
         File cospusFile = new File("corpus.xml");

@@ -59,11 +59,11 @@ public class WKnowledgeBase {
     private int level1FactCount;
     private int level2FactCount;
 
-    public int getSentenceCount() {
+    public int getLevel1FactCount() {
         return level1FactCount;
     }
 
-    public void setSentenceCount(int sentenceCount) {
+    public void setLevel1FactCount(int sentenceCount) {
         this.level1FactCount = sentenceCount;
     }
 
@@ -73,6 +73,10 @@ public class WKnowledgeBase {
 
     public void setLevel2FactCount(int level2FactCount) {
         this.level2FactCount = level2FactCount;
+    }
+
+    public int getFactCount() {
+        return level1FactCount + level2FactCount;
     }
 
     public String getLanguage() {
@@ -193,7 +197,7 @@ public class WKnowledgeBase {
         return senseTypes.toArray(new String[]{});
     }
 
-    public List<Rule> getGeneratorRules(String set) {
+    public List<Rule> getProcRules(String set) {
         List<Rule> rules = new ArrayList<Rule>();
         Iterator<CGraph> it = kb.getRuleSet().iteratorGraphs();
         while (it.hasNext()) {
