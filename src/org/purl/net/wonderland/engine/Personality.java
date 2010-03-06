@@ -177,6 +177,15 @@ public abstract class Personality {
         }
     }
 
+    protected void processCollocations(CGraph fact) throws Exception {
+        List<Procedure> matches = procMgr.findMatches(KbUtil.procCollocationsSet, fact);
+        for (Procedure proc : matches) {
+            for (Projection proj : proc.getProjections()) {
+                applyProcedure(fact, proj, proc);
+            }
+        }
+    }
+
     protected void addSenses(CGraph message) {
         Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
         Iterator<Concept> it = message.iteratorConcept();
@@ -280,7 +289,9 @@ public abstract class Personality {
             WTagging rhsTagging = kb.conceptLabelsToWTagging(rhs, false);
             WTaggingUtil.mergeWtags(rhsTagging, cTagging);
             c.setType(cTagging.asTypes());
+            if (rhs.getIndividual() != null) {
+                c.setIndividual(rhs.getIndividual());
+            }
         }
-
     }
 }

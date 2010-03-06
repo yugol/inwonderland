@@ -289,24 +289,21 @@
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
         <word _idx="2" _pos="NnCOM" lemma="child" num="plu">children</word>
         <word _idx="3" _pos="Vb" lemma="continue" mood="ind" tense="pss">continue</word>
-        <word _idx="4" _ma="vvi" _p="VB" _pos="Vb" lemma="write" mood="linf" tense="ps">write</word>
+        <word _idx="4" _pos="Vb" lemma="write" mood="linf" tense="ps">write</word>
         <word _idx="5" lemma=".">.</word>
     </sentence>
     <sentence idx="26">
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
         <word _idx="2" _pos="NnCOM" lemma="pupil" num="plu">pupils</word>
-        <word _idx="3" _pos="Vb" lemma="go" mood="ind" tense="pss">go</word>
-        <word _idx="4" _pos="Pp" lemma="on">on</word>
-        <word _idx="5" _pos="Vb" lemma="read" mood="ger">reading</word>
-        <word _idx="6" lemma=".">.</word>
+        <word _idx="3" _pos="Vb" lemma="go_on" mood="ind" tense="pss">go</word>
+        <word _idx="4" _pos="Vb" lemma="read" mood="ger">reading</word>
+        <word _idx="5" lemma=".">.</word>
     </sentence>
     <sentence idx="27">
         <word _idx="1" _pos="PnINT" lemma="what">What</word>
-        <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="pss">is</word>
-        <word _idx="3" _pos="Vb" lemma="go" mood="ger">going</word>
-        <word _idx="4" _pos="Pp" lemma="on">on</word>
-        <word _idx="5" _pos="RbPLC_DstPos" lemma="there">there</word>
-        <word _idx="6" lemma="?">?</word>
+        <word _idx="2" _pos="Vb" lemma="go_on" mood="ind" num="sng" pers="rd" tense="psc">going</word>
+        <word _idx="3" _pos="RbPLC_DstPos" lemma="there">there</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="28">
         <word _idx="1" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>

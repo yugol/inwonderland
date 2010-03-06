@@ -47,7 +47,7 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    @Test
+    // @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());

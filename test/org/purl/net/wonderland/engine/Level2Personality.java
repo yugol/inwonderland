@@ -58,10 +58,10 @@ public class Level2Personality extends Personality {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
             processSyntax(fact);
+            processCollocations(fact);
             addFact(fact, KbUtil.level2);
         }
         return "Done.";
-
     }
 
 }

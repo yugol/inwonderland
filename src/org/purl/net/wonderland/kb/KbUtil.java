@@ -56,6 +56,7 @@ public final class KbUtil {
     // procedures
     public static final String proc = "proc";
     public static final String procSyntaxSet = "syn";
+    public static final String procCollocationsSet = "collo";
     // other
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
