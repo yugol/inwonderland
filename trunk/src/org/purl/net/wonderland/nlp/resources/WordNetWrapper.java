@@ -24,12 +24,16 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.util.StringUtils;
+import jade.util.leap.Collection;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
@@ -124,32 +128,67 @@ public final class WordNetWrapper {
         }
     }
 
-    public static void listIndexWords(POS posType) {
+    public static void listCollocations() {
         try {
-            String pos = null;
+            Map<String, List<String>> all = new Hashtable<String, List<String>>();
 
-            if (posType == POS.ADJECTIVE) {
-                pos = "Jj";
-            } else if (posType == POS.ADVERB) {
-                pos = "Rb";
-            } else if (posType == POS.NOUN) {
-                pos = "Nn";
-            } else if (posType == POS.VERB) {
-                pos = "Vb";
-            }
-
-            Iterator<IndexWord> it = dict.getIndexWordIterator(posType);
-            int count = 0;
+            Iterator<IndexWord> it = dict.getIndexWordIterator(POS.ADJECTIVE);
             while (it.hasNext()) {
                 IndexWord w = it.next();
                 String lemma = w.getLemma();
                 if (lemma.indexOf(" ") >= 0) {
-                    ++count;
                     lemma = StringUtils.join(lemma.split(" "), "_");
-                    System.out.println(lemma + "," + lemma + "," + pos + ",,,,,,,");
+                    if (!all.containsKey(lemma)) {
+                        all.put(lemma, new ArrayList<String>());
+                    }
+                    all.get(lemma).add("Jj");
                 }
             }
-            // System.out.println("Total " + count + " collocations");
+            
+            it = dict.getIndexWordIterator(POS.NOUN);
+            while (it.hasNext()) {
+                IndexWord w = it.next();
+                String lemma = w.getLemma();
+                if (lemma.indexOf(" ") >= 0) {
+                    lemma = StringUtils.join(lemma.split(" "), "_");
+                    if (!all.containsKey(lemma)) {
+                        all.put(lemma, new ArrayList<String>());
+                    }
+                    all.get(lemma).add("Nn");
+                }
+            }
+
+            it = dict.getIndexWordIterator(POS.ADVERB);
+            while (it.hasNext()) {
+                IndexWord w = it.next();
+                String lemma = w.getLemma();
+                if (lemma.indexOf(" ") >= 0) {
+                    lemma = StringUtils.join(lemma.split(" "), "_");
+                    if (!all.containsKey(lemma)) {
+                        all.put(lemma, new ArrayList<String>());
+                    }
+                    all.get(lemma).add("Rb");
+                }
+            }
+
+            it = dict.getIndexWordIterator(POS.VERB);
+            while (it.hasNext()) {
+                IndexWord w = it.next();
+                String lemma = w.getLemma();
+                if (lemma.indexOf(" ") >= 0) {
+                    lemma = StringUtils.join(lemma.split(" "), "_");
+                    if (!all.containsKey(lemma)) {
+                        all.put(lemma, new ArrayList<String>());
+                    }
+                    all.get(lemma).add("Vb");
+                }
+            }
+
+            for (String lemma : all.keySet()) {
+                List<String> types = all.get(lemma);
+                System.out.println(lemma + "," + StringUtils.join(types.toArray(new String[]{}), "|"));
+            }
+
         } catch (JWNLException ex) {
             System.err.println(ex);
             Globals.exit();

@@ -30,7 +30,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
@@ -42,7 +44,7 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public class CollocationManager implements WordNetConnection {
 
-    private static Set<String> collocations = new HashSet<String>();
+    private static Map<String, String> collocations = new Hashtable<String, String>();
 
     static {
         try {
@@ -50,7 +52,8 @@ public class CollocationManager implements WordNetConnection {
             BufferedReader reader = new BufferedReader(new FileReader(Globals.getCollocationsFile()));
             String item = null;
             while ((item = reader.readLine()) != null) {
-                collocations.add(item);
+                String[] entry = item.split(",");
+                collocations.put(entry[0], entry[1]);
             }
             timer.stop();
         } catch (Exception ex) {
@@ -98,7 +101,11 @@ public class CollocationManager implements WordNetConnection {
         return newSentence;
     }
 
+    public static String getTypes(String lemma) {
+        return collocations.get(lemma);
+    }
+
     public boolean wordNetContains(String s) {
-        return collocations.contains(s.toLowerCase());
+        return collocations.containsKey(s.toLowerCase());
     }
 }

@@ -55,7 +55,7 @@ public class SmallUtilities {
         KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
     }
 
-    @Test
+    // @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");
@@ -104,13 +104,10 @@ public class SmallUtilities {
         }
     }
 
-    // @Test
+    @Test
     public void listWordNet() {
         System.out.println("Collocations listing");
-        WordNetWrapper.listIndexWords(POS.ADJECTIVE);
-        WordNetWrapper.listIndexWords(POS.ADVERB);
-        WordNetWrapper.listIndexWords(POS.NOUN);
-        WordNetWrapper.listIndexWords(POS.VERB);
+        WordNetWrapper.listCollocations();
     }
 
     // @Test

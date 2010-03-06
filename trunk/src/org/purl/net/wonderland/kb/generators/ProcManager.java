@@ -44,6 +44,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import org.purl.net.wonderland.util.CodeTimer;
 
 /**
  *
@@ -253,11 +254,13 @@ public class ProcManager {
     }
 
     public List<Procedure> findMatches(String set, CGraph cg) throws Exception {
-        if (!solver.isConnected()) {
-            solver.connect();
-            solver.commitVocabulary(kb.getVocabulary());
-            solver.resetCommitedGraphs();
+        CodeTimer timer = new CodeTimer("projection");
+
+        if (solver.isConnected()) {
+            solver.disconnect();
         }
+        solver.connect();
+        solver.commitVocabulary(kb.getVocabulary());
 
         List<Procedure> matches = new ArrayList<Procedure>();
         if (procs.get(set) != null) {
@@ -271,9 +274,9 @@ public class ProcManager {
                     t.setProjections(null);
                 }
             }
-            solver.removeGraph(cg);
         }
 
+        timer.stop();
         return matches;
     }
 
