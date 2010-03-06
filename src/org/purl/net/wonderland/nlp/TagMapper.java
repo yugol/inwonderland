@@ -39,15 +39,18 @@ public class TagMapper {
     void mapWTags(List<WTagging> sentence) {
         for (WTagging tagging : sentence) {
             String tag = tagging.getPennTag();
-            /*
+
             if (tagging.isCollocation()) {
-            mapCollocation(tagging);
-            if (tagging.getPos() != null) {
-            continue;
+                String posTypes = CollocationManager.getTypes(tagging.getLemma());
+                if (posTypes.equals("Rb")) {
+                    tagging.setPos("Rb");
+                    continue;
+                }
+                if (posTypes.equals("Jj")) {
+                    tagging.setPos("Jj");
+                    continue;
+                }
             }
-            }
-             * 
-             */
 
             if (tag.indexOf("NN") == 0) { // NN, NNP, NNS, NNPS
                 mapNN(tagging, tag);

@@ -29,7 +29,6 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.engine.Level1Personality;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level2Personality;
@@ -46,7 +45,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train.level2.xml";
     int firstSentence = 1;
-    int lastSentence = 0;
+    int lastSentence = 5;
 
     @Test
     public void testGoldCorpus() throws Exception {
