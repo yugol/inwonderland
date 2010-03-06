@@ -1051,10 +1051,63 @@
             </ntype>
         </nestingTypes>
         <conformity>
+            <marker id="shall" idType="ct_Top" label="shall"/>
             <marker id="be" idType="ct_Top" label="be"/>
         </conformity>
         <modules/>
     </support>
+    <rule id="_rule3">
+        <hypt>
+            <graph id="_rule3_hypt" label="proc_syn_fts" nature="rule">
+                <concept id="_c10" x="30" y="80">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c11" idMarker="shall" referent="individual" x="20" y="260">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <relation id="_r4" idType="rt_aux" x="30" y="170"/>
+                <edge cid="_c11" label="1" rid="_r4"/>
+                <edge cid="_c10" label="2" rid="_r4"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule3_conc">
+                <concept id="_c12" x="270" y="120">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c10" idC2="_c12"/>
+        </conPts>
+    </rule>
+    <rule id="_rule4">
+        <hypt>
+            <graph id="_rule4_hypt" label="proc_syn_pts" nature="rule">
+                <concept id="_c13" x="60" y="140">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pt"/>
+                </concept>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule4_conc">
+                <concept id="_c14" x="270" y="90">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c13" idC2="_c14"/>
+        </conPts>
+    </rule>
     <rule id="_rule1">
         <hypt>
             <graph id="_rule1_hypt" label="proc_syn_psc" nature="rule" set="default_set">
