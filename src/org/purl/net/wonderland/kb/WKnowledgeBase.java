@@ -26,9 +26,11 @@ package org.purl.net.wonderland.kb;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,6 +40,7 @@ import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.WonderlandException;
+import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.nlp.resources.verbnet.VerbForm;
@@ -245,5 +248,47 @@ public class WKnowledgeBase {
         vocabulary.getConceptTypeHierarchy().addEdge(verbClassId, parentId);
 
         return verbClassId;
+    }
+
+    public WTagging conceptLabelsToWTagging(Concept c, boolean wPosTagsOnly) {
+        WTagging prop = new WTagging();
+        Hierarchy cth = vocabulary.getConceptTypeHierarchy();
+        String id = c.getId();
+        for (String type : c.getType()) {
+            try {
+                if (cth.isKindOf(type, KbUtil.Pos)) {
+                    if (wPosTagsOnly && cth.isKindOf(type, KbUtil.SpTag)) {
+                        prop = new WTagging();
+                        break;
+                    } else {
+                        prop.setPos(vocabulary.getConceptTypeLabel(type, language));
+                    }
+                } else if (cth.isKindOf(type, KbUtil.Case)) {
+                    prop.setWcase(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Comparison)) {
+                    prop.setComp(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Gender)) {
+                    prop.setGender(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Mood)) {
+                    prop.setMood(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Number)) {
+                    prop.setNumber(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Person)) {
+                    prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Tense)) {
+                    prop.setTense(vocabulary.getConceptTypeLabel(type, language));
+                } else {
+                    prop.addMoreType(vocabulary.getConceptTypeLabel(type, language));
+                }
+            } catch (RuntimeException ex) {
+                System.err.println("At concept: " + type + " : " + id + " -> " + KbUtil.getConceptForm(id));
+                throw ex;
+            }
+        }
+        prop.setForm(KbUtil.getConceptForm(id));
+        prop.setLemma(c.getIndividual());
+        prop.setPennTag(KbUtil.getConceptPennTag(id));
+        prop.setPartsOfSpeech(KbUtil.getConceptMaTag(id));
+        return prop;
     }
 }

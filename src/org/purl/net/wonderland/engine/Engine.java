@@ -23,15 +23,10 @@
  */
 package org.purl.net.wonderland.engine;
 
-import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
-import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -39,7 +34,6 @@ import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.Compare;
 
@@ -50,7 +44,6 @@ import org.purl.net.wonderland.util.Compare;
 public class Engine {
 
     private WKnowledgeBase kb;
-    private Vocabulary vocabulary;
     private File lastFile = null;
     private Personality personality;
 
@@ -80,7 +73,6 @@ public class Engine {
             lastFile = file;
         }
         kb = new WKnowledgeBase(file);
-        vocabulary = kb.getVocabulary();
         personality.setKb(kb);
     }
 
@@ -133,50 +125,10 @@ public class Engine {
 
         WTagging[] props = new WTagging[concepts.size()];
         for (int i = 0; i < props.length; ++i) {
-            props[i] = conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
+            props[i] = kb.conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
         }
 
         return props;
-    }
-
-    private WTagging conceptLabelsToWTagging(Concept c, boolean newTagsOnly) {
-        WTagging prop = new WTagging();
-        Hierarchy cth = vocabulary.getConceptTypeHierarchy();
-        String id = c.getId();
-        for (String type : c.getType()) {
-            try {
-                if (cth.isKindOf(type, KbUtil.Pos)) {
-                    if (newTagsOnly && cth.isKindOf(type, KbUtil.SpTag)) {
-                        prop = new WTagging();
-                        break;
-                    } else {
-                        prop.setPos(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                    }
-                } else if (cth.isKindOf(type, KbUtil.Case)) {
-                    prop.setWcase(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Comparison)) {
-                    prop.setComp(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Gender)) {
-                    prop.setGender(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Mood)) {
-                    prop.setMood(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Number)) {
-                    prop.setNumber(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Person)) {
-                    prop.setPerson(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.Tense)) {
-                    prop.setTense(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                }
-            } catch (RuntimeException ex) {
-                System.err.println("At concept: " + type + " : " + id + " -> " + KbUtil.getConceptForm(id));
-                throw ex;
-            }
-        }
-        prop.setForm(KbUtil.getConceptForm(id));
-        prop.setLemma(c.getIndividual());
-        prop.setPennTag(KbUtil.getConceptPennTag(id));
-        prop.setPartsOfSpeech(KbUtil.getConceptMaTag(id));
-        return prop;
     }
 }
 

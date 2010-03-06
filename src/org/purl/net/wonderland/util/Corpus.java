@@ -63,7 +63,16 @@ public class Corpus {
     public static final String compTag = "comp";
     public static final String moodTag = "mood";
     public static final String tenseTag = "tense";
-    Document xmlDoc;
+
+    public static void normalizeFile(File file) throws Exception {
+        Corpus gold = new Corpus();
+        gold.buildFrom(file);
+        gold.reIndexSentences();
+        gold.removeMappingAttributes();
+        gold.writeToFile(file);
+        System.out.println("Reindexed " + gold.getSentenceCount() + " sentences in '" + file.getName() + "'");
+    }
+    private Document xmlDoc;
 
     public Corpus() {
     }

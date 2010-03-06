@@ -28,7 +28,9 @@ import edu.stanford.nlp.ling.HasTag;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.util.StringUtils;
 import java.util.ArrayList;
-import net.didion.jwnl.data.Synset;
+import java.util.HashSet;
+import java.util.Set;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *
@@ -53,6 +55,8 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     private String comp = null; // comparative, superlative
     private String mood = null; // indicative, subjunctive, conditional, ...
     private String tense = null; // present, past, future, ...
+    // other types
+    private Set<String> moreTypes = new HashSet<String>();
     // collocation mark
     private boolean collocation = false;
 
@@ -193,7 +197,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         this.pennTag = pennTag;
     }
 
-    public String[] asStringArray() {
+    public String[] asTypes() {
         ArrayList<String> types = new ArrayList<String>();
         if (pos != null) {
             types.add(pos);
@@ -219,7 +223,12 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         if (tense != null) {
             types.add(tense);
         }
-        return types.toArray(new String[]{});
+        types.addAll(moreTypes);
+        String[] typeArray = new String[types.size()];
+        for (int i = 0; i < typeArray.length; ++i) {
+            typeArray[i] = KbUtil.toConceptTypeId(types.get(i));
+        }
+        return typeArray;
     }
 
     public String toCsvString() {
@@ -322,5 +331,14 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
 
     public void setCollocation(boolean collocation) {
         this.collocation = collocation;
+    }
+
+    public void addMoreType(String type) {
+        if (type != null) {
+            type = type.trim();
+            if (!empty.equals(type)) {
+                moreTypes.add(type);
+            }
+        }
     }
 }
