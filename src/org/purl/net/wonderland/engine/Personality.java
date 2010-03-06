@@ -25,13 +25,19 @@ package org.purl.net.wonderland.engine;
 
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
@@ -121,8 +127,8 @@ public abstract class Personality {
         for (int i = 0; i < deps.size(); ++i) {
             TypedDependency tdep = deps.get(i);
 
-            String gov = KbUtil.getConcept(cg, KbUtil.getLabelIndex(tdep.gov().nodeString())).getId();
-            String dep = KbUtil.getConcept(cg, KbUtil.getLabelIndex(tdep.dep().nodeString())).getId();
+            String gov = getConcept(cg, KbUtil.getLabelIndex(tdep.gov().nodeString())).getId();
+            String dep = getConcept(cg, KbUtil.getLabelIndex(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = KbUtil.toRelationTypeId(relationTypeLabel);
             String relationId = KbUtil.toRelationId(relationTypeLabel, (i + 1));
@@ -136,6 +142,15 @@ public abstract class Personality {
         }
 
         return cg;
+    }
+
+    private Concept getConcept(CGraph cg, int idx) {
+        for (Concept c : cg.getConcepts()) {
+            if (idx == KbUtil.getConceptIndex(c.getId())) {
+                return c;
+            }
+        }
+        return null;
     }
 
     protected void addFact(CGraph fact, String set) {
@@ -152,14 +167,16 @@ public abstract class Personality {
             fact.setName(KbUtil.toIdIndex(factCount));
             fact.setSet(set);
             kb.addGraph(fact);
-            kb.setLevel1FactCount(factCount);
+            kb.setLevel2FactCount(factCount);
         }
     }
 
     protected void processSyntax(CGraph fact) throws Exception {
         List<Procedure> matches = procMgr.findMatches(KbUtil.procSyntaxSet, fact);
-        for (Procedure match : matches) {
-            System.out.println(match.getId());
+        for (Procedure proc : matches) {
+            for (Projection proj : proc.getProjections()) {
+                applyProcedure(fact, proj, proc);
+            }
         }
     }
 
@@ -188,6 +205,72 @@ public abstract class Personality {
                 System.arraycopy(types, 0, allTypes, 0, types.length);
                 System.arraycopy(senseTypes, 0, allTypes, types.length, senseTypes.length);
                 c.setType(allTypes);
+            }
+        }
+    }
+
+    private void applyProcedure(CGraph fact, Projection proj, Procedure proc) {
+        Set<Concept> insert = new HashSet<Concept>();
+        Set<Concept> delete = new HashSet<Concept>();
+        Map<Concept, Concept> update = new Hashtable<Concept, Concept>();
+
+        Iterator<Concept> cit = proc.getLhs().iteratorConcept();
+        while (cit.hasNext()) {
+            Concept lhs = cit.next();
+            Concept actual = (Concept) proj.getTarget(lhs.getId());
+            delete.add(actual);
+        }
+
+        cit = proc.getRhs().iteratorConcept();
+        while (cit.hasNext()) {
+            Concept rhs = cit.next();
+            Concept lhs = proc.getRhsLhsConceptMap().get(rhs);
+            Concept actual = (Concept) proj.getTarget(lhs.getId());
+            if (actual != null) {
+                update.put(actual, rhs);
+                delete.remove(actual);
+            } else {
+                insert.add(rhs);
+            }
+        }
+
+        for (Concept c : update.keySet()) {
+            c.setType(update.get(c).getType());
+        }
+
+        for (Concept c : delete) {
+            List<Relation> from = new ArrayList<Relation>();
+            List<Relation> to = new ArrayList<Relation>();
+            List<Concept> toConcepts = new ArrayList<Concept>();
+
+            Iterator<CREdge> eit = fact.iteratorEdge(c.getId());
+            while (eit.hasNext()) {
+                CREdge edge = eit.next();
+                Relation r = fact.getRelation(edge);
+                int numOrder = edge.getNumOrder();
+                if (numOrder == 1) {
+                    to.add(r);
+                    Iterator<CREdge> it = fact.iteratorEdge(r.getId());
+                    while (it.hasNext()) {
+                        CREdge e = it.next();
+                        if (e.getNumOrder() != 1) {
+                            toConcepts.add(fact.getConcept(e));
+                        }
+                    }
+                } else {
+                    from.add(r);
+                }
+            }
+
+            fact.removeVertex(c.getId());
+            for (Relation r : to) {
+                fact.removeVertex(r.getId());
+            }
+
+            for (Relation r : from) {
+                for (Concept toConcept : toConcepts) {
+                    fact.addEdge(toConcept.getId(), r.getId(), 2);
+                }
             }
         }
     }
