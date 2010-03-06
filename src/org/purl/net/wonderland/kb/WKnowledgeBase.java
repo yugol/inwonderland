@@ -148,7 +148,7 @@ public class WKnowledgeBase {
         }
 
         String lemma = sense.getWord(0).getLemma().toLowerCase();
-        // String label = "[" + lemma + "] " + KbUtil.removeQuotes(sense.getGloss());
+        // String label = "[" + lemma + "] " + KbUtil.handleQuotes(sense.getGloss());
 
         vocabulary.addConceptType(senseId, senseName, lemma, language);
         vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);

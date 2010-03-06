@@ -36,16 +36,16 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public final class KbUtil {
 
-    public static final String topConceptType = toConceptTypeId("Top");
-    public static final String posConceptType = toConceptTypeId("Pos");
-    public static final String spTagConceptType = toConceptTypeId("SpTag");
-    public static final String caseConceptType = toConceptTypeId("Case");
-    public static final String comparisonConceptType = toConceptTypeId("Comparison");
-    public static final String genderConceptType = toConceptTypeId("Gender");
-    public static final String moodConceptType = toConceptTypeId("Mood");
-    public static final String numberConceptType = toConceptTypeId("Number");
-    public static final String personConceptType = toConceptTypeId("Person");
-    public static final String tenseConceptType = toConceptTypeId("Tense");
+    public static final String Top = toConceptTypeId("Top");
+    public static final String Pos = toConceptTypeId("Pos");
+    public static final String SpTag = toConceptTypeId("SpTag");
+    public static final String Case = toConceptTypeId("Case");
+    public static final String Comparison = toConceptTypeId("Comparison");
+    public static final String Gender = toConceptTypeId("Gender");
+    public static final String Mood = toConceptTypeId("Mood");
+    public static final String Number = toConceptTypeId("Number");
+    public static final String Person = toConceptTypeId("Person");
+    public static final String Tense = toConceptTypeId("Tense");
     //
     public static final String Nn = toConceptTypeId("Nn");
     public static final String Vb = toConceptTypeId("Vb");
@@ -54,7 +54,7 @@ public final class KbUtil {
     //
     public static final String level1 = "level1";
     public static final String level2 = "level2";
-    public static final String gen = "gen_";
+    public static final String proc = "gen_";
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
 
@@ -75,7 +75,7 @@ public final class KbUtil {
     }
 
     public static String toConceptTypeId(String ctl) {
-        return "ct_" + removeQuotes(ctl);
+        return "ct_" + handleQuotes(ctl);
     }
 
     public static String toRelationTypeId(String ctl) {
@@ -84,16 +84,16 @@ public final class KbUtil {
 
     public static String toConceptId(WTagging tagging, int index) {
         StringBuilder sb = new StringBuilder();
-        sb.append(removeQuotes(tagging.getForm()));
+        sb.append(handleQuotes(tagging.getForm()));
         sb.append("#");
         sb.append(index);
         sb.append("=[");
         if (tagging.getPennTag() != null) {
-            sb.append(removeQuotes(tagging.getPennTag()));
+            sb.append(handleQuotes(tagging.getPennTag()));
         }
         sb.append("]{");
         if (tagging.getPartsOfSpeech() != null) {
-            sb.append(removeQuotes(tagging.getPartsOfSpeech()));
+            sb.append(handleQuotes(tagging.getPartsOfSpeech()));
         }
         sb.append("}");
         return sb.toString();
@@ -103,7 +103,7 @@ public final class KbUtil {
         return label + "~" + index;
     }
 
-    public static String removeQuotes(String ctl) {
+    public static String handleQuotes(String ctl) {
         if ("''".equals(ctl)) {
             ctl = "-OPQ-";
         } else if ("``".equals(ctl)) {

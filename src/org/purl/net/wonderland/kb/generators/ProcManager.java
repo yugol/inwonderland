@@ -71,7 +71,7 @@ public class ProcManager {
     }
 
     public void readGenerators(String set) throws Exception {
-        String setId = KbUtil.gen + KbUtil.level1 + "_";
+        String setId = KbUtil.proc + KbUtil.level1 + "_";
         List<Rule> rules = kb.getGeneratorRules(setId);
         for (Rule rule : rules) {
             String name = rule.getName().substring(setId.length());

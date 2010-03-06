@@ -91,17 +91,10 @@ public class EtoGleem extends Personality {
     }
 
     @Override
-    public String processMessages(List<CGraph> messages) throws Exception {
-        for (CGraph message : messages) {
-            findMeaning(message);
-            List<Procedure> rules = genRuleMgr.findMatches(KbUtil.level1, message);
-            for (Procedure rule : rules) {
-                List<Projection> matches = rule.getProjections();
-                for (Projection match : matches) {
-                    CGraph fact = extractFact(rule, match);
-                    apply(fact);
-                }
-            }
+    public String processMessage(String message) throws Exception {
+        List<CGraph> facts = parseMessage(message);
+        for (CGraph fact : facts) {
+            addSenses(fact);
         }
         return "Done.";
     }
@@ -140,43 +133,5 @@ public class EtoGleem extends Personality {
         }
 
         return fact;
-    }
-
-    private void apply(CGraph fact) {
-        int factId = kb.getLevel2FactCount() + 1;
-        fact.setId(KbUtil.toLevel2FactId(factId));
-        fact.setName(KbUtil.toIdIndex(factId));
-        fact.setSet(KbUtil.level2);
-        kb.addGraph(fact);
-        kb.setLevel2FactCount(factId);
-    }
-
-    protected void findMeaning(CGraph message) {
-        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
-        Iterator<Concept> it = message.iteratorConcept();
-        while (it.hasNext()) {
-            Concept c = it.next();
-            String individual = c.getIndividual();
-            String[] types = c.getType();
-            String[] moreTypes = null;
-            if (cth.isKindOf(types, KbUtil.Nn)) {
-                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.NOUN);
-            } else if (cth.isKindOf(types, KbUtil.Vb)) {
-                moreTypes = kb.importVerbNetHierarchy(individual);
-                if (moreTypes == null) {
-                    moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.VERB);
-                }
-            } else if (cth.isKindOf(types, KbUtil.Jj)) {
-                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.ADJECTIVE);
-            } else if (cth.isKindOf(types, KbUtil.Rb)) {
-                moreTypes = kb.importWordNetHypernymHierarchy(individual, POS.ADVERB);
-            }
-            if (moreTypes != null) {
-                String[] allTypes = new String[types.length + moreTypes.length];
-                System.arraycopy(types, 0, allTypes, 0, types.length);
-                System.arraycopy(moreTypes, 0, allTypes, types.length, moreTypes.length);
-                c.setType(allTypes);
-            }
-        }
     }
 }

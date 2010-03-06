@@ -28,7 +28,7 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.engine.Dummy;
+import org.purl.net.wonderland.engine.Level1TestPersonality;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
 
@@ -43,15 +43,15 @@ public class GoldTest {
         System.out.println("testGoldCorpus");
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
-        Corpus level1 = new Corpus();
-        level1.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
+        Corpus corpus = new Corpus();
+        corpus.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
         Engine engine = new Engine();
-        engine.setPersonality(new Dummy());
+        engine.setPersonality(new Level1TestPersonality());
 
         int firstSentence = 1;
         int lastSentence = 0;
         if (lastSentence < firstSentence) {
-            lastSentence = level1.getSentenceCount();
+            lastSentence = corpus.getSentenceCount();
         }
         int errorCount = 0;
         int wordCount = 0;
@@ -63,7 +63,7 @@ public class GoldTest {
             String sentence = plain.get(i - 1);
 
             engine.processMessage(sentence);
-            WTagging[] expected = level1.getSentencePosProps(i);
+            WTagging[] expected = corpus.getSentencePosProps(i);
             WTagging[] actual = engine.getSentenceWTaggings(i - firstSentence + 1, false);
 
             if (expected.length != actual.length) {
