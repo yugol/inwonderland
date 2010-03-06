@@ -1051,6 +1051,9 @@
             </ntype>
         </nestingTypes>
         <conformity>
+            <marker id="go_on" idType="ct_Top" label="go_on"/>
+            <marker id="go" idType="ct_Top" label="go"/>
+            <marker id="on" idType="ct_Top" label="on"/>
             <marker id="to" idType="ct_Top" label="to"/>
             <marker id="will" idType="ct_Top" label="will"/>
             <marker id="shall" idType="ct_Top" label="shall"/>
@@ -1163,6 +1166,25 @@
         </conc>
         <conPts>
             <couple idC1="_c18" idC2="_c20"/>
+        </conPts>
+    </rule>
+    <rule id="_rule7">
+        <hypt>
+            <graph id="_rule7_hypt" label="proc_collo_goOn" nature="rule">
+                <concept id="_c22" idMarker="go" idType="ct_Vb" referent="individual" x="70" y="40"/>
+                <concept id="_c23" idMarker="on" idType="ct_Pp" referent="individual" x="60" y="250"/>
+                <relation id="_r7" idType="rt_prep" x="40" y="130"/>
+                <edge cid="_c23" label="1" rid="_r7"/>
+                <edge cid="_c22" label="2" rid="_r7"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule7_conc">
+                <concept id="_c24" idMarker="go_on" idType="ct_Vb" referent="individual" x="320" y="120"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c22" idC2="_c24"/>
         </conPts>
     </rule>
     <rule id="_rule1">

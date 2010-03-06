@@ -77,6 +77,7 @@ public class ProcManager {
 
     public void readAllProceduresFromKb() throws Exception {
         readProcedureSet(KbUtil.procSyntaxSet);
+        readProcedureSet(KbUtil.procCollocationsSet);
     }
 
     private void readProcedureSet(String set) throws Exception {
@@ -255,12 +256,7 @@ public class ProcManager {
 
     public List<Procedure> findMatches(String set, CGraph cg) throws Exception {
         CodeTimer timer = new CodeTimer("projection");
-
-        if (solver.isConnected()) {
-            solver.disconnect();
-        }
-        solver.connect();
-        solver.commitVocabulary(kb.getVocabulary());
+        reConnectToSolver();
 
         List<Procedure> matches = new ArrayList<Procedure>();
         if (procs.get(set) != null) {
@@ -282,5 +278,13 @@ public class ProcManager {
 
     public List<Procedure> findMatches(String set, String id) throws Exception {
         return findMatches(set, kb.getFactGraph(id));
+    }
+
+    private void reConnectToSolver() throws Exception {
+        if (solver.isConnected()) {
+            solver.disconnect();
+        }
+        solver.connect();
+        solver.commitVocabulary(kb.getVocabulary());
     }
 }
