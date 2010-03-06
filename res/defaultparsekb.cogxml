@@ -1051,6 +1051,8 @@
             </ntype>
         </nestingTypes>
         <conformity>
+            <marker id="to" idType="ct_Top" label="to"/>
+            <marker id="will" idType="ct_Top" label="will"/>
             <marker id="shall" idType="ct_Top" label="shall"/>
             <marker id="be" idType="ct_Top" label="be"/>
         </conformity>
@@ -1058,7 +1060,7 @@
     </support>
     <rule id="_rule3">
         <hypt>
-            <graph id="_rule3_hypt" label="proc_syn_fts" nature="rule">
+            <graph id="_rule3_hypt" label="proc_syn_ftsShall" nature="rule">
                 <concept id="_c10" x="30" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -1106,6 +1108,61 @@
         </conc>
         <conPts>
             <couple idC1="_c13" idC2="_c14"/>
+        </conPts>
+    </rule>
+    <rule id="_rule5">
+        <hypt>
+            <graph id="_rule5_hypt" label="proc_syn_ftsWill" nature="rule">
+                <concept id="_c15" x="60" y="60">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c16" idMarker="will" referent="individual" x="20" y="250">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <relation id="_r5" idType="rt_aux" x="50" y="150"/>
+                <edge cid="_c16" label="1" rid="_r5"/>
+                <edge cid="_c15" label="2" rid="_r5"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule5_conc">
+                <concept id="_c17" x="280" y="160">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c15" idC2="_c17"/>
+        </conPts>
+    </rule>
+    <rule id="_rule6">
+        <hypt>
+            <graph id="_rule6_hypt" label="proc_syn_linfps" nature="rule">
+                <concept id="_c18" x="60" y="80">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c19" idMarker="to" idType="ct_PpTo" referent="individual" x="50" y="250"/>
+                <relation id="_r6" idType="rt_aux" x="40" y="170"/>
+                <edge cid="_c19" label="1" rid="_r6"/>
+                <edge cid="_c18" label="2" rid="_r6"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule6_conc">
+                <concept id="_c20" x="310" y="110">
+                    <type id="ct_Vb"/>
+                    <type id="ct_linf"/>
+                    <type id="ct_ps"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c18" idC2="_c20"/>
         </conPts>
     </rule>
     <rule id="_rule1">

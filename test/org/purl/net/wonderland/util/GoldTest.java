@@ -45,7 +45,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train.level2.xml";
     int firstSentence = 1;
-    int lastSentence = 10;
+    int lastSentence = 26;
 
     @Test
     public void testGoldCorpus() throws Exception {
@@ -74,7 +74,14 @@ public class GoldTest {
             WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);
 
             if (expected.length != actual.length) {
-                System.err.println("At sentence " + i + " different word count");
+                System.err.println("");
+                System.err.println("ERROR in sentence [" + i + "]:");
+                System.err.println(sentence);
+                System.err.println("    expected " + expected.length + " tokens");
+                System.err.println("    found " + actual.length + " tokens");
+                System.err.println("");
+                errorCount += expected.length;
+                continue;
             }
 
             // assertEquals("At sentence " + i, expected.length, actual.length);
@@ -83,13 +90,13 @@ public class GoldTest {
                 String errStr = WTaggingUtil.areConsistent(expected[j], actual[j]);
                 if (errStr != null) {
                     if (!printed) {
-                        System.out.println("");
-                        System.out.println("ERROR in sentence [" + i + "]:");
-                        System.out.println(sentence);
+                        System.err.println("");
+                        System.err.println("ERROR in sentence [" + i + "]:");
+                        System.err.println(sentence);
                         printed = true;
                     }
-                    System.out.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
-                    System.out.println(errStr);
+                    System.err.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
+                    System.err.println(errStr);
                     ++errorCount;
                 }
                 ++wordCount;
