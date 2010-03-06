@@ -49,10 +49,11 @@ public class SmallUtilities {
     }
 
     @Test
-    public void testNormalizeConceptTypes() throws FileNotFoundException, IOException {
+    public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
         KB.normalizeRelationTypes(Globals.getDefaultParseKBFile());
+        KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
     }
 
     // @Test

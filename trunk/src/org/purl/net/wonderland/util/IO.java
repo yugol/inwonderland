@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.util;
 
 import java.io.BufferedReader;
@@ -30,8 +29,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.apache.xml.serialize.OutputFormat;
+import org.apache.xml.serialize.XMLSerializer;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -72,5 +79,25 @@ public class IO {
         String cpr = c.getCanonicalName();
         cpr = cpr.substring(0, cpr.lastIndexOf("."));
         return cpr;
+    }
+
+    public static Document readXmlFile(File file) throws Exception {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document xmlDoc = db.parse(file);
+        xmlDoc.getDocumentElement().normalize();
+        return xmlDoc;
+    }
+
+    public static void writeXmlFile(Document xmlDoc, File file) throws IOException {
+        StringWriter sw = new StringWriter();
+        OutputFormat of = new OutputFormat("XML", null, true);
+        of.setIndent(2);
+        of.setIndenting(true);
+        of.setLineWidth(1000);
+        XMLSerializer serializer = new XMLSerializer(sw, of);
+        serializer.asDOMSerializer();
+        serializer.serialize(xmlDoc.getDocumentElement());
+        writeStringToFile(sw.toString(), file);
     }
 }

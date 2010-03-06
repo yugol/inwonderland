@@ -28,9 +28,12 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.engine.Level1TestPersonality;
+import org.purl.net.wonderland.engine.Level1Personality;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
+import org.purl.net.wonderland.engine.Level2Personality;
+import org.purl.net.wonderland.engine.Personality;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *
@@ -38,18 +41,22 @@ import org.purl.net.wonderland.engine.Engine;
  */
 public class GoldTest {
 
+    String level = KbUtil.level2;
+    Personality pers = new Level2Personality();
+    String corpusFileName = "egcp.train.level2.xml";
+    int firstSentence = 1;
+    int lastSentence = 0;
+
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("testGoldCorpus");
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus corpus = new Corpus();
-        corpus.buildFrom(new File(Globals.getCorporaFolder(), "egcp.train.level1.xml"));
+        corpus.buildFrom(new File(Globals.getCorporaFolder(), corpusFileName));
         Engine engine = new Engine();
-        engine.setPersonality(new Level1TestPersonality());
+        engine.setPersonality(pers);
 
-        int firstSentence = 1;
-        int lastSentence = 0;
         if (lastSentence < firstSentence) {
             lastSentence = corpus.getSentenceCount();
         }
@@ -64,7 +71,7 @@ public class GoldTest {
 
             engine.processMessage(sentence);
             WTagging[] expected = corpus.getSentencePosProps(i);
-            WTagging[] actual = engine.getSentenceWTaggings(i - firstSentence + 1, false);
+            WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);
 
             if (expected.length != actual.length) {
                 System.err.println("At sentence " + i + " different word count");
@@ -89,7 +96,7 @@ public class GoldTest {
             }
             ++sentenceCount;
         }
-        TestUtil.saveKbAndMarkings(engine);
+        TestUtil.saveKbAndMarkings(engine, level);
         System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
         assertEquals(0, errorCount);
     }

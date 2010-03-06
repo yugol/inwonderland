@@ -53,18 +53,18 @@ public class GenRuleManagerTest {
     @Test
     public void testReadGeneratorsFromKb() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        ProcManager gm = new ProcManager(kb);
-        gm.readGenerators(KbUtil.level1);
-        assertEquals(1, gm.getGenCount());
-        List<Procedure> matches = gm.findMatches(KbUtil.level1, KbUtil.toLevel1FactId(1));
+        ProcManager procMgr = new ProcManager(kb);
+        procMgr.readAllProceduresFromKb();
+        assertEquals(1, procMgr.getProcCount());
+        List<Procedure> matches = procMgr.findMatches(KbUtil.procSyntaxSet, KbUtil.toLevel1FactId(1));
         assertEquals(1, matches.size());
     }
 
     @Test
     public void testReadGeneratorsFromFile() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        ProcManager gm = new ProcManager(kb);
-        gm.readGenerators(new File(Globals.getTestFolder(), "test_generators.xml"));
-        assertEquals(1, gm.getGenCount());
+        ProcManager procMgr = new ProcManager(kb);
+        procMgr.readProcedures(new File(Globals.getTestFolder(), "test_generators.xml"));
+        assertEquals(1, procMgr.getProcCount());
     }
 }

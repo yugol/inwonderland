@@ -28,17 +28,11 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import net.didion.jwnl.data.POS;
-import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.generators.Procedure;
-import org.purl.net.wonderland.kb.generators.ProcManager;
 
 /**
  *
@@ -46,7 +40,6 @@ import org.purl.net.wonderland.kb.generators.ProcManager;
  */
 public class EtoGleem extends Personality {
 
-    private ProcManager genRuleMgr;
 
     @Override
     public String getWelcomeMessage() {
@@ -75,19 +68,6 @@ public class EtoGleem extends Personality {
     @Override
     public String getId() {
         return "etogleem";
-    }
-
-    @Override
-    public void setKb(WKnowledgeBase kb) {
-        super.setKb(kb);
-        genRuleMgr = new ProcManager(kb);
-        try {
-            genRuleMgr.readGenerators(KbUtil.level1);
-        } catch (Exception ex) {
-            System.err.println("Could not read generation rules from knowledge base");
-            System.err.println(ex);
-            Globals.exit();
-        }
     }
 
     @Override

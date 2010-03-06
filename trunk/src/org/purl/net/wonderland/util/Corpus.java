@@ -68,13 +68,13 @@ public class Corpus {
     public Corpus() {
     }
 
-    public void addSentence(Engine mp, int idx) {
+    public void addSentence(Engine mp, int idx, String level) {
         Node root = xmlDoc.getDocumentElement();
         Element sentence = xmlDoc.createElement(sentenceTag);
         sentence.setAttribute(stcIdxTag, "" + (getSentenceCount() + 1));
         root.appendChild(sentence);
 
-        WTagging[] props = mp.getSentenceWTaggings(idx, true);
+        WTagging[] props = mp.getFactWTaggings(idx, true, level);
         for (int j = 0; j < props.length; ++j) {
             WTagging prop = props[j];
             Element word = xmlDoc.createElement(wordTag);
@@ -115,15 +115,15 @@ public class Corpus {
         }
     }
 
-    public void addKnowledgeBase(Engine mp) {
-        for (int i = 1; i <= mp.getSentenceFactCount(); ++i) {
-            addSentence(mp, i);
+    public void addKnowledgeBase(Engine mp, String level) {
+        for (int i = 1; i <= mp.getFactCount(level); ++i) {
+            addSentence(mp, i, level);
         }
     }
 
-    public void buildFrom(Engine ekb) {
+    public void buildFrom(Engine ekb, String level) {
         createMarkupDocument();
-        addKnowledgeBase(ekb);
+        addKnowledgeBase(ekb, level);
     }
 
     public void buildFrom(File corpusFile) throws ParserConfigurationException, SAXException {

@@ -33,8 +33,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import net.didion.jwnl.data.POS;
+import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.generators.ProcManager;
+import org.purl.net.wonderland.kb.generators.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -53,10 +56,19 @@ Sneezy	Short beard	brown jacket, orange headpiece, red nose
  */
 public abstract class Personality {
 
-    WKnowledgeBase kb = null;
+    protected WKnowledgeBase kb = null;
+    protected ProcManager procMgr = null;
 
     public void setKb(WKnowledgeBase kb) {
         this.kb = kb;
+        procMgr = new ProcManager(kb);
+        try {
+            procMgr.readAllProceduresFromKb();
+        } catch (Exception ex) {
+            System.err.println("Could not read generation rules from knowledge base");
+            System.err.println(ex);
+            Globals.exit();
+        }
     }
 
     public abstract String getWelcomeMessage();
@@ -128,19 +140,26 @@ public abstract class Personality {
 
     protected void addFact(CGraph fact, String set) {
         if (set.equals(KbUtil.level1)) {
-            int factCount = kb.getSentenceCount() + 1;
+            int factCount = kb.getLevel1FactCount() + 1;
             fact.setId(KbUtil.toLevel1FactId(factCount));
             fact.setName(KbUtil.toIdIndex(factCount));
             fact.setSet(set);
             kb.addGraph(fact);
-            kb.setSentenceCount(factCount);
+            kb.setLevel1FactCount(factCount);
         } else if (set.equals(KbUtil.level2)) {
             int factCount = kb.getLevel2FactCount() + 1;
             fact.setId(KbUtil.toLevel2FactId(factCount));
             fact.setName(KbUtil.toIdIndex(factCount));
             fact.setSet(set);
             kb.addGraph(fact);
-            kb.setSentenceCount(factCount);
+            kb.setLevel1FactCount(factCount);
+        }
+    }
+
+    protected void processSyntax(CGraph fact) throws Exception {
+        List<Procedure> matches = procMgr.findMatches(KbUtil.procSyntaxSet, fact);
+        for (Procedure match : matches) {
+            System.out.println(match.getId());
         }
     }
 

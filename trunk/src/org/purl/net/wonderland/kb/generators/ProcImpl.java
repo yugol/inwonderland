@@ -35,15 +35,21 @@ import java.util.Map;
  */
 public class ProcImpl implements Procedure {
 
+    private final String id;
     private final CGraph lhs;
     private final CGraph rhs;
     private final Map<Concept, Concept> rhsLhsConceptMap;
     List<Projection> projections;
 
+    public String getId() {
+        return id;
+    }
+
     public ProcImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
         this.lhs = lhs;
         this.rhs = rhs;
         this.rhsLhsConceptMap = conceptMap;
+        this.id = lhs.getName();
     }
 
     public CGraph getLhs() {
