@@ -71,7 +71,7 @@ public class Pipeline {
         return new Object[]{sentence, deps};
     }
 
-    public static List<List<WTagging>> getTokens(String text) {
+    public static List<List<WTagging>> tokenizeAndSplit(String text) {
         return MorphAdornerWrapper.tagText(text);
     }
 }

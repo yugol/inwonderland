@@ -56,7 +56,7 @@ public class EngineTest {
     @Test
     public void testOne() throws Exception {
         Engine instance = new Engine();
-        instance.setPersonality(new Dummy());
+        instance.setPersonality(new Level1TestPersonality());
 
         String resp = instance.processMessage("This school will hold more than one thousand pupils.");
         assertEquals("Done.", resp);
@@ -73,7 +73,7 @@ public class EngineTest {
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Engine instance = new Engine();
-        instance.setPersonality(new Dummy());
+        instance.setPersonality(new Level1TestPersonality());
 
         from -= 1;
         to -= 1;

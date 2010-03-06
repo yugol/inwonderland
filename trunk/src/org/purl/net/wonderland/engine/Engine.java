@@ -89,16 +89,7 @@ public class Engine {
     }
 
     public String processMessage(String msg) throws Exception {
-        List<CGraph> messages = new ArrayList<CGraph>();
-
-        for (List<WTagging> sentence : Pipeline.getTokens(msg)) {
-            Object[] parse = Pipeline.parse(sentence);
-            sentence = (List<WTagging>) parse[0];
-            List<TypedDependency> deps = (List<TypedDependency>) parse[1];
-            messages.add(addSentenceFact(sentence, deps));
-        }
-
-        return personality.processMessages(messages);
+        return personality.processMessage(msg);
     }
 
     public CGraph getSentenceFact(int idx) {
@@ -107,52 +98,6 @@ public class Engine {
 
     public int getSentenceFactCount() {
         return kb.getSentenceCount();
-    }
-
-    private CGraph addSentenceFact(List<WTagging> words, List<TypedDependency> deps) {
-        kb.setSentenceCount(kb.getSentenceCount() + 1);
-        String sentId = KbUtil.toIdIndex(kb.getSentenceCount());
-        CGraph cg = new CGraph(KbUtil.toLevel1FactId(kb.getSentenceCount()), sentId, KbUtil.level1, "fact");
-
-        for (int i = 0; i < words.size(); ++i) {
-            WTagging tagging = words.get(i);
-            Concept c = new Concept(KbUtil.toConceptId(tagging, i + 1));
-            String individualId = KbUtil.removeQuotes(tagging.getLemma());
-            vocabulary.addIndividual(individualId, individualId, KbUtil.topConceptType, kb.getLanguage());
-            String[] types = null;
-            if (tagging.getPos() == null) {
-                types = new String[]{tagging.getPennTag()};
-            } else {
-                types = tagging.asStringArray();
-            }
-            for (int t = 0; t < types.length; ++t) {
-                types[t] = KbUtil.toConceptTypeId(types[t]);
-                // System.out.println(types[t] + " : " + tagging.getForm());
-            }
-            c.setType(types);
-            c.setIndividual(individualId);
-            cg.addVertex(c);
-        }
-
-        for (int i = 0; i < deps.size(); ++i) {
-            TypedDependency tdep = deps.get(i);
-
-            String gov = KbUtil.getConcept(cg, KbUtil.getLabelIndex(tdep.gov().nodeString())).getId();
-            String dep = KbUtil.getConcept(cg, KbUtil.getLabelIndex(tdep.dep().nodeString())).getId();
-            String relationTypeLabel = tdep.reln().getShortName();
-            String relationType = KbUtil.toRelationTypeId(relationTypeLabel);
-            String relationId = KbUtil.toRelationId(relationTypeLabel, (i + 1));
-
-            Relation r = new Relation(relationId);
-            r.addType(relationType);
-            cg.addVertex(r);
-
-            cg.addEdge(dep, relationId, 1);
-            cg.addEdge(gov, relationId, 2);
-        }
-
-        kb.addGraph(cg);
-        return cg;
     }
 
     public WTagging[] getSentenceWTaggings(int idx, boolean newTagsOnly) {
@@ -170,26 +115,26 @@ public class Engine {
         String id = c.getId();
         for (String type : c.getType()) {
             try {
-                if (cth.isKindOf(type, KbUtil.posConceptType)) {
-                    if (newTagsOnly && cth.isKindOf(type, KbUtil.spTagConceptType)) {
+                if (cth.isKindOf(type, KbUtil.Pos)) {
+                    if (newTagsOnly && cth.isKindOf(type, KbUtil.SpTag)) {
                         prop = new WTagging();
                         break;
                     } else {
                         prop.setPos(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
                     }
-                } else if (cth.isKindOf(type, KbUtil.caseConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Case)) {
                     prop.setWcase(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.comparisonConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Comparison)) {
                     prop.setComp(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.genderConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Gender)) {
                     prop.setGender(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.moodConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Mood)) {
                     prop.setMood(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.numberConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Number)) {
                     prop.setNumber(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.personConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Person)) {
                     prop.setPerson(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
-                } else if (cth.isKindOf(type, KbUtil.tenseConceptType)) {
+                } else if (cth.isKindOf(type, KbUtil.Tense)) {
                     prop.setTense(vocabulary.getConceptTypeLabel(type, kb.getLanguage()));
                 }
             } catch (RuntimeException ex) {

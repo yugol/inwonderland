@@ -25,12 +25,13 @@ package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Dummy extends Personality {
+public class Level1TestPersonality extends Personality {
 
     @Override
     public String getWelcomeMessage() {
@@ -53,7 +54,11 @@ public class Dummy extends Personality {
     }
 
     @Override
-    public String processMessages(List<CGraph> messages) throws Exception {
+    public String processMessage(String message) throws Exception {
+        List<CGraph> facts = parseMessage(message);
+        for (CGraph fact : facts) {
+            addFact(fact, KbUtil.level1);
+        }
         return "Done.";
     }
 }

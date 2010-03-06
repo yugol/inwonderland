@@ -32,7 +32,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
 import static org.junit.Assert.*;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /**
  *
@@ -50,17 +49,19 @@ public class EtoGleemTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-
+    /*
     @Test
     public void testProcessMessages() throws Exception {
-        Engine eng = new Engine();
-        eng.openKb(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        List<CGraph> messages = new ArrayList<CGraph>();
-        messages.add(eng.getSentenceFact(1));
-        EtoGleem instance = (EtoGleem) eng.getPersonality();
-        String result = instance.processMessages(messages);
-        assertEquals("Done.", result);
-        File file = new File(Globals.getTestFolder(), "bedtime.testout.cogxml");
-        eng.saveKb(file);
+    Engine eng = new Engine();
+    eng.openKb(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+    List<CGraph> messages = new ArrayList<CGraph>();
+    messages.add(eng.getSentenceFact(1));
+    EtoGleem instance = (EtoGleem) eng.getPersonality();
+    String result = instance.processMessages(messages);
+    assertEquals("Done.", result);
+    File file = new File(Globals.getTestFolder(), "bedtime.testout.cogxml");
+    eng.saveKb(file);
     }
+     * 
+     */
 }
