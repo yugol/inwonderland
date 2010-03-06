@@ -23,8 +23,6 @@
  */
 package org.purl.net.wonderland.kb;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.UUID;
@@ -118,7 +116,10 @@ public final class KbUtil {
 
     public static String getConceptForm(String id) {
         int end = id.lastIndexOf("#");
-        return id.substring(0, end);
+        if (end >= 0) {
+            return id.substring(0, end);
+        }
+        return null;
     }
 
     public static int getConceptIndex(String id) {

@@ -6,7 +6,7 @@
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  to use, copy, modify, mergeWtags, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
  *
@@ -46,6 +46,7 @@ import org.purl.net.wonderland.kb.generators.ProcManager;
 import org.purl.net.wonderland.kb.generators.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.WTaggingUtil;
 
 /*
 Bashful	Long beard	Brown top, green hat, long eyelashes
@@ -111,13 +112,9 @@ public abstract class Personality {
             vocabulary.addIndividual(individualId, individualId, KbUtil.Top, kb.getLanguage());
             String[] types = null;
             if (tagging.getPos() == null) {
-                types = new String[]{tagging.getPennTag()};
+                types = new String[]{KbUtil.toConceptTypeId(tagging.getPennTag())};
             } else {
-                types = tagging.asStringArray();
-            }
-            for (int t = 0; t < types.length; ++t) {
-                types[t] = KbUtil.toConceptTypeId(types[t]);
-                // System.out.println(types[t] + " : " + tagging.getForm());
+                types = tagging.asTypes();
             }
             c.setType(types);
             c.setIndividual(individualId);
@@ -234,10 +231,6 @@ public abstract class Personality {
             }
         }
 
-        for (Concept c : update.keySet()) {
-            c.setType(update.get(c).getType());
-        }
-
         for (Concept c : delete) {
             List<Relation> from = new ArrayList<Relation>();
             List<Relation> to = new ArrayList<Relation>();
@@ -262,7 +255,14 @@ public abstract class Personality {
                 }
             }
 
+            WTagging cTagging = kb.conceptLabelsToWTagging(c, false);
+            for (Concept toConcept : toConcepts) {
+                WTagging toTagging = kb.conceptLabelsToWTagging(toConcept, false);
+                WTaggingUtil.mergeWtags(cTagging, toTagging);
+                toConcept.setType(toTagging.asTypes());
+            }
             fact.removeVertex(c.getId());
+
             for (Relation r : to) {
                 fact.removeVertex(r.getId());
             }
@@ -273,5 +273,14 @@ public abstract class Personality {
                 }
             }
         }
+
+        for (Concept c : update.keySet()) {
+            Concept rhs = update.get(c);
+            WTagging cTagging = kb.conceptLabelsToWTagging(c, false);
+            WTagging rhsTagging = kb.conceptLabelsToWTagging(rhs, false);
+            WTaggingUtil.mergeWtags(rhsTagging, cTagging);
+            c.setType(cTagging.asTypes());
+        }
+
     }
 }

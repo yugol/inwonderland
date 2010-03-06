@@ -25,7 +25,6 @@ package org.purl.net.wonderland.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import net.didion.jwnl.data.POS;
@@ -48,7 +47,7 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    @Test
+    // @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
@@ -56,16 +55,11 @@ public class SmallUtilities {
         KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
     }
 
-    // @Test
+    @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
-        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
-        Corpus gold = new Corpus();
-        gold.buildFrom(goldFile);
-        gold.reIndexSentences();
-        gold.removeMappingAttributes();
-        gold.writeToFile(goldFile);
-        System.out.println("Reindexed " + gold.getSentenceCount() + " sentences.");
+        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");
+        Corpus.normalizeFile(goldFile);
     }
 
     // @Test

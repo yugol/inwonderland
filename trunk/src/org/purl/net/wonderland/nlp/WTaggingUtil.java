@@ -6,7 +6,7 @@
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  to use, copy, modify, mergeWtags, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
  *
@@ -21,10 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+package org.purl.net.wonderland.nlp;
 
-package org.purl.net.wonderland.util;
-
-import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.util.Corpus;
 
 /**
  *
@@ -104,5 +103,32 @@ public final class WTaggingUtil {
 
     private static void printErr(String gold, String auto, String tag, StringBuilder errStr) {
         errStr.append(indent + tag + ": " + gold + " / " + auto + "\n");
+    }
+
+    public static void mergeWtags(WTagging from, WTagging to) {
+        if (from.getPos() != null) {
+            to.setPos(from.getPos());
+        }
+        if (from.getGender() != null) {
+            to.setGender(from.getGender());
+        }
+        if (from.getNumber() != null) {
+            to.setNumber(from.getNumber());
+        }
+        if (from.getWcase() != null) {
+            to.setWcase(from.getWcase());
+        }
+        if (from.getPerson() != null) {
+            to.setPerson(from.getPerson());
+        }
+        if (from.getComp() != null) {
+            to.setComp(from.getComp());
+        }
+        if (from.getMood() != null) {
+            to.setMood(from.getMood());
+        }
+        if (from.getTense() != null) {
+            to.setTense(from.getTense());
+        }
     }
 }
