@@ -156,13 +156,4 @@ public final class KbUtil {
     public static String toSenseName(String particle, long offset) {
         return particle + senseNumberFormatter.format(offset);
     }
-
-    public static Concept getConcept(CGraph cg, int j) {
-        for (Concept c : cg.getConcepts()) {
-            if (j == KbUtil.getConceptIndex(c.getId())) {
-                return c;
-            }
-        }
-        return null;
-    }
 }

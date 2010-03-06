@@ -31,12 +31,17 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.util.Compare;
 
 /**
  *
@@ -118,10 +123,19 @@ public class Engine {
 
     public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
         CGraph cg = getFact(idx, level);
-        WTagging[] props = new WTagging[cg.getConcepts().size()];
-        for (int j = 1; j <= props.length; ++j) {
-            props[j - 1] = conceptLabelsToWTagging(KbUtil.getConcept(cg, j), newTagsOnly);
+
+        List<Concept> concepts = new ArrayList<Concept>();
+        Iterator<Concept> it = cg.iteratorConcept();
+        while (it.hasNext()) {
+            concepts.add(it.next());
         }
+        Collections.sort(concepts, new ConceptIdComparator());
+
+        WTagging[] props = new WTagging[concepts.size()];
+        for (int i = 0; i < props.length; ++i) {
+            props[i] = conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
+        }
+
         return props;
     }
 
@@ -163,5 +177,14 @@ public class Engine {
         prop.setPennTag(KbUtil.getConceptPennTag(id));
         prop.setPartsOfSpeech(KbUtil.getConceptMaTag(id));
         return prop;
+    }
+}
+
+class ConceptIdComparator implements Comparator<Concept> {
+
+    public int compare(Concept o1, Concept o2) {
+        int id1 = KbUtil.getConceptIndex(o1.getId());
+        int id2 = KbUtil.getConceptIndex(o2.getId());
+        return Compare.compare(id1, id2);
     }
 }

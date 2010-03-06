@@ -71,8 +71,8 @@ public class EngineTest {
 
     @Test
     public void testMany() throws Exception {
-        int from = 28;
-        int to = 28;
+        int from = 1;
+        int to = 1;
 
         List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Engine instance = new Engine();
