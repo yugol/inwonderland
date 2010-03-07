@@ -25,7 +25,10 @@ package org.purl.net.wonderland.kb.generators;
 
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +39,11 @@ import java.util.Map;
 public class ProcImpl implements Procedure {
 
     private final String id;
+    private final double priority;
     private final CGraph lhs;
     private final CGraph rhs;
     private final Map<Concept, Concept> rhsLhsConceptMap;
+    private final double lhsComplexity;
     List<Projection> projections;
 
     public String getId() {
@@ -46,10 +51,44 @@ public class ProcImpl implements Procedure {
     }
 
     public ProcImpl(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
+        double tempPriority = 0.5;
+        String tempId = lhs.getName();
+        int priSepPos = tempId.lastIndexOf("_");
+        if (priSepPos >= 0) {
+            String priSepStr = tempId.substring(priSepPos + 1);
+            try {
+                tempPriority = Double.parseDouble(priSepStr);
+                tempId = tempId.substring(0, priSepPos);
+            } catch (NumberFormatException ex) {
+            }
+        }
+
+        double tempComplexity = 0;
+        Iterator<Concept> cIt = lhs.iteratorConcept();
+        while (cIt.hasNext()) {
+            tempComplexity += 1;
+            Concept c = cIt.next();
+            if (c.getIndividual() != null) {
+                tempComplexity += 1;
+            }
+        }
+        Iterator<Relation> rIt = lhs.iteratorRelation();
+        while (rIt.hasNext()) {
+            tempComplexity += 1;
+            rIt.next();
+        }
+        Iterator<CREdge> eIt = lhs.iteratorEdge();
+        while (eIt.hasNext()) {
+            tempComplexity += 1;
+            eIt.next();
+        }
+
+        this.id = tempId;
+        this.priority = tempPriority;
         this.lhs = lhs;
         this.rhs = rhs;
         this.rhsLhsConceptMap = conceptMap;
-        this.id = lhs.getName();
+        this.lhsComplexity = tempComplexity;
     }
 
     public CGraph getLhs() {
@@ -70,5 +109,13 @@ public class ProcImpl implements Procedure {
 
     public Map<Concept, Concept> getRhsLhsConceptMap() {
         return rhsLhsConceptMap;
+    }
+
+    public double getPriority() {
+        return priority;
+    }
+
+    public double getLhsComplexity() {
+        return lhsComplexity;
     }
 }

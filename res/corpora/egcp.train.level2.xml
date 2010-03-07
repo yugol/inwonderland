@@ -519,11 +519,10 @@
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="67">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" tense="ps">Are</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" lemma="you" pers="nd">you</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="pss">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="68">
         <word _idx="1" _pos="Vb" lemma="be" mood="ind" tense="ps">Are</word>
