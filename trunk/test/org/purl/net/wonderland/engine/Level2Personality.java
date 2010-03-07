@@ -57,11 +57,12 @@ public class Level2Personality extends Personality {
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
-            processSyntax(fact);
-            processCollocations(fact);
+            addFact(fact, KbUtil.level1);
+            fact = KbUtil.duplicate(fact);
+            processTenses(fact);
+            // processCollocations(fact);
             addFact(fact, KbUtil.level2);
         }
         return "Done.";
     }
-
 }

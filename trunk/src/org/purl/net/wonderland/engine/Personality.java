@@ -170,7 +170,7 @@ public abstract class Personality {
         }
     }
 
-    protected void processSyntax(CGraph fact) throws Exception {
+    protected void processTenses(CGraph fact) throws Exception {
         applyProcSet(fact, KbUtil.procSetTenses);
     }
 
@@ -188,6 +188,7 @@ public abstract class Personality {
                 }
             }
         }
+        KbUtil.setAllConclusion(fact, false);
     }
 
     protected void addSenses(CGraph message) {
@@ -334,7 +335,7 @@ public abstract class Personality {
             if (Arrays.binarySearch(rhsTypes, KbUtil.Pos) < 0) {
                 actual.setType(rhsTypes);
             }
-            if (rhs.getIndividual() != null) {
+            if (!rhs.isGeneric()) {
                 actual.setIndividual(rhs.getIndividual());
             }
         }

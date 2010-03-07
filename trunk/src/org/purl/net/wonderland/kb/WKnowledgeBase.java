@@ -112,6 +112,11 @@ public class WKnowledgeBase {
         }
     }
 
+    /**
+     * Will not save edges adjacent to a conclusion relation
+     * @param cogxml
+     * @throws Exception
+     */
     public void save(File cogxml) throws Exception {
         CogxmlWriter.write(cogxml, kb, language);
     }
