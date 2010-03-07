@@ -23,8 +23,12 @@
  */
 package org.purl.net.wonderland.kb;
 
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Iterator;
 import java.util.UUID;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -55,8 +59,8 @@ public final class KbUtil {
     public static final String level2 = "level2";
     // procedures
     public static final String proc = "proc";
-    public static final String procSyntaxSet = "syn";
-    public static final String procCollocationsSet = "collo";
+    public static final String procSetTenses = "tense";
+    public static final String procSetCollocations = "collo";
     // other
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
@@ -157,5 +161,16 @@ public final class KbUtil {
 
     public static String toSenseName(String particle, long offset) {
         return particle + senseNumberFormatter.format(offset);
+    }
+
+    public static void setAllConclusion(CGraph lhs, boolean b) {
+        Iterator<Concept> cIt = lhs.iteratorConcept();
+        while (cIt.hasNext()) {
+            cIt.next().setConclusion(b);
+        }
+        Iterator<Relation> rIt = lhs.iteratorRelation();
+        while (rIt.hasNext()) {
+            rIt.next().setConclusion(b);
+        }
     }
 }

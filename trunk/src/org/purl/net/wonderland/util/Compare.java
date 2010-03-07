@@ -38,4 +38,14 @@ public final class Compare {
             return 0;
         }
     }
+
+    public static int compare(double n1, double n2) {
+        if (n1 < n2) {
+            return -1;
+        } else if (n1 > n2) {
+            return +1;
+        } else {
+            return 0;
+        }
+    }
 }

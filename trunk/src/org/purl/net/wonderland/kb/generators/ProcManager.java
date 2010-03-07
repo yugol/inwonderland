@@ -38,11 +38,14 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.solver.SolverCogitant;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import org.purl.net.wonderland.util.CodeTimer;
 
@@ -76,8 +79,8 @@ public class ProcManager {
     }
 
     public void readAllProceduresFromKb() throws Exception {
-        readProcedureSet(KbUtil.procSyntaxSet);
-        readProcedureSet(KbUtil.procCollocationsSet);
+        readProcedureSet(KbUtil.procSetTenses);
+        readProcedureSet(KbUtil.procSetCollocations);
     }
 
     private void readProcedureSet(String set) throws Exception {
@@ -88,6 +91,7 @@ public class ProcManager {
             Procedure proc = buildProcedure(rule, name);
             addProcedure(set, proc);
         }
+        sortProcedureSet(set);
     }
 
     private Procedure buildProcedure(Rule rule, String name) {
@@ -254,20 +258,49 @@ public class ProcManager {
         return acMap;
     }
 
-    public List<Procedure> findMatches(String set, CGraph cg) throws Exception {
+    public Procedure findMatch(String procSet, CGraph cg, Set<Procedure> exclude) throws Exception {
+        CodeTimer timer = new CodeTimer("projection");
+        reConnectToSolver();
+
+        Procedure match = null;
+        if (procs.get(procSet) != null) {
+            for (Procedure proc : procs.get(procSet)) {
+                if (exclude != null && exclude.contains(proc)) {
+                    continue;
+                }
+                CGraph lhs = proc.getLhs();
+                List<Projection> projections = solver.getProjections(lhs, cg);
+                if (projections.size() > 0) {
+                    proc.setProjections(projections);
+                    match = proc;
+                    break;
+                } else {
+                    proc.setProjections(null);
+                    if (exclude != null && exclude.contains(proc)) {
+                        exclude.add(proc);
+                    }
+                }
+            }
+        }
+
+        timer.stop();
+        return match;
+    }
+
+    public List<Procedure> findMatches(String procSet, CGraph cg) throws Exception {
         CodeTimer timer = new CodeTimer("projection");
         reConnectToSolver();
 
         List<Procedure> matches = new ArrayList<Procedure>();
-        if (procs.get(set) != null) {
-            for (Procedure t : procs.get(set)) {
-                CGraph lhs = t.getLhs();
+        if (procs.get(procSet) != null) {
+            for (Procedure proc : procs.get(procSet)) {
+                CGraph lhs = proc.getLhs();
                 List<Projection> projections = solver.getProjections(lhs, cg);
                 if (projections.size() > 0) {
-                    t.setProjections(projections);
-                    matches.add(t);
+                    proc.setProjections(projections);
+                    matches.add(proc);
                 } else {
-                    t.setProjections(null);
+                    proc.setProjections(null);
                 }
             }
         }
@@ -277,7 +310,7 @@ public class ProcManager {
     }
 
     public List<Procedure> findMatches(String set, String id) throws Exception {
-        return findMatches(set, kb.getFactGraph(id));
+        throw new UnsupportedOperationException("Not yet implemented.");
     }
 
     private void reConnectToSolver() throws Exception {
@@ -286,5 +319,10 @@ public class ProcManager {
         }
         solver.connect();
         solver.commitVocabulary(kb.getVocabulary());
+    }
+
+    private void sortProcedureSet(String set) {
+        List<Procedure> procSet = procs.get(set);
+        Collections.sort(procSet, new PriorityComparator());
     }
 }

@@ -23,31 +23,21 @@
  */
 package org.purl.net.wonderland.kb.generators;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import java.util.List;
-import java.util.Map;
+import java.util.Comparator;
+import org.purl.net.wonderland.util.Compare;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface Procedure {
+public class PriorityComparator implements Comparator<Procedure> {
 
-    public CGraph getLhs();
-
-    public void setProjections(List<Projection> projections);
-
-    public List<Projection> getProjections();
-
-    public CGraph getRhs();
-
-    public Map<Concept, Concept> getRhsLhsConceptMap();
-
-    public String getId();
-
-    public double getPriority();
-
-    public double getLhsComplexity();
+    public int compare(Procedure o1, Procedure o2) {
+        int cmp = Compare.compare(o1.getPriority(), o2.getPriority());
+        if (cmp != 0) {
+            return -cmp;
+        }
+        cmp = Compare.compare(o1.getLhsComplexity(), o2.getLhsComplexity());
+        return -cmp;
+    }
 }
