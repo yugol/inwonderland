@@ -68,7 +68,7 @@ public class ProcImpl implements Procedure {
         while (cIt.hasNext()) {
             tempComplexity += 1;
             Concept c = cIt.next();
-            if (c.getIndividual() != null) {
+            if (!c.isGeneric()) {
                 tempComplexity += 1;
             }
         }

@@ -45,7 +45,8 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train.level2.xml";
     int firstSentence = 1;
-    int lastSentence = 67;
+    int lastSentence = 82;
+    // int lastSentence = 165;
 
     @Test
     public void testGoldCorpus() throws Exception {
@@ -64,15 +65,20 @@ public class GoldTest {
         int wordCount = 0;
         int sentenceCount = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
-            System.out.println("Sentence: " + i);
+            System.out.println("#" + i);
 
             boolean printed = false;
             String sentence = plain.get(i - 1);
 
             engine.processMessage(sentence);
+
             WTagging[] expected = corpus.getSentencePosProps(i);
             WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);
 
+            sentenceCount += 1;
+            wordCount += expected.length;
+
+            // check chunk count
             if (expected.length != actual.length) {
                 System.err.println("");
                 System.err.println("ERROR in sentence [" + i + "]:");
@@ -84,8 +90,7 @@ public class GoldTest {
                 continue;
             }
 
-            // assertEquals("At sentence " + i, expected.length, actual.length);
-
+            // check individual words
             for (int j = 0; j < actual.length; ++j) {
                 String errStr = WTaggingUtil.areConsistent(expected[j], actual[j]);
                 if (errStr != null) {
@@ -99,10 +104,9 @@ public class GoldTest {
                     System.err.println(errStr);
                     ++errorCount;
                 }
-                ++wordCount;
             }
-            ++sentenceCount;
         }
+
         TestUtil.saveKbAndMarkings(engine, level);
         System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
         assertEquals(0, errorCount);

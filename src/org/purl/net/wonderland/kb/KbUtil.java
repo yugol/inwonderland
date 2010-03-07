@@ -23,7 +23,9 @@
  */
 package org.purl.net.wonderland.kb;
 
+import aminePlatform.util.cg.CG;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import java.text.DecimalFormat;
@@ -172,5 +174,36 @@ public final class KbUtil {
         while (rIt.hasNext()) {
             rIt.next().setConclusion(b);
         }
+    }
+
+    public static CGraph duplicate(CGraph cg) {
+        CGraph cg2 = new CGraph(newUniqueId(), cg.getName(), null, cg.getNature());
+
+        Iterator<Concept> cIt = cg.iteratorConcept();
+        while (cIt.hasNext()) {
+            Concept c = cIt.next();
+            Concept c2 = new Concept(c.getId());
+            c2.setType(c.getType());
+            c2.setIndividual(c.getIndividual());
+            cg2.addVertex(c2);
+        }
+
+        Iterator<Relation> rIt = cg.iteratorRelation();
+        while (rIt.hasNext()) {
+            Relation r = rIt.next();
+            Relation r2 = new Relation(r.getId());
+            r2.setType(r.getType());
+            cg2.addVertex(r2);
+        }
+
+        Iterator<CREdge> eIt = cg.iteratorEdge();
+        while (eIt.hasNext()) {
+            CREdge edge = eIt.next();
+            Concept c = cg.getConcept(edge);
+            Relation r = cg.getRelation(edge);
+            cg2.addEdge(c.getId(), r.getId(), edge.getNumOrder());
+        }
+
+        return cg2;
     }
 }

@@ -295,15 +295,17 @@
     <sentence idx="26">
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
         <word _idx="2" _pos="NnCOM" lemma="pupil" num="plu">pupils</word>
-        <word _idx="3" _pos="Vb" lemma="go_on" mood="ind" tense="pss">go</word>
-        <word _idx="4" _pos="Vb" lemma="read" mood="ger">reading</word>
-        <word _idx="5" lemma=".">.</word>
+        <word _idx="3" _pos="Vb" lemma="go" mood="ind" tense="pss">go</word>
+        <word _idx="4" _pos="Pp" lemma="on">on</word>
+        <word _idx="5" _pos="Vb" lemma="read" mood="ger">reading</word>
+        <word _idx="6" lemma=".">.</word>
     </sentence>
     <sentence idx="27">
         <word _idx="1" _pos="PnINT" lemma="what">What</word>
-        <word _idx="2" _pos="Vb" lemma="go_on" mood="ind" tense="psc">going</word>
-        <word _idx="3" _pos="RbPLC_DstPos" lemma="there">there</word>
-        <word _idx="4" lemma="?">?</word>
+        <word _idx="2" _pos="Vb" lemma="go" mood="ind" tense="psc">going</word>
+        <word _idx="3" _pos="Pp" lemma="on">on</word>
+        <word _idx="4" _pos="RbPLC_DstPos" lemma="there">there</word>
+        <word _idx="5" lemma="?">?</word>
     </sentence>
     <sentence idx="28">
         <word _idx="1" _pos="PnPRS" lemma="i" num="sng" pers="st">I</word>
@@ -521,154 +523,137 @@
     <sentence idx="67">
         <word _idx="1" _pos="Rb" lemma="not">n`t</word>
         <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
-        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="pss">speaking</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
         <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="68">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" tense="ps">Are</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="69">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" tense="ps">Are</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" lemma="they" num="plu" pers="rd">they</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="70">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
-        <word _idx="3" _pos="Rb" lemma="not">not</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="2" _pos="Rb" lemma="not">not</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="71">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
-        <word _idx="3" _pos="Rb" lemma="not">not</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="2" _pos="Rb" lemma="not">not</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="72">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
-        <word _idx="3" _pos="Rb" lemma="not">not</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="2" _pos="Rb" lemma="not">not</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="73">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">he</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="74">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" gen="fem" lemma="she" num="sng" pers="rd">she</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="75">
-        <word _idx="1" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">Is</word>
-        <word _idx="2" _pos="Rb" lemma="not">n't</word>
-        <word _idx="3" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
-        <word _idx="4" _pos="Vb" lemma="speak" mood="ger">speaking</word>
-        <word _idx="5" lemma="?">?</word>
+        <word _idx="1" _pos="Rb" lemma="not">n`t</word>
+        <word _idx="2" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="3" _pos="Vb" lemma="speak" mood="ind" tense="psc">speaking</word>
+        <word _idx="4" lemma="?">?</word>
     </sentence>
     <sentence idx="76">
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
         <word _idx="2" _pos="NnCOM" lemma="sun" num="sng">sun</word>
-        <word _idx="3" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
-        <word _idx="4" _pos="Vb" lemma="shine" mood="ger">shining</word>
-        <word _idx="5" _pos="PpPRE" lemma="in">in</word>
-        <word _idx="6" _pos="ArDEF" lemma="the">the</word>
-        <word _idx="7" _pos="NnCOM" lemma="sky" num="sng">sky</word>
-        <word _idx="8" _pos="Rb" lemma="now">now</word>
-        <word _idx="9" lemma=".">.</word>
+        <word _idx="3" _pos="Vb" lemma="shine" mood="ind" tense="psc">shining</word>
+        <word _idx="4" _pos="PpPRE" lemma="in">in</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnCOM" lemma="sky" num="sng">sky</word>
+        <word _idx="7" _pos="Rb" lemma="now">now</word>
+        <word _idx="8" lemma=".">.</word>
     </sentence>
     <sentence idx="77">
         <word _idx="1" _pos="ArDEF" lemma="the">The</word>
         <word _idx="2" _pos="NnCOM" lemma="pupil" num="sng">pupil</word>
-        <word _idx="3" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
-        <word _idx="4" _pos="Rb" lemma="just">just</word>
-        <word _idx="5" _pos="Vb" lemma="write" mood="ger">writing</word>
-        <word _idx="6" _pos="ArDEF" lemma="the">the</word>
-        <word _idx="7" _pos="NnCOM" lemma="exercise" num="sng">exercise</word>
-        <word _idx="8" lemma=".">.</word>
+        <word _idx="3" _pos="Rb" lemma="just">just</word>
+        <word _idx="4" _pos="Vb" lemma="write" mood="ind" tense="psc">writing</word>
+        <word _idx="5" _pos="ArDEF" lemma="the">the</word>
+        <word _idx="6" _pos="NnCOM" lemma="exercise" num="sng">exercise</word>
+        <word _idx="7" lemma=".">.</word>
     </sentence>
     <sentence idx="78">
         <word _idx="1" _pos="Vb" lemma="look" mood="imp">Look</word>
         <word _idx="2" lemma=",">,</word>
         <word _idx="3" _pos="ArDEF" lemma="the">the</word>
         <word _idx="4" _pos="NnCOM" lemma="child" num="plu">children</word>
-        <word _idx="5" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
-        <word _idx="6" _pos="Vb" lemma="sleep" mood="ger">sleeping</word>
-        <word _idx="7" lemma=".">.</word>
+        <word _idx="5" _pos="Vb" lemma="sleep" mood="ind" tense="psc">sleeping</word>
+        <word _idx="6" lemma=".">.</word>
     </sentence>
     <sentence idx="79">
         <word _idx="1" _pos="PnPRS" lemma="we" num="plu" pers="st">We</word>
-        <word _idx="2" _pos="RbMNN" lemma="usual">usually</word>
-        <word _idx="3" _pos="Vb" lemma="go" mood="ind" tense="ps">go</word>
-        <word _idx="4" _pos="PpTo" lemma="to">to</word>
-        <word _idx="5" _pos="Vb" lemma="work" mood="sinf">work</word>
-        <word _idx="6" _pos="PpPRE" lemma="by">by</word>
-        <word _idx="7" _pos="NnCOM" lemma="bus" num="sng">bus</word>
-        <word _idx="8" lemma=",">,</word>
-        <word _idx="9" _pos="CjCRD" lemma="but">but</word>
-        <word _idx="10" _pos="Rb" lemma="today">today</word>
-        <word _idx="11" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
-        <word _idx="12" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
-        <word _idx="13" _pos="Vb" lemma="go" mood="ger">going</word>
-        <word _idx="14" _pos="PpPRE" lemma="by">by</word>
-        <word _idx="15" _pos="NnCOM" lemma="cab" num="sng">cab</word>
-        <word _idx="16" lemma=".">.</word>
+        <word _idx="2" _pos="RbMNN" lemma="usually">usually</word>
+        <word _idx="3" _pos="Vb" lemma="go" mood="ind" tense="pss">go</word>
+        <word _idx="4" _pos="Vb" lemma="work" mood="linf" tense="ps">work</word>
+        <word _idx="5" _pos="PpPRE" lemma="by">by</word>
+        <word _idx="6" _pos="NnCOM" lemma="bus" num="sng">bus</word>
+        <word _idx="7" lemma=",">,</word>
+        <word _idx="8" _pos="CjCRD" lemma="but">but</word>
+        <word _idx="9" _pos="Rb" lemma="today">today</word>
+        <word _idx="10" _pos="PnPRS" lemma="we" num="plu" pers="st">we</word>
+        <word _idx="11" _pos="Vb" lemma="go" mood="ind" tense="psc">going</word>
+        <word _idx="12" _pos="PpPRE" lemma="by">by</word>
+        <word _idx="13" _pos="NnCOM" lemma="cab" num="sng">cab</word>
+        <word _idx="14" lemma=".">.</word>
     </sentence>
     <sentence idx="80">
         <word _idx="1" _pos="PnINT" lemma="what">What</word>
-        <word _idx="2" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
-        <word _idx="3" _pos="PnPRS" lemma="you" pers="nd">you</word>
-        <word _idx="4" _pos="Vb" lemma="do" mood="ger">doing</word>
-        <word _idx="5" _pos="Rb" lemma="tomorrow">tomorrow</word>
-        <word _idx="6" lemma="?">?</word>
+        <word _idx="2" _pos="PnPRS" lemma="you" pers="nd">you</word>
+        <word _idx="3" _pos="Vb" lemma="do" mood="ind" tense="psc">doing</word>
+        <word _idx="4" _pos="Rb" lemma="tomorrow">tomorrow</word>
+        <word _idx="5" lemma="?">?</word>
     </sentence>
     <sentence idx="81">
         <word _idx="1" _pos="JjPOS" lemma="our" num="plu" pers="st">Our</word>
         <word _idx="2" _pos="NnCOM" lemma="friend" num="plu">friends</word>
-        <word _idx="3" _pos="Vb" lemma="be" mood="ind" tense="ps">are</word>
-        <word _idx="4" _pos="Vb" lemma="arrive" mood="ger">arriving</word>
-        <word _idx="5" _pos="Rb" lemma="tomorrow">tomorrow</word>
-        <word _idx="6" lemma=".">.</word>
+        <word _idx="3" _pos="Vb" lemma="arrive" mood="ind" tense="psc">arriving</word>
+        <word _idx="4" _pos="Rb" lemma="tomorrow">tomorrow</word>
+        <word _idx="5" lemma=".">.</word>
     </sentence>
     <sentence idx="82">
         <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
-        <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
-        <word _idx="3" _pos="Vb" lemma="go" mood="ger">going</word>
-        <word _idx="4" _pos="PpTo" lemma="to">to</word>
-        <word _idx="5" _pos="NnPRP" lemma="london" num="sng">London</word>
-        <word _idx="6" _pos="Pp" lemma="on">on</word>
-        <word _idx="7" _pos="NnPRP" lemma="friday" num="sng">Friday</word>
-        <word _idx="8" lemma=".">.</word>
+        <word _idx="2" _pos="Vb" lemma="go" mood="ind" tense="psc">going</word>
+        <word _idx="3" _pos="PpTo" lemma="to">to</word>
+        <word _idx="4" _pos="NnPRP" lemma="london" num="sng">London</word>
+        <word _idx="5" _pos="Pp" lemma="on">on</word>
+        <word _idx="6" _pos="NnPRP" lemma="friday" num="sng">Friday</word>
+        <word _idx="7" lemma=".">.</word>
     </sentence>
     <sentence idx="83">
         <word _idx="1" _pos="PnPRS" gen="msc" lemma="he" num="sng" pers="rd">He</word>
-        <word _idx="2" _pos="Vb" lemma="be" mood="ind" num="sng" pers="rd" tense="ps">is</word>
-        <word _idx="3" _pos="Rb" lemma="always">always</word>
-        <word _idx="4" _pos="Vb" lemma="borrow" mood="ger">borrowing</word>
-        <word _idx="5" _pos="NnCOM" lemma="money" num="sng">money</word>
-        <word _idx="6" _pos="PpPRE" lemma="from">from</word>
-        <word _idx="7" _pos="JjPOS" lemma="his">his</word>
-        <word _idx="8" _pos="NnCOM" lemma="friend" num="plu">friends</word>
-        <word _idx="9" _pos="CjCRD" lemma="but">but</word>
-        <word _idx="10" _pos="Rb" lemma="never">never</word>
-        <word _idx="11" _pos="Vb" lemma="give" mood="ind" num="sng" pers="rd" tense="ps">gives</word>
-        <word _idx="12" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
-        <word _idx="13" _pos="RbPLC_Dir" lemma="back">back</word>
-        <word _idx="14" lemma=".">.</word>
+        <word _idx="2" _pos="Rb" lemma="always">always</word>
+        <word _idx="3" _pos="Vb" lemma="borrow" mood="ind" tense="psc">borrowing</word>
+        <word _idx="4" _pos="NnCOM" lemma="money" num="sng">money</word>
+        <word _idx="5" _pos="PpPRE" lemma="from">from</word>
+        <word _idx="6" _pos="JjPOS" lemma="his">his</word>
+        <word _idx="7" _pos="NnCOM" lemma="friend" num="plu">friends</word>
+        <word _idx="8" _pos="CjCRD" lemma="but">but</word>
+        <word _idx="9" _pos="Rb" lemma="never">never</word>
+        <word _idx="10" _pos="Vb" lemma="give" mood="ind" num="sng" pers="rd" tense="ps">gives</word>
+        <word _idx="11" _pos="PnPRS" gen="neu" lemma="it" num="sng" pers="rd">it</word>
+        <word _idx="12" _pos="RbPLC_Dir" lemma="back">back</word>
+        <word _idx="13" lemma=".">.</word>
     </sentence>
     <sentence idx="84">
         <word _idx="1" _pos="RbINT" lemma="why">Why</word>
