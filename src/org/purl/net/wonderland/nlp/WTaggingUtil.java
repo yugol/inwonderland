@@ -106,7 +106,7 @@ public final class WTaggingUtil {
     }
 
     public static void mergeWtags(WTagging from, WTagging to) {
-        if (from.getPos() != null) {
+        if ((from.getPos() != null) && (!from.getPos().equals("Pos"))) {
             to.setPos(from.getPos());
         }
         if (from.getGender() != null) {

@@ -264,12 +264,6 @@ public abstract class Personality {
                 }
             }
 
-            WTagging cTagging = kb.conceptLabelsToWTagging(c, false);
-            for (Concept toConcept : toConcepts) {
-                WTagging toTagging = kb.conceptLabelsToWTagging(toConcept, false);
-                WTaggingUtil.mergeWtags(cTagging, toTagging);
-                toConcept.setType(toTagging.asTypes());
-            }
             fact.removeVertex(c.getId());
 
             for (Relation r : to) {
@@ -285,10 +279,10 @@ public abstract class Personality {
 
         for (Concept c : update.keySet()) {
             Concept rhs = update.get(c);
-            WTagging cTagging = kb.conceptLabelsToWTagging(c, false);
-            WTagging rhsTagging = kb.conceptLabelsToWTagging(rhs, false);
-            WTaggingUtil.mergeWtags(rhsTagging, cTagging);
-            c.setType(cTagging.asTypes());
+            String[] rhsTypes = rhs.getType();
+            if (!rhsTypes[0].equals(KbUtil.Pos)) {
+                c.setType(rhsTypes);
+            }
             if (rhs.getIndividual() != null) {
                 c.setIndividual(rhs.getIndividual());
             }

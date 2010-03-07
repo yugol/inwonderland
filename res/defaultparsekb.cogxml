@@ -1051,6 +1051,7 @@
             </ntype>
         </nestingTypes>
         <conformity>
+            <marker id="not" idType="ct_Top" label="not"/>
             <marker id="go_on" idType="ct_Top" label="go_on"/>
             <marker id="go" idType="ct_Top" label="go"/>
             <marker id="on" idType="ct_Top" label="on"/>
@@ -1180,11 +1181,59 @@
         </hypt>
         <conc>
             <graph id="_rule7_conc">
-                <concept id="_c24" idMarker="go_on" idType="ct_Vb" referent="individual" x="320" y="120"/>
+                <concept id="_c24" idMarker="go_on" idType="ct_Pos" referent="individual" x="320" y="120"/>
             </graph>
         </conc>
         <conPts>
             <couple idC1="_c22" idC2="_c24"/>
+        </conPts>
+    </rule>
+    <rule id="_rule8">
+        <hypt>
+            <graph id="_rule8_hypt" label="proc_syn_qst1" nature="rule">
+                <concept id="_c25" idMarker="be" referent="individual" x="20" y="300">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c26" x="140" y="50">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ger"/>
+                </concept>
+                <concept id="_c27" idMarker="not" idType="ct_Rb" referent="individual" x="170" y="470"/>
+                <concept id="_c28" idType="ct_Pos" x="160" y="290"/>
+                <relation id="_r8" idType="rt_neg" x="170" y="360"/>
+                <relation id="_r9" idType="rt_cop" x="100" y="210"/>
+                <relation id="_r10" idType="rt_dep" x="170" y="160"/>
+                <edge cid="_c27" label="1" rid="_r8"/>
+                <edge cid="_c28" label="2" rid="_r8"/>
+                <edge cid="_c25" label="1" rid="_r9"/>
+                <edge cid="_c28" label="2" rid="_r9"/>
+                <edge cid="_c26" label="1" rid="_r10"/>
+                <edge cid="_c28" label="2" rid="_r10"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule8_conc">
+                <concept id="_c30" idType="ct_Pos" x="470" y="60"/>
+                <concept id="_c31" x="460" y="260">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pss"/>
+                </concept>
+                <concept id="_c33" idType="ct_Pos" x="450" y="450"/>
+                <relation id="_r11" idType="rt_neg" x="440" y="350"/>
+                <relation id="_r12" idType="rt_nsubj" x="420" y="150"/>
+                <edge cid="_c30" label="1" rid="_r12"/>
+                <edge cid="_c31" label="2" rid="_r12"/>
+                <edge cid="_c33" label="1" rid="_r11"/>
+                <edge cid="_c31" label="2" rid="_r11"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c26" idC2="_c31"/>
+            <couple idC1="_c27" idC2="_c33"/>
+            <couple idC1="_c28" idC2="_c30"/>
         </conPts>
     </rule>
     <rule id="_rule1">

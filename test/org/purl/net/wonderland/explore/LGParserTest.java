@@ -27,13 +27,11 @@ import edu.northwestern.at.morphadorner.tools.lgparser.LGParser;
 import net.sf.jlinkgrammar.CNode;
 import net.sf.jlinkgrammar.Linkage;
 import net.sf.jlinkgrammar.ParseOptions;
-import net.sf.jlinkgrammar.Parser;
 import net.sf.jlinkgrammar.Sentence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -52,7 +50,7 @@ public class LGParserTest {
     public static void tearDownClass() throws Exception {
     }
 
-    // @Test
+    @Test
     public void parseTest() {
         LGParser parser = new LGParser(Globals.getLgParserPath());
         Sentence sent = parser.parse("How do you do?");
