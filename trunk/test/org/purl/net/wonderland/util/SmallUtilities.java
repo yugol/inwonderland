@@ -47,7 +47,7 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    // @Test
+    @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
         KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
@@ -55,7 +55,7 @@ public class SmallUtilities {
         KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
     }
 
-    @Test
+    // @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");
