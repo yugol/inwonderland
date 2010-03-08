@@ -32,7 +32,7 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
  *
  * @author Iulian
  */
-public class TagMapper {
+public class WTagMapper {
 
     private static final String noLemma = "_~_";
 

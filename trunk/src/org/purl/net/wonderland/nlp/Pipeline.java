@@ -38,13 +38,17 @@ import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
  */
 public class Pipeline {
 
-    static TagMapper tagMapper = new TagMapper();
+    static MaToPennTagMapper preTagMapper = new MaToPennTagMapper();
+    static WTagMapper wTagMapper = new WTagMapper();
 
     public static List<List<? extends HasWord>> getTokenisedSentences(String text) {
         return StanfordParserWrapper.getSentences(text);
     }
 
     public static Object[] parse(List<WTagging> sentence) {
+        // pre-tag sentence
+        preTagMapper.map(sentence);
+
         // parse the sentence
         Tree parse = StanfordParserWrapper.parse(sentence);
 
@@ -63,7 +67,7 @@ public class Pipeline {
         }
 
         // map Penn and MorphAdorner tags to W tags
-        tagMapper.mapWTags(sentence);
+        wTagMapper.mapWTags(sentence);
 
         // get parsing dependencies
         List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
