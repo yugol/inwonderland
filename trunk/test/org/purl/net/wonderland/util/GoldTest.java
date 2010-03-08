@@ -47,7 +47,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 748;
+    int lastSentence = 795;
     // int lastSentence = 748;
 
     @Test
@@ -124,16 +124,20 @@ public class GoldTest {
 
         TestUtil.saveKbAndMarkings(engine, level);
 
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Errorneous sentences:");
-        System.out.println("-===================-");
-        System.out.println("");
-        for (int i : errSentences) {
-            System.out.println(i);
+        if (errSentences.size() > 0) {
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Errorneous sentences:");
+            System.out.println("-===================-");
+            System.out.println("");
+            for (int i : errSentences) {
+                System.out.println(i);
+            }
         }
+
         System.out.println("");
-        System.out.println("\n\nTotal: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
+        System.out.println("");
+        System.out.println("Total: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
 
         // fail if at least one error
         assertEquals(0, errorCount);
