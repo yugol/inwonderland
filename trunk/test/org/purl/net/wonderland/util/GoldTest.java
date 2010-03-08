@@ -45,7 +45,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train.level2.xml";
     int firstSentence = 1;
-    int lastSentence = 82;
+    int lastSentence = 165;
     // int lastSentence = 165;
 
     @Test
