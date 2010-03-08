@@ -221,6 +221,9 @@ public abstract class Personality {
     }
 
     private void applyProcedure(CGraph fact, Projection proj, Procedure proc, boolean markingConcepts) {
+        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
+
+
         CGraph rhsFact = proc.getRhs();
         Set<Concept> delete = new HashSet<Concept>();
         Set<String> peers = new TreeSet<String>();
@@ -235,6 +238,10 @@ public abstract class Personality {
             if (actual == null || delete.contains(actual)) {
                 return;
             }
+            if (!cth.isKindOf(actual.getType(), lhs.getType())) {
+                // projection only checks relation arguments
+                return;
+            }
             if (markingConcepts) {
                 if (actual.isConclusion()) {
                     return;
@@ -242,6 +249,9 @@ public abstract class Personality {
             }
             delete.add(actual);
         }
+
+        // finally execute procedure
+        // System.out.println("*" + proc.getId());
 
         // mark all actual lhs concepts
         if (markingConcepts) {
