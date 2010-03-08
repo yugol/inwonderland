@@ -43,18 +43,22 @@ public class GoldTest {
 
     String level = KbUtil.level2;
     Personality pers = new Level2Personality();
-    String corpusFileName = "egcp.train.level2.xml";
+    String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 449;
-    // int lastSentence = 449;
+    int lastSentence = 580;
+    // int lastSentence = 580;
 
     @Test
     public void testGoldCorpus() throws Exception {
-        System.out.println("testGoldCorpus");
+        System.out.println("Testing Gold Corpus - " + corpusFileName);
+
+        Globals.init();
+        File corpusFile = new File(Globals.getCorporaFolder(), corpusFileName);
+        Corpus.normalizeFile(corpusFile);
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus corpus = new Corpus();
-        corpus.buildFrom(new File(Globals.getCorporaFolder(), corpusFileName));
+        corpus.buildFrom(corpusFile);
         Engine engine = new Engine();
         engine.setPersonality(pers);
 

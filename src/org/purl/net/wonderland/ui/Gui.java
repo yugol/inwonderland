@@ -399,12 +399,6 @@ public class Gui extends javax.swing.JFrame {
 
             public void run() {
                 Globals.init();
-                CollocationManager.init();
-                MorphologicalDatabase.init();
-                WordNetWrapper.init();
-                VerbNetWrapper.init();
-                StanfordParserWrapper.init();
-                MorphAdornerWrapper.init();
                 gui.processMessageButton.setEnabled(true);
             }
         });

@@ -305,7 +305,15 @@ public abstract class Personality {
                 fact.removeVertex(r.getId());
             }
             for (Relation r : from) {
+                // assuming binary relations only
+                Concept fromConcept = fact.getConcept(fact.iteratorAdjacents(r.getId()).next());
+                String[] rType = r.getType();
+                fact.removeVertex(r.getId());
                 for (Concept toConcept : toConcepts) {
+                    r = new Relation(KbUtil.newUniqueId());
+                    r.setType(rType);
+                    fact.addVertex(r);
+                    fact.addEdge(fromConcept.getId(), r.getId(), 1);
                     fact.addEdge(toConcept.getId(), r.getId(), 2);
                 }
             }
