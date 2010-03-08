@@ -25,12 +25,14 @@ package org.purl.net.wonderland.util;
 
 import org.purl.net.wonderland.nlp.WTaggingUtil;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
+import org.purl.net.wonderland.engine.Level1Personality;
 import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.KbUtil;
@@ -41,11 +43,11 @@ import org.purl.net.wonderland.kb.KbUtil;
  */
 public class GoldTest {
 
-    String level = KbUtil.level2;
-    Personality pers = new Level2Personality();
+    String level = KbUtil.level1;
+    Personality pers = new Level1Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 580;
+    int lastSentence = 0;
     // int lastSentence = 580;
 
     @Test
@@ -65,6 +67,7 @@ public class GoldTest {
         if (lastSentence < firstSentence) {
             lastSentence = corpus.getSentenceCount();
         }
+        List<Integer> errSentences = new ArrayList<Integer>();
         int errorCount = 0;
         int wordCount = 0;
         int sentenceCount = 0;
@@ -91,10 +94,12 @@ public class GoldTest {
                 System.err.println("    found " + actual.length + " tokens");
                 System.err.println("");
                 errorCount += expected.length;
+                errSentences.add(i);
                 continue;
             }
 
             // check individual words
+            int tmpErrCount = errorCount;
             for (int j = 0; j < actual.length; ++j) {
                 String errStr = WTaggingUtil.areConsistent(expected[j], actual[j]);
                 if (errStr != null) {
@@ -109,10 +114,16 @@ public class GoldTest {
                     ++errorCount;
                 }
             }
+            if (tmpErrCount != errorCount) {
+                errSentences.add(i);
+            }
         }
 
         TestUtil.saveKbAndMarkings(engine, level);
         System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
+        for (int i : errSentences) {
+            System.out.println(i);
+        }
         assertEquals(0, errorCount);
     }
 }
