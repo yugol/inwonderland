@@ -27,13 +27,14 @@ import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.trees.WordNetConnection;
 import edu.stanford.nlp.util.StringUtils;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.util.CodeTimer;
@@ -49,18 +50,24 @@ public class CollocationManager implements WordNetConnection {
     static {
         try {
             CodeTimer timer = new CodeTimer("reading collocations");
-            BufferedReader reader = new BufferedReader(new FileReader(Globals.getCollocationsFile()));
-            String item = null;
-            while ((item = reader.readLine()) != null) {
-                String[] entry = item.split(",");
-                collocations.put(entry[0], entry[1]);
-            }
+            readCollocationsFile("wordnet_collocations.csv");
+            readCollocationsFile("extra_collocations.csv");
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error reading collocations");
             System.err.println(ex);
             Globals.exit();
         }
+    }
+
+    private static void readCollocationsFile(String file) throws IOException, FileNotFoundException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File(Globals.getCollocationsFolder(), file)));
+        String item = null;
+        while ((item = reader.readLine()) != null) {
+            String[] entry = item.split(",");
+            collocations.put(entry[0], entry[1]);
+        }
+        reader.close();
     }
 
     public static void init() {

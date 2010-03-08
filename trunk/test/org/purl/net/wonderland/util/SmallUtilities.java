@@ -55,7 +55,7 @@ public class SmallUtilities {
         KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
     }
 
-    @Test
+    // @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");

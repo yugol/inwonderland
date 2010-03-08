@@ -30,6 +30,12 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Properties;
+import org.purl.net.wonderland.nlp.CollocationManager;
+import org.purl.net.wonderland.nlp.MorphologicalDatabase;
+import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
+import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
 
@@ -96,6 +102,12 @@ public final class Globals {
     }
 
     public static void init() {
+        CollocationManager.init();
+        MorphologicalDatabase.init();
+        WordNetWrapper.init();
+        VerbNetWrapper.init();
+        StanfordParserWrapper.init();
+        MorphAdornerWrapper.init();
     }
 
     public static void exit() {
@@ -110,8 +122,8 @@ public final class Globals {
         return new File(getResPath(), "englishPCFG.ser.gz");
     }
 
-    public static File getCollocationsFile() {
-        return new File(getResPath(), "morphology/collocations.csv");
+    public static File getCollocationsFolder() {
+        return new File(getResPath(), "morphology");
     }
 
     public static File getStanfordPostaggerFile() {

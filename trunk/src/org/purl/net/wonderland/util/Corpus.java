@@ -65,12 +65,14 @@ public class Corpus {
     public static final String tenseTag = "tense";
 
     public static void normalizeFile(File file) throws Exception {
+        CodeTimer timer = new CodeTimer("normalizing corpus file");
         Corpus gold = new Corpus();
         gold.buildFrom(file);
         gold.reIndexSentences();
         gold.removeMappingAttributes();
         gold.writeToFile(file);
-        System.out.println("Reindexed " + gold.getSentenceCount() + " sentences in '" + file.getName() + "'");
+        timer.stop();
+        System.out.println(" Reindexed " + gold.getSentenceCount() + " sentences in '" + file.getName() + "'");
     }
     private Document xmlDoc;
 
