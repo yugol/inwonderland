@@ -246,6 +246,11 @@ public class Corpus {
         for (int i = 0; i < sentences.getLength(); ++i) {
             Element sentence = (Element) sentences.item(i);
             sentence.setAttribute(stcIdxTag, "" + (i + 1));
+            NodeList words = sentence.getElementsByTagName(wordTag);
+            for (int j = 0; j < words.getLength(); ++j) {
+                Element word = (Element) words.item(j);
+                word.setAttribute(idxTag, "" + (j + 1));
+            }
         }
     }
 

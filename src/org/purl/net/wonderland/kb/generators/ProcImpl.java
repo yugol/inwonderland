@@ -67,10 +67,7 @@ public class ProcImpl implements Procedure {
         Iterator<Concept> cIt = lhs.iteratorConcept();
         while (cIt.hasNext()) {
             tempComplexity += 1;
-            Concept c = cIt.next();
-            if (!c.isGeneric()) {
-                tempComplexity += 1;
-            }
+            cIt.next();
         }
         Iterator<Relation> rIt = lhs.iteratorRelation();
         while (rIt.hasNext()) {

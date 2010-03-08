@@ -48,7 +48,6 @@ import org.purl.net.wonderland.kb.generators.ProcManager;
 import org.purl.net.wonderland.kb.generators.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.nlp.WTaggingUtil;
 
 /*
 Bashful	Long beard	Brown top, green hat, long eyelashes
@@ -183,6 +182,7 @@ public abstract class Personality {
         List<Procedure> matches = procMgr.findMatches(procSet, fact);
         for (Procedure match : matches) {
             if (match != null) {
+                // System.out.println("procedure: " + match.getId());
                 for (Projection proj : match.getProjections()) {
                     applyProcedure(fact, proj, match, true);
                 }
@@ -232,17 +232,22 @@ public abstract class Personality {
         while (cit.hasNext()) {
             Concept lhs = cit.next();
             Concept actual = (Concept) proj.getTarget(lhs.getId());
-            if (actual == null) {
+            if (actual == null || delete.contains(actual)) {
                 return;
             }
             if (markingConcepts) {
                 if (actual.isConclusion()) {
                     return;
-                } else {
-                    actual.setConclusion(true);
                 }
             }
             delete.add(actual);
+        }
+
+        // mark all actual lhs concepts
+        if (markingConcepts) {
+            for (Concept c : delete) {
+                c.setConclusion(true);
+            }
         }
 
         // correct delete, update, insert collections

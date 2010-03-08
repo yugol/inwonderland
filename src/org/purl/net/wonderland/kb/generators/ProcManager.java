@@ -288,7 +288,7 @@ public class ProcManager {
     }
 
     public List<Procedure> findMatches(String procSet, CGraph cg) throws Exception {
-        CodeTimer timer = new CodeTimer("projection");
+        // CodeTimer timer = new CodeTimer("projection");
         reConnectToSolver();
 
         List<Procedure> matches = new ArrayList<Procedure>();
@@ -305,7 +305,7 @@ public class ProcManager {
             }
         }
 
-        timer.stop();
+        // timer.stop();
         return matches;
     }
 
@@ -324,5 +324,11 @@ public class ProcManager {
     private void sortProcedureSet(String set) {
         List<Procedure> procSet = procs.get(set);
         Collections.sort(procSet, new PriorityComparator());
+        /*
+        System.out.println("= " + set + " =");
+        for (Procedure proc : procSet) {
+        System.out.println(proc.getId() + " - " + proc.getLhsComplexity());
+        }
+         */
     }
 }

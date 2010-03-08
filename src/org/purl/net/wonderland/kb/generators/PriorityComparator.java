@@ -32,12 +32,15 @@ import org.purl.net.wonderland.util.Compare;
  */
 public class PriorityComparator implements Comparator<Procedure> {
 
-    public int compare(Procedure o1, Procedure o2) {
-        int cmp = Compare.compare(o1.getPriority(), o2.getPriority());
+    public int compare(Procedure proc1, Procedure proc2) {
+        int cmp = Compare.compare(proc1.getPriority(), proc2.getPriority());
         if (cmp != 0) {
             return -cmp;
         }
-        cmp = Compare.compare(o1.getLhsComplexity(), o2.getLhsComplexity());
+        cmp = Compare.compare(proc1.getLhsComplexity(), proc2.getLhsComplexity());
+        if (cmp == 0) {
+            // System.out.println(proc1.getId() + "[" + proc1.getLhsComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getLhsComplexity() + "]");
+        }
         return -cmp;
     }
 }
