@@ -43,12 +43,12 @@ import org.purl.net.wonderland.kb.KbUtil;
  */
 public class GoldTest {
 
-    String level = KbUtil.level1;
-    Personality pers = new Level1Personality();
+    String level = KbUtil.level2;
+    Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 0;
-    // int lastSentence = 580;
+    int lastSentence = 635;
+    // int lastSentence = 636;
 
     @Test
     public void testGoldCorpus() throws Exception {
@@ -120,10 +120,17 @@ public class GoldTest {
         }
 
         TestUtil.saveKbAndMarkings(engine, level);
-        System.out.println("\n\nResults: " + errorCount + " error(s), for " + wordCount + " words in " + sentenceCount + " sentences.");
+
+        System.out.println("Error sentences:");
+        System.out.println("-==============-");
+        System.out.println("");
         for (int i : errSentences) {
             System.out.println(i);
         }
+        System.out.println("");
+        System.out.println("\n\nTotal: " + errorCount + " errors in " + errSentences.size() + "sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
+
+        // fail if at least one error
         assertEquals(0, errorCount);
     }
 }
