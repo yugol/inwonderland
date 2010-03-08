@@ -1563,6 +1563,61 @@
             <couple idC1="_c69" idC2="_c72"/>
         </conPts>
     </rule>
+    <rule id="_rule33">
+        <hypt>
+            <graph id="_rule33_hypt" label="proc_tense_qst12" nature="rule">
+                <concept id="_c150" idMarker="be" referent="individual" x="170" y="60">
+                    <type id="ct_Vb"/>
+                    <type id="ct_par"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c156" x="170" y="140">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ger"/>
+                </concept>
+                <concept id="_c154" idMarker="not" idType="ct_Rb" referent="individual" x="160" y="490"/>
+                <concept id="_c151" idMarker="have" referent="individual" x="140" y="260">
+                    <type id="ct_Vb"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c153" idType="ct_PnPRS" x="160" y="370"/>
+                <relation id="_r77" idType="rt_aux" x="50" y="90"/>
+                <relation id="_r80" idType="rt_partmod" x="50" y="180"/>
+                <relation id="_r81" idType="rt_dep" x="30" y="320"/>
+                <relation id="_r82" idType="rt_neg" x="50" y="460"/>
+                <edge cid="_c153" label="1" rid="_r81"/>
+                <edge cid="_c151" label="2" rid="_r81"/>
+                <edge cid="_c154" label="1" rid="_r82"/>
+                <edge cid="_c153" label="2" rid="_r82"/>
+                <edge cid="_c156" label="1" rid="_r80"/>
+                <edge cid="_c151" label="2" rid="_r80"/>
+                <edge cid="_c150" label="1" rid="_r77"/>
+                <edge cid="_c156" label="2" rid="_r77"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule33_conc">
+                <concept id="_c152" x="440" y="200">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ptpc"/>
+                </concept>
+                <concept id="_c155" idType="ct_Pos" x="460" y="80"/>
+                <concept id="_c157" idType="ct_Pos" x="470" y="350"/>
+                <relation id="_r78" idType="rt_neg" x="540" y="140"/>
+                <relation id="_r79" idType="rt_nsubj" x="530" y="270"/>
+                <edge cid="_c157" label="1" rid="_r79"/>
+                <edge cid="_c152" label="2" rid="_r79"/>
+                <edge cid="_c155" label="1" rid="_r78"/>
+                <edge cid="_c152" label="2" rid="_r78"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c156" idC2="_c152"/>
+            <couple idC1="_c154" idC2="_c155"/>
+            <couple idC1="_c153" idC2="_c157"/>
+        </conPts>
+    </rule>
     <rule id="_rule15">
         <hypt>
             <graph id="_rule15_hypt" label="proc_tense_ptc" nature="rule">
@@ -1591,6 +1646,43 @@
         </conc>
         <conPts>
             <couple idC1="_c1" idC2="_c3"/>
+        </conPts>
+    </rule>
+    <rule id="_rule32">
+        <hypt>
+            <graph id="_rule32_hypt" label="proc_tense_ptpc" nature="rule">
+                <concept id="_c146" idMarker="have" referent="individual" x="50" y="80">
+                    <type id="ct_Vb"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c147" x="190" y="250">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ger"/>
+                </concept>
+                <concept id="_c148" idMarker="be" referent="individual" x="60" y="440">
+                    <type id="ct_Vb"/>
+                    <type id="ct_par"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <relation id="_r75" idType="rt_aux" x="90" y="180"/>
+                <relation id="_r76" idType="rt_aux" x="110" y="340"/>
+                <edge cid="_c148" label="1" rid="_r76"/>
+                <edge cid="_c147" label="2" rid="_r76"/>
+                <edge cid="_c146" label="1" rid="_r75"/>
+                <edge cid="_c147" label="2" rid="_r75"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule32_conc">
+                <concept id="_c149" x="430" y="240">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ptpc"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c147" idC2="_c149"/>
         </conPts>
     </rule>
     <rule id="_rule14">

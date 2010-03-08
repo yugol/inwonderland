@@ -86,7 +86,7 @@ public abstract class MorphologicalDatabase {
     }
 
     static {
-        CodeTimer timer = new CodeTimer("initializing MorphologicalDatabase");
+        CodeTimer timer = new CodeTimer("MorphologicalDatabase");
         for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
             String name = f.getName();
             try {
