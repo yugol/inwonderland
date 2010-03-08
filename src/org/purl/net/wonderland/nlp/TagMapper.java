@@ -41,12 +41,13 @@ public class TagMapper {
             String tag = tagging.getPennTag();
 
             if (tagging.isCollocation()) {
+                // System.out.println(tagging.getForm());
                 String posTypes = CollocationManager.getTypes(tagging.getLemma());
-                if (posTypes.equals("Rb")) {
+                if ("Rb".equals(posTypes)) {
                     tagging.setPos("Rb");
                     continue;
                 }
-                if (posTypes.equals("Jj")) {
+                if ("Jj".equals(posTypes)) {
                     tagging.setPos("Jj");
                     continue;
                 }
@@ -162,6 +163,8 @@ public class TagMapper {
                     tagging.setPerson("rd");
                     return;
                 }
+            } else if (maTag.indexOf("vvg") > 0) {
+                tagging.setMood("ger");
             }
         }
 

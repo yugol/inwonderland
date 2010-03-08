@@ -45,8 +45,8 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train.level2.xml";
     int firstSentence = 1;
-    int lastSentence = 400;
-    // int lastSentence = 400;
+    int lastSentence = 449;
+    // int lastSentence = 449;
 
     @Test
     public void testGoldCorpus() throws Exception {
@@ -65,7 +65,7 @@ public class GoldTest {
         int wordCount = 0;
         int sentenceCount = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
-            System.out.println("#" + i);
+            System.out.println("#" + i + " -> (" + (i - firstSentence + 1) + ")");
 
             boolean printed = false;
             String sentence = plain.get(i - 1);

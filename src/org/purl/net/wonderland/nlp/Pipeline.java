@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp;
 
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
@@ -45,19 +44,15 @@ public class Pipeline {
         return StanfordParserWrapper.getSentences(text);
     }
 
-    private static List<TaggedWord> getPennPosTags(Tree parse) {
-        return StanfordParserWrapper.getPennPosTags(parse);
-    }
-
-    private static List<TypedDependency> getPennDependencies(List<TaggedWord> tSentence) {
-        Tree parse = StanfordParserWrapper.parse(tSentence);
-        return StanfordParserWrapper.getDependencies(parse);
-    }
-
     public static Object[] parse(List<WTagging> sentence) {
+        // parse the sentence
         Tree parse = StanfordParserWrapper.parse(sentence);
+
+        // find collocations
         CollocationFinder colloFinder = new CollocationFinder(parse, new CollocationManager());
         parse = colloFinder.getMangledTree();
+
+        // get Penn tags
         List<TaggedWord> pennTags = StanfordParserWrapper.getPennPosTags(parse);
         if (pennTags.size() == sentence.size()) {
             for (int i = 0; i < pennTags.size(); ++i) {
@@ -66,8 +61,14 @@ public class Pipeline {
         } else {
             sentence = CollocationManager.buildSentenceWithCollocations(sentence, pennTags);
         }
+
+        // map Penn and MorphAdorner tags to W tags
         tagMapper.mapWTags(sentence);
+
+        // get parsing dependencies
         List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
+
+        // return tags and dependencies
         return new Object[]{sentence, deps};
     }
 

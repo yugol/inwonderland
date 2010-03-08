@@ -106,6 +106,7 @@ public class CollocationManager implements WordNetConnection {
     }
 
     public boolean wordNetContains(String s) {
+        // System.out.println(s);
         return collocations.containsKey(s.toLowerCase());
     }
 }
