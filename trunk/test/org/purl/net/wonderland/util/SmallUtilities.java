@@ -31,6 +31,7 @@ import net.didion.jwnl.data.POS;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -47,19 +48,17 @@ public class SmallUtilities {
         System.out.println("These procedures are used for maintenance only.");
     }
 
-    @Test
+    // @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
-        KB.normalizeConceptTypes(Globals.getDefaultParseKBFile());
-        KB.normalizeRelationTypes(Globals.getDefaultParseKBFile());
-        KB.normalizeIndividuals(Globals.getDefaultParseKBFile());
+        KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
     }
 
     // @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
         File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");
-        Corpus.normalizeFile(goldFile);
+        Corpus.normalizeCorpusFile(goldFile);
     }
 
     // @Test

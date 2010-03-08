@@ -47,16 +47,19 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 635;
-    // int lastSentence = 636;
+    int lastSentence = 748;
+    // int lastSentence = 748;
 
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing Gold Corpus - " + corpusFileName);
 
         Globals.init();
+
+        KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
+
         File corpusFile = new File(Globals.getCorporaFolder(), corpusFileName);
-        Corpus.normalizeFile(corpusFile);
+        Corpus.normalizeCorpusFile(corpusFile);
 
         List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus corpus = new Corpus();
@@ -121,14 +124,16 @@ public class GoldTest {
 
         TestUtil.saveKbAndMarkings(engine, level);
 
-        System.out.println("Error sentences:");
-        System.out.println("-==============-");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("Errorneous sentences:");
+        System.out.println("-===================-");
         System.out.println("");
         for (int i : errSentences) {
             System.out.println(i);
         }
         System.out.println("");
-        System.out.println("\n\nTotal: " + errorCount + " errors in " + errSentences.size() + "sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
+        System.out.println("\n\nTotal: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
 
         // fail if at least one error
         assertEquals(0, errorCount);
