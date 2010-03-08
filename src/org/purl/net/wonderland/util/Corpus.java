@@ -64,7 +64,7 @@ public class Corpus {
     public static final String moodTag = "mood";
     public static final String tenseTag = "tense";
 
-    public static void normalizeFile(File file) throws Exception {
+    public static void normalizeCorpusFile(File file) throws Exception {
         CodeTimer timer = new CodeTimer("normalizing corpus file");
         Corpus gold = new Corpus();
         gold.buildFrom(file);

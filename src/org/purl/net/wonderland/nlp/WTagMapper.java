@@ -384,12 +384,12 @@ public class WTagMapper {
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if (maTag.indexOf("av") == 0) {
-                if (maTag.indexOf("-j") == 2) {
-                    if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
-                        tagging.setPos("RbMNN");
-                        tagging.setLemma(word);
-                    }
+                // if (maTag.indexOf("-j") == 2) {
+                if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
+                    tagging.setPos("RbMNN");
+                    tagging.setLemma(word);
                 }
+                // }
                 if (maTag.indexOf('c') > 0) {
                     tagging.setComp("cmp");
                 }
