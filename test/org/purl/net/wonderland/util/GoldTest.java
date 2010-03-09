@@ -47,15 +47,15 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 889;
+    int lastSentence = 949;
     // int lastSentence = 889;
 
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing Gold Corpus - " + corpusFileName);
 
-        Globals.init();
 
+        Globals.init();
         KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
 
         File corpusFile = new File(Globals.getCorporaFolder(), corpusFileName);
