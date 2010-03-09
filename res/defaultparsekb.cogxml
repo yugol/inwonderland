@@ -2,722 +2,756 @@
 <cogxml>
     <support name="vocabulary">
         <conceptTypes>
-            <ctype id="ct_SpVerb" label="SpVerb" x="368" y="2652">
-                <translation descr="" label="SpVerb" lang="en"/>
-            </ctype>
-            <ctype id="ct_nom" label="nom" x="368" y="4641">
+            <ctype id="ct_nom" label="nom" x="348" y="1275">
                 <translation descr="nominative" label="nom" lang="en"/>
             </ctype>
-            <ctype id="ct_FW" label="FW" x="368" y="2040">
+            <ctype id="ct_FW" label="FW" x="348" y="2754">
                 <translation descr="Foreign Word" label="FW" lang="en"/>
             </ctype>
-            <ctype id="ct_JjDEM" label="JjDEM" x="368" y="2601">
-                <translation descr="Demonstrative adjective" label="JjDEM" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbREL" label="RbREL" x="368" y="51">
+            <ctype id="ct_RbREL" label="RbREL" x="348" y="1683">
                 <translation descr="Connective / Linking / Relaive&#xa;Adverb" label="RbREL" lang="en"/>
             </ctype>
-            <ctype id="ct_ptpc" label="ptpc" x="484" y="4488">
+            <ctype id="ct_JjDEM" label="JjDEM" x="348" y="5253">
+                <translation descr="Demonstrative adjective" label="JjDEM" lang="en"/>
+            </ctype>
+            <ctype id="ct_ptpc" label="ptpc" x="580" y="408">
                 <translation descr="past perfect continuous" label="ptpc" lang="en"/>
             </ctype>
-            <ctype id="ct_pspc" label="pspc" x="484" y="3876">
+            <ctype id="ct_pspc" label="pspc" x="580" y="510">
                 <translation descr="present perfect continuous" label="pspc" lang="en"/>
             </ctype>
-            <ctype id="ct_JjREL" label="JjREL" x="368" y="2907">
-                <translation descr="Relative adjective" label="JjREL" lang="en"/>
-            </ctype>
-            <ctype id="ct_PnIDF" label="PnIDF" x="368" y="357">
+            <ctype id="ct_PnIDF" label="PnIDF" x="348" y="5559">
                 <translation descr="Indefinite pronoun" label="PnIDF" lang="en"/>
             </ctype>
-            <ctype id="ct_-RRB-" label="-RRB-" x="600" y="2091">
+            <ctype id="ct_JjREL" label="JjREL" x="348" y="5049">
+                <translation descr="Relative adjective" label="JjREL" lang="en"/>
+            </ctype>
+            <ctype id="ct_-RRB-" label="-RRB-" x="464" y="4386">
                 <translation descr="" label="-RRB-" lang="en"/>
             </ctype>
-            <ctype id="ct_SpPronoun" label="SpPronoun" x="368" y="867">
-                <translation descr="" label="SpPronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_PpPRE" label="PpPRE" x="368" y="3162">
+            <ctype id="ct_PpPRE" label="PpPRE" x="348" y="6120">
                 <translation descr="Preposition" label="PpPRE" lang="en"/>
             </ctype>
-            <ctype id="ct_Md" label="Md" x="368" y="1326">
+            <ctype id="ct_Md" label="Md" x="348" y="4284">
                 <translation descr="Modal verb" label="Md" lang="en"/>
             </ctype>
-            <ctype id="ct_ptps" label="ptps" x="484" y="4386">
+            <ctype id="ct_ptps" label="ptps" x="580" y="153">
                 <translation descr="past perfect simple" label="ptps" lang="en"/>
             </ctype>
-            <ctype id="ct_Vb" label="Vb" x="252" y="1326">
+            <ctype id="ct_Vb" label="Vb" x="232" y="4335">
                 <translation descr="Verb" label="Vb" lang="en"/>
             </ctype>
-            <ctype id="ct_WDT" label="WDT" x="484" y="2397">
+            <ctype id="ct_WDT" label="WDT" x="348" y="2193">
                 <translation descr="Whrt_determiner &#xa;e.g. which, and that when it is used as a relative pronoun" label="WDT" lang="en"/>
             </ctype>
-            <ctype id="ct_NmRBV" label="NmRBV" x="368" y="1173">
+            <ctype id="ct_NmRBV" label="NmRBV" x="348" y="5763">
                 <translation descr="Adverbial numeral" label="NmRBV" lang="en"/>
             </ctype>
-            <ctype id="ct_EX" label="EX" x="368" y="2193">
+            <ctype id="ct_EX" label="EX" x="348" y="2499">
                 <translation descr="Existential THERE" label="EX" lang="en"/>
             </ctype>
-            <ctype id="ct_psps" label="psps" x="484" y="3927">
+            <ctype id="ct_psps" label="psps" x="580" y="204">
                 <translation descr="present perfect simple" label="psps" lang="en"/>
             </ctype>
-            <ctype id="ct_NN" label="NN" x="368" y="2754">
+            <ctype id="ct_NN" label="NN" x="348" y="2448">
                 <translation descr="Noun, singular or mass" label="NN" lang="en"/>
             </ctype>
-            <ctype id="ct_Mk" label="Mk" x="252" y="2091">
+            <ctype id="ct_Mk" label="Mk" x="232" y="4590">
                 <translation descr="Marker" label="Mk" lang="en"/>
             </ctype>
-            <ctype id="ct_WP" label="WP" x="484" y="816">
+            <ctype id="ct_WP" label="WP" x="348" y="3672">
                 <translation descr="Wh-pronoun &#xa;e.g. what, who, whom..." label="WP" lang="en"/>
             </ctype>
-            <ctype id="ct_PnREC" label="PnREC" x="368" y="459">
+            <ctype id="ct_PnREC" label="PnREC" x="348" y="5457">
                 <translation descr="Reciprocal pronoun" label="PnREC" lang="en"/>
             </ctype>
-            <ctype id="ct_PpRbPLC_Dir" label="PpRbPLC_Dir" x="368" y="3111">
+            <ctype id="ct_PpRbPLC_Dir" label="PpRbPLC_Dir" x="348" y="6069">
                 <translation descr="Preposition or Directional adverb&#xa;(RP from Penn tagset)" label="PpRbPLC_Dir" lang="en"/>
             </ctype>
-            <ctype id="ct_PnREF" label="PnREF" x="368" y="510">
+            <ctype id="ct_PnREF" label="PnREF" x="348" y="5406">
                 <translation descr="Reflexive pronoun" label="PnREF" lang="en"/>
             </ctype>
-            <ctype id="ct_msc" label="msc" x="368" y="3927">
-                <translation descr="masculine" label="msc" lang="en"/>
-            </ctype>
-            <ctype id="ct_vnVb" label="vnVb" x="368" y="1224">
+            <ctype id="ct_vnVb" label="vnVb" x="348" y="4233">
                 <translation descr="VerbNet verb" label="vnVb" lang="en"/>
             </ctype>
-            <ctype id="ct_Logic" label="Logic" x="252" y="4488">
+            <ctype id="ct_msc" label="msc" x="348" y="969">
+                <translation descr="masculine" label="msc" lang="en"/>
+            </ctype>
+            <ctype id="ct_Logic" label="Logic" x="232" y="918">
                 <translation descr="logic modifiers" label="Logic" lang="en"/>
             </ctype>
-            <ctype id="ct_PnREL" label="PnREL" x="368" y="306">
-                <translation descr="Relative pronoun" label="PnREL" lang="en"/>
-            </ctype>
-            <ctype id="ct_NmORD" label="NmORD" x="368" y="1275">
+            <ctype id="ct_NmORD" label="NmORD" x="348" y="5712">
                 <translation descr="Ordinal number" label="NmORD" lang="en"/>
             </ctype>
-            <ctype id="ct_neg" label="neg" x="368" y="4794">
+            <ctype id="ct_PnREL" label="PnREL" x="348" y="4743">
+                <translation descr="Relative pronoun" label="PnREL" lang="en"/>
+            </ctype>
+            <ctype id="ct_neg" label="neg" x="348" y="765">
                 <translation descr="Negative" label="neg" lang="en"/>
             </ctype>
-            <ctype id="ct_wnRb" label="wnRb" x="368" y="255">
+            <ctype id="ct_wnRb" label="wnRb" x="348" y="1785">
                 <translation descr="WordNet adverb" label="wnRb" lang="en"/>
             </ctype>
-            <ctype id="ct_JjINT" label="JjINT" x="368" y="2856">
+            <ctype id="ct_JjINT" label="JjINT" x="348" y="5202">
                 <translation descr="Interrogative adjective" label="JjINT" lang="en"/>
             </ctype>
-            <ctype id="ct_dat" label="dat" x="368" y="4692">
+            <ctype id="ct_dat" label="dat" x="348" y="1326">
                 <translation descr="dative" label="dat" lang="en"/>
             </ctype>
-            <ctype id="ct_RbPLC_Pos" label="RbPLC_Pos" x="484" y="153">
+            <ctype id="ct_RbPLC_Pos" label="RbPLC_Pos" x="464" y="1836">
                 <translation descr="Adverb of place that indicate position" label="RbPLC_Pos" lang="en"/>
             </ctype>
-            <ctype id="ct_PpCjSUB" label="PpCjSUB" x="368" y="3009">
+            <ctype id="ct_PpCjSUB" label="PpCjSUB" x="348" y="6018">
                 <translation descr="Preposition or&#xa;Subordonating Conjunction" label="PpCjSUB" lang="en"/>
             </ctype>
-            <ctype id="ct_ft" label="ft" x="368" y="4386">
+            <ctype id="ct_ft" label="ft" x="464" y="459">
                 <translation descr="future" label="ft" lang="en"/>
             </ctype>
-            <ctype id="ct_Nm" label="Nm" x="252" y="1224">
+            <ctype id="ct_Nm" label="Nm" x="232" y="5559">
                 <translation descr="Numeral" label="Nm" lang="en"/>
             </ctype>
-            <ctype id="ct_neu" label="neu" x="368" y="4029">
+            <ctype id="ct_neu" label="neu" x="348" y="867">
                 <translation descr="neuter" label="neu" lang="en"/>
             </ctype>
-            <ctype id="ct_Nn" label="Nn" x="252" y="1377">
+            <ctype id="ct_Nn" label="Nn" x="232" y="4794">
                 <translation descr="Noun" label="Nn" lang="en"/>
             </ctype>
-            <ctype id="ct_S" label="S" x="368" y="1785">
-                <translation descr="unknown" label="S" lang="en"/>
-            </ctype>
-            <ctype id="ct_Comparison" label="Comparison" x="252" y="4080">
+            <ctype id="ct_Comparison" label="Comparison" x="232" y="1326">
                 <translation descr="Comparison aspect for adjectives and adverbs" label="Comparison" lang="en"/>
             </ctype>
-            <ctype id="ct_DT" label="DT" x="368" y="2550">
+            <ctype id="ct_S" label="S" x="348" y="2040">
+                <translation descr="unknown" label="S" lang="en"/>
+            </ctype>
+            <ctype id="ct_DT" label="DT" x="348" y="2601">
                 <translation descr="Determiner" label="DT" lang="en"/>
             </ctype>
-            <ctype id="ct_LS" label="LS" x="368" y="2397">
+            <ctype id="ct_LS" label="LS" x="348" y="3264">
                 <translation descr="List Item Marker" label="LS" lang="en"/>
             </ctype>
-            <ctype id="ct_ptc" label="ptc" x="484" y="4539">
-                <translation descr="past tense continuous" label="ptc" lang="en"/>
-            </ctype>
-            <ctype id="ct_-OPQ-" label="-OPQ-" x="484" y="2040">
+            <ctype id="ct_-OPQ-" label="-OPQ-" x="348" y="3774">
                 <translation descr="Open quotes" label="-OPQ-" lang="en"/>
             </ctype>
-            <ctype id="ct_wnNn" label="wnNn" x="368" y="1530">
-                <translation descr="" label="wnNn" lang="en"/>
+            <ctype id="ct_ptc" label="ptc" x="580" y="612">
+                <translation descr="past tense continuous" label="ptc" lang="en"/>
             </ctype>
-            <ctype id="ct_ArDEF" label="ArDEF" x="368" y="1683">
-                <translation descr="Definite article" label="ArDEF" lang="en"/>
-            </ctype>
-            <ctype id="ct_plu" label="plu" x="368" y="4437">
-                <translation descr="plural" label="plu" lang="en"/>
-            </ctype>
-            <ctype id="ct_Cj" label="Cj" x="252" y="1020">
-                <translation descr="Conjunction" label="Cj" lang="en"/>
-            </ctype>
-            <ctype id="ct_NmRDI" label="NmRDI" x="368" y="969">
-                <translation descr="Distributive adverbial numeral" label="NmRDI" lang="en"/>
-            </ctype>
-            <ctype id="ct_TO" label="TO" x="368" y="1989">
-                <translation descr="to" label="TO" lang="en"/>
-            </ctype>
-            <ctype id="ct_PRP" label="PRP" x="484" y="714">
-                <translation descr="Personal Pronoun &#xa;e.g. I, me, you, he..." label="PRP" lang="en"/>
-            </ctype>
-            <ctype id="ct_gen" label="gen" x="368" y="4590">
-                <translation descr="genitive" label="gen" lang="en"/>
-            </ctype>
-            <ctype id="ct_stm" label="stm" x="368" y="3315">
-                <translation descr="statement" label="stm" lang="en"/>
-            </ctype>
-            <ctype id="ct_qst" label="qst" x="368" y="3417">
-                <translation descr="question" label="qst" lang="en"/>
-            </ctype>
-            <ctype id="ct_ger" label="ger" x="368" y="3570">
-                <translation descr="gerund" label="ger" lang="en"/>
-            </ctype>
-            <ctype id="ct_aff" label="aff" x="368" y="4845">
-                <translation descr="Affirmative" label="aff" lang="en"/>
-            </ctype>
-            <ctype id="ct_cnd" label="cnd" x="368" y="3825">
-                <translation descr="conditional" label="cnd" lang="en"/>
-            </ctype>
-            <ctype id="ct_CjSUB" label="CjSUB" x="368" y="612">
-                <translation descr="Subordinate conjunction" label="CjSUB" lang="en"/>
-            </ctype>
-            <ctype id="ct_pss" label="pss" x="484" y="3978">
-                <translation descr="simple present" label="pss" lang="en"/>
-            </ctype>
-            <ctype id="ct_NNPS" label="NNPS" x="600" y="2601">
-                <translation descr="Proper Noun, plural" label="NNPS" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbINT_REL" label="RbINT_REL" x="484" y="0">
-                <translation descr="Interrogative or Relative Adverb" label="RbINT_REL" lang="en"/>
-            </ctype>
-            <ctype id="ct_CjCRD" label="CjCRD" x="368" y="816">
-                <translation descr="Coordinate conjunction" label="CjCRD" lang="en"/>
-            </ctype>
-            <ctype id="ct_nd" label="nd" x="368" y="4335">
-                <translation descr="second" label="nd" lang="en"/>
-            </ctype>
-            <ctype id="ct_fts" label="fts" x="484" y="4233">
-                <translation descr="simple future" label="fts" lang="en"/>
-            </ctype>
-            <ctype id="ct_req" label="req" x="368" y="3366">
-                <translation descr="request" label="req" lang="en"/>
-            </ctype>
-            <ctype id="ct_Intention" label="Intention" x="252" y="3417">
-                <translation descr="" label="Intention" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbPLC_DirPos" label="RbPLC_DirPos" x="600" y="102">
-                <translation descr="" label="RbPLC_DirPos" lang="en"/>
-            </ctype>
-            <ctype id="ct_PRP$" label="PRP$" x="484" y="765">
-                <translation descr="Possessive Pronoun &#xa;e.g. my, your, mine, yours..." label="PRP$" lang="en"/>
-            </ctype>
-            <ctype id="ct_UH" label="UH" x="368" y="2244">
-                <translation descr="Interjection &#xa;e.g. uh, well, yes, my..." label="UH" lang="en"/>
-            </ctype>
-            <ctype id="ct_ind" label="ind" x="368" y="3672">
-                <translation descr="indicative" label="ind" lang="en"/>
-            </ctype>
-            <ctype id="ct_inf" label="inf" x="368" y="3468">
-                <translation descr="infinitive" label="inf" lang="en"/>
-            </ctype>
-            <ctype id="ct_com" label="com" x="368" y="3876">
-                <translation descr="common" label="com" lang="en"/>
-            </ctype>
-            <ctype id="ct_Tense" label="Tense" x="252" y="4233">
-                <translation descr="Time - tense - aspect" label="Tense" lang="en"/>
-            </ctype>
-            <ctype id="ct_MD" label="MD" x="368" y="1734">
-                <translation descr="Modal &#xa;e.g. can, could, might, may..." label="MD" lang="en"/>
-            </ctype>
-            <ctype id="ct_ftc" label="ftc" x="484" y="4284">
-                <translation descr="future continuous" label="ftc" lang="en"/>
-            </ctype>
-            <ctype id="ct_exc" label="exc" x="368" y="3264">
-                <translation descr="exclamation" label="exc" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbEX" label="RbEX" x="368" y="204">
-                <translation descr="Existential THERE" label="RbEX" lang="en"/>
-            </ctype>
-            <ctype id="ct_pts" label="pts" x="484" y="4437">
-                <translation descr="past tense simple" label="pts" lang="en"/>
-            </ctype>
-            <ctype id="ct_SpPunct" label="SpPunct" x="368" y="2142">
-                <translation descr="" label="SpPunct" lang="en"/>
-            </ctype>
-            <ctype id="ct_NmRMU" label="NmRMU" x="368" y="1071">
-                <translation descr="Multiplicative adverbial numeral" label="NmRMU" lang="en"/>
-            </ctype>
-            <ctype id="ct_VB" label="VB" x="484" y="2244">
-                <translation descr="Verb, base form &#xa;subsumes imperatives, infinitives and subjunctives" label="VB" lang="en"/>
-            </ctype>
-            <ctype id="ct_Number" label="Number" x="252" y="4284">
-                <translation descr="Number" label="Number" lang="en"/>
-            </ctype>
-            <ctype id="ct_PDT" label="PDT" x="368" y="1887">
-                <translation descr="Predeterminer &#xa;e.g. all, both ... when they precede an article" label="PDT" lang="en"/>
-            </ctype>
-            <ctype id="ct_sup" label="sup" x="368" y="4131">
-                <translation descr="superlative" label="sup" lang="en"/>
-            </ctype>
-            <ctype id="ct_acc" label="acc" x="368" y="4743">
-                <translation descr="accusative" label="acc" lang="en"/>
-            </ctype>
-            <ctype id="ct_Rb" label="Rb" x="252" y="357">
-                <translation descr="Adverb" label="Rb" lang="en"/>
-            </ctype>
-            <ctype id="ct_pt" label="pt" x="368" y="4539">
-                <translation descr="past / perfect" label="pt" lang="en"/>
-            </ctype>
-            <ctype id="ct_ps" label="ps" x="368" y="4080">
-                <translation descr="present" label="ps" lang="en"/>
-            </ctype>
-            <ctype id="ct_SYM" label="SYM" x="368" y="2091">
-                <translation descr="Symbol &#xa;Should be used for mathematical, scientific or technical symbols" label="SYM" lang="en"/>
-            </ctype>
-            <ctype id="ct_sng" label="sng" x="368" y="4488">
-                <translation descr="singular" label="sng" lang="en"/>
-            </ctype>
-            <ctype id="ct_PnDEM" label="PnDEM" x="368" y="663">
-                <translation descr="Demonstrative pronoun" label="PnDEM" lang="en"/>
-            </ctype>
-            <ctype id="ct_#" label="#" x="484" y="1836">
-                <translation descr="" label="#" lang="en"/>
-            </ctype>
-            <ctype id="ct_$" label="$" x="484" y="1785">
-                <translation descr="" label="$" lang="en"/>
-            </ctype>
-            <ctype id="ct_RP" label="RP" x="368" y="2448">
-                <translation descr="Particle" label="RP" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbPLC" label="RbPLC" x="368" y="102">
-                <translation descr="Adverb of place" label="RbPLC" lang="en"/>
-            </ctype>
-            <ctype id="ct_imp" label="imp" x="368" y="3621">
-                <translation descr="imperative" label="imp" lang="en"/>
-            </ctype>
-            <ctype id="ct_(" label="(" x="484" y="2142">
-                <translation descr="" label="(" lang="en"/>
-            </ctype>
-            <ctype id="ct_)" label=")" x="484" y="2091">
-                <translation descr="" label=")" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJ" label="JJ" x="368" y="918">
-                <translation descr="Adjective" label="JJ" lang="en"/>
-            </ctype>
-            <ctype id="ct_," label="," x="484" y="1938">
-                <translation descr="" label="," lang="en"/>
-            </ctype>
-            <ctype id="ct_Ar" label="Ar" x="252" y="1683">
-                <translation descr="Article" label="Ar" lang="en"/>
-            </ctype>
-            <ctype id="ct_psc" label="psc" x="484" y="4029">
-                <translation descr="present continuous" label="psc" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbINT" label="RbINT" x="368" y="0">
-                <translation descr="Interrogative adverb" label="RbINT" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJS" label="JJS" x="484" y="663">
-                <translation descr="Adjective, superlative" label="JJS" lang="en"/>
-            </ctype>
-            <ctype id="ct_CjSUBPnREL" label="CjSUBPnREL" x="484" y="459">
-                <translation descr="Subordinate Conjunction&#xa;or&#xa;Relative Pronoun" label="CjSUBPnREL" lang="en"/>
-            </ctype>
-            <ctype id="ct_WRB" label="WRB" x="484" y="1581">
-                <translation descr="Wh-adverb &#xa;e.g. how, where why" label="WRB" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJR" label="JJR" x="484" y="612">
-                <translation descr="Adjective, comparative" label="JJR" lang="en"/>
-            </ctype>
-            <ctype id="ct_." label="." x="484" y="1989">
-                <translation descr="" label="." lang="en"/>
-            </ctype>
-            <ctype id="ct_RbMNN" label="RbMNN" x="368" y="153">
-                <translation descr="Adverbs of manner" label="RbMNN" lang="en"/>
-            </ctype>
-            <ctype id="ct_Pos" label="Pos" x="136" y="1683">
-                <translation descr="Part of speech" label="Pos" lang="en"/>
-            </ctype>
-            <ctype id="ct_cmp" label="cmp" x="368" y="4182">
-                <translation descr="comparative" label="cmp" lang="en"/>
-            </ctype>
-            <ctype id="ct_CD" label="CD" x="368" y="1836">
-                <translation descr="Cardinal Number" label="CD" lang="en"/>
-            </ctype>
-            <ctype id="ct_CC" label="CC" x="368" y="2346">
-                <translation descr="Coordinating conjunction &#xa;e.g. and,but,or..." label="CC" lang="en"/>
-            </ctype>
-            <ctype id="ct_JjIDF" label="JjIDF" x="368" y="2805">
-                <translation descr="Indefinite adjective" label="JjIDF" lang="en"/>
-            </ctype>
-            <ctype id="ct_:" label=":" x="484" y="1734">
-                <translation descr="" label=":" lang="en"/>
-            </ctype>
-            <ctype id="ct_MkPOS" label="MkPOS" x="368" y="2499">
-                <translation descr="Possesive ending on nouns ` or `s" label="MkPOS" lang="en"/>
-            </ctype>
-            <ctype id="ct_PnPRS" label="PnPRS" x="368" y="408">
-                <translation descr="Personal pronoun" label="PnPRS" lang="en"/>
-            </ctype>
-            <ctype id="ct_NmCRD" label="NmCRD" x="368" y="1020">
-                <translation descr="Cardinal number" label="NmCRD" lang="en"/>
-            </ctype>
-            <ctype id="ct_Person" label="Person" x="252" y="4182">
-                <translation descr="Person" label="Person" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbPLC_Dst" label="RbPLC_Dst" x="484" y="102">
-                <translation descr="Adverb of place that expresses destination" label="RbPLC_Dst" lang="en"/>
-            </ctype>
-            <ctype id="ct_PpTo" label="PpTo" x="484" y="3162">
-                <translation descr="the TO preposition" label="PpTo" lang="en"/>
-            </ctype>
-            <ctype id="ct_ArIDF" label="ArIDF" x="368" y="1632">
-                <translation descr="Indefinite article" label="ArIDF" lang="en"/>
-            </ctype>
-            <ctype id="ct_wnVb" label="wnVb" x="368" y="1122">
-                <translation descr="WordNet verb" label="wnVb" lang="en"/>
-            </ctype>
-            <ctype id="ct_RBR" label="RBR" x="484" y="1479">
-                <translation descr="Adverb, comparative &#xa;Adverbs with the comparative ending -er, with a strictly comparative meaning." label="RBR" lang="en"/>
-            </ctype>
-            <ctype id="ct_cmd" label="cmd" x="368" y="3213">
-                <translation descr="comand" label="cmd" lang="en"/>
-            </ctype>
-            <ctype id="ct_RBS" label="RBS" x="484" y="1530">
-                <translation descr="Adverb, superlative" label="RBS" lang="en"/>
-            </ctype>
-            <ctype id="ct_Jj" label="Jj" x="252" y="2652">
-                <translation descr="Adjective" label="Jj" lang="en"/>
-            </ctype>
-            <ctype id="ct_WP$" label="WP$" x="484" y="867">
-                <translation descr="Possessive wh-pronoun &#xa;e.g. whose" label="WP$" lang="en"/>
-            </ctype>
-            <ctype id="ct_Gender" label="Gender" x="252" y="3978">
-                <translation descr="Gender" label="Gender" lang="en"/>
-            </ctype>
-            <ctype id="ct_NnCOL" label="NnCOL" x="368" y="1479">
-                <translation descr="Collective noun" label="NnCOL" lang="en"/>
-            </ctype>
-            <ctype id="ct_NnCOM" label="NnCOM" x="368" y="714">
-                <translation descr="Common noun" label="NnCOM" lang="en"/>
-            </ctype>
-            <ctype id="ct_sinf" label="sinf" x="484" y="3417">
-                <translation descr="short infinitive&#xa;(dictionary form)" label="sinf" lang="en"/>
-            </ctype>
-            <ctype id="ct_Case" label="Case" x="252" y="4539">
-                <translation descr="Case" label="Case" lang="en"/>
-            </ctype>
-            <ctype id="ct_-LRB-" label="-LRB-" x="600" y="2142">
-                <translation descr="" label="-LRB-" lang="en"/>
-            </ctype>
-            <ctype id="ct_Mood" label="Mood" x="252" y="3672">
-                <translation descr="Mood" label="Mood" lang="en"/>
-            </ctype>
-            <ctype id="ct_VBP" label="VBP" x="484" y="2448">
-                <translation descr="Verb, non-3rd person singular present" label="VBP" lang="en"/>
-            </ctype>
-            <ctype id="ct_fem" label="fem" x="368" y="3978">
-                <translation descr="feminine" label="fem" lang="en"/>
-            </ctype>
-            <ctype id="ct_-CLQ-" label="-CLQ-" x="484" y="1887">
-                <translation descr="close quotes" label="-CLQ-" lang="en"/>
-            </ctype>
-            <ctype id="ct_VBN" label="VBN" x="484" y="2346">
-                <translation descr="Verb, past participle" label="VBN" lang="en"/>
-            </ctype>
-            <ctype id="ct_VBD" label="VBD" x="484" y="2550">
-                <translation descr="Verb, past tense &#xa;includes the conditional form of the verb to be" label="VBD" lang="en"/>
-            </ctype>
-            <ctype id="ct_par" label="par" x="368" y="3723">
-                <translation descr="participle" label="par" lang="en"/>
-            </ctype>
-            <ctype id="ct_rd" label="rd" x="368" y="4284">
-                <translation descr="third" label="rd" lang="en"/>
-            </ctype>
-            <ctype id="ct_JjPnDEM" label="JjPnDEM" x="484" y="1632">
-                <translation descr="Demonstrative Adjective or Pronoun" label="JjPnDEM" lang="en"/>
-            </ctype>
-            <ctype id="ct_VBG" label="VBG" x="484" y="2295">
-                <translation descr="Verb, gerund or persent participle" label="VBG" lang="en"/>
-            </ctype>
-            <ctype id="ct_pas" label="pas" x="368" y="3774">
-                <translation descr="passive voice" label="pas" lang="en"/>
-            </ctype>
-            <ctype id="ct_PpPOS" label="PpPOS" x="368" y="3060">
-                <translation descr="Postposition" label="PpPOS" lang="en"/>
-            </ctype>
-            <ctype id="ct_PnPOS" label="PnPOS" x="368" y="765">
-                <translation descr="Possesive pronoun" label="PnPOS" lang="en"/>
-            </ctype>
-            <ctype id="ct_sbj" label="sbj" x="368" y="3519">
-                <translation descr="subjunctive" label="sbj" lang="en"/>
-            </ctype>
-            <ctype id="ct_Top" label="Top" x="20" y="2856">
-                <translation descr="" label="Top" lang="en"/>
-            </ctype>
-            <ctype id="ct_JjPnPOS" label="JjPnPOS" x="484" y="1683">
-                <translation descr="Possesive Pronoun or Adhective" label="JjPnPOS" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbPLC_DstPos" label="RbPLC_DstPos" x="600" y="153">
-                <translation descr="" label="RbPLC_DstPos" lang="en"/>
-            </ctype>
-            <ctype id="ct_NnPRT" label="NnPRT" x="368" y="1377">
-                <translation descr="Partitive noun" label="NnPRT" lang="en"/>
-            </ctype>
-            <ctype id="ct_RbPLC_Dir" label="RbPLC_Dir" x="484" y="51">
-                <translation descr="Adverb of place that indicates direction" label="RbPLC_Dir" lang="en"/>
-            </ctype>
-            <ctype id="ct_RB" label="RB" x="368" y="1581">
-                <translation descr="Adverb &#xa;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
-            </ctype>
-            <ctype id="ct_POS" label="POS" x="368" y="1938">
-                <translation descr="Possessive Ending&#xa;e.g. Nouns ending in `s" label="POS" lang="en"/>
-            </ctype>
-            <ctype id="ct_NnPRP" label="NnPRP" x="368" y="1428">
-                <translation descr="Proper noun" label="NnPRP" lang="en"/>
-            </ctype>
-            <ctype id="ct_IN" label="IN" x="368" y="2295">
-                <translation descr="Preposision or subordinating conjunction" label="IN" lang="en"/>
-            </ctype>
-            <ctype id="ct_linf" label="linf" x="484" y="3468">
-                <translation descr="long infinitive&#xa;to + vb (Present)&#xa;to have + vb (Perfect)" label="linf" lang="en"/>
-            </ctype>
-            <ctype id="ct_Proper noun" label="Proper noun" x="484" y="2652">
-                <translation descr="" label="Proper noun" lang="en"/>
-            </ctype>
-            <ctype id="ct_JjPOS" label="JjPOS" x="368" y="2703">
-                <translation descr="Possesive adjective" label="JjPOS" lang="en"/>
-            </ctype>
-            <ctype id="ct_NnCOMPnIDF" label="NnCOMPnIDF" x="484" y="561">
-                <translation descr="Common Noun&#xa;or&#xa;Indefinite Pronoun" label="NnCOMPnIDF" lang="en"/>
-            </ctype>
-            <ctype id="ct_Pn" label="Pn" x="252" y="612">
-                <translation descr="Pronoun" label="Pn" lang="en"/>
-            </ctype>
-            <ctype id="ct_PnINT" label="PnINT" x="368" y="561">
-                <translation descr="Interrogative pronoun" label="PnINT" lang="en"/>
-            </ctype>
-            <ctype id="ct_Pp" label="Pp" x="252" y="2805">
-                <translation descr="Preposition" label="Pp" lang="en"/>
-            </ctype>
-            <ctype id="ct_VBZ" label="VBZ" x="484" y="2499">
-                <translation descr="Verb, 3rd person singular present" label="VBZ" lang="en"/>
-            </ctype>
-            <ctype id="ct_wnJj" label="wnJj" x="368" y="2958">
-                <translation descr="" label="wnJj" lang="en"/>
-            </ctype>
-            <ctype id="ct_NNS" label="NNS" x="484" y="2601">
-                <translation descr="Noun, plural" label="NNS" lang="en"/>
-            </ctype>
-            <ctype id="ct_SpTag" label="SpTag" x="252" y="2040">
-                <translation descr="Stanford Parser Tag" label="SpTag" lang="en"/>
-            </ctype>
-            <ctype id="ct_NNP" label="NNP" x="600" y="2652">
-                <translation descr="Proper Noun, singular" label="NNP" lang="en"/>
-            </ctype>
-            <ctype id="ct_st" label="st" x="368" y="4233">
-                <translation descr="first" label="st" lang="en"/>
-            </ctype>
-            <ctype id="ct_Attr" label="Attr" x="136" y="3978">
-                <translation descr="Thing attribute" label="Attr" lang="en"/>
-            </ctype>
-            <ctype id="ct_ftps" label="ftps" x="484" y="4335">
-                <translation descr="future perfect simple" label="ftps" lang="en"/>
-            </ctype>
-            <ctype id="ct_ftpc" label="ftpc" x="484" y="4182">
+            <ctype id="ct_ftpc" label="ftpc" x="580" y="459">
                 <translation descr="future perfect continuous" label="ftpc" lang="en"/>
             </ctype>
-            <ctype id="ct_ftts" label="ftts" x="484" y="4080">
-                <translation descr="future in the past simple" label="ftts" lang="en"/>
+            <ctype id="ct_wnNn" label="wnNn" x="348" y="4845">
+                <translation descr="" label="wnNn" lang="en"/>
             </ctype>
-            <ctype id="ct_fttc" label="fttc" x="484" y="4131">
+            <ctype id="ct_ArDEF" label="ArDEF" x="348" y="4539">
+                <translation descr="Definite article" label="ArDEF" lang="en"/>
+            </ctype>
+            <ctype id="ct_plu" label="plu" x="348" y="663">
+                <translation descr="plural" label="plu" lang="en"/>
+            </ctype>
+            <ctype id="ct_Cj" label="Cj" x="232" y="4539">
+                <translation descr="Conjunction" label="Cj" lang="en"/>
+            </ctype>
+            <ctype id="ct_NmRDI" label="NmRDI" x="348" y="5814">
+                <translation descr="Distributive adverbial numeral" label="NmRDI" lang="en"/>
+            </ctype>
+            <ctype id="ct_TO" label="TO" x="348" y="4131">
+                <translation descr="to" label="TO" lang="en"/>
+            </ctype>
+            <ctype id="ct_PRP" label="PRP" x="348" y="2652">
+                <translation descr="Personal Pronoun &#xa;e.g. I, me, you, he..." label="PRP" lang="en"/>
+            </ctype>
+            <ctype id="ct_gen" label="gen" x="348" y="1377">
+                <translation descr="genitive" label="gen" lang="en"/>
+            </ctype>
+            <ctype id="ct_stm" label="stm" x="348" y="204">
+                <translation descr="statement" label="stm" lang="en"/>
+            </ctype>
+            <ctype id="ct_qst" label="qst" x="348" y="102">
+                <translation descr="question" label="qst" lang="en"/>
+            </ctype>
+            <ctype id="ct_ger" label="ger" x="348" y="408">
+                <translation descr="gerund" label="ger" lang="en"/>
+            </ctype>
+            <ctype id="ct_aff" label="aff" x="348" y="816">
+                <translation descr="Affirmative" label="aff" lang="en"/>
+            </ctype>
+            <ctype id="ct_cnd" label="cnd" x="348" y="510">
+                <translation descr="conditional" label="cnd" lang="en"/>
+            </ctype>
+            <ctype id="ct_CjSUB" label="CjSUB" x="348" y="4641">
+                <translation descr="Subordinate conjunction" label="CjSUB" lang="en"/>
+            </ctype>
+            <ctype id="ct_ftps" label="ftps" x="580" y="102">
+                <translation descr="future perfect simple" label="ftps" lang="en"/>
+            </ctype>
+            <ctype id="ct_pss" label="pss" x="580" y="357">
+                <translation descr="simple present" label="pss" lang="en"/>
+            </ctype>
+            <ctype id="ct_NNPS" label="NNPS" x="348" y="3723">
+                <translation descr="Proper Noun, plural" label="NNPS" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbINT_REL" label="RbINT_REL" x="464" y="1683">
+                <translation descr="Interrogative or Relative Adverb" label="RbINT_REL" lang="en"/>
+            </ctype>
+            <ctype id="ct_CjCRD" label="CjCRD" x="348" y="4590">
+                <translation descr="Coordinate conjunction" label="CjCRD" lang="en"/>
+            </ctype>
+            <ctype id="ct_nd" label="nd" x="348" y="1173">
+                <translation descr="second" label="nd" lang="en"/>
+            </ctype>
+            <ctype id="ct_fts" label="fts" x="580" y="255">
+                <translation descr="simple future" label="fts" lang="en"/>
+            </ctype>
+            <ctype id="ct_req" label="req" x="348" y="153">
+                <translation descr="request" label="req" lang="en"/>
+            </ctype>
+            <ctype id="ct_Intention" label="Intention" x="232" y="255">
+                <translation descr="" label="Intention" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbPLC_DirPos" label="RbPLC_DirPos" x="580" y="1836">
+                <translation descr="" label="RbPLC_DirPos" lang="en"/>
+            </ctype>
+            <ctype id="ct_PRP$" label="PRP$" x="348" y="2295">
+                <translation descr="Possessive Pronoun &#xa;e.g. my, your, mine, yours..." label="PRP$" lang="en"/>
+            </ctype>
+            <ctype id="ct_UH" label="UH" x="348" y="4080">
+                <translation descr="Interjection &#xa;e.g. uh, well, yes, my..." label="UH" lang="en"/>
+            </ctype>
+            <ctype id="ct_ind" label="ind" x="348" y="459">
+                <translation descr="indicative" label="ind" lang="en"/>
+            </ctype>
+            <ctype id="ct_inf" label="inf" x="348" y="612">
+                <translation descr="infinitive" label="inf" lang="en"/>
+            </ctype>
+            <ctype id="ct_com" label="com" x="348" y="918">
+                <translation descr="common" label="com" lang="en"/>
+            </ctype>
+            <ctype id="ct_Tense" label="Tense" x="232" y="1479">
+                <translation descr="Time - tense - aspect" label="Tense" lang="en"/>
+            </ctype>
+            <ctype id="ct_MD" label="MD" x="348" y="2856">
+                <translation descr="Modal &#xa;e.g. can, could, might, may..." label="MD" lang="en"/>
+            </ctype>
+            <ctype id="ct_ftc" label="ftc" x="580" y="561">
+                <translation descr="future continuous" label="ftc" lang="en"/>
+            </ctype>
+            <ctype id="ct_exc" label="exc" x="348" y="51">
+                <translation descr="exclamation" label="exc" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbEX" label="RbEX" x="348" y="1836">
+                <translation descr="Existential THERE" label="RbEX" lang="en"/>
+            </ctype>
+            <ctype id="ct_pts" label="pts" x="580" y="306">
+                <translation descr="past tense simple" label="pts" lang="en"/>
+            </ctype>
+            <ctype id="ct_NmRMU" label="NmRMU" x="348" y="5916">
+                <translation descr="Multiplicative adverbial numeral" label="NmRMU" lang="en"/>
+            </ctype>
+            <ctype id="ct_VB" label="VB" x="348" y="2958">
+                <translation descr="Verb, base form &#xa;subsumes imperatives, infinitives and subjunctives" label="VB" lang="en"/>
+            </ctype>
+            <ctype id="ct_Number" label="Number" x="232" y="816">
+                <translation descr="Number" label="Number" lang="en"/>
+            </ctype>
+            <ctype id="ct_PDT" label="PDT" x="348" y="4029">
+                <translation descr="Predeterminer &#xa;e.g. all, both ... when they precede an article" label="PDT" lang="en"/>
+            </ctype>
+            <ctype id="ct_sup" label="sup" x="348" y="1428">
+                <translation descr="superlative" label="sup" lang="en"/>
+            </ctype>
+            <ctype id="ct_acc" label="acc" x="348" y="1224">
+                <translation descr="accusative" label="acc" lang="en"/>
+            </ctype>
+            <ctype id="ct_Rb" label="Rb" x="232" y="2193">
+                <translation descr="Adverb" label="Rb" lang="en"/>
+            </ctype>
+            <ctype id="ct_pt" label="pt" x="464" y="510">
+                <translation descr="past / perfect" label="pt" lang="en"/>
+            </ctype>
+            <ctype id="ct_ps" label="ps" x="464" y="561">
+                <translation descr="present" label="ps" lang="en"/>
+            </ctype>
+            <ctype id="ct_SYM" label="SYM" x="348" y="2907">
+                <translation descr="Symbol &#xa;Should be used for mathematical, scientific or technical symbols" label="SYM" lang="en"/>
+            </ctype>
+            <ctype id="ct_sng" label="sng" x="348" y="714">
+                <translation descr="singular" label="sng" lang="en"/>
+            </ctype>
+            <ctype id="ct_PnDEM" label="PnDEM" x="348" y="5661">
+                <translation descr="Demonstrative pronoun" label="PnDEM" lang="en"/>
+            </ctype>
+            <ctype id="ct_#" label="#" x="348" y="2244">
+                <translation descr="" label="#" lang="en"/>
+            </ctype>
+            <ctype id="ct_$" label="$" x="348" y="2142">
+                <translation descr="" label="$" lang="en"/>
+            </ctype>
+            <ctype id="ct_RP" label="RP" x="348" y="3519">
+                <translation descr="Particle" label="RP" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbPLC" label="RbPLC" x="348" y="1938">
+                <translation descr="Adverb of place" label="RbPLC" lang="en"/>
+            </ctype>
+            <ctype id="ct_(" label="(" x="348" y="4437">
+                <translation descr="" label="(" lang="en"/>
+            </ctype>
+            <ctype id="ct_imp" label="imp" x="348" y="255">
+                <translation descr="imperative" label="imp" lang="en"/>
+            </ctype>
+            <ctype id="ct_)" label=")" x="348" y="4386">
+                <translation descr="" label=")" lang="en"/>
+            </ctype>
+            <ctype id="ct_JJ" label="JJ" x="348" y="4182">
+                <translation descr="Adjective" label="JJ" lang="en"/>
+            </ctype>
+            <ctype id="ct_," label="," x="348" y="1989">
+                <translation descr="" label="," lang="en"/>
+            </ctype>
+            <ctype id="ct_psc" label="psc" x="580" y="663">
+                <translation descr="present continuous" label="psc" lang="en"/>
+            </ctype>
+            <ctype id="ct_Ar" label="Ar" x="232" y="4488">
+                <translation descr="Article" label="Ar" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbINT" label="RbINT" x="348" y="1734">
+                <translation descr="Interrogative adverb" label="RbINT" lang="en"/>
+            </ctype>
+            <ctype id="ct_CjSUBPnREL" label="CjSUBPnREL" x="464" y="4692">
+                <translation descr="Subordinate Conjunction&#xa;or&#xa;Relative Pronoun" label="CjSUBPnREL" lang="en"/>
+            </ctype>
+            <ctype id="ct_JJS" label="JJS" x="348" y="2550">
+                <translation descr="Adjective, superlative" label="JJS" lang="en"/>
+            </ctype>
+            <ctype id="ct_." label="." x="348" y="2091">
+                <translation descr="" label="." lang="en"/>
+            </ctype>
+            <ctype id="ct_JJR" label="JJR" x="348" y="3162">
+                <translation descr="Adjective, comparative" label="JJR" lang="en"/>
+            </ctype>
+            <ctype id="ct_WRB" label="WRB" x="348" y="3315">
+                <translation descr="Wh-adverb &#xa;e.g. how, where why" label="WRB" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbMNN" label="RbMNN" x="348" y="1887">
+                <translation descr="Adverbs of manner" label="RbMNN" lang="en"/>
+            </ctype>
+            <ctype id="ct_cmp" label="cmp" x="348" y="1479">
+                <translation descr="comparative" label="cmp" lang="en"/>
+            </ctype>
+            <ctype id="ct_Pos" label="Pos" x="116" y="4386">
+                <translation descr="Part of speech" label="Pos" lang="en"/>
+            </ctype>
+            <ctype id="ct_CD" label="CD" x="348" y="3060">
+                <translation descr="Cardinal Number" label="CD" lang="en"/>
+            </ctype>
+            <ctype id="ct_JjIDF" label="JjIDF" x="348" y="5151">
+                <translation descr="Indefinite adjective" label="JjIDF" lang="en"/>
+            </ctype>
+            <ctype id="ct_CC" label="CC" x="348" y="2397">
+                <translation descr="Coordinating conjunction &#xa;e.g. and,but,or..." label="CC" lang="en"/>
+            </ctype>
+            <ctype id="ct_:" label=":" x="348" y="3111">
+                <translation descr="" label=":" lang="en"/>
+            </ctype>
+            <ctype id="ct_MkPOS" label="MkPOS" x="348" y="4692">
+                <translation descr="Possesive ending on nouns ` or `s" label="MkPOS" lang="en"/>
+            </ctype>
+            <ctype id="ct_PnPRS" label="PnPRS" x="348" y="5508">
+                <translation descr="Personal pronoun" label="PnPRS" lang="en"/>
+            </ctype>
+            <ctype id="ct_Person" label="Person" x="232" y="1122">
+                <translation descr="Person" label="Person" lang="en"/>
+            </ctype>
+            <ctype id="ct_NmCRD" label="NmCRD" x="348" y="5865">
+                <translation descr="Cardinal number" label="NmCRD" lang="en"/>
+            </ctype>
+            <ctype id="ct_PpTo" label="PpTo" x="464" y="6120">
+                <translation descr="the TO preposition" label="PpTo" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbPLC_Dst" label="RbPLC_Dst" x="464" y="1734">
+                <translation descr="Adverb of place that expresses destination" label="RbPLC_Dst" lang="en"/>
+            </ctype>
+            <ctype id="ct_ArIDF" label="ArIDF" x="348" y="4488">
+                <translation descr="Indefinite article" label="ArIDF" lang="en"/>
+            </ctype>
+            <ctype id="ct_wnVb" label="wnVb" x="348" y="4335">
+                <translation descr="WordNet verb" label="wnVb" lang="en"/>
+            </ctype>
+            <ctype id="ct_cmd" label="cmd" x="348" y="0">
+                <translation descr="comand" label="cmd" lang="en"/>
+            </ctype>
+            <ctype id="ct_RBR" label="RBR" x="348" y="3468">
+                <translation descr="Adverb, comparative &#xa;Adverbs with the comparative ending -er, with a strictly comparative meaning." label="RBR" lang="en"/>
+            </ctype>
+            <ctype id="ct_Jj" label="Jj" x="232" y="5049">
+                <translation descr="Adjective" label="Jj" lang="en"/>
+            </ctype>
+            <ctype id="ct_RBS" label="RBS" x="348" y="3825">
+                <translation descr="Adverb, superlative" label="RBS" lang="en"/>
+            </ctype>
+            <ctype id="ct_Gender" label="Gender" x="232" y="969">
+                <translation descr="Gender" label="Gender" lang="en"/>
+            </ctype>
+            <ctype id="ct_WP$" label="WP$" x="348" y="2805">
+                <translation descr="Possessive wh-pronoun &#xa;e.g. whose" label="WP$" lang="en"/>
+            </ctype>
+            <ctype id="ct_NnCOL" label="NnCOL" x="348" y="4947">
+                <translation descr="Collective noun" label="NnCOL" lang="en"/>
+            </ctype>
+            <ctype id="ct_NnCOM" label="NnCOM" x="348" y="4998">
+                <translation descr="Common noun" label="NnCOM" lang="en"/>
+            </ctype>
+            <ctype id="ct_sinf" label="sinf" x="464" y="204">
+                <translation descr="short infinitive&#xa;(dictionary form)" label="sinf" lang="en"/>
+            </ctype>
+            <ctype id="ct_Case" label="Case" x="232" y="1275">
+                <translation descr="Case" label="Case" lang="en"/>
+            </ctype>
+            <ctype id="ct_-LRB-" label="-LRB-" x="464" y="4437">
+                <translation descr="" label="-LRB-" lang="en"/>
+            </ctype>
+            <ctype id="ct_Mood" label="Mood" x="232" y="510">
+                <translation descr="Mood" label="Mood" lang="en"/>
+            </ctype>
+            <ctype id="ct_fttc" label="fttc" x="580" y="51">
                 <translation descr="future in the past continuous" label="fttc" lang="en"/>
             </ctype>
-            <order id1="ct_." id2="ct_SpPunct"/>
-            <order id1="ct_ptps" id2="ct_pt"/>
-            <order id1="ct_ft" id2="ct_Tense"/>
-            <order id1="ct_Md" id2="ct_Vb"/>
-            <order id1="ct_stm" id2="ct_Intention"/>
-            <order id1="ct_PpTo" id2="ct_PpPRE"/>
-            <order id1="ct_NmRBV" id2="ct_Nm"/>
-            <order id1="ct_," id2="ct_SpPunct"/>
-            <order id1="ct_JjINT" id2="ct_Jj"/>
-            <order id1="ct_rd" id2="ct_Person"/>
-            <order id1="ct_WP$" id2="ct_SpPronoun"/>
-            <order id1="ct_NmORD" id2="ct_Nm"/>
-            <order id1="ct_gen" id2="ct_Case"/>
-            <order id1="ct_Number" id2="ct_Attr"/>
-            <order id1="ct_Person" id2="ct_Attr"/>
-            <order id1="ct_PpCjSUB" id2="ct_Pp"/>
-            <order id1="ct_Jj" id2="ct_Pos"/>
+            <ctype id="ct_VBP" label="VBP" x="348" y="2346">
+                <translation descr="Verb, non-3rd person singular present" label="VBP" lang="en"/>
+            </ctype>
+            <ctype id="ct_fem" label="fem" x="348" y="1020">
+                <translation descr="feminine" label="fem" lang="en"/>
+            </ctype>
+            <ctype id="ct_VBN" label="VBN" x="348" y="3366">
+                <translation descr="Verb, past participle" label="VBN" lang="en"/>
+            </ctype>
+            <ctype id="ct_-CLQ-" label="-CLQ-" x="348" y="3978">
+                <translation descr="close quotes" label="-CLQ-" lang="en"/>
+            </ctype>
+            <ctype id="ct_par" label="par" x="348" y="306">
+                <translation descr="participle" label="par" lang="en"/>
+            </ctype>
+            <ctype id="ct_VBD" label="VBD" x="348" y="3927">
+                <translation descr="Verb, past tense &#xa;includes the conditional form of the verb to be" label="VBD" lang="en"/>
+            </ctype>
+            <ctype id="ct_rd" label="rd" x="348" y="1071">
+                <translation descr="third" label="rd" lang="en"/>
+            </ctype>
+            <ctype id="ct_JjPnDEM" label="JjPnDEM" x="464" y="5406">
+                <translation descr="Demonstrative Adjective or Pronoun" label="JjPnDEM" lang="en"/>
+            </ctype>
+            <ctype id="ct_pas" label="pas" x="348" y="357">
+                <translation descr="passive voice" label="pas" lang="en"/>
+            </ctype>
+            <ctype id="ct_VBG" label="VBG" x="348" y="3621">
+                <translation descr="Verb, gerund or persent participle" label="VBG" lang="en"/>
+            </ctype>
+            <ctype id="ct_PnPOS" label="PnPOS" x="348" y="5610">
+                <translation descr="Possesive pronoun" label="PnPOS" lang="en"/>
+            </ctype>
+            <ctype id="ct_PpPOS" label="PpPOS" x="348" y="5967">
+                <translation descr="Postposition" label="PpPOS" lang="en"/>
+            </ctype>
+            <ctype id="ct_sbj" label="sbj" x="348" y="561">
+                <translation descr="subjunctive" label="sbj" lang="en"/>
+            </ctype>
+            <ctype id="ct_ftts" label="ftts" x="580" y="0">
+                <translation descr="future in the past simple" label="ftts" lang="en"/>
+            </ctype>
+            <ctype id="ct_Top" label="Top" x="0" y="2754">
+                <translation descr="" label="Top" lang="en"/>
+            </ctype>
+            <ctype id="ct_JjPnPOS" label="JjPnPOS" x="464" y="5457">
+                <translation descr="Possesive Pronoun or Adhective" label="JjPnPOS" lang="en"/>
+            </ctype>
+            <ctype id="ct_NnPRT" label="NnPRT" x="348" y="4794">
+                <translation descr="Partitive noun" label="NnPRT" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbPLC_DstPos" label="RbPLC_DstPos" x="580" y="1785">
+                <translation descr="" label="RbPLC_DstPos" lang="en"/>
+            </ctype>
+            <ctype id="ct_POS" label="POS" x="348" y="3876">
+                <translation descr="Possessive Ending&#xa;e.g. Nouns ending in `s" label="POS" lang="en"/>
+            </ctype>
+            <ctype id="ct_RB" label="RB" x="348" y="2703">
+                <translation descr="Adverb &#xa;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
+            </ctype>
+            <ctype id="ct_RbPLC_Dir" label="RbPLC_Dir" x="464" y="1785">
+                <translation descr="Adverb of place that indicates direction" label="RbPLC_Dir" lang="en"/>
+            </ctype>
+            <ctype id="ct_NnPRP" label="NnPRP" x="348" y="4896">
+                <translation descr="Proper noun" label="NnPRP" lang="en"/>
+            </ctype>
+            <ctype id="ct_IN" label="IN" x="348" y="3009">
+                <translation descr="Preposision or subordinating conjunction" label="IN" lang="en"/>
+            </ctype>
+            <ctype id="ct_linf" label="linf" x="464" y="153">
+                <translation descr="long infinitive&#xa;to + vb (Present)&#xa;to have + vb (Perfect)" label="linf" lang="en"/>
+            </ctype>
+            <ctype id="ct_JjPOS" label="JjPOS" x="348" y="5304">
+                <translation descr="Possesive adjective" label="JjPOS" lang="en"/>
+            </ctype>
+            <ctype id="ct_NnCOMPnIDF" label="NnCOMPnIDF" x="464" y="5304">
+                <translation descr="Common Noun&#xa;or&#xa;Indefinite Pronoun" label="NnCOMPnIDF" lang="en"/>
+            </ctype>
+            <ctype id="ct_PnINT" label="PnINT" x="348" y="5355">
+                <translation descr="Interrogative pronoun" label="PnINT" lang="en"/>
+            </ctype>
+            <ctype id="ct_Pn" label="Pn" x="232" y="5304">
+                <translation descr="Pronoun" label="Pn" lang="en"/>
+            </ctype>
+            <ctype id="ct_Pp" label="Pp" x="232" y="5712">
+                <translation descr="Preposition" label="Pp" lang="en"/>
+            </ctype>
+            <ctype id="ct_wnJj" label="wnJj" x="348" y="5100">
+                <translation descr="" label="wnJj" lang="en"/>
+            </ctype>
+            <ctype id="ct_VBZ" label="VBZ" x="348" y="3570">
+                <translation descr="Verb, 3rd person singular present" label="VBZ" lang="en"/>
+            </ctype>
+            <ctype id="ct_SpTag" label="SpTag" x="232" y="3162">
+                <translation descr="Stanford Parser Tag" label="SpTag" lang="en"/>
+            </ctype>
+            <ctype id="ct_NNS" label="NNS" x="348" y="3417">
+                <translation descr="Noun, plural" label="NNS" lang="en"/>
+            </ctype>
+            <ctype id="ct_NNP" label="NNP" x="348" y="3213">
+                <translation descr="Proper Noun, singular" label="NNP" lang="en"/>
+            </ctype>
+            <ctype id="ct_Attr" label="Attr" x="116" y="1122">
+                <translation descr="Thing attribute" label="Attr" lang="en"/>
+            </ctype>
+            <ctype id="ct_st" label="st" x="348" y="1122">
+                <translation descr="first" label="st" lang="en"/>
+            </ctype>
+            <ctype id="ct_Time" label="Time" x="348" y="1632">
+                <translation descr="past, present, future" label="Time" lang="en"/>
+            </ctype>
+            <ctype id="ct_Relativity" label="Relativity" x="348" y="1530">
+                <translation descr="perfect, in-the-past" label="Relativity" lang="en"/>
+            </ctype>
+            <ctype id="ct_perf" label="perf" x="1194" y="436">
+                <translation descr="perfect" label="perf" lang="en"/>
+            </ctype>
+            <ctype id="ct_itpt" label="itpt" x="1154" y="225">
+                <translation descr="in-the-past" label="itpt" lang="en"/>
+            </ctype>
+            <ctype id="ct_Aspect" label="Aspect" x="348" y="1581">
+                <translation descr="simple, continuous" label="Aspect" lang="en"/>
+            </ctype>
+            <ctype id="ct_cont" label="cont" x="934" y="542">
+                <translation descr="continuous" label="cont" lang="en"/>
+            </ctype>
+            <ctype id="ct_simp" label="simp" x="934" y="397">
+                <translation descr="simple" label="simp" lang="en"/>
+            </ctype>
             <order id1="ct_PpPRE" id2="ct_Pp"/>
-            <order id1="ct_PRP" id2="ct_SpPronoun"/>
-            <order id1="ct_VB" id2="ct_SpVerb"/>
-            <order id1="ct_ptc" id2="ct_pt"/>
-            <order id1="ct_inf" id2="ct_Mood"/>
-            <order id1="ct_nom" id2="ct_Case"/>
-            <order id1="ct_wnJj" id2="ct_Jj"/>
-            <order id1="ct_RbPLC" id2="ct_Rb"/>
             <order id1="ct_CjSUBPnREL" id2="ct_PnREL"/>
-            <order id1="ct_NnPRP" id2="ct_Nn"/>
-            <order id1="ct_neg" id2="ct_Logic"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_PnIDF"/>
-            <order id1="ct_psps" id2="ct_ps"/>
-            <order id1="ct_Case" id2="ct_Attr"/>
-            <order id1="ct_CjCRD" id2="ct_Cj"/>
-            <order id1="ct_EX" id2="ct_SpTag"/>
-            <order id1="ct_ftc" id2="ct_ft"/>
-            <order id1="ct_(" id2="ct_SpPunct"/>
-            <order id1="ct_PpPOS" id2="ct_Pp"/>
-            <order id1="ct_cmp" id2="ct_Comparison"/>
-            <order id1="ct_neu" id2="ct_Gender"/>
-            <order id1="ct_RbPLC_Dst" id2="ct_RbPLC"/>
-            <order id1="ct_LS" id2="ct_SpTag"/>
-            <order id1="ct_PnPOS" id2="ct_Pn"/>
-            <order id1="ct_JjREL" id2="ct_Jj"/>
-            <order id1="ct_PpCjSUB" id2="ct_CjSUB"/>
-            <order id1="ct_Pos" id2="ct_Top"/>
-            <order id1="ct_SpPronoun" id2="ct_SpTag"/>
-            <order id1="ct_ArDEF" id2="ct_Ar"/>
-            <order id1="ct_-RRB-" id2="ct_)"/>
-            <order id1="ct_aff" id2="ct_Logic"/>
-            <order id1="ct_imp" id2="ct_Mood"/>
-            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Pos"/>
-            <order id1="ct_nd" id2="ct_Person"/>
-            <order id1="ct_PDT" id2="ct_SpTag"/>
-            <order id1="ct_plu" id2="ct_Number"/>
-            <order id1="ct_FW" id2="ct_SpTag"/>
-            <order id1="ct_par" id2="ct_Mood"/>
-            <order id1="ct_PpRbPLC_Dir" id2="ct_Pp"/>
-            <order id1="ct_PnREC" id2="ct_Pn"/>
-            <order id1="ct_VBZ" id2="ct_SpVerb"/>
-            <order id1="ct_ArIDF" id2="ct_Ar"/>
-            <order id1="ct_IN" id2="ct_SpTag"/>
-            <order id1="ct_TO" id2="ct_SpTag"/>
-            <order id1="ct_JjPnPOS" id2="ct_PnPOS"/>
-            <order id1="ct_CC" id2="ct_SpTag"/>
-            <order id1="ct_CD" id2="ct_SpTag"/>
-            <order id1="ct_vnVb" id2="ct_Vb"/>
-            <order id1="ct_NmCRD" id2="ct_Nm"/>
-            <order id1="ct_Cj" id2="ct_Pos"/>
-            <order id1="ct_$" id2="ct_SpPunct"/>
-            <order id1="ct_MD" id2="ct_SpTag"/>
-            <order id1="ct_Rb" id2="ct_Pos"/>
-            <order id1="ct_-OPQ-" id2="ct_SpPunct"/>
-            <order id1="ct_Attr" id2="ct_Top"/>
-            <order id1="ct_sng" id2="ct_Number"/>
-            <order id1="ct_PRP$" id2="ct_SpPronoun"/>
-            <order id1="ct_NnPRT" id2="ct_Nn"/>
-            <order id1="ct_PnDEM" id2="ct_Pn"/>
-            <order id1="ct_JJR" id2="ct_JJ"/>
-            <order id1="ct_RbINT" id2="ct_Rb"/>
-            <order id1="ct_RbINT_REL" id2="ct_RbINT"/>
-            <order id1="ct_ind" id2="ct_Mood"/>
-            <order id1="ct_NNPS" id2="ct_Proper noun"/>
-            <order id1="ct_pt" id2="ct_Tense"/>
-            <order id1="ct_JJ" id2="ct_SpTag"/>
-            <order id1="ct_Nn" id2="ct_Pos"/>
-            <order id1="ct_PnREF" id2="ct_Pn"/>
-            <order id1="ct_MkPOS" id2="ct_Mk"/>
-            <order id1="ct_acc" id2="ct_Case"/>
-            <order id1="ct_VBG" id2="ct_SpVerb"/>
-            <order id1="ct_sup" id2="ct_Comparison"/>
-            <order id1="ct_-CLQ-" id2="ct_SpPunct"/>
-            <order id1="ct_NNS" id2="ct_NN"/>
-            <order id1="ct_pspc" id2="ct_ps"/>
-            <order id1="ct_DT" id2="ct_SpTag"/>
-            <order id1="ct_-LRB-" id2="ct_("/>
-            <order id1="ct_req" id2="ct_Intention"/>
-            <order id1="ct_com" id2="ct_Gender"/>
-            <order id1="ct_JjDEM" id2="ct_Jj"/>
-            <order id1="ct_JjPOS" id2="ct_Jj"/>
-            <order id1="ct_RBR" id2="ct_RB"/>
-            <order id1="ct_JJS" id2="ct_JJ"/>
-            <order id1="ct_RbMNN" id2="ct_Rb"/>
-            <order id1="ct_VBP" id2="ct_SpVerb"/>
-            <order id1="ct_UH" id2="ct_SpTag"/>
-            <order id1="ct_)" id2="ct_SpPunct"/>
-            <order id1="ct_RbEX" id2="ct_Rb"/>
-            <order id1="ct_SpTag" id2="ct_Pos"/>
-            <order id1="ct_fts" id2="ct_ft"/>
-            <order id1="ct_ps" id2="ct_Tense"/>
-            <order id1="ct_WP" id2="ct_SpPronoun"/>
-            <order id1="ct_sbj" id2="ct_Mood"/>
-            <order id1="ct_S" id2="ct_SpTag"/>
-            <order id1="ct_PnINT" id2="ct_Pn"/>
-            <order id1="ct_msc" id2="ct_Gender"/>
-            <order id1="ct_:" id2="ct_SpPunct"/>
-            <order id1="ct_Mk" id2="ct_Pos"/>
-            <order id1="ct_CjSUBPnREL" id2="ct_CjSUB"/>
-            <order id1="ct_sinf" id2="ct_inf"/>
-            <order id1="ct_RP" id2="ct_SpTag"/>
-            <order id1="ct_Tense" id2="ct_Attr"/>
-            <order id1="ct_PnIDF" id2="ct_Pn"/>
-            <order id1="ct_ger" id2="ct_Mood"/>
-            <order id1="ct_Gender" id2="ct_Attr"/>
-            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Dir"/>
-            <order id1="ct_Mood" id2="ct_Attr"/>
-            <order id1="ct_Pn" id2="ct_Pos"/>
-            <order id1="ct_#" id2="ct_SpPunct"/>
-            <order id1="ct_cmd" id2="ct_Intention"/>
-            <order id1="ct_Nm" id2="ct_Pos"/>
-            <order id1="ct_POS" id2="ct_SpTag"/>
-            <order id1="ct_JjPnDEM" id2="ct_JjDEM"/>
-            <order id1="ct_WDT" id2="ct_DT"/>
-            <order id1="ct_wnRb" id2="ct_Rb"/>
-            <order id1="ct_RB" id2="ct_SpTag"/>
-            <order id1="ct_JjIDF" id2="ct_Jj"/>
-            <order id1="ct_Proper noun" id2="ct_NN"/>
-            <order id1="ct_RbPLC_Dir" id2="ct_RbPLC"/>
-            <order id1="ct_SpVerb" id2="ct_SpTag"/>
-            <order id1="ct_NnCOL" id2="ct_Nn"/>
-            <order id1="ct_linf" id2="ct_inf"/>
-            <order id1="ct_RbINT_REL" id2="ct_RbREL"/>
-            <order id1="ct_wnVb" id2="ct_Vb"/>
-            <order id1="ct_VBN" id2="ct_SpVerb"/>
-            <order id1="ct_ptpc" id2="ct_pt"/>
-            <order id1="ct_Intention" id2="ct_Attr"/>
-            <order id1="ct_Vb" id2="ct_Pos"/>
-            <order id1="ct_qst" id2="ct_Intention"/>
-            <order id1="ct_fem" id2="ct_Gender"/>
-            <order id1="ct_VBD" id2="ct_SpVerb"/>
-            <order id1="ct_RbREL" id2="ct_Rb"/>
-            <order id1="ct_dat" id2="ct_Case"/>
-            <order id1="ct_st" id2="ct_Person"/>
-            <order id1="ct_NN" id2="ct_SpTag"/>
-            <order id1="ct_SYM" id2="ct_SpTag"/>
-            <order id1="ct_Ar" id2="ct_Pos"/>
-            <order id1="ct_cnd" id2="ct_Mood"/>
-            <order id1="ct_NmRDI" id2="ct_Nm"/>
-            <order id1="ct_pss" id2="ct_ps"/>
-            <order id1="ct_JjPnDEM" id2="ct_PnDEM"/>
-            <order id1="ct_RbPLC_Pos" id2="ct_RbPLC"/>
-            <order id1="ct_wnNn" id2="ct_Nn"/>
-            <order id1="ct_CjSUB" id2="ct_Cj"/>
-            <order id1="ct_JjPnPOS" id2="ct_JjPOS"/>
-            <order id1="ct_NmRMU" id2="ct_Nm"/>
-            <order id1="ct_WRB" id2="ct_RB"/>
-            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Dst"/>
-            <order id1="ct_NnCOM" id2="ct_Nn"/>
-            <order id1="ct_NNP" id2="ct_Proper noun"/>
-            <order id1="ct_PnPRS" id2="ct_Pn"/>
-            <order id1="ct_psc" id2="ct_ps"/>
-            <order id1="ct_Pp" id2="ct_Pos"/>
-            <order id1="ct_RBS" id2="ct_RB"/>
-            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Pos"/>
-            <order id1="ct_Comparison" id2="ct_Attr"/>
-            <order id1="ct_pas" id2="ct_Mood"/>
-            <order id1="ct_pts" id2="ct_pt"/>
-            <order id1="ct_exc" id2="ct_Intention"/>
-            <order id1="ct_Logic" id2="ct_Attr"/>
             <order id1="ct_PnREL" id2="ct_Pn"/>
-            <order id1="ct_SpPunct" id2="ct_SpTag"/>
-            <order id1="ct_PpRbPLC_Dir" id2="ct_RbPLC_Dir"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_NnCOM"/>
-            <order id1="ct_ftps" id2="ct_ft"/>
+            <order id1="ct_SpTag" id2="ct_Pos"/>
+            <order id1="ct_vnVb" id2="ct_Vb"/>
+            <order id1="ct_inf" id2="ct_Mood"/>
+            <order id1="ct_NNP" id2="ct_SpTag"/>
+            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Dir"/>
+            <order id1="ct_JJS" id2="ct_SpTag"/>
+            <order id1="ct_ps" id2="ct_Time"/>
+            <order id1="ct_pspc" id2="ct_ps"/>
+            <order id1="ct_Intention" id2="ct_Attr"/>
+            <order id1="ct_Comparison" id2="ct_Attr"/>
+            <order id1="ct_FW" id2="ct_SpTag"/>
+            <order id1="ct_NmRMU" id2="ct_Nm"/>
+            <order id1="ct_Mood" id2="ct_Attr"/>
+            <order id1="ct_ArIDF" id2="ct_Ar"/>
+            <order id1="ct_imp" id2="ct_Mood"/>
+            <order id1="ct_PRP$" id2="ct_SpTag"/>
+            <order id1="ct_POS" id2="ct_SpTag"/>
+            <order id1="ct_Gender" id2="ct_Attr"/>
+            <order id1="ct_RP" id2="ct_SpTag"/>
+            <order id1="ct_PnREC" id2="ct_Pn"/>
+            <order id1="ct_PnREF" id2="ct_Pn"/>
+            <order id1="ct_:" id2="ct_SpTag"/>
+            <order id1="ct_RbPLC_Pos" id2="ct_RbPLC"/>
+            <order id1="ct_exc" id2="ct_Intention"/>
+            <order id1="ct_wnVb" id2="ct_Vb"/>
+            <order id1="ct_NnPRP" id2="ct_Nn"/>
+            <order id1="ct_JjDEM" id2="ct_Jj"/>
+            <order id1="ct_PnINT" id2="ct_Pn"/>
+            <order id1="ct_ftc" id2="ct_ft"/>
+            <order id1="ct_TO" id2="ct_SpTag"/>
+            <order id1="ct_CjCRD" id2="ct_Cj"/>
+            <order id1="ct_cmd" id2="ct_Intention"/>
+            <order id1="ct_sinf" id2="ct_inf"/>
+            <order id1="ct_NmRBV" id2="ct_Nm"/>
+            <order id1="ct_RbEX" id2="ct_Rb"/>
+            <order id1="ct_Nn" id2="ct_Pos"/>
+            <order id1="ct_VB" id2="ct_SpTag"/>
+            <order id1="ct_pss" id2="ct_ps"/>
+            <order id1="ct_WP$" id2="ct_SpTag"/>
+            <order id1="ct_neu" id2="ct_Gender"/>
+            <order id1="ct_CD" id2="ct_SpTag"/>
+            <order id1="ct_PDT" id2="ct_SpTag"/>
+            <order id1="ct_RbPLC" id2="ct_Rb"/>
+            <order id1="ct_Nm" id2="ct_Pos"/>
+            <order id1="ct_PpCjSUB" id2="ct_CjSUB"/>
+            <order id1="ct_gen" id2="ct_Case"/>
+            <order id1="ct_par" id2="ct_Mood"/>
+            <order id1="ct_ArDEF" id2="ct_Ar"/>
+            <order id1="ct_Jj" id2="ct_Pos"/>
+            <order id1="ct_#" id2="ct_SpTag"/>
+            <order id1="ct_LS" id2="ct_SpTag"/>
+            <order id1="ct_NnCOMPnIDF" id2="ct_PnIDF"/>
+            <order id1="ct_)" id2="ct_SpTag"/>
+            <order id1="ct_NNS" id2="ct_SpTag"/>
+            <order id1="ct_stm" id2="ct_Intention"/>
+            <order id1="ct_RbPLC_Dst" id2="ct_RbPLC"/>
             <order id1="ct_ftpc" id2="ct_ft"/>
+            <order id1="ct_RBS" id2="ct_SpTag"/>
+            <order id1="ct_RB" id2="ct_SpTag"/>
+            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Dst"/>
+            <order id1="ct_WP" id2="ct_SpTag"/>
+            <order id1="ct_aff" id2="ct_Logic"/>
+            <order id1="ct_PnDEM" id2="ct_Pn"/>
+            <order id1="ct_rd" id2="ct_Person"/>
+            <order id1="ct_NnCOL" id2="ct_Nn"/>
+            <order id1="ct_Md" id2="ct_Vb"/>
+            <order id1="ct_JjIDF" id2="ct_Jj"/>
+            <order id1="ct_VBG" id2="ct_SpTag"/>
+            <order id1="ct_." id2="ct_SpTag"/>
+            <order id1="ct_RbPLC_Dir" id2="ct_RbPLC"/>
+            <order id1="ct_-RRB-" id2="ct_)"/>
+            <order id1="ct_ptpc" id2="ct_pt"/>
+            <order id1="ct_RbMNN" id2="ct_Rb"/>
+            <order id1="ct_PpRbPLC_Dir" id2="ct_Pp"/>
+            <order id1="ct_NmCRD" id2="ct_Nm"/>
             <order id1="ct_ftts" id2="ct_ft"/>
+            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Pos"/>
+            <order id1="ct_Tense" id2="ct_Attr"/>
+            <order id1="ct_CjSUBPnREL" id2="ct_CjSUB"/>
+            <order id1="ct_com" id2="ct_Gender"/>
+            <order id1="ct_NnPRT" id2="ct_Nn"/>
+            <order id1="ct_Person" id2="ct_Attr"/>
+            <order id1="ct_CjSUB" id2="ct_Cj"/>
+            <order id1="ct_-LRB-" id2="ct_("/>
+            <order id1="ct_JjINT" id2="ct_Jj"/>
+            <order id1="ct_RbINT" id2="ct_Rb"/>
+            <order id1="ct_(" id2="ct_SpTag"/>
+            <order id1="ct_req" id2="ct_Intention"/>
+            <order id1="ct_sup" id2="ct_Comparison"/>
+            <order id1="ct_wnRb" id2="ct_Rb"/>
+            <order id1="ct_wnJj" id2="ct_Jj"/>
+            <order id1="ct_PpCjSUB" id2="ct_Pp"/>
+            <order id1="ct_neg" id2="ct_Logic"/>
+            <order id1="ct_," id2="ct_SpTag"/>
+            <order id1="ct_PpPOS" id2="ct_Pp"/>
+            <order id1="ct_JjPnDEM" id2="ct_JjDEM"/>
+            <order id1="ct_RBR" id2="ct_SpTag"/>
+            <order id1="ct_-CLQ-" id2="ct_SpTag"/>
+            <order id1="ct_Vb" id2="ct_Pos"/>
+            <order id1="ct_PnPRS" id2="ct_Pn"/>
+            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Pos"/>
+            <order id1="ct_WDT" id2="ct_SpTag"/>
+            <order id1="ct_RbINT_REL" id2="ct_RbINT"/>
+            <order id1="ct_PnIDF" id2="ct_Pn"/>
+            <order id1="ct_IN" id2="ct_SpTag"/>
+            <order id1="ct_MD" id2="ct_SpTag"/>
+            <order id1="ct_PRP" id2="ct_SpTag"/>
+            <order id1="ct_JjPnPOS" id2="ct_JjPOS"/>
+            <order id1="ct_sbj" id2="ct_Mood"/>
+            <order id1="ct_NnCOM" id2="ct_Nn"/>
+            <order id1="ct_JjREL" id2="ct_Jj"/>
+            <order id1="ct_qst" id2="ct_Intention"/>
+            <order id1="ct_S" id2="ct_SpTag"/>
+            <order id1="ct_RbINT_REL" id2="ct_RbREL"/>
+            <order id1="ct_EX" id2="ct_SpTag"/>
+            <order id1="ct_nom" id2="ct_Case"/>
+            <order id1="ct_Logic" id2="ct_Attr"/>
+            <order id1="ct_Mk" id2="ct_Pos"/>
+            <order id1="ct_dat" id2="ct_Case"/>
+            <order id1="ct_$" id2="ct_SpTag"/>
+            <order id1="ct_Cj" id2="ct_Pos"/>
+            <order id1="ct_ptc" id2="ct_pt"/>
+            <order id1="ct_linf" id2="ct_inf"/>
+            <order id1="ct_ptps" id2="ct_pt"/>
+            <order id1="ct_ind" id2="ct_Mood"/>
+            <order id1="ct_ger" id2="ct_Mood"/>
+            <order id1="ct_JjPOS" id2="ct_Jj"/>
+            <order id1="ct_MkPOS" id2="ct_Mk"/>
+            <order id1="ct_fem" id2="ct_Gender"/>
+            <order id1="ct_PpRbPLC_Dir" id2="ct_RbPLC_Dir"/>
+            <order id1="ct_DT" id2="ct_SpTag"/>
+            <order id1="ct_acc" id2="ct_Case"/>
             <order id1="ct_fttc" id2="ct_ft"/>
+            <order id1="ct_Pos" id2="ct_Top"/>
+            <order id1="ct_RbREL" id2="ct_Rb"/>
+            <order id1="ct_msc" id2="ct_Gender"/>
+            <order id1="ct_PpTo" id2="ct_PpPRE"/>
+            <order id1="ct_Rb" id2="ct_Pos"/>
+            <order id1="ct_CC" id2="ct_SpTag"/>
+            <order id1="ct_pt" id2="ct_Time"/>
+            <order id1="ct_pas" id2="ct_Mood"/>
+            <order id1="ct_st" id2="ct_Person"/>
+            <order id1="ct_WRB" id2="ct_SpTag"/>
+            <order id1="ct_sng" id2="ct_Number"/>
+            <order id1="ct_VBD" id2="ct_SpTag"/>
+            <order id1="ct_-OPQ-" id2="ct_SpTag"/>
+            <order id1="ct_plu" id2="ct_Number"/>
+            <order id1="ct_PnPOS" id2="ct_Pn"/>
+            <order id1="ct_cmp" id2="ct_Comparison"/>
+            <order id1="ct_NNPS" id2="ct_SpTag"/>
+            <order id1="ct_fts" id2="ct_ft"/>
+            <order id1="ct_Attr" id2="ct_Top"/>
+            <order id1="ct_UH" id2="ct_SpTag"/>
+            <order id1="ct_JJR" id2="ct_SpTag"/>
+            <order id1="ct_NnCOMPnIDF" id2="ct_NnCOM"/>
+            <order id1="ct_NmORD" id2="ct_Nm"/>
+            <order id1="ct_Pp" id2="ct_Pos"/>
+            <order id1="ct_psps" id2="ct_ps"/>
+            <order id1="ct_JjPnDEM" id2="ct_PnDEM"/>
+            <order id1="ct_VBP" id2="ct_SpTag"/>
+            <order id1="ct_JJ" id2="ct_SpTag"/>
+            <order id1="ct_JjPnPOS" id2="ct_PnPOS"/>
+            <order id1="ct_ft" id2="ct_Time"/>
+            <order id1="ct_pts" id2="ct_pt"/>
+            <order id1="ct_Ar" id2="ct_Pos"/>
+            <order id1="ct_VBZ" id2="ct_SpTag"/>
+            <order id1="ct_psc" id2="ct_ps"/>
+            <order id1="ct_VBN" id2="ct_SpTag"/>
+            <order id1="ct_SYM" id2="ct_SpTag"/>
+            <order id1="ct_ftps" id2="ct_ft"/>
+            <order id1="ct_wnNn" id2="ct_Nn"/>
+            <order id1="ct_NmRDI" id2="ct_Nm"/>
+            <order id1="ct_Case" id2="ct_Attr"/>
+            <order id1="ct_Pn" id2="ct_Pos"/>
+            <order id1="ct_nd" id2="ct_Person"/>
+            <order id1="ct_cnd" id2="ct_Mood"/>
+            <order id1="ct_Number" id2="ct_Attr"/>
+            <order id1="ct_NN" id2="ct_SpTag"/>
+            <order id1="ct_Time" id2="ct_Tense"/>
+            <order id1="ct_Relativity" id2="ct_Tense"/>
+            <order id1="ct_perf" id2="ct_Relativity"/>
+            <order id1="ct_itpt" id2="ct_Relativity"/>
+            <order id1="ct_Aspect" id2="ct_Tense"/>
+            <order id1="ct_cont" id2="ct_Aspect"/>
+            <order id1="ct_simp" id2="ct_Aspect"/>
+            <order id1="ct_psps" id2="ct_simp"/>
+            <order id1="ct_pss" id2="ct_simp"/>
+            <order id1="ct_psc" id2="ct_cont"/>
+            <order id1="ct_pspc" id2="ct_cont"/>
+            <order id1="ct_ptc" id2="ct_cont"/>
+            <order id1="ct_ptpc" id2="ct_cont"/>
+            <order id1="ct_ptps" id2="ct_simp"/>
+            <order id1="ct_pts" id2="ct_simp"/>
+            <order id1="ct_ftc" id2="ct_cont"/>
+            <order id1="ct_fts" id2="ct_simp"/>
+            <order id1="ct_ftpc" id2="ct_cont"/>
+            <order id1="ct_fttc" id2="ct_cont"/>
+            <order id1="ct_ftps" id2="ct_simp"/>
+            <order id1="ct_ftts" id2="ct_simp"/>
+            <order id1="ct_ftpc" id2="ct_perf"/>
+            <order id1="ct_ftps" id2="ct_perf"/>
+            <order id1="ct_pspc" id2="ct_perf"/>
+            <order id1="ct_psps" id2="ct_perf"/>
+            <order id1="ct_ptpc" id2="ct_perf"/>
+            <order id1="ct_ptps" id2="ct_perf"/>
+            <order id1="ct_fttc" id2="ct_itpt"/>
+            <order id1="ct_ftts" id2="ct_itpt"/>
         </conceptTypes>
         <relationTypes>
             <rtype id="rt_rcmod" idSignature="ct_Pos ct_Pos" label="rcmod">
@@ -972,89 +1006,89 @@
             <rtype id="rt_MatProd" idSignature="ct_Vb ct_Pos" label="MatProd">
                 <translation descr="" label="MatProd" lang="en"/>
             </rtype>
-            <order id1="rt_punct" id2="rt_dep"/>
-            <order id1="rt_appos" id2="rt_mod"/>
-            <order id1="rt_Agent" id2="rt_ThemRole"/>
-            <order id1="rt_xcomp" id2="rt_comp"/>
-            <order id1="rt_preconj" id2="rt_mod"/>
-            <order id1="rt_arg" id2="rt_dep"/>
-            <order id1="rt_compl" id2="rt_comp"/>
-            <order id1="rt_csubjpass" id2="rt_csubj"/>
-            <order id1="rt_Theme" id2="rt_ThemRole"/>
-            <order id1="rt_Recipent" id2="rt_ThemRole"/>
-            <order id1="rt_aux" id2="rt_dep"/>
-            <order id1="rt_parataxis" id2="rt_dep"/>
-            <order id1="rt_mod" id2="rt_dep"/>
-            <order id1="rt_amod" id2="rt_mod"/>
-            <order id1="rt_predet" id2="rt_mod"/>
-            <order id1="rt_comp" id2="rt_arg"/>
-            <order id1="rt_dobj" id2="rt_obj"/>
-            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
-            <order id1="rt_tmod" id2="rt_mod"/>
-            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
-            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
-            <order id1="rt_auxpass" id2="rt_aux"/>
-            <order id1="rt_iobj" id2="rt_obj"/>
-            <order id1="rt_prt" id2="rt_mod"/>
-            <order id1="rt_rel" id2="rt_comp"/>
-            <order id1="rt_obj" id2="rt_comp"/>
-            <order id1="rt_xsubj" id2="rt_sdep"/>
-            <order id1="rt_measure" id2="rt_mod"/>
-            <order id1="rt_Beneficiary" id2="rt_ThemRole"/>
-            <order id1="rt_Topic" id2="rt_ThemRole"/>
-            <order id1="rt_ref" id2="rt_dep"/>
-            <order id1="rt_Patient" id2="rt_ThemRole"/>
-            <order id1="rt_subj" id2="rt_arg"/>
-            <order id1="rt_Time" id2="rt_ThemRole"/>
-            <order id1="rt_Extent" id2="rt_ThemRole"/>
-            <order id1="rt_attr" id2="rt_comp"/>
-            <order id1="rt_Source" id2="rt_LocDstSrc"/>
-            <order id1="rt_prepc" id2="rt_prep"/>
-            <order id1="rt_Location" id2="rt_LocDstSrc"/>
-            <order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
-            <order id1="rt_advcl" id2="rt_mod"/>
-            <order id1="rt_MatProd" id2="rt_ThemRole"/>
-            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
-            <order id1="rt_Stimulus" id2="rt_ThemRole"/>
-            <order id1="rt_dep" id2="rt_SpRel"/>
-            <order id1="rt_Predicate" id2="rt_ThemRole"/>
-            <order id1="rt_conj" id2="rt_dep"/>
-            <order id1="rt_det" id2="rt_mod"/>
-            <order id1="rt_Asset" id2="rt_ThemRole"/>
-            <order id1="rt_nn" id2="rt_mod"/>
-            <order id1="rt_expl" id2="rt_dep"/>
-            <order id1="rt_cop" id2="rt_aux"/>
             <order id1="rt_acomp" id2="rt_comp"/>
-            <order id1="rt_Attribute" id2="rt_ThemRole"/>
-            <order id1="rt_agent" id2="rt_arg"/>
-            <order id1="rt_Cause" id2="rt_ThemRole"/>
-            <order id1="rt_purpcl" id2="rt_mod"/>
+            <order id1="rt_expl" id2="rt_dep"/>
+            <order id1="rt_Time" id2="rt_ThemRole"/>
             <order id1="rt_num" id2="rt_mod"/>
-            <order id1="rt_abbrev" id2="rt_mod"/>
-            <order id1="rt_infmod" id2="rt_mod"/>
-            <order id1="rt_possessive" id2="rt_mod"/>
-            <order id1="rt_Instrument" id2="rt_ThemRole"/>
-            <order id1="rt_number" id2="rt_mod"/>
-            <order id1="rt_Material" id2="rt_MatProd"/>
-            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
-            <order id1="rt_prep" id2="rt_mod"/>
-            <order id1="rt_pobj" id2="rt_obj"/>
-            <order id1="rt_nsubj" id2="rt_subj"/>
-            <order id1="rt_mark" id2="rt_comp"/>
-            <order id1="rt_ccomp" id2="rt_comp"/>
-            <order id1="rt_complm" id2="rt_comp"/>
-            <order id1="rt_sdep" id2="rt_dep"/>
-            <order id1="rt_cc" id2="rt_dep"/>
-            <order id1="rt_pcomp" id2="rt_comp"/>
-            <order id1="rt_poss" id2="rt_mod"/>
-            <order id1="rt_Product" id2="rt_MatProd"/>
-            <order id1="rt_quantmod" id2="rt_mod"/>
-            <order id1="rt_neg" id2="rt_advmod"/>
-            <order id1="rt_csubj" id2="rt_subj"/>
-            <order id1="rt_rcmod" id2="rt_mod"/>
-            <order id1="rt_Actor" id2="rt_ThemRole"/>
+            <order id1="rt_Patient" id2="rt_ThemRole"/>
+            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
+            <order id1="rt_arg" id2="rt_dep"/>
+            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
+            <order id1="rt_comp" id2="rt_arg"/>
+            <order id1="rt_prt" id2="rt_mod"/>
+            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
             <order id1="rt_advmod" id2="rt_mod"/>
+            <order id1="rt_ccomp" id2="rt_comp"/>
+            <order id1="rt_Theme" id2="rt_ThemRole"/>
+            <order id1="rt_dep" id2="rt_SpRel"/>
+            <order id1="rt_Agent" id2="rt_ThemRole"/>
+            <order id1="rt_obj" id2="rt_comp"/>
+            <order id1="rt_det" id2="rt_mod"/>
+            <order id1="rt_Product" id2="rt_MatProd"/>
+            <order id1="rt_advcl" id2="rt_mod"/>
+            <order id1="rt_purpcl" id2="rt_mod"/>
+            <order id1="rt_nn" id2="rt_mod"/>
+            <order id1="rt_ref" id2="rt_dep"/>
+            <order id1="rt_number" id2="rt_mod"/>
+            <order id1="rt_sdep" id2="rt_dep"/>
+            <order id1="rt_Beneficiary" id2="rt_ThemRole"/>
+            <order id1="rt_xsubj" id2="rt_sdep"/>
+            <order id1="rt_Topic" id2="rt_ThemRole"/>
+            <order id1="rt_pobj" id2="rt_obj"/>
+            <order id1="rt_tmod" id2="rt_mod"/>
+            <order id1="rt_cc" id2="rt_dep"/>
+            <order id1="rt_attr" id2="rt_comp"/>
+            <order id1="rt_iobj" id2="rt_obj"/>
+            <order id1="rt_measure" id2="rt_mod"/>
+            <order id1="rt_csubjpass" id2="rt_csubj"/>
+            <order id1="rt_neg" id2="rt_advmod"/>
+            <order id1="rt_poss" id2="rt_mod"/>
+            <order id1="rt_mark" id2="rt_comp"/>
+            <order id1="rt_abbrev" id2="rt_mod"/>
+            <order id1="rt_cop" id2="rt_aux"/>
+            <order id1="rt_complm" id2="rt_comp"/>
+            <order id1="rt_agent" id2="rt_arg"/>
             <order id1="rt_partmod" id2="rt_mod"/>
+            <order id1="rt_auxpass" id2="rt_aux"/>
+            <order id1="rt_csubj" id2="rt_subj"/>
+            <order id1="rt_pcomp" id2="rt_comp"/>
+            <order id1="rt_quantmod" id2="rt_mod"/>
+            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
+            <order id1="rt_Stimulus" id2="rt_ThemRole"/>
+            <order id1="rt_amod" id2="rt_mod"/>
+            <order id1="rt_Predicate" id2="rt_ThemRole"/>
+            <order id1="rt_Source" id2="rt_LocDstSrc"/>
+            <order id1="rt_Recipent" id2="rt_ThemRole"/>
+            <order id1="rt_parataxis" id2="rt_dep"/>
+            <order id1="rt_Instrument" id2="rt_ThemRole"/>
+            <order id1="rt_Actor" id2="rt_ThemRole"/>
+            <order id1="rt_possessive" id2="rt_mod"/>
+            <order id1="rt_appos" id2="rt_mod"/>
+            <order id1="rt_nsubj" id2="rt_subj"/>
+            <order id1="rt_conj" id2="rt_dep"/>
+            <order id1="rt_Asset" id2="rt_ThemRole"/>
+            <order id1="rt_rcmod" id2="rt_mod"/>
+            <order id1="rt_Cause" id2="rt_ThemRole"/>
+            <order id1="rt_compl" id2="rt_comp"/>
+            <order id1="rt_rel" id2="rt_comp"/>
+            <order id1="rt_xcomp" id2="rt_comp"/>
+            <order id1="rt_Attribute" id2="rt_ThemRole"/>
+            <order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
+            <order id1="rt_Extent" id2="rt_ThemRole"/>
+            <order id1="rt_Material" id2="rt_MatProd"/>
+            <order id1="rt_infmod" id2="rt_mod"/>
+            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
+            <order id1="rt_punct" id2="rt_dep"/>
+            <order id1="rt_prepc" id2="rt_prep"/>
+            <order id1="rt_MatProd" id2="rt_ThemRole"/>
+            <order id1="rt_preconj" id2="rt_mod"/>
+            <order id1="rt_Location" id2="rt_LocDstSrc"/>
+            <order id1="rt_subj" id2="rt_arg"/>
+            <order id1="rt_mod" id2="rt_dep"/>
+            <order id1="rt_predet" id2="rt_mod"/>
+            <order id1="rt_aux" id2="rt_dep"/>
+            <order id1="rt_prep" id2="rt_mod"/>
+            <order id1="rt_dobj" id2="rt_obj"/>
         </relationTypes>
         <nestingTypes>
             <ntype id="_nt0" label="Nesting">
@@ -1078,7 +1112,7 @@
     </support>
     <rule id="_rule20">
         <hypt>
-            <graph id="_rule20_hypt" label="proc_tense_ptps" nature="rule">
+            <graph id="_rule20_hypt" label="proc_tense_ptps" nature="rule" set="default_set">
                 <concept id="_c74" x="140" y="130">
                     <type id="ct_Vb"/>
                     <type id="ct_pt"/>
@@ -1107,7 +1141,7 @@
     </rule>
     <rule id="_rule22">
         <hypt>
-            <graph id="_rule22_hypt" label="proc_tense_qst6" nature="rule">
+            <graph id="_rule22_hypt" label="proc_tense_qst6" nature="rule" set="default_set">
                 <concept id="_c86" x="100" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ger"/>
@@ -1146,7 +1180,7 @@
     </rule>
     <rule id="_rule21">
         <hypt>
-            <graph id="_rule21_hypt" label="proc_tense_pspc" nature="rule">
+            <graph id="_rule21_hypt" label="proc_tense_pspc" nature="rule" set="default_set">
                 <concept id="_c77" idMarker="have" referent="individual" x="130" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -1184,7 +1218,7 @@
     </rule>
     <rule id="_rule24">
         <hypt>
-            <graph id="_rule24_hypt" label="proc_tense_qst8" nature="rule">
+            <graph id="_rule24_hypt" label="proc_tense_qst8" nature="rule" set="default_set">
                 <concept id="_c98" idMarker="be" referent="individual" x="150" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1240,7 +1274,7 @@
     </rule>
     <rule id="_rule23">
         <hypt>
-            <graph id="_rule23_hypt" label="proc_tense_qst7" nature="rule">
+            <graph id="_rule23_hypt" label="proc_tense_qst7" nature="rule" set="default_set">
                 <concept id="_c93" x="170" y="60">
                     <type id="ct_Vb"/>
                     <type id="ct_ger"/>
@@ -1288,7 +1322,7 @@
     </rule>
     <rule id="_rule26">
         <hypt>
-            <graph id="_rule26_hypt" label="proc_tense_qst10" nature="rule">
+            <graph id="_rule26_hypt" label="proc_tense_qst10" nature="rule" set="default_set">
                 <concept id="_c115" idMarker="be" referent="individual" x="180" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1344,7 +1378,7 @@
     </rule>
     <rule id="_rule25">
         <hypt>
-            <graph id="_rule25_hypt" label="proc_tense_qst9" nature="rule">
+            <graph id="_rule25_hypt" label="proc_tense_qst9" nature="rule" set="default_set">
                 <concept id="_c106" idMarker="be" referent="individual" x="160" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1400,7 +1434,7 @@
     </rule>
     <rule id="_rule16">
         <hypt>
-            <graph id="_rule16_hypt" label="proc_tense_qst3" nature="rule">
+            <graph id="_rule16_hypt" label="proc_tense_qst3" nature="rule" set="default_set">
                 <concept id="_c50" x="130" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1449,7 +1483,7 @@
     </rule>
     <rule id="_rule17">
         <hypt>
-            <graph id="_rule17_hypt" label="proc_tense_qst4" nature="rule">
+            <graph id="_rule17_hypt" label="proc_tense_qst4" nature="rule" set="default_set">
                 <concept id="_c57" x="120" y="120">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1489,7 +1523,7 @@
     </rule>
     <rule id="_rule18">
         <hypt>
-            <graph id="_rule18_hypt" label="proc_tense_copPsps" nature="rule">
+            <graph id="_rule18_hypt" label="proc_tense_copPsps" nature="rule" set="default_set">
                 <concept id="_c62" idMarker="have" referent="individual" x="130" y="100">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -1529,7 +1563,7 @@
     </rule>
     <rule id="_rule19">
         <hypt>
-            <graph id="_rule19_hypt" label="proc_tense_qst5" nature="rule">
+            <graph id="_rule19_hypt" label="proc_tense_qst5" nature="rule" set="default_set">
                 <concept id="_c68" x="120" y="120">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -1563,9 +1597,39 @@
             <couple idC1="_c69" idC2="_c72"/>
         </conPts>
     </rule>
+    <rule id="_rule15">
+        <hypt>
+            <graph id="_rule15_hypt" label="proc_tense_ptc" nature="rule" set="default_set">
+                <concept id="_c1" x="120" y="140">
+                    <type id="ct_Pos"/>
+                    <type id="ct_ger"/>
+                </concept>
+                <concept id="_c2" idMarker="be" referent="individual" x="120" y="330">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <relation id="_r1" idType="rt_aux" x="40" y="230"/>
+                <edge cid="_c2" label="1" rid="_r1"/>
+                <edge cid="_c1" label="2" rid="_r1"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule15_conc">
+                <concept id="_c3" x="460" y="140">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ptc"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c1" idC2="_c3"/>
+        </conPts>
+    </rule>
     <rule id="_rule33">
         <hypt>
-            <graph id="_rule33_hypt" label="proc_tense_qst12" nature="rule">
+            <graph id="_rule33_hypt" label="proc_tense_qst12" nature="rule" set="default_set">
                 <concept id="_c150" idMarker="be" referent="individual" x="170" y="60">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1618,39 +1682,9 @@
             <couple idC1="_c153" idC2="_c157"/>
         </conPts>
     </rule>
-    <rule id="_rule15">
-        <hypt>
-            <graph id="_rule15_hypt" label="proc_tense_ptc" nature="rule">
-                <concept id="_c1" x="120" y="140">
-                    <type id="ct_Pos"/>
-                    <type id="ct_ger"/>
-                </concept>
-                <concept id="_c2" idMarker="be" referent="individual" x="120" y="330">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <relation id="_r1" idType="rt_aux" x="40" y="230"/>
-                <edge cid="_c2" label="1" rid="_r1"/>
-                <edge cid="_c1" label="2" rid="_r1"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule15_conc">
-                <concept id="_c3" x="460" y="140">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_ptc"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c1" idC2="_c3"/>
-        </conPts>
-    </rule>
     <rule id="_rule32">
         <hypt>
-            <graph id="_rule32_hypt" label="proc_tense_ptpc" nature="rule">
+            <graph id="_rule32_hypt" label="proc_tense_ptpc" nature="rule" set="default_set">
                 <concept id="_c146" idMarker="have" referent="individual" x="50" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_pt"/>
@@ -1717,7 +1751,7 @@
     </rule>
     <rule id="_rule31">
         <hypt>
-            <graph id="_rule31_hypt" label="proc_tense_ftts" nature="rule">
+            <graph id="_rule31_hypt" label="proc_tense_ftts" nature="rule" set="default_set">
                 <concept id="_c143" x="110" y="170">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -1785,7 +1819,7 @@
     </rule>
     <rule id="_rule30">
         <hypt>
-            <graph id="_rule30_hypt" label="proc_tense_ptps3" nature="rule">
+            <graph id="_rule30_hypt" label="proc_tense_ptps3" nature="rule" set="default_set">
                 <concept id="_c137" idMarker="have" referent="individual" x="110" y="400">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -1884,6 +1918,44 @@
             <couple idC1="_c47" idC2="_c49"/>
         </conPts>
     </rule>
+    <rule id="_rule36">
+        <hypt>
+            <graph id="_rule36_hypt" label="proc_tense_copFts" nature="rule">
+                <concept id="_c67" idMarker="shall" referent="individual" x="140" y="100">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c71" idType="ct_Pos" x="140" y="240"/>
+                <concept id="_c70" idMarker="be" referent="individual" x="140" y="370">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r30" idType="rt_aux" x="50" y="160"/>
+                <relation id="_r31" idType="rt_cop" x="60" y="310"/>
+                <edge cid="_c70" label="1" rid="_r31"/>
+                <edge cid="_c71" label="2" rid="_r31"/>
+                <edge cid="_c67" label="1" rid="_r30"/>
+                <edge cid="_c71" label="2" rid="_r30"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule36_conc">
+                <concept id="_c68" idType="ct_Pos" x="450" y="210"/>
+                <concept id="_c69" idMarker="be" referent="individual" x="450" y="390">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+                <relation id="_r29" idType="rt_cop" x="520" y="290"/>
+                <edge cid="_c68" label="2" rid="_r29"/>
+                <edge cid="_c69" label="1" rid="_r29"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c71" idC2="_c68"/>
+            <couple idC1="_c70" idC2="_c69"/>
+        </conPts>
+    </rule>
     <rule id="_rule10">
         <hypt>
             <graph id="_rule10_hypt" label="proc_tense_copFts" nature="rule" set="default_set">
@@ -1920,6 +1992,77 @@
         <conPts>
             <couple idC1="_c42" idC2="_c46"/>
             <couple idC1="_c43" idC2="_c45"/>
+        </conPts>
+    </rule>
+    <rule id="_rule35">
+        <hypt>
+            <graph id="_rule35_hypt" label="proc_tense_ftsShallPassive" nature="rule">
+                <concept id="_c57" idMarker="shall" referent="individual" x="130" y="160">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c59" x="130" y="300">
+                    <type id="ct_Vb"/>
+                    <type id="ct_par"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c56" idMarker="be" referent="individual" x="130" y="430">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r21" idType="rt_aux" x="40" y="220"/>
+                <relation id="_r22" idType="rt_auxpass" x="50" y="370"/>
+                <edge cid="_c56" label="1" rid="_r22"/>
+                <edge cid="_c59" label="2" rid="_r22"/>
+                <edge cid="_c57" label="1" rid="_r21"/>
+                <edge cid="_c59" label="2" rid="_r21"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule35_conc">
+                <concept id="_c60" idType="ct_Pos" x="440" y="270"/>
+                <concept id="_c58" x="440" y="450">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+                <relation id="_r23" idType="rt_auxpass" x="510" y="350"/>
+                <edge cid="_c60" label="2" rid="_r23"/>
+                <edge cid="_c58" label="1" rid="_r23"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c59" idC2="_c60"/>
+            <couple idC1="_c56" idC2="_c58"/>
+        </conPts>
+    </rule>
+    <rule id="_rule34">
+        <hypt>
+            <graph id="_rule34_hypt" label="proc_tense_qst13" nature="rule">
+                <concept id="_c17" x="110" y="160">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c16" idMarker="shall" referent="individual" x="100" y="340">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <relation id="_r5" idType="rt_ccomp" x="110" y="250"/>
+                <edge cid="_c17" label="1" rid="_r5"/>
+                <edge cid="_c16" label="2" rid="_r5"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule34_conc">
+                <concept id="_c18" x="350" y="200">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c17" idC2="_c18"/>
         </conPts>
     </rule>
     <rule id="_rule3">
@@ -2005,11 +2148,8 @@
     </rule>
     <rule id="_rule6">
         <hypt>
-            <graph id="_rule6_hypt" label="proc_tense_linfps" nature="rule" set="default_set">
-                <concept id="_c18" x="60" y="80">
-                    <type id="ct_Vb"/>
-                    <type id="ct_sinf"/>
-                </concept>
+            <graph id="_rule6_hypt" label="proc_tense_linfPs" nature="rule" set="default_set">
+                <concept id="_c18" idType="ct_Vb" x="60" y="80"/>
                 <concept id="_c19" idMarker="to" idType="ct_PpTo" referent="individual" x="50" y="250"/>
                 <relation id="_r6" idType="rt_aux" x="40" y="170"/>
                 <edge cid="_c19" label="1" rid="_r6"/>
@@ -2128,7 +2268,7 @@
     </rule>
     <rule id="_rule29">
         <hypt>
-            <graph id="_rule29_hypt" label="proc_tense_psps2" nature="rule">
+            <graph id="_rule29_hypt" label="proc_tense_psps2" nature="rule" set="default_set">
                 <concept id="_c134" idType="ct_Vb" x="30" y="80"/>
                 <concept id="_c135" idMarker="have" referent="individual" x="30" y="250">
                     <type id="ct_Vb"/>
@@ -2154,7 +2294,7 @@
     </rule>
     <rule id="_rule27">
         <hypt>
-            <graph id="_rule27_hypt" label="proc_tense_qst11" nature="rule">
+            <graph id="_rule27_hypt" label="proc_tense_qst11" nature="rule" set="default_set">
                 <concept id="_c122" x="150" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -2203,7 +2343,7 @@
     </rule>
     <rule id="_rule28">
         <hypt>
-            <graph id="_rule28_hypt" label="proc_tense_ptps2" nature="rule">
+            <graph id="_rule28_hypt" label="proc_tense_ptps2" nature="rule" set="default_set">
                 <concept id="_c129" idType="ct_Rb" x="150" y="360"/>
                 <concept id="_c130" idMarker="have" referent="individual" x="110" y="250">
                     <type id="ct_Vb"/>

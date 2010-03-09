@@ -41,6 +41,8 @@ public class MaToPennTagMapper {
                     if (MorphologicalDatabase.pnprs.containsKey(wt.getLemma())) {
                         wt.setPennTag("PRP");
                     }
+                } else if (maPos.indexOf("po") == 0) {
+                    wt.setPennTag("PRP$");
                 } else if (maPos.equals("vhz")) {
                     wt.setPennTag("VBZ");
                 }

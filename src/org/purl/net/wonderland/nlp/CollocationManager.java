@@ -55,7 +55,7 @@ public class CollocationManager implements WordNetConnection {
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error reading collocations");
-            System.err.println(ex);
+            ex.printStackTrace(System.err);
             Globals.exit();
         }
     }
@@ -65,7 +65,11 @@ public class CollocationManager implements WordNetConnection {
         String item = null;
         while ((item = reader.readLine()) != null) {
             String[] entry = item.split(",");
-            collocations.put(entry[0], entry[1]);
+            if (entry.length == 2) {
+                collocations.put(entry[0], entry[1]);
+            } else {
+                System.err.println("Warning: reading collocation '" + item + "' in " + file);
+            }
         }
         reader.close();
     }
