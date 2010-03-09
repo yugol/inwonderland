@@ -249,7 +249,9 @@ public final class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "have");
 
             } else if (token.equals("shan't")) {
-                splitNeg(taggings, tOkEn, pos, "shell");
+                splitNeg(taggings, tOkEn, pos, "shall");
+                WTagging sha = taggings.get(taggings.size() - 2);
+                sha.setForm("wo"); // a little trick to help the parser
 
             } else if (token.equals("i'll")) {
                 splitPos(taggings, tOkEn, pos, "will", "will");

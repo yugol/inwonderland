@@ -109,20 +109,23 @@ public class WTagMapper {
         WTagging jjind = MorphologicalDatabase.jjind.get(word);
         WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
         WTagging pndem = MorphologicalDatabase.pndem.get(word);
+        WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
 
-        if (ar != null && jjind == null && jjdem == null && pndem == null) {
+        if (ar != null && jjind == null && jjdem == null && pndem == null && pnpos == null) {
             tagging.copyWTags(ar);
-        } else if (ar == null && jjind != null && jjdem == null && pndem == null) {
+        } else if (ar == null && jjind != null && jjdem == null && pndem == null && pnpos == null) {
             tagging.copyWTags(jjind);
-        } else if (ar == null && jjind == null && jjdem != null && pndem == null) {
+        } else if (ar == null && jjind == null && jjdem != null && pndem == null && pnpos == null) {
             tagging.copyWTags(jjdem);
-        } else if (ar == null && jjind == null && jjdem != null && pndem != null) {
+        } else if (ar == null && jjind == null && jjdem != null && pndem != null && pnpos == null) {
             tagging.copyWTags(jjdem);
             if (maTag != null && tagging.getPartsOfSpeech().charAt(0) == 'd') {
                 tagging.setPos("JjDEM");
             } else {
                 tagging.setPos("JjPnDEM");
             }
+        } else if (ar == null && jjind == null && jjdem == null && pndem == null && pnpos != null) {
+            tagging.copyWTags(pnpos);
         }
     }
 
