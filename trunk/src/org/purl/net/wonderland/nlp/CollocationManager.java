@@ -49,7 +49,7 @@ public class CollocationManager implements WordNetConnection {
 
     static {
         try {
-            CodeTimer timer = new CodeTimer("reading collocations");
+            CodeTimer timer = new CodeTimer("CollocationManager");
             readCollocationsFile("wordnet_collocations.csv");
             readCollocationsFile("extra_collocations.csv");
             timer.stop();

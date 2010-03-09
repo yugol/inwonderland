@@ -46,9 +46,9 @@ public class GoldTest {
     String level = KbUtil.level2;
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
-    int firstSentence = 1;
-    int lastSentence = 795;
-    // int lastSentence = 748;
+    int firstSentence = 796;
+    int lastSentence = 885;
+    // int lastSentence = 889;
 
     @Test
     public void testGoldCorpus() throws Exception {
