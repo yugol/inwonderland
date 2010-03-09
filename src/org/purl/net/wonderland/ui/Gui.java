@@ -28,23 +28,27 @@
  */
 package org.purl.net.wonderland.ui;
 
+import java.awt.event.ActionEvent;
 import org.purl.net.wonderland.util.UI;
 import com.jidesoft.plaf.LookAndFeelFactory;
+import java.awt.MenuItem;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
 import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.engine.Engine;
+import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
-import org.purl.net.wonderland.nlp.CollocationManager;
-import org.purl.net.wonderland.nlp.MorphologicalDatabase;
-import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
-import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
-import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
-import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
  *
@@ -53,11 +57,14 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 public class Gui extends javax.swing.JFrame {
 
     static String baseTitle = "Wonderland";
+    private Engine engine;
 
     /** Creates new form Gui */
-    public Gui() {
+    public Gui() throws Exception {
+        engine = new Engine();
         initComponents();
         processMessageButton.setEnabled(false);
+
         CoGuiWrapper.instance().setWindowListener(new WindowAdapter() {
 
             @Override
@@ -66,6 +73,8 @@ public class Gui extends javax.swing.JFrame {
                 setVisible(true);
             }
         });
+
+        buildPersonalityMenu();
     }
 
     /** This method is called from within the constructor to
@@ -80,11 +89,6 @@ public class Gui extends javax.swing.JFrame {
         textFileChooser = new javax.swing.JFileChooser();
         kbFileChooser = new javax.swing.JFileChooser();
         textFileFilter = new org.purl.net.wonderland.ui.TextFileFilter();
-        try {
-            messageProcessor = new org.purl.net.wonderland.engine.Engine();
-        } catch (java.lang.Exception e1) {
-            e1.printStackTrace();
-        }
         kbFileFilter = new org.purl.net.wonderland.ui.KbFileFilter();
         mainTabs = new javax.swing.JTabbedPane();
         messagesPanel = new javax.swing.JPanel();
@@ -100,11 +104,7 @@ public class Gui extends javax.swing.JFrame {
         openKbMenuItem = new javax.swing.JMenuItem();
         saveKbAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
+        personalityMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -115,7 +115,6 @@ public class Gui extends javax.swing.JFrame {
         kbFileChooser.setDialogTitle("Select CG XML file");
         kbFileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
         kbFileChooser.setFileFilter(kbFileFilter);
-        kbFileChooser.setFileHidingEnabled(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainFrame"); // NOI18N
@@ -221,21 +220,8 @@ public class Gui extends javax.swing.JFrame {
 
         menuBar.add(fileMenu);
 
-        editMenu.setText("Edit");
-
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
-
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
-
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
-
-        menuBar.add(editMenu);
+        personalityMenu.setText("Personality");
+        menuBar.add(personalityMenu);
 
         helpMenu.setText("Help");
 
@@ -269,12 +255,12 @@ public class Gui extends javax.swing.JFrame {
 
     private void showCGButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showCGButtonActionPerformed
         try {
-            if (messageProcessor.getLastFile() == null) {
+            if (engine.getLastFile() == null) {
                 saveKbAsMenuItemActionPerformed(null);
             }
-            if (messageProcessor.getLastFile() != null) {
-                File kbFile = messageProcessor.getLastFile();
-                messageProcessor.saveKb(kbFile);
+            if (engine.getLastFile() != null) {
+                File kbFile = engine.getLastFile();
+                engine.saveKb(kbFile);
                 CoGuiWrapper.instance().showGui(kbFile);
                 setVisible(false);
             }
@@ -301,7 +287,7 @@ public class Gui extends javax.swing.JFrame {
         String message = noteUserMessage();
         if (message != null) {
             try {
-                message = messageProcessor.processMessage(message);
+                message = engine.processMessage(message);
             } catch (Exception ex) {
                 System.err.println(ex);
             }
@@ -314,14 +300,14 @@ public class Gui extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = kbFileChooser.getSelectedFile();
             try {
-                messageProcessor.openKb(file);
+                engine.openKb(file);
                 setTitle(baseTitle + " - " + file.getName());
                 historyTextArea.setText("");
                 StringBuffer report = new StringBuffer();
                 report.append("'");
                 report.append(file.getName());
                 report.append("' contains ");
-                int msgCount = messageProcessor.getFactCount();
+                int msgCount = engine.getFactCount();
                 report.append(msgCount);
                 report.append((msgCount == 1) ? (" message.") : (" messages."));
                 noteProgramResponse(report.toString());
@@ -340,7 +326,7 @@ public class Gui extends javax.swing.JFrame {
                 file = new File(file.getAbsolutePath() + "." + UI.cogxml);
             }
             try {
-                messageProcessor.saveKb(file);
+                engine.saveKb(file);
                 setTitle(baseTitle + " - " + file.getName());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex);
@@ -350,7 +336,11 @@ public class Gui extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setTitle(baseTitle);
-        noteProgramResponse(messageProcessor.getPersonality().getWelcomeMessage());
+        showWellcomeMessage();
+    }
+
+    private void showWellcomeMessage() {
+        noteProgramResponse(engine.getPersonality().getWelcomeMessage());
     }//GEN-LAST:event_formWindowOpened
 
     private String noteUserMessage() {
@@ -369,7 +359,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void noteProgramResponse(String message) {
         StringBuffer history = new StringBuffer(historyTextArea.getText());
-        history.append(messageProcessor.getPersonality().getName() + ": ");
+        history.append(engine.getPersonality().getName() + ": ");
         history.append(message);
         history.append("\n\n");
         historyTextArea.setText(history.toString());
@@ -386,31 +376,33 @@ public class Gui extends javax.swing.JFrame {
             return;
         }
 
-        final Gui gui = new Gui();
+        try {
+            final Gui gui = new Gui();
+            java.awt.EventQueue.invokeLater(new Runnable() {
+
+                public void run() {
+                    gui.setVisible(true);
+                }
+            });
+            Thread libLoader = new Thread(new Runnable() {
+
+                public void run() {
+                    Globals.init();
+                    gui.processMessageButton.setEnabled(true);
+                }
+            });
+            libLoader.run();
+        } catch (Exception ex) {
+            System.err.println("Error initializing Wonderland");
+            System.err.println(ex);
+            Globals.exit();
+        }
 
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                gui.setVisible(true);
-            }
-        });
-        Thread libLoader = new Thread(new Runnable() {
-
-            public void run() {
-                Globals.init();
-                gui.processMessageButton.setEnabled(true);
-            }
-        });
-        libLoader.run();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -422,15 +414,87 @@ public class Gui extends javax.swing.JFrame {
     private org.purl.net.wonderland.ui.KbFileFilter kbFileFilter;
     private javax.swing.JTabbedPane mainTabs;
     private javax.swing.JMenuBar menuBar;
-    private org.purl.net.wonderland.engine.Engine messageProcessor;
     private javax.swing.JPanel messagesPanel;
     private javax.swing.JMenuItem openKbMenuItem;
     private javax.swing.JMenuItem openTextFileMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JMenu personalityMenu;
     private javax.swing.JButton processMessageButton;
     private javax.swing.JMenuItem saveKbAsMenuItem;
     private javax.swing.JButton showCGButton;
     private javax.swing.JFileChooser textFileChooser;
     private org.purl.net.wonderland.ui.TextFileFilter textFileFilter;
     // End of variables declaration//GEN-END:variables
+
+    private void buildPersonalityMenu() {
+        try {
+            String packageName = Personality.class.getCanonicalName();
+            packageName = packageName.substring(0, packageName.lastIndexOf('.'));
+
+            // Get a File object for the package
+            File directory = null;
+            try {
+                ClassLoader cld = Thread.currentThread().getContextClassLoader();
+                if (cld == null) {
+                    throw new ClassNotFoundException("Can't get class loader.");
+                }
+                String path = packageName.replace('.', '/');
+                URL resource = cld.getResource(path);
+                if (resource == null) {
+                    throw new ClassNotFoundException("No resource for " + path);
+                }
+                directory = new File(resource.getFile());
+            } catch (NullPointerException x) {
+                throw new ClassNotFoundException(packageName + " (" + directory + ") does not appear to be a valid package");
+            }
+
+            ButtonGroup bgroup = new ButtonGroup();
+            if (directory.exists()) {
+                // Get the list of the files contained in the package
+                String[] files = directory.list();
+                for (int i = 0; i < files.length; i++) {
+                    // we are only interested in .class files
+                    if (files[i].endsWith(".class")) {
+                        // removes the .class extension
+                        Class cls = Class.forName(packageName + '.' + files[i].substring(0, files[i].length() - 6));
+                        // select only subclasses of Personality
+                        if (Personality.class.isAssignableFrom(cls) && !cls.isAssignableFrom(Personality.class)) {
+                            addPersonalityMenuItem(cls.getCanonicalName(), bgroup);
+                        }
+                    }
+                }
+            } else {
+                throw new ClassNotFoundException(packageName + " does not appear to be a valid package");
+            }
+
+
+        } catch (Exception ex) {
+            System.err.println("Error building personality menu. Using defaults.");
+            System.err.println(ex);
+            personalityMenu.setVisible(false);
+        }
+    }
+
+    private void addPersonalityMenuItem(String clsName, ButtonGroup bgroup) throws Exception {
+        final Personality pers = (Personality) Class.forName(clsName).newInstance();
+
+        JRadioButtonMenuItem menuItem = new JRadioButtonMenuItem();
+        menuItem.setText(pers.getFullName());
+
+        if (pers.getClass().getCanonicalName().equals(engine.getPersonality().getClass().getCanonicalName())) {
+            menuItem.setSelected(true);
+        } else {
+            menuItem.setSelected(false);
+        }
+        bgroup.add(menuItem);
+
+        menuItem.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                engine.setPersonality(pers);
+                showWellcomeMessage();
+            }
+        });
+
+        personalityMenu.add(menuItem);
+    }
 }

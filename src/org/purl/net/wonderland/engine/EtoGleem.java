@@ -24,15 +24,8 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.generators.Procedure;
 
 /**
  *
@@ -42,16 +35,7 @@ public class EtoGleem extends Personality {
 
     @Override
     public String getWelcomeMessage() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("Hi!\n"
-                + "Welcome to Wanderland, the place where meaning has no boundary!\n"
-                + "We are glad that you are interested in our world.\n"
-                + "I will be your facilitator. My name is ");
-        sb.append(getFullName());
-        sb.append(" but you can call me ");
-        sb.append(getName());
-        sb.append(".\nIs there anything you would preffer us to talk about?");
-        return sb.toString();
+        return "Hi!";
     }
 
     @Override

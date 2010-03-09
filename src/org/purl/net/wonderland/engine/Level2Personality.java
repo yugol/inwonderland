@@ -31,26 +31,26 @@ import org.purl.net.wonderland.kb.KbUtil;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Level2Personality extends Personality {
 
     @Override
     public String getWelcomeMessage() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return "recognizing tenses, finding collocations, logics";
     }
 
     @Override
     public String getFullName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return "Level 2";
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return "(test) L2";
     }
 
     @Override
     public String getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return KbUtil.level2;
     }
 
     @Override
@@ -58,6 +58,10 @@ public class Level1Personality extends Personality {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
             addFact(fact, KbUtil.level1);
+            fact = KbUtil.duplicate(fact);
+            processTenses(fact);
+            // processCollocations(fact);
+            addFact(fact, KbUtil.level2);
         }
         return "Done.";
     }
