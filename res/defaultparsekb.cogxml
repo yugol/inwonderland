@@ -1178,6 +1178,42 @@
             <couple idC1="_c87" idC2="_c89"/>
         </conPts>
     </rule>
+    <rule id="_rule40">
+        <hypt>
+            <graph id="_rule40_hypt" label="proc_tense_ftpsWill" nature="rule">
+                <concept id="_c95" idMarker="will" referent="individual" x="160" y="110">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c96" x="160" y="250">
+                    <type id="ct_Vb"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c93" idMarker="have" referent="individual" x="160" y="400">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r40" idType="rt_aux" x="50" y="170"/>
+                <relation id="_r41" idType="rt_aux" x="70" y="330"/>
+                <edge cid="_c93" label="1" rid="_r41"/>
+                <edge cid="_c96" label="2" rid="_r41"/>
+                <edge cid="_c95" label="1" rid="_r40"/>
+                <edge cid="_c96" label="2" rid="_r40"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule40_conc">
+                <concept id="_c94" x="470" y="250">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ftps"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c96" idC2="_c94"/>
+        </conPts>
+    </rule>
     <rule id="_rule21">
         <hypt>
             <graph id="_rule21_hypt" label="proc_tense_pspc" nature="rule" set="default_set">
@@ -1430,6 +1466,42 @@
             <couple idC1="_c108" idC2="_c109"/>
             <couple idC1="_c110" idC2="_c111"/>
             <couple idC1="_c107" idC2="_c113"/>
+        </conPts>
+    </rule>
+    <rule id="_rule39">
+        <hypt>
+            <graph id="_rule39_hypt" label="proc_tense_ftpsShall" nature="rule">
+                <concept id="_c91" idMarker="shall" referent="individual" x="140" y="120">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c92" x="140" y="260">
+                    <type id="ct_Vb"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c89" idMarker="have" referent="individual" x="140" y="410">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r38" idType="rt_aux" x="30" y="180"/>
+                <relation id="_r39" idType="rt_aux" x="50" y="340"/>
+                <edge cid="_c89" label="1" rid="_r39"/>
+                <edge cid="_c92" label="2" rid="_r39"/>
+                <edge cid="_c91" label="1" rid="_r38"/>
+                <edge cid="_c92" label="2" rid="_r38"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule39_conc">
+                <concept id="_c90" x="450" y="260">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ftps"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c92" idC2="_c90"/>
         </conPts>
     </rule>
     <rule id="_rule38">
