@@ -1018,3 +1018,23 @@ Before World War II such cars could often be seen in the streets.
 At the seaside we could buy a lot of souvenirs.
 There were a lot of shops near the beach.
 As we had all our papers in order, we could pass through the customs very rapidly.
+May I open this window?
+Yes, you may.
+No, you may not.
+No, you must not.
+You may go to the cinema this week, you were allowed to go to the cinema last week, and you will be allowed to go there next week too.
+You may go to the cinema this week, you were allowed to go to the cinema last week, and you will be permitted to go there next week too.
+You may go to the cinema this week, you were permitted to go to the cinema last week, and you will be allowed to go there next week too.
+You may go to the cinema this week, you were permitted to go to the cinema last week, and you will be permitted to go there next week too.
+You may know her.
+It may rain in the afternoon.
+It is possible for you to know her.
+Perhaps you know her.
+Maybe you know her.
+It is possible it will rain in the afternoon.
+Perhaps it will rain in the afternoon.
+Maybe it will rain in the afternoon.
+Mother may be sleeping now.
+
+
+

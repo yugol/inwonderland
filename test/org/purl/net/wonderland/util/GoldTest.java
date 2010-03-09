@@ -47,7 +47,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 949;
+    int lastSentence = 955;
     // int lastSentence = 889;
 
     @Test
@@ -96,7 +96,7 @@ public class GoldTest {
                 System.err.println("    expected " + expected.length + " tokens");
                 System.err.println("    found " + actual.length + " tokens");
                 System.err.println("");
-                errorCount += expected.length;
+                errorCount += Math.abs(expected.length - actual.length);
                 errSentences.add(i);
                 continue;
             }
