@@ -250,6 +250,8 @@ public final class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "shall");
                 WTagging sha = taggings.get(taggings.size() - 2);
                 sha.setForm("wo"); // a little trick to help the parser
+            } else if (token.equals("shouldn't")) {
+                splitNeg(taggings, tOkEn, pos, "shall");
 
             } else if (token.equals("i'll")) {
                 splitPos(taggings, tOkEn, pos, "will", "will");
@@ -269,6 +271,8 @@ public final class MorphAdornerWrapper {
                 splitNeg(taggings, tOkEn, pos, "will");
             } else if (token.equals("i'd")) {
                 splitPos(taggings, tOkEn, pos, "would", "will");
+            } else if (token.equals("wouldn't")) {
+                splitNeg(taggings, tOkEn, pos, "will");
 
             } else if (token.equals("can't")) {
                 splitNeg(taggings, tOkEn, pos, "can");
@@ -278,11 +282,20 @@ public final class MorphAdornerWrapper {
             } else if (token.equals("'")) {
                 justCopy(taggings, aWord);
 
+            } else if (token.equals("needn't")) {
+                splitNeg(taggings, tOkEn, pos, "need");
+
+            } else if (token.equals("usedn't")) {
+                splitNeg(taggings, tOkEn, pos, "use");
+
+            } else if (token.equals("daren't")) {
+                splitNeg(taggings, tOkEn, pos, "dare");
+
             } else {
-                throw new RuntimeException("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata() + "/" + aWord.getPartsOfSpeech());
+                System.err.println("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata() + "/" + aWord.getPartsOfSpeech());
             }
         } else if (tOkEn.equalsIgnoreCase("cannot")) {
-            splitNeg(taggings, tOkEn, new String[] {aWord.getPartsOfSpeech()}, "can");
+            splitNeg(taggings, tOkEn, new String[]{aWord.getPartsOfSpeech()}, "can");
         } else {
             justCopy(taggings, aWord);
         }

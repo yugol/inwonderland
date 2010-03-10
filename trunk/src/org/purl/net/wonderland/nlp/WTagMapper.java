@@ -306,7 +306,7 @@ public class WTagMapper {
 
     void mapIN(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
-        WTagging pr = MorphologicalDatabase.pr.get(word);
+        WTagging pr = MorphologicalDatabase.pp.get(word);
         WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
 
         if (pr != null && cjsub == null) {
@@ -360,7 +360,7 @@ public class WTagMapper {
 
     void mapTO(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
-        WTagging pr = MorphologicalDatabase.pr.get(word);
+        WTagging pr = MorphologicalDatabase.pp.get(word);
 
         if (pr != null && pr.getLemma().equals("to")) {
             tagging.copyWTags(pr);
@@ -576,7 +576,7 @@ public class WTagMapper {
     void mapRP(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
         WTagging rb = MorphologicalDatabase.rb.get(word);
-        WTagging pr = MorphologicalDatabase.pr.get(word);
+        WTagging pr = MorphologicalDatabase.pp.get(word);
 
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);

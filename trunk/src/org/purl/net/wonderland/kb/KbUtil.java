@@ -123,9 +123,9 @@ public final class KbUtil {
 
     public static String handleQuotes(String ctl) {
         if ("''".equals(ctl)) {
-            ctl = "-OPQ-";
-        } else if ("``".equals(ctl)) {
             ctl = "-CLQ-";
+        } else if ("``".equals(ctl)) {
+            ctl = "-OPQ-";
         }
         return ctl.replace("'", "`");
     }
