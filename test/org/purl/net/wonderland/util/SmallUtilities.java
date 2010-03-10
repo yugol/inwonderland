@@ -27,7 +27,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
-import net.didion.jwnl.data.POS;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Globals;
@@ -54,10 +53,10 @@ public class SmallUtilities {
         KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
     }
 
-    // @Test
+    @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
-        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level2.xml");
+        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
         Corpus.normalizeCorpusFile(goldFile);
     }
 

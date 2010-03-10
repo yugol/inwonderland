@@ -75,12 +75,12 @@ public class GoldTest {
         int wordCount = 0;
         int sentenceCount = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
-            System.out.println("#" + i + " -> (" + (i - firstSentence + 1) + ")");
-
             boolean printed = false;
             String sentence = plain.get(i - 1);
 
+            CodeTimer timer = new CodeTimer("#" + i + " -> (" + (i - firstSentence + 1) + ")");
             engine.processMessage(sentence);
+            timer.stop();
 
             WTagging[] expected = corpus.getSentencePosProps(i);
             WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);

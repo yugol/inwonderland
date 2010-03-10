@@ -54,7 +54,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> pnrec;
     static Map<String, WTagging> pnrel;
     static Map<String, WTagging> pnint;
-    static Map<String, WTagging> pr;
+    static Map<String, WTagging> pp;
     static Map<String, WTagging> cjcrd;
     static Map<String, WTagging> cjsub;
     static Map<String, WTagging> jjind;
