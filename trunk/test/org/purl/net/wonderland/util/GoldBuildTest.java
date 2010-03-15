@@ -40,12 +40,12 @@ import static org.junit.Assert.*;
  */
 public class GoldBuildTest {
 
-    // @Test
+    @Test
     public void testOne() throws Exception {
         Engine engine = new Engine();
         engine.setPersonality(pers);
 
-        String resp = engine.processMessage("This school will hold more than one thousand pupils.");
+        String resp = engine.processMessage("I will never be able to tell these cats apart!, she thought.");
         assertEquals("Done.", resp);
 
         TestUtil.saveKbAndMarkings(engine, level);
@@ -55,7 +55,7 @@ public class GoldBuildTest {
     int firstSentence = 983;
     int lastSentence = 27;
 
-    @Test
+    // @Test
     public void testMany() throws Exception {
         Globals.init();
         KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());

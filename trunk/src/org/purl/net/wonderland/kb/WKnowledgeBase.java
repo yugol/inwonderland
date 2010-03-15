@@ -54,8 +54,9 @@ import org.w3c.dom.NodeList;
  */
 public class WKnowledgeBase {
 
+    private static final String storySetName = "story";
     private static final String allName = "all";
-    private static final String allId = KbUtil.level2 + "_" + allName;
+    private static final String allId = storySetName + "_" + allName;
     private final String language;
     private final KnowledgeBase kb;
     private final Vocabulary vocabulary;
@@ -168,7 +169,7 @@ public class WKnowledgeBase {
         return senseId;
     }
 
-    public String[] importWordNetHypernymHierarchy(String word, POS posType) {
+    String[] importWordNetHypernymHierarchy(String word, POS posType) {
         String parentLabel = null;
         String parentId = null;
         String particle = null;
@@ -217,7 +218,7 @@ public class WKnowledgeBase {
         return rules;
     }
 
-    public String[] importVerbNetHierarchy(String verb) {
+    String[] importVerbNetHierarchy(String verb) {
         List<String> types = new ArrayList<String>();
 
         VerbForm vf = VerbNetWrapper.getVerbClasses(verb);
@@ -282,6 +283,8 @@ public class WKnowledgeBase {
                     prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
                 } else if (cth.isKindOf(type, KbUtil.Tense)) {
                     prop.setTense(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.Article)) {
+                    prop.setArticle(vocabulary.getConceptTypeLabel(type, language));
                 } else {
                     prop.addMoreType(vocabulary.getConceptTypeLabel(type, language));
                 }
@@ -295,5 +298,74 @@ public class WKnowledgeBase {
         prop.setPennTag(KbUtil.getConceptPennTag(id));
         prop.setPartsOfSpeech(KbUtil.getConceptMaTag(id));
         return prop;
+    }
+
+    public void addFact(CGraph fact, String set) {
+        if (set.equals(KbUtil.level1)) {
+            int factCount = getLevel1FactCount() + 1;
+            fact.setId(KbUtil.toLevel1FactId(factCount));
+            fact.setName(KbUtil.toIdIndex(factCount));
+            fact.setSet(set);
+            kb.addGraph(fact);
+            setLevel1FactCount(factCount);
+        } else if (set.equals(KbUtil.level2)) {
+            int factCount = getLevel2FactCount() + 1;
+            fact.setId(KbUtil.toLevel2FactId(factCount));
+            fact.setName(KbUtil.toIdIndex(factCount));
+            fact.setSet(set);
+            kb.addGraph(fact);
+            setLevel2FactCount(factCount);
+        }
+    }
+
+    public void addSenses(CGraph message) {
+        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
+        Iterator<Concept> it = message.iteratorConcept();
+        while (it.hasNext()) {
+            Concept c = it.next();
+            String individual = c.getIndividual();
+            String[] types = c.getType();
+            String[] senseTypes = null;
+            if (cth.isKindOf(types, KbUtil.Nn)) {
+                senseTypes = importWordNetHypernymHierarchy(individual, POS.NOUN);
+            } else if (cth.isKindOf(types, KbUtil.Vb)) {
+                senseTypes = importVerbNetHierarchy(individual);
+                if (senseTypes == null) {
+                    senseTypes = importWordNetHypernymHierarchy(individual, POS.VERB);
+                }
+            } else if (cth.isKindOf(types, KbUtil.Jj)) {
+                senseTypes = importWordNetHypernymHierarchy(individual, POS.ADJECTIVE);
+            } else if (cth.isKindOf(types, KbUtil.Rb)) {
+                senseTypes = importWordNetHypernymHierarchy(individual, POS.ADVERB);
+            }
+            if (senseTypes != null) {
+                String[] allTypes = new String[types.length + senseTypes.length];
+                System.arraycopy(types, 0, allTypes, 0, types.length);
+                System.arraycopy(senseTypes, 0, allTypes, types.length, senseTypes.length);
+                c.setType(allTypes);
+            }
+        }
+    }
+
+    public CGraph getStory() {
+        CGraph story = kb.getFactGraph(allId);
+        if (story == null) {
+            story = new CGraph(allId, allName, storySetName, "fact");
+            kb.addGraph(story);
+        }
+        return story;
+    }
+
+    public Attr getAttr(Concept c) {
+        Hierarchy cth = vocabulary.getConceptTypeHierarchy();
+        Attr attr = new Attr();
+        for (String type : c.getType()) {
+            if (cth.isKindOf(type, KbUtil.Gender)) {
+                attr.setGender(vocabulary.getConceptTypeLabel(type, language));
+            } else if (cth.isKindOf(type, KbUtil.Number)) {
+                attr.setNumber(vocabulary.getConceptTypeLabel(type, language));
+            }
+        }
+        return attr;
     }
 }

@@ -21,44 +21,30 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
-
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import java.util.List;
-import org.purl.net.wonderland.kb.KbUtil;
+package org.purl.net.wonderland.kb;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Attr {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
+    private String number;
+    private String gender;
+
+    public String getGender() {
+        return gender;
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public String getNumber() {
+        return number;
     }
 
-    @Override
-    public String getId() {
-        return KbUtil.level1;
-    }
-
-    @Override
-    public String processMessage(String message) throws Exception {
-        List<CGraph> facts = parseMessage(message);
-        for (CGraph fact : facts) {
-            kb.addFact(fact, KbUtil.level1);
-        }
-        return "Done.";
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

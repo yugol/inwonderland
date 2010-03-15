@@ -55,6 +55,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     private String comp = null; // comparative, superlative
     private String mood = null; // indicative, subjunctive, conditional, ...
     private String tense = null; // present, past, future, ...
+    private String article = null; // definite, indefinite, unarticulated
     // other types
     private Set<String> moreTypes = new HashSet<String>();
     // collocation mark
@@ -173,6 +174,17 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
             tense = null;
         }
         this.tense = tense;
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        if (empty.equals(article)) {
+            article = null;
+        }
+        this.article = article;
     }
 
     public String getWcase() {
