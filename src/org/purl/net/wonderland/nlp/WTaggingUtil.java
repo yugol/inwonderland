@@ -79,6 +79,10 @@ public final class WTaggingUtil {
         autoStr = auto.getComp();
         checkTag(goldStr, autoStr, Corpus.compTag, errStr);
 
+        goldStr = gold.getArticle();
+        autoStr = auto.getArticle();
+        checkTag(goldStr, autoStr, Corpus.articleTag, errStr);
+
         return ((errStr.length() > 0) ? (errStr.toString()) : (null));
     }
 

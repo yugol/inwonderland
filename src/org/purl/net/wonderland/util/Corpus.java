@@ -63,6 +63,7 @@ public class Corpus {
     public static final String compTag = "comp";
     public static final String moodTag = "mood";
     public static final String tenseTag = "tense";
+    public static final String articleTag = "art";
 
     public static void normalizeCorpusFile(File file) throws Exception {
         CodeTimer timer = new CodeTimer("normalizing corpus file");
@@ -120,6 +121,9 @@ public class Corpus {
             }
             if (prop.getTense() != null) {
                 word.setAttribute(tenseTag, prop.getTense());
+            }
+            if (prop.getArticle() != null) {
+                word.setAttribute(articleTag, prop.getArticle());
             }
             word.setTextContent(prop.getForm());
             sentence.appendChild(word);
@@ -238,6 +242,7 @@ public class Corpus {
             prop.setPartsOfSpeech(word.getAttribute(maTag));
             prop.setTense(word.getAttribute(tenseTag));
             prop.setWcase(word.getAttribute(caseTag));
+            prop.setArticle(word.getAttribute(articleTag));
             props[i - 1] = prop;
         }
         return props;
