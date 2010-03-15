@@ -73,9 +73,9 @@ public final class KbUtil {
     // POS concept types
     public static final String Nn = toConceptTypeId("Nn");
     public static final String Vb = toConceptTypeId("Vb");
-    public static final String Jj = toConceptTypeId("Jj");
     public static final String Rb = toConceptTypeId("Rb");
     public static final String Pn = toConceptTypeId("Pn");
+    public static final String Jj = toConceptTypeId("Jj");
     public static final String NnPRP = toConceptTypeId("NnPRP");
     public static final String JjPOS = toConceptTypeId("JjPOS");
     // fact levels
@@ -83,6 +83,7 @@ public final class KbUtil {
     public static final String level2 = "level2";
     // procedures
     public static final String proc = "proc";
+    public static final String procSetArticles = "article";
     public static final String procSetTenses = "tense";
     public static final String procSetCollocations = "collo";
     // other
@@ -449,9 +450,27 @@ public final class KbUtil {
 
             String[] rhsTypes = rhs.getType();
             Arrays.sort(rhsTypes);
-            if (Arrays.binarySearch(rhsTypes, KbUtil.Pos) < 0) {
+            int idxPos = Arrays.binarySearch(rhsTypes, KbUtil.Pos);
+            if (idxPos < 0) {
+                // no Pos - replace lhs types with rhs types
                 actual.setType(rhsTypes);
+            } else {
+                if (rhsTypes.length > 1) {
+                    // add all rhs types but Pos to lhs
+                    String[] actualTypes = actual.getType();
+                    String[] lhsTypes = new String[actualTypes.length + rhsTypes.length - 1];
+                    System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);
+                    int where = actualTypes.length;
+                    for (int i = 0; i < rhsTypes.length; ++i) {
+                        if (i != idxPos) {
+                            lhsTypes[where] = rhsTypes[i];
+                            ++where;
+                        }
+                    }
+                    actual.setType(lhsTypes);
+                }
             }
+
             if (!rhs.isGeneric()) {
                 actual.setIndividual(rhs.getIndividual());
             }

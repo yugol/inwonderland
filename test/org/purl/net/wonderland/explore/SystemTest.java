@@ -24,6 +24,8 @@
 
 package org.purl.net.wonderland.explore;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Enumeration;
 import java.util.Properties;
 import org.junit.After;
@@ -72,5 +74,11 @@ public class SystemTest {
             String key = (String) keys.nextElement();
             System.out.println(key + "='" + props.getProperty(key) + "'");
         }
+    }
+
+    @Test
+    public void testNumberFormat() {
+        NumberFormat nf = new DecimalFormat("0.0000");
+        System.out.println(nf.format(0.8827390918273849d));
     }
 }

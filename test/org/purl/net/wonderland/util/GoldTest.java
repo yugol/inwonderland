@@ -25,6 +25,8 @@ package org.purl.net.wonderland.util;
 
 import org.purl.net.wonderland.nlp.WTaggingUtil;
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -49,11 +51,11 @@ public class GoldTest {
     int firstSentence = 1;
     int lastSentence = 982;
     // int lastSentence = 964;
+    private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
 
     @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing Gold Corpus - " + corpusFileName);
-
 
         Globals.init();
         KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
@@ -74,6 +76,7 @@ public class GoldTest {
         int errorCount = 0;
         int wordCount = 0;
         int sentenceCount = 0;
+        double totalTime = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
             boolean printed = false;
             String sentence = plain.get(i - 1);
@@ -81,6 +84,7 @@ public class GoldTest {
             CodeTimer timer = new CodeTimer("#" + i + " -> (" + (i - firstSentence + 1) + ")");
             engine.processMessage(sentence);
             timer.stop();
+            totalTime += timer.getSeconds();
 
             WTagging[] expected = corpus.getSentencePosProps(i);
             WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);
@@ -137,7 +141,8 @@ public class GoldTest {
 
         System.out.println("");
         System.out.println("");
-        System.out.println("Total: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences.");
+        System.out.println("  Errors: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences");
+        System.out.println("Duration: " + timeFormatter.format(totalTime / wordCount) + " seconds per word, " + timeFormatter.format(totalTime / sentenceCount) + " seconds per sentence");
 
         // fail if at least one error
         assertEquals(0, errorCount);
