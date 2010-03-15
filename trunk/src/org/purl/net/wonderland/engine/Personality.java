@@ -66,7 +66,7 @@ public abstract class Personality {
             refSlv = new ReferenceSolver(kb);
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
-            System.err.println(ex);
+            ex.printStackTrace(System.err);
             Globals.exit();
         }
     }
@@ -149,6 +149,10 @@ public abstract class Personality {
 
     protected void processCollocations(CGraph fact) throws Exception {
         applyProcSet(fact, KbUtil.procSetCollocations);
+    }
+
+    protected void processArticles(CGraph fact) throws Exception {
+        applyProcSet(fact, KbUtil.procSetArticles);
     }
 
     protected void applyProcSet(CGraph fact, String procSet) throws Exception {

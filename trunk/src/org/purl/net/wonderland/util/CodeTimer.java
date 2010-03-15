@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.util;
 
 /**
@@ -31,7 +30,8 @@ package org.purl.net.wonderland.util;
 public class CodeTimer {
 
     private long t0;
-    private long t1;
+    private long t1 = 0;
+    private double seconds;
     private String msg;
 
     public CodeTimer(String msg) {
@@ -41,8 +41,14 @@ public class CodeTimer {
     }
 
     public void stop() {
-        t1 = System.currentTimeMillis();
-        double seconds = ((double) (t1 - t0)) / 1000;
-        System.out.println(" Done " + msg + " in [" + seconds + "] seconds");
+        if (t1 == 0) {
+            t1 = System.currentTimeMillis();
+            seconds = ((double) (t1 - t0)) / 1000;
+            System.out.println(" Done " + msg + " in [" + seconds + "] seconds");
+        }
+    }
+
+    public double getSeconds() {
+        return seconds;
     }
 }

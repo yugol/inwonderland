@@ -67,11 +67,13 @@ public class ProcManager {
         return count;
     }
 
-    private void addProcedure(String group, Procedure t) {
-        if (!procs.containsKey(group)) {
-            procs.put(group, new ArrayList<Procedure>());
+    private void addProcedure(String set, Procedure t) {
+        if (!procs.containsKey(set)) {
+            procs.put(set, new ArrayList<Procedure>());
         }
-        procs.get(group).add(t);
+        if (t != null) {
+            procs.get(set).add(t);
+        }
     }
 
     public ProcManager(WKnowledgeBase kb) {
@@ -79,12 +81,14 @@ public class ProcManager {
     }
 
     public void readAllProceduresFromKb() throws Exception {
+        readProcedureSet(KbUtil.procSetArticles);
         readProcedureSet(KbUtil.procSetTenses);
         readProcedureSet(KbUtil.procSetCollocations);
     }
 
     private void readProcedureSet(String set) throws Exception {
         String setId = KbUtil.proc + "_" + set + "_";
+        addProcedure(set, null);
         List<Rule> rules = kb.getProcRules(setId);
         for (Rule rule : rules) {
             String name = rule.getName().substring(setId.length());
@@ -289,7 +293,7 @@ public class ProcManager {
 
     public List<Procedure> findMatches(String procSet, CGraph cg) throws Exception {
         // CodeTimer timer = new CodeTimer("projection");
-        reConnectToSolver();
+        // reConnectToSolver();
 
         List<Procedure> matches = new ArrayList<Procedure>();
         if (procs.get(procSet) != null) {
@@ -313,7 +317,7 @@ public class ProcManager {
         throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    private void reConnectToSolver() throws Exception {
+    public void reConnectToSolver() throws Exception {
         if (solver.isConnected()) {
             solver.disconnect();
         }
