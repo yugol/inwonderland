@@ -59,6 +59,10 @@ public class ProcManager {
     private final SolverCogitant solver = new SolverCogitant();
     private final WKnowledgeBase kb;
 
+    public ProcManager(WKnowledgeBase kb) {
+        this.kb = kb;
+    }
+
     public int getProcCount() {
         int count = 0;
         for (List<Procedure> set : procs.values()) {
@@ -74,10 +78,6 @@ public class ProcManager {
         if (t != null) {
             procs.get(set).add(t);
         }
-    }
-
-    public ProcManager(WKnowledgeBase kb) {
-        this.kb = kb;
     }
 
     public void readAllProceduresFromKb() throws Exception {
