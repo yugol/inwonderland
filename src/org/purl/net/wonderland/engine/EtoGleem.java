@@ -57,7 +57,7 @@ public class EtoGleem extends Personality {
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
-            processTenses(fact);
+            processMoods(fact);
             // processCollocations(fact);
             // kb.addSenses(fact);
             kb.addFact(fact, KbUtil.level2);

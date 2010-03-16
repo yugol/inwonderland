@@ -1132,7 +1132,7 @@
     </support>
     <rule id="_rule20">
         <hypt>
-            <graph id="_rule20_hypt" label="proc_tense_ptps" nature="rule" set="default_set">
+            <graph id="_rule20_hypt" label="proc_mood_ptps" nature="rule" set="default_set">
                 <concept id="_c74" x="140" y="130">
                     <type id="ct_Vb"/>
                     <type id="ct_pt"/>
@@ -1161,7 +1161,7 @@
     </rule>
     <rule id="_rule22">
         <hypt>
-            <graph id="_rule22_hypt" label="proc_tense_qst06" nature="rule" set="default_set">
+            <graph id="_rule22_hypt" label="proc_mood_qst06" nature="rule" set="default_set">
                 <concept id="_c86" x="100" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ger"/>
@@ -1200,7 +1200,7 @@
     </rule>
     <rule id="_rule21">
         <hypt>
-            <graph id="_rule21_hypt" label="proc_tense_pspc" nature="rule" set="default_set">
+            <graph id="_rule21_hypt" label="proc_mood_pspc" nature="rule" set="default_set">
                 <concept id="_c77" idMarker="have" referent="individual" x="130" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -1238,7 +1238,7 @@
     </rule>
     <rule id="_rule40">
         <hypt>
-            <graph id="_rule40_hypt" label="proc_tense_ftpsWill" nature="rule" set="default_set">
+            <graph id="_rule40_hypt" label="proc_mood_ftpsWill" nature="rule" set="default_set">
                 <concept id="_c95" idMarker="will" referent="individual" x="160" y="110">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -1274,7 +1274,7 @@
     </rule>
     <rule id="_rule24">
         <hypt>
-            <graph id="_rule24_hypt" label="proc_tense_qst08" nature="rule" set="default_set">
+            <graph id="_rule24_hypt" label="proc_mood_qst08" nature="rule" set="default_set">
                 <concept id="_c98" idMarker="be" referent="individual" x="150" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1330,7 +1330,7 @@
     </rule>
     <rule id="_rule23">
         <hypt>
-            <graph id="_rule23_hypt" label="proc_tense_qst07" nature="rule" set="default_set">
+            <graph id="_rule23_hypt" label="proc_mood_qst07" nature="rule" set="default_set">
                 <concept id="_c93" x="170" y="60">
                     <type id="ct_Vb"/>
                     <type id="ct_ger"/>
@@ -1378,7 +1378,7 @@
     </rule>
     <rule id="_rule26">
         <hypt>
-            <graph id="_rule26_hypt" label="proc_tense_qst10" nature="rule" set="default_set">
+            <graph id="_rule26_hypt" label="proc_mood_qst10" nature="rule" set="default_set">
                 <concept id="_c115" idMarker="be" referent="individual" x="180" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1434,7 +1434,7 @@
     </rule>
     <rule id="_rule25">
         <hypt>
-            <graph id="_rule25_hypt" label="proc_tense_qst09" nature="rule" set="default_set">
+            <graph id="_rule25_hypt" label="proc_mood_qst09" nature="rule" set="default_set">
                 <concept id="_c106" idMarker="be" referent="individual" x="160" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1596,7 +1596,7 @@
     </rule>
     <rule id="_rule41">
         <hypt>
-            <graph id="_rule41_hypt" label="proc_tense_ftpcShall" nature="rule" set="default_set">
+            <graph id="_rule41_hypt" label="proc_mood_ftpcShall" nature="rule" set="default_set">
                 <concept id="_c98" idMarker="shall" referent="individual" x="140" y="130">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -1640,7 +1640,7 @@
     </rule>
     <rule id="_rule42">
         <hypt>
-            <graph id="_rule42_hypt" label="proc_tense_ftpcWill" nature="rule" set="default_set">
+            <graph id="_rule42_hypt" label="proc_mood_ftpcWill" nature="rule" set="default_set">
                 <concept id="_c102" idMarker="will" referent="individual" x="140" y="90">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -1684,7 +1684,7 @@
     </rule>
     <rule id="_rule43">
         <hypt>
-            <graph id="_rule43_hypt" label="proc_tense_fttsShall" nature="rule" set="default_set">
+            <graph id="_rule43_hypt" label="proc_mood_fttsShall" nature="rule" set="default_set">
                 <concept id="_c146" x="90" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -1713,7 +1713,7 @@
     </rule>
     <rule id="_rule44">
         <hypt>
-            <graph id="_rule44_hypt" label="proc_tense_fttcWill" nature="rule" set="default_set">
+            <graph id="_rule44_hypt" label="proc_mood_fttcWill" nature="rule" set="default_set">
                 <concept id="_c149" idMarker="will" referent="individual" x="140" y="90">
                     <type id="ct_Md"/>
                     <type id="ct_pt"/>
@@ -1749,7 +1749,7 @@
     </rule>
     <rule id="_rule39">
         <hypt>
-            <graph id="_rule39_hypt" label="proc_tense_ftpsShall" nature="rule" set="default_set">
+            <graph id="_rule39_hypt" label="proc_mood_ftpsShall" nature="rule" set="default_set">
                 <concept id="_c91" idMarker="shall" referent="individual" x="140" y="120">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -1785,7 +1785,7 @@
     </rule>
     <rule id="_rule38">
         <hypt>
-            <graph id="_rule38_hypt" label="proc_tense_ftcWill" nature="rule" set="default_set">
+            <graph id="_rule38_hypt" label="proc_mood_ftcWill" nature="rule" set="default_set">
                 <concept id="_c87" idMarker="will" idType="ct_Vb" referent="individual" x="140" y="110"/>
                 <concept id="_c88" x="140" y="250">
                     <type id="ct_Vb"/>
@@ -1818,7 +1818,7 @@
     </rule>
     <rule id="_rule16">
         <hypt>
-            <graph id="_rule16_hypt" label="proc_tense_qst03" nature="rule" set="default_set">
+            <graph id="_rule16_hypt" label="proc_mood_qst03" nature="rule" set="default_set">
                 <concept id="_c50" x="130" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1867,7 +1867,7 @@
     </rule>
     <rule id="_rule17">
         <hypt>
-            <graph id="_rule17_hypt" label="proc_tense_qst04" nature="rule" set="default_set">
+            <graph id="_rule17_hypt" label="proc_mood_qst04" nature="rule" set="default_set">
                 <concept id="_c57" x="120" y="120">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -1907,7 +1907,7 @@
     </rule>
     <rule id="_rule18">
         <hypt>
-            <graph id="_rule18_hypt" label="proc_tense_pspsCop" nature="rule" set="default_set">
+            <graph id="_rule18_hypt" label="proc_mood_pspsCop" nature="rule" set="default_set">
                 <concept id="_c62" idMarker="have" referent="individual" x="130" y="100">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -1947,7 +1947,7 @@
     </rule>
     <rule id="_rule19">
         <hypt>
-            <graph id="_rule19_hypt" label="proc_tense_qst05" nature="rule" set="default_set">
+            <graph id="_rule19_hypt" label="proc_mood_qst05" nature="rule" set="default_set">
                 <concept id="_c68" x="120" y="120">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -1983,7 +1983,7 @@
     </rule>
     <rule id="_rule15">
         <hypt>
-            <graph id="_rule15_hypt" label="proc_tense_ptc" nature="rule" set="default_set">
+            <graph id="_rule15_hypt" label="proc_mood_ptc" nature="rule" set="default_set">
                 <concept id="_c1" x="120" y="140">
                     <type id="ct_Pos"/>
                     <type id="ct_ger"/>
@@ -2013,7 +2013,7 @@
     </rule>
     <rule id="_rule33">
         <hypt>
-            <graph id="_rule33_hypt" label="proc_tense_qst12" nature="rule" set="default_set">
+            <graph id="_rule33_hypt" label="proc_mood_qst12" nature="rule" set="default_set">
                 <concept id="_c150" idMarker="be" referent="individual" x="170" y="60">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -2068,7 +2068,7 @@
     </rule>
     <rule id="_rule32">
         <hypt>
-            <graph id="_rule32_hypt" label="proc_tense_ptpc" nature="rule" set="default_set">
+            <graph id="_rule32_hypt" label="proc_mood_ptpc" nature="rule" set="default_set">
                 <concept id="_c146" idMarker="have" referent="individual" x="50" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_pt"/>
@@ -2105,7 +2105,7 @@
     </rule>
     <rule id="_rule14">
         <hypt>
-            <graph id="_rule14_hypt" label="proc_tense_ptsDo" nature="rule" set="default_set">
+            <graph id="_rule14_hypt" label="proc_mood_ptsDo" nature="rule" set="default_set">
                 <concept id="_c61" idMarker="do" referent="individual" x="140" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2135,7 +2135,7 @@
     </rule>
     <rule id="_rule31">
         <hypt>
-            <graph id="_rule31_hypt" label="proc_tense_fttsWill" nature="rule" set="default_set">
+            <graph id="_rule31_hypt" label="proc_mood_fttsWill" nature="rule" set="default_set">
                 <concept id="_c143" x="110" y="170">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2164,7 +2164,7 @@
     </rule>
     <rule id="_rule13">
         <hypt>
-            <graph id="_rule13_hypt" label="proc_tense_pscCop" nature="rule" set="default_set">
+            <graph id="_rule13_hypt" label="proc_mood_pscCop" nature="rule" set="default_set">
                 <concept id="_c57" idMarker="be" referent="individual" x="100" y="10">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2203,7 +2203,7 @@
     </rule>
     <rule id="_rule12">
         <hypt>
-            <graph id="_rule12_hypt" label="proc_tense_pscCopPassive" nature="rule" set="default_set">
+            <graph id="_rule12_hypt" label="proc_mood_pscCopPassive" nature="rule" set="default_set">
                 <concept id="_c50" idMarker="be" referent="individual" x="130" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2246,7 +2246,7 @@
     </rule>
     <rule id="_rule30">
         <hypt>
-            <graph id="_rule30_hypt" label="proc_tense_ptps3" nature="rule" set="default_set">
+            <graph id="_rule30_hypt" label="proc_mood_ptps3" nature="rule" set="default_set">
                 <concept id="_c137" idMarker="have" referent="individual" x="110" y="400">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2277,7 +2277,7 @@
     </rule>
     <rule id="_rule11">
         <hypt>
-            <graph id="_rule11_hypt" label="proc_tense_psps" nature="rule" set="default_set">
+            <graph id="_rule11_hypt" label="proc_mood_psps" nature="rule" set="default_set">
                 <concept id="_c47" idType="ct_Vb" x="60" y="80"/>
                 <concept id="_c48" idMarker="have" referent="individual" x="60" y="250">
                     <type id="ct_Vb"/>
@@ -2304,7 +2304,7 @@
     </rule>
     <rule id="_rule37">
         <hypt>
-            <graph id="_rule37_hypt" label="proc_tense_ftcShall" nature="rule" set="default_set">
+            <graph id="_rule37_hypt" label="proc_mood_ftcShall" nature="rule" set="default_set">
                 <concept id="_c81" idMarker="shall" referent="individual" x="130" y="130">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -2340,7 +2340,7 @@
     </rule>
     <rule id="_rule10">
         <hypt>
-            <graph id="_rule10_hypt" label="proc_tense_ftsCop" nature="rule" set="default_set">
+            <graph id="_rule10_hypt" label="proc_mood_ftsCop" nature="rule" set="default_set">
                 <concept id="_c42" idMarker="be" referent="individual" x="170" y="40">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2378,7 +2378,7 @@
     </rule>
     <rule id="_rule36">
         <hypt>
-            <graph id="_rule36_hypt" label="proc_tense_ftsCop2" nature="rule" set="default_set">
+            <graph id="_rule36_hypt" label="proc_mood_ftsCop2" nature="rule" set="default_set">
                 <concept id="_c67" idMarker="shall" referent="individual" x="140" y="100">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -2416,7 +2416,7 @@
     </rule>
     <rule id="_rule35">
         <hypt>
-            <graph id="_rule35_hypt" label="proc_tense_ftsShallPassive" nature="rule" set="default_set">
+            <graph id="_rule35_hypt" label="proc_mood_ftsShallPassive" nature="rule" set="default_set">
                 <concept id="_c57" idMarker="shall" referent="individual" x="130" y="160">
                     <type id="ct_Md"/>
                     <type id="ct_ps"/>
@@ -2458,7 +2458,7 @@
     </rule>
     <rule id="_rule34">
         <hypt>
-            <graph id="_rule34_hypt" label="proc_tense_qst13" nature="rule" set="default_set">
+            <graph id="_rule34_hypt" label="proc_mood_qst13" nature="rule" set="default_set">
                 <concept id="_c17" x="110" y="160">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2487,7 +2487,7 @@
     </rule>
     <rule id="_rule3">
         <hypt>
-            <graph id="_rule3_hypt" label="proc_tense_ftsShall" nature="rule" set="default_set">
+            <graph id="_rule3_hypt" label="proc_mood_ftsShall" nature="rule" set="default_set">
                 <concept id="_c10" x="30" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2516,7 +2516,7 @@
     </rule>
     <rule id="_rule4">
         <hypt>
-            <graph id="_rule4_hypt" label="proc_tense_pts" nature="rule" set="default_set">
+            <graph id="_rule4_hypt" label="proc_mood_pts" nature="rule" set="default_set">
                 <concept id="_c13" x="60" y="140">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2539,7 +2539,7 @@
     </rule>
     <rule id="_rule5">
         <hypt>
-            <graph id="_rule5_hypt" label="proc_tense_ftsWill" nature="rule" set="default_set">
+            <graph id="_rule5_hypt" label="proc_mood_ftsWill" nature="rule" set="default_set">
                 <concept id="_c15" x="60" y="60">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2568,7 +2568,7 @@
     </rule>
     <rule id="_rule6">
         <hypt>
-            <graph id="_rule6_hypt" label="proc_tense_linfPs" nature="rule" set="default_set">
+            <graph id="_rule6_hypt" label="proc_mood_linfPs" nature="rule" set="default_set">
                 <concept id="_c18" idType="ct_Vb" x="60" y="80"/>
                 <concept id="_c19" idMarker="to" idType="ct_PpTo" referent="individual" x="50" y="250"/>
                 <relation id="_r6" idType="rt_aux" x="40" y="170"/>
@@ -2610,7 +2610,7 @@
     </rule>
     <rule id="_rule8">
         <hypt>
-            <graph id="_rule8_hypt" label="proc_tense_qst01" nature="rule" set="default_set">
+            <graph id="_rule8_hypt" label="proc_mood_qst01" nature="rule" set="default_set">
                 <concept id="_c25" idMarker="be" referent="individual" x="40" y="390">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2658,7 +2658,7 @@
     </rule>
     <rule id="_rule9">
         <hypt>
-            <graph id="_rule9_hypt" label="proc_tense_qst02" nature="rule" set="default_set">
+            <graph id="_rule9_hypt" label="proc_mood_qst02" nature="rule" set="default_set">
                 <concept id="_c37" idMarker="be" referent="individual" x="110" y="370">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
@@ -2688,7 +2688,7 @@
     </rule>
     <rule id="_rule29">
         <hypt>
-            <graph id="_rule29_hypt" label="proc_tense_psps2" nature="rule" set="default_set">
+            <graph id="_rule29_hypt" label="proc_mood_psps2" nature="rule" set="default_set">
                 <concept id="_c134" idType="ct_Vb" x="30" y="80"/>
                 <concept id="_c135" idMarker="have" referent="individual" x="30" y="250">
                     <type id="ct_Vb"/>
@@ -2714,7 +2714,7 @@
     </rule>
     <rule id="_rule27">
         <hypt>
-            <graph id="_rule27_hypt" label="proc_tense_qst11" nature="rule" set="default_set">
+            <graph id="_rule27_hypt" label="proc_mood_qst11" nature="rule" set="default_set">
                 <concept id="_c122" x="150" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_par"/>
@@ -2763,7 +2763,7 @@
     </rule>
     <rule id="_rule28">
         <hypt>
-            <graph id="_rule28_hypt" label="proc_tense_ptps2" nature="rule" set="default_set">
+            <graph id="_rule28_hypt" label="proc_mood_ptps2" nature="rule" set="default_set">
                 <concept id="_c129" idType="ct_Rb" x="150" y="360"/>
                 <concept id="_c130" idMarker="have" referent="individual" x="110" y="250">
                     <type id="ct_Vb"/>
@@ -2802,7 +2802,7 @@
     </rule>
     <rule id="_rule1">
         <hypt>
-            <graph id="_rule1_hypt" label="proc_tense_psc" nature="rule" set="default_set">
+            <graph id="_rule1_hypt" label="proc_mood_psc" nature="rule" set="default_set">
                 <concept id="_c4" x="180" y="80">
                     <type id="ct_Vb"/>
                     <type id="ct_ger"/>
@@ -2832,7 +2832,7 @@
     </rule>
     <rule id="_rule2">
         <hypt>
-            <graph id="_rule2_hypt" label="proc_tense_pss" nature="rule" set="default_set">
+            <graph id="_rule2_hypt" label="proc_mood_pss" nature="rule" set="default_set">
                 <concept id="_c8" x="140" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
