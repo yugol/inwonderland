@@ -49,7 +49,7 @@ public class GoldTest {
     Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 11;
+    int lastSentence = 982;
     //
     private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
 
@@ -141,6 +141,7 @@ public class GoldTest {
 
         System.out.println("");
         System.out.println("");
+        System.out.println(level);
         System.out.println("  Errors: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences");
         System.out.println("Duration: " + timeFormatter.format(totalTime / wordCount) + " seconds per word, " + timeFormatter.format(totalTime / sentenceCount) + " seconds per sentence");
 
