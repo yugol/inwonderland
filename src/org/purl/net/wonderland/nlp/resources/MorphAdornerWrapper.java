@@ -47,7 +47,7 @@ import org.purl.net.wonderland.util.CodeTimer;
 
 public final class MorphAdornerWrapper {
 
-    private static String lemmaSeparator = "|";
+    public static String lemmaSeparator = "|";
     private static String lemmaSeparatorRegex = "\\|";
     private static WordTokenizer tokenizer;
     private static SentenceSplitter splitter;

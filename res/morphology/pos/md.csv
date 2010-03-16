@@ -1,4 +1,5 @@
 form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+ca,can,Md,,,,,,,ps
 can,can,Md,,,,,,,ps
 could,can,Md,,,,,,,pt
 dare,dare,Md,,,,,,,

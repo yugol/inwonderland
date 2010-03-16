@@ -93,6 +93,8 @@ public class WTagMapper {
                 mapPOS(tagging, tag);
             } else if (tag.equals("PDT")) { // PDT
                 mapPDT(tagging, tag);
+            } else if (tag.equals("UH")) { // UH
+                mapUH(tagging, tag);
             }
         }
     }
@@ -106,7 +108,7 @@ public class WTagMapper {
 
         String word = tagging.getForm().toLowerCase();
         WTagging ar = MorphologicalDatabase.ar.get(word);
-        WTagging jjind = MorphologicalDatabase.jjind.get(word);
+        WTagging jjind = MorphologicalDatabase.jjidf.get(word);
         WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
         WTagging pndem = MorphologicalDatabase.pndem.get(word);
         WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
@@ -187,6 +189,7 @@ public class WTagMapper {
 
     public void mapVB(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
+
         WTagging vb = MorphologicalDatabase.vb.get(word);
 
         if (vb != null) {
@@ -306,6 +309,15 @@ public class WTagMapper {
 
     void mapIN(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
+
+        if (tagging.isCollocation()) {
+            String pos = CollocationManager.getTypes(word);
+            if (pos.indexOf("Rb") >= 0) {
+                tagging.setPos("Rb");
+                return;
+            }
+        }
+
         WTagging pr = MorphologicalDatabase.pp.get(word);
         WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
 
@@ -396,19 +408,22 @@ public class WTagMapper {
                 if (maTag.indexOf('c') > 0) {
                     tagging.setComp("cmp");
                 }
-            } else if (maTag.indexOf("n") == 0) {
+            } else if (maTag.indexOf('n') == 0) {
                 tagging.setPos("NnCOM");
                 if (maTag.indexOf("1") > 0) {
                     tagging.setNumber("sng");
-                } else if (maTag.indexOf("2") > 0) {
+                } else if (maTag.indexOf('2') > 0) {
                     tagging.setNumber("plu");
                 }
+            } else if (maTag.indexOf("jc") == 0) {
+                tagging.setComp("cmp");
             }
         }
     }
 
     void mapJJ(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
+        String maTag = tagging.getPartsOfSpeech();
 
         WTagging jj = MorphologicalDatabase.jj.get(word);
         if (jj != null) {
@@ -416,10 +431,26 @@ public class WTagMapper {
             return;
         }
 
-        WTagging jjidf = MorphologicalDatabase.jjind.get(word);
-        if (jjidf != null) {
+        WTagging jjidf = MorphologicalDatabase.jjidf.get(word);
+        WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
+
+        if (jjidf != null && jjdem == null) {
             tagging.copyWTagsAndLemma(jjidf);
             return;
+        }
+        if (jjidf == null && jjdem != null) {
+            tagging.copyWTagsAndLemma(jjdem);
+            return;
+        }
+        if (jjidf != null && jjdem != null) {
+            if (maTag != null) {
+                if (maTag.indexOf('d') == 0) {
+                    tagging.copyWTagsAndLemma(jjdem);
+                } else {
+                    tagging.copyWTagsAndLemma(jjidf);
+                }
+                return;
+            }
         }
 
         // see if is not an ordinal numeral
@@ -437,7 +468,6 @@ public class WTagMapper {
             tagging.setComp("sup");
         }
 
-        String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if ("j-vvn".equals(maTag)) {
                 tagging.setMood("par");
@@ -540,15 +570,24 @@ public class WTagMapper {
                 tagging.setPos("Vb");
                 tagging.setMood("ind");
                 tagging.setTense("pt");
+            } else if ("a-acp".equals(maTag)) {
+                tagging.setPos("RbREL");
+            } else if ("cs".equals(maTag)) {
+                tagging.setPos("RbREL");
             }
         }
     }
 
     void mapEX(WTagging tagging, String tag) {
         String word = tagging.getForm().toLowerCase();
+        String maTag = tagging.getPartsOfSpeech();
 
         if (word.equals("there")) {
-            tagging.setPos("RbEX");
+            if ("a-acp".equals(maTag)) {
+                tagging.setPos("Rb");
+            } else {
+                tagging.setPos("RbEX");
+            }
         }
     }
 
@@ -619,7 +658,11 @@ public class WTagMapper {
         return false;
     }
 
-    void mapPDT(WTagging tagging, String tag) {
+    private void mapPDT(WTagging tagging, String tag) {
         mapDT(tagging, tag);
+    }
+
+    private void mapUH(WTagging tagging, String tag) {
+        tagging.setPos("Uh");
     }
 }

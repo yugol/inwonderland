@@ -97,13 +97,18 @@ public class CollocationManager implements WordNetConnection {
 
                 String[] words = pWord.split("_");
                 words[0] = wt.getLemma();
+                StringBuilder ma = new StringBuilder(wt.getPartsOfSpeech());
                 for (int i = 1; i < words.length; ++i) {
                     ++s;
-                    words[i] = sentence.get(s).getLemma();
+                    wt = sentence.get(s);
+                    ma.append(MorphAdornerWrapper.lemmaSeparator);
+                    ma.append(wt.getPartsOfSpeech());
+                    words[i] = wt.getLemma();
                 }
-                tagging.setLemma(StringUtils.join(words, "_"));
 
+                tagging.setLemma(StringUtils.join(words, "_"));
                 tagging.setPennTag(pt.tag());
+                tagging.setPartsOfSpeech(ma.toString());
                 tagging.setCollocation(true);
                 newSentence.add(tagging);
                 ++p;
