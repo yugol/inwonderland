@@ -1,18 +1,18 @@
 /*
  *  The MIT License
- *
+ * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
- *
+ * 
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *
+ * 
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
- *
+ * 
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,51 +21,26 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
+package org.purl.net.wonderland.nlp.resources;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import java.util.List;
-import org.purl.net.wonderland.kb.KbUtil;
+import java.io.File;
+import org.purl.net.wonderland.Globals;
 
 /**
  *
- * @author Iulian
+ * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class EtoGleem extends Personality {
+public final class PropBankWrapper {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "Hi!";
+    public static void doSomething(String verb) throws Exception {
+        File verbFile = getVerbFile(verb);
+        System.out.println(verbFile.getCanonicalPath());
     }
 
-    @Override
-    public String getFullName() {
-        return "Eto Gleem";
-    }
-
-    @Override
-    public String getName() {
-        return "Eto";
-    }
-
-    @Override
-    public String getId() {
-        return "etogleem";
-    }
-
-    @Override
-    public String processMessage(String message) throws Exception {
-        List<CGraph> facts = parseMessage(message);
-        procMgr.resetSolver();
-        for (CGraph fact : facts) {
-            processMoods(fact);
-            processArticles(fact);
-            // processCollocations(fact);
-            kb.addSenses(fact);
-            kb.addFact(fact, KbUtil.level2);
-            refSlv.addFact(fact);
+    public static File getVerbFile(String lemma) {
+        if (lemma.equals("con")) {
+            lemma = "_con";
         }
-        return "Done.";
-
+        return new File(Globals.getPropBankDataFolder(), lemma + ".xml");
     }
 }

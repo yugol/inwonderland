@@ -52,7 +52,6 @@ public final class VerbNetWrapper {
 
     static {
         try {
-            WordNetWrapper.init();
             CodeTimer timer = new CodeTimer("VerbNetWrapper");
             File fileIndex = Globals.getVerbNetFileIndexFile();
             if (!fileIndex.exists()) {
@@ -69,7 +68,6 @@ public final class VerbNetWrapper {
             System.err.println("Error initializing VerbNetWrapper");
             ex.printStackTrace(System.err);
             Globals.exit();
-
         }
     }
 
@@ -110,5 +108,33 @@ public final class VerbNetWrapper {
             }
         }
         reader.close();
+    }
+
+    public static File getClassFile(String vncls) {
+        String[] vnclsParts = vncls.split("-");
+        if (vnclsParts.length > 0) {
+            vncls = vnclsParts[0];
+            for (String fName : fileList) {
+                String verbClass = fName.substring(fName.indexOf('-') + 1, fName.lastIndexOf('.'));
+                if (verbClass.equals(vncls)) {
+                    return new File(Globals.getVerbNetDataFolder(), fName);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static List<String> getClassesLike(String vncls) {
+        List<String> classes = new ArrayList<String>();
+        for (String fName : fileList) {
+            String verbClass = fName.substring(fName.indexOf('-') + 1, fName.lastIndexOf('.'));
+            if (verbClass.indexOf(vncls) == 0 && (verbClass.length() == vncls.length() || verbClass.charAt(vncls.length()) == '.')) {
+                classes.add(verbClass);
+            }
+        }
+        if (classes.size() > 0) {
+            return classes;
+        }
+        return null;
     }
 }
