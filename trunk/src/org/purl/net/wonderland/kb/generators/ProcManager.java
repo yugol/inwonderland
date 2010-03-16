@@ -264,7 +264,7 @@ public class ProcManager {
 
     public Procedure findMatch(String procSet, CGraph cg, Set<Procedure> exclude) throws Exception {
         CodeTimer timer = new CodeTimer("projection");
-        reConnectToSolver();
+        resetSolver();
 
         Procedure match = null;
         if (procs.get(procSet) != null) {
@@ -293,7 +293,7 @@ public class ProcManager {
 
     public List<Procedure> findMatches(String procSet, CGraph cg) throws Exception {
         // CodeTimer timer = new CodeTimer("projection");
-        // reConnectToSolver();
+        // resetSolver();
 
         List<Procedure> matches = new ArrayList<Procedure>();
         if (procs.get(procSet) != null) {
@@ -317,7 +317,7 @@ public class ProcManager {
         throw new UnsupportedOperationException("Not yet implemented.");
     }
 
-    public void reConnectToSolver() throws Exception {
+    public void resetSolver() throws Exception {
         if (solver.isConnected()) {
             solver.disconnect();
         }
