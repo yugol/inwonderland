@@ -557,221 +557,221 @@
             <ctype id="ct_Uh" label="Uh" x="232" y="4845">
                 <translation descr="interjection" label="Uh" lang="en"/>
             </ctype>
-            <order id1="ct_RbPLC" id2="ct_Rb"/>
-            <order id1="ct_ps" id2="ct_Time"/>
-            <order id1="ct_ftts" id2="ct_ft"/>
-            <order id1="ct_WP" id2="ct_SpTag"/>
-            <order id1="ct_$" id2="ct_SpTag"/>
-            <order id1="ct_NnPRP" id2="ct_Nn"/>
-            <order id1="ct_ft" id2="ct_Time"/>
-            <order id1="ct_Ar" id2="ct_Pos"/>
-            <order id1="ct_req" id2="ct_Intention"/>
-            <order id1="ct_Jj" id2="ct_Pos"/>
-            <order id1="ct_PpRbPLC_Dir" id2="ct_RbPLC_Dir"/>
-            <order id1="ct_Intention" id2="ct_Attr"/>
-            <order id1="ct_pss" id2="ct_ps"/>
-            <order id1="ct_Md" id2="ct_Vb"/>
-            <order id1="ct_CD" id2="ct_SpTag"/>
-            <order id1="ct_NmRMU" id2="ct_Nm"/>
-            <order id1="ct_JjPnDEM" id2="ct_JjDEM"/>
-            <order id1="ct_PnREL" id2="ct_Pn"/>
-            <order id1="ct_IN" id2="ct_SpTag"/>
-            <order id1="ct_plu" id2="ct_Number"/>
-            <order id1="ct_RBS" id2="ct_SpTag"/>
-            <order id1="ct_sng" id2="ct_Number"/>
-            <order id1="ct_PRP$" id2="ct_SpTag"/>
-            <order id1="ct_PnREC" id2="ct_Pn"/>
-            <order id1="ct_JjINT" id2="ct_Jj"/>
-            <order id1="ct_par" id2="ct_Mood"/>
-            <order id1="ct_pas" id2="ct_Mood"/>
-            <order id1="ct_gen" id2="ct_Case"/>
-            <order id1="ct_Comparison" id2="ct_Attr"/>
-            <order id1="ct_RbPLC_Dir" id2="ct_RbPLC"/>
-            <order id1="ct_stm" id2="ct_Intention"/>
-            <order id1="ct_SpTag" id2="ct_Pos"/>
-            <order id1="ct_ftpc" id2="ct_cont"/>
-            <order id1="ct_pspc" id2="ct_ps"/>
-            <order id1="ct_fttc" id2="ct_ft"/>
-            <order id1="ct_ftps" id2="ct_ft"/>
-            <order id1="ct_inf" id2="ct_Mood"/>
-            <order id1="ct_ArDEF" id2="ct_Ar"/>
-            <order id1="ct_PDT" id2="ct_SpTag"/>
-            <order id1="ct_JjIDF" id2="ct_Jj"/>
-            <order id1="ct_ptpc" id2="ct_perf"/>
-            <order id1="ct_psps" id2="ct_simp"/>
-            <order id1="ct_-CLQ-" id2="ct_SpTag"/>
-            <order id1="ct_PpPOS" id2="ct_Pp"/>
-            <order id1="ct_simp" id2="ct_Aspect"/>
-            <order id1="ct_:" id2="ct_SpTag"/>
-            <order id1="ct_wnNn" id2="ct_Nn"/>
-            <order id1="ct_CjSUB" id2="ct_Cj"/>
-            <order id1="ct_VB" id2="ct_SpTag"/>
-            <order id1="ct_Time" id2="ct_Tense"/>
-            <order id1="ct_neu" id2="ct_Gender"/>
-            <order id1="ct_JJR" id2="ct_SpTag"/>
-            <order id1="ct_PpCjSUB" id2="ct_CjSUB"/>
-            <order id1="ct_Case" id2="ct_Attr"/>
-            <order id1="ct_Number" id2="ct_Attr"/>
-            <order id1="ct_ptps" id2="ct_pt"/>
-            <order id1="ct_PpRbPLC_Dir" id2="ct_Pp"/>
-            <order id1="ct_pt" id2="ct_Time"/>
-            <order id1="ct_-OPQ-" id2="ct_SpTag"/>
-            <order id1="ct_Mood" id2="ct_Attr"/>
-            <order id1="ct_JjPnDEM" id2="ct_PnDEM"/>
-            <order id1="ct_perf" id2="ct_Relativity"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_PnIDF"/>
-            <order id1="ct_Mk" id2="ct_Pos"/>
-            <order id1="ct_-LRB-" id2="ct_("/>
-            <order id1="ct_ftts" id2="ct_simp"/>
-            <order id1="ct_NmCRD" id2="ct_Nm"/>
-            <order id1="ct_NnCOM" id2="ct_Nn"/>
-            <order id1="ct_S" id2="ct_SpTag"/>
-            <order id1="ct_pss" id2="ct_simp"/>
-            <order id1="ct_acc" id2="ct_Case"/>
-            <order id1="ct_NnPRT" id2="ct_Nn"/>
-            <order id1="ct_PnINT" id2="ct_Pn"/>
-            <order id1="ct_POS" id2="ct_SpTag"/>
-            <order id1="ct_PpTo" id2="ct_PpPRE"/>
-            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Pos"/>
-            <order id1="ct_CjSUBPnREL" id2="ct_CjSUB"/>
-            <order id1="ct_ftpc" id2="ct_ft"/>
-            <order id1="ct_NNS" id2="ct_SpTag"/>
-            <order id1="ct_neg" id2="ct_Logic"/>
-            <order id1="ct_ptc" id2="ct_pt"/>
-            <order id1="ct_RbREL" id2="ct_Rb"/>
-            <order id1="ct_Rb" id2="ct_Pos"/>
-            <order id1="ct_MkPOS" id2="ct_Mk"/>
-            <order id1="ct_RbINT_REL" id2="ct_RbREL"/>
-            <order id1="ct_UH" id2="ct_SpTag"/>
-            <order id1="ct_PnDEM" id2="ct_Pn"/>
-            <order id1="ct_SYM" id2="ct_SpTag"/>
             <order id1="ct_(" id2="ct_SpTag"/>
-            <order id1="ct_Nn" id2="ct_Pos"/>
-            <order id1="ct_ftc" id2="ct_cont"/>
-            <order id1="ct_ind" id2="ct_Mood"/>
-            <order id1="ct_CjCRD" id2="ct_Cj"/>
-            <order id1="ct_EX" id2="ct_SpTag"/>
-            <order id1="ct_VBG" id2="ct_SpTag"/>
-            <order id1="ct_linf" id2="ct_inf"/>
-            <order id1="ct_Person" id2="ct_Attr"/>
-            <order id1="ct_NmORD" id2="ct_Nm"/>
-            <order id1="ct_pts" id2="ct_pt"/>
-            <order id1="ct_ftps" id2="ct_perf"/>
-            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Pos"/>
-            <order id1="ct_ptpc" id2="ct_pt"/>
-            <order id1="ct_RbPLC_Pos" id2="ct_RbPLC"/>
-            <order id1="ct_NNP" id2="ct_SpTag"/>
-            <order id1="ct_pspc" id2="ct_cont"/>
-            <order id1="ct_NmRDI" id2="ct_Nm"/>
-            <order id1="ct_sup" id2="ct_Comparison"/>
-            <order id1="ct_PpPRE" id2="ct_Pp"/>
-            <order id1="ct_Logic" id2="ct_Attr"/>
-            <order id1="ct_vnVb" id2="ct_Vb"/>
-            <order id1="ct_psc" id2="ct_cont"/>
-            <order id1="ct_Attr" id2="ct_Top"/>
-            <order id1="ct_ArIDF" id2="ct_Ar"/>
-            <order id1="ct_CjSUBPnREL" id2="ct_PnREL"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_NnCOM"/>
-            <order id1="ct_PnPRS" id2="ct_Pn"/>
-            <order id1="ct_rd" id2="ct_Person"/>
-            <order id1="ct_com" id2="ct_Gender"/>
-            <order id1="ct_ptpc" id2="ct_cont"/>
-            <order id1="ct_JJS" id2="ct_SpTag"/>
-            <order id1="ct_fttc" id2="ct_cont"/>
+            <order id1="ct_PpCjSUB" id2="ct_CjSUB"/>
             <order id1="ct_qst" id2="ct_Intention"/>
-            <order id1="ct_ftts" id2="ct_itpt"/>
-            <order id1="ct_Pos" id2="ct_Top"/>
-            <order id1="ct_nom" id2="ct_Case"/>
-            <order id1="ct_DT" id2="ct_SpTag"/>
-            <order id1="ct_ptps" id2="ct_simp"/>
-            <order id1="ct_-RRB-" id2="ct_)"/>
-            <order id1="ct_RbPLC_Dst" id2="ct_RbPLC"/>
-            <order id1="ct_TO" id2="ct_SpTag"/>
-            <order id1="ct_RBR" id2="ct_SpTag"/>
-            <order id1="ct_Aspect" id2="ct_Tense"/>
-            <order id1="ct_RbMNN" id2="ct_Rb"/>
-            <order id1="ct_wnVb" id2="ct_Vb"/>
-            <order id1="ct_PpCjSUB" id2="ct_Pp"/>
-            <order id1="ct_MD" id2="ct_SpTag"/>
-            <order id1="ct_RbEX" id2="ct_Rb"/>
-            <order id1="ct_sbj" id2="ct_Mood"/>
-            <order id1="ct_Tense" id2="ct_Attr"/>
-            <order id1="ct_JjPnPOS" id2="ct_PnPOS"/>
-            <order id1="ct_dat" id2="ct_Case"/>
-            <order id1="ct_fts" id2="ct_ft"/>
-            <order id1="ct_ptc" id2="ct_cont"/>
-            <order id1="ct_psps" id2="ct_perf"/>
-            <order id1="ct_#" id2="ct_SpTag"/>
-            <order id1="ct_Gender" id2="ct_Attr"/>
-            <order id1="ct_wnRb" id2="ct_Rb"/>
-            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Dst"/>
-            <order id1="ct_sinf" id2="ct_inf"/>
-            <order id1="ct_fem" id2="ct_Gender"/>
-            <order id1="ct_VBZ" id2="ct_SpTag"/>
-            <order id1="ct_JJ" id2="ct_SpTag"/>
-            <order id1="ct_RB" id2="ct_SpTag"/>
-            <order id1="ct_imp" id2="ct_Mood"/>
-            <order id1="ct_NN" id2="ct_SpTag"/>
-            <order id1="ct_exc" id2="ct_Intention"/>
-            <order id1="ct_WRB" id2="ct_SpTag"/>
-            <order id1="ct_aff" id2="ct_Logic"/>
-            <order id1="ct_," id2="ct_SpTag"/>
-            <order id1="ct_FW" id2="ct_SpTag"/>
-            <order id1="ct_nd" id2="ct_Person"/>
-            <order id1="ct_NmRBV" id2="ct_Nm"/>
-            <order id1="ct_Vb" id2="ct_Pos"/>
-            <order id1="ct_ftc" id2="ct_ft"/>
-            <order id1="ct_RbINT" id2="ct_Rb"/>
+            <order id1="ct_sup" id2="ct_Comparison"/>
+            <order id1="ct_ps" id2="ct_Time"/>
             <order id1="ct_Pp" id2="ct_Pos"/>
-            <order id1="ct_cnd" id2="ct_Mood"/>
-            <order id1="ct_PRP" id2="ct_SpTag"/>
-            <order id1="ct_RbINT_REL" id2="ct_RbINT"/>
-            <order id1="ct_RP" id2="ct_SpTag"/>
-            <order id1="ct_fttc" id2="ct_itpt"/>
-            <order id1="ct_cmd" id2="ct_Intention"/>
-            <order id1="ct_)" id2="ct_SpTag"/>
-            <order id1="ct_NnCOL" id2="ct_Nn"/>
-            <order id1="ct_PnREF" id2="ct_Pn"/>
-            <order id1="ct_pspc" id2="ct_perf"/>
-            <order id1="ct_ptps" id2="ct_perf"/>
-            <order id1="ct_VBN" id2="ct_SpTag"/>
-            <order id1="ct_ftpc" id2="ct_perf"/>
-            <order id1="ct_Cj" id2="ct_Pos"/>
-            <order id1="ct_itpt" id2="ct_Relativity"/>
-            <order id1="ct_JjREL" id2="ct_Jj"/>
-            <order id1="ct_cmp" id2="ct_Comparison"/>
-            <order id1="ct_WDT" id2="ct_SpTag"/>
-            <order id1="ct_pts" id2="ct_simp"/>
-            <order id1="ct_st" id2="ct_Person"/>
-            <order id1="ct_msc" id2="ct_Gender"/>
-            <order id1="ct_LS" id2="ct_SpTag"/>
-            <order id1="ct_WP$" id2="ct_SpTag"/>
-            <order id1="ct_VBD" id2="ct_SpTag"/>
-            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Dir"/>
-            <order id1="ct_." id2="ct_SpTag"/>
-            <order id1="ct_VBP" id2="ct_SpTag"/>
-            <order id1="ct_CC" id2="ct_SpTag"/>
-            <order id1="ct_JjPOS" id2="ct_Jj"/>
-            <order id1="ct_psc" id2="ct_ps"/>
-            <order id1="ct_wnJj" id2="ct_Jj"/>
-            <order id1="ct_fts" id2="ct_simp"/>
-            <order id1="ct_PnPOS" id2="ct_Pn"/>
-            <order id1="ct_PnIDF" id2="ct_Pn"/>
-            <order id1="ct_VP" id2="ct_SpTag"/>
-            <order id1="ct_ger" id2="ct_Mood"/>
-            <order id1="ct_JjDEM" id2="ct_Jj"/>
-            <order id1="ct_NNPS" id2="ct_SpTag"/>
-            <order id1="ct_psps" id2="ct_ps"/>
-            <order id1="ct_Nm" id2="ct_Pos"/>
-            <order id1="ct_JjPnPOS" id2="ct_JjPOS"/>
-            <order id1="ct_ftps" id2="ct_simp"/>
+            <order id1="ct_NnPRT" id2="ct_Nn"/>
+            <order id1="ct_Md" id2="ct_Vb"/>
             <order id1="ct_Pn" id2="ct_Pos"/>
-            <order id1="ct_cont" id2="ct_Aspect"/>
             <order id1="ct_Relativity" id2="ct_Tense"/>
-            <order id1="ct_Article" id2="ct_Attr"/>
-            <order id1="ct_idf" id2="ct_Article"/>
-            <order id1="ct_def" id2="ct_Article"/>
+            <order id1="ct_wnVb" id2="ct_Vb"/>
+            <order id1="ct_VBG" id2="ct_SpTag"/>
+            <order id1="ct_pspc" id2="ct_perf"/>
+            <order id1="ct_Number" id2="ct_Attr"/>
+            <order id1="ct_NmRMU" id2="ct_Nm"/>
+            <order id1="ct_MkPOS" id2="ct_Mk"/>
+            <order id1="ct_Attr" id2="ct_Top"/>
+            <order id1="ct_PnDEM" id2="ct_Pn"/>
+            <order id1="ct_pt" id2="ct_Time"/>
+            <order id1="ct_SpTag" id2="ct_Pos"/>
+            <order id1="ct_fts" id2="ct_ft"/>
+            <order id1="ct_Ar" id2="ct_Pos"/>
+            <order id1="ct_:" id2="ct_SpTag"/>
+            <order id1="ct_gen" id2="ct_Case"/>
+            <order id1="ct_VBZ" id2="ct_SpTag"/>
+            <order id1="ct_VBP" id2="ct_SpTag"/>
+            <order id1="ct_NNP" id2="ct_SpTag"/>
+            <order id1="ct_VBD" id2="ct_SpTag"/>
+            <order id1="ct_perf" id2="ct_Relativity"/>
+            <order id1="ct_ftts" id2="ct_simp"/>
+            <order id1="ct_RBR" id2="ct_SpTag"/>
+            <order id1="ct_CjCRD" id2="ct_Cj"/>
+            <order id1="ct_msc" id2="ct_Gender"/>
+            <order id1="ct_ind" id2="ct_Mood"/>
+            <order id1="ct_ptps" id2="ct_pt"/>
+            <order id1="ct_PnPRS" id2="ct_Pn"/>
+            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Pos"/>
+            <order id1="ct_wnNn" id2="ct_Nn"/>
+            <order id1="ct_Jj" id2="ct_Pos"/>
+            <order id1="ct_Case" id2="ct_Attr"/>
+            <order id1="ct_ftpc" id2="ct_perf"/>
+            <order id1="ct_VB" id2="ct_SpTag"/>
+            <order id1="ct_Intention" id2="ct_Attr"/>
+            <order id1="ct_EX" id2="ct_SpTag"/>
+            <order id1="ct_SYM" id2="ct_SpTag"/>
+            <order id1="ct_ArIDF" id2="ct_Ar"/>
+            <order id1="ct_inf" id2="ct_Mood"/>
+            <order id1="ct_pas" id2="ct_Mood"/>
+            <order id1="ct_psps" id2="ct_perf"/>
+            <order id1="ct_dat" id2="ct_Case"/>
+            <order id1="ct_NnCOM" id2="ct_Nn"/>
+            <order id1="ct_PRP$" id2="ct_SpTag"/>
+            <order id1="ct_RbPLC_Dst" id2="ct_RbPLC"/>
+            <order id1="ct_$" id2="ct_SpTag"/>
+            <order id1="ct_Rb" id2="ct_Pos"/>
+            <order id1="ct_UH" id2="ct_SpTag"/>
+            <order id1="ct_PnIDF" id2="ct_Pn"/>
+            <order id1="ct_ftc" id2="ct_cont"/>
+            <order id1="ct_RP" id2="ct_SpTag"/>
+            <order id1="ct_JJS" id2="ct_SpTag"/>
+            <order id1="ct_st" id2="ct_Person"/>
+            <order id1="ct_." id2="ct_SpTag"/>
+            <order id1="ct_-OPQ-" id2="ct_SpTag"/>
+            <order id1="ct_psps" id2="ct_ps"/>
+            <order id1="ct_NmORD" id2="ct_Nm"/>
+            <order id1="ct_ftc" id2="ct_ft"/>
+            <order id1="ct_ft" id2="ct_Time"/>
+            <order id1="ct_TO" id2="ct_SpTag"/>
+            <order id1="ct_fttc" id2="ct_cont"/>
+            <order id1="ct_PnREC" id2="ct_Pn"/>
+            <order id1="ct_exc" id2="ct_Intention"/>
+            <order id1="ct_," id2="ct_SpTag"/>
+            <order id1="ct_VBN" id2="ct_SpTag"/>
+            <order id1="ct_ptps" id2="ct_simp"/>
+            <order id1="ct_POS" id2="ct_SpTag"/>
+            <order id1="ct_Comparison" id2="ct_Attr"/>
+            <order id1="ct_NnCOMPnIDF" id2="ct_PnIDF"/>
+            <order id1="ct_cmp" id2="ct_Comparison"/>
+            <order id1="ct_ftpc" id2="ct_cont"/>
+            <order id1="ct_wnRb" id2="ct_Rb"/>
+            <order id1="ct_nom" id2="ct_Case"/>
+            <order id1="ct_RbPLC_Pos" id2="ct_RbPLC"/>
+            <order id1="ct_ftps" id2="ct_perf"/>
+            <order id1="ct_Tense" id2="ct_Attr"/>
+            <order id1="ct_par" id2="ct_Mood"/>
+            <order id1="ct_PRP" id2="ct_SpTag"/>
+            <order id1="ct_itpt" id2="ct_Relativity"/>
+            <order id1="ct_WDT" id2="ct_SpTag"/>
+            <order id1="ct_NnCOL" id2="ct_Nn"/>
+            <order id1="ct_FW" id2="ct_SpTag"/>
+            <order id1="ct_PnPOS" id2="ct_Pn"/>
+            <order id1="ct_Logic" id2="ct_Attr"/>
             <order id1="ct_Uh" id2="ct_Pos"/>
+            <order id1="ct_RbMNN" id2="ct_Rb"/>
+            <order id1="ct_RBS" id2="ct_SpTag"/>
+            <order id1="ct_RbREL" id2="ct_Rb"/>
+            <order id1="ct_fttc" id2="ct_itpt"/>
+            <order id1="ct_CjSUBPnREL" id2="ct_CjSUB"/>
+            <order id1="ct_nd" id2="ct_Person"/>
+            <order id1="ct_CjSUBPnREL" id2="ct_PnREL"/>
+            <order id1="ct_RbINT_REL" id2="ct_RbINT"/>
+            <order id1="ct_-RRB-" id2="ct_)"/>
+            <order id1="ct_ger" id2="ct_Mood"/>
+            <order id1="ct_cont" id2="ct_Aspect"/>
+            <order id1="ct_ftts" id2="ct_itpt"/>
+            <order id1="ct_com" id2="ct_Gender"/>
+            <order id1="ct_PDT" id2="ct_SpTag"/>
+            <order id1="ct_PpRbPLC_Dir" id2="ct_RbPLC_Dir"/>
+            <order id1="ct_S" id2="ct_SpTag"/>
+            <order id1="ct_Time" id2="ct_Tense"/>
+            <order id1="ct_pss" id2="ct_ps"/>
+            <order id1="ct_PpCjSUB" id2="ct_Pp"/>
+            <order id1="ct_RbPLC_Dir" id2="ct_RbPLC"/>
+            <order id1="ct_psps" id2="ct_simp"/>
+            <order id1="ct_Vb" id2="ct_Pos"/>
+            <order id1="ct_CjSUB" id2="ct_Cj"/>
+            <order id1="ct_fts" id2="ct_simp"/>
+            <order id1="ct_Mood" id2="ct_Attr"/>
+            <order id1="ct_simp" id2="ct_Aspect"/>
+            <order id1="ct_VP" id2="ct_SpTag"/>
+            <order id1="ct_Gender" id2="ct_Attr"/>
+            <order id1="ct_plu" id2="ct_Number"/>
+            <order id1="ct_vnVb" id2="ct_Vb"/>
+            <order id1="ct_DT" id2="ct_SpTag"/>
+            <order id1="ct_-CLQ-" id2="ct_SpTag"/>
+            <order id1="ct_JJR" id2="ct_SpTag"/>
+            <order id1="ct_PnREL" id2="ct_Pn"/>
+            <order id1="ct_aff" id2="ct_Logic"/>
+            <order id1="ct_Cj" id2="ct_Pos"/>
+            <order id1="ct_NmRBV" id2="ct_Nm"/>
+            <order id1="ct_pspc" id2="ct_ps"/>
+            <order id1="ct_ptps" id2="ct_perf"/>
+            <order id1="ct_rd" id2="ct_Person"/>
+            <order id1="ct_req" id2="ct_Intention"/>
+            <order id1="ct_NnPRP" id2="ct_Nn"/>
+            <order id1="ct_ptpc" id2="ct_pt"/>
+            <order id1="ct_JjINT" id2="ct_Jj"/>
+            <order id1="ct_CD" id2="ct_SpTag"/>
+            <order id1="ct_fttc" id2="ct_ft"/>
+            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Pos"/>
+            <order id1="ct_ptc" id2="ct_cont"/>
+            <order id1="ct_ptpc" id2="ct_cont"/>
+            <order id1="ct_acc" id2="ct_Case"/>
+            <order id1="ct_sbj" id2="ct_Mood"/>
+            <order id1="ct_ftps" id2="ct_ft"/>
+            <order id1="ct_JJ" id2="ct_SpTag"/>
+            <order id1="ct_ptc" id2="ct_pt"/>
+            <order id1="ct_ftts" id2="ct_ft"/>
+            <order id1="ct_NN" id2="ct_SpTag"/>
+            <order id1="ct_Pos" id2="ct_Top"/>
+            <order id1="ct_ftps" id2="ct_simp"/>
+            <order id1="ct_ptpc" id2="ct_perf"/>
+            <order id1="ct_WP" id2="ct_SpTag"/>
+            <order id1="ct_RbINT" id2="ct_Rb"/>
+            <order id1="ct_wnJj" id2="ct_Jj"/>
+            <order id1="ct_linf" id2="ct_inf"/>
+            <order id1="ct_Mk" id2="ct_Pos"/>
+            <order id1="ct_MD" id2="ct_SpTag"/>
+            <order id1="ct_PpPOS" id2="ct_Pp"/>
+            <order id1="ct_NmRDI" id2="ct_Nm"/>
+            <order id1="ct_NNS" id2="ct_SpTag"/>
+            <order id1="ct_PnREF" id2="ct_Pn"/>
+            <order id1="ct_Article" id2="ct_Attr"/>
+            <order id1="ct_JjPnPOS" id2="ct_JjPOS"/>
+            <order id1="ct_pspc" id2="ct_cont"/>
+            <order id1="ct_JjPnDEM" id2="ct_PnDEM"/>
+            <order id1="ct_pss" id2="ct_simp"/>
+            <order id1="ct_WP$" id2="ct_SpTag"/>
+            <order id1="ct_PpPRE" id2="ct_Pp"/>
+            <order id1="ct_JjPnPOS" id2="ct_PnPOS"/>
+            <order id1="ct_PpRbPLC_Dir" id2="ct_Pp"/>
+            <order id1="ct_neg" id2="ct_Logic"/>
+            <order id1="ct_#" id2="ct_SpTag"/>
+            <order id1="ct_PpTo" id2="ct_PpPRE"/>
+            <order id1="ct_Aspect" id2="ct_Tense"/>
+            <order id1="ct_IN" id2="ct_SpTag"/>
+            <order id1="ct_JjDEM" id2="ct_Jj"/>
+            <order id1="ct_JjIDF" id2="ct_Jj"/>
+            <order id1="ct_RB" id2="ct_SpTag"/>
+            <order id1="ct_sinf" id2="ct_inf"/>
+            <order id1="ct_-LRB-" id2="ct_("/>
+            <order id1="ct_ftpc" id2="ct_ft"/>
+            <order id1="ct_pts" id2="ct_pt"/>
+            <order id1="ct_psc" id2="ct_cont"/>
+            <order id1="ct_NmCRD" id2="ct_Nm"/>
+            <order id1="ct_JjPnDEM" id2="ct_JjDEM"/>
+            <order id1="ct_ArDEF" id2="ct_Ar"/>
+            <order id1="ct_def" id2="ct_Article"/>
+            <order id1="ct_cnd" id2="ct_Mood"/>
+            <order id1="ct_WRB" id2="ct_SpTag"/>
+            <order id1="ct_JjPOS" id2="ct_Jj"/>
+            <order id1="ct_RbPLC_DstPos" id2="ct_RbPLC_Dst"/>
+            <order id1="ct_LS" id2="ct_SpTag"/>
+            <order id1="ct_JjREL" id2="ct_Jj"/>
+            <order id1="ct_Person" id2="ct_Attr"/>
+            <order id1="ct_RbINT_REL" id2="ct_RbREL"/>
+            <order id1="ct_RbPLC_DirPos" id2="ct_RbPLC_Dir"/>
+            <order id1="ct_neu" id2="ct_Gender"/>
+            <order id1="ct_NnCOMPnIDF" id2="ct_NnCOM"/>
+            <order id1="ct_stm" id2="ct_Intention"/>
+            <order id1="ct_RbPLC" id2="ct_Rb"/>
+            <order id1="ct_Nm" id2="ct_Pos"/>
+            <order id1="ct_pts" id2="ct_simp"/>
+            <order id1="ct_)" id2="ct_SpTag"/>
+            <order id1="ct_idf" id2="ct_Article"/>
+            <order id1="ct_RbEX" id2="ct_Rb"/>
+            <order id1="ct_CC" id2="ct_SpTag"/>
+            <order id1="ct_fem" id2="ct_Gender"/>
+            <order id1="ct_cmd" id2="ct_Intention"/>
+            <order id1="ct_PnINT" id2="ct_Pn"/>
+            <order id1="ct_psc" id2="ct_ps"/>
+            <order id1="ct_sng" id2="ct_Number"/>
+            <order id1="ct_NNPS" id2="ct_SpTag"/>
+            <order id1="ct_Nn" id2="ct_Pos"/>
+            <order id1="ct_imp" id2="ct_Mood"/>
         </conceptTypes>
         <relationTypes>
             <rtype id="rt_rcmod" idSignature="ct_Pos ct_Pos" label="rcmod">
@@ -1026,89 +1026,89 @@
             <rtype id="rt_MatProd" idSignature="ct_Vb ct_Pos" label="MatProd">
                 <translation descr="" label="MatProd" lang="en"/>
             </rtype>
-            <order id1="rt_conj" id2="rt_dep"/>
-            <order id1="rt_xsubj" id2="rt_sdep"/>
-            <order id1="rt_cop" id2="rt_aux"/>
-            <order id1="rt_abbrev" id2="rt_mod"/>
-            <order id1="rt_expl" id2="rt_dep"/>
-            <order id1="rt_neg" id2="rt_advmod"/>
-            <order id1="rt_dep" id2="rt_SpRel"/>
-            <order id1="rt_Cause" id2="rt_ThemRole"/>
-            <order id1="rt_csubj" id2="rt_subj"/>
-            <order id1="rt_number" id2="rt_mod"/>
-            <order id1="rt_nsubj" id2="rt_subj"/>
-            <order id1="rt_csubjpass" id2="rt_csubj"/>
-            <order id1="rt_Agent" id2="rt_ThemRole"/>
             <order id1="rt_auxpass" id2="rt_aux"/>
-            <order id1="rt_agent" id2="rt_arg"/>
-            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
-            <order id1="rt_tmod" id2="rt_mod"/>
+            <order id1="rt_ref" id2="rt_dep"/>
+            <order id1="rt_dep" id2="rt_SpRel"/>
+            <order id1="rt_appos" id2="rt_mod"/>
+            <order id1="rt_Topic" id2="rt_ThemRole"/>
+            <order id1="rt_arg" id2="rt_dep"/>
             <order id1="rt_nn" id2="rt_mod"/>
-            <order id1="rt_acomp" id2="rt_comp"/>
+            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
+            <order id1="rt_measure" id2="rt_mod"/>
+            <order id1="rt_conj" id2="rt_dep"/>
+            <order id1="rt_Cause" id2="rt_ThemRole"/>
+            <order id1="rt_cc" id2="rt_dep"/>
+            <order id1="rt_poss" id2="rt_mod"/>
+            <order id1="rt_abbrev" id2="rt_mod"/>
+            <order id1="rt_pcomp" id2="rt_comp"/>
+            <order id1="rt_tmod" id2="rt_mod"/>
+            <order id1="rt_xsubj" id2="rt_sdep"/>
+            <order id1="rt_neg" id2="rt_advmod"/>
+            <order id1="rt_iobj" id2="rt_obj"/>
+            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
+            <order id1="rt_dobj" id2="rt_obj"/>
+            <order id1="rt_preconj" id2="rt_mod"/>
+            <order id1="rt_Material" id2="rt_MatProd"/>
+            <order id1="rt_attr" id2="rt_comp"/>
             <order id1="rt_Beneficiary" id2="rt_ThemRole"/>
-            <order id1="rt_partmod" id2="rt_mod"/>
-            <order id1="rt_mark" id2="rt_comp"/>
-            <order id1="rt_det" id2="rt_mod"/>
-            <order id1="rt_aux" id2="rt_dep"/>
-            <order id1="rt_possessive" id2="rt_mod"/>
+            <order id1="rt_sdep" id2="rt_dep"/>
             <order id1="rt_ccomp" id2="rt_comp"/>
-            <order id1="rt_mod" id2="rt_dep"/>
-            <order id1="rt_Predicate" id2="rt_ThemRole"/>
-            <order id1="rt_subj" id2="rt_arg"/>
-            <order id1="rt_complm" id2="rt_comp"/>
-            <order id1="rt_MatProd" id2="rt_ThemRole"/>
-            <order id1="rt_Source" id2="rt_LocDstSrc"/>
-            <order id1="rt_purpcl" id2="rt_mod"/>
-            <order id1="rt_advcl" id2="rt_mod"/>
+            <order id1="rt_number" id2="rt_mod"/>
+            <order id1="rt_expl" id2="rt_dep"/>
             <order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
             <order id1="rt_quantmod" id2="rt_mod"/>
-            <order id1="rt_predet" id2="rt_mod"/>
-            <order id1="rt_punct" id2="rt_dep"/>
-            <order id1="rt_sdep" id2="rt_dep"/>
-            <order id1="rt_arg" id2="rt_dep"/>
-            <order id1="rt_prt" id2="rt_mod"/>
-            <order id1="rt_rcmod" id2="rt_mod"/>
-            <order id1="rt_Patient" id2="rt_ThemRole"/>
-            <order id1="rt_preconj" id2="rt_mod"/>
-            <order id1="rt_obj" id2="rt_comp"/>
-            <order id1="rt_prepc" id2="rt_prep"/>
-            <order id1="rt_pobj" id2="rt_obj"/>
-            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
-            <order id1="rt_Attribute" id2="rt_ThemRole"/>
-            <order id1="rt_xcomp" id2="rt_comp"/>
-            <order id1="rt_Product" id2="rt_MatProd"/>
-            <order id1="rt_Recipent" id2="rt_ThemRole"/>
-            <order id1="rt_measure" id2="rt_mod"/>
-            <order id1="rt_iobj" id2="rt_obj"/>
-            <order id1="rt_Instrument" id2="rt_ThemRole"/>
-            <order id1="rt_infmod" id2="rt_mod"/>
-            <order id1="rt_amod" id2="rt_mod"/>
-            <order id1="rt_advmod" id2="rt_mod"/>
-            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
-            <order id1="rt_attr" id2="rt_comp"/>
-            <order id1="rt_Location" id2="rt_LocDstSrc"/>
-            <order id1="rt_poss" id2="rt_mod"/>
-            <order id1="rt_Asset" id2="rt_ThemRole"/>
             <order id1="rt_parataxis" id2="rt_dep"/>
-            <order id1="rt_ref" id2="rt_dep"/>
-            <order id1="rt_comp" id2="rt_arg"/>
-            <order id1="rt_Time" id2="rt_ThemRole"/>
-            <order id1="rt_Material" id2="rt_MatProd"/>
-            <order id1="rt_Extent" id2="rt_ThemRole"/>
-            <order id1="rt_compl" id2="rt_comp"/>
-            <order id1="rt_Actor" id2="rt_ThemRole"/>
-            <order id1="rt_rel" id2="rt_comp"/>
-            <order id1="rt_pcomp" id2="rt_comp"/>
-            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
-            <order id1="rt_num" id2="rt_mod"/>
-            <order id1="rt_prep" id2="rt_mod"/>
-            <order id1="rt_Topic" id2="rt_ThemRole"/>
-            <order id1="rt_appos" id2="rt_mod"/>
-            <order id1="rt_Theme" id2="rt_ThemRole"/>
-            <order id1="rt_dobj" id2="rt_obj"/>
             <order id1="rt_Stimulus" id2="rt_ThemRole"/>
-            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
-            <order id1="rt_cc" id2="rt_dep"/>
+            <order id1="rt_prep" id2="rt_mod"/>
+            <order id1="rt_partmod" id2="rt_mod"/>
+            <order id1="rt_infmod" id2="rt_mod"/>
+            <order id1="rt_Predicate" id2="rt_ThemRole"/>
+            <order id1="rt_MatProd" id2="rt_ThemRole"/>
+            <order id1="rt_advcl" id2="rt_mod"/>
+            <order id1="rt_Product" id2="rt_MatProd"/>
+            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
+            <order id1="rt_Theme" id2="rt_ThemRole"/>
+            <order id1="rt_subj" id2="rt_arg"/>
+            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
+            <order id1="rt_advmod" id2="rt_mod"/>
+            <order id1="rt_nsubj" id2="rt_subj"/>
+            <order id1="rt_Asset" id2="rt_ThemRole"/>
+            <order id1="rt_mark" id2="rt_comp"/>
+            <order id1="rt_obj" id2="rt_comp"/>
+            <order id1="rt_csubjpass" id2="rt_csubj"/>
+            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
+            <order id1="rt_Patient" id2="rt_ThemRole"/>
+            <order id1="rt_Instrument" id2="rt_ThemRole"/>
+            <order id1="rt_Time" id2="rt_ThemRole"/>
+            <order id1="rt_Attribute" id2="rt_ThemRole"/>
+            <order id1="rt_amod" id2="rt_mod"/>
+            <order id1="rt_possessive" id2="rt_mod"/>
+            <order id1="rt_rel" id2="rt_comp"/>
+            <order id1="rt_aux" id2="rt_dep"/>
+            <order id1="rt_Actor" id2="rt_ThemRole"/>
+            <order id1="rt_acomp" id2="rt_comp"/>
+            <order id1="rt_xcomp" id2="rt_comp"/>
+            <order id1="rt_prepc" id2="rt_prep"/>
+            <order id1="rt_Source" id2="rt_LocDstSrc"/>
+            <order id1="rt_compl" id2="rt_comp"/>
+            <order id1="rt_predet" id2="rt_mod"/>
+            <order id1="rt_num" id2="rt_mod"/>
+            <order id1="rt_punct" id2="rt_dep"/>
+            <order id1="rt_det" id2="rt_mod"/>
+            <order id1="rt_Location" id2="rt_LocDstSrc"/>
+            <order id1="rt_pobj" id2="rt_obj"/>
+            <order id1="rt_purpcl" id2="rt_mod"/>
+            <order id1="rt_prt" id2="rt_mod"/>
+            <order id1="rt_agent" id2="rt_arg"/>
+            <order id1="rt_mod" id2="rt_dep"/>
+            <order id1="rt_rcmod" id2="rt_mod"/>
+            <order id1="rt_comp" id2="rt_arg"/>
+            <order id1="rt_complm" id2="rt_comp"/>
+            <order id1="rt_cop" id2="rt_aux"/>
+            <order id1="rt_Agent" id2="rt_ThemRole"/>
+            <order id1="rt_Recipent" id2="rt_ThemRole"/>
+            <order id1="rt_Extent" id2="rt_ThemRole"/>
+            <order id1="rt_csubj" id2="rt_subj"/>
         </relationTypes>
         <nestingTypes>
             <ntype id="_nt0" label="Nesting">
@@ -1198,6 +1198,42 @@
             <couple idC1="_c87" idC2="_c89"/>
         </conPts>
     </rule>
+    <rule id="_rule40">
+        <hypt>
+            <graph id="_rule40_hypt" label="proc_mood_ftpsWill" nature="rule" set="default_set">
+                <concept id="_c95" idMarker="will" referent="individual" x="160" y="110">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <concept id="_c96" x="160" y="250">
+                    <type id="ct_Vb"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c93" idMarker="have" referent="individual" x="160" y="400">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r40" idType="rt_aux" x="50" y="170"/>
+                <relation id="_r41" idType="rt_aux" x="70" y="330"/>
+                <edge cid="_c93" label="1" rid="_r41"/>
+                <edge cid="_c96" label="2" rid="_r41"/>
+                <edge cid="_c95" label="1" rid="_r40"/>
+                <edge cid="_c96" label="2" rid="_r40"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule40_conc">
+                <concept id="_c94" x="470" y="250">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ftps"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c96" idC2="_c94"/>
+        </conPts>
+    </rule>
     <rule id="_rule21">
         <hypt>
             <graph id="_rule21_hypt" label="proc_mood_pspc" nature="rule" set="default_set">
@@ -1234,42 +1270,6 @@
         </conc>
         <conPts>
             <couple idC1="_c78" idC2="_c80"/>
-        </conPts>
-    </rule>
-    <rule id="_rule40">
-        <hypt>
-            <graph id="_rule40_hypt" label="proc_mood_ftpsWill" nature="rule" set="default_set">
-                <concept id="_c95" idMarker="will" referent="individual" x="160" y="110">
-                    <type id="ct_Md"/>
-                    <type id="ct_ps"/>
-                </concept>
-                <concept id="_c96" x="160" y="250">
-                    <type id="ct_Vb"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <concept id="_c93" idMarker="have" referent="individual" x="160" y="400">
-                    <type id="ct_Vb"/>
-                    <type id="ct_sinf"/>
-                </concept>
-                <relation id="_r40" idType="rt_aux" x="50" y="170"/>
-                <relation id="_r41" idType="rt_aux" x="70" y="330"/>
-                <edge cid="_c93" label="1" rid="_r41"/>
-                <edge cid="_c96" label="2" rid="_r41"/>
-                <edge cid="_c95" label="1" rid="_r40"/>
-                <edge cid="_c96" label="2" rid="_r40"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule40_conc">
-                <concept id="_c94" x="470" y="250">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_ftps"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c96" idC2="_c94"/>
         </conPts>
     </rule>
     <rule id="_rule24">
@@ -1490,7 +1490,7 @@
     </rule>
     <rule id="_rule45">
         <hypt>
-            <graph id="_rule45_hypt" label="proc_article_def" nature="rule">
+            <graph id="_rule45_hypt" label="proc_article_def" nature="rule" set="default_set">
                 <concept id="_c2" idType="ct_Pos" x="130" y="160"/>
                 <concept id="_c3" idType="ct_ArDEF" x="140" y="400"/>
                 <relation id="_r1" idType="rt_det" x="60" y="260"/>
@@ -1512,7 +1512,7 @@
     </rule>
     <rule id="_rule46">
         <hypt>
-            <graph id="_rule46_hypt" label="proc_article_idf" nature="rule">
+            <graph id="_rule46_hypt" label="proc_article_idf" nature="rule" set="default_set">
                 <concept id="_c4" idType="ct_Pos" x="120" y="140"/>
                 <concept id="_c5" idType="ct_ArIDF" x="130" y="380"/>
                 <relation id="_r2" idType="rt_det" x="50" y="240"/>
@@ -1534,7 +1534,7 @@
     </rule>
     <rule id="_rule47">
         <hypt>
-            <graph id="_rule47_hypt" label="proc_article_def2" nature="rule">
+            <graph id="_rule47_hypt" label="proc_article_def2" nature="rule" set="default_set">
                 <concept id="_c7" idType="ct_Nn" x="180" y="430"/>
                 <concept id="_c8" idType="ct_Nn" x="120" y="230"/>
                 <concept id="_c10" idType="ct_ArDEF" x="80" y="20"/>
@@ -1565,7 +1565,7 @@
     </rule>
     <rule id="_rule48">
         <hypt>
-            <graph id="_rule48_hypt" label="proc_article_idf2" nature="rule">
+            <graph id="_rule48_hypt" label="proc_article_idf2" nature="rule" set="default_set">
                 <concept id="_c18" idType="ct_Nn" x="160" y="460"/>
                 <concept id="_c16" idType="ct_Nn" x="100" y="260"/>
                 <concept id="_c15" idType="ct_ArIDF" x="60" y="50"/>
@@ -1684,7 +1684,7 @@
     </rule>
     <rule id="_rule43">
         <hypt>
-            <graph id="_rule43_hypt" label="proc_mood_fttsShall" nature="rule" set="default_set">
+            <graph id="_rule43_hypt" label="#proc_mood_fttsShall" nature="rule" set="default_set">
                 <concept id="_c146" x="90" y="110">
                     <type id="ct_Vb"/>
                     <type id="ct_sinf"/>
@@ -2066,6 +2066,36 @@
             <couple idC1="_c153" idC2="_c157"/>
         </conPts>
     </rule>
+    <rule id="_rule14">
+        <hypt>
+            <graph id="_rule14_hypt" label="proc_mood_ptsDo" nature="rule" set="default_set">
+                <concept id="_c61" idMarker="do" referent="individual" x="140" y="90">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c62" x="140" y="230">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <relation id="_r24" idType="rt_aux" x="50" y="150"/>
+                <edge cid="_c61" label="1" rid="_r24"/>
+                <edge cid="_c62" label="2" rid="_r24"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule14_conc">
+                <concept id="_c65" x="390" y="230">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c62" idC2="_c65"/>
+        </conPts>
+    </rule>
     <rule id="_rule32">
         <hypt>
             <graph id="_rule32_hypt" label="proc_mood_ptpc" nature="rule" set="default_set">
@@ -2101,65 +2131,6 @@
         </conc>
         <conPts>
             <couple idC1="_c147" idC2="_c149"/>
-        </conPts>
-    </rule>
-    <rule id="_rule14">
-        <hypt>
-            <graph id="_rule14_hypt" label="proc_mood_ptsDo" nature="rule" set="default_set">
-                <concept id="_c61" idMarker="do" referent="individual" x="140" y="90">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <concept id="_c62" x="140" y="230">
-                    <type id="ct_Vb"/>
-                    <type id="ct_sinf"/>
-                </concept>
-                <relation id="_r24" idType="rt_aux" x="50" y="150"/>
-                <edge cid="_c61" label="1" rid="_r24"/>
-                <edge cid="_c62" label="2" rid="_r24"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule14_conc">
-                <concept id="_c65" x="390" y="230">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_pts"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c62" idC2="_c65"/>
-        </conPts>
-    </rule>
-    <rule id="_rule31">
-        <hypt>
-            <graph id="_rule31_hypt" label="proc_mood_fttsWill" nature="rule" set="default_set">
-                <concept id="_c143" x="110" y="170">
-                    <type id="ct_Vb"/>
-                    <type id="ct_sinf"/>
-                </concept>
-                <concept id="_c144" idMarker="will" referent="individual" x="120" y="370">
-                    <type id="ct_Md"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <relation id="_r74" idType="rt_aux" x="60" y="260"/>
-                <edge cid="_c144" label="1" rid="_r74"/>
-                <edge cid="_c143" label="2" rid="_r74"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule31_conc">
-                <concept id="_c145" x="460" y="160">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_ftts"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c143" idC2="_c145"/>
         </conPts>
     </rule>
     <rule id="_rule13">
@@ -2199,6 +2170,66 @@
         <conPts>
             <couple idC1="_c59" idC2="_c56"/>
             <couple idC1="_c58" idC2="_c60"/>
+        </conPts>
+    </rule>
+    <rule id="_rule31">
+        <hypt>
+            <graph id="_rule31_hypt" label="#proc_mood_fttsWill" nature="rule" set="default_set">
+                <concept id="_c143" x="110" y="170">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c144" idMarker="will" referent="individual" x="120" y="370">
+                    <type id="ct_Md"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <relation id="_r74" idType="rt_aux" x="60" y="260"/>
+                <edge cid="_c144" label="1" rid="_r74"/>
+                <edge cid="_c143" label="2" rid="_r74"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule31_conc">
+                <concept id="_c145" x="460" y="160">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ftts"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c143" idC2="_c145"/>
+        </conPts>
+    </rule>
+    <rule id="_rule30">
+        <hypt>
+            <graph id="_rule30_hypt" label="proc_mood_ptps3" nature="rule" set="default_set">
+                <concept id="_c137" idMarker="have" referent="individual" x="110" y="400">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <concept id="_c138" x="100" y="160">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_pt"/>
+                </concept>
+                <relation id="_r72" idType="rt_csubj" x="80" y="270"/>
+                <edge cid="_c137" label="1" rid="_r72"/>
+                <edge cid="_c138" label="2" rid="_r72"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule30_conc">
+                <concept id="_c139" x="440" y="160">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_ptps"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c138" idC2="_c139"/>
         </conPts>
     </rule>
     <rule id="_rule12">
@@ -2244,64 +2275,6 @@
             <couple idC1="_c52" idC2="_c55"/>
         </conPts>
     </rule>
-    <rule id="_rule30">
-        <hypt>
-            <graph id="_rule30_hypt" label="proc_mood_ptps3" nature="rule" set="default_set">
-                <concept id="_c137" idMarker="have" referent="individual" x="110" y="400">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <concept id="_c138" x="100" y="160">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_pt"/>
-                </concept>
-                <relation id="_r72" idType="rt_csubj" x="80" y="270"/>
-                <edge cid="_c137" label="1" rid="_r72"/>
-                <edge cid="_c138" label="2" rid="_r72"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule30_conc">
-                <concept id="_c139" x="440" y="160">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_ptps"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c138" idC2="_c139"/>
-        </conPts>
-    </rule>
-    <rule id="_rule11">
-        <hypt>
-            <graph id="_rule11_hypt" label="proc_mood_psps" nature="rule" set="default_set">
-                <concept id="_c47" idType="ct_Vb" x="60" y="80"/>
-                <concept id="_c48" idMarker="have" referent="individual" x="60" y="250">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_ps"/>
-                </concept>
-                <relation id="_r17" idType="rt_aux" x="60" y="170"/>
-                <edge cid="_c48" label="1" rid="_r17"/>
-                <edge cid="_c47" label="2" rid="_r17"/>
-            </graph>
-        </hypt>
-        <conc>
-            <graph id="_rule11_conc">
-                <concept id="_c49" x="290" y="90">
-                    <type id="ct_Vb"/>
-                    <type id="ct_ind"/>
-                    <type id="ct_psps"/>
-                </concept>
-            </graph>
-        </conc>
-        <conPts>
-            <couple idC1="_c47" idC2="_c49"/>
-        </conPts>
-    </rule>
     <rule id="_rule37">
         <hypt>
             <graph id="_rule37_hypt" label="proc_mood_ftcShall" nature="rule" set="default_set">
@@ -2338,42 +2311,31 @@
             <couple idC1="_c83" idC2="_c82"/>
         </conPts>
     </rule>
-    <rule id="_rule10">
+    <rule id="_rule11">
         <hypt>
-            <graph id="_rule10_hypt" label="proc_mood_ftsCop" nature="rule" set="default_set">
-                <concept id="_c42" idMarker="be" referent="individual" x="170" y="40">
+            <graph id="_rule11_hypt" label="proc_mood_psps" nature="rule" set="default_set">
+                <concept id="_c47" idType="ct_Vb" x="60" y="80"/>
+                <concept id="_c48" idMarker="have" referent="individual" x="60" y="250">
                     <type id="ct_Vb"/>
-                    <type id="ct_sinf"/>
-                </concept>
-                <concept id="_c43" idType="ct_Pos" x="170" y="200"/>
-                <concept id="_c44" idMarker="will" referent="individual" x="170" y="360">
-                    <type id="ct_Md"/>
+                    <type id="ct_ind"/>
                     <type id="ct_ps"/>
                 </concept>
-                <relation id="_r14" idType="rt_cop" x="60" y="120"/>
-                <relation id="_r15" idType="rt_aux" x="60" y="270"/>
-                <edge cid="_c44" label="1" rid="_r15"/>
-                <edge cid="_c43" label="2" rid="_r15"/>
-                <edge cid="_c42" label="1" rid="_r14"/>
-                <edge cid="_c43" label="2" rid="_r14"/>
+                <relation id="_r17" idType="rt_aux" x="60" y="170"/>
+                <edge cid="_c48" label="1" rid="_r17"/>
+                <edge cid="_c47" label="2" rid="_r17"/>
             </graph>
         </hypt>
         <conc>
-            <graph id="_rule10_conc">
-                <concept id="_c46" x="420" y="40">
+            <graph id="_rule11_conc">
+                <concept id="_c49" x="290" y="90">
                     <type id="ct_Vb"/>
                     <type id="ct_ind"/>
-                    <type id="ct_fts"/>
+                    <type id="ct_psps"/>
                 </concept>
-                <concept id="_c45" idType="ct_Pos" x="430" y="210"/>
-                <relation id="_r16" idType="rt_cop" x="530" y="120"/>
-                <edge cid="_c46" label="1" rid="_r16"/>
-                <edge cid="_c45" label="2" rid="_r16"/>
             </graph>
         </conc>
         <conPts>
-            <couple idC1="_c42" idC2="_c46"/>
-            <couple idC1="_c43" idC2="_c45"/>
+            <couple idC1="_c47" idC2="_c49"/>
         </conPts>
     </rule>
     <rule id="_rule36">
@@ -2412,6 +2374,44 @@
         <conPts>
             <couple idC1="_c71" idC2="_c68"/>
             <couple idC1="_c70" idC2="_c69"/>
+        </conPts>
+    </rule>
+    <rule id="_rule10">
+        <hypt>
+            <graph id="_rule10_hypt" label="proc_mood_ftsCop" nature="rule" set="default_set">
+                <concept id="_c42" idMarker="be" referent="individual" x="170" y="40">
+                    <type id="ct_Vb"/>
+                    <type id="ct_sinf"/>
+                </concept>
+                <concept id="_c43" idType="ct_Pos" x="170" y="200"/>
+                <concept id="_c44" idMarker="will" referent="individual" x="170" y="360">
+                    <type id="ct_Md"/>
+                    <type id="ct_ps"/>
+                </concept>
+                <relation id="_r14" idType="rt_cop" x="60" y="120"/>
+                <relation id="_r15" idType="rt_aux" x="60" y="270"/>
+                <edge cid="_c44" label="1" rid="_r15"/>
+                <edge cid="_c43" label="2" rid="_r15"/>
+                <edge cid="_c42" label="1" rid="_r14"/>
+                <edge cid="_c43" label="2" rid="_r14"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule10_conc">
+                <concept id="_c46" x="420" y="40">
+                    <type id="ct_Vb"/>
+                    <type id="ct_ind"/>
+                    <type id="ct_fts"/>
+                </concept>
+                <concept id="_c45" idType="ct_Pos" x="430" y="210"/>
+                <relation id="_r16" idType="rt_cop" x="530" y="120"/>
+                <edge cid="_c46" label="1" rid="_r16"/>
+                <edge cid="_c45" label="2" rid="_r16"/>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c42" idC2="_c46"/>
+            <couple idC1="_c43" idC2="_c45"/>
         </conPts>
     </rule>
     <rule id="_rule35">
