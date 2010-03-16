@@ -24,13 +24,11 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.util.StringUtils;
-import jade.util.leap.Collection;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +55,7 @@ public final class WordNetWrapper {
 
     static {
         try {
-            Globals.init();
+            // Globals.init();
             CodeTimer timer = new CodeTimer("WordNetWrapper");
             JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();

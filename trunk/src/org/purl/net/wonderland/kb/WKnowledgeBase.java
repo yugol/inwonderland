@@ -323,25 +323,32 @@ public class WKnowledgeBase {
         Iterator<Concept> it = message.iteratorConcept();
         while (it.hasNext()) {
             Concept c = it.next();
-            String individual = c.getIndividual();
+            String lemma = c.getIndividual();
             String[] types = c.getType();
-            String[] senseTypes = null;
-            if (cth.isKindOf(types, KbUtil.Nn)) {
-                senseTypes = importWordNetHypernymHierarchy(individual, POS.NOUN);
-            } else if (cth.isKindOf(types, KbUtil.Vb)) {
-                senseTypes = importVerbNetHierarchy(individual);
-                if (senseTypes == null) {
-                    senseTypes = importWordNetHypernymHierarchy(individual, POS.VERB);
-                }
-            } else if (cth.isKindOf(types, KbUtil.Jj)) {
-                senseTypes = importWordNetHypernymHierarchy(individual, POS.ADJECTIVE);
-            } else if (cth.isKindOf(types, KbUtil.Rb)) {
-                senseTypes = importWordNetHypernymHierarchy(individual, POS.ADVERB);
+            String[] senses = null;
+
+            if (cth.isKindOf(types, KbUtil.Vb)) {
             }
-            if (senseTypes != null) {
-                String[] allTypes = new String[types.length + senseTypes.length];
+
+            /*
+            if (cth.isKindOf(types, KbUtil.Nn)) {
+            senses = importWordNetHypernymHierarchy(lemma, POS.NOUN);
+            } else if (cth.isKindOf(types, KbUtil.Vb)) {
+            senses = importVerbNetHierarchy(lemma);
+            if (senses == null) {
+            senses = importWordNetHypernymHierarchy(lemma, POS.VERB);
+            }
+            } else if (cth.isKindOf(types, KbUtil.Jj)) {
+            senses = importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
+            } else if (cth.isKindOf(types, KbUtil.Rb)) {
+            senses = importWordNetHypernymHierarchy(lemma, POS.ADVERB);
+            }
+            */
+
+            if (senses != null) {
+                String[] allTypes = new String[types.length + senses.length];
                 System.arraycopy(types, 0, allTypes, 0, types.length);
-                System.arraycopy(senseTypes, 0, allTypes, types.length, senseTypes.length);
+                System.arraycopy(senses, 0, allTypes, types.length, senses.length);
                 c.setType(allTypes);
             }
         }

@@ -48,10 +48,12 @@ public final class Globals {
     private static final String resFolderKey = "resFolder";
     private static final String lgParserFolderKey = "lgParserFolder";
     private static final String vnDataFolderKey = "verbNetDataFolder";
+    private static final String pbDataFolderKey = "propBankDataFolder";
     private static String resFolder = null;
     private static String lgParserFolder = null;
     private static String vnDataFolder = null;
     private static String wnDataFolder = null;
+    private static String pbDataFolder = null;
     public static boolean testDebug = false;
 
     private static void readParameters(Properties projProp) {
@@ -59,6 +61,7 @@ public final class Globals {
         // System.out.println(resFolder);
         lgParserFolder = projProp.getProperty(lgParserFolderKey);
         vnDataFolder = projProp.getProperty(vnDataFolderKey);
+        pbDataFolder = projProp.getProperty(pbDataFolderKey);
     }
 
     static {
@@ -78,6 +81,7 @@ public final class Globals {
                 projProp.put(resFolderKey, new File(System.getProperty("user.dir"), "res").getCanonicalPath());
                 projProp.put(lgParserFolderKey, "%MorphAdorner - LinkGrammar%");
                 projProp.put(vnDataFolderKey, "%VerbNet - data%");
+                projProp.put(pbDataFolderKey, "%PropBank - data%");
                 Writer writer = new FileWriter(cfg);
                 projProp.store(writer, "");
                 writer.close();
@@ -161,6 +165,10 @@ public final class Globals {
 
     public static File getVerbNetDataFolder() {
         return new File(vnDataFolder);
+    }
+
+    public static File getPropBankDataFolder() {
+        return new File(pbDataFolder);
     }
 
     public static File getVerbNetIndexFolder() {
