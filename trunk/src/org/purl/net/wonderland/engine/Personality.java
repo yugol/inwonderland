@@ -143,8 +143,8 @@ public abstract class Personality {
         return null;
     }
 
-    protected void processTenses(CGraph fact) throws Exception {
-        applyProcSet(fact, KbUtil.procSetTenses);
+    protected void processMoods(CGraph fact) throws Exception {
+        applyProcSet(fact, KbUtil.procSetMoods);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {

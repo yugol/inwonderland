@@ -84,7 +84,7 @@ public final class KbUtil {
     // procedures
     public static final String proc = "proc";
     public static final String procSetArticles = "article";
-    public static final String procSetTenses = "tense";
+    public static final String procSetMoods = "mood";
     public static final String procSetCollocations = "collo";
     // other
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");

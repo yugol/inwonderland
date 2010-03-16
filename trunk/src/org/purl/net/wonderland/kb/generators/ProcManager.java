@@ -82,7 +82,7 @@ public class ProcManager {
 
     public void readAllProceduresFromKb() throws Exception {
         readProcedureSet(KbUtil.procSetArticles);
-        readProcedureSet(KbUtil.procSetTenses);
+        readProcedureSet(KbUtil.procSetMoods);
         readProcedureSet(KbUtil.procSetCollocations);
     }
 

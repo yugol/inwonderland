@@ -60,8 +60,8 @@ public class Level2Personality extends Personality {
         for (CGraph fact : facts) {
             kb.addFact(fact, KbUtil.level1);
             fact = KbUtil.duplicate(fact);
+            processMoods(fact);
             processArticles(fact);
-            processTenses(fact);
             // processCollocations(fact);
             kb.addFact(fact, KbUtil.level2);
         }

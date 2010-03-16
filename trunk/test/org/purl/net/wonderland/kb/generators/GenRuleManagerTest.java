@@ -56,7 +56,7 @@ public class GenRuleManagerTest {
         ProcManager procMgr = new ProcManager(kb);
         procMgr.readAllProceduresFromKb();
         assertEquals(1, procMgr.getProcCount());
-        List<Procedure> matches = procMgr.findMatches(KbUtil.procSetTenses, KbUtil.toLevel1FactId(1));
+        List<Procedure> matches = procMgr.findMatches(KbUtil.procSetMoods, KbUtil.toLevel1FactId(1));
         assertEquals(1, matches.size());
     }
 

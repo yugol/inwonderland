@@ -45,11 +45,11 @@ import org.purl.net.wonderland.kb.KbUtil;
  */
 public class GoldTest {
 
-    String level = KbUtil.level1;
-    Personality pers = new Level1Personality();
+    String level = KbUtil.level2;
+    Personality pers = new Level2Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 1201;
+    int lastSentence = 11;
     //
     private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
 
