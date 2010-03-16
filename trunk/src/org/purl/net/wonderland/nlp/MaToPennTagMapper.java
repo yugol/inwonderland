@@ -45,6 +45,14 @@ public class MaToPennTagMapper {
                     wt.setPennTag("PRP$");
                 } else if (maPos.equals("vhz")) {
                     wt.setPennTag("VBZ");
+                } else if (maPos.equals("jp")) {
+                    wt.setPennTag("NNP");
+                } else if (maPos.equals("(")) {
+                    wt.setPennTag("-LRB-");
+                } else if (maPos.equals(")")) {
+                    wt.setPennTag("-RRB-");
+                } else if (wt.getLemma().equalsIgnoreCase("needs") && maPos.equals("av")) {
+                    wt.setPennTag("RB");
                 }
             }
         }

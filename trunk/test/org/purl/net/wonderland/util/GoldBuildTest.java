@@ -45,7 +45,7 @@ public class GoldBuildTest {
         Engine engine = new Engine();
         engine.setPersonality(pers);
 
-        String resp = engine.processMessage("I will never be able to tell these cats apart!, she thought.");
+        String resp = engine.processMessage("May they come with the summer!");
         assertEquals("Done.", resp);
 
         TestUtil.saveKbAndMarkings(engine, level);

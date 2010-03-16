@@ -57,7 +57,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> pp;
     static Map<String, WTagging> cjcrd;
     static Map<String, WTagging> cjsub;
-    static Map<String, WTagging> jjind;
+    static Map<String, WTagging> jjidf;
     static Map<String, WTagging> md;
     static Map<String, WTagging> jjdem;
     static Map<String, WTagging> vb;
