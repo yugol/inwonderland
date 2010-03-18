@@ -21,8 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.pos;
+package org.purl.net.wonderland.nlp.wsd;
 
+import edu.stanford.nlp.util.StringUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +42,9 @@ import org.w3c.dom.NodeList;
  */
 public class Verb {
 
+    static String normalizeThematicRoleName(String name) {
+        return StringUtils.capitalize(name.toLowerCase());
+    }
     private final List<VerbRoleset> rolesets;
 
     public Verb(String lemma) throws Exception {
@@ -92,7 +96,7 @@ public class Verb {
             NodeList vnroleNodes = roleElement.getElementsByTagName("vnrole");
             if (vnroleNodes.getLength() > 0) {
                 Element vnroleElement = (Element) vnroleNodes.item(0);
-                vntheta = vnroleElement.getAttribute("vntheta");
+                vntheta = normalizeThematicRoleName(vnroleElement.getAttribute("vntheta"));
             }
             ThematicRole role = new ThematicRole(n, desc, vntheta);
             roles.put(n, role);
@@ -100,10 +104,30 @@ public class Verb {
                 roles.put(vntheta, role);
             }
         }
+
         // create roleset
         VerbRoleset roleset = new VerbRoleset(lemma, rolesetElement.getAttribute("id"), vncls, roles);
         rolesets.add(roleset);
-        // read examples
+
+        // read PropBank examples
+        NodeList exampleNodes = rolesetElement.getElementsByTagName("example");
+        for (int i = 0; i < exampleNodes.getLength(); i++) {
+            Element exampleElement = (Element) exampleNodes.item(i);
+            Element textElement = (Element) exampleElement.getElementsByTagName("text").item(0);
+            RolesetExample example = new RolesetExample(textElement.getTextContent().trim());
+            NodeList argNodes = exampleElement.getElementsByTagName("arg");
+            for (int j = 0; j < argNodes.getLength(); j++) {
+                Element argElement = (Element) argNodes.item(j);
+                String n = argElement.getAttribute("n");
+                String value = argElement.getTextContent();
+                ThematicRole role = roles.get(n);
+                if (role != null) {
+                    example.getArgs().put(role, value.trim());
+                }
+            }
+            roleset.getExamples().add(example);
+        }
+
     }
 
     public List<VerbRoleset> getRolesets() {

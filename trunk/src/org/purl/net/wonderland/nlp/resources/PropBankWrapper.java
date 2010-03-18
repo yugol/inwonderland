@@ -32,11 +32,6 @@ import org.purl.net.wonderland.Globals;
  */
 public final class PropBankWrapper {
 
-    public static void doSomething(String verb) throws Exception {
-        File verbFile = getVerbFile(verb);
-        System.out.println(verbFile.getCanonicalPath());
-    }
-
     public static File getVerbFile(String lemma) {
         if (lemma.equals("con")) {
             lemma = "_con";
