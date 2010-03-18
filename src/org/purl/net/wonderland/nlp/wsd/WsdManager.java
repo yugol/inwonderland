@@ -21,35 +21,31 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+package org.purl.net.wonderland.nlp.wsd;
 
-package org.purl.net.wonderland.nlp.resources;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class PropBankWrapperTest {
+public final class WsdManager {
 
-    public PropBankWrapperTest() {
+    public final static WsdPersonality pers = new WsdPersonality();
+
+    static {
+        try {
+            pers.setKb(new WKnowledgeBase(Globals.getDefaultParseKBFile()));
+        } catch (Exception ex) {
+            System.err.println("Error starting WsdManager");
+            ex.printStackTrace(System.err);
+            Globals.exit();
+        }
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
+    public static Verb getVerb(String lemma) throws Exception {
+        Verb v = new Verb(lemma);
+        return v;
     }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Test
-    public void testDoSomething() throws Exception {
-        String verb = "have";
-        PropBankWrapper.doSomething(verb);
-    }
-
 }

@@ -21,18 +21,26 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp;
+package org.purl.net.wonderland.kb.proc;
 
-import org.purl.net.wonderland.nlp.pos.Verb;
+import java.util.Comparator;
+import org.purl.net.wonderland.util.Compare;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class PosManager {
+public class PriorityComparator implements Comparator<Procedure> {
 
-    public static Verb getVerb(String lemma) throws Exception {
-        Verb v = new Verb(lemma);
-        return v;
+    public int compare(Procedure proc1, Procedure proc2) {
+        int cmp = Compare.compare(proc1.getPriority(), proc2.getPriority());
+        if (cmp != 0) {
+            return -cmp;
+        }
+        cmp = Compare.compare(proc1.getLhsComplexity(), proc2.getLhsComplexity());
+        if (cmp == 0) {
+            // System.out.println(proc1.getId() + "[" + proc1.getLhsComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getLhsComplexity() + "]");
+        }
+        return -cmp;
     }
 }

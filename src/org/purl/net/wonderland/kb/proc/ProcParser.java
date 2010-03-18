@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.kb.proc;
 
 import aminePlatform.kernel.lexicons.Identifier;
 import aminePlatform.kernel.lexicons.Lexicon;

@@ -21,25 +21,21 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.nlp.wsd;
 
-import org.purl.net.wonderland.kb.WKnowledgeBase;
 import java.io.File;
-import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.kb.KbUtil;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class GenRuleManagerTest {
+public class VerbTest {
 
-    public GenRuleManagerTest() {
+    public VerbTest() {
     }
 
     @BeforeClass
@@ -51,20 +47,21 @@ public class GenRuleManagerTest {
     }
 
     @Test
-    public void testReadGeneratorsFromKb() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        ProcManager procMgr = new ProcManager(kb);
-        procMgr.readAllProceduresFromKb();
-        assertEquals(1, procMgr.getProcCount());
-        List<Procedure> matches = procMgr.findMatches(KbUtil.procSetMoods, KbUtil.toLevel1FactId(1));
-        assertEquals(1, matches.size());
+    public void testAllVerbs() throws Exception {
+        for (File file : Globals.getPropBankDataFolder().listFiles()) {
+            String lemma = file.getName();
+            int endIndex = lemma.lastIndexOf(".xml");
+            if (endIndex > 0) {
+                lemma = lemma.substring(0, endIndex);
+                Verb v = new Verb(lemma);
+                System.out.println("");
+            }
+        }
     }
 
-    @Test
-    public void testReadGeneratorsFromFile() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
-        ProcManager procMgr = new ProcManager(kb);
-        procMgr.readProcedures(new File(Globals.getTestFolder(), "test_generators.xml"));
-        assertEquals(1, procMgr.getProcCount());
+    // @Test
+    public void testOneVerb() throws Exception {
+        Verb v = new Verb("abduct");
+        System.out.println("");
     }
 }

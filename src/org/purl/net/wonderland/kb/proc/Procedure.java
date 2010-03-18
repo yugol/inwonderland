@@ -21,33 +21,33 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.pos;
+package org.purl.net.wonderland.kb.proc;
+
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ThematicRole {
+public interface Procedure {
 
-    private final String pnN;
-    private final String pbDescr;
-    private final String vnThemrole;
+    public CGraph getLhs();
 
-    public ThematicRole(String pnN, String pbDescr, String vnThemrole) {
-        this.pnN = pnN;
-        this.pbDescr = pbDescr;
-        this.vnThemrole = vnThemrole;
-    }
+    public void setProjections(List<Projection> projections);
 
-    public String getPbDescr() {
-        return pbDescr;
-    }
+    public List<Projection> getProjections();
 
-    public String getPnN() {
-        return pnN;
-    }
+    public CGraph getRhs();
 
-    public String getVnThemrole() {
-        return vnThemrole;
-    }
+    public Map<Concept, Concept> getRhsLhsConceptMap();
+
+    public String getId();
+
+    public double getPriority();
+
+    public double getLhsComplexity();
 }

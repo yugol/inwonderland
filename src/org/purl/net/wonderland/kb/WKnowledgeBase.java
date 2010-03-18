@@ -23,11 +23,13 @@
  */
 package org.purl.net.wonderland.kb;
 
+import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.KnowledgeBase;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
@@ -145,6 +147,54 @@ public class WKnowledgeBase {
 
     public CGraph getFactGraph(String toLevel1FactId) {
         return kb.getFactGraph(toLevel1FactId);
+    }
+
+    public CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
+        CGraph cg = new CGraph(KbUtil.newUniqueId(), null, null, "fact");
+
+        for (int i = 0; i < words.size(); ++i) {
+            WTagging tagging = words.get(i);
+            Concept c = new Concept(KbUtil.toConceptId(tagging, i + 1));
+            String individualId = KbUtil.handleQuotes(tagging.getLemma());
+            vocabulary.addIndividual(individualId, individualId, KbUtil.Top, language);
+            String[] types = null;
+            if (tagging.getPos() == null) {
+                types = new String[]{KbUtil.toConceptTypeId(tagging.getPennTag())};
+            } else {
+                types = tagging.asTypes();
+            }
+            c.setType(types);
+            c.setIndividual(individualId);
+            cg.addVertex(c);
+        }
+
+        for (int i = 0; i < deps.size(); ++i) {
+            TypedDependency tdep = deps.get(i);
+
+            String gov = getConcept(cg, KbUtil.getLabelIndex(tdep.gov().nodeString())).getId();
+            String dep = getConcept(cg, KbUtil.getLabelIndex(tdep.dep().nodeString())).getId();
+            String relationTypeLabel = tdep.reln().getShortName();
+            String relationType = KbUtil.toRelationTypeId(relationTypeLabel);
+            String relationId = KbUtil.toRelationId(relationTypeLabel, (i + 1));
+
+            Relation r = new Relation(relationId);
+            r.addType(relationType);
+            cg.addVertex(r);
+
+            cg.addEdge(dep, relationId, 1);
+            cg.addEdge(gov, relationId, 2);
+        }
+
+        return cg;
+    }
+
+    private Concept getConcept(CGraph cg, int idx) {
+        for (Concept c : cg.getConcepts()) {
+            if (idx == KbUtil.getConceptIndex(c.getId())) {
+                return c;
+            }
+        }
+        return null;
     }
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
@@ -343,7 +393,7 @@ public class WKnowledgeBase {
             } else if (cth.isKindOf(types, KbUtil.Rb)) {
             senses = importWordNetHypernymHierarchy(lemma, POS.ADVERB);
             }
-            */
+             */
 
             if (senses != null) {
                 String[] allTypes = new String[types.length + senses.length];

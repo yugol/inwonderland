@@ -21,26 +21,48 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.Comparator;
-import org.purl.net.wonderland.util.Compare;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class PriorityComparator implements Comparator<Procedure> {
+public class ThematicRole {
 
-    public int compare(Procedure proc1, Procedure proc2) {
-        int cmp = Compare.compare(proc1.getPriority(), proc2.getPriority());
-        if (cmp != 0) {
-            return -cmp;
-        }
-        cmp = Compare.compare(proc1.getLhsComplexity(), proc2.getLhsComplexity());
-        if (cmp == 0) {
-            // System.out.println(proc1.getId() + "[" + proc1.getLhsComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getLhsComplexity() + "]");
-        }
-        return -cmp;
+    private final String pnN;
+    private final String pbDescr;
+    private final String vnThemrole;
+    private final List<String> plusRestrs;
+    private final List<String> minusRestrs;
+
+    public ThematicRole(String pnN, String pbDescr, String vnThemrole) {
+        this.pnN = pnN;
+        this.pbDescr = pbDescr;
+        this.vnThemrole = vnThemrole;
+        this.plusRestrs = new ArrayList<String>();
+        this.minusRestrs = new ArrayList<String>();
+    }
+
+    public String getPbDescr() {
+        return pbDescr;
+    }
+
+    public String getPnN() {
+        return pnN;
+    }
+
+    public String getVnThemrole() {
+        return vnThemrole;
+    }
+
+    public List<String> getMinusRestrs() {
+        return minusRestrs;
+    }
+
+    public List<String> getPlusRestrs() {
+        return plusRestrs;
     }
 }

@@ -21,11 +21,10 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.pos;
+package org.purl.net.wonderland.nlp.wsd;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -33,6 +32,7 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.IO;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -41,13 +41,14 @@ import org.w3c.dom.NodeList;
  */
 public class VerbRoleset {
 
-    private final String pbid; // PropBank id
+    // private final String pbid; // PropBank id
     private String vncls = null; // VerbNet class
     private final List<String> senses; // WordNet senses
     private final Map<String, ThematicRole> roles; // thematic roles from PropBank and VerbNet
+    private final List<RolesetExample> examples; // roleset examples
 
     public VerbRoleset(String lemma, String id, String vncls, Map<String, ThematicRole> roles) throws Exception {
-        this.pbid = id;
+        // this.pbid = id;
         if (vncls == null || vncls.length() == 0 || vncls.equals("-")) {
             this.vncls = null;
         } else {
@@ -55,6 +56,7 @@ public class VerbRoleset {
         }
         this.senses = new ArrayList<String>();
         this.roles = roles;
+        this.examples = new ArrayList<RolesetExample>();
         if (this.vncls != null) {
             readVerbNetData(lemma);
         }
@@ -67,7 +69,6 @@ public class VerbRoleset {
         // classId = classId.substring(0, classId.indexOf('-')) + "-" + vncls;
         // Element vnclassElement = xmlDoc.getElementById(classId);
         Element vnclassElement = null;
-
 
         // read WordNet senses
         NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
@@ -103,25 +104,78 @@ public class VerbRoleset {
         NodeList themroleNodes = vnclassElement.getElementsByTagName("THEMROLE");
         readVnThemroles(themroleNodes);
 
+        // read frames
+        NodeList frameNodes = vnclassElement.getElementsByTagName("FRAME");
+        for (int i = 0; i < frameNodes.getLength(); i++) {
+            Element frameElement = (Element) frameNodes.item(i);
+            Element syntaxElement = (Element) frameElement.getElementsByTagName("SYNTAX").item(0);
+            NodeList exampleNodes = frameElement.getElementsByTagName("EXAMPLE");
+            for (int j = 0; j < exampleNodes.getLength(); j++) {
+                Element exampleElement = (Element) exampleNodes.item(j);
+
+                RolesetExample example = new RolesetExample(exampleElement.getTextContent().trim());
+
+                NodeList syntaxNodes = syntaxElement.getChildNodes();
+                for (int k = 0; k < syntaxNodes.getLength(); k++) {
+                    Node syntaxNode = syntaxNodes.item(k);
+                    if (syntaxNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                        syntaxElement = (Element) syntaxNode;
+                        String value = syntaxElement.getAttribute("value");
+
+                        StringBuilder synrestrs = new StringBuilder();
+                        NodeList synrestrsNodes = syntaxElement.getElementsByTagName("SYNRESTRS");
+                        for (int l = 0; l < synrestrsNodes.getLength(); l++) {
+                            Element synrestrElement = (Element) synrestrsNodes.item(l);
+                            synrestrs.append(synrestrElement.getAttribute("Value"));
+                            synrestrs.append(synrestrElement.getAttribute("type"));
+                            if (synrestrs.length() > 0) {
+                                synrestrs.append(RolesetExample.FrameEntry.sep);
+                            }
+                        }
+
+                        StringBuilder selrestrs = new StringBuilder();
+                        NodeList selrestrNodes = syntaxElement.getElementsByTagName("SELRESTR");
+                        for (int l = 0; l < selrestrNodes.getLength(); l++) {
+                            Element selrestrElement = (Element) selrestrNodes.item(l);
+                            selrestrs.append(selrestrElement.getAttribute("Value"));
+                            selrestrs.append(selrestrElement.getAttribute("type"));
+                            if (selrestrs.length() > 0) {
+                                selrestrs.append(RolesetExample.FrameEntry.sep);
+                            }
+                        }
+
+                        RolesetExample.FrameEntry entry = new RolesetExample.FrameEntry(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
+                        example.getFrame().add(entry);
+                    }
+                }
+                examples.add(example);
+            }
+        }
     }
 
     private void readVnThemroles(NodeList themroleNodes) {
         for (int i = 0; i < themroleNodes.getLength(); i++) {
             Element themroleElement = (Element) themroleNodes.item(i);
-            String trType = themroleElement.getAttribute("type");
-            System.out.println(trType);
+            String trType = Verb.normalizeThematicRoleName(themroleElement.getAttribute("type"));
+            ThematicRole themRole = roles.get(trType);
+            if (themRole == null) {
+                themRole = new ThematicRole(null, null, trType);
+                roles.put(trType, themRole);
+            }
             NodeList selrestrsNodes = themroleElement.getElementsByTagName("SELRESTRS");
             for (int j = 0; j < selrestrsNodes.getLength(); j++) {
                 Element selrestrsElement = (Element) selrestrsNodes.item(j);
-                String logic = selrestrsElement.getAttribute("logic");
-                System.out.println(" logic " + logic);
                 NodeList selrestrNodes = selrestrsElement.getElementsByTagName("SELRESTR");
                 for (int k = 0; k < selrestrNodes.getLength(); k++) {
                     Element selrestrElement = (Element) selrestrNodes.item(k);
                     String value = selrestrElement.getAttribute("Value");
                     String type = selrestrElement.getAttribute("type");
-                    System.out.println("  " + value);
-                    System.out.println("   " + type);
+                    if ("+".equals(value)) {
+                        themRole.getPlusRestrs().add(type);
+                    } else if ("-".equals(value)) {
+                        themRole.getMinusRestrs().add(type);
+                    }
                 }
             }
         }
@@ -133,5 +187,9 @@ public class VerbRoleset {
 
     public List<String> getSenses() {
         return senses;
+    }
+
+    public List<RolesetExample> getExamples() {
+        return examples;
     }
 }

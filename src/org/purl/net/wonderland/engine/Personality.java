@@ -34,8 +34,8 @@ import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
-import org.purl.net.wonderland.kb.generators.ProcManager;
-import org.purl.net.wonderland.kb.generators.Procedure;
+import org.purl.net.wonderland.kb.proc.ProcManager;
+import org.purl.net.wonderland.kb.proc.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -88,60 +88,13 @@ public abstract class Personality {
             Object[] parse = Pipeline.parse(sentence);
             sentence = (List<WTagging>) parse[0];
             List<TypedDependency> deps = (List<TypedDependency>) parse[1];
-            facts.add(buildFactGraph(sentence, deps));
+            facts.add(kb.buildFactGraph(sentence, deps));
         }
 
         return facts;
     }
 
-    private CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
-        Vocabulary vocabulary = kb.getVocabulary();
-        CGraph cg = new CGraph(KbUtil.newUniqueId(), null, null, "fact");
 
-        for (int i = 0; i < words.size(); ++i) {
-            WTagging tagging = words.get(i);
-            Concept c = new Concept(KbUtil.toConceptId(tagging, i + 1));
-            String individualId = KbUtil.handleQuotes(tagging.getLemma());
-            vocabulary.addIndividual(individualId, individualId, KbUtil.Top, kb.getLanguage());
-            String[] types = null;
-            if (tagging.getPos() == null) {
-                types = new String[]{KbUtil.toConceptTypeId(tagging.getPennTag())};
-            } else {
-                types = tagging.asTypes();
-            }
-            c.setType(types);
-            c.setIndividual(individualId);
-            cg.addVertex(c);
-        }
-
-        for (int i = 0; i < deps.size(); ++i) {
-            TypedDependency tdep = deps.get(i);
-
-            String gov = getConcept(cg, KbUtil.getLabelIndex(tdep.gov().nodeString())).getId();
-            String dep = getConcept(cg, KbUtil.getLabelIndex(tdep.dep().nodeString())).getId();
-            String relationTypeLabel = tdep.reln().getShortName();
-            String relationType = KbUtil.toRelationTypeId(relationTypeLabel);
-            String relationId = KbUtil.toRelationId(relationTypeLabel, (i + 1));
-
-            Relation r = new Relation(relationId);
-            r.addType(relationType);
-            cg.addVertex(r);
-
-            cg.addEdge(dep, relationId, 1);
-            cg.addEdge(gov, relationId, 2);
-        }
-
-        return cg;
-    }
-
-    private Concept getConcept(CGraph cg, int idx) {
-        for (Concept c : cg.getConcepts()) {
-            if (idx == KbUtil.getConceptIndex(c.getId())) {
-                return c;
-            }
-        }
-        return null;
-    }
 
     protected void processMoods(CGraph fact) throws Exception {
         applyProcSet(fact, KbUtil.procSetMoods);

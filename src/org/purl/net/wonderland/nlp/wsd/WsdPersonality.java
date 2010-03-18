@@ -21,33 +21,54 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.generators;
+package org.purl.net.wonderland.nlp.wsd;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.List;
-import java.util.Map;
+import org.purl.net.wonderland.engine.Personality;
+import org.purl.net.wonderland.kb.KbUtil;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface Procedure {
+public class WsdPersonality extends Personality {
 
-    public CGraph getLhs();
+    @Override
+    public String getWelcomeMessage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-    public void setProjections(List<Projection> projections);
+    @Override
+    public String getFullName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-    public List<Projection> getProjections();
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-    public CGraph getRhs();
+    @Override
+    public String getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-    public Map<Concept, Concept> getRhsLhsConceptMap();
+    @Override
+    public String processMessage(String message) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-    public String getId();
+    public CGraph parse(String words) throws Exception {
+        List<CGraph> facts = parseMessage(words);
+        procMgr.resetSolver();
+        CGraph fact = facts.get(0);
+        fact = KbUtil.duplicate(fact);
+        processMoods(fact);
+        processArticles(fact);
+        // processCollocations(fact);
+        // kb.addFact(fact, KbUtil.level2);
+        return fact;
 
-    public double getPriority();
-
-    public double getLhsComplexity();
+    }
 }
