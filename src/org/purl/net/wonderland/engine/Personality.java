@@ -34,8 +34,8 @@ import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
-import org.purl.net.wonderland.kb.proc.ProcManager;
-import org.purl.net.wonderland.kb.proc.Procedure;
+import org.purl.net.wonderland.kb.ProcManager;
+import org.purl.net.wonderland.kb.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 

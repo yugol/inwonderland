@@ -45,11 +45,11 @@ public class Verb {
     static String normalizeThematicRoleName(String name) {
         return StringUtils.capitalize(name.toLowerCase());
     }
-    private final List<VerbRoleset> rolesets;
+    private final List<VerbFrame> rolesets;
 
     public Verb(String lemma) throws Exception {
         System.out.println("* " + lemma);
-        this.rolesets = new ArrayList<VerbRoleset>();
+        this.rolesets = new ArrayList<VerbFrame>();
         readPropBankData(lemma);
     }
 
@@ -106,7 +106,7 @@ public class Verb {
         }
 
         // create roleset
-        VerbRoleset roleset = new VerbRoleset(lemma, rolesetElement.getAttribute("id"), vncls, roles);
+        VerbFrame roleset = new VerbFrame(lemma, rolesetElement.getAttribute("id"), vncls, roles);
         rolesets.add(roleset);
 
         // read PropBank examples
@@ -114,7 +114,7 @@ public class Verb {
         for (int i = 0; i < exampleNodes.getLength(); i++) {
             Element exampleElement = (Element) exampleNodes.item(i);
             Element textElement = (Element) exampleElement.getElementsByTagName("text").item(0);
-            RolesetExample example = new RolesetExample(textElement.getTextContent().trim());
+            FrameExample example = new FrameExample(textElement.getTextContent().trim());
             NodeList argNodes = exampleElement.getElementsByTagName("arg");
             for (int j = 0; j < argNodes.getLength(); j++) {
                 Element argElement = (Element) argNodes.item(j);
@@ -130,7 +130,7 @@ public class Verb {
 
     }
 
-    public List<VerbRoleset> getRolesets() {
+    public List<VerbFrame> getRolesets() {
         return rolesets;
     }
 }

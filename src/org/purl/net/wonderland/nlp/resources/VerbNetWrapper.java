@@ -33,8 +33,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.nlp.resources.verbnet.VNUtil;
-import org.purl.net.wonderland.nlp.resources.verbnet.VerbForm;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
