@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.resources.verbnet;
+package org.purl.net.wonderland.nlp.resources;
 
 import java.io.File;
 import java.util.ArrayList;

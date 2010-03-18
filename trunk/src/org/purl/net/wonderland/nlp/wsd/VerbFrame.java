@@ -39,15 +39,15 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class VerbRoleset {
+public class VerbFrame {
 
     // private final String pbid; // PropBank id
     private String vncls = null; // VerbNet class
     private final List<String> senses; // WordNet senses
     private final Map<String, ThematicRole> roles; // thematic roles from PropBank and VerbNet
-    private final List<RolesetExample> examples; // roleset examples
+    private final List<FrameExample> examples; // roleset examples
 
-    public VerbRoleset(String lemma, String id, String vncls, Map<String, ThematicRole> roles) throws Exception {
+    public VerbFrame(String lemma, String id, String vncls, Map<String, ThematicRole> roles) throws Exception {
         // this.pbid = id;
         if (vncls == null || vncls.length() == 0 || vncls.equals("-")) {
             this.vncls = null;
@@ -56,7 +56,7 @@ public class VerbRoleset {
         }
         this.senses = new ArrayList<String>();
         this.roles = roles;
-        this.examples = new ArrayList<RolesetExample>();
+        this.examples = new ArrayList<FrameExample>();
         if (this.vncls != null) {
             readVerbNetData(lemma);
         }
@@ -113,7 +113,7 @@ public class VerbRoleset {
             for (int j = 0; j < exampleNodes.getLength(); j++) {
                 Element exampleElement = (Element) exampleNodes.item(j);
 
-                RolesetExample example = new RolesetExample(exampleElement.getTextContent().trim());
+                FrameExample example = new FrameExample(exampleElement.getTextContent().trim());
 
                 NodeList syntaxNodes = syntaxElement.getChildNodes();
                 for (int k = 0; k < syntaxNodes.getLength(); k++) {
@@ -130,7 +130,7 @@ public class VerbRoleset {
                             synrestrs.append(synrestrElement.getAttribute("Value"));
                             synrestrs.append(synrestrElement.getAttribute("type"));
                             if (synrestrs.length() > 0) {
-                                synrestrs.append(RolesetExample.FrameEntry.sep);
+                                synrestrs.append(FrameExample.FrameEntry.sep);
                             }
                         }
 
@@ -141,11 +141,11 @@ public class VerbRoleset {
                             selrestrs.append(selrestrElement.getAttribute("Value"));
                             selrestrs.append(selrestrElement.getAttribute("type"));
                             if (selrestrs.length() > 0) {
-                                selrestrs.append(RolesetExample.FrameEntry.sep);
+                                selrestrs.append(FrameExample.FrameEntry.sep);
                             }
                         }
 
-                        RolesetExample.FrameEntry entry = new RolesetExample.FrameEntry(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
+                        FrameExample.FrameEntry entry = new FrameExample.FrameEntry(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
                         example.getFrame().add(entry);
                     }
                 }
@@ -189,7 +189,7 @@ public class VerbRoleset {
         return senses;
     }
 
-    public List<RolesetExample> getExamples() {
+    public List<FrameExample> getExamples() {
         return examples;
     }
 }

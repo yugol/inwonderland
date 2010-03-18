@@ -32,7 +32,7 @@ import java.util.Map;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class RolesetExample {
+public class FrameExample {
 
     public static final class FrameEntry {
 
@@ -70,7 +70,7 @@ public class RolesetExample {
     private final Map<ThematicRole, String> args;
     private final List<FrameEntry> frame;
 
-    public RolesetExample(String text) {
+    public FrameExample(String text) {
         this.text = text;
         this.args = new HashMap<ThematicRole, String>();
         this.frame = new ArrayList<FrameEntry>();

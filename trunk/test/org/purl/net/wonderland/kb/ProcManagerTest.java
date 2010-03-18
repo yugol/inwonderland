@@ -21,10 +21,10 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.proc;
+package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.kb.proc.Procedure;
-import org.purl.net.wonderland.kb.proc.ProcManager;
+import org.purl.net.wonderland.kb.Procedure;
+import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import java.io.File;
 import java.util.List;

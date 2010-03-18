@@ -21,8 +21,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.resources.verbnet;
+package org.purl.net.wonderland.nlp.resources;
 
+import org.purl.net.wonderland.nlp.resources.VNClassFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

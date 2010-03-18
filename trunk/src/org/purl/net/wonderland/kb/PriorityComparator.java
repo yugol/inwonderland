@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb.proc;
+package org.purl.net.wonderland.kb;
 
 import java.util.Comparator;
 import org.purl.net.wonderland.util.Compare;
