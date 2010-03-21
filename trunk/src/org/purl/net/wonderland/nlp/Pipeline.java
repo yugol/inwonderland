@@ -73,7 +73,7 @@ public class Pipeline {
         List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
 
         // return tags and dependencies
-        return new Object[]{sentence, deps};
+        return new Object[]{sentence, deps, parse};
     }
 
     public static List<List<WTagging>> tokenizeAndSplit(String text) {

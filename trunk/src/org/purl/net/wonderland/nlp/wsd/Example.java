@@ -24,11 +24,14 @@
 package org.purl.net.wonderland.nlp.wsd;
 
 import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.trees.Tree;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.purl.net.wonderland.nlp.Pipeline;
+import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 
 /**
@@ -74,12 +77,14 @@ public class Example {
         }
     }
     //
+    private final String verbLemma;
     private final Type type;
     private final String text;
     private final Map<Themrole, String> args;
     private final List<RoleData> frame;
 
-    public Example(String text, Type type) {
+    public Example(String verbLemma, Type type, String text) {
+        this.verbLemma = verbLemma;
         this.type = type;
         this.text = text;
         this.args = new HashMap<Themrole, String>();
@@ -102,11 +107,20 @@ public class Example {
         return type;
     }
 
+    public String getVerbLemma() {
+        return verbLemma;
+    }
+
     public void mapArgs(Map<String, Themrole> roles) {
         if (args.isEmpty()) {
-            List<? extends HasWord> tokens = StanfordParserWrapper.tokenize(text);
-            Tree parse = StanfordParserWrapper.parse(tokens);
+            List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
+            Object[] result = Pipeline.parse(tokens);
+            Tree parse = (Tree) result[2];
             parse = parse.flatten();
+            List<Tree> nodes = parse.getLeaves();
+            for (int i = 0; i < tokens.size(); i++) {
+                nodes.get(i).label().setValue(tokens.get(i).getLemma());
+            }
 
             int frameCursor = 0;
             List<Tree> bfs = parse.getChildrenAsList();
@@ -128,8 +142,8 @@ public class Example {
                 Tree node = bfs.get(parseCursor);
                 String nodeLabel = node.label().value();
 
-                if (nodeLabel.equals("NP")) {
-                    String phrase = StanfordParserWrapper.joinTokens(node.yield());
+                if (node.isPhrasal() && nodeLabel.equals("NP")) {
+                    String phrase = joinLemmata(node.yield());
                     args.put(roles.get(entry.getValue()), phrase);
                     ++parseCursor;
                     ++frameCursor;
@@ -139,5 +153,16 @@ public class Example {
                 ++parseCursor;
             }
         }
+    }
+
+    private String joinLemmata(Sentence<HasWord> yield) {
+        StringBuilder join = new StringBuilder();
+        for (HasWord token : yield) {
+            if (join.length() > 0) {
+                join.append(" ");
+            }
+            join.append(token.word());
+        }
+        return join.toString();
     }
 }
