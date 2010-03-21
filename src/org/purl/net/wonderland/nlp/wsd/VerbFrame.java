@@ -65,9 +65,10 @@ public class VerbFrame {
     private void readVerbNetData(String lemma) throws Exception {
         File vnFile = VerbNetWrapper.getClassFile(vncls);
         Document xmlDoc = IO.readXmlFile(vnFile);
-        // String classId = vnFile.getName();
-        // classId = classId.substring(0, classId.indexOf('-')) + "-" + vncls;
-        // Element vnclassElement = xmlDoc.getElementById(classId);
+
+        String verbLemma = vnFile.getName();
+        verbLemma = verbLemma.substring(0, verbLemma.indexOf('-'));
+
         Element vnclassElement = null;
 
         // read WordNet senses
@@ -113,7 +114,7 @@ public class VerbFrame {
             for (int j = 0; j < exampleNodes.getLength(); j++) {
                 Element exampleElement = (Element) exampleNodes.item(j);
 
-                Example example = new Example(exampleElement.getTextContent().trim(), Example.Type.VerbNet);
+                Example example = new Example(verbLemma, Example.Type.VerbNet, exampleElement.getTextContent().trim());
 
                 NodeList syntaxNodes = syntaxElement.getChildNodes();
                 for (int k = 0; k < syntaxNodes.getLength(); k++) {

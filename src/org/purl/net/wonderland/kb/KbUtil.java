@@ -114,7 +114,7 @@ public final class KbUtil {
         return "rt_" + ctl;
     }
 
-    public static String toProcLabel(String set, String name) {
+    public static String toProcName(String set, String name) {
         return proc + set + "_" + ((name != null) ? (name) : (""));
     }
 

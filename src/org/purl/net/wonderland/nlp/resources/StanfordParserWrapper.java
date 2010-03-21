@@ -82,16 +82,6 @@ public final class StanfordParserWrapper {
         return parse.taggedYield();
     }
 
-    public static String joinTokens(Sentence<HasWord> yield) {
-        StringBuilder text = new StringBuilder();
-        for (HasWord word : yield) {
-            if (text.length() > 0) {
-                text.append(" ");
-            }
-            text.append(word.word());
-        }
-        return text.toString();
-    }
 
     public static void init() {
     }

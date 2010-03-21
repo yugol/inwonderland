@@ -23,18 +23,16 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreePrint;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
+import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.util.IO;
 
 /**
  *
@@ -78,6 +76,9 @@ public class VerbTest {
     @Test
     public void testOneVerbToProcs() throws Exception {
         Verb v = new Verb("abduct");
-        System.out.println("");
+        List<Rule> procs = v.getVerbNetProcs();
+        File file = new File("test." + v.getLemma() + ".cogxml");
+        IO.writeProcs(procs, WsdManager.pers.getKb(), file);
+        KbUtil.normalizeKbFile(file);
     }
 }

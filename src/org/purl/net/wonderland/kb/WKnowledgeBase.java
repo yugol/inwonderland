@@ -149,14 +149,33 @@ public class WKnowledgeBase {
         return kb.getFactGraph(toLevel1FactId);
     }
 
+    public String addIndividual(String name) {
+        String individualId = vocabulary.getIndividualId(name, language);
+        if (individualId == null) {
+            individualId = KbUtil.handleQuotes(name);
+            vocabulary.addIndividual(individualId, individualId, KbUtil.Top, language);
+        }
+        return individualId;
+    }
+
+    public String addConceptType(String name, String parentId) {
+        String ctId = KbUtil.toConceptTypeId(name);
+        vocabulary.addConceptType(ctId, name, null, language);
+        if (parentId == null) {
+            vocabulary.getConceptTypeHierarchy().addEdge(ctId, KbUtil.Top);
+        } else {
+            vocabulary.getConceptTypeHierarchy().addEdge(ctId, parentId);
+        }
+        return ctId;
+    }
+
     public CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
         CGraph cg = new CGraph(KbUtil.newUniqueId(), null, null, "fact");
 
         for (int i = 0; i < words.size(); ++i) {
             WTagging tagging = words.get(i);
             Concept c = new Concept(KbUtil.toConceptId(tagging, i + 1));
-            String individualId = KbUtil.handleQuotes(tagging.getLemma());
-            vocabulary.addIndividual(individualId, individualId, KbUtil.Top, language);
+            String individualId = addIndividual(tagging.getLemma());
             String[] types = null;
             if (tagging.getPos() == null) {
                 types = new String[]{KbUtil.toConceptTypeId(tagging.getPennTag())};
@@ -257,8 +276,9 @@ public class WKnowledgeBase {
     }
 
     public List<Rule> getProcRules(String set) {
+        set = KbUtil.toProcName(set, null);
         List<Rule> rules = new ArrayList<Rule>();
-        Iterator<CGraph> it = kb.getRuleSet().iteratorGraphs();
+        Iterator<CGraph> it = kb.IteratorRules();
         while (it.hasNext()) {
             CGraph rule = it.next();
             if (rule.getName().indexOf(set) == 0) {
@@ -266,6 +286,17 @@ public class WKnowledgeBase {
             }
         }
         return rules;
+    }
+
+    public void deleteRules() {
+        List<CGraph> rules = new ArrayList<CGraph>();
+        Iterator<CGraph> it = kb.IteratorRules();
+        while (it.hasNext()) {
+            rules.add(it.next());
+        }
+        for (CGraph rule : rules) {
+            kb.delete(rule);
+        }
     }
 
     String[] importVerbNetHierarchy(String verb) {

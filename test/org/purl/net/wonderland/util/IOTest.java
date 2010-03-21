@@ -52,7 +52,7 @@ public class IOTest {
     public void testWriteProcs() throws Exception {
         WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
         File file = new File("test.rules.cogxml");
-        IO.writeProcs(KbUtil.toProcLabel(KbUtil.procSetArticles, null), kb, file);
+        IO.writeProcs(KbUtil.toProcName(KbUtil.procSetArticles, null), kb, file);
     }
 
     /*

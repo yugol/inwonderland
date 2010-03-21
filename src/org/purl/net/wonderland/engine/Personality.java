@@ -25,10 +25,7 @@ package org.purl.net.wonderland.engine;
 
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.Globals;

@@ -27,6 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /**
  *
@@ -70,5 +71,9 @@ public class WsdPersonality extends Personality {
         // kb.addFact(fact, KbUtil.level2);
         return fact;
 
+    }
+
+    public WKnowledgeBase getKb() {
+        return kb;
     }
 }

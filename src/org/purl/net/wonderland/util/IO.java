@@ -54,6 +54,10 @@ public class IO {
     private static class ProcWriter extends CogxmlWriter {
 
         public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
+            writeProcs(kb.getProcRules(set), kb, file);
+        }
+
+        private static void writeProcs(List<Rule> procs, WKnowledgeBase kb, File file) throws Exception {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document xmlDoc = db.newDocument();
@@ -63,7 +67,7 @@ public class IO {
             Element vocabularyElement = createSupportElement(xmlDoc, "support", kb.getVocabulary(), false, kb.getLanguage(), false);
             root.appendChild(vocabularyElement);
 
-            for (Rule proc : kb.getProcRules(set)) {
+            for (Rule proc : procs) {
                 Element procElement = createRuleElement(xmlDoc, proc);
                 root.appendChild(procElement);
             }
@@ -143,6 +147,10 @@ public class IO {
 
     public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
         ProcWriter.writeProcs(set, kb, file);
+    }
+
+    public static void writeProcs(List<Rule> procs, WKnowledgeBase kb, File file) throws Exception {
+        ProcWriter.writeProcs(procs, kb, file);
     }
 
     public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
