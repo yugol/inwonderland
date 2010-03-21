@@ -23,18 +23,26 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
+import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.trees.Tree;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class FrameExample {
+public class Example {
 
-    public static final class FrameEntry {
+    public static enum Type {
+
+        PropBank, VerbNet
+    };
+
+    public static final class RoleData {
 
         public static final String sep = "|";
         private final String phrase;
@@ -42,7 +50,7 @@ public class FrameExample {
         private final String[] synrestrs;
         private final String[] selrestrs;
 
-        public FrameEntry(String phrase, String value, String synrestrs, String selrestrs) {
+        public RoleData(String phrase, String value, String synrestrs, String selrestrs) {
             this.phrase = phrase;
             this.value = value;
             this.synrestrs = synrestrs.split(sep);
@@ -66,25 +74,70 @@ public class FrameExample {
         }
     }
     //
+    private final Type type;
     private final String text;
-    private final Map<ThematicRole, String> args;
-    private final List<FrameEntry> frame;
+    private final Map<Themrole, String> args;
+    private final List<RoleData> frame;
 
-    public FrameExample(String text) {
+    public Example(String text, Type type) {
+        this.type = type;
         this.text = text;
-        this.args = new HashMap<ThematicRole, String>();
-        this.frame = new ArrayList<FrameEntry>();
+        this.args = new HashMap<Themrole, String>();
+        this.frame = new ArrayList<RoleData>();
     }
 
     public String getText() {
         return text;
     }
 
-    public Map<ThematicRole, String> getArgs() {
+    public Map<Themrole, String> getArgs() {
         return args;
     }
 
-    public List<FrameEntry> getFrame() {
+    public List<RoleData> getFrame() {
         return frame;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void mapArgs(Map<String, Themrole> roles) {
+        if (args.isEmpty()) {
+            List<? extends HasWord> tokens = StanfordParserWrapper.tokenize(text);
+            Tree parse = StanfordParserWrapper.parse(tokens);
+            parse = parse.flatten();
+
+            int frameCursor = 0;
+            List<Tree> bfs = parse.getChildrenAsList();
+            int parseCursor = 0;
+
+            DONE_SENTENCE:
+            while (frameCursor < frame.size() && parseCursor < bfs.size()) {
+                Example.RoleData entry = frame.get(frameCursor);
+                String entryLabel = entry.getPhrase();
+                while (!entryLabel.equals("NP")) {
+                    ++frameCursor;
+                    if (frameCursor >= frame.size()) {
+                        break DONE_SENTENCE;
+                    }
+                    entry = frame.get(frameCursor);
+                    entryLabel = entry.getPhrase();
+                }
+
+                Tree node = bfs.get(parseCursor);
+                String nodeLabel = node.label().value();
+
+                if (nodeLabel.equals("NP")) {
+                    String phrase = StanfordParserWrapper.joinTokens(node.yield());
+                    args.put(roles.get(entry.getValue()), phrase);
+                    ++parseCursor;
+                    ++frameCursor;
+                }
+
+                bfs.addAll(bfs.get(parseCursor).getChildrenAsList());
+                ++parseCursor;
+            }
+        }
     }
 }

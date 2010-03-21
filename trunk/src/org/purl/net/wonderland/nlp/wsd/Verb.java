@@ -86,7 +86,7 @@ public class Verb {
 
     private void readRoleset(Element rolesetElement, String lemma, String vncls) throws Exception {
         // read roles
-        Map<String, ThematicRole> roles = new HashMap<String, ThematicRole>();
+        Map<String, Themrole> roles = new HashMap<String, Themrole>();
         NodeList roleNodes = rolesetElement.getElementsByTagName("role");
         for (int j = 0; j < roleNodes.getLength(); j++) {
             Element roleElement = (Element) roleNodes.item(j);
@@ -98,7 +98,7 @@ public class Verb {
                 Element vnroleElement = (Element) vnroleNodes.item(0);
                 vntheta = normalizeThematicRoleName(vnroleElement.getAttribute("vntheta"));
             }
-            ThematicRole role = new ThematicRole(n, desc, vntheta);
+            Themrole role = new Themrole(n, desc, vntheta);
             roles.put(n, role);
             if (vntheta != null) {
                 roles.put(vntheta, role);
@@ -114,20 +114,19 @@ public class Verb {
         for (int i = 0; i < exampleNodes.getLength(); i++) {
             Element exampleElement = (Element) exampleNodes.item(i);
             Element textElement = (Element) exampleElement.getElementsByTagName("text").item(0);
-            FrameExample example = new FrameExample(textElement.getTextContent().trim());
+            Example example = new Example(textElement.getTextContent().trim(), Example.Type.PropBank);
             NodeList argNodes = exampleElement.getElementsByTagName("arg");
             for (int j = 0; j < argNodes.getLength(); j++) {
                 Element argElement = (Element) argNodes.item(j);
                 String n = argElement.getAttribute("n");
                 String value = argElement.getTextContent();
-                ThematicRole role = roles.get(n);
+                Themrole role = roles.get(n);
                 if (role != null) {
                     example.getArgs().put(role, value.trim());
                 }
             }
             roleset.getExamples().add(example);
         }
-
     }
 
     public List<VerbFrame> getFrames() {

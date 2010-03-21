@@ -425,4 +425,8 @@ public class WKnowledgeBase {
         }
         return attr;
     }
+
+    public void addRule(Rule rule) {
+        kb.addRule(rule);
+    }
 }

@@ -24,6 +24,7 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.ling.Word;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
@@ -79,6 +80,17 @@ public final class StanfordParserWrapper {
 
     public static List<TaggedWord> getPennPosTags(Tree parse) {
         return parse.taggedYield();
+    }
+
+    public static String joinTokens(Sentence<HasWord> yield) {
+        StringBuilder text = new StringBuilder();
+        for (HasWord word : yield) {
+            if (text.length() > 0) {
+                text.append(" ");
+            }
+            text.append(word.word());
+        }
+        return text.toString();
     }
 
     public static void init() {
