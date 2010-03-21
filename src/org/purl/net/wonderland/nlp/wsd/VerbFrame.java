@@ -123,6 +123,8 @@ public class VerbFrame {
                         syntaxElement = (Element) syntaxNode;
                         String value = syntaxElement.getAttribute("value");
 
+                        WsdManager.syntaxTags.add(syntaxElement.getTagName());
+
                         StringBuilder synrestrs = new StringBuilder();
                         NodeList synrestrsNodes = syntaxElement.getElementsByTagName("SYNRESTRS");
                         for (int l = 0; l < synrestrsNodes.getLength(); l++) {

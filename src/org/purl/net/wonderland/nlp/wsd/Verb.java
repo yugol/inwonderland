@@ -45,11 +45,11 @@ public class Verb {
     static String normalizeThematicRoleName(String name) {
         return StringUtils.capitalize(name.toLowerCase());
     }
-    private final List<VerbFrame> rolesets;
+    private final List<VerbFrame> frames;
 
     public Verb(String lemma) throws Exception {
         System.out.println("* " + lemma);
-        this.rolesets = new ArrayList<VerbFrame>();
+        this.frames = new ArrayList<VerbFrame>();
         readPropBankData(lemma);
     }
 
@@ -107,7 +107,7 @@ public class Verb {
 
         // create roleset
         VerbFrame roleset = new VerbFrame(lemma, rolesetElement.getAttribute("id"), vncls, roles);
-        rolesets.add(roleset);
+        frames.add(roleset);
 
         // read PropBank examples
         NodeList exampleNodes = rolesetElement.getElementsByTagName("example");
@@ -130,7 +130,7 @@ public class Verb {
 
     }
 
-    public List<VerbFrame> getRolesets() {
-        return rolesets;
+    public List<VerbFrame> getFrames() {
+        return frames;
     }
 }
