@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 
@@ -33,6 +35,7 @@ import org.purl.net.wonderland.kb.WKnowledgeBase;
 public final class WsdManager {
 
     public final static WsdPersonality pers = new WsdPersonality();
+    public static Set<String> syntaxTags = new HashSet<String>();
 
     static {
         try {
