@@ -23,6 +23,10 @@
  */
 package org.purl.net.wonderland.util;
 
+import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
+import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,13 +40,51 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Iulian
  */
 public class IO {
+
+    private static class ProcWriter extends CogxmlWriter {
+
+        public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document xmlDoc = db.newDocument();
+            Element root = xmlDoc.createElement("cogxml");
+            xmlDoc.appendChild(root);
+
+            Element vocabularyElement = createSupportElement(xmlDoc, "support", kb.getVocabulary(), false, kb.getLanguage(), false);
+            root.appendChild(vocabularyElement);
+
+            for (Rule proc : kb.getProcRules(set)) {
+                Element procElement = createRuleElement(xmlDoc, proc);
+                root.appendChild(procElement);
+            }
+
+            writeXmlFile(xmlDoc, file);
+        }
+    }
+
+    private static class ProcReader extends CogxmlReader {
+
+        public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
+            Vocabulary voc = kb.getVocabulary();
+            Document xmlDoc = readXmlFile(file);
+            NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
+            for (int i = 0; i < ruleNodes.getLength(); i++) {
+                Element ruleElement = (Element) ruleNodes.item(i);
+                Rule proc = readRule(ruleElement, voc);
+                kb.addRule(proc);
+            }
+        }
+    }
 
     public static String getFileContentAsString(File file) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(file));
@@ -97,5 +139,13 @@ public class IO {
         serializer.asDOMSerializer();
         serializer.serialize(xmlDoc.getDocumentElement());
         writeStringToFile(sw.toString(), file);
+    }
+
+    public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
+        ProcWriter.writeProcs(set, kb, file);
+    }
+
+    public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
+        ProcReader.readProcs(kb, file);
     }
 }

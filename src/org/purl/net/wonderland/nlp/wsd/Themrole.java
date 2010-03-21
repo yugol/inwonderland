@@ -23,61 +23,46 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreePrint;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.purl.net.wonderland.Globals;
-import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class VerbTest {
+public class Themrole {
 
-    public VerbTest() {
+    private final String pnN;
+    private final String pbDescr;
+    private final String vnThemrole;
+    private final List<String> plusRestrs;
+    private final List<String> minusRestrs;
+
+    public Themrole(String pnN, String pbDescr, String vnThemrole) {
+        this.pnN = pnN;
+        this.pbDescr = pbDescr;
+        this.vnThemrole = vnThemrole;
+        this.plusRestrs = new ArrayList<String>();
+        this.minusRestrs = new ArrayList<String>();
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
+    public String getPbDescr() {
+        return pbDescr;
     }
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
+    public String getPnN() {
+        return pnN;
     }
 
-    // @Test
-    public void testAllVerbs() throws Exception {
-        for (File file : Globals.getPropBankDataFolder().listFiles()) {
-            String lemma = file.getName();
-            int endIndex = lemma.lastIndexOf(".xml");
-            if (endIndex > 0) {
-                lemma = lemma.substring(0, endIndex);
-                Verb v = new Verb(lemma);
-                System.out.println("");
-            }
-        }
-        for (String tag : WsdManager.syntaxTags) {
-            System.out.println(tag);
-        }
+    public String getVnThemrole() {
+        return vnThemrole;
     }
 
-    // @Test
-    public void testOneVerb() throws Exception {
-        Verb v = new Verb("abduct");
-        System.out.println("");
+    public List<String> getMinusRestrs() {
+        return minusRestrs;
     }
 
-    @Test
-    public void testOneVerbToProcs() throws Exception {
-        Verb v = new Verb("abduct");
-        System.out.println("");
+    public List<String> getPlusRestrs() {
+        return plusRestrs;
     }
 }

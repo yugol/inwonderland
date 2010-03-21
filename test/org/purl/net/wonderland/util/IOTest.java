@@ -21,48 +21,49 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.wsd;
+package org.purl.net.wonderland.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKnowledgeBase;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ThematicRole {
+public class IOTest {
 
-    private final String pnN;
-    private final String pbDescr;
-    private final String vnThemrole;
-    private final List<String> plusRestrs;
-    private final List<String> minusRestrs;
-
-    public ThematicRole(String pnN, String pbDescr, String vnThemrole) {
-        this.pnN = pnN;
-        this.pbDescr = pbDescr;
-        this.vnThemrole = vnThemrole;
-        this.plusRestrs = new ArrayList<String>();
-        this.minusRestrs = new ArrayList<String>();
+    public IOTest() {
     }
 
-    public String getPbDescr() {
-        return pbDescr;
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
 
-    public String getPnN() {
-        return pnN;
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
 
-    public String getVnThemrole() {
-        return vnThemrole;
+    @Test
+    public void testWriteProcs() throws Exception {
+        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
+        File file = new File("test.rules.cogxml");
+        IO.writeProcs(KbUtil.toProcLabel(KbUtil.procSetArticles, null), kb, file);
     }
 
-    public List<String> getMinusRestrs() {
-        return minusRestrs;
+    /*
+    @Test
+    public void testReadProcs() throws Exception {
+    System.out.println("readProcs");
+    WKnowledgeBase kb = null;
+    File file = null;
+    IO.readProcs(kb, file);
+    fail("The test case is a prototype.");
     }
-
-    public List<String> getPlusRestrs() {
-        return plusRestrs;
-    }
+     * 
+     */
 }

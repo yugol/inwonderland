@@ -28,6 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -81,7 +82,7 @@ public final class KbUtil {
     public static final String level1 = "level1";
     public static final String level2 = "level2";
     // procedures
-    public static final String proc = "proc";
+    public static final String proc = "proc_";
     public static final String procSetArticles = "article";
     public static final String procSetMoods = "mood";
     public static final String procSetCollocations = "collo";
@@ -111,6 +112,10 @@ public final class KbUtil {
 
     public static String toRelationTypeId(String ctl) {
         return "rt_" + ctl;
+    }
+
+    public static String toProcLabel(String set, String name) {
+        return proc + set + "_" + ((name != null) ? (name) : (""));
     }
 
     public static String toConceptId(WTagging tagging, int index) {
@@ -309,11 +314,28 @@ public final class KbUtil {
         }
     }
 
+    private static void normalizeRules(File kbFile) throws Exception {
+        Document xmlDoc = IO.readXmlFile(kbFile);
+        NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
+        for (int i = 0; i < ruleNodes.getLength(); ++i) {
+            Element ruleElement = (Element) ruleNodes.item(i);
+            Element hyptElement = (Element) ruleElement.getElementsByTagName("hypt").item(0);
+            Element graphElement = (Element) hyptElement.getElementsByTagName("graph").item(0);
+
+            String label = graphElement.getAttribute("label");
+            if (label.indexOf(proc) == 0) {
+                graphElement.setAttribute("set", label.split("_")[1]);
+            }
+        }
+        IO.writeXmlFile(xmlDoc, kbFile);
+    }
+
     public static void normalizeKbFile(File kbFile) throws Exception {
         CodeTimer timer = new CodeTimer("normalizing " + kbFile.getName());
         normalizeConceptTypes(kbFile);
         normalizeRelationTypes(kbFile);
         normalizeIndividuals(kbFile);
+        normalizeRules(kbFile);
         timer.stop();
     }
 

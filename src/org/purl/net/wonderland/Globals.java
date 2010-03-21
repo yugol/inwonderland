@@ -202,4 +202,8 @@ public final class Globals {
         }
         return new File(wnDataFolder);
     }
+
+    public static File getVerbProcsFolder() {
+            return new File(getResPath(), "wsd/procs/verb");
+    }
 }

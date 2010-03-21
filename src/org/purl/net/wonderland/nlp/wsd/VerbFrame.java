@@ -44,10 +44,10 @@ public class VerbFrame {
     // private final String pbid; // PropBank id
     private String vncls = null; // VerbNet class
     private final List<String> senses; // WordNet senses
-    private final Map<String, ThematicRole> roles; // thematic roles from PropBank and VerbNet
-    private final List<FrameExample> examples; // roleset examples
+    private final Map<String, Themrole> roles; // thematic roles from PropBank and VerbNet
+    private final List<Example> examples; // roleset examples
 
-    public VerbFrame(String lemma, String id, String vncls, Map<String, ThematicRole> roles) throws Exception {
+    public VerbFrame(String lemma, String id, String vncls, Map<String, Themrole> roles) throws Exception {
         // this.pbid = id;
         if (vncls == null || vncls.length() == 0 || vncls.equals("-")) {
             this.vncls = null;
@@ -56,7 +56,7 @@ public class VerbFrame {
         }
         this.senses = new ArrayList<String>();
         this.roles = roles;
-        this.examples = new ArrayList<FrameExample>();
+        this.examples = new ArrayList<Example>();
         if (this.vncls != null) {
             readVerbNetData(lemma);
         }
@@ -113,7 +113,7 @@ public class VerbFrame {
             for (int j = 0; j < exampleNodes.getLength(); j++) {
                 Element exampleElement = (Element) exampleNodes.item(j);
 
-                FrameExample example = new FrameExample(exampleElement.getTextContent().trim());
+                Example example = new Example(exampleElement.getTextContent().trim(), Example.Type.VerbNet);
 
                 NodeList syntaxNodes = syntaxElement.getChildNodes();
                 for (int k = 0; k < syntaxNodes.getLength(); k++) {
@@ -132,7 +132,7 @@ public class VerbFrame {
                             synrestrs.append(synrestrElement.getAttribute("Value"));
                             synrestrs.append(synrestrElement.getAttribute("type"));
                             if (synrestrs.length() > 0) {
-                                synrestrs.append(FrameExample.FrameEntry.sep);
+                                synrestrs.append(Example.RoleData.sep);
                             }
                         }
 
@@ -143,14 +143,16 @@ public class VerbFrame {
                             selrestrs.append(selrestrElement.getAttribute("Value"));
                             selrestrs.append(selrestrElement.getAttribute("type"));
                             if (selrestrs.length() > 0) {
-                                selrestrs.append(FrameExample.FrameEntry.sep);
+                                selrestrs.append(Example.RoleData.sep);
                             }
                         }
 
-                        FrameExample.FrameEntry entry = new FrameExample.FrameEntry(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
+                        Example.RoleData entry = new Example.RoleData(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
                         example.getFrame().add(entry);
                     }
                 }
+
+                example.mapArgs(roles);
                 examples.add(example);
             }
         }
@@ -160,9 +162,9 @@ public class VerbFrame {
         for (int i = 0; i < themroleNodes.getLength(); i++) {
             Element themroleElement = (Element) themroleNodes.item(i);
             String trType = Verb.normalizeThematicRoleName(themroleElement.getAttribute("type"));
-            ThematicRole themRole = roles.get(trType);
+            Themrole themRole = roles.get(trType);
             if (themRole == null) {
-                themRole = new ThematicRole(null, null, trType);
+                themRole = new Themrole(null, null, trType);
                 roles.put(trType, themRole);
             }
             NodeList selrestrsNodes = themroleElement.getElementsByTagName("SELRESTRS");
@@ -183,7 +185,7 @@ public class VerbFrame {
         }
     }
 
-    public Map<String, ThematicRole> getRoles() {
+    public Map<String, Themrole> getRoles() {
         return roles;
     }
 
@@ -191,7 +193,7 @@ public class VerbFrame {
         return senses;
     }
 
-    public List<FrameExample> getExamples() {
+    public List<Example> getExamples() {
         return examples;
     }
 }

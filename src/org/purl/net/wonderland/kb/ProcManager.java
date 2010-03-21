@@ -87,7 +87,7 @@ public class ProcManager {
     }
 
     private void readProcedureSet(String set) throws Exception {
-        String setId = KbUtil.proc + "_" + set + "_";
+        String setId = KbUtil.toProcLabel(set, null);
         addProcedure(set, null);
         List<Rule> rules = kb.getProcRules(setId);
         for (Rule rule : rules) {
