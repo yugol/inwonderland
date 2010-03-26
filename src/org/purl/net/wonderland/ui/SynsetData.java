@@ -23,9 +23,13 @@
  */
 package org.purl.net.wonderland.ui;
 
+import java.util.ArrayList;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
+import org.purl.net.wonderland.nlp.ilf.IlfRep;
+import org.purl.net.wonderland.nlp.ilf.Pred;
+import org.purl.net.wonderland.nlp.resources.IlfWnWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.Formatting;
 
@@ -35,52 +39,120 @@ import org.purl.net.wonderland.util.Formatting;
  */
 public class SynsetData {
 
-    private final Synset sense;
+    private final int index;
     private final String lemma;
+    private final Synset sense;
+    private IlfRep ilf;
 
-    SynsetData(Synset sense, String item) {
+    public SynsetData(int index, String item, Synset sense) {
+        this.index = index;
         this.sense = sense;
         IndexWord word = WordNetWrapper.lookup(item, sense.getPOS());
         this.lemma = word.getLemma().replace(" ", "_");
+        try {
+            this.ilf = IlfWnWrapper.getPrettyIlf(Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset()));
+        } catch (Exception ex) {
+            this.ilf = null;
+            System.err.println(ex.getMessage());
+            ex.printStackTrace(System.err);
+        }
+    }
+
+    public IlfRep getIlf() {
+        return ilf;
     }
 
     @Override
     public String toString() {
-        return sense.getWord(0).getLemma();
+        return (index + 1) + ". " + sense.getWord(0).getLemma();
     }
 
-    public String getExplanation() {
-        return sense.getGloss().split(";")[0];
+    public String[] getExplanations() {
+        ArrayList<String> explanations = new ArrayList<String>();
+        for (String item : sense.getGloss().split(";")) {
+            item = item.trim();
+            if (item.charAt(0) != '"') {
+                explanations.add(item);
+            } else {
+                break;
+            }
+        }
+        return explanations.toArray(new String[explanations.size()]);
+    }
+
+    public String[] getExamples() {
+        ArrayList<String> examples = new ArrayList<String>();
+        for (String item : sense.getGloss().split(";")) {
+            item = item.trim();
+            if (item.charAt(0) == '"') {
+                examples.add(item);
+            } else {
+                break;
+            }
+        }
+        return examples.toArray(new String[examples.size()]);
     }
 
     public String getSenseHTML() {
         StringBuilder html = new StringBuilder();
+
         html.append("<u>Synonyms</u><br/>");
         html.append(getWordsHTML());
         html.append("<br/><br/>");
-        html.append(getGlossHTML());
-        html.append("<br/>");
+
+        String explanations = getExplanationsHTML();
+        if (explanations.length() > 0) {
+            html.append("<u>Explanations</u><br/>");
+            html.append(explanations);
+            html.append("<br/>");
+        }
+
+        String examples = getExamplesHTML();
+        if (examples.length() > 0) {
+            html.append("<u>Examples</u><br/>");
+            html.append(examples);
+            html.append("<br/>");
+        }
+
         html.append("<u>Synset data</u><br/>");
         html.append(getSynsetDataHTML());
+        html.append("<br/>");
+
         return html.toString();
     }
 
-    public String getGlossHTML() {
+    public String getExplanationsHTML() {
         StringBuilder html = new StringBuilder();
-        String[] gloss = sense.getGloss().split(";");
-        html.append("<u>Explanation</u><br/>");
-        html.append(gloss[0]);
-        html.append("<br/><br/>");
-        if (gloss.length > 1) {
-            html.append("<u>Examples</u>");
+        String[] explanations = getExplanations();
+        if (explanations.length > 0) {
             html.append("<table border='0' cellpadding='0'>");
-            for (int i = 1; i < gloss.length; i++) {
+            for (int i = 0; i < explanations.length; i++) {
                 html.append("<tr>");
-                html.append("<td>");
-                html.append(i + ".&nbsp;");
+                html.append("<td valign='top'>");
+                html.append("-&nbsp&nbsp;");
                 html.append("</td>");
                 html.append("<td>");
-                html.append(gloss[i]);
+                html.append(explanations[i]);
+                html.append("</td>");
+                html.append("</tr>");
+            }
+            html.append("</table>");
+        }
+        return html.toString();
+    }
+
+    public String getExamplesHTML() {
+        StringBuilder html = new StringBuilder();
+        String[] examples = getExplanations();
+        if (examples.length > 0) {
+            html.append("<table border='0' cellpadding='0'>");
+            for (int i = 0; i < examples.length; i++) {
+                html.append("<tr>");
+                html.append("<td valign='top'>");
+                html.append((i + 1) + ".&nbsp;");
+                html.append("</td>");
+                html.append("<td>");
+                html.append(examples[i]);
                 html.append("</td>");
                 html.append("</tr>");
             }
@@ -162,6 +234,72 @@ public class SynsetData {
         html.append("</tr>");
 
         html.append("</table>");
+        return html.toString();
+    }
+
+    public String getIlfHTML() {
+        StringBuilder html = new StringBuilder();
+        if (ilf == null) {
+            html.append("Data not available !!!");
+        } else {
+
+            html.append(getTextCountHTML(ilf.getText()));
+            html.append("<br/><br/>");
+            html.append("<table border='0' cellpadding='0'>");
+
+            html.append("<tr>");
+            html.append("<th>");
+            html.append("ilf");
+            html.append("</th>");
+            html.append("<th>");
+            html.append("&nbsp;&nbsp;&nbsp;");
+            html.append("</th>");
+            html.append("<th>");
+            html.append("pretty-ilf");
+            html.append("</th>");
+            html.append("<tr>");
+
+            html.append("<tr>");
+            html.append("<td valign='top'>");
+            for (Pred pred : ilf.getIlfs()) {
+                html.append(getPredHTML(pred.toString()));
+                html.append("<br/>");
+            }
+            html.append("</td>");
+            html.append("<td></td>");
+            html.append("<td valign='top'>");
+            for (Pred pred : ilf.getPrettyIlfs()) {
+                html.append(getPredHTML(pred.toString()));
+                html.append("<br/>");
+            }
+            html.append("</td>");
+            html.append("</tr>");
+
+            html.append("</table>");
+        }
+        return html.toString();
+    }
+
+    private String getPredHTML(String rep) {
+        int pos = rep.indexOf("(");
+        StringBuilder html = new StringBuilder("<font color='blue'><b>");
+        html.append(rep.substring(0, pos));
+        html.append("</b></font> ");
+        html.append(rep.substring(pos));
+        return html.toString();
+    }
+
+    private String getTextCountHTML(String rep) {
+        StringBuilder html = new StringBuilder();
+        String[] words = rep.split(" ");
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            html.append(word);
+            html.append("<font color='fuchsia'>");
+            html.append("/" + (i + 1));
+            html.append("</font> ");
+        }
         return html.toString();
     }
 

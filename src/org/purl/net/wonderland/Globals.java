@@ -49,11 +49,13 @@ public final class Globals {
     private static final String lgParserFolderKey = "lgParserFolder";
     private static final String vnDataFolderKey = "verbNetDataFolder";
     private static final String pbDataFolderKey = "propBankDataFolder";
+    private static final String ilfWnFolderKey = "ilfWnFolder";
     private static String resFolder = null;
     private static String lgParserFolder = null;
     private static String vnDataFolder = null;
     private static String wnDataFolder = null;
     private static String pbDataFolder = null;
+    private static String ilfWnFolder = null;
     public static boolean testDebug = false;
 
     private static void readParameters(Properties projProp) {
@@ -62,6 +64,7 @@ public final class Globals {
         lgParserFolder = projProp.getProperty(lgParserFolderKey);
         vnDataFolder = projProp.getProperty(vnDataFolderKey);
         pbDataFolder = projProp.getProperty(pbDataFolderKey);
+        ilfWnFolder = projProp.getProperty(ilfWnFolderKey);
     }
 
     static {
@@ -82,6 +85,7 @@ public final class Globals {
                 projProp.put(lgParserFolderKey, "%MorphAdorner - LinkGrammar%");
                 projProp.put(vnDataFolderKey, "%VerbNet - data%");
                 projProp.put(pbDataFolderKey, "%PropBank - data%");
+                projProp.put(ilfWnFolderKey, "%ILF-WN - data%");
                 Writer writer = new FileWriter(cfg);
                 projProp.store(writer, "");
                 writer.close();
@@ -204,6 +208,10 @@ public final class Globals {
     }
 
     public static File getVerbProcsFolder() {
-            return new File(getResPath(), "wsd/procs/verb");
+        return new File(getResPath(), "wsd/procs/verb");
+    }
+
+    public static File getIlfWnFolder() {
+        return new File(ilfWnFolder);
     }
 }

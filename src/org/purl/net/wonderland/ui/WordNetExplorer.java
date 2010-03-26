@@ -76,6 +76,9 @@ public class WordNetExplorer extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         senseTextPane = new javax.swing.JTextPane();
         ilfwnPanel = new javax.swing.JPanel();
+        cgButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ilfTextPanel = new javax.swing.JTextPane();
         searchButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -130,7 +133,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             sensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sensePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
         sensePanelLayout.setVerticalGroup(
@@ -143,15 +146,32 @@ public class WordNetExplorer extends javax.swing.JFrame {
 
         explanationTabs.addTab("Sense", sensePanel);
 
+        cgButton.setText("CG");
+        cgButton.setActionCommand("CG");
+
+        ilfTextPanel.setContentType("text/html");
+        ilfTextPanel.setEditable(false);
+        jScrollPane2.setViewportView(ilfTextPanel);
+
         javax.swing.GroupLayout ilfwnPanelLayout = new javax.swing.GroupLayout(ilfwnPanel);
         ilfwnPanel.setLayout(ilfwnPanelLayout);
         ilfwnPanelLayout.setHorizontalGroup(
             ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ilfwnPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addComponent(cgButton))
+                .addContainerGap())
         );
         ilfwnPanelLayout.setVerticalGroup(
             ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addGroup(ilfwnPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cgButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         explanationTabs.addTab("ILF-WN", ilfwnPanel);
@@ -274,7 +294,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void sensesTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_sensesTreeValueChanged
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) evt.getNewLeadSelectionPath().getLastPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) evt.getPath().getLastPathComponent();
         displaySenses(node);
     }//GEN-LAST:event_sensesTreeValueChanged
 
@@ -300,6 +320,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton cgButton;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -309,8 +330,10 @@ public class WordNetExplorer extends javax.swing.JFrame {
     private javax.swing.JTabbedPane explanationTabs;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JTextPane ilfTextPanel;
     private javax.swing.JPanel ilfwnPanel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
@@ -347,23 +370,33 @@ public class WordNetExplorer extends javax.swing.JFrame {
 
     private void displaySenses(DefaultMutableTreeNode node) {
         Object userObject = node.getUserObject();
-        if (userObject instanceof String) {
-            String userData = (String) userObject;
-            if (userData.equals(sensesNodeName)) {
-                StringBuilder html = new StringBuilder();
-                for (int i = 0; i < node.getChildCount(); i++) {
-                    html.append(getPOSOverviewHTML((DefaultMutableTreeNode) node.getChildAt(i)));
-                    html.append("<br/>");
-                }
-                senseTextPane.setText(html.toString());
-            } else {
-                senseTextPane.setText(getPOSOverviewHTML(node));
-            }
-        } else if (userObject instanceof SynsetData) {
+
+        if (userObject instanceof SynsetData) {
+            ilfTextPanel.setVisible(true);
             SynsetData userData = (SynsetData) userObject;
             senseTextPane.setText(userData.getSenseHTML());
+            cgButton.setEnabled(userData.getIlf() != null && userData.getIlf().isOk());
+            ilfTextPanel.setText(userData.getIlfHTML());
+        } else {
+            ilfTextPanel.setVisible(false);
+            cgButton.setEnabled(false);
+            if (userObject instanceof String) {
+                String userData = (String) userObject;
+                if (userData.equals(sensesNodeName)) {
+                    StringBuilder html = new StringBuilder();
+                    for (int i = 0; i < node.getChildCount(); i++) {
+                        html.append(getPOSOverviewHTML((DefaultMutableTreeNode) node.getChildAt(i)));
+                        html.append("<br/>");
+                    }
+                    senseTextPane.setText(html.toString());
+                } else {
+                    senseTextPane.setText(getPOSOverviewHTML(node));
+                }
+            }
         }
+
         senseTextPane.setCaretPosition(0);
+        ilfTextPanel.setCaretPosition(0);
     }
 
     private void addSenses(DefaultMutableTreeNode top, String nodeName, String item, Synset[] senses) {
@@ -374,8 +407,9 @@ public class WordNetExplorer extends javax.swing.JFrame {
                 top.add(node);
                 top = node;
             }
-            for (Synset sense : senses) {
-                DefaultMutableTreeNode node = new DefaultMutableTreeNode(new SynsetData(sense, item));
+            for (int i = 0; i < senses.length; i++) {
+                Synset synset = senses[i];
+                DefaultMutableTreeNode node = new DefaultMutableTreeNode(new SynsetData(i, item, synset));
                 top.add(node);
             }
         }
@@ -417,9 +451,12 @@ public class WordNetExplorer extends javax.swing.JFrame {
             html.append("</td>");
             html.append("<td>");
             html.append(synsetData.getWordsHTML());
-            html.append(" -- <br/>(");
-            html.append(synsetData.getExplanation());
-            html.append(")");
+            html.append(" -- ");
+            for (String item : synsetData.getExplanations()) {
+                html.append("<br/>(");
+                html.append(item);
+                html.append(")");
+            }
             html.append("</td>");
             html.append("</tr>");
         }
