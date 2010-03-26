@@ -60,7 +60,7 @@ public class VNClassFile {
             for (String wnSense : wnSenses) {
                 if (wnSense.length() > 0) {
                     wnSense = wnSense.replaceAll("\\?", "");
-                    vf.addWnSense(vc, WordNetWrapper.senseToId(wnSense));
+                    vf.addWnSense(vc, WordNetWrapper.senseKeyToOffsetKeyAlpha(wnSense));
                 }
             }
             vf.addVnClass(vc);
