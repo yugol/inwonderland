@@ -23,8 +23,6 @@
  */
 package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.kb.WKnowledgeBase;
-import org.purl.net.wonderland.kb.KbUtil;
 import aminePlatform.kernel.lexicons.Identifier;
 import aminePlatform.util.cg.CG;
 import edu.stanford.nlp.util.StringUtils;
@@ -38,7 +36,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.solver.SolverCogitant;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;

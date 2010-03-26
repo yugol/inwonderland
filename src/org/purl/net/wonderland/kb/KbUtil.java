@@ -28,7 +28,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,6 +47,7 @@ import java.util.UUID;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -290,7 +290,7 @@ public final class KbUtil {
     }
 
     private static void normalizeIndividuals(File kbFile) throws Exception {
-        Document xmlDoc = IO.readXmlFile(kbFile);
+        Document xmlDoc = XML.readXmlFile(kbFile);
         NodeList markers = xmlDoc.getElementsByTagName("marker");
         for (int i = 0; i < markers.getLength(); ++i) {
             Element marker = (Element) markers.item(i);
@@ -300,7 +300,7 @@ public final class KbUtil {
             marker.setAttribute("id", label);
             marker.setAttribute("idType", KbUtil.Top);
         }
-        IO.writeXmlFile(xmlDoc, kbFile);
+        XML.writeXmlFile(xmlDoc, kbFile);
     }
 
     private static void replaceIndividualsIds(Document xmlDoc, String id, String label) {
@@ -315,7 +315,7 @@ public final class KbUtil {
     }
 
     private static void normalizeRules(File kbFile) throws Exception {
-        Document xmlDoc = IO.readXmlFile(kbFile);
+        Document xmlDoc = XML.readXmlFile(kbFile);
         NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
         for (int i = 0; i < ruleNodes.getLength(); ++i) {
             Element ruleElement = (Element) ruleNodes.item(i);
@@ -327,7 +327,7 @@ public final class KbUtil {
                 graphElement.setAttribute("set", label.split("_")[1]);
             }
         }
-        IO.writeXmlFile(xmlDoc, kbFile);
+        XML.writeXmlFile(xmlDoc, kbFile);
     }
 
     public static void normalizeKbFile(File kbFile) throws Exception {
