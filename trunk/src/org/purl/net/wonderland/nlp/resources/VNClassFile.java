@@ -29,6 +29,7 @@ import java.util.List;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -43,7 +44,7 @@ public class VNClassFile {
 
     public VNClassFile(String verbClass) throws Exception {
         File classFile = new File(Globals.getVerbNetDataFolder(), verbClass);
-        xmlDoc = IO.readXmlFile(classFile);
+        xmlDoc = XML.readXmlFile(classFile);
     }
 
     public List<VerbForm> getMembers() {

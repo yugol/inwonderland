@@ -58,9 +58,7 @@ public class IO {
         }
 
         private static void writeProcs(List<Rule> procs, WKnowledgeBase kb, File file) throws Exception {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document xmlDoc = db.newDocument();
+            Document xmlDoc = XML.createDocument();
             Element root = xmlDoc.createElement("cogxml");
             xmlDoc.appendChild(root);
 
@@ -72,7 +70,7 @@ public class IO {
                 root.appendChild(procElement);
             }
 
-            writeXmlFile(xmlDoc, file);
+            XML.writeXmlFile(xmlDoc, file);
         }
     }
 
@@ -80,7 +78,7 @@ public class IO {
 
         public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
             Vocabulary voc = kb.getVocabulary();
-            Document xmlDoc = readXmlFile(file);
+            Document xmlDoc = XML.readXmlFile(file);
             NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
             for (int i = 0; i < ruleNodes.getLength(); i++) {
                 Element ruleElement = (Element) ruleNodes.item(i);
@@ -123,26 +121,6 @@ public class IO {
         String cpr = c.getCanonicalName();
         cpr = cpr.substring(0, cpr.lastIndexOf("."));
         return cpr;
-    }
-
-    public static Document readXmlFile(File file) throws Exception {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document xmlDoc = db.parse(file);
-        xmlDoc.getDocumentElement().normalize();
-        return xmlDoc;
-    }
-
-    public static void writeXmlFile(Document xmlDoc, File file) throws IOException {
-        StringWriter sw = new StringWriter();
-        OutputFormat of = new OutputFormat("XML", null, true);
-        of.setIndent(2);
-        of.setIndenting(true);
-        of.setLineWidth(1000);
-        XMLSerializer serializer = new XMLSerializer(sw, of);
-        serializer.asDOMSerializer();
-        serializer.serialize(xmlDoc.getDocumentElement());
-        writeStringToFile(sw.toString(), file);
     }
 
     public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {

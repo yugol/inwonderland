@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
-import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -64,7 +64,7 @@ public class VerbFrame {
 
     private void readVerbNetData(String lemma) throws Exception {
         File vnFile = VerbNetWrapper.getClassFile(vncls);
-        Document xmlDoc = IO.readXmlFile(vnFile);
+        Document xmlDoc = XML.readXmlFile(vnFile);
 
         String verbLemma = vnFile.getName();
         verbLemma = verbLemma.substring(0, verbLemma.indexOf('-'));

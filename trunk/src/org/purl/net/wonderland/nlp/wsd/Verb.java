@@ -28,7 +28,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,14 +36,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
-import org.purl.net.wonderland.ui.KbFileFilter;
-import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -71,7 +68,7 @@ public class Verb {
 
     private void readPropBankData(String lemma) throws Exception {
         File pbFile = PropBankWrapper.getVerbFile(lemma);
-        Document xmlDoc = IO.readXmlFile(pbFile);
+        Document xmlDoc = XML.readXmlFile(pbFile);
 
         NodeList rolesetNodes = xmlDoc.getElementsByTagName("roleset");
         for (int i = 0; i < rolesetNodes.getLength(); i++) {
