@@ -43,6 +43,7 @@ import net.didion.jwnl.dictionary.Dictionary;
 import org.purl.net.wonderland.Globals;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.util.CodeTimer;
+import org.purl.net.wonderland.util.Formatting;
 
 /**
  *
@@ -52,6 +53,7 @@ public final class WordNetWrapper {
 
     private static Dictionary dict;
     private static Map<String, String> senseOffset = null;
+    private static Map<String, String> offsetSense = null;
 
     static {
         try {
@@ -120,7 +122,7 @@ public final class WordNetWrapper {
     public static Synset[] getSenses(String word, POS posType) {
         try {
             return dict.lookupIndexWord(posType, word).getSenses();
-        } catch (JWNLException ex) {
+        } catch (Exception ex) {
             // System.err.println(ex);
             return null;
         }
@@ -142,7 +144,7 @@ public final class WordNetWrapper {
                     all.get(lemma).add("Jj");
                 }
             }
-            
+
             it = dict.getIndexWordIterator(POS.NOUN);
             while (it.hasNext()) {
                 IndexWord w = it.next();
@@ -193,8 +195,8 @@ public final class WordNetWrapper {
         }
     }
 
-    public static String senseToId(String senseKey) {
-        String id = null;
+    public static String senseKeyToOffsetKeyAlpha(String senseKey) {
+        String offsetKey = null;
 
         try {
             if (senseOffset == null) {
@@ -213,32 +215,66 @@ public final class WordNetWrapper {
                 timer.stop();
             }
 
-            char senseType = senseKey.charAt(senseKey.indexOf("%") + 1);
-            switch (senseType) {
-                case '1':
-                    id = "n";
-                    break;
-                case '2':
-                    id = "v";
-                    break;
-                case '3':
-                    id = "a";
-                    break;
-                case '4':
-                    id = "r";
-                    break;
-                default:
-                    throw new WonderlandException("Unsupported type " + senseType);
-            }
             String[] chunks = senseOffset.get(senseKey).split(" ");
-            id = id + chunks[1];
+            offsetKey = getSenseAlpha(senseKey) + chunks[1];
+
         } catch (Exception ex) {
             System.err.println("In WordNetWrapper.senseToId");
             ex.printStackTrace(System.err);
             Globals.exit();
         }
 
-        return id;
+        return offsetKey;
+    }
+
+    private static String getSenseAlpha(String senseKey) throws WonderlandException {
+        char senseType = senseKey.charAt(senseKey.indexOf("%") + 1);
+        switch (senseType) {
+            case '1':
+                return "n";
+            case '2':
+                return "v";
+            case '3':
+                return "a";
+            case '4':
+                return "r";
+            case '5':
+                return "a";
+            default:
+                System.err.println(senseType);
+                throw new WonderlandException("Unsupported type " + senseType);
+        }
+    }
+
+    public static String offsetKeyAlphaTpSenseKey(String offsetKey) {
+        String sense = null;
+
+        try {
+            if (offsetSense == null) {
+                CodeTimer timer = new CodeTimer("WordNetWrapper offset-sense map");
+                offsetSense = new Hashtable<String, String>();
+                File indexSense = new File(Globals.getWordNetFolder(), "index.sense");
+                BufferedReader reader = new BufferedReader(new FileReader(indexSense));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    String[] chunks = line.split(" ");
+                    String senseKey = chunks[0];
+                    String offsetKeyAlpha = getSenseAlpha(senseKey) + chunks[1];
+                    offsetSense.put(offsetKeyAlpha, senseKey);
+                }
+                reader.close();
+                timer.stop();
+            }
+
+            sense = offsetSense.get(offsetKey);
+
+        } catch (Exception ex) {
+            System.err.println("In WordNetWrapper.idToSense");
+            ex.printStackTrace(System.err);
+            Globals.exit();
+        }
+
+        return sense;
     }
 
     public static Synset lookup(String id) {

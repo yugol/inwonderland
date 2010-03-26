@@ -80,7 +80,7 @@ public class VerbFrame {
                 for (String sense : wnSenses) {
                     if (sense.length() > 0) {
                         sense = sense.replaceAll("\\?", "");
-                        senses.add(WordNetWrapper.senseToId(sense));
+                        senses.add(WordNetWrapper.senseKeyToOffsetKeyAlpha(sense));
                     }
                 }
                 vnclassElement = (Element) memberElement.getParentNode().getParentNode();

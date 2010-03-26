@@ -46,6 +46,7 @@ import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbForm;
+import org.purl.net.wonderland.util.Formatting;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -217,7 +218,7 @@ public class WKnowledgeBase {
     }
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
-        String senseName = KbUtil.toSenseName(particle, sense.getOffset());
+        String senseName = Formatting.toWordNetOffsetKeyAlpha(particle, sense.getOffset());
         String senseId = KbUtil.toConceptTypeId(senseName);
         if (vocabulary.conceptTypeIdExist(senseId)) {
             return senseId;
@@ -244,23 +245,21 @@ public class WKnowledgeBase {
         String particle = null;
         if (posType == POS.NOUN) {
             parentLabel = "wnNn";
-            particle = "n";
             parentId = KbUtil.toConceptTypeId(parentLabel);
         } else if (posType == POS.ADJECTIVE) {
             parentLabel = "wnJj";
-            particle = "a";
             parentId = KbUtil.toConceptTypeId(parentLabel);
         } else if (posType == POS.ADVERB) {
             parentLabel = "wnRb";
-            particle = "r";
             parentId = KbUtil.toConceptTypeId(parentLabel);
         } else if (posType == POS.VERB) {
             parentLabel = "wnVb";
-            particle = "v";
             parentId = KbUtil.toConceptTypeId(parentLabel);
         } else {
             return null;
         }
+
+        particle = Formatting.getAlpha(posType);
 
         ArrayList<String> senseTypes = new ArrayList<String>(20);
         try {

@@ -51,22 +51,22 @@ public class WordNetWrapperTest {
 
     @Test
     public void testSenseToId() {
-        String id = WordNetWrapper.senseToId("insolvent%1:18:00");
+        String id = WordNetWrapper.senseKeyToOffsetKeyAlpha("insolvent%1:18:00");
         assertEquals("n09838370", id);
         Synset sense = WordNetWrapper.lookup(id);
         assertEquals("insolvent", sense.getWord(1).getLemma());
 
-        id = WordNetWrapper.senseToId("inspect%2:31:00");
+        id = WordNetWrapper.senseKeyToOffsetKeyAlpha("inspect%2:31:00");
         assertEquals("v00697062", id);
         sense = WordNetWrapper.lookup(id);
         assertEquals("inspect", sense.getWord(3).getLemma());
 
-        id = WordNetWrapper.senseToId("insolvent%3:00:00");
+        id = WordNetWrapper.senseKeyToOffsetKeyAlpha("insolvent%3:00:00");
         assertEquals("a02026442", id);
         sense = WordNetWrapper.lookup(id);
         assertEquals("insolvent", sense.getWord(0).getLemma());
 
-        id = WordNetWrapper.senseToId("insomuch%4:02:00");
+        id = WordNetWrapper.senseKeyToOffsetKeyAlpha("insomuch%4:02:00");
         assertEquals("r00379233", id);
         sense = WordNetWrapper.lookup(id);
         assertEquals("insomuch", sense.getWord(0).getLemma());

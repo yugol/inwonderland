@@ -46,6 +46,7 @@ import java.util.TreeSet;
 import java.util.UUID;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
+import org.purl.net.wonderland.util.Formatting;
 import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
@@ -88,7 +89,6 @@ public final class KbUtil {
     public static final String procSetCollocations = "collo";
     // other
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
-    private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
 
     public static String newUniqueId() {
         return UUID.randomUUID().toString();
@@ -186,10 +186,6 @@ public final class KbUtil {
     public static int getLabelIndex(String label) {
         int beg = label.lastIndexOf("-") + 1;
         return Integer.parseInt(label.substring(beg));
-    }
-
-    public static String toSenseName(String particle, long offset) {
-        return particle + senseNumberFormatter.format(offset);
     }
 
     public static void setAllConclusion(CGraph lhs, boolean b) {
