@@ -35,6 +35,14 @@ public class RelationType extends BasicDescriptible {
     public RelationType(String id, int arity) {
         super(id);
         signature = new ConceptTypeSet[arity];
+        for (int i = 0; i < signature.length; i++) {
+            signature[i] = new ConceptTypeSet();
+        }
+    }
+
+    public RelationType(String id, ConceptTypeSet[] signature) {
+        super(id);
+        this.signature = signature;
     }
 
     public RelationType getParent() {

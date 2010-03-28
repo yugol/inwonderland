@@ -36,15 +36,15 @@ public class Support {
     private final Map<String, RelationType> relationTypes = new HashMap<String, RelationType>();
     private final Map<String, Individual> individuals = new HashMap<String, Individual>();
 
-    public Map<String, ConceptType> getConceptTypes() {
+    Map<String, ConceptType> getConceptTypes() {
         return conceptTypes;
     }
 
-    public Map<String, Individual> getIndividuals() {
+    Map<String, Individual> getIndividuals() {
         return individuals;
     }
 
-    public Map<String, RelationType> getRelationTypes() {
+    Map<String, RelationType> getRelationTypes() {
         return relationTypes;
     }
 
@@ -58,5 +58,53 @@ public class Support {
 
     void add(Individual individual) {
         individuals.put(individual.getId(), individual);
+    }
+
+    public ConceptType getConceptType(String id) {
+        return conceptTypes.get(id);
+    }
+
+    public ConceptType addConceptType(String id) {
+        ConceptType ct = conceptTypes.get(id);
+        if (ct == null) {
+            ct = new ConceptType(id);
+            ct.setLabel(id);
+            add(ct);
+            return ct;
+        } else {
+            return null;
+        }
+    }
+
+    public Individual getIndividual(String id) {
+        return individuals.get(id);
+    }
+
+    public Individual addIndividual(String id, ConceptType ct) {
+        Individual marker = individuals.get(id);
+        if (marker == null) {
+            marker = new Individual(id, ct);
+            marker.setLabel(id);
+            add(marker);
+            return marker;
+        } else {
+            return null;
+        }
+    }
+
+    public RelationType getRelationType(String id) {
+        return relationTypes.get(id);
+    }
+
+    public RelationType addRelationType(String id, int arity) {
+        RelationType rt = relationTypes.get(id);
+        if (rt == null) {
+            rt = new RelationType(id, arity);
+            rt.setLabel(id);
+            add(rt);
+            return rt;
+        } else {
+            return null;
+        }
     }
 }

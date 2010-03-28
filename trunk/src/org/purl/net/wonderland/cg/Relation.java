@@ -38,6 +38,11 @@ public class Relation extends BasicIdentifiable {
         this.edges = new Edge[type.getArity()];
     }
 
+    public Relation(RelationType type) {
+        this.type = type;
+        this.edges = new Edge[type.getArity()];
+    }
+
     public RelationType getType() {
         return type;
     }

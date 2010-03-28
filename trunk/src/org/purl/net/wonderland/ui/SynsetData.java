@@ -25,6 +25,8 @@ package org.purl.net.wonderland.ui;
 
 import java.util.ArrayList;
 import net.didion.jwnl.data.IndexWord;
+import net.didion.jwnl.data.Pointer;
+import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
 import org.purl.net.wonderland.nlp.ilf.IlfRep;
@@ -47,8 +49,12 @@ public class SynsetData {
     public SynsetData(int index, String item, Synset sense) {
         this.index = index;
         this.sense = sense;
-        IndexWord word = WordNetWrapper.lookup(item, sense.getPOS());
-        this.lemma = word.getLemma().replace(" ", "_");
+        if (item != null) {
+            IndexWord word = WordNetWrapper.lookup(item, sense.getPOS());
+            this.lemma = word.getLemma().replace(" ", "_");
+        } else {
+            this.lemma = null;
+        }
         try {
             this.ilf = IlfWnWrapper.getPrettyIlf(Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset()));
         } catch (Exception ex) {
@@ -64,7 +70,19 @@ public class SynsetData {
 
     @Override
     public String toString() {
-        return (index + 1) + ". " + sense.getWord(0).getLemma();
+        if (index >= 0) {
+            return (index + 1) + ". " + sense.getWord(0).getLemma();
+        } else {
+            return sense.getWord(0).getLemma();
+        }
+    }
+
+    public Synset getHypernym() {
+        Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+        if (ptrs.length > 0) {
+            return WordNetWrapper.lookup(ptrs[0].getTargetOffset(), sense.getPOS());
+        }
+        return null;
     }
 
     public String[] getExplanations() {
@@ -86,8 +104,6 @@ public class SynsetData {
             item = item.trim();
             if (item.charAt(0) == '"') {
                 examples.add(item);
-            } else {
-                break;
             }
         }
         return examples.toArray(new String[examples.size()]);
@@ -143,7 +159,7 @@ public class SynsetData {
 
     public String getExamplesHTML() {
         StringBuilder html = new StringBuilder();
-        String[] examples = getExplanations();
+        String[] examples = getExamples();
         if (examples.length > 0) {
             html.append("<table border='0' cellpadding='0'>");
             for (int i = 0; i < examples.length; i++) {
