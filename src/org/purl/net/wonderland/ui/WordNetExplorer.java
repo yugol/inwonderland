@@ -30,6 +30,9 @@
 package org.purl.net.wonderland.ui;
 
 import com.jidesoft.plaf.LookAndFeelFactory;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.Enumeration;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -39,6 +42,9 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
+import org.purl.net.wonderland.cg.CogxmlIO;
+import org.purl.net.wonderland.cg.KnowledgeBase;
+import org.purl.net.wonderland.kb.CoGuiWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
@@ -48,12 +54,23 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 public class WordNetExplorer extends javax.swing.JFrame {
 
     private static final String sensesNodeName = "Senses";
+    private File kbFile = new File(/*System.getProperty("TMP"),*/"_WordNetExplorer_temp_.cogxml");
+    private SynsetData userData = null;
 
     /** Creates new form WordNetExplorer */
     public WordNetExplorer() {
         initComponents();
         setSize(800, 600);
         fillResponse(null);
+
+        CoGuiWrapper.instance().setWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                CoGuiWrapper.instance().hideGui();
+                setVisible(true);
+            }
+        });
 
     }
 
@@ -133,7 +150,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             sensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sensePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                 .addContainerGap())
         );
         sensePanelLayout.setVerticalGroup(
@@ -147,7 +164,11 @@ public class WordNetExplorer extends javax.swing.JFrame {
         explanationTabs.addTab("Sense", sensePanel);
 
         cgButton.setText("CG");
-        cgButton.setActionCommand("CG");
+        cgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cgButtonActionPerformed(evt);
+            }
+        });
 
         ilfTextPanel.setContentType("text/html");
         ilfTextPanel.setEditable(false);
@@ -160,7 +181,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ilfwnPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                     .addComponent(cgButton))
                 .addContainerGap())
         );
@@ -298,6 +319,17 @@ public class WordNetExplorer extends javax.swing.JFrame {
         displaySenses(node);
     }//GEN-LAST:event_sensesTreeValueChanged
 
+    private void cgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cgButtonActionPerformed
+        try {
+            KnowledgeBase kb = userData.getIlf().buildKnowledgeBase();
+            CogxmlIO.writeCogxmlFile(kb, kbFile);
+            CoGuiWrapper.instance().showGui(kbFile);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+            ex.printStackTrace(System.err);
+        }
+    }//GEN-LAST:event_cgButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,18 +403,35 @@ public class WordNetExplorer extends javax.swing.JFrame {
     private void displaySenses(DefaultMutableTreeNode node) {
         Object userObject = node.getUserObject();
 
+        userData = null;
+
         if (userObject instanceof SynsetData) {
+
             ilfTextPanel.setVisible(true);
-            SynsetData userData = (SynsetData) userObject;
+            userData = (SynsetData) userObject;
             senseTextPane.setText(userData.getSenseHTML());
-            cgButton.setEnabled(userData.getIlf() != null && userData.getIlf().isOk());
+            if (userData.getIlf() != null && userData.getIlf().isOk()) {
+                cgButton.setEnabled(true);
+            } else {
+                cgButton.setEnabled(false);
+            }
             ilfTextPanel.setText(userData.getIlfHTML());
+
+            // add hypernym
+            Synset hypernym = null; //userData.getHypernym();
+            if (hypernym != null) {
+                DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(new SynsetData(-1, null, hypernym));
+                node.add(node2);
+                expandAll(sensesTree, new TreePath(node.getPath()), true);
+            }
+
         } else {
+
             ilfTextPanel.setVisible(false);
             cgButton.setEnabled(false);
             if (userObject instanceof String) {
-                String userData = (String) userObject;
-                if (userData.equals(sensesNodeName)) {
+                String userString = (String) userObject;
+                if (userString.equals(sensesNodeName)) {
                     StringBuilder html = new StringBuilder();
                     for (int i = 0; i < node.getChildCount(); i++) {
                         html.append(getPOSOverviewHTML((DefaultMutableTreeNode) node.getChildAt(i)));

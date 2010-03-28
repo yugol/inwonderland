@@ -38,6 +38,9 @@ public class ConceptualGraph extends BasicClassifiable {
     private final Map<String, Relation> relations = new HashMap<String, Relation>();
     private final Set<Edge> edges = new HashSet<Edge>();
 
+    public ConceptualGraph() {
+    }
+
     public ConceptualGraph(String id) {
         super(id);
     }
@@ -54,15 +57,15 @@ public class ConceptualGraph extends BasicClassifiable {
         return relations;
     }
 
-    void add(Concept concept) {
+    public void add(Concept concept) {
         concepts.put(concept.getId(), concept);
     }
 
-    void add(Relation relation) {
+    public void add(Relation relation) {
         relations.put(relation.getId(), relation);
     }
 
-    void add(Edge edge) {
+    public void add(Edge edge) {
         edges.add(edge);
         edge.getRelation().addEdge(edge);
         edge.getConcept().addEdge(edge);

@@ -23,8 +23,10 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.io.File;
 import java.util.Map;
 import java.util.Set;
+import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -60,11 +62,10 @@ public class CogxmlIO {
         RelationType rt = new RelationType(elt.getAttribute("id"), signature.length);
         for (int i = 0; i < signature.length; i++) {
             String[] ctids = signature[i].split(";");
-            ConceptTypeSet ctSet = new ConceptTypeSet();
+            ConceptTypeSet ctSet = rt.getSignature()[i];
             for (int j = 0; j < ctids.length; j++) {
                 ctSet.add(conceptTypes.get(ctids[j]));
             }
-            rt.getSignature()[i] = ctSet;
         }
         NodeList translationNodes = elt.getElementsByTagName("translation");
         for (int i = 0; i < translationNodes.getLength(); i++) {
@@ -391,5 +392,11 @@ public class CogxmlIO {
             }
         }
         return cogxmlElement;
+    }
+
+    public static void writeCogxmlFile(KnowledgeBase kb, File kbFile) throws Exception {
+        Document xmlDoc = XML.createDocument();
+        xmlDoc.appendChild(xmlKnowledgeBase(xmlDoc, kb));
+        XML.writeXmlFile(xmlDoc, kbFile);
     }
 }

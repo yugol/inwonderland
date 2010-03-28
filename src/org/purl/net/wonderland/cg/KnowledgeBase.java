@@ -61,7 +61,7 @@ public class KnowledgeBase {
         return facts;
     }
 
-    void addFact(ConceptualGraph cg) {
+    public void addFact(ConceptualGraph cg) {
         Set<ConceptualGraph> factSet = facts.get(cg.getSet());
         if (factSet == null) {
             factSet = new HashSet<ConceptualGraph>();

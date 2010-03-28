@@ -48,7 +48,7 @@ public class Concept extends BasicIdentifiable {
         this.individual = individual;
     }
 
-    void addType(ConceptType type) {
+    public void addType(ConceptType type) {
         types.add(type);
     }
 

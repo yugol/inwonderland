@@ -29,5 +29,5 @@ import java.util.HashSet;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-class ConceptTypeSet extends HashSet<ConceptType> {
+public class ConceptTypeSet extends HashSet<ConceptType> {
 }
