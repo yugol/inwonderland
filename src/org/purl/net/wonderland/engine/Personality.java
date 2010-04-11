@@ -28,7 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.ArrayList;
 import java.util.List;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.ProcManager;
@@ -64,7 +64,7 @@ public abstract class Personality {
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
             ex.printStackTrace(System.err);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 

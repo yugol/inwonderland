@@ -31,7 +31,7 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.KbUtil;
 import static org.junit.Assert.*;
 
@@ -54,7 +54,7 @@ public class ProcManagerTest {
 
     @Test
     public void testReadProcsFromKb() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+        WKnowledgeBase kb = new WKnowledgeBase(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
         ProcManager procMgr = new ProcManager(kb);
         procMgr.readAllProceduresFromKb();
         assertEquals(1, procMgr.getProcCount());
@@ -64,9 +64,9 @@ public class ProcManagerTest {
 
     @Test
     public void testReadProcsFromFile() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+        WKnowledgeBase kb = new WKnowledgeBase(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
         ProcManager procMgr = new ProcManager(kb);
-        procMgr.readProcedures(new File(Globals.getTestFolder(), "test_generators.xml"));
+        procMgr.readProcedures(new File(Configuration.getTestFolder(), "test_generators.xml"));
         assertEquals(1, procMgr.getProcCount());
     }
 }

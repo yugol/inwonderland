@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
@@ -51,12 +51,12 @@ public final class VerbNetWrapper {
     static {
         try {
             CodeTimer timer = new CodeTimer("VerbNetWrapper");
-            File fileIndex = Globals.getVerbNetFileIndexFile();
+            File fileIndex = Configuration.getVerbNetFileIndexFile();
             if (!fileIndex.exists()) {
                 VNUtil.buildVerbNetFileList(fileIndex);
             }
             loadFileIndex();
-            File verbIndex = Globals.getVerbNetVerbIndexFile();
+            File verbIndex = Configuration.getVerbNetVerbIndexFile();
             if (!verbIndex.exists()) {
                 VNUtil.buildVerbNetVerbIndex(verbIndex);
             }
@@ -65,7 +65,7 @@ public final class VerbNetWrapper {
         } catch (Exception ex) {
             System.err.println("Error initializing VerbNetWrapper");
             ex.printStackTrace(System.err);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 
@@ -78,7 +78,7 @@ public final class VerbNetWrapper {
 
     private static void loadFileIndex() throws FileNotFoundException, IOException {
         fileList = new ArrayList<String>();
-        BufferedReader reader = new BufferedReader(new FileReader(Globals.getVerbNetFileIndexFile()));
+        BufferedReader reader = new BufferedReader(new FileReader(Configuration.getVerbNetFileIndexFile()));
         String line = null;
         while ((line = reader.readLine()) != null) {
             line = line.trim();
@@ -91,7 +91,7 @@ public final class VerbNetWrapper {
 
     private static void loadVerbIndex() throws FileNotFoundException, IOException {
         verbForms = new Hashtable<String, VerbForm>();
-        BufferedReader reader = new BufferedReader(new FileReader(Globals.getVerbNetVerbIndexFile()));
+        BufferedReader reader = new BufferedReader(new FileReader(Configuration.getVerbNetVerbIndexFile()));
         String line = null;
         while ((line = reader.readLine()) != null) {
             String[] chunks = line.split(",");
@@ -115,7 +115,7 @@ public final class VerbNetWrapper {
             for (String fName : fileList) {
                 String verbClass = fName.substring(fName.indexOf('-') + 1, fName.lastIndexOf('.'));
                 if (verbClass.equals(vncls)) {
-                    return new File(Globals.getVerbNetDataFolder(), fName);
+                    return new File(Configuration.getVerbNetDataFolder(), fName);
                 }
             }
         }

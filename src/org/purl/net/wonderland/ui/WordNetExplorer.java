@@ -43,6 +43,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.cg.CogxmlIO;
 import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
@@ -335,6 +336,8 @@ public class WordNetExplorer extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Configuration.getVerbNetDataFolder();
+
         try {
             LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
         } catch (Throwable t) {

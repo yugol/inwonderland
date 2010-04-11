@@ -38,7 +38,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import static org.junit.Assert.*;
 
 /**
@@ -67,13 +67,13 @@ public class StanfordParserTest {
                 + "The colourless green ideas sleep furiously.";
         for (List<? extends HasWord> sentence : StanfordParserWrapper.getSentences(text)) {
             assertTrue(StanfordParserWrapper.getParser().parse(sentence));
-            // Globals.lp.getTreePrint().printTree(Globals.lp.getBestParse());
+            // Configuration.lp.getTreePrint().printTree(Configuration.lp.getBestParse());
         }
     }
 
     @Test
     public void testDemo() {
-        LexicalizedParser lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
+        LexicalizedParser lp = new LexicalizedParser(Configuration.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
         // String[] sent = {"They", "left", "one", "by", "one", "."};

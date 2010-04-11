@@ -31,7 +31,7 @@ import net.sf.jlinkgrammar.Sentence;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 
 /**
  *
@@ -52,9 +52,8 @@ public class LGParserTest {
 
     @Test
     public void parseTest() {
-        LGParser parser = new LGParser(Globals.getLgParserPath());
+        LGParser parser = new LGParser(Configuration.getLgParserPath().getAbsolutePath());
         Sentence sent = parser.parse("How do you do?");
-
 
         ParseOptions opts = new ParseOptions();
 
@@ -105,5 +104,4 @@ public class LGParserTest {
             }
         }
     }
-
 }

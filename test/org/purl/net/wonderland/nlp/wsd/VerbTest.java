@@ -29,7 +29,7 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.util.IO;
@@ -53,7 +53,7 @@ public class VerbTest {
 
     // @Test
     public void testAllVerbs() throws Exception {
-        for (File file : Globals.getPropBankDataFolder().listFiles()) {
+        for (File file : Configuration.getPropBankDataFolder().listFiles()) {
             String lemma = file.getName();
             int endIndex = lemma.lastIndexOf(".xml");
             if (endIndex > 0) {

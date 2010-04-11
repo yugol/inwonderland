@@ -28,7 +28,7 @@ import java.io.File;
 import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 
 /**
  *
@@ -38,7 +38,7 @@ public class WKnowledgeBaseTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
+        WKnowledgeBase kb = new WKnowledgeBase(Configuration.getDefaultParseKBFile());
         File cogxml = new File("test_word_import.cogxml");
 
         String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
@@ -67,7 +67,7 @@ public class WKnowledgeBaseTest {
 
     @Test
     public void testImportVerbNetHierarchy() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
+        WKnowledgeBase kb = new WKnowledgeBase(Configuration.getDefaultParseKBFile());
         File cogxml = new File("test_verb_import.cogxml");
 
         String[] sTypes = kb.importVerbNetHierarchy("zzzb");

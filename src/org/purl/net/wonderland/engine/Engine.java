@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -66,8 +66,8 @@ public class Engine {
     }
 
     public void openKb(File file) throws Exception {
-        if (file == null || Globals.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
-            file = Globals.getDefaultParseKBFile();
+        if (file == null || Configuration.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
+            file = Configuration.getDefaultParseKBFile();
             lastFile = null;
         } else {
             lastFile = file;
@@ -77,7 +77,7 @@ public class Engine {
     }
 
     public void saveKb(File file) throws Exception {
-        if (Globals.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
+        if (Configuration.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
             lastFile = null;
         } else {
             kb.save(file);

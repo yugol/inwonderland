@@ -27,7 +27,7 @@ import java.io.File;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.kb.WKnowledgeBase;
 
@@ -50,7 +50,7 @@ public class IOTest {
 
     @Test
     public void testWriteProcs() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(Globals.getDefaultParseKBFile());
+        WKnowledgeBase kb = new WKnowledgeBase(Configuration.getDefaultParseKBFile());
         File file = new File("test.rules.cogxml");
         IO.writeProcs(KbUtil.toProcName(KbUtil.procSetArticles, null), kb, file);
     }

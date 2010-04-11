@@ -25,7 +25,7 @@ package org.purl.net.wonderland.nlp.resources;
 
 import org.purl.net.wonderland.nlp.ilf.PredFactory;
 import java.io.File;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.ilf.IlfRep;
 import org.purl.net.wonderland.nlp.ilf.Pred;
 import org.purl.net.wonderland.util.XML;
@@ -56,7 +56,7 @@ public class IlfWnWrapper {
                 break;
         }
         path = path + "/" + offsetKeyNum + ".xml";
-        return new File(Globals.getIlfWnFolder(), path);
+        return new File(Configuration.getIlfWnDataFolder(), path);
     }
 
     public static IlfRep getPrettyIlf(String offsetKeyNum) throws Exception {

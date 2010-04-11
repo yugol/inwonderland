@@ -32,7 +32,7 @@ import org.junit.Test;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.WTagging;
 
 /**
@@ -43,7 +43,7 @@ public class SuperCSVTest {
 
     @Test
     public void testReadCsv() throws FileNotFoundException, IOException {
-        String dbFile = new File(Globals.getMorphologyFolder(), "pos/ar.csv").getCanonicalPath();
+        String dbFile = new File(Configuration.getMorphologyFolder(), "pos/ar.csv").getCanonicalPath();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(dbFile), CsvPreference.EXCEL_PREFERENCE);
         try {
             final String[] header = inFile.getCSVHeader(true);

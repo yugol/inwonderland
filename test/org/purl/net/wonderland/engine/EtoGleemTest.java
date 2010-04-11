@@ -30,7 +30,7 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import static org.junit.Assert.*;
 
 /**
@@ -53,13 +53,13 @@ public class EtoGleemTest {
     @Test
     public void testProcessMessages() throws Exception {
     Engine eng = new Engine();
-    eng.openKb(new File(Globals.getTestFolder(), "bedtime.cogxml"));
+    eng.openKb(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
     List<CGraph> messages = new ArrayList<CGraph>();
     messages.add(eng.getSentenceFact(1));
     EtoGleem instance = (EtoGleem) eng.getPersonality();
     String result = instance.processMessages(messages);
     assertEquals("Done.", result);
-    File file = new File(Globals.getTestFolder(), "bedtime.testout.cogxml");
+    File file = new File(Configuration.getTestFolder(), "bedtime.testout.cogxml");
     eng.saveKb(file);
     }
      * 
