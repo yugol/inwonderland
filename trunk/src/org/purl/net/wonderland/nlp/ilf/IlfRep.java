@@ -27,6 +27,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import net.didion.jwnl.data.POS;
+import net.didion.jwnl.data.Pointer;
+import net.didion.jwnl.data.PointerType;
+import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.cg.Concept;
 import org.purl.net.wonderland.cg.ConceptType;
 import org.purl.net.wonderland.cg.ConceptTypeSet;
@@ -37,6 +41,8 @@ import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.cg.Relation;
 import org.purl.net.wonderland.cg.RelationType;
 import org.purl.net.wonderland.cg.Support;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.util.Formatting;
 
 /**
  *
@@ -85,11 +91,15 @@ public class IlfRep {
         KnowledgeBase kb = new KnowledgeBase();
         Support support = kb.getSupport();
 
-        ConceptType top = support.addConceptType("POS");
+        ConceptType top = support.addConceptType("Top");
+        ConceptType pos = support.addConceptType("Pos");
+        pos.addParent(top);
+        ConceptType senseKey = support.addConceptType("SenseKey");
+        senseKey.addParent(top);
 
         RelationType link = support.addRelationType("link", 2);
-        link.getSignature()[0].add(top);
-        link.getSignature()[1].add(top);
+        link.getSignature()[0].add(pos);
+        link.getSignature()[1].add(pos);
 
         ConceptualGraph cg = new ConceptualGraph();
         cg.setLabel(text);
@@ -103,17 +113,17 @@ public class IlfRep {
                 ConceptType cat = support.getConceptType(w.getCat());
                 if (cat == null) {
                     cat = support.addConceptType(w.getCat());
-                    ConceptType pos = support.getConceptType(w.getPos());
-                    if (pos == null) {
-                        pos = support.addConceptType(w.getPos());
-                        pos.addParent(top);
+                    ConceptType specificPos = support.getConceptType(w.getPos());
+                    if (specificPos == null) {
+                        specificPos = support.addConceptType(w.getPos());
+                        specificPos.addParent(pos);
                     }
-                    cat.addParent(pos);
+                    cat.addParent(specificPos);
                 }
 
                 Individual marker = support.getIndividual(w.getWord());
                 if (marker == null) {
-                    marker = support.addIndividual(w.getWord(), top);
+                    marker = support.addIndividual(w.getWord(), pos);
                 }
 
                 String conceptId = createConceptId(w.getSid(), w.getId1());
@@ -129,8 +139,8 @@ public class IlfRep {
                 RelationType dep = support.getRelationType(rel.getDep());
                 if (dep == null) {
                     dep = support.addRelationType(rel.getDep(), 2);
-                    dep.getSignature()[0].add(top);
-                    dep.getSignature()[1].add(top);
+                    dep.getSignature()[0].add(pos);
+                    dep.getSignature()[1].add(pos);
                     dep.setParent(link);
                 }
 
@@ -141,6 +151,13 @@ public class IlfRep {
                 edge = new Edge(r, cg.getConcepts().get(rel.getV1()), 1);
                 cg.add(edge);
 
+            } else if (pred.getName().equals("syn")) {
+
+                Pred_syn syn = (Pred_syn) pred;
+                ConceptType senseId = importWordNetHypernymHierarchy(support, WordNetWrapper.lookup(syn.getOffset()), senseKey);
+                Concept c = cg.getConcepts().get(createConceptId(syn.getSid(), syn.getId1()));
+                c.addType(senseId);
+
             }
         }
         kb.addFact(cg);
@@ -149,6 +166,24 @@ public class IlfRep {
 
     private String createConceptId(String sid, String id1) {
         return "G" + sid + "_" + id1;
+    }
+
+    private ConceptType importWordNetHypernymHierarchy(Support support, Synset sense, ConceptType parent) {
+        String senseKey = Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset());
+
+        ConceptType child = support.getConceptType(senseKey);
+        if (child == null) {
+            Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
+            if (ptrs.length > 0) {
+                Synset hypernym = WordNetWrapper.lookup(ptrs[0].getTargetOffset(), sense.getPOS());
+                parent = importWordNetHypernymHierarchy(support, hypernym, parent);
+            }
+            child = support.addConceptType(senseKey);
+            child.setDescription(sense.getWord(0).getLemma());
+            child.addParent(parent);
+        }
+
+        return child;
     }
 }
 

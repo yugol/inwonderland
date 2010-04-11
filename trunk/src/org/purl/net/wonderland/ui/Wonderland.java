@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 /*
- * Gui.java
+ * Wonderland.java
  *
  * Created on Jan 15, 2010, 3:39:37 PM
  */
@@ -49,13 +49,13 @@ import org.purl.net.wonderland.kb.CoGuiWrapper;
  *
  * @author Iulian
  */
-public class Gui extends javax.swing.JFrame {
+public class Wonderland extends javax.swing.JFrame {
 
     static String baseTitle = "Wonderland";
     private Engine engine;
 
-    /** Creates new form Gui */
-    public Gui() throws Exception {
+    /** Creates new form Wonderland */
+    public Wonderland() throws Exception {
         engine = new Engine();
         initComponents();
         processMessageButton.setEnabled(false);
@@ -372,7 +372,7 @@ public class Gui extends javax.swing.JFrame {
         }
 
         try {
-            final Gui gui = new Gui();
+            final Wonderland gui = new Wonderland();
             java.awt.EventQueue.invokeLater(new Runnable() {
 
                 public void run() {
