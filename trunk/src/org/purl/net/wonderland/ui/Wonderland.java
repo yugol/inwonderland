@@ -40,7 +40,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
@@ -364,6 +364,8 @@ public class Wonderland extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Configuration.getVerbNetDataFolder();
+
         try {
             LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
         } catch (Throwable t) {
@@ -382,7 +384,7 @@ public class Wonderland extends javax.swing.JFrame {
             Thread libLoader = new Thread(new Runnable() {
 
                 public void run() {
-                    Globals.init();
+                    Configuration.init();
                     gui.processMessageButton.setEnabled(true);
                 }
             });
@@ -390,7 +392,7 @@ public class Wonderland extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Error initializing Wonderland");
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
 
 

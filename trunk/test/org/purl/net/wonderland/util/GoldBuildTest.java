@@ -26,7 +26,7 @@ package org.purl.net.wonderland.util;
 import java.io.File;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
 import org.purl.net.wonderland.engine.Level2Personality;
@@ -57,10 +57,10 @@ public class GoldBuildTest {
 
     // @Test
     public void testMany() throws Exception {
-        Globals.init();
-        KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
+        Configuration.init();
+        KbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        List<String> lines = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
+        List<String> lines = IO.getFileContentAsStringList(new File(Configuration.getCorporaFolder(), "egcp.train.level0.txt"));
         Engine engine = new Engine();
         engine.setPersonality(pers);
 

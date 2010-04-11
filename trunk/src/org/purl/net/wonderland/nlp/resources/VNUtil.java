@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.xml.sax.SAXException;
 
@@ -44,7 +44,7 @@ public final class VNUtil {
     public static void buildVerbNetFileList(File indexFile) throws FileNotFoundException {
         int fileCount = 0;
         PrintWriter fout = new PrintWriter(indexFile);
-        File dataFolder = Globals.getVerbNetDataFolder();
+        File dataFolder = Configuration.getVerbNetDataFolder();
         for (File f : dataFolder.listFiles()) {
             if (f.isFile()) {
                 String name = f.getName();

@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
@@ -57,13 +57,13 @@ public class GoldTest {
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing Gold Corpus - " + corpusFileName);
 
-        Globals.init();
-        KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
+        Configuration.init();
+        KbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        File corpusFile = new File(Globals.getCorporaFolder(), corpusFileName);
+        File corpusFile = new File(Configuration.getCorporaFolder(), corpusFileName);
         Corpus.normalizeCorpusFile(corpusFile);
 
-        List<String> plain = IO.getFileContentAsStringList(new File(Globals.getCorporaFolder(), "egcp.train.level0.txt"));
+        List<String> plain = IO.getFileContentAsStringList(new File(Configuration.getCorporaFolder(), "egcp.train.level0.txt"));
         Corpus corpus = new Corpus();
         corpus.buildFrom(corpusFile);
         Engine engine = new Engine();

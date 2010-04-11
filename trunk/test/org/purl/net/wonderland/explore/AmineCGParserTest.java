@@ -32,7 +32,7 @@ import aminePlatform.util.parserGenerator.ParsingException;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.ProcParser.LFCGParser;
 import org.purl.net.wonderland.util.IO;
 
@@ -47,7 +47,7 @@ public class AmineCGParserTest {
 
     @Test
     public void parseLFCG() throws ParsingException, IOException, OntologyException, LexiconException {
-        File cgFile = new File(Globals.getTestFolder(), "simple_cg.txt");
+        File cgFile = new File(Configuration.getTestFolder(), "simple_cg.txt");
         String lf = IO.getFileContentAsString(cgFile);
         System.out.println(lf);
         LFCGParser parser = new LFCGParser();

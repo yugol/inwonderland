@@ -35,7 +35,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
 import java.io.StringReader;
 import java.util.List;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
@@ -50,7 +50,7 @@ public final class StanfordParserWrapper {
 
     static {
         CodeTimer timer = new CodeTimer("StanfordParserWrapper");
-        lp = new LexicalizedParser(Globals.getStanfordParserFile().getAbsolutePath());
+        lp = new LexicalizedParser(Configuration.getStanfordParserFile().getAbsolutePath());
         lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
         dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
         gsf = lp.getOp().langpack().grammaticalStructureFactory();

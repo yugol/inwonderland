@@ -29,7 +29,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.KbUtil;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -50,13 +50,13 @@ public class SmallUtilities {
     @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
-        KbUtil.normalizeKbFile(Globals.getDefaultParseKBFile());
+        KbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
     }
 
     // @Test
     public void reIndexGoldCorpus() throws Exception {
         System.out.println("Re-indexing gold corpus");
-        File goldFile = new File(Globals.getCorporaFolder(), "egcp.train.level1.xml");
+        File goldFile = new File(Configuration.getCorporaFolder(), "egcp.train.level1.xml");
         Corpus.normalizeCorpusFile(goldFile);
     }
 
@@ -85,7 +85,7 @@ public class SmallUtilities {
     public void getSentencesFromCorpus() throws ParserConfigurationException, SAXException {
         System.out.println("Getting sentences from corpus");
         Corpus gold = new Corpus();
-        File goldFile = new File(Globals.getCorporaFolder(), "gold.xml");
+        File goldFile = new File(Configuration.getCorporaFolder(), "gold.xml");
         gold.buildFrom(goldFile);
 
         for (int i = 1; i <= gold.getSentenceCount(); ++i) {

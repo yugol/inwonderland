@@ -40,7 +40,7 @@ import net.didion.jwnl.data.IndexWordSet;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.dictionary.Dictionary;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.Formatting;
@@ -57,15 +57,15 @@ public final class WordNetWrapper {
 
     static {
         try {
-            // Globals.init();
+            // Configuration.init();
             CodeTimer timer = new CodeTimer("WordNetWrapper");
-            JWNL.initialize(new FileInputStream(Globals.getJwnlPropertiesFile()));
+            JWNL.initialize(new FileInputStream(Configuration.getJwnlPropertiesFile()));
             dict = Dictionary.getInstance();
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error initializing WordNetWrapper");
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 
@@ -77,7 +77,7 @@ public final class WordNetWrapper {
             return dict.lookupIndexWord(posType, word);
         } catch (JWNLException ex) {
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
             return null;
         }
     }
@@ -87,7 +87,7 @@ public final class WordNetWrapper {
             return word.getSenses();
         } catch (JWNLException ex) {
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
             return null;
         }
     }
@@ -114,7 +114,7 @@ public final class WordNetWrapper {
             return dict.getSynsetAt(posType, offset);
         } catch (JWNLException ex) {
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
             return null;
         }
     }
@@ -191,7 +191,7 @@ public final class WordNetWrapper {
 
         } catch (JWNLException ex) {
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 
@@ -202,7 +202,7 @@ public final class WordNetWrapper {
             if (senseOffset == null) {
                 CodeTimer timer = new CodeTimer("WordNetWrapper sense-offset map");
                 senseOffset = new Hashtable<String, String>();
-                File indexSense = new File(Globals.getWordNetFolder(), "index.sense");
+                File indexSense = new File(Configuration.getWordNetFolder(), "index.sense");
                 BufferedReader reader = new BufferedReader(new FileReader(indexSense));
                 String line = null;
                 while ((line = reader.readLine()) != null) {
@@ -221,7 +221,7 @@ public final class WordNetWrapper {
         } catch (Exception ex) {
             System.err.println("In WordNetWrapper.senseToId");
             ex.printStackTrace(System.err);
-            Globals.exit();
+            Configuration.exit();
         }
 
         return offsetKey;
@@ -253,7 +253,7 @@ public final class WordNetWrapper {
             if (offsetSense == null) {
                 CodeTimer timer = new CodeTimer("WordNetWrapper offset-sense map");
                 offsetSense = new Hashtable<String, String>();
-                File indexSense = new File(Globals.getWordNetFolder(), "index.sense");
+                File indexSense = new File(Configuration.getWordNetFolder(), "index.sense");
                 BufferedReader reader = new BufferedReader(new FileReader(indexSense));
                 String line = null;
                 while ((line = reader.readLine()) != null) {
@@ -271,7 +271,7 @@ public final class WordNetWrapper {
         } catch (Exception ex) {
             System.err.println("In WordNetWrapper.idToSense");
             ex.printStackTrace(System.err);
-            Globals.exit();
+            Configuration.exit();
         }
 
         return sense;

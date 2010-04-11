@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.util.CodeTimer;
 
@@ -56,12 +56,12 @@ public class CollocationManager implements WordNetConnection {
         } catch (Exception ex) {
             System.err.println("Error reading collocations");
             ex.printStackTrace(System.err);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 
     private static void readCollocationsFile(String file) throws IOException, FileNotFoundException {
-        BufferedReader reader = new BufferedReader(new FileReader(new File(Globals.getCollocationsFolder(), file)));
+        BufferedReader reader = new BufferedReader(new FileReader(new File(Configuration.getCollocationsFolder(), file)));
         String item = null;
         while ((item = reader.readLine()) != null) {
             String[] entry = item.split(",");

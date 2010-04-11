@@ -26,7 +26,7 @@ package org.purl.net.wonderland.nlp.resources;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.XML;
@@ -43,7 +43,7 @@ public class VNClassFile {
     private final Document xmlDoc;
 
     public VNClassFile(String verbClass) throws Exception {
-        File classFile = new File(Globals.getVerbNetDataFolder(), verbClass);
+        File classFile = new File(Configuration.getVerbNetDataFolder(), verbClass);
         xmlDoc = XML.readXmlFile(classFile);
     }
 

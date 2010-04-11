@@ -41,7 +41,7 @@ import edu.northwestern.at.utils.corpuslinguistics.tokenizer.WordTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
 
@@ -75,7 +75,7 @@ public final class MorphAdornerWrapper {
         } catch (Exception ex) {
             System.err.println("Error initializing MorphAdornerWrapper");
             System.err.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
     }
 

@@ -36,7 +36,7 @@ import java.util.Set;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
-import org.purl.net.wonderland.Globals;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
@@ -67,7 +67,7 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> jj;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
-        formFile = Globals.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
+        formFile = Configuration.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
         Map<String, WTagging> map = new HashMap<String, WTagging>();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
         try {
@@ -94,7 +94,7 @@ public abstract class MorphologicalDatabase {
             } catch (Exception ex) {
                 System.err.println("Error reading '" + name + "'");
                 System.err.println(ex);
-                Globals.exit();
+                Configuration.exit();
             }
         }
         timer.stop();
@@ -115,7 +115,7 @@ public abstract class MorphologicalDatabase {
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllTagings");
             System.out.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
 
         return tags;
@@ -131,7 +131,7 @@ public abstract class MorphologicalDatabase {
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllForms");
             System.out.println(ex);
-            Globals.exit();
+            Configuration.exit();
         }
 
         return forms;
