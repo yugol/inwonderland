@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.ui;
+package org.purl.net.wonderland.nlp.resources;
 
 import java.util.ArrayList;
 import net.didion.jwnl.data.IndexWord;
@@ -31,22 +31,20 @@ import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
 import org.purl.net.wonderland.nlp.ilf.IlfRep;
 import org.purl.net.wonderland.nlp.ilf.Pred;
-import org.purl.net.wonderland.nlp.resources.IlfWnWrapper;
-import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.Formatting;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class SynsetData {
+public class SynsetWrapper {
 
     private final int index;
     private final String lemma;
     private final Synset sense;
     private IlfRep ilf;
 
-    public SynsetData(int index, String item, Synset sense) {
+    public SynsetWrapper(int index, String item, Synset sense) {
         this.index = index;
         this.sense = sense;
         if (item != null) {
@@ -188,7 +186,7 @@ public class SynsetData {
             }
             String wordLemma = word.getLemma();
             if (wordLemma.equalsIgnoreCase(lemma)) {
-                html.append("<b><font color='red'>");
+                html.append("<b><font color='fuchsia'>");
                 html.append(wordLemma.replace("_", " "));
                 html.append("</font></b>");
             } else {

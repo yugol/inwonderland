@@ -278,23 +278,44 @@ public final class WordNetWrapper {
     }
 
     public static Synset lookup(String id) {
-        char senseType = id.charAt(0);
         POS posType = null;
-        switch (senseType) {
-            case 'n':
-                posType = POS.NOUN;
-                break;
-            case 'v':
-                posType = POS.VERB;
-                break;
-            case 'a':
-                posType = POS.ADJECTIVE;
-                break;
-            case 'r':
-                posType = POS.ADVERB;
-                break;
+        char senseType = id.charAt(0);
+        if (Character.isDigit(senseType)) {
+            posType = getPosNum(senseType);
+        } else if (Character.isLetter(senseType)) {
+            posType = getPosAlpha(senseType);
         }
         long offset = Long.parseLong(id.substring(1));
         return lookup(offset, posType);
+    }
+
+    private static POS getPosAlpha(char senseType) {
+        switch (senseType) {
+            case 'n':
+                return POS.NOUN;
+            case 'v':
+                return POS.VERB;
+            case 'a':
+                return POS.ADJECTIVE;
+            case 'r':
+                return POS.ADVERB;
+            default:
+                return null;
+        }
+    }
+
+    private static POS getPosNum(char senseType) {
+        switch (senseType) {
+            case '1':
+                return POS.NOUN;
+            case '2':
+                return POS.VERB;
+            case '3':
+                return POS.ADJECTIVE;
+            case '4':
+                return POS.ADVERB;
+            default:
+                return null;
+        }
     }
 }
