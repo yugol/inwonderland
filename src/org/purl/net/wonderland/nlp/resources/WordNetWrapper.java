@@ -64,8 +64,7 @@ public final class WordNetWrapper {
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error initializing WordNetWrapper");
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 
@@ -76,8 +75,7 @@ public final class WordNetWrapper {
         try {
             return dict.lookupIndexWord(posType, word);
         } catch (JWNLException ex) {
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
             return null;
         }
     }
@@ -86,8 +84,7 @@ public final class WordNetWrapper {
         try {
             return word.getSenses();
         } catch (JWNLException ex) {
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
             return null;
         }
     }
@@ -113,8 +110,7 @@ public final class WordNetWrapper {
         try {
             return dict.getSynsetAt(posType, offset);
         } catch (JWNLException ex) {
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
             return null;
         }
     }
@@ -190,8 +186,7 @@ public final class WordNetWrapper {
             }
 
         } catch (JWNLException ex) {
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 
@@ -220,8 +215,7 @@ public final class WordNetWrapper {
 
         } catch (Exception ex) {
             System.err.println("In WordNetWrapper.senseToId");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
 
         return offsetKey;
@@ -270,8 +264,7 @@ public final class WordNetWrapper {
 
         } catch (Exception ex) {
             System.err.println("In WordNetWrapper.idToSense");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
 
         return sense;

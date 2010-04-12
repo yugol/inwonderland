@@ -327,8 +327,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             CogxmlIO.writeCogxmlFile(kb, kbFile);
             CoGuiWrapper.instance().showGui(kbFile);
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-            ex.printStackTrace(System.err);
+            Configuration.reportExceptionConsole(ex);
         }
     }//GEN-LAST:event_cgButtonActionPerformed
 
@@ -342,7 +341,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
         } catch (Throwable t) {
             System.err.println("Problem occurs when loading Default Look & Feel");
-            return;
+            Configuration.handleException(t);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {

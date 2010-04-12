@@ -29,6 +29,7 @@ import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.nlp.ilf.IlfRep;
 import org.purl.net.wonderland.nlp.ilf.Pred;
 import org.purl.net.wonderland.util.Formatting;
@@ -57,8 +58,7 @@ public class SynsetWrapper {
             this.ilf = IlfWnWrapper.getPrettyIlf(Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset()));
         } catch (Exception ex) {
             this.ilf = null;
-            System.err.println(ex.getMessage());
-            ex.printStackTrace(System.err);
+            Configuration.reportExceptionConsole(ex);
         }
     }
 

@@ -284,7 +284,7 @@ public class Wonderland extends javax.swing.JFrame {
             try {
                 message = engine.processMessage(message);
             } catch (Exception ex) {
-                System.err.println(ex);
+                Configuration.reportExceptionConsole(ex);
             }
             noteProgramResponse(message);
         }
@@ -391,8 +391,7 @@ public class Wonderland extends javax.swing.JFrame {
             libLoader.run();
         } catch (Exception ex) {
             System.err.println("Error initializing Wonderland");
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
 
 
@@ -466,7 +465,7 @@ public class Wonderland extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             System.err.println("Error building personality menu. Using defaults.");
-            System.err.println(ex);
+            Configuration.reportExceptionConsole(ex);
             personalityMenu.setVisible(false);
         }
     }

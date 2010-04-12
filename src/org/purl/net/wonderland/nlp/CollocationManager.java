@@ -55,8 +55,7 @@ public class CollocationManager implements WordNetConnection {
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error reading collocations");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 
