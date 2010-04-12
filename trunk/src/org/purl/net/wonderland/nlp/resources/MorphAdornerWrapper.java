@@ -74,8 +74,7 @@ public final class MorphAdornerWrapper {
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error initializing MorphAdornerWrapper");
-            System.err.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 

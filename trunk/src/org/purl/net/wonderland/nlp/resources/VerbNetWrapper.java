@@ -64,8 +64,7 @@ public final class VerbNetWrapper {
             timer.stop();
         } catch (Exception ex) {
             System.err.println("Error initializing VerbNetWrapper");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 

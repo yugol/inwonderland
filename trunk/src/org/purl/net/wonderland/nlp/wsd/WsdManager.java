@@ -42,8 +42,7 @@ public final class WsdManager {
             pers.setKb(new WKnowledgeBase(Configuration.getDefaultParseKBFile()));
         } catch (Exception ex) {
             System.err.println("Error starting WsdManager");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 

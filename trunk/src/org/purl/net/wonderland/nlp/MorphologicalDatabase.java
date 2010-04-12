@@ -93,8 +93,7 @@ public abstract class MorphologicalDatabase {
                 f.set(null, readDataFile(name + ".csv"));
             } catch (Exception ex) {
                 System.err.println("Error reading '" + name + "'");
-                System.err.println(ex);
-                Configuration.exit();
+                Configuration.handleException(ex);
             }
         }
         timer.stop();
@@ -114,8 +113,7 @@ public abstract class MorphologicalDatabase {
             }
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllTagings");
-            System.out.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
 
         return tags;
@@ -130,8 +128,7 @@ public abstract class MorphologicalDatabase {
             }
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllForms");
-            System.out.println(ex);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
 
         return forms;

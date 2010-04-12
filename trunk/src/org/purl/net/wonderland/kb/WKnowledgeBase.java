@@ -41,6 +41,7 @@ import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -268,7 +269,7 @@ public class WKnowledgeBase {
                 senseTypes.add(senseType);
             }
         } catch (RuntimeException ex) {
-            System.err.println(ex);
+            Configuration.reportExceptionConsole(ex);
             return null;
         }
         return senseTypes.toArray(new String[]{});

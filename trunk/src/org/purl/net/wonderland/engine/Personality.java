@@ -63,8 +63,7 @@ public abstract class Personality {
             refSlv = new ReferenceSolver(kb);
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
-            ex.printStackTrace(System.err);
-            Configuration.exit();
+            Configuration.handleException(ex);
         }
     }
 

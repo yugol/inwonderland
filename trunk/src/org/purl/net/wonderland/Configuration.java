@@ -28,6 +28,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 import org.purl.net.wonderland.nlp.CollocationManager;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
@@ -73,10 +74,10 @@ public final class Configuration {
     private static boolean configure() {
         resFolder = new File(System.getProperty("user.dir"), "res");
         lgParserFolder = new File(resFolder, "linkgrammar");
-        setWnDataFolder(new File(resFolder, "wordnet/dict"));
+        setWnDataFolder(new File(resFolder, "WordNet-3.0/dict"));
         vnDataFolder = new File(resFolder, "verbnet/data");
         pbDataFolder = new File(resFolder, "propbank");
-        ilfWnFolder = new File(resFolder, "ilfwn");
+        ilfWnFolder = new File(resFolder, "ILFWN.v.0.2");
         return checkConfigure();
     }
 
@@ -88,9 +89,6 @@ public final class Configuration {
         if (!getWordNetFolder().exists()) {
             System.err.println("Error: could not find WordNet data folder");
             return false;
-        }
-        if (!getLgParserPath().exists()) {
-            System.err.println("Warning: could not find LinkGrammar folder");
         }
         if (!getVerbNetDataFolder().exists()) {
             System.err.println("Warning: could not find VerbNet data folder");
@@ -120,9 +118,7 @@ public final class Configuration {
                 }
             }
         } catch (IOException ex) {
-            System.err.println("Could not load properties file.");
-            System.err.println(ex);
-            exit();
+            handleException(ex);
         }
 
         if (!configured) {
@@ -152,13 +148,18 @@ public final class Configuration {
         MorphAdornerWrapper.init();
     }
 
-    public static void reportException(Throwable t) {
+    public static void reportExceptionConsole(Throwable t) {
         System.err.println(t.getMessage());
         t.printStackTrace(System.err);
     }
 
+    public static void reportExceptionGui(Throwable t) {
+        JOptionPane.showMessageDialog(null, t.toString(), t.getMessage(), JOptionPane.ERROR_MESSAGE);
+    }
+
     public static void handleException(Throwable t) {
-        reportException(t);
+        reportExceptionConsole(t);
+        reportExceptionGui(t);
         exit();
     }
 
