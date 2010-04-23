@@ -90,8 +90,6 @@ public abstract class Personality {
         return facts;
     }
 
-
-
     protected void processMoods(CGraph fact) throws Exception {
         applyProcSet(fact, KbUtil.procSetMoods);
     }

@@ -1,0 +1,10 @@
+writtenForm,lemma,partOfSpeech,grammaticalGender,grammaticalNumber,grammaticalCase,person,degree,verbFormMood,grammaticalTense
+myself,myself,reflexivePersonalPronoun,,singular,,firstPerson,,,
+yourself,yourself,reflexivePersonalPronoun,,singular,,secondPerson,,,
+himself,himself,reflexivePersonalPronoun,masculine,singular,,thirdPerson,,,
+herself,herself,reflexivePersonalPronoun,feminine,singular,,thirdPerson,,,
+itself,itself,reflexivePersonalPronoun,neuter,singular,,thirdPerson,,,
+oneself,oneself,reflexivePersonalPronoun,,singular,,thirdPerson,,,
+ourselves,ourselves,reflexivePersonalPronoun,,plural,,firstPerson,,,
+yourselves,yourselves,reflexivePersonalPronoun,,plural,,secondPerson,,,
+themselves,themselves,reflexivePersonalPronoun,,plural,,thirdPerson,,,

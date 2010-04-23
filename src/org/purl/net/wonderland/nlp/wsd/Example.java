@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 
 /**
  *

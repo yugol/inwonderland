@@ -43,7 +43,6 @@ import net.didion.jwnl.dictionary.Dictionary;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.util.CodeTimer;
-import org.purl.net.wonderland.util.Formatting;
 
 /**
  *
@@ -137,7 +136,7 @@ public final class WordNetWrapper {
                     if (!all.containsKey(lemma)) {
                         all.put(lemma, new ArrayList<String>());
                     }
-                    all.get(lemma).add("Jj");
+                    all.get(lemma).add("adjective");
                 }
             }
 
@@ -163,7 +162,7 @@ public final class WordNetWrapper {
                     if (!all.containsKey(lemma)) {
                         all.put(lemma, new ArrayList<String>());
                     }
-                    all.get(lemma).add("Rb");
+                    all.get(lemma).add("adverb");
                 }
             }
 
@@ -176,7 +175,7 @@ public final class WordNetWrapper {
                     if (!all.containsKey(lemma)) {
                         all.put(lemma, new ArrayList<String>());
                     }
-                    all.get(lemma).add("Vb");
+                    all.get(lemma).add("verb");
                 }
             }
 

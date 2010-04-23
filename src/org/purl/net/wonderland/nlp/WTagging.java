@@ -40,36 +40,36 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
 
     private static final String empty = "";
     // word form tags
-    private String form = null; // word form
+    private String writtenForm = null; // word form
     private String lemma = null; // dictionary form
-    // mapping tags
+    // interface implementation fields
     private String pennTag = null; // Penn Treebank POS tag
-    private String maTag = null; // MorphAddorder POS tag
+    private String morphAdorderTag = null; // MorphAdorder POS tag
     private String spelling = null;
-    // Wonderland tags
-    private String pos = null; // Wonderland POS tag
-    private String gender = null; // masculine, feminine, neuter, common
-    private String number = null; // singular, plural
-    private String wcase = null; // nominative, genitive, dative, accusative
+    // morphology tags
+    private String partOfSpeech = null; // Wonderland POS tag
+    private String grammaticalGender = null; // masculine, feminine, neuter, common
+    private String grammaticalNumber = null; // singular, plural
+    private String grammaticalCase = null; // nominative, genitive, dative, accusative, ...
     private String person = null; // first, second, third
-    private String comp = null; // comparative, superlative
-    private String mood = null; // indicative, subjunctive, conditional, ...
-    private String tense = null; // present, past, future, ...
-    private String article = null; // definite, indefinite, unarticulated
+    private String degree = null; // comparative, superlative
+    private String verbFormMood = null; // indicative, subjunctive, conditional, ...
+    private String grammaticalTense = null; // present, past, future, ...
+    private String definiteness = null; // definite, indefinite, unarticulated
     // other types
     private Set<String> moreTypes = new HashSet<String>();
     // collocation mark
     private boolean collocation = false;
 
     public void copyWTags(WTagging other) {
-        this.pos = other.pos;
-        this.gender = other.gender;
-        this.number = other.number;
-        this.wcase = other.wcase;
+        this.partOfSpeech = other.partOfSpeech;
+        this.grammaticalGender = other.grammaticalGender;
+        this.grammaticalNumber = other.grammaticalNumber;
+        this.grammaticalCase = other.grammaticalCase;
         this.person = other.person;
-        this.comp = other.comp;
-        this.mood = other.mood;
-        this.tense = other.tense;
+        this.degree = other.degree;
+        this.verbFormMood = other.verbFormMood;
+        this.grammaticalTense = other.grammaticalTense;
     }
 
     public void copyWTagsAndLemma(WTagging other) {
@@ -77,37 +77,37 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         this.lemma = other.lemma;
     }
 
-    public String getComp() {
-        return comp;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setComp(String comp) {
+    public void setDegree(String comp) {
         if (empty.equals(comp)) {
             comp = null;
         }
-        this.comp = comp;
+        this.degree = comp;
     }
 
-    public String getForm() {
-        return form;
+    public String getWrittenForm() {
+        return writtenForm;
     }
 
-    public void setForm(String form) {
+    public void setWrittenForm(String form) {
         if (empty.equals(form)) {
             form = null;
         }
-        this.form = form;
+        this.writtenForm = form;
     }
 
-    public String getGender() {
-        return gender;
+    public String getGrammaticalGender() {
+        return grammaticalGender;
     }
 
-    public void setGender(String gender) {
+    public void setGrammaticalGender(String gender) {
         if (empty.equals(gender)) {
             gender = null;
         }
-        this.gender = gender;
+        this.grammaticalGender = gender;
     }
 
     public String getLemma() {
@@ -121,26 +121,26 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         this.lemma = lemma;
     }
 
-    public String getMood() {
-        return mood;
+    public String getVerbFormMood() {
+        return verbFormMood;
     }
 
-    public void setMood(String mood) {
+    public void setVerbFormMood(String mood) {
         if (empty.equals(mood)) {
             mood = null;
         }
-        this.mood = mood;
+        this.verbFormMood = mood;
     }
 
-    public String getNumber() {
-        return number;
+    public String getGrammaticalNumber() {
+        return grammaticalNumber;
     }
 
-    public void setNumber(String number) {
+    public void setGrammaticalNumber(String number) {
         if (empty.equals(number)) {
             number = null;
         }
-        this.number = number;
+        this.grammaticalNumber = number;
     }
 
     public String getPerson() {
@@ -154,48 +154,48 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         this.person = person;
     }
 
-    public String getPos() {
-        return pos;
+    public String getPartOfSpeech() {
+        return partOfSpeech;
     }
 
-    public void setPos(String pos) {
+    public void setPartOfSpeech(String pos) {
         if (empty.equals(pos)) {
             pos = null;
         }
-        this.pos = pos;
+        this.partOfSpeech = pos;
     }
 
-    public String getTense() {
-        return tense;
+    public String getGrammaticalTense() {
+        return grammaticalTense;
     }
 
-    public void setTense(String tense) {
+    public void setGrammaticalTense(String tense) {
         if (empty.equals(tense)) {
             tense = null;
         }
-        this.tense = tense;
+        this.grammaticalTense = tense;
     }
 
-    public String getArticle() {
-        return article;
+    public String getDefiniteness() {
+        return definiteness;
     }
 
-    public void setArticle(String article) {
+    public void setDefiniteness(String article) {
         if (empty.equals(article)) {
             article = null;
         }
-        this.article = article;
+        this.definiteness = article;
     }
 
-    public String getWcase() {
-        return wcase;
+    public String getGrammaticalCase() {
+        return grammaticalCase;
     }
 
-    public void setWcase(String wcase) {
+    public void setGrammaticalCase(String wcase) {
         if (empty.equals(wcase)) {
             wcase = null;
         }
-        this.wcase = wcase;
+        this.grammaticalCase = wcase;
     }
 
     public String getPennTag() {
@@ -211,29 +211,31 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
 
     public String[] asTypes() {
         ArrayList<String> types = new ArrayList<String>();
-        if (pos != null) {
-            types.add(pos);
+        if (partOfSpeech != null) {
+            for (String pos : partOfSpeech.split(";")) {
+                types.add(pos);
+            }
         }
         if (person != null) {
             types.add(person);
         }
-        if (wcase != null) {
-            types.add(wcase);
+        if (grammaticalCase != null) {
+            types.add(grammaticalCase);
         }
-        if (number != null) {
-            types.add(number);
+        if (grammaticalNumber != null) {
+            types.add(grammaticalNumber);
         }
-        if (gender != null) {
-            types.add(gender);
+        if (grammaticalGender != null) {
+            types.add(grammaticalGender);
         }
-        if (comp != null) {
-            types.add(comp);
+        if (degree != null) {
+            types.add(degree);
         }
-        if (mood != null) {
-            types.add(mood);
+        if (verbFormMood != null) {
+            types.add(verbFormMood);
         }
-        if (tense != null) {
-            types.add(tense);
+        if (grammaticalTense != null) {
+            types.add(grammaticalTense);
         }
         types.addAll(moreTypes);
         String[] typeArray = new String[types.size()];
@@ -245,16 +247,16 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
 
     public String toCsvString() {
         String[] chunks = new String[10];
-        chunks[0] = ((form == null) ? ("") : (form));
+        chunks[0] = ((writtenForm == null) ? ("") : (writtenForm));
         chunks[1] = ((lemma == null) ? ("") : (lemma));
-        chunks[2] = ((pos == null) ? ("") : (pos));
-        chunks[3] = ((gender == null) ? ("") : (gender));
-        chunks[4] = ((number == null) ? ("") : (number));
-        chunks[5] = ((wcase == null) ? ("") : (wcase));
+        chunks[2] = ((partOfSpeech == null) ? ("") : (partOfSpeech));
+        chunks[3] = ((grammaticalGender == null) ? ("") : (grammaticalGender));
+        chunks[4] = ((grammaticalNumber == null) ? ("") : (grammaticalNumber));
+        chunks[5] = ((grammaticalCase == null) ? ("") : (grammaticalCase));
         chunks[6] = ((person == null) ? ("") : (person));
-        chunks[7] = ((comp == null) ? ("") : (comp));
-        chunks[8] = ((mood == null) ? ("") : (mood));
-        chunks[9] = ((tense == null) ? ("") : (tense));
+        chunks[7] = ((degree == null) ? ("") : (degree));
+        chunks[8] = ((verbFormMood == null) ? ("") : (verbFormMood));
+        chunks[9] = ((grammaticalTense == null) ? ("") : (grammaticalTense));
         return StringUtils.join(chunks, ",");
     }
 
@@ -263,22 +265,22 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         StringBuilder sb = new StringBuilder();
         sb.append(pennTag);
         sb.append(" \t");
-        sb.append(maTag);
+        sb.append(morphAdorderTag);
         sb.append(" \t");
-        sb.append(form);
+        sb.append(writtenForm);
         sb.append(" [");
         sb.append(lemma);
         sb.append("] \t\t");
-        sb.append(pos);
+        sb.append(partOfSpeech);
         return sb.toString();
     }
 
     public String word() {
-        return form;
+        return writtenForm;
     }
 
     public void setWord(String word) {
-        setForm(word);
+        setWrittenForm(word);
     }
 
     public String tag() {
@@ -290,11 +292,11 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     }
 
     public String getToken() {
-        return form;
+        return writtenForm;
     }
 
     public void setToken(String token) {
-        setForm(token);
+        setWrittenForm(token);
     }
 
     public String getSpelling() {
@@ -314,7 +316,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     }
 
     public String getLemmata() {
-        return lemma;
+        return getLemma();
     }
 
     public void setLemmata(String lemmata) {
@@ -322,11 +324,11 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     }
 
     public String getPartsOfSpeech() {
-        return maTag;
+        return morphAdorderTag;
     }
 
     public void setPartsOfSpeech(String partsOfSpeech) {
-        maTag = partsOfSpeech;
+        morphAdorderTag = partsOfSpeech;
     }
 
     public int getTokenType() {

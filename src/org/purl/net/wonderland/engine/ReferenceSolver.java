@@ -72,11 +72,11 @@ public class ReferenceSolver {
                 c2.setType(type);
                 c2.setIndividual(c.getIndividual());
                 story.addVertex(c2);
-                if (cTypes.isKindOf(type, KbUtil.Nn)) {
+                if (cTypes.isKindOf(type, KbUtil.noun)) {
                     targets.add(c2);
                 }
                 refs.put(c, c2);
-                if (cTypes.isKindOf(type, KbUtil.NnPRP)) {
+                if (cTypes.isKindOf(type, KbUtil.properNoun)) {
                     directTargets.put(c2.getIndividual(), c2);
                 }
             }
@@ -100,13 +100,13 @@ public class ReferenceSolver {
 
     private Concept getTarget(Concept c) {
         String[] type = c.getType();
-        if (cTypes.isKindOf(type, KbUtil.NnPRP)) {
+        if (cTypes.isKindOf(type, KbUtil.properNoun)) {
             return findByIndividual(c);
         }
-        if (cTypes.isKindOf(type, KbUtil.Pn)) {
+        if (cTypes.isKindOf(type, KbUtil.pronoun)) {
             return findByType(c);
         }
-        if (cTypes.isKindOf(type, KbUtil.JjPOS)) {
+        if (cTypes.isKindOf(type, KbUtil.possessiveAdjective)) {
             return findByType(c);
         }
         return null;

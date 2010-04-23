@@ -99,34 +99,34 @@ public class Corpus {
             if (prop.getPartsOfSpeech() != null) {
                 word.setAttribute(maTag, prop.getPartsOfSpeech());
             }
-            if (prop.getPos() != null) {
-                word.setAttribute(wTag, prop.getPos());
+            if (prop.getPartOfSpeech() != null) {
+                word.setAttribute(wTag, prop.getPartOfSpeech());
             }
-            if (prop.getGender() != null) {
-                word.setAttribute(genTag, prop.getGender());
+            if (prop.getGrammaticalGender() != null) {
+                word.setAttribute(genTag, prop.getGrammaticalGender());
             }
-            if (prop.getNumber() != null) {
-                word.setAttribute(numTag, prop.getNumber());
+            if (prop.getGrammaticalNumber() != null) {
+                word.setAttribute(numTag, prop.getGrammaticalNumber());
             }
-            if (prop.getWcase() != null) {
-                word.setAttribute(caseTag, prop.getWcase());
+            if (prop.getGrammaticalCase() != null) {
+                word.setAttribute(caseTag, prop.getGrammaticalCase());
             }
             if (prop.getPerson() != null) {
                 word.setAttribute(persTag, prop.getPerson());
             }
-            if (prop.getComp() != null) {
-                word.setAttribute(compTag, prop.getComp());
+            if (prop.getDegree() != null) {
+                word.setAttribute(compTag, prop.getDegree());
             }
-            if (prop.getMood() != null) {
-                word.setAttribute(moodTag, prop.getMood());
+            if (prop.getVerbFormMood() != null) {
+                word.setAttribute(moodTag, prop.getVerbFormMood());
             }
-            if (prop.getTense() != null) {
-                word.setAttribute(tenseTag, prop.getTense());
+            if (prop.getGrammaticalTense() != null) {
+                word.setAttribute(tenseTag, prop.getGrammaticalTense());
             }
-            if (prop.getArticle() != null) {
-                word.setAttribute(articleTag, prop.getArticle());
+            if (prop.getDefiniteness() != null) {
+                word.setAttribute(articleTag, prop.getDefiniteness());
             }
-            word.setTextContent(prop.getForm());
+            word.setTextContent(prop.getWrittenForm());
             sentence.appendChild(word);
         }
     }
@@ -231,19 +231,19 @@ public class Corpus {
         for (int i = 1; i <= props.length; ++i) {
             Element word = getWordByIndex(sentence, i);
             WTagging prop = new WTagging();
-            prop.setForm(word.getTextContent());
+            prop.setWrittenForm(word.getTextContent());
             prop.setLemma(word.getAttribute(lemmaTag));
-            prop.setComp(word.getAttribute(compTag));
-            prop.setGender(word.getAttribute(genTag));
-            prop.setMood(word.getAttribute(moodTag));
-            prop.setNumber(word.getAttribute(numTag));
+            prop.setDegree(word.getAttribute(compTag));
+            prop.setGrammaticalGender(word.getAttribute(genTag));
+            prop.setVerbFormMood(word.getAttribute(moodTag));
+            prop.setGrammaticalNumber(word.getAttribute(numTag));
             prop.setPerson(word.getAttribute(persTag));
-            prop.setPos(word.getAttribute(wTag));
+            prop.setPartOfSpeech(word.getAttribute(wTag));
             prop.setPennTag(word.getAttribute(pennTag));
             prop.setPartsOfSpeech(word.getAttribute(maTag));
-            prop.setTense(word.getAttribute(tenseTag));
-            prop.setWcase(word.getAttribute(caseTag));
-            prop.setArticle(word.getAttribute(articleTag));
+            prop.setGrammaticalTense(word.getAttribute(tenseTag));
+            prop.setGrammaticalCase(word.getAttribute(caseTag));
+            prop.setDefiniteness(word.getAttribute(articleTag));
             props[i - 1] = prop;
         }
         return props;

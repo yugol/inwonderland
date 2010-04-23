@@ -39,7 +39,7 @@ import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 public class Pipeline {
 
     static MaToPennTagMapper preTagMapper = new MaToPennTagMapper();
-    static WTagMapper wTagMapper = new WTagMapper();
+    static MaPennToWTaggingMapper wTagMapper = new MaPennToWTaggingMapper();
 
     public static List<List<? extends HasWord>> getTokenisedSentences(String text) {
         return StanfordParserWrapper.getSentences(text);
@@ -79,5 +79,4 @@ public class Pipeline {
     public static List<List<WTagging>> tokenizeAndSplit(String text) {
         return MorphAdornerWrapper.tagText(text);
     }
-
 }

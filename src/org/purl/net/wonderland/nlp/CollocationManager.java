@@ -92,7 +92,7 @@ public class CollocationManager implements WordNetConnection {
                 ++p;
             } else {
                 WTagging tagging = new WTagging();
-                tagging.setForm(pWord);
+                tagging.setWrittenForm(pWord);
 
                 String[] words = pWord.split("_");
                 words[0] = wt.getLemma();

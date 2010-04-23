@@ -1,1 +1,4 @@
 writtenForm,lemma,partOfSpeech,grammaticalGender,grammaticalNumber,grammaticalCase,person,degree,verbFormMood,grammaticalTense
+a,a,indefiniteArticle,,,,,,,
+an,an,indefiniteArticle,,,,,,,
+the,the,definiteArticle,,,,,,,

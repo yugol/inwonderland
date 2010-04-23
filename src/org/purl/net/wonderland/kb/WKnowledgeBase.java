@@ -179,7 +179,7 @@ public class WKnowledgeBase {
             Concept c = new Concept(KbUtil.toConceptId(tagging, i + 1));
             String individualId = addIndividual(tagging.getLemma());
             String[] types = null;
-            if (tagging.getPos() == null) {
+            if (tagging.getPartOfSpeech() == null) {
                 types = new String[]{KbUtil.toConceptTypeId(tagging.getPennTag())};
             } else {
                 types = tagging.asTypes();
@@ -343,29 +343,27 @@ public class WKnowledgeBase {
         String id = c.getId();
         for (String type : c.getType()) {
             try {
-                if (cth.isKindOf(type, KbUtil.Pos)) {
-                    if (wPosTagsOnly && cth.isKindOf(type, KbUtil.SpTag)) {
-                        prop = new WTagging();
-                        break;
-                    } else {
-                        prop.setPos(vocabulary.getConceptTypeLabel(type, language));
-                    }
-                } else if (cth.isKindOf(type, KbUtil.Case)) {
-                    prop.setWcase(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Comparison)) {
-                    prop.setComp(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Gender)) {
-                    prop.setGender(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Mood)) {
-                    prop.setMood(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Number)) {
-                    prop.setNumber(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Person)) {
+                if (wPosTagsOnly && cth.isKindOf(type, KbUtil.SpTag)) {
+                    prop = new WTagging();
+                    break;
+                } else if (cth.isKindOf(type, KbUtil.partOfSpeech)) {
+                    prop.setPartOfSpeech(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.grammaticalCase)) {
+                    prop.setGrammaticalCase(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.degree)) {
+                    prop.setDegree(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.grammaticalGender)) {
+                    prop.setGrammaticalGender(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.verbFormMood)) {
+                    prop.setVerbFormMood(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.grammaticalNumber)) {
+                    prop.setGrammaticalNumber(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.person)) {
                     prop.setPerson(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Tense)) {
-                    prop.setTense(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, KbUtil.Article)) {
-                    prop.setArticle(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.grammaticalTense)) {
+                    prop.setGrammaticalTense(vocabulary.getConceptTypeLabel(type, language));
+                } else if (cth.isKindOf(type, KbUtil.definiteness)) {
+                    prop.setDefiniteness(vocabulary.getConceptTypeLabel(type, language));
                 } else {
                     prop.addMoreType(vocabulary.getConceptTypeLabel(type, language));
                 }
@@ -374,7 +372,7 @@ public class WKnowledgeBase {
                 throw ex;
             }
         }
-        prop.setForm(KbUtil.getConceptForm(id));
+        prop.setWrittenForm(KbUtil.getConceptForm(id));
         prop.setLemma(c.getIndividual());
         prop.setPennTag(KbUtil.getConceptPennTag(id));
         prop.setPartsOfSpeech(KbUtil.getConceptMaTag(id));
@@ -408,20 +406,20 @@ public class WKnowledgeBase {
             String[] types = c.getType();
             String[] senses = null;
 
-            if (cth.isKindOf(types, KbUtil.Vb)) {
+            if (cth.isKindOf(types, KbUtil.verb)) {
             }
 
             /*
-            if (cth.isKindOf(types, KbUtil.Nn)) {
+            if (cth.isKindOf(types, KbUtil.noun)) {
             senses = importWordNetHypernymHierarchy(lemma, POS.NOUN);
-            } else if (cth.isKindOf(types, KbUtil.Vb)) {
+            } else if (cth.isKindOf(types, KbUtil.verb)) {
             senses = importVerbNetHierarchy(lemma);
             if (senses == null) {
             senses = importWordNetHypernymHierarchy(lemma, POS.VERB);
             }
-            } else if (cth.isKindOf(types, KbUtil.Jj)) {
+            } else if (cth.isKindOf(types, KbUtil.adjective)) {
             senses = importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
-            } else if (cth.isKindOf(types, KbUtil.Rb)) {
+            } else if (cth.isKindOf(types, KbUtil.adverb)) {
             senses = importWordNetHypernymHierarchy(lemma, POS.ADVERB);
             }
              */
@@ -448,9 +446,9 @@ public class WKnowledgeBase {
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         Attr attr = new Attr();
         for (String type : c.getType()) {
-            if (cth.isKindOf(type, KbUtil.Gender)) {
+            if (cth.isKindOf(type, KbUtil.grammaticalGender)) {
                 attr.setGender(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, KbUtil.Number)) {
+            } else if (cth.isKindOf(type, KbUtil.grammaticalNumber)) {
                 attr.setNumber(vocabulary.getConceptTypeLabel(type, language));
             }
         }

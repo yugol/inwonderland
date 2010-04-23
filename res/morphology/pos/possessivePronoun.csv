@@ -1,0 +1,9 @@
+writtenForm,lemma,partOfSpeech,grammaticalGender,grammaticalNumber,grammaticalCase,person,degree,verbFormMood,grammaticalTense
+mine,mine,possessivePronoun,,singular,,firstPerson,,,
+yours,yours,possessivePronoun,,,,secondPerson,,,
+thine,thine,possessivePronoun,,,,secondPerson,,,
+his,his,possessivePronoun,masculine,singular,,thirdPerson,,,
+hers,hers,possessivePronoun,feminine,singular,,thirdPerson,,,
+ours,ours,possessivePronoun,,plural,,firstPerson,,,
+theirs,theirs,possessivePronoun,,plural,,thirdPerson,,,
+thy,thy,possessivePronoun,,singular,,secondPerson,,,

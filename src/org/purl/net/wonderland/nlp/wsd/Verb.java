@@ -180,13 +180,13 @@ public class Verb {
                     // create verb couple
                     cHypt = new Concept(KbUtil.newUniqueId());
                     cHypt.setIndividual(kb.addIndividual(lemma));
-                    cHypt.setType(KbUtil.Vb);
-                    cHypt.addType(KbUtil.toConceptTypeId("ind"));
+                    cHypt.setType(KbUtil.verb);
+                    cHypt.addType(KbUtil.toConceptTypeId("indicative"));
                     cHypt.setHypothesis(true);
                     proc.addVertex(cHypt);
 
                     cConc = new Concept(KbUtil.newUniqueId());
-                    cConc.setType(KbUtil.Pos);
+                    cConc.setType(KbUtil.LinkArg);
                     for (String sense : frame.getSenses()) {
                         String ctId = kb.addConceptType(sense, null);
                         cConc.addType(ctId);
@@ -217,12 +217,12 @@ public class Verb {
                                         String content = example.getArgs().get(tr);
                                         if (content.equals(individual)) {
                                             cHypt = new Concept(KbUtil.newUniqueId());
-                                            cHypt.setType(KbUtil.Pos);
+                                            cHypt.setType(KbUtil.LinkArg);
                                             cHypt.setHypothesis(true);
                                             proc.addVertex(cHypt);
 
                                             cConc = new Concept(KbUtil.newUniqueId());
-                                            cConc.setType(KbUtil.Pos);
+                                            cConc.setType(KbUtil.LinkArg);
                                             cConc.setConclusion(true);
                                             proc.addVertex(cConc);
 
