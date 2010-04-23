@@ -1,4 +1,4 @@
-form,lemma,pos,gender,number,wcase,person,comp,mood,tense
+writtenForm,lemma,partOfSpeech,grammaticalGender,grammaticalNumber,grammaticalCase,person,degree,verbFormMood,grammaticalTense
 aboard,aboard,RbPLC_Dst,,,,,,,
 above,above,RbPLC,,,,,,,
 abroad,abroad,RbPLC_DstPos,,,,,,,
@@ -87,4 +87,3 @@ upwards,upwards,RbPLC_Dir,,,,,,,
 west,west,RbPLC_Dir,,,,,,,
 westward,westward,RbPLC_Dir,,,,,,,
 westwards,westwards,RbPLC_Dir,,,,,,,
-shell,shell,Md,,,,,,,ps

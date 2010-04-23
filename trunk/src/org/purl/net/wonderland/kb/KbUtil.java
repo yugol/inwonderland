@@ -46,7 +46,6 @@ import java.util.TreeSet;
 import java.util.UUID;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
-import org.purl.net.wonderland.util.Formatting;
 import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
@@ -61,24 +60,26 @@ public final class KbUtil {
 
     // some concept types from the knowledge base support
     public static final String Top = toConceptTypeId("Top");
-    public static final String Pos = toConceptTypeId("Pos");
+    public static final String Nil = toConceptTypeId("Nil");
+    public static final String LinkArg = toConceptTypeId("LinkArg");
     public static final String SpTag = toConceptTypeId("SpTag");
-    public static final String Case = toConceptTypeId("Case");
-    public static final String Comparison = toConceptTypeId("Comparison");
-    public static final String Gender = toConceptTypeId("Gender");
-    public static final String Mood = toConceptTypeId("Mood");
-    public static final String Number = toConceptTypeId("Number");
-    public static final String Person = toConceptTypeId("Person");
-    public static final String Tense = toConceptTypeId("Tense");
-    public static final String Article = toConceptTypeId("Article");
+    public static final String partOfSpeech = toConceptTypeId("partOfSpeech");
+    public static final String grammaticalCase = toConceptTypeId("case");
+    public static final String degree = toConceptTypeId("degree");
+    public static final String grammaticalGender = toConceptTypeId("grammaticalGender");
+    public static final String verbFormMood = toConceptTypeId("verbFormMood");
+    public static final String grammaticalNumber = toConceptTypeId("grammaticalNumber");
+    public static final String person = toConceptTypeId("person");
+    public static final String grammaticalTense = toConceptTypeId("grammaticalTense");
+    public static final String definiteness = toConceptTypeId("definiteness");
     // POS concept types
-    public static final String Nn = toConceptTypeId("Nn");
-    public static final String Vb = toConceptTypeId("Vb");
-    public static final String Rb = toConceptTypeId("Rb");
-    public static final String Pn = toConceptTypeId("Pn");
-    public static final String Jj = toConceptTypeId("Jj");
-    public static final String NnPRP = toConceptTypeId("NnPRP");
-    public static final String JjPOS = toConceptTypeId("JjPOS");
+    public static final String noun = toConceptTypeId("noun");
+    public static final String verb = toConceptTypeId("verb");
+    public static final String adverb = toConceptTypeId("adverb");
+    public static final String pronoun = toConceptTypeId("pronoun");
+    public static final String adjective = toConceptTypeId("adjective");
+    public static final String properNoun = toConceptTypeId("properNoun");
+    public static final String possessiveAdjective = toConceptTypeId("possessiveAdjective");
     // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";
@@ -120,7 +121,7 @@ public final class KbUtil {
 
     public static String toConceptId(WTagging tagging, int index) {
         StringBuilder sb = new StringBuilder();
-        sb.append(handleQuotes(tagging.getForm()));
+        sb.append(handleQuotes(tagging.getWrittenForm()));
         sb.append("#");
         sb.append(index);
         sb.append("=[");
@@ -467,13 +468,13 @@ public final class KbUtil {
 
             String[] rhsTypes = rhs.getType();
             Arrays.sort(rhsTypes);
-            int idxPos = Arrays.binarySearch(rhsTypes, KbUtil.Pos);
+            int idxPos = Arrays.binarySearch(rhsTypes, Nil);
             if (idxPos < 0) {
-                // no Pos - replace lhs types with rhs types
+                // no Nil - replace lhs types with rhs types
                 actual.setType(rhsTypes);
             } else {
                 if (rhsTypes.length > 1) {
-                    // add all rhs types but Pos to lhs
+                    // add all rhs types but LinkArg to lhs
                     String[] actualTypes = actual.getType();
                     String[] lhsTypes = new String[actualTypes.length + rhsTypes.length - 1];
                     System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);

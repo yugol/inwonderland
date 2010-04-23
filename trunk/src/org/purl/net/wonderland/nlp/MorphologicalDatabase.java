@@ -45,26 +45,26 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public abstract class MorphologicalDatabase {
 
-    static Map<String, WTagging> ar;
-    static Map<String, WTagging> pnprs;
-    static Map<String, WTagging> pnpos;
-    static Map<String, WTagging> pndem;
-    static Map<String, WTagging> pnref;
-    static Map<String, WTagging> pnidf;
-    static Map<String, WTagging> pnrec;
-    static Map<String, WTagging> pnrel;
-    static Map<String, WTagging> pnint;
-    static Map<String, WTagging> pp;
-    static Map<String, WTagging> cjcrd;
-    static Map<String, WTagging> cjsub;
-    static Map<String, WTagging> jjidf;
-    static Map<String, WTagging> md;
-    static Map<String, WTagging> jjdem;
-    static Map<String, WTagging> vb;
-    static Map<String, WTagging> jjpos;
-    static Map<String, WTagging> rbint;
-    static Map<String, WTagging> rb;
-    static Map<String, WTagging> jj;
+    static Map<String, WTagging> article;
+    static Map<String, WTagging> personalPronoun;
+    static Map<String, WTagging> possessivePronoun;
+    static Map<String, WTagging> demonstrativePronoun;
+    static Map<String, WTagging> reflexivePersonalPronoun;
+    static Map<String, WTagging> indefinitePronoun;
+    static Map<String, WTagging> reciprocalPronoun;
+    static Map<String, WTagging> relativePronoun;
+    static Map<String, WTagging> interrogativePronoun;
+    static Map<String, WTagging> adposition;
+    static Map<String, WTagging> coordinatingConjunction;
+    static Map<String, WTagging> subordinatingConjunction;
+    static Map<String, WTagging> indefiniteDeterminer;
+    static Map<String, WTagging> modal;
+    static Map<String, WTagging> demonstrativeDeterminer;
+    static Map<String, WTagging> verb;
+    static Map<String, WTagging> possessiveAdjective;
+    static Map<String, WTagging> interrogativeAdverb;
+    static Map<String, WTagging> adverb;
+    static Map<String, WTagging> adjective;
 
     static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
         formFile = Configuration.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
@@ -74,7 +74,7 @@ public abstract class MorphologicalDatabase {
             final String[] header = inFile.getCSVHeader(true);
             WTagging tagging;
             while ((tagging = inFile.read(WTagging.class, header)) != null) {
-                map.put(tagging.getForm(), tagging);
+                map.put(tagging.getWrittenForm(), tagging);
             }
         } finally {
             inFile.close();

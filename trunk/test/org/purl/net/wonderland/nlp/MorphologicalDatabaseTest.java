@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.nlp;
 
 import java.util.Map;
@@ -36,8 +35,11 @@ public class MorphologicalDatabaseTest {
 
     @Test
     public void testReadDataFile() throws Exception {
-        String formFile = "ar.csv";
-        Map result = MorphologicalDatabase.readDataFile(formFile);
-        assertEquals(3, result.keySet().size());
+        String formFile = "personalPronoun.csv";
+        Map<String, WTagging> result = MorphologicalDatabase.readDataFile(formFile);
+        for (String key : result.keySet()) {
+            System.out.println(result.get(key).toCsvString());
+        }
+        assertEquals(15, result.keySet().size());
     }
 }

@@ -36,8 +36,8 @@ public final class WTaggingUtil {
     public static String areConsistent(WTagging gold, WTagging auto) {
         StringBuilder errStr = new StringBuilder();
 
-        String goldStr = gold.getPos();
-        String autoStr = auto.getPos();
+        String goldStr = gold.getPartOfSpeech();
+        String autoStr = auto.getPartOfSpeech();
         if (goldStr != null) {
             if (!goldStr.equals(autoStr)) {
                 if (autoStr == null) {
@@ -51,36 +51,36 @@ public final class WTaggingUtil {
         autoStr = auto.getLemma();
         checkTag(goldStr, autoStr, Corpus.lemmaTag, errStr);
 
-        goldStr = gold.getMood();
-        autoStr = auto.getMood();
+        goldStr = gold.getVerbFormMood();
+        autoStr = auto.getVerbFormMood();
         checkTag(goldStr, autoStr, Corpus.moodTag, errStr);
 
-        goldStr = gold.getTense();
-        autoStr = auto.getTense();
+        goldStr = gold.getGrammaticalTense();
+        autoStr = auto.getGrammaticalTense();
         checkTag(goldStr, autoStr, Corpus.tenseTag, errStr);
 
-        goldStr = gold.getGender();
-        autoStr = auto.getGender();
+        goldStr = gold.getGrammaticalGender();
+        autoStr = auto.getGrammaticalGender();
         checkTag(goldStr, autoStr, Corpus.genTag, errStr);
 
-        goldStr = gold.getNumber();
-        autoStr = auto.getNumber();
+        goldStr = gold.getGrammaticalNumber();
+        autoStr = auto.getGrammaticalNumber();
         checkTag(goldStr, autoStr, Corpus.numTag, errStr);
 
-        goldStr = gold.getWcase();
-        autoStr = auto.getWcase();
+        goldStr = gold.getGrammaticalCase();
+        autoStr = auto.getGrammaticalCase();
         checkTag(goldStr, autoStr, Corpus.caseTag, errStr);
 
         goldStr = gold.getPerson();
         autoStr = auto.getPerson();
         checkTag(goldStr, autoStr, Corpus.persTag, errStr);
 
-        goldStr = gold.getComp();
-        autoStr = auto.getComp();
+        goldStr = gold.getDegree();
+        autoStr = auto.getDegree();
         checkTag(goldStr, autoStr, Corpus.compTag, errStr);
 
-        goldStr = gold.getArticle();
-        autoStr = auto.getArticle();
+        goldStr = gold.getDefiniteness();
+        autoStr = auto.getDefiniteness();
         checkTag(goldStr, autoStr, Corpus.articleTag, errStr);
 
         return ((errStr.length() > 0) ? (errStr.toString()) : (null));
@@ -110,29 +110,29 @@ public final class WTaggingUtil {
     }
 
     public static void mergeWtags(WTagging from, WTagging to) {
-        if ((from.getPos() != null) && (!from.getPos().equals("Pos"))) {
-            to.setPos(from.getPos());
+        if ((from.getPartOfSpeech() != null) && (!from.getPartOfSpeech().equals("Pos"))) {
+            to.setPartOfSpeech(from.getPartOfSpeech());
         }
-        if (from.getGender() != null) {
-            to.setGender(from.getGender());
+        if (from.getGrammaticalGender() != null) {
+            to.setGrammaticalGender(from.getGrammaticalGender());
         }
-        if (from.getNumber() != null) {
-            to.setNumber(from.getNumber());
+        if (from.getGrammaticalNumber() != null) {
+            to.setGrammaticalNumber(from.getGrammaticalNumber());
         }
-        if (from.getWcase() != null) {
-            to.setWcase(from.getWcase());
+        if (from.getGrammaticalCase() != null) {
+            to.setGrammaticalCase(from.getGrammaticalCase());
         }
         if (from.getPerson() != null) {
             to.setPerson(from.getPerson());
         }
-        if (from.getComp() != null) {
-            to.setComp(from.getComp());
+        if (from.getDegree() != null) {
+            to.setDegree(from.getDegree());
         }
-        if (from.getMood() != null) {
-            to.setMood(from.getMood());
+        if (from.getVerbFormMood() != null) {
+            to.setVerbFormMood(from.getVerbFormMood());
         }
-        if (from.getTense() != null) {
-            to.setTense(from.getTense());
+        if (from.getGrammaticalTense() != null) {
+            to.setGrammaticalTense(from.getGrammaticalTense());
         }
     }
 }

@@ -236,8 +236,8 @@
 <ctype id="ct_acc" label="acc" x="460" y="830">
 <translation descr="accusative" label="acc" lang="en"/>
 </ctype>
-<ctype id="ct_Rb" label="Rb" x="350" y="3630">
-<translation descr="Adverb" label="Rb" lang="en"/>
+<ctype id="ct_Rb" label="adverb" x="350" y="3630">
+<translation descr="Adverb" label="adverb" lang="en"/>
 </ctype>
 <ctype id="ct_pt" label="pt" x="460" y="570">
 <translation descr="past / perfect" label="pt" lang="en"/>
@@ -431,8 +431,8 @@
 <ctype id="ct_POS" label="POS" x="460" y="3120">
 <translation descr="Possessive Ending&#10;e.g. Nouns ending in `s" label="POS" lang="en"/>
 </ctype>
-<ctype id="ct_RB" label="RB" x="460" y="2560">
-<translation descr="Adverb &#10;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
+<ctype id="ct_RB" label="adverb" x="460" y="2560">
+<translation descr="Adverb &#10;Most words that end in -ly as well as degree words like quite, too and very" label="adverb" lang="en"/>
 </ctype>
 <ctype id="ct_RbPLC_Dir" label="RbPLC_Dir" x="580" y="3530">
 <translation descr="Adverb of place that indicates direction" label="RbPLC_Dir" lang="en"/>

@@ -32,7 +32,7 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
  *
  * @author Iulian
  */
-public class WTagMapper {
+public class MaPennToWTaggingMapper {
 
     private static final String noLemma = "_~_";
 
@@ -41,14 +41,14 @@ public class WTagMapper {
             String tag = tagging.getPennTag();
 
             if (tagging.isCollocation()) {
-                // System.out.println(tagging.getForm());
+                // System.out.println(tagging.getWrittenForm());
                 String posTypes = CollocationManager.getTypes(tagging.getLemma());
-                if ("Rb".equals(posTypes)) {
-                    tagging.setPos("Rb");
+                if ("adverb".equals(posTypes)) {
+                    tagging.setPartOfSpeech("adverb");
                     continue;
                 }
-                if ("Jj".equals(posTypes)) {
-                    tagging.setPos("Jj");
+                if ("adjective".equals(posTypes)) {
+                    tagging.setPartOfSpeech("adjective");
                     continue;
                 }
             }
@@ -71,7 +71,7 @@ public class WTagMapper {
                 mapRB(tagging, tag);
             } else if (tag.indexOf("JJ") == 0) { // JJ
                 mapJJ(tagging, tag);
-            } else if (tag.equals("MD")) { // MD
+            } else if (tag.equals("modal")) { // MD
                 mapMD(tagging, tag);
             } else if (tag.equals("WDT")) { // WDT
                 mapWDT(tagging, tag);
@@ -102,16 +102,16 @@ public class WTagMapper {
     public void mapDT(WTagging tagging, String tag) {
         String maTag = tagging.getPartsOfSpeech();
         if ("av-dx".equals(maTag)) {
-            tagging.setPos("Rb");
+            tagging.setPartOfSpeech("adverb");
             return;
         }
 
-        String word = tagging.getForm().toLowerCase();
-        WTagging ar = MorphologicalDatabase.ar.get(word);
-        WTagging jjind = MorphologicalDatabase.jjidf.get(word);
-        WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
-        WTagging pndem = MorphologicalDatabase.pndem.get(word);
-        WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging ar = MorphologicalDatabase.article.get(word);
+        WTagging jjind = MorphologicalDatabase.indefiniteDeterminer.get(word);
+        WTagging jjdem = MorphologicalDatabase.demonstrativeDeterminer.get(word);
+        WTagging pndem = MorphologicalDatabase.demonstrativePronoun.get(word);
+        WTagging pnpos = MorphologicalDatabase.possessivePronoun.get(word);
 
         if (ar != null && jjind == null && jjdem == null && pndem == null && pnpos == null) {
             tagging.copyWTags(ar);
@@ -122,9 +122,9 @@ public class WTagMapper {
         } else if (ar == null && jjind == null && jjdem != null && pndem != null && pnpos == null) {
             tagging.copyWTags(jjdem);
             if (maTag != null && tagging.getPartsOfSpeech().charAt(0) == 'd') {
-                tagging.setPos("JjDEM");
+                tagging.setPartOfSpeech("demonstrativeDeterminer");
             } else {
-                tagging.setPos("JjPnDEM");
+                tagging.setPartOfSpeech("demonstrativeDeterminer;demonstrativePronoun");
             }
         } else if (ar == null && jjind == null && jjdem == null && pndem == null && pnpos != null) {
             tagging.copyWTags(pnpos);
@@ -143,59 +143,59 @@ public class WTagMapper {
                 mapRB(tagging, tag);
                 return;
             } else if (maTag.indexOf("crd") == 0) {
-                String word = tagging.getForm().toLowerCase();
+                String word = tagging.getWrittenForm().toLowerCase();
                 String number = TextToNumber.getValue(word);
                 if (number != null) {
                     tagging.setLemma(number);
-                    tagging.setPos("NmCRD");
+                    tagging.setPartOfSpeech("cardinalNumeral");
                     return;
                 }
             } else if (maTag.indexOf("v") == 0) {
                 if (maTag.charAt(2) == 'g') {
-                    tagging.setPos("Vb");
-                    tagging.setMood("ger");
+                    tagging.setPartOfSpeech("verb");
+                    tagging.setVerbFormMood("gerund");
                     return;
                 } else if (maTag.charAt(2) == 'd') {
-                    tagging.setPos("Vb");
-                    tagging.setMood("ind");
-                    tagging.setTense("pt");
+                    tagging.setPartOfSpeech("verb");
+                    tagging.setVerbFormMood("indicative");
+                    tagging.setGrammaticalTense("past");
                     return;
                 } else if (maTag.charAt(2) == 'z') {
-                    tagging.setPos("Vb");
-                    tagging.setMood("ind");
-                    tagging.setTense("ps");
-                    tagging.setNumber("sng");
-                    tagging.setPerson("rd");
+                    tagging.setPartOfSpeech("verb");
+                    tagging.setVerbFormMood("indicative");
+                    tagging.setGrammaticalTense("present");
+                    tagging.setGrammaticalNumber("singular");
+                    tagging.setPerson("thirdPerson");
                     return;
                 }
             } else if (maTag.indexOf("vvg") > 0) {
-                tagging.setMood("ger");
+                tagging.setVerbFormMood("gerund");
             }
         }
 
         if (tag.indexOf("NNP") == 0) {
-            tagging.setPos("NnPRP");
+            tagging.setPartOfSpeech("properNoun");
         } else {
-            tagging.setPos("NnCOM");
+            tagging.setPartOfSpeech("commonNoun");
         }
 
         if (tag.charAt(tag.length() - 1) == 'S') {
-            tagging.setNumber("plu");
+            tagging.setGrammaticalNumber("plural");
         } else {
-            tagging.setNumber("sng");
+            tagging.setGrammaticalNumber("singular");
         }
 
     }
 
     public void mapVB(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
+        String word = tagging.getWrittenForm().toLowerCase();
 
-        WTagging vb = MorphologicalDatabase.vb.get(word);
+        WTagging vb = MorphologicalDatabase.verb.get(word);
 
         if (vb != null) {
             tagging.copyWTagsAndLemma(vb);
         } else {
-            tagging.setPos("Vb");
+            tagging.setPartOfSpeech("verb");
             String maTag = tagging.getPartsOfSpeech();
 
             if (maTag != null) {
@@ -208,87 +208,87 @@ public class WTagMapper {
             }
 
             if (tag.equals("VBZ")) {
-                tagging.setMood("ind");
-                tagging.setNumber("sng");
-                tagging.setPerson("rd");
-                tagging.setTense("ps");
+                tagging.setVerbFormMood("indicative");
+                tagging.setGrammaticalNumber("singular");
+                tagging.setPerson("thirdPerson");
+                tagging.setGrammaticalTense("present");
             } else if (tag.equals("VBP")) {
                 if (maTag != null) {
                     if (maTag.indexOf("j") == 0) {
-                        tagging.setPos("Jj");
+                        tagging.setPartOfSpeech("adjective");
                         return;
                     } else if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPos("Md");
+                            tagging.setPartOfSpeech("modal");
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setTense("pt");
+                                tagging.setGrammaticalTense("past");
                             } else {
-                                tagging.setTense("ps");
+                                tagging.setGrammaticalTense("present");
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'd') {
-                            tagging.setMood("ind");
-                            tagging.setTense("pt");
+                            tagging.setVerbFormMood("indicative");
+                            tagging.setGrammaticalTense("past");
                             return;
                         }
                     }
                 }
-                tagging.setMood("ind");
-                tagging.setTense("ps");
+                tagging.setVerbFormMood("indicative");
+                tagging.setGrammaticalTense("present");
             } else if (tag.equals("VB")) {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPos("Md");
+                            tagging.setPartOfSpeech("modal");
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setTense("pt");
+                                tagging.setGrammaticalTense("past");
                             } else {
-                                tagging.setTense("ps");
+                                tagging.setGrammaticalTense("present");
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'i') {
-                            tagging.setMood("sinf");
+                            tagging.setVerbFormMood("infinitive");
                         } else if (maTag.charAt(2) == 'b') {
                             if (maTag.charAt(1) == 'b') {
-                                tagging.setMood("sinf");
+                                tagging.setVerbFormMood("infinitive");
                             } else {
-                                tagging.setMood("ind");
-                                tagging.setTense("ps");
+                                tagging.setVerbFormMood("indicative");
+                                tagging.setGrammaticalTense("present");
                             }
                         } else if (maTag.charAt(2) == 'd') {
-                            tagging.setMood("ind");
-                            tagging.setTense("pt");
+                            tagging.setVerbFormMood("indicative");
+                            tagging.setGrammaticalTense("past");
                         } else if (maTag.charAt(2) == 'n') {
-                            tagging.setMood("par");
-                            tagging.setTense("pt");
+                            tagging.setVerbFormMood("participle");
+                            tagging.setGrammaticalTense("past");
                         }
                     } else if (maTag.indexOf("j") == 0) {
                         IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
                         if (wnWord == null) {
                             wnWord = WordNetWrapper.lookup(word, POS.NOUN);
                             if (wnWord != null) {
-                                tagging.setPos("NnCOM");
-                                tagging.setNumber("sng");
+                                tagging.setPartOfSpeech("commonNoun");
+                                tagging.setGrammaticalNumber("singular");
                             }
                         } else {
-                            tagging.setPos("Jj");
+                            tagging.setPartOfSpeech("adjective");
                         }
                     }
                 }
             } else if (tag.equals("VBD")) {
-                tagging.setMood("ind");
-                tagging.setTense("pt");
+                tagging.setVerbFormMood("indicative");
+                tagging.setGrammaticalTense("past");
             } else if (tag.equals("VBG")) {
                 if (maTag != null) {
                     if (maTag.equals("j-vvg")) {
-                        tagging.setPos("Jj");
-                        tagging.setMood("ger");
+                        tagging.setPartOfSpeech("adjective");
+                        tagging.setVerbFormMood("gerund");
                         return;
                     }
                 }
-                tagging.setMood("ger");
+                tagging.setVerbFormMood("gerund");
                 if (word.equals("being")) {
                     tagging.setLemma("be");
                 }
@@ -296,30 +296,30 @@ public class WTagMapper {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(2) == 'g') {
-                            tagging.setMood("ger");
+                            tagging.setVerbFormMood("gerund");
                             return;
                         }
                     }
                 }
-                tagging.setMood("par");
-                tagging.setTense("pt");
+                tagging.setVerbFormMood("participle");
+                tagging.setGrammaticalTense("past");
             }
         }
     }
 
     void mapIN(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
+        String word = tagging.getWrittenForm().toLowerCase();
 
         if (tagging.isCollocation()) {
             String pos = CollocationManager.getTypes(word);
-            if (pos.indexOf("Rb") >= 0) {
-                tagging.setPos("Rb");
+            if (pos.indexOf("adverb") >= 0) {
+                tagging.setPartOfSpeech("adverb");
                 return;
             }
         }
 
-        WTagging pr = MorphologicalDatabase.pp.get(word);
-        WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
+        WTagging pr = MorphologicalDatabase.adposition.get(word);
+        WTagging cjsub = MorphologicalDatabase.subordinatingConjunction.get(word);
 
         if (pr != null && cjsub == null) {
             tagging.copyWTags(pr);
@@ -329,39 +329,39 @@ public class WTagMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("c") == 0) {
-                    tagging.setPos("CjSUB");
+                    tagging.setPartOfSpeech("subordinatingConjunction");
                     return;
                 } else if (maTag.indexOf("p") == 0) {
-                    tagging.setPos("Pp");
+                    tagging.setPartOfSpeech("adposition");
                     return;
                 } else if (maTag.equals("vvg")) {
-                    tagging.setPos("Vb");
-                    tagging.setMood("ger");
+                    tagging.setPartOfSpeech("verb");
+                    tagging.setVerbFormMood("gerund");
                     return;
                 } else if (maTag.equals("a-acp")) {
-                    tagging.setPos("Rb");
+                    tagging.setPartOfSpeech("adverb");
                     return;
                 }
             }
-            tagging.setPos("PpCjSUB");
+            tagging.setPartOfSpeech("subordinatingConjunction;adposition");
         }
     }
 
     void mapCC(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging cjcrd = MorphologicalDatabase.cjcrd.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging cjcrd = MorphologicalDatabase.coordinatingConjunction.get(word);
 
         if (cjcrd != null) {
             tagging.copyWTags(cjcrd);
         } else {
-            tagging.setPos("CjCRD");
+            tagging.setPartOfSpeech("coordinatingConjunction");
         }
     }
 
     void mapPRP(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pnprs = MorphologicalDatabase.pnprs.get(word);
-        WTagging pnref = MorphologicalDatabase.pnref.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pnprs = MorphologicalDatabase.personalPronoun.get(word);
+        WTagging pnref = MorphologicalDatabase.reflexivePersonalPronoun.get(word);
 
         if (pnprs != null && pnref == null) {
             tagging.copyWTags(pnprs);
@@ -371,8 +371,8 @@ public class WTagMapper {
     }
 
     void mapTO(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pr = MorphologicalDatabase.pp.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pr = MorphologicalDatabase.adposition.get(word);
 
         if (pr != null && pr.getLemma().equals("to")) {
             tagging.copyWTags(pr);
@@ -380,20 +380,20 @@ public class WTagMapper {
     }
 
     void mapRB(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging rb = MorphologicalDatabase.rb.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging rb = MorphologicalDatabase.adverb.get(word);
 
         if (rb != null) {
             tagging.copyWTagsAndLemma(rb);
             return;
         } else {
-            tagging.setPos("Rb");
+            tagging.setPartOfSpeech("adverb");
         }
 
         if (tag.equals("RBR")) {
-            tagging.setComp("cmp");
+            tagging.setDegree("comparative");
         } else if (tag.equals("RBS")) {
-            tagging.setComp("sup");
+            tagging.setDegree("superlative");
         }
 
         String maTag = tagging.getPartsOfSpeech();
@@ -401,38 +401,38 @@ public class WTagMapper {
             if (maTag.indexOf("av") == 0) {
                 // if (maTag.indexOf("-j") == 2) {
                 if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
-                    tagging.setPos("RbMNN");
+                    tagging.setPartOfSpeech("mannerAdverb");
                     tagging.setLemma(word);
                 }
                 // }
                 if (maTag.indexOf('c') > 0) {
-                    tagging.setComp("cmp");
+                    tagging.setDegree("comparative");
                 }
             } else if (maTag.indexOf('n') == 0) {
-                tagging.setPos("NnCOM");
+                tagging.setPartOfSpeech("commonNoun");
                 if (maTag.indexOf("1") > 0) {
-                    tagging.setNumber("sng");
+                    tagging.setGrammaticalNumber("singular");
                 } else if (maTag.indexOf('2') > 0) {
-                    tagging.setNumber("plu");
+                    tagging.setGrammaticalNumber("plural");
                 }
             } else if (maTag.indexOf("jc") == 0) {
-                tagging.setComp("cmp");
+                tagging.setDegree("comparative");
             }
         }
     }
 
     void mapJJ(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
+        String word = tagging.getWrittenForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
 
-        WTagging jj = MorphologicalDatabase.jj.get(word);
+        WTagging jj = MorphologicalDatabase.adjective.get(word);
         if (jj != null) {
             tagging.copyWTags(jj);
             return;
         }
 
-        WTagging jjidf = MorphologicalDatabase.jjidf.get(word);
-        WTagging jjdem = MorphologicalDatabase.jjdem.get(word);
+        WTagging jjidf = MorphologicalDatabase.indefiniteDeterminer.get(word);
+        WTagging jjdem = MorphologicalDatabase.demonstrativeDeterminer.get(word);
 
         if (jjidf != null && jjdem == null) {
             tagging.copyWTagsAndLemma(jjidf);
@@ -457,37 +457,37 @@ public class WTagMapper {
         String nmord = TextToNumber.getValue(word);
         if (nmord != null) {
             tagging.setLemma(nmord);
-            tagging.setPos("NmORD");
+            tagging.setPartOfSpeech("ordinalAdjective");
             return;
         }
 
-        tagging.setPos("Jj");
+        tagging.setPartOfSpeech("adjective");
         if (tag.equals("JJR")) {
-            tagging.setComp("cmp");
+            tagging.setDegree("comparative");
         } else if (tag.equals("JJS")) {
-            tagging.setComp("sup");
+            tagging.setDegree("superlative");
         }
 
         if (maTag != null) {
             if ("j-vvn".equals(maTag)) {
-                tagging.setMood("par");
-                tagging.setTense("pt");
+                tagging.setVerbFormMood("participle");
+                tagging.setGrammaticalTense("past");
             } else if (maTag.indexOf("vvg") >= 0) {
-                tagging.setMood("ger");
+                tagging.setVerbFormMood("gerund");
                 if (maTag.equals("vvg")) {
-                    tagging.setPos("Vb");
-                    tagging.setMood("ger");
+                    tagging.setPartOfSpeech("verb");
+                    tagging.setVerbFormMood("gerund");
                 }
             } else if (maTag.indexOf("av") == 0) {
-                tagging.setPos("Rb");
+                tagging.setPartOfSpeech("adverb");
                 return;
             }
         }
     }
 
     void mapMD(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging md = MorphologicalDatabase.md.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging md = MorphologicalDatabase.modal.get(word);
 
         if (md != null) {
             tagging.copyWTagsAndLemma(md);
@@ -495,9 +495,9 @@ public class WTagMapper {
     }
 
     void mapWDT(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pnrel = MorphologicalDatabase.pnrel.get(word);
-        WTagging cjsub = MorphologicalDatabase.cjsub.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pnrel = MorphologicalDatabase.relativePronoun.get(word);
+        WTagging cjsub = MorphologicalDatabase.subordinatingConjunction.get(word);
 
         if (pnrel != null && cjsub == null) {
             tagging.copyWTags(pnrel);
@@ -508,19 +508,19 @@ public class WTagMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("cs") == 0) {
-                    tagging.setPos("CjSUB");
+                    tagging.setPartOfSpeech("subordinatingConjunction");
                 } else if (maTag.indexOf("r-crq") == 0) {
-                    tagging.setPos("PnREL");
+                    tagging.setPartOfSpeech("relativePronoun");
                 }
             } else {
-                tagging.setPos("CjSUBPnREL");
+                tagging.setPartOfSpeech("subordinatingConjunction;relativePronoun");
             }
         }
     }
 
     void mapCD(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        tagging.setPos("NmCRD");
+        String word = tagging.getWrittenForm().toLowerCase();
+        tagging.setPartOfSpeech("cardinalNumeral");
         tagging.setLemma(TextToNumber.getValue(word));
 
         if (tagging.getLemma() == null) {
@@ -529,9 +529,9 @@ public class WTagMapper {
     }
 
     void mapPRPS(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pnpos = MorphologicalDatabase.pnpos.get(word);
-        WTagging jjpos = MorphologicalDatabase.jjpos.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pnpos = MorphologicalDatabase.possessivePronoun.get(word);
+        WTagging jjpos = MorphologicalDatabase.possessiveAdjective.get(word);
 
         if (pnpos != null && jjpos == null) {
             tagging.copyWTags(pnpos);
@@ -541,20 +541,20 @@ public class WTagMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("png") == 0) {
-                    tagging.setPos("PnPOS");
+                    tagging.setPartOfSpeech("possessivePronoun");
                 } else if (maTag.indexOf("po") == 0) {
-                    tagging.setPos("JjPOS");
+                    tagging.setPartOfSpeech("possessiveAdjective");
                 }
             } else {
                 tagging.setLemma(pnpos.getLemma());
-                tagging.setPos("JjPnPOS");
+                tagging.setPartOfSpeech("possessiveAdjective;possessivePronoun");
             }
         }
     }
 
     void mapWRB(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging rbint = MorphologicalDatabase.rbint.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging rbint = MorphologicalDatabase.interrogativeAdverb.get(word);
 
         if (rbint != null) {
             tagging.copyWTags(rbint);
@@ -563,37 +563,37 @@ public class WTagMapper {
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if ("q-crq".equals(maTag)) {
-                tagging.setPos("RbINT");
+                tagging.setPartOfSpeech("interrogativeAdverb");
             } else if ("c-crq".equals(maTag)) {
-                tagging.setPos("RbREL");
+                tagging.setPartOfSpeech("relativeAdverb");
             } else if ("vhdx".equals(maTag)) {
-                tagging.setPos("Vb");
-                tagging.setMood("ind");
-                tagging.setTense("pt");
+                tagging.setPartOfSpeech("verb");
+                tagging.setVerbFormMood("indicative");
+                tagging.setGrammaticalTense("past");
             } else if ("a-acp".equals(maTag)) {
-                tagging.setPos("RbREL");
+                tagging.setPartOfSpeech("relativeAdverb");
             } else if ("cs".equals(maTag)) {
-                tagging.setPos("RbREL");
+                tagging.setPartOfSpeech("relativeAdverb");
             }
         }
     }
 
     void mapEX(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
+        String word = tagging.getWrittenForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
 
         if (word.equals("there")) {
             if ("a-acp".equals(maTag)) {
-                tagging.setPos("Rb");
+                tagging.setPartOfSpeech("adverb");
             } else {
-                tagging.setPos("RbEX");
+                tagging.setPartOfSpeech("existentialPronoun");
             }
         }
     }
 
     void mapWP(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pnint = MorphologicalDatabase.pnint.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pnint = MorphologicalDatabase.interrogativePronoun.get(word);
 
         if (pnint != null) {
             tagging.copyWTags(pnint);
@@ -601,28 +601,29 @@ public class WTagMapper {
     }
 
     void mapFW(WTagging tagging, String tag) {
-        // String word = tagging.getForm().toLowerCase();
+        // String word = tagging.getWrittenForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
 
         if (maTag != null) {
             if (maTag.indexOf("vvg") >= 0) {
-                tagging.setPos("Vb");
-                tagging.setMood("ger");
+                tagging.setPartOfSpeech("verb");
+                tagging.setVerbFormMood("gerund");
             }
         }
     }
 
     void mapRP(WTagging tagging, String tag) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging rb = MorphologicalDatabase.rb.get(word);
-        WTagging pr = MorphologicalDatabase.pp.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging rb = MorphologicalDatabase.adverb.get(word);
+        WTagging pr = MorphologicalDatabase.adposition.get(word);
 
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
+            tagging.setPartOfSpeech("generalAdverb");
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
         } else {
-            tagging.setPos("PpRbPLC_Dir");
+            tagging.setPartOfSpeech("adposition;generalAdverb");
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
             } else {
@@ -633,12 +634,12 @@ public class WTagMapper {
 
     void mapPOS(WTagging tagging, String tag) {
         tagging.setLemma("$");
-        tagging.setPos("MkPOS");
+        tagging.setPartOfSpeech("possessiveParticle");
     }
 
     /*
     void mapCollocation(WTagging tagging) {
-    String word = tagging.getForm().toLowerCase();
+    String word = tagging.getWrittenForm().toLowerCase();
     WTagging collocation = MorphologicalDatabase.collocations.get(word);
 
     if (collocation != null) {
@@ -649,8 +650,8 @@ public class WTagMapper {
      * 
      */
     private boolean tryIndefinitePronoun(WTagging tagging) {
-        String word = tagging.getForm().toLowerCase();
-        WTagging pnidf = MorphologicalDatabase.pnidf.get(word);
+        String word = tagging.getWrittenForm().toLowerCase();
+        WTagging pnidf = MorphologicalDatabase.indefinitePronoun.get(word);
         if (pnidf != null) {
             tagging.copyWTagsAndLemma(pnidf);
             return true;
@@ -663,6 +664,6 @@ public class WTagMapper {
     }
 
     private void mapUH(WTagging tagging, String tag) {
-        tagging.setPos("Uh");
+        tagging.setPartOfSpeech("interjection");
     }
 }

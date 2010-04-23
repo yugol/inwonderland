@@ -45,11 +45,11 @@ import org.purl.net.wonderland.kb.KbUtil;
  */
 public class GoldTest {
 
-    String level = KbUtil.level2;
-    Personality pers = new Level2Personality();
+    String level = KbUtil.level1;
+    Personality pers = new Level1Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
-    int lastSentence = 1201;
+    int lastSentence = 1;
     //
     private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
 
@@ -116,7 +116,7 @@ public class GoldTest {
                         System.err.println(sentence);
                         printed = true;
                     }
-                    System.err.println("    WORD [" + (j + 1) + "]: " + actual[j].getForm());
+                    System.err.println("    WORD [" + (j + 1) + "]: " + actual[j].getWrittenForm());
                     System.err.println(errStr);
                     ++errorCount;
                 }
