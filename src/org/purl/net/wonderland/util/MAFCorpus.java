@@ -130,11 +130,11 @@ public class MAFCorpus {
         }
     }
 
-    public int getLineCount() {
+    int getPlainLineCount() {
         return plainLines.size();
     }
 
-    public String getPlainLine(int idx) {
+    String getPlainLine(int idx) {
         return plainLines.get(idx);
     }
 
@@ -182,16 +182,16 @@ public class MAFCorpus {
         XML.writeXmlFile(xmlLevel[0], level0Corpus);
     }
 
-    public void buildLevelXml(Engine engine, String level) throws Exception {
+    void buildLevelXml(Engine engine, String level, int firstSentence, int lastSentence) throws Exception {
         int l = getLevelDocument(level);
         xmlLevel[l] = XML.createDocument();
         xmlLevel[l].appendChild(xmlLevel[l].createElement(WONDERLANDCORPUS + level));
 
-        for (int sentIdx = 1; sentIdx <= engine.getFactCount(level); ++sentIdx) {
+        for (int sentIdx = firstSentence; sentIdx <= lastSentence; ++sentIdx) {
             Element mafElem = xmlLevel[l].createElement(MAF_NAME);
             mafElem.setAttribute(MAF_ATTR_DOCUMENT, SENTENCE + sentIdx);
 
-            WTagging[] words = engine.getFactWTaggings(sentIdx, true, level);
+            WTagging[] words = engine.getFactWTaggings(sentIdx - firstSentence + 1, true, level);
             for (int j = 0; j < words.length; ++j) {
                 WTagging wt = words[j];
 
@@ -306,5 +306,52 @@ public class MAFCorpus {
         Element mafElem = (Element) mafElems.item(sentId - 1);
         NodeList tokenElems = mafElem.getElementsByTagName(TOKEN_NAME);
         return (Element) tokenElems.item(tokId - 1);
+    }
+
+    WTagging[] getSentence(int sentId, String level) {
+        int l = getLevelDocument(level);
+        NodeList mafElems = xmlLevel[l].getElementsByTagName(MAF_NAME);
+        Element mafElem = (Element) mafElems.item(sentId - 1);
+        NodeList wordFormsElems = mafElem.getElementsByTagName(WORDFORM_NAME);
+        WTagging[] wts = new WTagging[wordFormsElems.getLength()];
+        for (int i = 0; i < wts.length; i++) {
+            Element wordFormElem = (Element) wordFormsElems.item(i);
+            wts[i] = createTagging(wordFormElem);
+        }
+        return wts;
+    }
+
+    private WTagging createTagging(Element wordFormElem) {
+        WTagging wt = new WTagging();
+        wt.setLemma(wordFormElem.getAttribute(WORDFORM_ATTR_LEMMA));
+        NodeList fElements = wordFormElem.getElementsByTagName(FEATURE_NAME);
+        for (int i = 0; i < fElements.getLength(); i++) {
+            Element fElem = (Element) fElements.item(i);
+            String name = fElem.getAttribute(FEATURE_ATTR_NAME);
+            Element symbolElem = (Element) fElem.getElementsByTagName(STRING_SYMBOL_NAME).item(0);
+            String value = symbolElem.getAttribute(SYMBOL_ATTR_VALUE);
+            if (WKBUtil.PARTOFSPEECH.equals(name)) {
+                wt.setPartOfSpeech(value);
+            } else if (WKBUtil.GRAMMATICALGENDER.equals(name)) {
+                wt.setGrammaticalGender(value);
+            } else if (WKBUtil.GRAMMATICALNUMBER.equals(name)) {
+                wt.setGrammaticalNumber(value);
+            } else if (WKBUtil.GRAMMATICALCASE.equals(name)) {
+                wt.setGrammaticalCase(value);
+            } else if (WKBUtil.GRAMMATICALTENSE.equals(name)) {
+                wt.setGrammaticalTense(value);
+            } else if (WKBUtil.PERSON.equals(name)) {
+                wt.setPerson(value);
+            } else if (WKBUtil.DEGREE.equals(name)) {
+                wt.setDegree(value);
+            } else if (WKBUtil.VERBFORMMOOD.equals(name)) {
+                wt.setVerbFormMood(value);
+            } else if (WKBUtil.DEFINITNESS.equals(name)) {
+                wt.setDefiniteness(value);
+            } else if (WKBUtil.ASPECT.equals(name)) {
+                wt.setAspect(value);
+            }
+        }
+        return wt;
     }
 }

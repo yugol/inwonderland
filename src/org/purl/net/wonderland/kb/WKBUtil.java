@@ -108,6 +108,16 @@ public final class WKBUtil {
     public static final String GENERALADVERB = "generalAdverb";
     public static final String POSSESIVEPARTICLE = "possessiveParticle";
     public static final String INTERJECTION = "interjection";
+    // punctuation
+    public static final String POINT = "point";
+    public static final String QUOTE = "quote";
+    public static final String QUESTIONMARK = "questionMark";
+    public static final String COMMA = "comma";
+    public static final String EXCLAMATIVEPOINT = "exclamativePoint";
+    public static final String OPENPARRENTHESIS = "openParenthesis";
+    public static final String CLOSEPARENTHESIS = "closeParenthesis";
+    public static final String SEMICOLON = "semiColon";
+    public static final String COLON = "colon";
     // some concept types from the knowledge base support
     public static final String TOP_CT = toConceptTypeId("Top");
     public static final String NIL_CT = toConceptTypeId("Nil");

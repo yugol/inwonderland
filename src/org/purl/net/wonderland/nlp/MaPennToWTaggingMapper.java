@@ -72,7 +72,7 @@ public class MaPennToWTaggingMapper {
                 mapRB(tagging, tag);
             } else if (tag.indexOf("JJ") == 0) { // JJ
                 mapJJ(tagging, tag);
-            } else if (tag.equals("modal")) { // MD
+            } else if (tag.equals("MD")) { // MD
                 mapMD(tagging, tag);
             } else if (tag.equals("WDT")) { // WDT
                 mapWDT(tagging, tag);
@@ -96,6 +96,8 @@ public class MaPennToWTaggingMapper {
                 mapPDT(tagging, tag);
             } else if (tag.equals("UH")) { // UH
                 mapUH(tagging, tag);
+            } else {
+                mapPunct(tagging, tag);
             }
         }
     }
@@ -361,13 +363,17 @@ public class MaPennToWTaggingMapper {
 
     void mapPRP(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
+
         WTagging pnprs = MorphologicalDatabase.personalPronoun.get(word);
         WTagging pnref = MorphologicalDatabase.reflexivePersonalPronoun.get(word);
+        WTagging pnidf = MorphologicalDatabase.indefinitePronoun.get(word);
 
-        if (pnprs != null && pnref == null) {
+        if (pnprs != null) {
             tagging.copyWTags(pnprs);
-        } else if (pnprs == null && pnref != null) {
+        } else if (pnref != null) {
             tagging.copyWTags(pnref);
+        } else if (pnidf != null) {
+            tagging.copyWTags(pnidf);
         }
     }
 
@@ -639,18 +645,6 @@ public class MaPennToWTaggingMapper {
         tagging.setPartOfSpeech(WKBUtil.POSSESIVEPARTICLE);
     }
 
-    /*
-    void mapCollocation(WTagging tagging) {
-    String word = tagging.getWrittenForm().toLowerCase();
-    WTagging collocation = MorphologicalDatabase.collocations.get(word);
-
-    if (collocation != null) {
-    tagging.copyWTags(collocation);
-
-    }
-    }
-     * 
-     */
     private boolean tryIndefinitePronoun(WTagging tagging) {
         String word = tagging.getWrittenForm().toLowerCase();
         WTagging pnidf = MorphologicalDatabase.indefinitePronoun.get(word);
@@ -667,5 +661,22 @@ public class MaPennToWTaggingMapper {
 
     private void mapUH(WTagging tagging, String tag) {
         tagging.setPartOfSpeech(WKBUtil.INTERJECTION);
+    }
+
+    private void mapPunct(WTagging wt, String tag) {
+        String word = wt.getWrittenForm();
+        if (".".equals(word)) {
+            wt.setPartOfSpeech(WKBUtil.POINT);
+        } else if ("``".equals(wt.getPennTag())) {
+            wt.setPartOfSpeech(WKBUtil.QUOTE);
+        } else if ("''".equals(wt.getPennTag())) {
+            wt.setPartOfSpeech(WKBUtil.QUOTE);
+        } else if ("?".equals(word)) {
+            wt.setPartOfSpeech(WKBUtil.QUESTIONMARK);
+        } else if ("!".equals(word)) {
+            wt.setPartOfSpeech(WKBUtil.EXCLAMATIVEPOINT);
+        } else if (",".equals(word)) {
+            wt.setPartOfSpeech(WKBUtil.COMMA);
+        }
     }
 }

@@ -23,7 +23,9 @@
  */
 package org.purl.net.wonderland.nlp;
 
+import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.util.Corpus;
+import org.purl.net.wonderland.util.MAFCorpus;
 
 /**
  *
@@ -31,7 +33,7 @@ import org.purl.net.wonderland.util.Corpus;
  */
 public final class WTaggingUtil {
 
-    private static String indent = "        ";
+    private static String INDENT = "        ";
 
     public static String areConsistent(WTagging gold, WTagging auto) {
         StringBuilder errStr = new StringBuilder();
@@ -43,45 +45,45 @@ public final class WTaggingUtil {
                 if (autoStr == null) {
                     autoStr = auto.getPennTag();
                 }
-                printErr(goldStr, autoStr, Corpus.wTag, errStr);
+                printErr(goldStr, autoStr, WKBUtil.PARTOFSPEECH, errStr);
             }
         }
 
         goldStr = gold.getLemma();
         autoStr = auto.getLemma();
-        checkTag(goldStr, autoStr, Corpus.lemmaTag, errStr);
+        checkTag(goldStr, autoStr, MAFCorpus.WORDFORM_ATTR_LEMMA, errStr);
 
         goldStr = gold.getVerbFormMood();
         autoStr = auto.getVerbFormMood();
-        checkTag(goldStr, autoStr, Corpus.moodTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.VERBFORMMOOD, errStr);
 
         goldStr = gold.getGrammaticalTense();
         autoStr = auto.getGrammaticalTense();
-        checkTag(goldStr, autoStr, Corpus.tenseTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALTENSE, errStr);
 
         goldStr = gold.getGrammaticalGender();
         autoStr = auto.getGrammaticalGender();
-        checkTag(goldStr, autoStr, Corpus.genTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALGENDER, errStr);
 
         goldStr = gold.getGrammaticalNumber();
         autoStr = auto.getGrammaticalNumber();
-        checkTag(goldStr, autoStr, Corpus.numTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALNUMBER, errStr);
 
         goldStr = gold.getGrammaticalCase();
         autoStr = auto.getGrammaticalCase();
-        checkTag(goldStr, autoStr, Corpus.caseTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALCASE, errStr);
 
         goldStr = gold.getPerson();
         autoStr = auto.getPerson();
-        checkTag(goldStr, autoStr, Corpus.persTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.PERSON, errStr);
 
         goldStr = gold.getDegree();
         autoStr = auto.getDegree();
-        checkTag(goldStr, autoStr, Corpus.compTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.DEGREE, errStr);
 
         goldStr = gold.getDefiniteness();
         autoStr = auto.getDefiniteness();
-        checkTag(goldStr, autoStr, Corpus.articleTag, errStr);
+        checkTag(goldStr, autoStr, WKBUtil.DEFINITNESS, errStr);
 
         return ((errStr.length() > 0) ? (errStr.toString()) : (null));
     }
@@ -106,7 +108,7 @@ public final class WTaggingUtil {
     }
 
     private static void printErr(String gold, String auto, String tag, StringBuilder errStr) {
-        errStr.append(indent + tag + ": " + gold + " / " + auto + "\n");
+        errStr.append(INDENT + tag + ": " + gold + " / " + auto + "\n");
     }
 
     public static void mergeWtags(WTagging from, WTagging to) {
