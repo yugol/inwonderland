@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <wonderlandCorpus_level0>
-    <maf document="sentence 1">
+    <maf document="sentence_1">
         <token id="1">Elizabeth</token>
         <token id="2">had</token>
         <token id="3">two</token>
@@ -12,7 +12,7 @@
         <wordForm lemma="cat" tag="n2 NNS" tokens="4"/>
         <wordForm lemma="." tag=". ." tokens="5"/>
     </maf>
-    <maf document="sentence 2">
+    <maf document="sentence_2">
         <token id="1">Their</token>
         <token id="2">names</token>
         <token id="3">were</token>
@@ -28,7 +28,7 @@
         <wordForm lemma="minnie" tag="np1 NNP" tokens="6"/>
         <wordForm lemma="." tag=". ." tokens="7"/>
     </maf>
-    <maf document="sentence 3">
+    <maf document="sentence_3">
         <token id="1">They</token>
         <token id="2">looked</token>
         <token id="3">exactly</token>
@@ -40,7 +40,7 @@
         <wordForm lemma="alike" tag="av RB" tokens="4"/>
         <wordForm lemma="." tag=". ." tokens="5"/>
     </maf>
-    <maf document="sentence 4">
+    <maf document="sentence_4">
         <token id="1">Micki</token>
         <token id="2">was</token>
         <token id="3">a</token>
@@ -54,7 +54,7 @@
         <wordForm lemma="cat" tag="n1 NN" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 5">
+    <maf document="sentence_5">
         <token id="1">Minnie</token>
         <token id="2">was</token>
         <token id="3">a</token>
@@ -68,7 +68,7 @@
         <wordForm lemma="cat" tag="n1 NN" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 6">
+    <maf document="sentence_6">
         <token id="1">Micki</token>
         <token id="2">had</token>
         <token id="3">a</token>
@@ -88,7 +88,7 @@
         <wordForm lemma="chest" tag="n1 NN" tokens="8"/>
         <wordForm lemma="." tag=". ." tokens="9"/>
     </maf>
-    <maf document="sentence 7">
+    <maf document="sentence_7">
         <token id="1">Minnie</token>
         <token id="2">had</token>
         <token id="3">a</token>
@@ -108,7 +108,7 @@
         <wordForm lemma="chest" tag="n1 NN" tokens="8"/>
         <wordForm lemma="." tag=". ." tokens="9"/>
     </maf>
-    <maf document="sentence 8">
+    <maf document="sentence_8">
         <token id="1">Elizabeth</token>
         <token id="2">never</token>
         <token id="3">knew</token>
@@ -130,7 +130,7 @@
         <wordForm lemma="lap" tag="n1 NN" tokens="9"/>
         <wordForm lemma="." tag=". ." tokens="10"/>
     </maf>
-    <maf document="sentence 9">
+    <maf document="sentence_9">
         <token id="1">She</token>
         <token id="2">looked</token>
         <token id="3">for</token>
@@ -144,7 +144,7 @@
         <wordForm lemma="brother" tag="n1 NN" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 10">
+    <maf document="sentence_10">
         <token id="1">He</token>
         <token id="2">was</token>
         <token id="3">on</token>
@@ -168,7 +168,7 @@
         <wordForm lemma="car" tag="n1 NN" tokens="10"/>
         <wordForm lemma="." tag=". ." tokens="11"/>
     </maf>
-    <maf document="sentence 11">
+    <maf document="sentence_11">
         <token id="1">"</token>
         <token id="2">How</token>
         <token id="3">do</token>
@@ -190,7 +190,7 @@
         <wordForm lemma="?" tag="? ." tokens="9"/>
         <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
     </maf>
-    <maf document="sentence 12">
+    <maf document="sentence_12">
         <token id="1">Elizabeth</token>
         <token id="2">asked</token>
         <token id="3">him</token>
@@ -200,7 +200,7 @@
         <wordForm lemma="he" tag="pno31 PRP" tokens="3"/>
         <wordForm lemma="." tag=". ." tokens="4"/>
     </maf>
-    <maf document="sentence 13">
+    <maf document="sentence_13">
         <token id="1">"</token>
         <token id="2">I</token>
         <token id="3">think</token>
@@ -234,7 +234,7 @@
         <wordForm lemma="say" tag="vvd VBD" tokens="15"/>
         <wordForm lemma="." tag=". ." tokens="16"/>
     </maf>
-    <maf document="sentence 14">
+    <maf document="sentence_14">
         <token id="1">He</token>
         <token id="2">went</token>
         <token id="3">out</token>
@@ -248,7 +248,7 @@
         <wordForm lemma="door" tag="n1 NN" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 15">
+    <maf document="sentence_15">
         <token id="1">Elizabeth</token>
         <token id="2">took</token>
         <token id="3">a</token>
@@ -266,7 +266,7 @@
         <wordForm lemma="desk" tag="n1 NN" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 16">
+    <maf document="sentence_16">
         <token id="1">She</token>
         <token id="2">measured</token>
         <token id="3">the</token>
@@ -282,7 +282,7 @@
         <wordForm lemma="tail" tag="n2 NNS" tokens="6"/>
         <wordForm lemma="." tag=". ." tokens="7"/>
     </maf>
-    <maf document="sentence 17">
+    <maf document="sentence_17">
         <token id="1">Micki</token>
         <token id="2">'s</token>
         <token id="3">tail</token>
@@ -300,7 +300,7 @@
         <wordForm lemma="long" tag="j RB" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 18">
+    <maf document="sentence_18">
         <token id="1">Minnie</token>
         <token id="2">'s</token>
         <token id="3">tail</token>
@@ -318,7 +318,7 @@
         <wordForm lemma="long" tag="j RB" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 19">
+    <maf document="sentence_19">
         <token id="1">There</token>
         <token id="2">must</token>
         <token id="3">be</token>
@@ -348,7 +348,7 @@
         <wordForm lemma="think" tag="vvd VBD" tokens="13"/>
         <wordForm lemma="." tag=". ." tokens="14"/>
     </maf>
-    <maf document="sentence 20">
+    <maf document="sentence_20">
         <token id="1">She</token>
         <token id="2">meowed</token>
         <token id="3">at</token>
@@ -362,7 +362,7 @@
         <wordForm lemma="cat" tag="n2 NNS" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 21">
+    <maf document="sentence_21">
         <token id="1">They</token>
         <token id="2">meowed</token>
         <token id="3">back</token>
@@ -376,7 +376,7 @@
         <wordForm lemma="she" tag="pno31 PRP" tokens="5"/>
         <wordForm lemma="." tag=". ." tokens="6"/>
     </maf>
-    <maf document="sentence 22">
+    <maf document="sentence_22">
         <token id="1">Micki</token>
         <token id="2">had</token>
         <token id="3">a</token>
@@ -394,7 +394,7 @@
         <wordForm lemma="meow" tag="n1 NN" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 23">
+    <maf document="sentence_23">
         <token id="1">Minnie</token>
         <token id="2">had</token>
         <token id="3">a</token>
@@ -412,7 +412,7 @@
         <wordForm lemma="meow" tag="n1 NN" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 24">
+    <maf document="sentence_24">
         <token id="1">She</token>
         <token id="2">looked</token>
         <token id="3">deep</token>
@@ -428,7 +428,7 @@
         <wordForm lemma="eye" tag="n2 NNS" tokens="6"/>
         <wordForm lemma="." tag=". ." tokens="7"/>
     </maf>
-    <maf document="sentence 25">
+    <maf document="sentence_25">
         <token id="1">Micki</token>
         <token id="2">'s</token>
         <token id="3">eyes</token>
@@ -452,7 +452,7 @@
         <wordForm lemma="yellow" tag="j-jn NN" tokens="10"/>
         <wordForm lemma="." tag=". ." tokens="11"/>
     </maf>
-    <maf document="sentence 26">
+    <maf document="sentence_26">
         <token id="1">Minnie</token>
         <token id="2">'s</token>
         <token id="3">eyes</token>
@@ -476,7 +476,7 @@
         <wordForm lemma="yellow" tag="j-jn NN" tokens="10"/>
         <wordForm lemma="." tag=". ." tokens="11"/>
     </maf>
-    <maf document="sentence 27">
+    <maf document="sentence_27">
         <token id="1">Elizabeth</token>
         <token id="2">'s</token>
         <token id="3">mother</token>
@@ -508,7 +508,7 @@
         <wordForm lemma="shower" tag="n1 NN" tokens="14"/>
         <wordForm lemma="." tag=". ." tokens="15"/>
     </maf>
-    <maf document="sentence 28">
+    <maf document="sentence_28">
         <token id="1">"</token>
         <token id="2">How</token>
         <token id="3">do</token>
@@ -530,7 +530,7 @@
         <wordForm lemma="?" tag="? ." tokens="9"/>
         <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
     </maf>
-    <maf document="sentence 29">
+    <maf document="sentence_29">
         <token id="1">Elizabeth</token>
         <token id="2">asked</token>
         <token id="3">.</token>
@@ -538,7 +538,7 @@
         <wordForm lemma="ask" tag="vvd VBD" tokens="2"/>
         <wordForm lemma="." tag=". ." tokens="3"/>
     </maf>
-    <maf document="sentence 30">
+    <maf document="sentence_30">
         <token id="1">"</token>
         <token id="2">I</token>
         <token id="3">do</token>
@@ -560,7 +560,7 @@
         <wordForm lemma="reply" tag="vvd VBD" tokens="9"/>
         <wordForm lemma="." tag=". ." tokens="10"/>
     </maf>
-    <maf document="sentence 31">
+    <maf document="sentence_31">
         <token id="1">She</token>
         <token id="2">closed</token>
         <token id="3">the</token>
@@ -572,7 +572,7 @@
         <wordForm lemma="door" tag="n1 NN" tokens="4"/>
         <wordForm lemma="." tag=". ." tokens="5"/>
     </maf>
-    <maf document="sentence 32">
+    <maf document="sentence_32">
         <token id="1">Elizabeth</token>
         <token id="2">sat</token>
         <token id="3">down</token>
@@ -596,7 +596,7 @@
         <wordForm lemma="sigh" tag="n1 NN" tokens="10"/>
         <wordForm lemma="." tag=". ." tokens="11"/>
     </maf>
-    <maf document="sentence 33">
+    <maf document="sentence_33">
         <token id="1">She</token>
         <token id="2">did</token>
         <token id="3">n't</token>
@@ -614,7 +614,7 @@
         <wordForm lemma="do" tag="vdi VB" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 34">
+    <maf document="sentence_34">
         <token id="1">I</token>
         <token id="2">will</token>
         <token id="3">never</token>
@@ -646,7 +646,7 @@
         <wordForm lemma="think" tag="vvd VBD" tokens="14"/>
         <wordForm lemma="." tag=". ." tokens="15"/>
     </maf>
-    <maf document="sentence 35">
+    <maf document="sentence_35">
         <token id="1">She</token>
         <token id="2">looked</token>
         <token id="3">down</token>
@@ -672,7 +672,7 @@
         <wordForm lemma="foot" tag="n2 NNS" tokens="11"/>
         <wordForm lemma="." tag=". ." tokens="12"/>
     </maf>
-    <maf document="sentence 36">
+    <maf document="sentence_36">
         <token id="1">"</token>
         <token id="2">Which</token>
         <token id="3">one</token>
@@ -694,7 +694,7 @@
         <wordForm lemma="ask" tag="vvd VBD" tokens="9"/>
         <wordForm lemma="." tag=". ." tokens="10"/>
     </maf>
-    <maf document="sentence 37">
+    <maf document="sentence_37">
         <token id="1">"</token>
         <token id="2">I</token>
         <token id="3">am</token>
@@ -716,7 +716,7 @@
         <wordForm lemma="reply" tag="vvd VBD" tokens="9"/>
         <wordForm lemma="." tag=". ." tokens="10"/>
     </maf>
-    <maf document="sentence 38">
+    <maf document="sentence_38">
         <token id="1">"</token>
         <token id="2">All</token>
         <token id="3">you</token>
@@ -738,7 +738,7 @@
         <wordForm lemma="." tag=". ." tokens="9"/>
         <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
     </maf>
-    <maf document="sentence 39">
+    <maf document="sentence_39">
         <token id="1">"</token>
         <token id="2">Oh</token>
         <token id="3">,</token>
@@ -754,7 +754,7 @@
         <wordForm lemma="blink" tag="vvn VBD" tokens="6"/>
         <wordForm lemma="." tag=". ." tokens="7"/>
     </maf>
-    <maf document="sentence 40">
+    <maf document="sentence_40">
         <token id="1">The</token>
         <token id="2">cat</token>
         <token id="3">jumped</token>
@@ -770,7 +770,7 @@
         <wordForm lemma="lap" tag="n1 NN" tokens="6"/>
         <wordForm lemma="." tag=". ." tokens="7"/>
     </maf>
-    <maf document="sentence 41">
+    <maf document="sentence_41">
         <token id="1">Elizabeth</token>
         <token id="2">smiled</token>
         <token id="3">and</token>
@@ -788,7 +788,7 @@
         <wordForm lemma="she" tag="pno31 PRP" tokens="7"/>
         <wordForm lemma="." tag=". ." tokens="8"/>
     </maf>
-    <maf document="sentence 42">
+    <maf document="sentence_42">
         <token id="1">"</token>
         <token id="2">Hi</token>
         <token id="3">,</token>

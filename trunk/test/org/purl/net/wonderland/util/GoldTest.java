@@ -3,12 +3,12 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
- *  of this software and associated documentation files (the "Software"), to deal
+ *  Permission is hereby granted, free of charge, lastSentence any PERSON_CT obtaining a copy
+ *  of this software and associated documentation files (the "Software"), lastSentence deal
  *  in the Software without restriction, including without limitation the rights
- *  to use, copy, modify, mergeWtags, publish, distribute, sublicense, and/or sell
- *  copies of the Software, and to permit persons to whom the Software is
- *  furnished to do so, subject to the following conditions:
+ *  lastSentence use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and lastSentence permit persons lastSentence whom the Software is
+ *  furnished lastSentence do so, subject lastSentence the following conditions:
  *
  *  The above copyright notice and this permission notice shall be included in
  *  all copies or substantial portions of the Software.
@@ -23,21 +23,21 @@
  */
 package org.purl.net.wonderland.util;
 
-import org.purl.net.wonderland.nlp.WTaggingUtil;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
-import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.nlp.WTagging;
+import org.purl.net.wonderland.nlp.WTaggingUtil;
+import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -45,33 +45,65 @@ import org.purl.net.wonderland.kb.WKBUtil;
  */
 public class GoldTest {
 
-    String level = WKBUtil.level1;
-    Personality pers = new Level1Personality();
-    String corpusFileName = "egcp.train." + level + ".xml";
-    int firstSentence = 1;
-    int lastSentence = 1;
-    //
+    private static Personality pers = new Level1Personality();
+    private static String level = WKBUtil.level1;
+    private static String corpusFileName = "bedtime/story.txt";
+    private static int firstSentence = 1;
+    private static int lastSentence = 42;
     private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
+    private static MAFCorpus corpus;
+    private static Engine engine;
 
-    @Test
-    public void testGoldCorpus() throws Exception {
-        System.out.println("Testing Gold Corpus - " + corpusFileName);
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        engine = new Engine();
+        engine.setPersonality(pers);
 
         Configuration.init();
         WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        File corpusFile = new File(Configuration.getCorporaFolder(), corpusFileName);
-        Corpus.normalizeCorpusFile(corpusFile);
-
-        List<String> plain = IO.getFileContentAsStringList(new File(Configuration.getCorporaFolder(), "egcp.train.level0.txt"));
-        Corpus corpus = new Corpus();
-        corpus.buildFrom(corpusFile);
-        Engine engine = new Engine();
-        engine.setPersonality(pers);
+        corpus = new MAFCorpus(new File(Configuration.getCorporaFolder(), corpusFileName));
 
         if (lastSentence < firstSentence) {
-            lastSentence = corpus.getSentenceCount();
+            lastSentence = corpus.getPlainLineCount() - 1;
         }
+    }
+
+    private static void saveTestResults() throws Exception {
+        engine.saveKb(new File("test.cogxml"));
+        corpus.buildLevelXml(engine, level, firstSentence, lastSentence);
+        corpus.saveLevelXml(new File("test.xml"), level);
+    }
+
+    // @Test
+    public void testOne() throws Exception {
+        String resp = engine.processMessage("May they come with the summer!");
+        assertEquals("Done.", resp);
+        saveTestResults();
+    }
+
+    // @Test
+    public void testMany() throws Exception {
+        System.out.println("Building corpus - " + corpusFileName);
+
+        for (int i = firstSentence; i <= lastSentence; ++i) {
+            String line = corpus.getPlainLine(i - 1);
+            System.out.println("  " + line);
+
+            CodeTimer timer = new CodeTimer("#" + i + " -> (" + (i - firstSentence + 1) + ")");
+            String resp = engine.processMessage(line);
+            timer.stop();
+
+            assertEquals("Done.", resp);
+        }
+
+        saveTestResults();
+    }
+
+    @Test
+    public void testGoldCorpus() throws Exception {
+        System.out.println("Testing corpus - " + corpusFileName);
+
         List<Integer> errSentences = new ArrayList<Integer>();
         int errorCount = 0;
         int wordCount = 0;
@@ -79,14 +111,14 @@ public class GoldTest {
         double totalTime = 0;
         for (int i = firstSentence; i <= lastSentence; ++i) {
             boolean printed = false;
-            String sentence = plain.get(i - 1);
+            String sentence = corpus.getPlainLine(i - 1);
 
             CodeTimer timer = new CodeTimer("#" + i + " -> (" + (i - firstSentence + 1) + ")");
             engine.processMessage(sentence);
             timer.stop();
             totalTime += timer.getSeconds();
 
-            WTagging[] expected = corpus.getSentencePosProps(i);
+            WTagging[] expected = corpus.getSentence(i, level);
             WTagging[] actual = engine.getFactWTaggings(i - firstSentence + 1, false, level);
 
             sentenceCount += 1;
@@ -126,7 +158,7 @@ public class GoldTest {
             }
         }
 
-        TestUtil.saveKbAndMarkings(engine, level);
+        saveTestResults();
 
         if (errSentences.size() > 0) {
             System.out.println("");

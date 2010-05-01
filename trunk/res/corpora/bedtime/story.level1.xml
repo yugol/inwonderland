@@ -1,0 +1,3904 @@
+<?xml version="1.0"?>
+<wonderlandCorpus_level1>
+    <maf document="sentence_1">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="2">
+            <token id="2">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="2" tokens="3">
+            <token id="3">two</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="cardinalNumeral"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="4">
+            <token id="4">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="5">
+            <token id="5">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_2">
+        <wordForm lemma="their" tokens="1">
+            <token id="1">Their</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="name" tokens="2">
+            <token id="2">names</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="3">
+            <token id="3">were</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="micki" tokens="4">
+            <token id="4">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="and" tokens="5">
+            <token id="5">and</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="coordinatingConjunction"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="minnie" tokens="6">
+            <token id="6">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="7">
+            <token id="7">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_3">
+        <wordForm lemma="they" tokens="1">
+            <token id="1">They</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="look" tokens="2">
+            <token id="2">looked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="exactly" tokens="3">
+            <token id="3">exactly</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="mannerAdverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="alike" tokens="4">
+            <token id="4">alike</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="5">
+            <token id="5">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_4">
+        <wordForm lemma="micki" tokens="1">
+            <token id="1">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="2">
+            <token id="2">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="grey" tokens="4">
+            <token id="4">grey</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="5">
+            <token id="5">cat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_5">
+        <wordForm lemma="minnie" tokens="1">
+            <token id="1">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="2">
+            <token id="2">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="grey" tokens="4">
+            <token id="4">grey</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="5">
+            <token id="5">cat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_6">
+        <wordForm lemma="micki" tokens="1">
+            <token id="1">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="2">
+            <token id="2">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="white" tokens="4">
+            <token id="4">white</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="spot" tokens="5">
+            <token id="5">spot</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="on" tokens="6">
+            <token id="6">on</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="7">
+            <token id="7">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="chest" tokens="8">
+            <token id="8">chest</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="9">
+            <token id="9">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_7">
+        <wordForm lemma="minnie" tokens="1">
+            <token id="1">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="2">
+            <token id="2">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="white" tokens="4">
+            <token id="4">white</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="spot" tokens="5">
+            <token id="5">spot</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="on" tokens="6">
+            <token id="6">on</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="7">
+            <token id="7">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="chest" tokens="8">
+            <token id="8">chest</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="9">
+            <token id="9">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_8">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="never" tokens="2">
+            <token id="2">never</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="know" tokens="3">
+            <token id="3">knew</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="which" tokens="4">
+            <token id="4">which</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="relativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="one" tokens="5">
+            <token id="5">one</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefinitePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="6">
+            <token id="6">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="in" tokens="7">
+            <token id="7">in</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="8">
+            <token id="8">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="lap" tokens="9">
+            <token id="9">lap</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="10">
+            <token id="10">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_9">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="look" tokens="2">
+            <token id="2">looked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="for" tokens="3">
+            <token id="3">for</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="4">
+            <token id="4">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="brother" tokens="5">
+            <token id="5">brother</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_10">
+        <wordForm lemma="he" tokens="1">
+            <token id="1">He</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="masculine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="2">
+            <token id="2">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="on" tokens="3">
+            <token id="3">on</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="his" tokens="4">
+            <token id="4">his</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="way" tokens="5">
+            <token id="5">way</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="outside" tokens="6">
+            <token id="6">outside</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="7">
+            <token id="7">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="wash" tokens="8">
+            <token id="8">wash</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="his" tokens="9">
+            <token id="9">his</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="car" tokens="10">
+            <token id="10">car</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="11">
+            <token id="11">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_11">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="how" tokens="2">
+            <token id="2">How</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="3">
+            <token id="3">do</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="you" tokens="4">
+            <token id="4">you</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="person">
+                    <symbol value="secondPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tell" tokens="5">
+            <token id="5">tell</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="6">
+            <token id="6">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="7">
+            <token id="7">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="apart" tokens="8">
+            <token id="8">apart</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="?" tokens="9">
+            <token id="9">?</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="questionMark"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="10">
+            <token id="10">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_12">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="ask" tokens="2">
+            <token id="2">asked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="he" tokens="3">
+            <token id="3">him</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="masculine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="4">
+            <token id="4">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_13">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="i" tokens="2">
+            <token id="2">I</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="firstPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="think" tokens="3">
+            <token id="3">think</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="micki" tokens="4">
+            <token id="4">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="5">
+            <token id="5">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tail" tokens="6">
+            <token id="6">tail</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="7">
+            <token id="7">is</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="8">
+            <token id="8">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="little" tokens="9">
+            <token id="9">little</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="long" tokens="10">
+            <token id="10">longer</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+                <f name="degree">
+                    <symbol value="comparative"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="11">
+            <token id="11">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="12">
+            <token id="12">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="13">
+            <token id="13">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="brother" tokens="14">
+            <token id="14">brother</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="say" tokens="15">
+            <token id="15">said</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="16">
+            <token id="16">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_14">
+        <wordForm lemma="he" tokens="1">
+            <token id="1">He</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="masculine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="go" tokens="2">
+            <token id="2">went</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="out" tokens="3">
+            <token id="3">out</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="4">
+            <token id="4">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="door" tokens="5">
+            <token id="5">door</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_15">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="take" tokens="2">
+            <token id="2">took</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="ruler" tokens="4">
+            <token id="4">ruler</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="from" tokens="5">
+            <token id="5">from</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="6">
+            <token id="6">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="desk" tokens="7">
+            <token id="7">desk</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_16">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="measure" tokens="2">
+            <token id="2">measured</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="3">
+            <token id="3">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="4">
+            <token id="4">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="5">
+            <token id="5">'</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tail" tokens="6">
+            <token id="6">tails</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="7">
+            <token id="7">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_17">
+        <wordForm lemma="micki" tokens="1">
+            <token id="1">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="2">
+            <token id="2">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tail" tokens="3">
+            <token id="3">tail</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="11" tokens="5">
+            <token id="5">11</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="cardinalNumeral"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="inche" tokens="6">
+            <token id="6">inches</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="long" tokens="7">
+            <token id="7">long</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_18">
+        <wordForm lemma="minnie" tokens="1">
+            <token id="1">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="2">
+            <token id="2">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tail" tokens="3">
+            <token id="3">tail</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="11" tokens="5">
+            <token id="5">11</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="cardinalNumeral"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="inche" tokens="6">
+            <token id="6">inches</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="long" tokens="7">
+            <token id="7">long</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_19">
+        <wordForm lemma="there" tokens="1">
+            <token id="1">There</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="existentialPronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="must" tokens="2">
+            <token id="2">must</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="modal"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="3">
+            <token id="3">be</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="some" tokens="4">
+            <token id="4">some</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteDeterminer"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="way" tokens="5">
+            <token id="5">way</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="6">
+            <token id="6">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="know" tokens="7">
+            <token id="7">know</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="which" tokens="8">
+            <token id="8">which</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="relativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="9">
+            <token id="9">is</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="which" tokens="10">
+            <token id="10">which</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="relativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="11">
+            <token id="11">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="elizabeth" tokens="12">
+            <token id="12">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="think" tokens="13">
+            <token id="13">thought</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="14">
+            <token id="14">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_20">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="meow" tokens="2">
+            <token id="2">meowed</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="at" tokens="3">
+            <token id="3">at</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="4">
+            <token id="4">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="5">
+            <token id="5">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_21">
+        <wordForm lemma="they" tokens="1">
+            <token id="1">They</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="meow" tokens="2">
+            <token id="2">meowed</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="back" tokens="3">
+            <token id="3">back</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="at" tokens="4">
+            <token id="4">at</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="5">
+            <token id="5">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="6">
+            <token id="6">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_22">
+        <wordForm lemma="micki" tokens="1">
+            <token id="1">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="2">
+            <token id="2">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="high" tokens="4">
+            <token id="4">high</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="5">
+            <token id="5">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="soft" tokens="6">
+            <token id="6">soft</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="meow" tokens="7">
+            <token id="7">meow</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_23">
+        <wordForm lemma="minnie" tokens="1">
+            <token id="1">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="2">
+            <token id="2">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="3">
+            <token id="3">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="high" tokens="4">
+            <token id="4">high</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="5">
+            <token id="5">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="soft" tokens="6">
+            <token id="6">soft</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="meow" tokens="7">
+            <token id="7">meow</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_24">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="look" tokens="2">
+            <token id="2">looked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="deep" tokens="3">
+            <token id="3">deep</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="into" tokens="4">
+            <token id="4">into</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="their" tokens="5">
+            <token id="5">their</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="eye" tokens="6">
+            <token id="6">eyes</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="7">
+            <token id="7">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_25">
+        <wordForm lemma="micki" tokens="1">
+            <token id="1">Micki</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="2">
+            <token id="2">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="eye" tokens="3">
+            <token id="3">eyes</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">were</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="green" tokens="5">
+            <token id="5">green</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="6">
+            <token id="6">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="with" tokens="7">
+            <token id="7">with</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="8">
+            <token id="8">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="little" tokens="9">
+            <token id="9">little</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="yellow" tokens="10">
+            <token id="10">yellow</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="11">
+            <token id="11">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_26">
+        <wordForm lemma="minnie" tokens="1">
+            <token id="1">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="2">
+            <token id="2">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="eye" tokens="3">
+            <token id="3">eyes</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">were</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="green" tokens="5">
+            <token id="5">green</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="6">
+            <token id="6">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="with" tokens="7">
+            <token id="7">with</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="8">
+            <token id="8">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="little" tokens="9">
+            <token id="9">little</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="yellow" tokens="10">
+            <token id="10">yellow</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="11">
+            <token id="11">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_27">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="$" tokens="2">
+            <token id="2">'s</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveParticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="mother" tokens="3">
+            <token id="3">mother</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="on" tokens="5">
+            <token id="5">on</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="6">
+            <token id="6">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="way" tokens="7">
+            <token id="7">way</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="into" tokens="8">
+            <token id="8">into</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="9">
+            <token id="9">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="bathroom" tokens="10">
+            <token id="10">bathroom</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="11">
+            <token id="11">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="take" tokens="12">
+            <token id="12">take</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="13">
+            <token id="13">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="shower" tokens="14">
+            <token id="14">shower</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="15">
+            <token id="15">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_28">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="how" tokens="2">
+            <token id="2">How</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="3">
+            <token id="3">do</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="you" tokens="4">
+            <token id="4">you</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="person">
+                    <symbol value="secondPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tell" tokens="5">
+            <token id="5">tell</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="6">
+            <token id="6">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="7">
+            <token id="7">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="apart" tokens="8">
+            <token id="8">apart</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="?" tokens="9">
+            <token id="9">?</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="questionMark"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="10">
+            <token id="10">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_29">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="ask" tokens="2">
+            <token id="2">asked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="3">
+            <token id="3">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_30">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="i" tokens="2">
+            <token id="2">I</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="firstPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="3">
+            <token id="3">do</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="not" tokens="4">
+            <token id="4">n't</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="5">
+            <token id="5">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="6">
+            <token id="6">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="7">
+            <token id="7">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="mother" tokens="8">
+            <token id="8">mother</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="reply" tokens="9">
+            <token id="9">replied</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="10">
+            <token id="10">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_31">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="close" tokens="2">
+            <token id="2">closed</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="3">
+            <token id="3">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="door" tokens="4">
+            <token id="4">door</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="5">
+            <token id="5">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_32">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="sit" tokens="2">
+            <token id="2">sat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="down" tokens="3">
+            <token id="3">down</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="on" tokens="4">
+            <token id="4">on</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="5">
+            <token id="5">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="sofa" tokens="6">
+            <token id="6">sofa</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="with" tokens="7">
+            <token id="7">with</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="a" tokens="8">
+            <token id="8">a</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="big" tokens="9">
+            <token id="9">big</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="sigh" tokens="10">
+            <token id="10">sigh</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="11">
+            <token id="11">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_33">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="2">
+            <token id="2">did</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="not" tokens="3">
+            <token id="3">n't</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="know" tokens="4">
+            <token id="4">know</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="what" tokens="5">
+            <token id="5">what</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="interrogativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="6">
+            <token id="6">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="7">
+            <token id="7">do</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_34">
+        <wordForm lemma="i" tokens="1">
+            <token id="1">I</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="firstPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="will" tokens="2">
+            <token id="2">will</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="modal"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="never" tokens="3">
+            <token id="3">never</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">be</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="able" tokens="5">
+            <token id="5">able</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="6">
+            <token id="6">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="tell" tokens="7">
+            <token id="7">tell</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="these" tokens="8">
+            <token id="8">these</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="demonstrativeDeterminer"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="9">
+            <token id="9">cats</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="apart" tokens="10">
+            <token id="10">apart</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adverb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="!" tokens="11">
+            <token id="11">!</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="exclamativePoint"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="12">
+            <token id="12">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="13">
+            <token id="13">she</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="think" tokens="14">
+            <token id="14">thought</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="15">
+            <token id="15">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_35">
+        <wordForm lemma="she" tokens="1">
+            <token id="1">She</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="look" tokens="2">
+            <token id="2">looked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="down" tokens="3">
+            <token id="3">down</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="at" tokens="4">
+            <token id="4">at</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="5">
+            <token id="5">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="6">
+            <token id="6">cat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="who" tokens="7">
+            <token id="7">who</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="interrogativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="sit" tokens="8">
+            <token id="8">sat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="near" tokens="9">
+            <token id="9">nearest</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="gerund"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="10">
+            <token id="10">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="foot" tokens="11">
+            <token id="11">feet</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="plural"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="12">
+            <token id="12">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_36">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="which" tokens="2">
+            <token id="2">Which</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="relativePronoun"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="1" tokens="3">
+            <token id="3">one</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="cardinalNumeral"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="4">
+            <token id="4">are</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="you" tokens="5">
+            <token id="5">you</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="person">
+                    <symbol value="secondPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="?" tokens="6">
+            <token id="6">?</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="questionMark"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="7">
+            <token id="7">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="8">
+            <token id="8">she</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="ask" tokens="9">
+            <token id="9">asked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="10">
+            <token id="10">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_37">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="i" tokens="2">
+            <token id="2">I</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="firstPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="3">
+            <token id="3">am</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="firstPerson"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="present"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="minnie" tokens="4">
+            <token id="4">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="adjective"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="5">
+            <token id="5">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="6">
+            <token id="6">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="the" tokens="7">
+            <token id="7">the</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="8">
+            <token id="8">cat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="reply" tokens="9">
+            <token id="9">replied</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="10">
+            <token id="10">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_38">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="all" tokens="2">
+            <token id="2">All</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="indefiniteDeterminer"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="you" tokens="3">
+            <token id="3">you</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="person">
+                    <symbol value="secondPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="have" tokens="4">
+            <token id="4">had</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="5">
+            <token id="5">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="do" tokens="6">
+            <token id="6">do</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="be" tokens="7">
+            <token id="7">was</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="ask" tokens="8">
+            <token id="8">ask</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="infinitive"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="9">
+            <token id="9">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="10">
+            <token id="10">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_39">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="oh" tokens="2">
+            <token id="2">Oh</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="interjection"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="3">
+            <token id="3">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="4">
+            <token id="4">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="elizabeth" tokens="5">
+            <token id="5">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="blink" tokens="6">
+            <token id="6">blinked</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="7">
+            <token id="7">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_40">
+        <wordForm lemma="the" tokens="1">
+            <token id="1">The</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="definiteArticle"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="cat" tokens="2">
+            <token id="2">cat</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="jump" tokens="3">
+            <token id="3">jumped</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="into" tokens="4">
+            <token id="4">into</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="her" tokens="5">
+            <token id="5">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="possessiveAdjective"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="lap" tokens="6">
+            <token id="6">lap</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="commonNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="7">
+            <token id="7">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_41">
+        <wordForm lemma="elizabeth" tokens="1">
+            <token id="1">Elizabeth</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="smile" tokens="2">
+            <token id="2">smiled</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="and" tokens="3">
+            <token id="3">and</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="coordinatingConjunction"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="begin" tokens="4">
+            <token id="4">began</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="to" tokens="5">
+            <token id="5">to</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="preposition"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="pet" tokens="6">
+            <token id="6">pet</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="7">
+            <token id="7">her</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="8">
+            <token id="8">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+    <maf document="sentence_42">
+        <wordForm lemma="&quot;" tokens="1">
+            <token id="1">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="hi" tokens="2">
+            <token id="2">Hi</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="3">
+            <token id="3">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="minnie" tokens="4">
+            <token id="4">Minnie</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="properNoun"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="," tokens="5">
+            <token id="5">,</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="comma"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="&quot;" tokens="6">
+            <token id="6">"</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="quote"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="she" tokens="7">
+            <token id="7">she</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="personalPronoun"/>
+                </f>
+                <f name="grammaticalGender">
+                    <symbol value="feminine"/>
+                </f>
+                <f name="grammaticalNumber">
+                    <symbol value="singular"/>
+                </f>
+                <f name="person">
+                    <symbol value="thirdPerson"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="say" tokens="8">
+            <token id="8">said</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="verb"/>
+                </f>
+                <f name="verbFormMood">
+                    <symbol value="indicative"/>
+                </f>
+                <f name="grammaticalTense">
+                    <symbol value="past"/>
+                </f>
+            </fs>
+        </wordForm>
+        <wordForm lemma="." tokens="9">
+            <token id="9">.</token>
+            <fs>
+                <f name="partOfSpeech">
+                    <symbol value="point"/>
+                </f>
+            </fs>
+        </wordForm>
+    </maf>
+</wonderlandCorpus_level1>
