@@ -2,1091 +2,1098 @@
 <cogxml>
     <support name="vocabulary">
         <conceptTypes>
-            <ctype id="ct_reflexivePossessivePronoun" label="reflexivePossessivePronoun" x="1750" y="920">
+            <ctype id="ct_reflexivePossessivePronoun" label="reflexivePossessivePronoun" x="1533" y="2448">
                 <translation descr="http://www.isocat.org/datcat/DC-3001" label="reflexivePossessivePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_VP" label="VP" x="660" y="4180">
+            <ctype id="ct_VP" label="VP" x="657" y="2652">
                 <translation descr="Verbal phrase" label="VP" lang="en"/>
             </ctype>
-            <ctype id="ct_pastPerfect" label="pastPerfect" x="1310" y="4440">
+            <ctype id="ct_pastPerfect" label="pastPerfect" x="1314" y="1275">
                 <translation descr="http://www.isocat.org/datcat/DC-1348" label="pastPerfect" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativeOrdinalNumeral" label="interrogativeOrdinalNumeral" x="1310" y="3720">
+            <ctype id="ct_interrogativeOrdinalNumeral" label="interrogativeOrdinalNumeral" x="1314" y="3009">
                 <translation descr="http://www.isocat.org/datcat/DC-3019" label="interrogativeOrdinalNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_perfective" label="perfective" x="1100" y="1680">
+            <ctype id="ct_perfective" label="perfective" x="1095" y="3417">
                 <translation descr="http://www.isocat.org/datcat/DC-1352" label="perfective" lang="en"/>
             </ctype>
-            <ctype id="ct_superlative" label="superlative" x="1100" y="2500">
+            <ctype id="ct_superlative" label="superlative" x="1095" y="2907">
                 <translation descr="http://www.isocat.org/rest/dc/1422" label="superlative" lang="en"/>
             </ctype>
-            <ctype id="ct_determiner" label="determiner" x="1100" y="3620">
+            <ctype id="ct_determiner" label="determiner" x="1095" y="357">
                 <translation descr="http://www.isocat.org/datcat/DC-1272" label="determiner" lang="en"/>
             </ctype>
-            <ctype id="ct_WDT" label="WDT" x="660" y="2650">
+            <ctype id="ct_WDT" label="WDT" x="657" y="3774">
                 <translation descr="Whrt_determiner &#xa;e.g. which, and that when it is used as a relative pronoun" label="WDT" lang="en"/>
             </ctype>
-            <ctype id="ct_comparative" label="comparative" x="1100" y="2400">
+            <ctype id="ct_comparative" label="comparative" x="1095" y="2805">
                 <translation descr="http://www.isocat.org/rest/dc/1421" label="comparative" lang="en"/>
             </ctype>
-            <ctype id="ct_neuter" label="neuter" x="1100" y="3420">
+            <ctype id="ct_neuter" label="neuter" x="1095" y="2499">
                 <translation descr="http://www.isocat.org/rest/dc/1884" label="neuter" lang="en"/>
             </ctype>
-            <ctype id="ct_indefiniteOrdinalNumeral" label="indefiniteOrdinalNumeral" x="1310" y="3370">
+            <ctype id="ct_indefiniteOrdinalNumeral" label="indefiniteOrdinalNumeral" x="1314" y="3264">
                 <translation descr="http://www.isocat.org/datcat/DC-3025" label="indefiniteOrdinalNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_exclamativeDeterminer" label="exclamativeDeterminer" x="1310" y="4280">
+            <ctype id="ct_exclamativeDeterminer" label="exclamativeDeterminer" x="1314" y="102">
                 <translation descr="http://www.isocat.org/datcat/DC-1284" label="exclamativeDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_WP" label="WP" x="660" y="4130">
+            <ctype id="ct_WP" label="WP" x="657" y="1836">
                 <translation descr="Wh-pronoun &#xa;e.g. what, who, whom..." label="WP" lang="en"/>
             </ctype>
-            <ctype id="ct_pastParticipleAdjective" label="pastParticipleAdjective" x="1530" y="3880">
+            <ctype id="ct_pastParticipleAdjective" label="pastParticipleAdjective" x="1533" y="3672">
                 <translation descr="http://www.isocat.org/datcat/DC-1596" label="pastParticipleAdjective" lang="en"/>
             </ctype>
-            <ctype id="ct_conditionalParticle" label="conditionalParticle" x="1310" y="2860">
+            <ctype id="ct_conditionalParticle" label="conditionalParticle" x="1314" y="612">
                 <translation descr="http://www.isocat.org/datcat/DC-2230" label="conditionalParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_superlativeParticle" label="superlativeParticle" x="1310" y="2350">
+            <ctype id="ct_superlativeParticle" label="superlativeParticle" x="1314" y="357">
                 <translation descr="http://www.isocat.org/datcat/DC-1923" label="superlativeParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_point" label="point" x="1750" y="2750">
+            <ctype id="ct_point" label="point" x="1752" y="3774">
                 <translation descr="http://www.isocat.org/datcat/DC-1445" label="point" lang="en"/>
             </ctype>
-            <ctype id="ct_voiceNoun" label="voiceNoun" x="1310" y="1840">
+            <ctype id="ct_voiceNoun" label="voiceNoun" x="1314" y="2703">
                 <translation descr="http://www.isocat.org/datcat/DC-2253" label="voiceNoun" lang="en"/>
             </ctype>
-            <ctype id="ct_distinctiveParticle" label="distinctiveParticle" x="1310" y="2400">
+            <ctype id="ct_distinctiveParticle" label="distinctiveParticle" x="1314" y="714">
                 <translation descr="http://www.isocat.org/datcat/DC-2228" label="distinctiveParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_conditionalPronoun" label="conditionalPronoun" x="1310" y="260">
+            <ctype id="ct_conditionalPronoun" label="conditionalPronoun" x="1314" y="2244">
                 <translation descr="http://www.isocat.org/datcat/DC-2222" label="conditionalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_collectivePronoun" label="collectivePronoun" x="1310" y="610">
+            <ctype id="ct_collectivePronoun" label="collectivePronoun" x="1314" y="1632">
                 <translation descr="http://www.isocat.org/datcat/DC-3006" label="collectivePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_possessivePronoun" label="possessivePronoun" x="1310" y="870">
+            <ctype id="ct_possessivePronoun" label="possessivePronoun" x="1314" y="2397">
                 <translation descr="http://www.isocat.org/datcat/DC-1359" label="possessivePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_relativePronoun" label="relativePronoun" x="1310" y="820">
+            <ctype id="ct_relativePronoun" label="relativePronoun" x="1314" y="2346">
                 <translation descr="http://www.isocat.org/datcat/DC-1380" label="relativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_infinitiveParticle" label="infinitiveParticle" x="1310" y="2450">
+            <ctype id="ct_infinitiveParticle" label="infinitiveParticle" x="1314" y="969">
                 <translation descr="http://www.isocat.org/datcat/DC-1896" label="infinitiveParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_passiveVoice" label="passiveVoice" x="1100" y="1020">
+            <ctype id="ct_passiveVoice" label="passiveVoice" x="1095" y="1734">
                 <translation descr="http://www.isocat.org/rest/dc/1346" label="passiveVoice" lang="en"/>
             </ctype>
-            <ctype id="ct_TO" label="TO" x="660" y="2960">
+            <ctype id="ct_TO" label="TO" x="657" y="3672">
                 <translation descr="to" label="TO" lang="en"/>
             </ctype>
-            <ctype id="ct_invertedComma" label="invertedComma" x="1530" y="1430">
+            <ctype id="ct_invertedComma" label="invertedComma" x="1533" y="3468">
                 <translation descr="http://www.isocat.org/datcat/DC-1443" label="invertedComma" lang="en"/>
             </ctype>
-            <ctype id="ct_PRP" label="PRP" x="660" y="2450">
+            <ctype id="ct_PRP" label="PRP" x="657" y="2295">
                 <translation descr="Personal Pronoun &#xa;e.g. I, me, you, he..." label="PRP" lang="en"/>
             </ctype>
-            <ctype id="ct_imperfective" label="imperfective" x="1100" y="1530">
+            <ctype id="ct_imperfective" label="imperfective" x="1095" y="3264">
                 <translation descr="http://www.isocat.org/datcat/DC-1305" label="imperfective" lang="en"/>
             </ctype>
-            <ctype id="ct_indefiniteArticle" label="indefiniteArticle" x="1530" y="4440">
+            <ctype id="ct_indefiniteArticle" label="indefiniteArticle" x="1533" y="1020">
                 <translation descr="http://www.isocat.org/datcat/DC-1308" label="indefiniteArticle" lang="en"/>
             </ctype>
-            <ctype id="ct_plural" label="plural" x="1100" y="2860">
+            <ctype id="ct_plural" label="plural" x="1095" y="3009">
                 <translation descr="http://www.isocat.org/rest/dc/1354" label="plural" lang="en"/>
             </ctype>
-            <ctype id="ct_affirmativeParticle" label="affirmativeParticle" x="1310" y="2600">
+            <ctype id="ct_affirmativeParticle" label="affirmativeParticle" x="1314" y="918">
                 <translation descr="http://www.isocat.org/datcat/DC-1918" label="affirmativeParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_adverb" label="adverb" x="1100" y="1890">
+            <ctype id="ct_adverb" label="adverb" x="1095" y="1428">
                 <translation descr="http://www.isocat.org/datcat/DC-1232" label="adverb" lang="en"/>
             </ctype>
-            <ctype id="ct_relativeParticle" label="relativeParticle" x="1310" y="2810">
+            <ctype id="ct_relativeParticle" label="relativeParticle" x="1314" y="561">
                 <translation descr="http://www.isocat.org/datcat/DC-2229" label="relativeParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_future" label="future" x="1100" y="3720">
+            <ctype id="ct_future" label="future" x="1095" y="867">
                 <translation descr="http://www.isocat.org/rest/dc/1291" label="future" lang="en"/>
             </ctype>
-            <ctype id="ct_mannerAdverb" label="mannerAdverb" x="1530" y="1790">
+            <ctype id="ct_mannerAdverb" label="mannerAdverb" x="1533" y="2958">
                 <translation descr="adverb of manner - not in standard" label="mannerAdverb" lang="en"/>
             </ctype>
-            <ctype id="ct_mainPunctuation" label="mainPunctuation" x="1310" y="2960">
+            <ctype id="ct_mainPunctuation" label="mainPunctuation" x="1314" y="3978">
                 <translation descr="http://www.isocat.org/datcat/DC-2075" label="mainPunctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_UH" label="UH" x="660" y="3830">
+            <ctype id="ct_UH" label="UH" x="657" y="3162">
                 <translation descr="Interjection &#xa;e.g. uh, well, yes, my..." label="UH" lang="en"/>
             </ctype>
-            <ctype id="ct_compoundPreposition" label="compoundPreposition" x="1530" y="2650">
+            <ctype id="ct_compoundPreposition" label="compoundPreposition" x="1533" y="4131">
                 <translation descr="http://www.isocat.org/datcat/DC-1934" label="compoundPreposition" lang="en"/>
             </ctype>
-            <ctype id="ct_firstPerson" label="firstPerson" x="1100" y="1790">
+            <ctype id="ct_firstPerson" label="firstPerson" x="1095" y="1887">
                 <translation descr="http://www.isocat.org/rest/dc/1288" label="firstPerson" lang="en"/>
             </ctype>
-            <ctype id="ct_copula" label="copula" x="1310" y="1220">
+            <ctype id="ct_copula" label="copula" x="1314" y="1428">
                 <translation descr="http://www.isocat.org/datcat/DC-1263" label="copula" lang="en"/>
             </ctype>
-            <ctype id="ct_demonstrativePronoun" label="demonstrativePronoun" x="1310" y="510">
+            <ctype id="ct_demonstrativePronoun" label="demonstrativePronoun" x="1314" y="2193">
                 <translation descr="http://www.isocat.org/datcat/DC-1270" label="demonstrativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_thirdPerson" label="thirdPerson" x="1100" y="1840">
+            <ctype id="ct_thirdPerson" label="thirdPerson" x="1095" y="1989">
                 <translation descr="http://www.isocat.org/rest/dc/1402" label="thirdPerson" lang="en"/>
             </ctype>
-            <ctype id="ct_relativeAdverb" label="relativeAdverb" x="1310" y="1580">
+            <ctype id="ct_relativeAdverb" label="relativeAdverb" x="1314" y="2499">
                 <translation descr="Connective / Linking / Relaive&#xa;Adverb - not in standard" label="relativeAdverb" lang="en"/>
             </ctype>
-            <ctype id="ct_genitiveCase" label="genitiveCase" x="1100" y="2700">
+            <ctype id="ct_genitiveCase" label="genitiveCase" x="1095" y="2754">
                 <translation descr="http://www.isocat.org/rest/dc/1293" label="genitiveCase" lang="en"/>
             </ctype>
-            <ctype id="ct_VB" label="VB" x="660" y="2810">
+            <ctype id="ct_VB" label="VB" x="657" y="3213">
                 <translation descr="Verb, base form &#xa;subsumes imperatives, infinitives and subjunctives" label="VB" lang="en"/>
             </ctype>
-            <ctype id="ct_mainVerb" label="mainVerb" x="1310" y="1170">
+            <ctype id="ct_mainVerb" label="mainVerb" x="1314" y="1530">
                 <translation descr="http://www.isocat.org/datcat/DC-1400" label="mainVerb" lang="en"/>
             </ctype>
-            <ctype id="ct_closePunctuation" label="closePunctuation" x="1310" y="1630">
+            <ctype id="ct_closePunctuation" label="closePunctuation" x="1314" y="3570">
                 <translation descr="http://www.isocat.org/datcat/DC-2079" label="closePunctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_numeral" label="numeral" x="1100" y="3260">
+            <ctype id="ct_numeral" label="numeral" x="1095" y="1530">
                 <translation descr="http://www.isocat.org/datcat/DC-1334" label="numeral" lang="en"/>
             </ctype>
-            <ctype id="ct_emphaticPronoun" label="emphaticPronoun" x="1310" y="50">
+            <ctype id="ct_emphaticPronoun" label="emphaticPronoun" x="1314" y="2091">
                 <translation descr="http://www.isocat.org/datcat/DC-1941" label="emphaticPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_preposition" label="preposition" x="1310" y="3010">
+            <ctype id="ct_preposition" label="preposition" x="1314" y="4182">
                 <translation descr="http://www.isocat.org/datcat/DC-1366" label="preposition" lang="en"/>
             </ctype>
-            <ctype id="ct_weakPersonalPronoun" label="weakPersonalPronoun" x="1530" y="770">
+            <ctype id="ct_weakPersonalPronoun" label="weakPersonalPronoun" x="1533" y="2499">
                 <translation descr="http://www.isocat.org/datcat/DC-1414" label="weakPersonalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_SYM" label="SYM" x="660" y="2750">
+            <ctype id="ct_SYM" label="SYM" x="657" y="1989">
                 <translation descr="Symbol &#xa;Should be used for mathematical, scientific or technical symbols" label="SYM" lang="en"/>
             </ctype>
-            <ctype id="ct_indefiniteCardinalNumeral" label="indefiniteCardinalNumeral" x="1310" y="3420">
+            <ctype id="ct_indefiniteCardinalNumeral" label="indefiniteCardinalNumeral" x="1314" y="3111">
                 <translation descr="http://www.isocat.org/datcat/DC-3023" label="indefiniteCardinalNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_indefiniteMultiplicativeNumeral" label="indefiniteMultiplicativeNumeral" x="1310" y="3570">
+            <ctype id="ct_indefiniteMultiplicativeNumeral" label="indefiniteMultiplicativeNumeral" x="1314" y="3468">
                 <translation descr="http://www.isocat.org/datcat/DC-3024" label="indefiniteMultiplicativeNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_reflexivePersonalPronoun" label="reflexivePersonalPronoun" x="1530" y="920">
+            <ctype id="ct_reflexivePersonalPronoun" label="reflexivePersonalPronoun" x="1533" y="2652">
                 <translation descr="http://www.isocat.org/datcat/DC-3014" label="reflexivePersonalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_secondPerson" label="secondPerson" x="1100" y="1730">
+            <ctype id="ct_secondPerson" label="secondPerson" x="1095" y="1938">
                 <translation descr="http://www.isocat.org/rest/dc/1384" label="secondPerson" lang="en"/>
             </ctype>
-            <ctype id="ct_fusedPreposition" label="fusedPreposition" x="1530" y="3010">
+            <ctype id="ct_fusedPreposition" label="fusedPreposition" x="1533" y="4182">
                 <translation descr="http://www.isocat.org/datcat/DC-1901" label="fusedPreposition" lang="en"/>
             </ctype>
-            <ctype id="ct_singular" label="singular" x="1100" y="2810">
+            <ctype id="ct_singular" label="singular" x="1095" y="2958">
                 <translation descr="http://www.isocat.org/rest/dc/1387" label="singular" lang="en"/>
             </ctype>
-            <ctype id="ct_reciprocalPronoun" label="reciprocalPronoun" x="1310" y="0">
+            <ctype id="ct_reciprocalPronoun" label="reciprocalPronoun" x="1314" y="1938">
                 <translation descr="http://www.isocat.org/datcat/DC-1924" label="reciprocalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_presentParticipleAdjective" label="presentParticipleAdjective" x="1530" y="3930">
+            <ctype id="ct_presentParticipleAdjective" label="presentParticipleAdjective" x="1533" y="3723">
                 <translation descr="http://www.isocat.org/datcat/DC-1597" label="presentParticipleAdjective" lang="en"/>
             </ctype>
-            <ctype id="ct_psc" label="psc" x="1100" y="3930">
+            <ctype id="ct_psc" label="psc" x="1095" y="3519">
                 <translation descr="present continuous" label="psc" lang="en"/>
             </ctype>
-            <ctype id="ct_indicative" label="indicative" x="1100" y="1330">
+            <ctype id="ct_indicative" label="indicative" x="1095" y="2091">
                 <translation descr="http://www.isocat.org/rest/dc/1885" label="indicative" lang="en"/>
             </ctype>
-            <ctype id="ct_openPunctuation" label="openPunctuation" x="1310" y="1680">
+            <ctype id="ct_openPunctuation" label="openPunctuation" x="1314" y="3519">
                 <translation descr="http://www.isocat.org/datcat/DC-2078" label="openPunctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_pronominalAdverb" label="pronominalAdverb" x="1310" y="1480">
+            <ctype id="ct_pronominalAdverb" label="pronominalAdverb" x="1314" y="2601">
                 <translation descr="http://www.isocat.org/datcat/DC-2998" label="pronominalAdverb" lang="en"/>
             </ctype>
-            <ctype id="ct_CD" label="CD" x="660" y="3570">
+            <ctype id="ct_ProcOp" label="ProcOp" x="219" y="3723">
+                <translation descr="used for transformations" label="ProcOp" lang="en"/>
+            </ctype>
+            <ctype id="ct_CD" label="CD" x="657" y="2499">
                 <translation descr="Cardinal Number" label="CD" lang="en"/>
             </ctype>
-            <ctype id="ct_CC" label="CC" x="660" y="1940">
+            <ctype id="ct_CC" label="CC" x="657" y="1938">
                 <translation descr="Coordinating conjunction &#xa;e.g. and,but,or..." label="CC" lang="en"/>
             </ctype>
-            <ctype id="ct_case" label="case" x="880" y="2450">
+            <ctype id="ct_case" label="case" x="876" y="2499">
                 <translation descr="http://www.isocat.org/datcat/DC-1840" label="case" lang="en"/>
             </ctype>
-            <ctype id="ct_adverbialPronoun" label="adverbialPronoun" x="1310" y="100">
+            <ctype id="ct_adverbialPronoun" label="adverbialPronoun" x="1314" y="1989">
                 <translation descr="http://www.isocat.org/datcat/DC-3011" label="adverbialPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_DCR" label="DCR" x="440" y="1840">
+            <ctype id="ct_DCR" label="DCR" x="438" y="2958">
                 <translation descr="Data Category Registry&#xa;http://www.isocat.org/" label="DCR" lang="en"/>
             </ctype>
-            <ctype id="ct_punctuation" label="punctuation" x="1100" y="1990">
+            <ctype id="ct_punctuation" label="punctuation" x="1095" y="1581">
                 <translation descr="http://www.isocat.org/datcat/DC-1372" label="punctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_RBR" label="RBR" x="660" y="3010">
+            <ctype id="ct_RBR" label="RBR" x="657" y="3519">
                 <translation descr="Adverb, comparative &#xa;Adverbs with the comparative ending -er, with a strictly comparative meaning." label="RBR" lang="en"/>
             </ctype>
-            <ctype id="ct_RBS" label="RBS" x="660" y="2240">
+            <ctype id="ct_RBS" label="RBS" x="657" y="4080">
                 <translation descr="Adverb, superlative" label="RBS" lang="en"/>
             </ctype>
-            <ctype id="ct_verb" label="verb" x="1100" y="770">
+            <ctype id="ct_verb" label="verb" x="1095" y="1020">
                 <translation descr="http://www.isocat.org/datcat/DC-1424" label="verb" lang="en"/>
             </ctype>
-            <ctype id="ct_presentativePronoun" label="presentativePronoun" x="1310" y="150">
+            <ctype id="ct_presentativePronoun" label="presentativePronoun" x="1314" y="1734">
                 <translation descr="http://www.isocat.org/datcat/DC-3015" label="presentativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_sinf" label="sinf" x="1310" y="770">
+            <ctype id="ct_sinf" label="sinf" x="1314" y="4131">
                 <translation descr="short infinitive&#xa;(dictionary form)" label="sinf" lang="en"/>
             </ctype>
-            <ctype id="ct_degree" label="degree" x="880" y="2240">
+            <ctype id="ct_degree" label="degree" x="876" y="2601">
                 <translation descr="http://www.isocat.org/rest/dc/1419" label="degree" lang="en"/>
             </ctype>
-            <ctype id="ct_Relativity" label="Relativity" x="660" y="4390">
+            <ctype id="ct_ProcOp_Add" label="ProcOp_Add" x="438" y="4029">
+                <translation descr="" label="ProcOp_Add" lang="en"/>
+            </ctype>
+            <ctype id="ct_Relativity" label="Relativity" x="657" y="4182">
                 <translation descr="perfect, in-the-past" label="Relativity" lang="en"/>
             </ctype>
-            <ctype id="ct_VBP" label="VBP" x="660" y="2500">
+            <ctype id="ct_VBP" label="VBP" x="657" y="1887">
                 <translation descr="Verb, non-3rd person singular present" label="VBP" lang="en"/>
             </ctype>
-            <ctype id="ct_closeParenthesis" label="closeParenthesis" x="1530" y="1580">
+            <ctype id="ct_closeParenthesis" label="closeParenthesis" x="1533" y="3264">
                 <translation descr="http://www.isocat.org/datcat/DC-1440" label="closeParenthesis" lang="en"/>
             </ctype>
-            <ctype id="ct_definiteness" label="definiteness" x="880" y="1330">
+            <ctype id="ct_definiteness" label="definiteness" x="876" y="2856">
                 <translation descr="http://www.isocat.org/datcat/DC-1926" label="definiteness" lang="en"/>
             </ctype>
-            <ctype id="ct_-CLQ-" label="-CLQ-" x="660" y="2700">
+            <ctype id="ct_-CLQ-" label="-CLQ-" x="657" y="3621">
                 <translation descr="close quotes" label="-CLQ-" lang="en"/>
             </ctype>
-            <ctype id="ct_VBN" label="VBN" x="660" y="3620">
+            <ctype id="ct_VBN" label="VBN" x="657" y="3315">
                 <translation descr="Verb, past participle" label="VBN" lang="en"/>
             </ctype>
-            <ctype id="ct_VBD" label="VBD" x="660" y="2090">
+            <ctype id="ct_VBD" label="VBD" x="657" y="3111">
                 <translation descr="Verb, past tense &#xa;includes the conditional form of the verb to be" label="VBD" lang="en"/>
             </ctype>
-            <ctype id="ct_noun" label="noun" x="1100" y="1940">
+            <ctype id="ct_noun" label="noun" x="1095" y="1479">
                 <translation descr="http://www.isocat.org/datcat/DC-1333" label="noun" lang="en"/>
             </ctype>
-            <ctype id="ct_accusativeCase" label="accusativeCase" x="1100" y="2750">
+            <ctype id="ct_accusativeCase" label="accusativeCase" x="1095" y="2652">
                 <translation descr="http://www.isocat.org/datcat/DC-1226" label="accusativeCase" lang="en"/>
             </ctype>
-            <ctype id="ct_gerund" label="gerund" x="1100" y="1430">
+            <ctype id="ct_gerund" label="gerund" x="1095" y="2040">
                 <translation descr="http://www.isocat.org/rest/dc/2243" label="gerund" lang="en"/>
             </ctype>
-            <ctype id="ct_VBG" label="VBG" x="660" y="2550">
+            <ctype id="ct_VBG" label="VBG" x="657" y="2958">
                 <translation descr="Verb, gerund or persent participle" label="VBG" lang="en"/>
             </ctype>
-            <ctype id="ct_dativeCase" label="dativeCase" x="1100" y="2650">
+            <ctype id="ct_dativeCase" label="dativeCase" x="1095" y="2703">
                 <translation descr="http://www.isocat.org/rest/dc/1265" label="dativeCase" lang="en"/>
             </ctype>
-            <ctype id="ct_perf" label="perf" x="880" y="4390">
+            <ctype id="ct_perf" label="perf" x="876" y="4080">
                 <translation descr="perfect" label="perf" lang="en"/>
             </ctype>
-            <ctype id="ct_slash" label="slash" x="1530" y="1730">
+            <ctype id="ct_slash" label="slash" x="1533" y="3417">
                 <translation descr="http://www.isocat.org/datcat/DC-1437" label="slash" lang="en"/>
             </ctype>
-            <ctype id="ct_Top" label="Top" x="0" y="3160">
+            <ctype id="ct_Top" label="Top" x="0" y="3366">
                 <translation descr="" label="Top" lang="en"/>
             </ctype>
-            <ctype id="ct_subordinatingConjunction" label="subordinatingConjunction" x="1310" y="1020">
+            <ctype id="ct_subordinatingConjunction" label="subordinatingConjunction" x="1314" y="1071">
                 <translation descr="http://www.isocat.org/datcat/DC-1393" label="subordinatingConjunction" lang="en"/>
             </ctype>
-            <ctype id="ct_interjection" label="interjection" x="1100" y="2190">
+            <ctype id="ct_interjection" label="interjection" x="1095" y="1224">
                 <translation descr="http://www.isocat.org/datcat/DC-1318" label="interjection" lang="en"/>
             </ctype>
-            <ctype id="ct_simp" label="simp" x="880" y="4280">
+            <ctype id="ct_simp" label="simp" x="876" y="3978">
                 <translation descr="simple" label="simp" lang="en"/>
             </ctype>
-            <ctype id="ct_commonGender" label="commonGender" x="1100" y="3320">
+            <ctype id="ct_commonGender" label="commonGender" x="1095" y="2397">
                 <translation descr="http://www.isocat.org/rest/dc/1558" label="commonGender" lang="en"/>
             </ctype>
-            <ctype id="ct_POS" label="POS" x="660" y="2860">
+            <ctype id="ct_POS" label="POS" x="657" y="3570">
                 <translation descr="Possessive Ending&#xa;e.g. Nouns ending in `s" label="POS" lang="en"/>
             </ctype>
-            <ctype id="ct_postposition" label="postposition" x="1310" y="2240">
+            <ctype id="ct_postposition" label="postposition" x="1314" y="3876">
                 <translation descr="http://www.isocat.org/datcat/DC-1360" label="postposition" lang="en"/>
             </ctype>
-            <ctype id="ct_article" label="article" x="1310" y="4490">
+            <ctype id="ct_article" label="article" x="1314" y="1020">
                 <translation descr="http://www.isocat.org/datcat/DC-1892" label="article" lang="en"/>
             </ctype>
-            <ctype id="ct_possessiveAdjective" label="possessiveAdjective" x="1310" y="3830">
+            <ctype id="ct_possessiveAdjective" label="possessiveAdjective" x="1314" y="3672">
                 <translation descr="http://www.isocat.org/datcat/DC-3017" label="possessiveAdjective" lang="en"/>
             </ctype>
-            <ctype id="ct_irreflexivePersonalPronoun" label="irreflexivePersonalPronoun" x="1530" y="820">
+            <ctype id="ct_irreflexivePersonalPronoun" label="irreflexivePersonalPronoun" x="1533" y="2550">
                 <translation descr="http://www.isocat.org/datcat/DC-3013" label="irreflexivePersonalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_person" label="person" x="880" y="1730">
+            <ctype id="ct_person" label="person" x="876" y="1887">
                 <translation descr="http://www.isocat.org/rest/dc/1328" label="person" lang="en"/>
             </ctype>
-            <ctype id="ct_colon" label="colon" x="1530" y="1330">
+            <ctype id="ct_colon" label="colon" x="1533" y="3570">
                 <translation descr="http://www.isocat.org/datcat/DC-1439" label="colon" lang="en"/>
             </ctype>
-            <ctype id="ct_relativeDeterminer" label="relativeDeterminer" x="1310" y="4130">
+            <ctype id="ct_relativeDeterminer" label="relativeDeterminer" x="1314" y="0">
                 <translation descr="http://www.isocat.org/datcat/DC-1379" label="relativeDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_linf" label="linf" x="1310" y="710">
+            <ctype id="ct_linf" label="linf" x="1314" y="4080">
                 <translation descr="long infinitive&#xa;to + vb (Present)&#xa;to have + vb (Perfect)" label="linf" lang="en"/>
             </ctype>
-            <ctype id="ct_unclassifiedPunctuation" label="unclassifiedPunctuation" x="1310" y="1730">
+            <ctype id="ct_unclassifiedPunctuation" label="unclassifiedPunctuation" x="1314" y="3774">
                 <translation descr="http://www.isocat.org/datcat/DC-2080" label="unclassifiedPunctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_NnCOMPnIDF" label="NnCOMPnIDF" x="1530" y="1170">
-                <translation descr="Common Noun&#xa;or&#xa;Indefinite Pronoun" label="NnCOMPnIDF" lang="en"/>
-            </ctype>
-            <ctype id="ct_properNoun" label="properNoun" x="1310" y="2140">
+            <ctype id="ct_properNoun" label="properNoun" x="1314" y="2805">
                 <translation descr="http://www.isocat.org/datcat/DC-1371" label="properNoun" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativeAdverb" label="interrogativeAdverb" x="1310" y="1530">
+            <ctype id="ct_interrogativeAdverb" label="interrogativeAdverb" x="1314" y="2550">
                 <translation descr="manually added - not in standard" label="interrogativeAdverb" lang="en"/>
             </ctype>
-            <ctype id="ct_negativeParticle" label="negativeParticle" x="1310" y="2700">
+            <ctype id="ct_negativeParticle" label="negativeParticle" x="1314" y="510">
                 <translation descr="http://www.isocat.org/datcat/DC-1894" label="negativeParticle" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativePronoun" label="interrogativePronoun" x="1310" y="460">
+            <ctype id="ct_interrogativePronoun" label="interrogativePronoun" x="1314" y="2295">
                 <translation descr="http://www.isocat.org/datcat/DC-1321" label="interrogativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_participleAdjective" label="participleAdjective" x="1310" y="3930">
+            <ctype id="ct_participleAdjective" label="participleAdjective" x="1314" y="4029">
                 <translation descr="http://www.isocat.org/datcat/DC-1598" label="participleAdjective" lang="en"/>
             </ctype>
-            <ctype id="ct_inchoative" label="inchoative" x="1100" y="1630">
+            <ctype id="ct_inchoative" label="inchoative" x="1095" y="3366">
                 <translation descr="http://www.isocat.org/datcat/DC-2002" label="inchoative" lang="en"/>
             </ctype>
-            <ctype id="ct_VBZ" label="VBZ" x="660" y="2910">
+            <ctype id="ct_VBZ" label="VBZ" x="657" y="2244">
                 <translation descr="Verb, 3rd person singular present" label="VBZ" lang="en"/>
             </ctype>
-            <ctype id="ct_wnJj" label="wnJj" x="660" y="1840">
+            <ctype id="ct_wnJj" label="wnJj" x="657" y="1581">
                 <translation descr="" label="wnJj" lang="en"/>
             </ctype>
-            <ctype id="ct_SpTag" label="SpTag" x="440" y="3110">
+            <ctype id="ct_SpTag" label="SpTag" x="438" y="2907">
                 <translation descr="Stanford Parser Tag" label="SpTag" lang="en"/>
             </ctype>
-            <ctype id="ct_unaccomplished" label="unaccomplished" x="1100" y="1580">
+            <ctype id="ct_unaccomplished" label="unaccomplished" x="1095" y="3315">
                 <translation descr="http://www.isocat.org/datcat/DC-2217" label="unaccomplished" lang="en"/>
             </ctype>
-            <ctype id="ct_verbFormMood" label="verbFormMood" x="880" y="1280">
+            <ctype id="ct_verbFormMood" label="verbFormMood" x="876" y="2142">
                 <translation descr="http://www.isocat.org/rest/dc/1427" label="verbFormMood" lang="en"/>
             </ctype>
-            <ctype id="ct_present" label="present" x="1100" y="3670">
+            <ctype id="ct_present" label="present" x="1095" y="918">
                 <translation descr="http://www.isocat.org/rest/dc/1367" label="present" lang="en"/>
             </ctype>
-            <ctype id="ct_FW" label="FW" x="660" y="3110">
+            <ctype id="ct_FW" label="FW" x="657" y="3060">
                 <translation descr="Foreign Word" label="FW" lang="en"/>
             </ctype>
-            <ctype id="ct_commonNoun" label="commonNoun" x="1310" y="1380">
+            <ctype id="ct_commonNoun" label="commonNoun" x="1314" y="2856">
                 <translation descr="http://www.isocat.org/datcat/DC-1256" label="commonNoun" lang="en"/>
             </ctype>
-            <ctype id="ct_openParenthesis" label="openParenthesis" x="1530" y="1630">
+            <ctype id="ct_openParenthesis" label="openParenthesis" x="1533" y="3213">
                 <translation descr="http://www.isocat.org/datcat/DC-1442" label="openParenthesis" lang="en"/>
             </ctype>
-            <ctype id="ct_ptpc" label="ptpc" x="1100" y="4180">
+            <ctype id="ct_ptpc" label="ptpc" x="1095" y="3876">
                 <translation descr="past perfect continuous" label="ptpc" lang="en"/>
             </ctype>
-            <ctype id="ct_past" label="past" x="1100" y="3770">
+            <ctype id="ct_past" label="past" x="1095" y="969">
                 <translation descr="http://www.isocat.org/rest/dc/1347" label="past" lang="en"/>
             </ctype>
-            <ctype id="ct_prepositionalAdverb" label="prepositionalAdverb" x="1100" y="2350">
+            <ctype id="ct_prepositionalAdverb" label="prepositionalAdverb" x="1095" y="1377">
                 <translation descr="http://www.isocat.org/datcat/DC-3000" label="prepositionalAdverb" lang="en"/>
             </ctype>
-            <ctype id="ct_pspc" label="pspc" x="1100" y="4280">
+            <ctype id="ct_pspc" label="pspc" x="1095" y="3927">
                 <translation descr="present perfect continuous" label="pspc" lang="en"/>
             </ctype>
-            <ctype id="ct_grammaticalTense" label="grammaticalTense" x="880" y="3260">
+            <ctype id="ct_grammaticalTense" label="grammaticalTense" x="876" y="1122">
                 <translation descr="http://www.isocat.org/rest/dc/1286" label="grammaticalTense" lang="en"/>
             </ctype>
-            <ctype id="ct_declarativePunctuation" label="declarativePunctuation" x="1530" y="2750">
+            <ctype id="ct_declarativePunctuation" label="declarativePunctuation" x="1533" y="3774">
                 <translation descr="http://www.isocat.org/datcat/DC-2086" label="declarativePunctuation" lang="en"/>
             </ctype>
-            <ctype id="ct_masculine" label="masculine" x="1100" y="3370">
+            <ctype id="ct_masculine" label="masculine" x="1095" y="2448">
                 <translation descr="http://www.isocat.org/rest/dc/1883" label="masculine" lang="en"/>
             </ctype>
-            <ctype id="ct_-RRB-" label="-RRB-" x="880" y="3320">
+            <ctype id="ct_-RRB-" label="-RRB-" x="876" y="2550">
                 <translation descr="" label="-RRB-" lang="en"/>
             </ctype>
-            <ctype id="ct_suspensionPoints" label="suspensionPoints" x="1530" y="1680">
+            <ctype id="ct_suspensionPoints" label="suspensionPoints" x="1533" y="3315">
                 <translation descr="http://www.isocat.org/datcat/DC-1447" label="suspensionPoints" lang="en"/>
             </ctype>
-            <ctype id="ct_ptps" label="ptps" x="1100" y="4390">
+            <ctype id="ct_ptps" label="ptps" x="1095" y="4080">
                 <translation descr="past perfect simple" label="ptps" lang="en"/>
             </ctype>
-            <ctype id="ct_possessiveDeterminer" label="possessiveDeterminer" x="1310" y="4230">
+            <ctype id="ct_possessiveDeterminer" label="possessiveDeterminer" x="1314" y="306">
                 <translation descr="http://www.isocat.org/datcat/DC-1357" label="possessiveDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_EX" label="EX" x="660" y="3880">
+            <ctype id="ct_EX" label="EX" x="657" y="3366">
                 <translation descr="Existential THERE" label="EX" lang="en"/>
             </ctype>
-            <ctype id="ct_psps" label="psps" x="1100" y="4490">
+            <ctype id="ct_psps" label="psps" x="1095" y="4131">
                 <translation descr="present perfect simple" label="psps" lang="en"/>
             </ctype>
-            <ctype id="ct_NN" label="NN" x="660" y="2190">
+            <ctype id="ct_NN" label="NN" x="657" y="2448">
                 <translation descr="Noun, singular or mass" label="NN" lang="en"/>
             </ctype>
-            <ctype id="ct_fusedPrepositionDeterminer" label="fusedPrepositionDeterminer" x="1750" y="3010">
+            <ctype id="ct_fusedPrepositionDeterminer" label="fusedPrepositionDeterminer" x="1752" y="4182">
                 <translation descr="http://www.isocat.org/datcat/DC-3010" label="fusedPrepositionDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativeMultiplicativeNumeral" label="interrogativeMultiplicativeNumeral" x="1310" y="3670">
+            <ctype id="ct_interrogativeMultiplicativeNumeral" label="interrogativeMultiplicativeNumeral" x="1314" y="3417">
                 <translation descr="http://www.isocat.org/datcat/DC-3021" label="interrogativeMultiplicativeNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_nominativeCase" label="nominativeCase" x="1100" y="2600">
+            <ctype id="ct_nominativeCase" label="nominativeCase" x="1095" y="2601">
                 <translation descr="http://www.isocat.org/rest/dc/1331" label="nominativeCase" lang="en"/>
             </ctype>
-            <ctype id="ct_cardinalNumeral" label="cardinalNumeral" x="1310" y="3160">
+            <ctype id="ct_cardinalNumeral" label="cardinalNumeral" x="1314" y="3213">
                 <translation descr="http://www.isocat.org/datcat/DC-3027" label="cardinalNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_semiColon" label="semiColon" x="1750" y="2650">
+            <ctype id="ct_semiColon" label="semiColon" x="1752" y="3723">
                 <translation descr="http://www.isocat.org/datcat/DC-1446" label="semiColon" lang="en"/>
             </ctype>
-            <ctype id="ct_LinkArg" label="LinkArg" x="220" y="2500">
+            <ctype id="ct_LinkArg" label="LinkArg" x="219" y="2754">
                 <translation descr="can be part of a relation" label="LinkArg" lang="en"/>
             </ctype>
-            <ctype id="ct_subjunctive" label="subjunctive" x="1100" y="1280">
+            <ctype id="ct_subjunctive" label="subjunctive" x="1095" y="2295">
                 <translation descr="http://www.isocat.org/rest/dc/1843" label="subjunctive" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativeRelativePronoun" label="interrogativeRelativePronoun" x="1530" y="660">
+            <ctype id="ct_interrogativeRelativePronoun" label="interrogativeRelativePronoun" x="1533" y="2346">
                 <translation descr="http://www.isocat.org/datcat/DC-3016" label="interrogativeRelativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_aspect" label="aspect" x="880" y="1580">
+            <ctype id="ct_aspect" label="aspect" x="876" y="3111">
                 <translation descr="http://www.isocat.org/datcat/DC-1242" label="aspect" lang="en"/>
             </ctype>
-            <ctype id="ct_vnVb" label="vnVb" x="660" y="1790">
+            <ctype id="ct_vnVb" label="vnVb" x="657" y="1479">
                 <translation descr="VerbNet verb" label="vnVb" lang="en"/>
             </ctype>
-            <ctype id="ct_modal" label="modal" x="1310" y="1330">
+            <ctype id="ct_modal" label="modal" x="1314" y="1479">
                 <translation descr="http://www.isocat.org/datcat/DC-1329" label="modal" lang="en"/>
             </ctype>
-            <ctype id="ct_conjunction" label="conjunction" x="1100" y="710">
+            <ctype id="ct_conjunction" label="conjunction" x="1095" y="816">
                 <translation descr="http://www.isocat.org/datcat/DC-1260" label="conjunction" lang="en"/>
             </ctype>
-            <ctype id="ct_wnRb" label="wnRb" x="660" y="1890">
+            <ctype id="ct_wnRb" label="wnRb" x="657" y="1632">
                 <translation descr="WordNet adverb" label="wnRb" lang="en"/>
             </ctype>
-            <ctype id="ct_infinitive" label="infinitive" x="1100" y="660">
+            <ctype id="ct_infinitive" label="infinitive" x="1095" y="2550">
                 <translation descr="http://www.isocat.org/rest/dc/1312" label="infinitive" lang="en"/>
             </ctype>
-            <ctype id="ct_interrogativeDeterminer" label="interrogativeDeterminer" x="1310" y="4080">
+            <ctype id="ct_interrogativeDeterminer" label="interrogativeDeterminer" x="1314" y="153">
                 <translation descr="http://www.isocat.org/datcat/DC-1320" label="interrogativeDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_S" label="S" x="660" y="3060">
+            <ctype id="ct_S" label="S" x="657" y="2091">
                 <translation descr="unknown" label="S" lang="en"/>
             </ctype>
-            <ctype id="ct_particle" label="particle" x="1100" y="2550">
+            <ctype id="ct_particle" label="particle" x="1095" y="714">
                 <translation descr="http://www.isocat.org/datcat/DC-1342" label="particle" lang="en"/>
             </ctype>
-            <ctype id="ct_DT" label="DT" x="660" y="2600">
+            <ctype id="ct_DT" label="DT" x="657" y="3723">
                 <translation descr="Determiner" label="DT" lang="en"/>
             </ctype>
-            <ctype id="ct_adposition" label="adposition" x="1100" y="2300">
+            <ctype id="ct_adposition" label="adposition" x="1095" y="1836">
                 <translation descr="http://www.isocat.org/datcat/DC-1231" label="adposition" lang="en"/>
             </ctype>
-            <ctype id="ct_LS" label="LS" x="660" y="2400">
+            <ctype id="ct_LS" label="LS" x="657" y="2550">
                 <translation descr="List Item Marker" label="LS" lang="en"/>
             </ctype>
-            <ctype id="ct_lightVerb" label="lightVerb" x="1310" y="1280">
+            <ctype id="ct_lightVerb" label="lightVerb" x="1314" y="1326">
                 <translation descr="http://www.isocat.org/datcat/DC-3003" label="lightVerb" lang="en"/>
             </ctype>
-            <ctype id="ct_ptc" label="ptc" x="1100" y="3830">
+            <ctype id="ct_ptc" label="ptc" x="1095" y="3621">
                 <translation descr="past tense continuous" label="ptc" lang="en"/>
             </ctype>
-            <ctype id="ct_-OPQ-" label="-OPQ-" x="660" y="3320">
+            <ctype id="ct_-OPQ-" label="-OPQ-" x="657" y="2397">
                 <translation descr="Open quotes" label="-OPQ-" lang="en"/>
             </ctype>
-            <ctype id="ct_ftpc" label="ftpc" x="1100" y="4230">
+            <ctype id="ct_ftpc" label="ftpc" x="1095" y="4029">
                 <translation descr="future perfect continuous" label="ftpc" lang="en"/>
             </ctype>
-            <ctype id="ct_grammaticalNumber" label="grammaticalNumber" x="880" y="2500">
+            <ctype id="ct_grammaticalNumber" label="grammaticalNumber" x="876" y="2652">
                 <translation descr="http://www.isocat.org/rest/dc/1298" label="grammaticalNumber" lang="en"/>
             </ctype>
-            <ctype id="ct_wnNn" label="wnNn" x="660" y="1730">
+            <ctype id="ct_wnNn" label="wnNn" x="657" y="1428">
                 <translation descr="" label="wnNn" lang="en"/>
             </ctype>
-            <ctype id="ct_Morphosyntax" label="Morphosyntax" x="660" y="1630">
+            <ctype id="ct_Morphosyntax" label="Morphosyntax" x="657" y="1683">
                 <translation descr="" label="Morphosyntax" lang="en"/>
             </ctype>
-            <ctype id="ct_circumposition" label="circumposition" x="1310" y="2190">
+            <ctype id="ct_circumposition" label="circumposition" x="1314" y="3825">
                 <translation descr="http://www.isocat.org/datcat/DC-1906" label="circumposition" lang="en"/>
             </ctype>
-            <ctype id="ct_massNoun" label="massNoun" x="1310" y="2090">
+            <ctype id="ct_massNoun" label="massNoun" x="1314" y="2652">
                 <translation descr="http://www.isocat.org/datcat/DC-2277" label="massNoun" lang="en"/>
             </ctype>
-            <ctype id="ct_pss" label="pss" x="1100" y="3980">
+            <ctype id="ct_pss" label="pss" x="1095" y="3723">
                 <translation descr="simple present" label="pss" lang="en"/>
             </ctype>
-            <ctype id="ct_ftps" label="ftps" x="1100" y="4440">
+            <ctype id="ct_ftps" label="ftps" x="1095" y="4182">
                 <translation descr="future perfect simple" label="ftps" lang="en"/>
             </ctype>
-            <ctype id="ct_multiplicativeNumeral" label="multiplicativeNumeral" x="1310" y="3470">
+            <ctype id="ct_multiplicativeNumeral" label="multiplicativeNumeral" x="1314" y="3060">
                 <translation descr="http://www.isocat.org/datcat/DC-3020" label="multiplicativeNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_existentialPronoun" label="existentialPronoun" x="1310" y="200">
+            <ctype id="ct_existentialPronoun" label="existentialPronoun" x="1314" y="1887">
                 <translation descr="http://www.isocat.org/datcat/DC-3012" label="existentialPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_Nil" label="Nil" x="220" y="3160">
-                <translation descr="used for transformations" label="Nil" lang="en"/>
-            </ctype>
-            <ctype id="ct_qualifierAdjective" label="qualifierAdjective" x="1310" y="3770">
+            <ctype id="ct_qualifierAdjective" label="qualifierAdjective" x="1314" y="3621">
                 <translation descr="http://www.isocat.org/datcat/DC-1477" label="qualifierAdjective" lang="en"/>
             </ctype>
-            <ctype id="ct_NNPS" label="NNPS" x="660" y="3670">
+            <ctype id="ct_NNPS" label="NNPS" x="657" y="3264">
                 <translation descr="Proper Noun, plural" label="NNPS" lang="en"/>
             </ctype>
-            <ctype id="ct_fts" label="fts" x="1100" y="4080">
+            <ctype id="ct_fts" label="fts" x="1095" y="3774">
                 <translation descr="simple future" label="fts" lang="en"/>
             </ctype>
-            <ctype id="ct_demonstrativeDeterminer" label="demonstrativeDeterminer" x="1310" y="4030">
+            <ctype id="ct_demonstrativeDeterminer" label="demonstrativeDeterminer" x="1314" y="255">
                 <translation descr="http://www.isocat.org/datcat/DC-1269" label="demonstrativeDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_definite" label="definite" x="1100" y="870">
+            <ctype id="ct_definite" label="definite" x="1095" y="3060">
                 <translation descr="http://www.isocat.org/datcat/DC-2004" label="definite" lang="en"/>
             </ctype>
-            <ctype id="ct_PRP$" label="PRP$" x="660" y="3470">
+            <ctype id="ct_PRP$" label="PRP$" x="657" y="2142">
                 <translation descr="Possessive Pronoun &#xa;e.g. my, your, mine, yours..." label="PRP$" lang="en"/>
             </ctype>
-            <ctype id="ct_cessative" label="cessative" x="1100" y="1480">
+            <ctype id="ct_cessative" label="cessative" x="1095" y="3468">
                 <translation descr="http://www.isocat.org/datcat/DC-2001" label="cessative" lang="en"/>
             </ctype>
-            <ctype id="ct_relationNoun" label="relationNoun" x="1310" y="1990">
+            <ctype id="ct_relationNoun" label="relationNoun" x="1314" y="2754">
                 <translation descr="http://www.isocat.org/datcat/DC-2226" label="relationNoun" lang="en"/>
             </ctype>
-            <ctype id="ct_fullArticle" label="fullArticle" x="1100" y="970">
+            <ctype id="ct_fullArticle" label="fullArticle" x="1095" y="3162">
                 <translation descr="http://www.isocat.org/datcat/DC-1928" label="fullArticle" lang="en"/>
             </ctype>
-            <ctype id="ct_indefiniteDeterminer" label="indefiniteDeterminer" x="1310" y="4180">
+            <ctype id="ct_indefiniteDeterminer" label="indefiniteDeterminer" x="1314" y="204">
                 <translation descr="http://www.isocat.org/datcat/DC-1307" label="indefiniteDeterminer" lang="en"/>
             </ctype>
-            <ctype id="ct_personalPronoun" label="personalPronoun" x="1310" y="920">
+            <ctype id="ct_personalPronoun" label="personalPronoun" x="1314" y="2448">
                 <translation descr="http://www.isocat.org/datcat/DC-1463" label="personalPronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_Tense" label="Tense" x="440" y="4180">
+            <ctype id="ct_Tense" label="Tense" x="438" y="3978">
                 <translation descr="Time - tense - aspect" label="Tense" lang="en"/>
             </ctype>
-            <ctype id="ct_MD" label="MD" x="660" y="2040">
+            <ctype id="ct_MD" label="MD" x="657" y="2805">
                 <translation descr="Modal &#xa;e.g. can, could, might, may..." label="MD" lang="en"/>
             </ctype>
-            <ctype id="ct_cont" label="cont" x="880" y="4080">
+            <ctype id="ct_cont" label="cont" x="876" y="3825">
                 <translation descr="continuous" label="cont" lang="en"/>
             </ctype>
-            <ctype id="ct_ftc" label="ftc" x="1100" y="3880">
+            <ctype id="ct_ftc" label="ftc" x="1095" y="3570">
                 <translation descr="future continuous" label="ftc" lang="en"/>
             </ctype>
-            <ctype id="ct_deficientVerb" label="deficientVerb" x="1100" y="2040">
+            <ctype id="ct_deficientVerb" label="deficientVerb" x="1095" y="1173">
                 <translation descr="http://www.isocat.org/datcat/DC-3007" label="deficientVerb" lang="en"/>
             </ctype>
-            <ctype id="ct_feminine" label="feminine" x="1100" y="3470">
+            <ctype id="ct_feminine" label="feminine" x="1095" y="2346">
                 <translation descr="http://www.isocat.org/rest/dc/1880" label="feminine" lang="en"/>
             </ctype>
-            <ctype id="ct_pts" label="pts" x="1100" y="4030">
+            <ctype id="ct_pts" label="pts" x="1095" y="3672">
                 <translation descr="past tense simple" label="pts" lang="en"/>
             </ctype>
-            <ctype id="ct_partitiveArticle" label="partitiveArticle" x="1530" y="4390">
+            <ctype id="ct_partitiveArticle" label="partitiveArticle" x="1533" y="918">
                 <translation descr="http://www.isocat.org/datcat/DC-1898" label="partitiveArticle" lang="en"/>
             </ctype>
-            <ctype id="ct_indefinite" label="indefinite" x="1100" y="820">
+            <ctype id="ct_indefinite" label="indefinite" x="1095" y="3111">
                 <translation descr="http://www.isocat.org/datcat/DC-2005" label="indefinite" lang="en"/>
             </ctype>
-            <ctype id="ct_activeVoice" label="activeVoice" x="1100" y="1070">
+            <ctype id="ct_activeVoice" label="activeVoice" x="1095" y="1683">
                 <translation descr="http://www.isocat.org/rest/dc/1227" label="activeVoice" lang="en"/>
             </ctype>
-            <ctype id="ct_exclamativePronoun" label="exclamativePronoun" x="1310" y="560">
+            <ctype id="ct_exclamativePronoun" label="exclamativePronoun" x="1314" y="1581">
                 <translation descr="http://www.isocat.org/datcat/DC-1285" label="exclamativePronoun" lang="en"/>
             </ctype>
-            <ctype id="ct_genericNumeral" label="genericNumeral" x="1310" y="3060">
+            <ctype id="ct_genericNumeral" label="genericNumeral" x="1314" y="3366">
                 <translation descr="http://www.isocat.org/datcat/DC-3022" label="genericNumeral" lang="en"/>
             </ctype>
-            <ctype id="ct_coordinatingConjunction" label="coordinatingConjunction" x="1310" y="1070">
+            <ctype id="ct_coordinatingConjunction" label="coordinatingConjunction" x="1314" y="1122">
                 <translation descr="http://www.isocat.org/datcat/DC-1262" label="coordinatingConjunction" lang="en"/>
             </ctype>
-            <ctype id="ct_PDT" label="PDT" x="660" y="3520">
+            <ctype id="ct_PDT" label="PDT" x="657" y="2754">
                 <translation descr="Predeterminer &#xa;e.g. all, both ... when they precede an article" label="PDT" lang="en"/>
             </ctype>
-            <ctype id="ct_voice" label="voice" x="880" y="1380">
+            <ctype id="ct_voice" label="voice" x="876" y="1734">
                 <translation descr="http://www.isocat.org/rest/dc/1413" label="voice" lang="en"/>
             </ctype>
-            <ctype id="ct_indefinitePronoun" label="indefinitePronoun" x="1310" y="970">
-                <translation descr="http://www.isocat.org/datcat/DC-1309" label="indefinitePronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_questionMark" label="questionMark" x="1750" y="2550">
-                <translation descr="http://www.isocat.org/datcat/DC-1444" label="questionMark" lang="en"/>
-            </ctype>
-            <ctype id="ct_negativePronoun" label="negativePronoun" x="1310" y="660">
-                <translation descr="http://www.isocat.org/datcat/DC-1925" label="negativePronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_strongPersonalPronoun" label="strongPersonalPronoun" x="1530" y="870">
-                <translation descr="http://www.isocat.org/datcat/DC-1390" label="strongPersonalPronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_#" label="#" x="660" y="3260">
-                <translation descr="" label="#" lang="en"/>
-            </ctype>
-            <ctype id="ct_simplePreposition" label="simplePreposition" x="1530" y="2600">
-                <translation descr="http://www.isocat.org/datcat/DC-1900" label="simplePreposition" lang="en"/>
-            </ctype>
-            <ctype id="ct_RP" label="RP" x="660" y="4030">
-                <translation descr="Particle" label="RP" lang="en"/>
-            </ctype>
-            <ctype id="ct_$" label="$" x="660" y="2350">
-                <translation descr="" label="$" lang="en"/>
-            </ctype>
-            <ctype id="ct_imperfect" label="imperfect" x="1100" y="3570">
-                <translation descr="http://www.isocat.org/datcat/DC-1304" label="imperfect" lang="en"/>
-            </ctype>
-            <ctype id="ct_comma" label="comma" x="1530" y="1380">
-                <translation descr="http://www.isocat.org/datcat/DC-1448" label="comma" lang="en"/>
-            </ctype>
-            <ctype id="ct_(" label="(" x="660" y="4280">
-                <translation descr="" label="(" lang="en"/>
-            </ctype>
-            <ctype id="ct_impersonalPronoun" label="impersonalPronoun" x="1310" y="310">
-                <translation descr="http://www.isocat.org/datcat/DC-1426" label="impersonalPronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_)" label=")" x="660" y="2300">
-                <translation descr="" label=")" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJ" label="JJ" x="660" y="3370">
-                <translation descr="Adjective" label="JJ" lang="en"/>
-            </ctype>
-            <ctype id="ct_ordinalAdjective" label="ordinalAdjective" x="1310" y="3880">
-                <translation descr="http://www.isocat.org/datcat/DC-1338" label="ordinalAdjective" lang="en"/>
-            </ctype>
-            <ctype id="ct_," label="," x="660" y="2140">
-                <translation descr="" label="," lang="en"/>
-            </ctype>
-            <ctype id="ct_unclassifiedParticle" label="unclassifiedParticle" x="1310" y="2910">
-                <translation descr="http://www.isocat.org/datcat/DC-1897" label="unclassifiedParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_perfect" label="perfect" x="1310" y="4340">
-                <translation descr="http://www.isocat.org/rest/dc/1351" label="perfect" lang="en"/>
-            </ctype>
-            <ctype id="ct_imperative" label="imperative" x="1100" y="1170">
-                <translation descr="http://www.isocat.org/rest/dc/1844" label="imperative" lang="en"/>
-            </ctype>
-            <ctype id="ct_definiteArticle" label="definiteArticle" x="1530" y="4490">
-                <translation descr="http://www.isocat.org/datcat/DC-1430" label="definiteArticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJS" label="JJS" x="660" y="3930">
-                <translation descr="Adjective, superlative" label="JJS" lang="en"/>
-            </ctype>
-            <ctype id="ct_WRB" label="WRB" x="660" y="1990">
-                <translation descr="Wh-adverb &#xa;e.g. how, where why" label="WRB" lang="en"/>
-            </ctype>
-            <ctype id="ct_JJR" label="JJR" x="660" y="3980">
-                <translation descr="Adjective, comparative" label="JJR" lang="en"/>
-            </ctype>
-            <ctype id="ct_." label="." x="660" y="3210">
-                <translation descr="" label="." lang="en"/>
-            </ctype>
-            <ctype id="ct_bullet" label="bullet" x="1100" y="2140">
-                <translation descr="http://www.isocat.org/datcat/DC-1438" label="bullet" lang="en"/>
-            </ctype>
-            <ctype id="ct_possessiveParticle" label="possessiveParticle" x="1310" y="2550">
-                <translation descr="http://www.isocat.org/datcat/DC-1895" label="possessiveParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_adjective" label="adjective" x="1100" y="3520">
-                <translation descr="http://www.isocat.org/datcat/DC-1230" label="adjective" lang="en"/>
-            </ctype>
-            <ctype id="ct_interrogativePunctuation" label="interrogativePunctuation" x="1530" y="2700">
-                <translation descr="http://www.isocat.org/datcat/DC-2087" label="interrogativePunctuation" lang="en"/>
-            </ctype>
-            <ctype id="ct_fusedPrepositionPronoun" label="fusedPrepositionPronoun" x="1100" y="2090">
-                <translation descr="http://www.isocat.org/datcat/DC-3009" label="fusedPrepositionPronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_:" label=":" x="660" y="4080">
-                <translation descr="" label=":" lang="en"/>
-            </ctype>
-            <ctype id="ct_invertedQuestionMark" label="invertedQuestionMark" x="1750" y="2600">
-                <translation descr="http://www.isocat.org/datcat/DC-2088" label="invertedQuestionMark" lang="en"/>
-            </ctype>
-            <ctype id="ct_Aspect" label="Aspect" x="660" y="4340">
-                <translation descr="simple, continuous" label="Aspect" lang="en"/>
-            </ctype>
-            <ctype id="ct_wnVb" label="wnVb" x="660" y="1680">
-                <translation descr="WordNet verb" label="wnVb" lang="en"/>
-            </ctype>
-            <ctype id="ct_conditional" label="conditional" x="1100" y="1380">
-                <translation descr="http://www.isocat.org/rest/dc/1258" label="conditional" lang="en"/>
-            </ctype>
-            <ctype id="ct_plainVerb" label="plainVerb" x="1310" y="1120">
-                <translation descr="http://www.isocat.org/datcat/DC-3004" label="plainVerb" lang="en"/>
-            </ctype>
-            <ctype id="ct_participle" label="participle" x="1100" y="1220">
-                <translation descr="http://www.isocat.org/rest/dc/1341" label="participle" lang="en"/>
-            </ctype>
-            <ctype id="ct_WP$" label="WP$" x="660" y="3770">
-                <translation descr="Possessive wh-pronoun &#xa;e.g. whose" label="WP$" lang="en"/>
-            </ctype>
-            <ctype id="ct_grammaticalGender" label="grammaticalGender" x="880" y="3060">
-                <translation descr="http://www.isocat.org/rest/dc/1297" label="grammaticalGender" lang="en"/>
-            </ctype>
-            <ctype id="ct_-LRB-" label="-LRB-" x="880" y="4030">
-                <translation descr="" label="-LRB-" lang="en"/>
-            </ctype>
-            <ctype id="ct_diminutiveNoun" label="diminutiveNoun" x="1310" y="2040">
-                <translation descr="http://www.isocat.org/datcat/DC-2225" label="diminutiveNoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_shortArticle" label="shortArticle" x="1100" y="920">
-                <translation descr="http://www.isocat.org/datcat/DC-1927" label="shortArticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_interrogativeParticle" label="interrogativeParticle" x="1310" y="2500">
-                <translation descr="http://www.isocat.org/datcat/DC-1921" label="interrogativeParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_fttc" label="fttc" x="1100" y="4130">
-                <translation descr="future in the past continuous" label="fttc" lang="en"/>
-            </ctype>
-            <ctype id="ct_reflexiveDeterminer" label="reflexiveDeterminer" x="1310" y="3980">
-                <translation descr="http://www.isocat.org/datcat/DC-1377" label="reflexiveDeterminer" lang="en"/>
-            </ctype>
-            <ctype id="ct_coordinationParticle" label="coordinationParticle" x="1310" y="2750">
-                <translation descr="http://www.isocat.org/datcat/DC-2227" label="coordinationParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_itpt" label="itpt" x="880" y="4340">
-                <translation descr="in-the-past" label="itpt" lang="en"/>
-            </ctype>
-            <ctype id="ct_fusedPronounAuxiliary" label="fusedPronounAuxiliary" x="1310" y="360">
-                <translation descr="http://www.isocat.org/datcat/DC-3008" label="fusedPronounAuxiliary" lang="en"/>
-            </ctype>
-            <ctype id="ct_WordSense" label="WordSense" x="440" y="1890">
-                <translation descr="" label="WordSense" lang="en"/>
-            </ctype>
-            <ctype id="ct_futurePerfect" label="futurePerfect" x="1310" y="4390">
-                <translation descr="http://www.isocat.org/rest/dc/1292" label="futurePerfect" lang="en"/>
-            </ctype>
-            <ctype id="ct_futureParticle" label="futureParticle" x="1310" y="2650">
-                <translation descr="http://www.isocat.org/datcat/DC-1919" label="futureParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_ftts" label="ftts" x="1100" y="4340">
-                <translation descr="future in the past simple" label="ftts" lang="en"/>
-            </ctype>
-            <ctype id="ct_pronoun" label="pronoun" x="1100" y="560">
-                <translation descr="http://www.isocat.org/datcat/DC-1370" label="pronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_numeralFraction" label="numeralFraction" x="1310" y="3260">
-                <translation descr="http://www.isocat.org/datcat/DC-3026" label="numeralFraction" lang="en"/>
-            </ctype>
-            <ctype id="ct_RB" label="RB" x="660" y="4230">
-                <translation descr="Adverb &#xa;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
-            </ctype>
-            <ctype id="ct_partOfSpeech" label="partOfSpeech" x="880" y="2090">
-                <translation descr="http://www.isocat.org/datcat/DC-1345" label="partOfSpeech" lang="en"/>
-            </ctype>
-            <ctype id="ct_IN" label="IN" x="660" y="3720">
-                <translation descr="Preposision or subordinating conjunction" label="IN" lang="en"/>
-            </ctype>
-            <ctype id="ct_allusivePronoun" label="allusivePronoun" x="1310" y="410">
-                <translation descr="http://www.isocat.org/datcat/DC-2223" label="allusivePronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_exclamativePoint" label="exclamativePoint" x="1750" y="2700">
-                <translation descr="http://www.isocat.org/datcat/DC-1441" label="exclamativePoint" lang="en"/>
-            </ctype>
-            <ctype id="ct_generalAdverb" label="generalAdverb" x="1310" y="1790">
-                <translation descr="http://www.isocat.org/datcat/DC-1435" label="generalAdverb" lang="en"/>
-            </ctype>
-            <ctype id="ct_interrogativeCardinalNumeral" label="interrogativeCardinalNumeral" x="1310" y="3320">
-                <translation descr="http://www.isocat.org/datcat/DC-3018" label="interrogativeCardinalNumeral" lang="en"/>
-            </ctype>
-            <ctype id="ct_possessiveRelativePronoun" label="possessiveRelativePronoun" x="1530" y="710">
-                <translation descr="http://www.isocat.org/datcat/DC-3005" label="possessiveRelativePronoun" lang="en"/>
-            </ctype>
-            <ctype id="ct_comparativeParticle" label="comparativeParticle" x="1310" y="2300">
-                <translation descr="http://www.isocat.org/datcat/DC-1922" label="comparativeParticle" lang="en"/>
-            </ctype>
-            <ctype id="ct_middleVoice" label="middleVoice" x="1100" y="1120">
-                <translation descr="http://www.isocat.org/rest/dc/1983" label="middleVoice" lang="en"/>
-            </ctype>
-            <ctype id="ct_NNS" label="NNS" x="660" y="3160">
-                <translation descr="Noun, plural" label="NNS" lang="en"/>
-            </ctype>
-            <ctype id="ct_secondaryPunctuation" label="secondaryPunctuation" x="1310" y="1430">
-                <translation descr="http://www.isocat.org/datcat/DC-2076" label="secondaryPunctuation" lang="en"/>
-            </ctype>
-            <ctype id="ct_NNP" label="NNP" x="660" y="3420">
-                <translation descr="Proper Noun, singular" label="NNP" lang="en"/>
-            </ctype>
-            <ctype id="ct_positive" label="positive" x="1100" y="2450">
-                <translation descr="http://www.isocat.org/rest/dc/1420" label="positive" lang="en"/>
-            </ctype>
-            <ctype id="ct_Attr" label="Attr" x="220" y="3880">
-                <translation descr="Thing attribute" label="Attr" lang="en"/>
-            </ctype>
-            <ctype id="ct_quote" label="quote" x="1640" y="1740">
+            <ctype id="ct_quote" label="quote" x="1533" y="3366">
                 <translation descr="http://www.isocat.org/datcat/DC-2081" label="quote" lang="en"/>
             </ctype>
-            <order id1="ct_possessivePronoun" id2="ct_pronoun"/>
-            <order id1="ct_grammaticalTense" id2="ct_Morphosyntax"/>
-            <order id1="ct_sinf" id2="ct_infinitive"/>
-            <order id1="ct_noun" id2="ct_partOfSpeech"/>
-            <order id1="ct_conditionalParticle" id2="ct_particle"/>
-            <order id1="ct_#" id2="ct_SpTag"/>
-            <order id1="ct_PRP" id2="ct_SpTag"/>
-            <order id1="ct_RBR" id2="ct_SpTag"/>
-            <order id1="ct_pronominalAdverb" id2="ct_adverb"/>
-            <order id1="ct_case" id2="ct_Morphosyntax"/>
-            <order id1="ct_relativeAdverb" id2="ct_adverb"/>
-            <order id1="ct_coordinationParticle" id2="ct_particle"/>
-            <order id1="ct_RB" id2="ct_SpTag"/>
-            <order id1="ct_lightVerb" id2="ct_verb"/>
-            <order id1="ct_closeParenthesis" id2="ct_closePunctuation"/>
-            <order id1="ct_reflexivePossessivePronoun" id2="ct_reflexivePersonalPronoun"/>
-            <order id1="ct_postposition" id2="ct_adposition"/>
-            <order id1="ct_indefiniteCardinalNumeral" id2="ct_numeral"/>
-            <order id1="ct_prepositionalAdverb" id2="ct_partOfSpeech"/>
-            <order id1="ct_point" id2="ct_declarativePunctuation"/>
-            <order id1="ct_verb" id2="ct_partOfSpeech"/>
-            <order id1="ct_accusativeCase" id2="ct_case"/>
-            <order id1="ct_psc" id2="ct_present"/>
-            <order id1="ct_person" id2="ct_Morphosyntax"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_indefinitePronoun"/>
-            <order id1="ct_past" id2="ct_grammaticalTense"/>
-            <order id1="ct_interrogativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_pss" id2="ct_simp"/>
-            <order id1="ct_-RRB-" id2="ct_)"/>
-            <order id1="ct_interrogativeAdverb" id2="ct_adverb"/>
-            <order id1="ct_weakPersonalPronoun" id2="ct_personalPronoun"/>
-            <order id1="ct_collectivePronoun" id2="ct_pronoun"/>
-            <order id1="ct_Aspect" id2="ct_Tense"/>
-            <order id1="ct_adjective" id2="ct_partOfSpeech"/>
-            <order id1="ct_ftpc" id2="ct_cont"/>
-            <order id1="ct_VBN" id2="ct_SpTag"/>
-            <order id1="ct_reflexivePossessivePronoun" id2="ct_possessivePronoun"/>
-            <order id1="ct_interrogativeRelativePronoun" id2="ct_interrogativePronoun"/>
-            <order id1="ct_ftps" id2="ct_future"/>
-            <order id1="ct_ftts" id2="ct_simp"/>
-            <order id1="ct_indefiniteOrdinalNumeral" id2="ct_numeral"/>
-            <order id1="ct_ftts" id2="ct_itpt"/>
-            <order id1="ct_fusedPrepositionPronoun" id2="ct_partOfSpeech"/>
-            <order id1="ct_indicative" id2="ct_verbFormMood"/>
-            <order id1="ct_masculine" id2="ct_grammaticalGender"/>
-            <order id1="ct_UH" id2="ct_SpTag"/>
-            <order id1="ct_JJR" id2="ct_SpTag"/>
-            <order id1="ct_pspc" id2="ct_cont"/>
-            <order id1="ct_pronoun" id2="ct_partOfSpeech"/>
-            <order id1="ct_ptpc" id2="ct_past"/>
-            <order id1="ct_psc" id2="ct_cont"/>
-            <order id1="ct_numeralFraction" id2="ct_numeral"/>
-            <order id1="ct_WP" id2="ct_SpTag"/>
-            <order id1="ct_indefiniteDeterminer" id2="ct_determiner"/>
-            <order id1="ct_JJS" id2="ct_SpTag"/>
-            <order id1="ct_positive" id2="ct_degree"/>
-            <order id1="ct_degree" id2="ct_Morphosyntax"/>
-            <order id1="ct_fttc" id2="ct_cont"/>
-            <order id1="ct_futurePerfect" id2="ct_future"/>
-            <order id1="ct_VBD" id2="ct_SpTag"/>
-            <order id1="ct_ptps" id2="ct_simp"/>
-            <order id1="ct_partitiveArticle" id2="ct_article"/>
-            <order id1="ct_fusedPreposition" id2="ct_preposition"/>
-            <order id1="ct_conjunction" id2="ct_partOfSpeech"/>
-            <order id1="ct_WRB" id2="ct_SpTag"/>
-            <order id1="ct_compoundPreposition" id2="ct_preposition"/>
-            <order id1="ct_semiColon" id2="ct_declarativePunctuation"/>
-            <order id1="ct_participle" id2="ct_verbFormMood"/>
-            <order id1="ct_particle" id2="ct_partOfSpeech"/>
-            <order id1="ct_imperfect" id2="ct_grammaticalTense"/>
-            <order id1="ct_WordSense" id2="ct_LinkArg"/>
-            <order id1="ct_psps" id2="ct_present"/>
-            <order id1="ct_circumposition" id2="ct_adposition"/>
-            <order id1="ct_deficientVerb" id2="ct_partOfSpeech"/>
-            <order id1="ct_psps" id2="ct_perf"/>
-            <order id1="ct_properNoun" id2="ct_noun"/>
-            <order id1="ct_affirmativeParticle" id2="ct_particle"/>
-            <order id1="ct_unclassifiedPunctuation" id2="ct_punctuation"/>
-            <order id1="ct_pspc" id2="ct_present"/>
-            <order id1="ct_WDT" id2="ct_SpTag"/>
-            <order id1="ct_DCR" id2="ct_LinkArg"/>
-            <order id1="ct_mainVerb" id2="ct_verb"/>
-            <order id1="ct_inchoative" id2="ct_aspect"/>
-            <order id1="ct_singular" id2="ct_grammaticalNumber"/>
-            <order id1="ct_colon" id2="ct_secondaryPunctuation"/>
-            <order id1="ct_demonstrativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_pastParticipleAdjective" id2="ct_participleAdjective"/>
-            <order id1="ct_neuter" id2="ct_grammaticalGender"/>
-            <order id1="ct_fttc" id2="ct_itpt"/>
-            <order id1="ct_." id2="ct_SpTag"/>
-            <order id1="ct_comparativeParticle" id2="ct_particle"/>
-            <order id1="ct_ptps" id2="ct_perf"/>
-            <order id1="ct_future" id2="ct_grammaticalTense"/>
-            <order id1="ct_ftc" id2="ct_cont"/>
-            <order id1="ct_itpt" id2="ct_Relativity"/>
-            <order id1="ct_middleVoice" id2="ct_voice"/>
+            <ctype id="ct_indefinitePronoun" label="indefinitePronoun" x="1314" y="1683">
+                <translation descr="http://www.isocat.org/datcat/DC-1309" label="indefinitePronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_questionMark" label="questionMark" x="1752" y="3570">
+                <translation descr="http://www.isocat.org/datcat/DC-1444" label="questionMark" lang="en"/>
+            </ctype>
+            <ctype id="ct_negativePronoun" label="negativePronoun" x="1314" y="2142">
+                <translation descr="http://www.isocat.org/datcat/DC-1925" label="negativePronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_strongPersonalPronoun" label="strongPersonalPronoun" x="1533" y="2601">
+                <translation descr="http://www.isocat.org/datcat/DC-1390" label="strongPersonalPronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_#" label="#" x="657" y="3468">
+                <translation descr="" label="#" lang="en"/>
+            </ctype>
+            <ctype id="ct_simplePreposition" label="simplePreposition" x="1533" y="4080">
+                <translation descr="http://www.isocat.org/datcat/DC-1900" label="simplePreposition" lang="en"/>
+            </ctype>
+            <ctype id="ct_RP" label="RP" x="657" y="3876">
+                <translation descr="Particle" label="RP" lang="en"/>
+            </ctype>
+            <ctype id="ct_$" label="$" x="657" y="2907">
+                <translation descr="" label="$" lang="en"/>
+            </ctype>
+            <ctype id="ct_imperfect" label="imperfect" x="1095" y="1122">
+                <translation descr="http://www.isocat.org/datcat/DC-1304" label="imperfect" lang="en"/>
+            </ctype>
+            <ctype id="ct_comma" label="comma" x="1533" y="3519">
+                <translation descr="http://www.isocat.org/datcat/DC-1448" label="comma" lang="en"/>
+            </ctype>
+            <ctype id="ct_(" label="(" x="657" y="1734">
+                <translation descr="" label="(" lang="en"/>
+            </ctype>
+            <ctype id="ct_impersonalPronoun" label="impersonalPronoun" x="1314" y="1836">
+                <translation descr="http://www.isocat.org/datcat/DC-1426" label="impersonalPronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_)" label=")" x="657" y="2040">
+                <translation descr="" label=")" lang="en"/>
+            </ctype>
+            <ctype id="ct_JJ" label="JJ" x="657" y="1785">
+                <translation descr="Adjective" label="JJ" lang="en"/>
+            </ctype>
+            <ctype id="ct_ordinalAdjective" label="ordinalAdjective" x="1314" y="3723">
+                <translation descr="http://www.isocat.org/datcat/DC-1338" label="ordinalAdjective" lang="en"/>
+            </ctype>
+            <ctype id="ct_," label="," x="657" y="2601">
+                <translation descr="" label="," lang="en"/>
+            </ctype>
+            <ctype id="ct_unclassifiedParticle" label="unclassifiedParticle" x="1314" y="765">
+                <translation descr="http://www.isocat.org/datcat/DC-1897" label="unclassifiedParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_perfect" label="perfect" x="1314" y="1224">
+                <translation descr="http://www.isocat.org/rest/dc/1351" label="perfect" lang="en"/>
+            </ctype>
+            <ctype id="ct_imperative" label="imperative" x="1095" y="2142">
+                <translation descr="http://www.isocat.org/rest/dc/1844" label="imperative" lang="en"/>
+            </ctype>
+            <ctype id="ct_definiteArticle" label="definiteArticle" x="1533" y="969">
+                <translation descr="http://www.isocat.org/datcat/DC-1430" label="definiteArticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_JJS" label="JJS" x="657" y="2856">
+                <translation descr="Adjective, superlative" label="JJS" lang="en"/>
+            </ctype>
+            <ctype id="ct_WRB" label="WRB" x="657" y="3825">
+                <translation descr="Wh-adverb &#xa;e.g. how, where why" label="WRB" lang="en"/>
+            </ctype>
+            <ctype id="ct_JJR" label="JJR" x="657" y="2193">
+                <translation descr="Adjective, comparative" label="JJR" lang="en"/>
+            </ctype>
+            <ctype id="ct_." label="." x="657" y="3009">
+                <translation descr="" label="." lang="en"/>
+            </ctype>
+            <ctype id="ct_bullet" label="bullet" x="1095" y="1326">
+                <translation descr="http://www.isocat.org/datcat/DC-1438" label="bullet" lang="en"/>
+            </ctype>
+            <ctype id="ct_possessiveParticle" label="possessiveParticle" x="1314" y="816">
+                <translation descr="http://www.isocat.org/datcat/DC-1895" label="possessiveParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_adjective" label="adjective" x="1095" y="1632">
+                <translation descr="http://www.isocat.org/datcat/DC-1230" label="adjective" lang="en"/>
+            </ctype>
+            <ctype id="ct_interrogativePunctuation" label="interrogativePunctuation" x="1533" y="3621">
+                <translation descr="http://www.isocat.org/datcat/DC-2087" label="interrogativePunctuation" lang="en"/>
+            </ctype>
+            <ctype id="ct_fusedPrepositionPronoun" label="fusedPrepositionPronoun" x="1095" y="1275">
+                <translation descr="http://www.isocat.org/datcat/DC-3009" label="fusedPrepositionPronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_:" label=":" x="657" y="3978">
+                <translation descr="" label=":" lang="en"/>
+            </ctype>
+            <ctype id="ct_invertedQuestionMark" label="invertedQuestionMark" x="1752" y="3621">
+                <translation descr="http://www.isocat.org/datcat/DC-2088" label="invertedQuestionMark" lang="en"/>
+            </ctype>
+            <ctype id="ct_Aspect" label="Aspect" x="657" y="4131">
+                <translation descr="simple, continuous" label="Aspect" lang="en"/>
+            </ctype>
+            <ctype id="ct_wnVb" label="wnVb" x="657" y="1530">
+                <translation descr="WordNet verb" label="wnVb" lang="en"/>
+            </ctype>
+            <ctype id="ct_conditional" label="conditional" x="1095" y="2244">
+                <translation descr="http://www.isocat.org/rest/dc/1258" label="conditional" lang="en"/>
+            </ctype>
+            <ctype id="ct_plainVerb" label="plainVerb" x="1314" y="1377">
+                <translation descr="http://www.isocat.org/datcat/DC-3004" label="plainVerb" lang="en"/>
+            </ctype>
+            <ctype id="ct_participle" label="participle" x="1095" y="2193">
+                <translation descr="http://www.isocat.org/rest/dc/1341" label="participle" lang="en"/>
+            </ctype>
+            <ctype id="ct_WP$" label="WP$" x="657" y="3417">
+                <translation descr="Possessive wh-pronoun &#xa;e.g. whose" label="WP$" lang="en"/>
+            </ctype>
+            <ctype id="ct_grammaticalGender" label="grammaticalGender" x="876" y="2295">
+                <translation descr="http://www.isocat.org/rest/dc/1297" label="grammaticalGender" lang="en"/>
+            </ctype>
+            <ctype id="ct_-LRB-" label="-LRB-" x="876" y="2193">
+                <translation descr="" label="-LRB-" lang="en"/>
+            </ctype>
+            <ctype id="ct_diminutiveNoun" label="diminutiveNoun" x="1314" y="2907">
+                <translation descr="http://www.isocat.org/datcat/DC-2225" label="diminutiveNoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_shortArticle" label="shortArticle" x="1095" y="3213">
+                <translation descr="http://www.isocat.org/datcat/DC-1927" label="shortArticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_interrogativeParticle" label="interrogativeParticle" x="1314" y="663">
+                <translation descr="http://www.isocat.org/datcat/DC-1921" label="interrogativeParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_fttc" label="fttc" x="1095" y="3825">
+                <translation descr="future in the past continuous" label="fttc" lang="en"/>
+            </ctype>
+            <ctype id="ct_reflexiveDeterminer" label="reflexiveDeterminer" x="1314" y="51">
+                <translation descr="http://www.isocat.org/datcat/DC-1377" label="reflexiveDeterminer" lang="en"/>
+            </ctype>
+            <ctype id="ct_coordinationParticle" label="coordinationParticle" x="1314" y="408">
+                <translation descr="http://www.isocat.org/datcat/DC-2227" label="coordinationParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_itpt" label="itpt" x="876" y="4029">
+                <translation descr="in-the-past" label="itpt" lang="en"/>
+            </ctype>
+            <ctype id="ct_fusedPronounAuxiliary" label="fusedPronounAuxiliary" x="1314" y="1785">
+                <translation descr="http://www.isocat.org/datcat/DC-3008" label="fusedPronounAuxiliary" lang="en"/>
+            </ctype>
+            <ctype id="ct_WordSense" label="WordSense" x="438" y="1734">
+                <translation descr="" label="WordSense" lang="en"/>
+            </ctype>
+            <ctype id="ct_futurePerfect" label="futurePerfect" x="1314" y="1173">
+                <translation descr="http://www.isocat.org/rest/dc/1292" label="futurePerfect" lang="en"/>
+            </ctype>
+            <ctype id="ct_futureParticle" label="futureParticle" x="1314" y="459">
+                <translation descr="http://www.isocat.org/datcat/DC-1919" label="futureParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_ftts" label="ftts" x="1095" y="3978">
+                <translation descr="future in the past simple" label="ftts" lang="en"/>
+            </ctype>
+            <ctype id="ct_pronoun" label="pronoun" x="1095" y="1071">
+                <translation descr="http://www.isocat.org/datcat/DC-1370" label="pronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_numeralFraction" label="numeralFraction" x="1314" y="3315">
+                <translation descr="http://www.isocat.org/datcat/DC-3026" label="numeralFraction" lang="en"/>
+            </ctype>
+            <ctype id="ct_RB" label="RB" x="657" y="3927">
+                <translation descr="Adverb &#xa;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
+            </ctype>
+            <ctype id="ct_partOfSpeech" label="partOfSpeech" x="876" y="1275">
+                <translation descr="http://www.isocat.org/datcat/DC-1345" label="partOfSpeech" lang="en"/>
+            </ctype>
+            <ctype id="ct_IN" label="IN" x="657" y="4029">
+                <translation descr="Preposision or subordinating conjunction" label="IN" lang="en"/>
+            </ctype>
+            <ctype id="ct_allusivePronoun" label="allusivePronoun" x="1314" y="2040">
+                <translation descr="http://www.isocat.org/datcat/DC-2223" label="allusivePronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_exclamativePoint" label="exclamativePoint" x="1752" y="3672">
+                <translation descr="http://www.isocat.org/datcat/DC-1441" label="exclamativePoint" lang="en"/>
+            </ctype>
+            <ctype id="ct_generalAdverb" label="generalAdverb" x="1314" y="2958">
+                <translation descr="http://www.isocat.org/datcat/DC-1435" label="generalAdverb" lang="en"/>
+            </ctype>
+            <ctype id="ct_interrogativeCardinalNumeral" label="interrogativeCardinalNumeral" x="1314" y="3162">
+                <translation descr="http://www.isocat.org/datcat/DC-3018" label="interrogativeCardinalNumeral" lang="en"/>
+            </ctype>
+            <ctype id="ct_possessiveRelativePronoun" label="possessiveRelativePronoun" x="1533" y="2397">
+                <translation descr="http://www.isocat.org/datcat/DC-3005" label="possessiveRelativePronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_comparativeParticle" label="comparativeParticle" x="1314" y="867">
+                <translation descr="http://www.isocat.org/datcat/DC-1922" label="comparativeParticle" lang="en"/>
+            </ctype>
+            <ctype id="ct_middleVoice" label="middleVoice" x="1095" y="1785">
+                <translation descr="http://www.isocat.org/rest/dc/1983" label="middleVoice" lang="en"/>
+            </ctype>
+            <ctype id="ct_NNS" label="NNS" x="657" y="2346">
+                <translation descr="Noun, plural" label="NNS" lang="en"/>
+            </ctype>
+            <ctype id="ct_secondaryPunctuation" label="secondaryPunctuation" x="1314" y="3927">
+                <translation descr="http://www.isocat.org/datcat/DC-2076" label="secondaryPunctuation" lang="en"/>
+            </ctype>
+            <ctype id="ct_NNP" label="NNP" x="657" y="2703">
+                <translation descr="Proper Noun, singular" label="NNP" lang="en"/>
+            </ctype>
+            <ctype id="ct_positive" label="positive" x="1095" y="2856">
+                <translation descr="http://www.isocat.org/rest/dc/1420" label="positive" lang="en"/>
+            </ctype>
+            <ctype id="ct_Attr" label="Attr" x="219" y="3672">
+                <translation descr="Thing attribute" label="Attr" lang="en"/>
+            </ctype>
+            <ctype id="ct_ProcOp_Keep" label="ProcOp_Keep" x="299" y="3746">
+                <translation descr="" label="ProcOp_Keep" lang="en"/>
+            </ctype>
+            <ctype id="ct_ProcOp_Replace" label="ProcOp_Replace" x="219" y="3723">
+                <translation descr="" label="ProcOp_Replace" lang="en"/>
+            </ctype>
             <order id1="ct_Relativity" id2="ct_Tense"/>
-            <order id1="ct_interrogativePunctuation" id2="ct_mainPunctuation"/>
-            <order id1="ct_mainPunctuation" id2="ct_punctuation"/>
-            <order id1="ct_RBS" id2="ct_SpTag"/>
-            <order id1="ct_NNPS" id2="ct_SpTag"/>
-            <order id1="ct_-LRB-" id2="ct_("/>
-            <order id1="ct_perf" id2="ct_Relativity"/>
-            <order id1="ct_comparative" id2="ct_degree"/>
-            <order id1="ct_presentParticipleAdjective" id2="ct_participleAdjective"/>
-            <order id1="ct_invertedComma" id2="ct_secondaryPunctuation"/>
-            <order id1="ct_wnRb" id2="ct_WordSense"/>
-            <order id1="ct_wnNn" id2="ct_WordSense"/>
-            <order id1="ct_voiceNoun" id2="ct_noun"/>
-            <order id1="ct_strongPersonalPronoun" id2="ct_personalPronoun"/>
-            <order id1="ct_interrogativeMultiplicativeNumeral" id2="ct_numeral"/>
-            <order id1="ct_CC" id2="ct_SpTag"/>
-            <order id1="ct_LinkArg" id2="ct_Top"/>
-            <order id1="ct_imperative" id2="ct_verbFormMood"/>
-            <order id1="ct_nominativeCase" id2="ct_case"/>
-            <order id1="ct_invertedQuestionMark" id2="ct_interrogativePunctuation"/>
-            <order id1="ct_ptc" id2="ct_past"/>
-            <order id1="ct_interrogativeCardinalNumeral" id2="ct_numeral"/>
-            <order id1="ct_wnVb" id2="ct_WordSense"/>
-            <order id1="ct_feminine" id2="ct_grammaticalGender"/>
-            <order id1="ct_verbFormMood" id2="ct_Morphosyntax"/>
-            <order id1="ct_interjection" id2="ct_partOfSpeech"/>
-            <order id1="ct_pastPerfect" id2="ct_past"/>
-            <order id1="ct_ftpc" id2="ct_perf"/>
-            <order id1="ct_perfective" id2="ct_aspect"/>
-            <order id1="ct_passiveVoice" id2="ct_voice"/>
-            <order id1="ct_EX" id2="ct_SpTag"/>
-            <order id1="ct_reflexiveDeterminer" id2="ct_determiner"/>
-            <order id1="ct_emphaticPronoun" id2="ct_pronoun"/>
-            <order id1="ct_simp" id2="ct_Aspect"/>
-            <order id1="ct_JJ" id2="ct_SpTag"/>
-            <order id1="ct_fusedPronounAuxiliary" id2="ct_pronoun"/>
-            <order id1="ct_PDT" id2="ct_SpTag"/>
-            <order id1="ct_pts" id2="ct_simp"/>
-            <order id1="ct_ftpc" id2="ct_future"/>
-            <order id1="ct_:" id2="ct_SpTag"/>
-            <order id1="ct_indefinitePronoun" id2="ct_pronoun"/>
+            <order id1="ct_noun" id2="ct_partOfSpeech"/>
+            <order id1="ct_firstPerson" id2="ct_person"/>
             <order id1="ct_declarativePunctuation" id2="ct_mainPunctuation"/>
+            <order id1="ct_ftts" id2="ct_simp"/>
+            <order id1="ct_Tense" id2="ct_Attr"/>
+            <order id1="ct_prepositionalAdverb" id2="ct_partOfSpeech"/>
+            <order id1="ct_cardinalNumeral" id2="ct_numeral"/>
+            <order id1="ct_WP" id2="ct_SpTag"/>
+            <order id1="ct_RP" id2="ct_SpTag"/>
+            <order id1="ct_LinkArg" id2="ct_Top"/>
+            <order id1="ct_RB" id2="ct_SpTag"/>
+            <order id1="ct_pastParticipleAdjective" id2="ct_participleAdjective"/>
+            <order id1="ct_superlativeParticle" id2="ct_particle"/>
+            <order id1="ct_psc" id2="ct_cont"/>
+            <order id1="ct_TO" id2="ct_SpTag"/>
+            <order id1="ct_voice" id2="ct_Morphosyntax"/>
+            <order id1="ct_indefiniteDeterminer" id2="ct_determiner"/>
+            <order id1="ct_-RRB-" id2="ct_)"/>
+            <order id1="ct_-CLQ-" id2="ct_SpTag"/>
+            <order id1="ct_WP$" id2="ct_SpTag"/>
+            <order id1="ct_)" id2="ct_SpTag"/>
+            <order id1="ct_interrogativeRelativePronoun" id2="ct_relativePronoun"/>
+            <order id1="ct_interrogativeDeterminer" id2="ct_determiner"/>
+            <order id1="ct_generalAdverb" id2="ct_adverb"/>
+            <order id1="ct_numeralFraction" id2="ct_numeral"/>
+            <order id1="ct_VP" id2="ct_SpTag"/>
+            <order id1="ct_postposition" id2="ct_adposition"/>
+            <order id1="ct_MD" id2="ct_SpTag"/>
+            <order id1="ct_future" id2="ct_grammaticalTense"/>
+            <order id1="ct_interrogativeCardinalNumeral" id2="ct_numeral"/>
+            <order id1="ct_colon" id2="ct_secondaryPunctuation"/>
+            <order id1="ct_perfect" id2="ct_present"/>
+            <order id1="ct_ftc" id2="ct_cont"/>
+            <order id1="ct_VB" id2="ct_SpTag"/>
+            <order id1="ct_mannerAdverb" id2="ct_generalAdverb"/>
+            <order id1="ct_PDT" id2="ct_SpTag"/>
+            <order id1="ct_fttc" id2="ct_itpt"/>
+            <order id1="ct_demonstrativeDeterminer" id2="ct_determiner"/>
+            <order id1="ct_simp" id2="ct_Aspect"/>
+            <order id1="ct_ftps" id2="ct_perf"/>
+            <order id1="ct_wnVb" id2="ct_WordSense"/>
+            <order id1="ct_WRB" id2="ct_SpTag"/>
+            <order id1="ct_definiteness" id2="ct_Morphosyntax"/>
             <order id1="ct_unaccomplished" id2="ct_aspect"/>
             <order id1="ct_relativeParticle" id2="ct_particle"/>
-            <order id1="ct_shortArticle" id2="ct_definiteness"/>
-            <order id1="ct_MD" id2="ct_SpTag"/>
-            <order id1="ct_possessiveParticle" id2="ct_particle"/>
-            <order id1="ct_imperfective" id2="ct_aspect"/>
-            <order id1="ct_ftps" id2="ct_simp"/>
-            <order id1="ct_numeral" id2="ct_partOfSpeech"/>
-            <order id1="ct_presentativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_LS" id2="ct_SpTag"/>
-            <order id1="ct_aspect" id2="ct_Morphosyntax"/>
-            <order id1="ct_genitiveCase" id2="ct_case"/>
-            <order id1="ct_suspensionPoints" id2="ct_unclassifiedPunctuation"/>
-            <order id1="ct_possessiveRelativePronoun" id2="ct_possessivePronoun"/>
-            <order id1="ct_VBZ" id2="ct_SpTag"/>
-            <order id1="ct_reflexivePersonalPronoun" id2="ct_personalPronoun"/>
-            <order id1="ct_allusivePronoun" id2="ct_pronoun"/>
-            <order id1="ct_Nil" id2="ct_Top"/>
-            <order id1="ct_pspc" id2="ct_perf"/>
-            <order id1="ct_plainVerb" id2="ct_verb"/>
-            <order id1="ct_," id2="ct_SpTag"/>
-            <order id1="ct_S" id2="ct_SpTag"/>
-            <order id1="ct_questionMark" id2="ct_interrogativePunctuation"/>
-            <order id1="ct_possessiveAdjective" id2="ct_adjective"/>
-            <order id1="ct_superlativeParticle" id2="ct_particle"/>
-            <order id1="ct_unclassifiedParticle" id2="ct_particle"/>
-            <order id1="ct_openPunctuation" id2="ct_punctuation"/>
-            <order id1="ct_openParenthesis" id2="ct_openPunctuation"/>
-            <order id1="ct_fttc" id2="ct_future"/>
-            <order id1="ct_futureParticle" id2="ct_particle"/>
-            <order id1="ct_SpTag" id2="ct_LinkArg"/>
-            <order id1="ct_indefiniteMultiplicativeNumeral" id2="ct_numeral"/>
-            <order id1="ct_infinitiveParticle" id2="ct_particle"/>
-            <order id1="ct_definiteArticle" id2="ct_article"/>
-            <order id1="ct_punctuation" id2="ct_partOfSpeech"/>
-            <order id1="ct_negativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_vnVb" id2="ct_WordSense"/>
-            <order id1="ct_fusedPrepositionDeterminer" id2="ct_fusedPreposition"/>
-            <order id1="ct_dativeCase" id2="ct_case"/>
-            <order id1="ct_possessiveRelativePronoun" id2="ct_relativePronoun"/>
-            <order id1="ct_fullArticle" id2="ct_definiteness"/>
-            <order id1="ct_impersonalPronoun" id2="ct_pronoun"/>
-            <order id1="ct_VP" id2="ct_SpTag"/>
-            <order id1="ct_ftc" id2="ct_future"/>
-            <order id1="ct_WP$" id2="ct_SpTag"/>
-            <order id1="ct_subjunctive" id2="ct_verbFormMood"/>
-            <order id1="ct_generalAdverb" id2="ct_adverb"/>
-            <order id1="ct_determiner" id2="ct_partOfSpeech"/>
-            <order id1="ct_)" id2="ct_SpTag"/>
-            <order id1="ct_thirdPerson" id2="ct_person"/>
-            <order id1="ct_-OPQ-" id2="ct_SpTag"/>
-            <order id1="ct_existentialPronoun" id2="ct_pronoun"/>
-            <order id1="ct_relativeDeterminer" id2="ct_determiner"/>
-            <order id1="ct_reciprocalPronoun" id2="ct_pronoun"/>
-            <order id1="ct_indefiniteArticle" id2="ct_article"/>
-            <order id1="ct_gerund" id2="ct_verbFormMood"/>
-            <order id1="ct_definite" id2="ct_definiteness"/>
-            <order id1="ct_cardinalNumeral" id2="ct_numeral"/>
-            <order id1="ct_ftps" id2="ct_perf"/>
-            <order id1="ct_ftts" id2="ct_future"/>
-            <order id1="ct_secondPerson" id2="ct_person"/>
-            <order id1="ct_distinctiveParticle" id2="ct_particle"/>
-            <order id1="ct_coordinatingConjunction" id2="ct_conjunction"/>
-            <order id1="ct_qualifierAdjective" id2="ct_adjective"/>
-            <order id1="ct_present" id2="ct_grammaticalTense"/>
-            <order id1="ct_DT" id2="ct_SpTag"/>
-            <order id1="ct_PRP$" id2="ct_SpTag"/>
-            <order id1="ct_conditional" id2="ct_verbFormMood"/>
-            <order id1="ct_firstPerson" id2="ct_person"/>
-            <order id1="ct_SYM" id2="ct_SpTag"/>
-            <order id1="ct_fts" id2="ct_simp"/>
-            <order id1="ct_ptc" id2="ct_cont"/>
-            <order id1="ct_CD" id2="ct_SpTag"/>
-            <order id1="ct_mannerAdverb" id2="ct_generalAdverb"/>
-            <order id1="ct_negativeParticle" id2="ct_particle"/>
-            <order id1="ct_$" id2="ct_SpTag"/>
-            <order id1="ct_superlative" id2="ct_degree"/>
-            <order id1="ct_ptpc" id2="ct_perf"/>
-            <order id1="ct_copula" id2="ct_verb"/>
-            <order id1="ct_cont" id2="ct_Aspect"/>
-            <order id1="ct_NNP" id2="ct_SpTag"/>
-            <order id1="ct_psps" id2="ct_simp"/>
-            <order id1="ct_-CLQ-" id2="ct_SpTag"/>
-            <order id1="ct_fts" id2="ct_future"/>
-            <order id1="ct_NN" id2="ct_SpTag"/>
-            <order id1="ct_adverbialPronoun" id2="ct_pronoun"/>
-            <order id1="ct_slash" id2="ct_unclassifiedPunctuation"/>
             <order id1="ct_conditionalPronoun" id2="ct_pronoun"/>
-            <order id1="ct_exclamativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_RP" id2="ct_SpTag"/>
-            <order id1="ct_multiplicativeNumeral" id2="ct_numeral"/>
-            <order id1="ct_exclamativeDeterminer" id2="ct_determiner"/>
-            <order id1="ct_exclamativePoint" id2="ct_declarativePunctuation"/>
-            <order id1="ct_irreflexivePersonalPronoun" id2="ct_personalPronoun"/>
-            <order id1="ct_subordinatingConjunction" id2="ct_conjunction"/>
-            <order id1="ct_VB" id2="ct_SpTag"/>
-            <order id1="ct_indefinite" id2="ct_definiteness"/>
-            <order id1="ct_linf" id2="ct_infinitive"/>
-            <order id1="ct_massNoun" id2="ct_noun"/>
-            <order id1="ct_demonstrativeDeterminer" id2="ct_determiner"/>
-            <order id1="ct_infinitive" id2="ct_verbFormMood"/>
-            <order id1="ct_modal" id2="ct_verb"/>
-            <order id1="ct_article" id2="ct_determiner"/>
-            <order id1="ct_perfect" id2="ct_present"/>
-            <order id1="ct_preposition" id2="ct_adposition"/>
-            <order id1="ct_Tense" id2="ct_Attr"/>
-            <order id1="ct_grammaticalGender" id2="ct_Morphosyntax"/>
-            <order id1="ct_(" id2="ct_SpTag"/>
-            <order id1="ct_bullet" id2="ct_partOfSpeech"/>
-            <order id1="ct_adposition" id2="ct_partOfSpeech"/>
-            <order id1="ct_commonNoun" id2="ct_noun"/>
-            <order id1="ct_voice" id2="ct_Morphosyntax"/>
-            <order id1="ct_relativePronoun" id2="ct_pronoun"/>
-            <order id1="ct_Morphosyntax" id2="ct_DCR"/>
-            <order id1="ct_POS" id2="ct_SpTag"/>
-            <order id1="ct_Attr" id2="ct_Top"/>
-            <order id1="ct_closePunctuation" id2="ct_punctuation"/>
-            <order id1="ct_diminutiveNoun" id2="ct_noun"/>
-            <order id1="ct_commonGender" id2="ct_grammaticalGender"/>
-            <order id1="ct_cessative" id2="ct_aspect"/>
-            <order id1="ct_VBP" id2="ct_SpTag"/>
-            <order id1="ct_interrogativeParticle" id2="ct_particle"/>
-            <order id1="ct_IN" id2="ct_SpTag"/>
-            <order id1="ct_definiteness" id2="ct_Morphosyntax"/>
+            <order id1="ct_imperative" id2="ct_verbFormMood"/>
+            <order id1="ct_indefiniteCardinalNumeral" id2="ct_numeral"/>
+            <order id1="ct_ftts" id2="ct_future"/>
+            <order id1="ct_person" id2="ct_Morphosyntax"/>
+            <order id1="ct_JJR" id2="ct_SpTag"/>
+            <order id1="ct_UH" id2="ct_SpTag"/>
+            <order id1="ct_nominativeCase" id2="ct_case"/>
             <order id1="ct_activeVoice" id2="ct_voice"/>
-            <order id1="ct_genericNumeral" id2="ct_numeral"/>
-            <order id1="ct_simplePreposition" id2="ct_preposition"/>
-            <order id1="ct_secondaryPunctuation" id2="ct_punctuation"/>
-            <order id1="ct_adverb" id2="ct_partOfSpeech"/>
-            <order id1="ct_possessiveDeterminer" id2="ct_determiner"/>
-            <order id1="ct_participleAdjective" id2="ct_adjective"/>
-            <order id1="ct_ordinalAdjective" id2="ct_adjective"/>
-            <order id1="ct_pts" id2="ct_past"/>
-            <order id1="ct_relationNoun" id2="ct_noun"/>
-            <order id1="ct_interrogativeOrdinalNumeral" id2="ct_numeral"/>
-            <order id1="ct_personalPronoun" id2="ct_pronoun"/>
-            <order id1="ct_NnCOMPnIDF" id2="ct_commonNoun"/>
-            <order id1="ct_VBG" id2="ct_SpTag"/>
-            <order id1="ct_wnJj" id2="ct_WordSense"/>
+            <order id1="ct_allusivePronoun" id2="ct_pronoun"/>
+            <order id1="ct_comparativeParticle" id2="ct_particle"/>
+            <order id1="ct_exclamativePoint" id2="ct_declarativePunctuation"/>
+            <order id1="ct_pts" id2="ct_simp"/>
+            <order id1="ct_multiplicativeNumeral" id2="ct_numeral"/>
+            <order id1="ct_cessative" id2="ct_aspect"/>
+            <order id1="ct_middleVoice" id2="ct_voice"/>
+            <order id1="ct_inchoative" id2="ct_aspect"/>
+            <order id1="ct_secondPerson" id2="ct_person"/>
+            <order id1="ct_LS" id2="ct_SpTag"/>
+            <order id1="ct_VBP" id2="ct_SpTag"/>
+            <order id1="ct_genitiveCase" id2="ct_case"/>
+            <order id1="ct_VBZ" id2="ct_SpTag"/>
+            <order id1="ct_questionMark" id2="ct_interrogativePunctuation"/>
+            <order id1="ct_neuter" id2="ct_grammaticalGender"/>
+            <order id1="ct_cont" id2="ct_Aspect"/>
+            <order id1="ct_fusedPreposition" id2="ct_preposition"/>
+            <order id1="ct_possessiveParticle" id2="ct_particle"/>
+            <order id1="ct_suspensionPoints" id2="ct_unclassifiedPunctuation"/>
+            <order id1="ct_$" id2="ct_SpTag"/>
+            <order id1="ct_relativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_psc" id2="ct_present"/>
+            <order id1="ct_interrogativeMultiplicativeNumeral" id2="ct_numeral"/>
+            <order id1="ct_reflexivePossessivePronoun" id2="ct_reflexivePersonalPronoun"/>
             <order id1="ct_FW" id2="ct_SpTag"/>
-            <order id1="ct_grammaticalNumber" id2="ct_Morphosyntax"/>
-            <order id1="ct_quote" id2="ct_unclassifiedPunctuation"/>
-            <order id1="ct_TO" id2="ct_SpTag"/>
-            <order id1="ct_NNS" id2="ct_SpTag"/>
-            <order id1="ct_partOfSpeech" id2="ct_Morphosyntax"/>
-            <order id1="ct_comma" id2="ct_secondaryPunctuation"/>
+            <order id1="ct_emphaticPronoun" id2="ct_pronoun"/>
+            <order id1="ct_fttc" id2="ct_future"/>
+            <order id1="ct_JJ" id2="ct_SpTag"/>
+            <order id1="ct_possessiveRelativePronoun" id2="ct_relativePronoun"/>
             <order id1="ct_ptps" id2="ct_past"/>
+            <order id1="ct_punctuation" id2="ct_partOfSpeech"/>
+            <order id1="ct_subordinatingConjunction" id2="ct_conjunction"/>
+            <order id1="ct_relativeDeterminer" id2="ct_determiner"/>
+            <order id1="ct_pts" id2="ct_past"/>
+            <order id1="ct_exclamativeDeterminer" id2="ct_determiner"/>
+            <order id1="ct_NNP" id2="ct_SpTag"/>
+            <order id1="ct_unclassifiedParticle" id2="ct_particle"/>
+            <order id1="ct_indefiniteArticle" id2="ct_article"/>
+            <order id1="ct_RBR" id2="ct_SpTag"/>
+            <order id1="ct_circumposition" id2="ct_adposition"/>
+            <order id1="ct_ptc" id2="ct_cont"/>
+            <order id1="ct_reflexiveDeterminer" id2="ct_determiner"/>
+            <order id1="ct_diminutiveNoun" id2="ct_noun"/>
+            <order id1="ct_fusedPrepositionPronoun" id2="ct_partOfSpeech"/>
+            <order id1="ct_deficientVerb" id2="ct_partOfSpeech"/>
+            <order id1="ct_interrogativeOrdinalNumeral" id2="ct_numeral"/>
+            <order id1="ct_demonstrativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_ProcOp_Add" id2="ct_ProcOp"/>
             <order id1="ct_ptpc" id2="ct_cont"/>
-            <order id1="ct_interrogativeDeterminer" id2="ct_determiner"/>
-            <order id1="ct_interrogativeRelativePronoun" id2="ct_relativePronoun"/>
-            <order id1="ct_plural" id2="ct_grammaticalNumber"/>
+            <order id1="ct_weakPersonalPronoun" id2="ct_personalPronoun"/>
+            <order id1="ct_Morphosyntax" id2="ct_DCR"/>
+            <order id1="ct_aspect" id2="ct_Morphosyntax"/>
+            <order id1="ct_irreflexivePersonalPronoun" id2="ct_personalPronoun"/>
+            <order id1="ct_fusedPrepositionDeterminer" id2="ct_fusedPreposition"/>
+            <order id1="ct_openParenthesis" id2="ct_openPunctuation"/>
+            <order id1="ct_masculine" id2="ct_grammaticalGender"/>
+            <order id1="ct_presentativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_adverb" id2="ct_partOfSpeech"/>
+            <order id1="ct_openPunctuation" id2="ct_punctuation"/>
+            <order id1="ct_VBN" id2="ct_SpTag"/>
+            <order id1="ct_imperfective" id2="ct_aspect"/>
+            <order id1="ct_ptps" id2="ct_simp"/>
+            <order id1="ct_definite" id2="ct_definiteness"/>
+            <order id1="ct_case" id2="ct_Morphosyntax"/>
+            <order id1="ct_reflexivePossessivePronoun" id2="ct_possessivePronoun"/>
+            <order id1="ct_massNoun" id2="ct_noun"/>
+            <order id1="ct_interrogativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_numeral" id2="ct_partOfSpeech"/>
+            <order id1="ct_verb" id2="ct_partOfSpeech"/>
+            <order id1="ct_infinitiveParticle" id2="ct_particle"/>
+            <order id1="ct_DCR" id2="ct_LinkArg"/>
+            <order id1="ct_interjection" id2="ct_partOfSpeech"/>
+            <order id1="ct_wnJj" id2="ct_WordSense"/>
+            <order id1="ct_quote" id2="ct_unclassifiedPunctuation"/>
+            <order id1="ct_adposition" id2="ct_partOfSpeech"/>
+            <order id1="ct_coordinationParticle" id2="ct_particle"/>
+            <order id1="ct_indefinite" id2="ct_definiteness"/>
+            <order id1="ct_WordSense" id2="ct_LinkArg"/>
+            <order id1="ct_mainPunctuation" id2="ct_punctuation"/>
+            <order id1="ct_pss" id2="ct_simp"/>
+            <order id1="ct_S" id2="ct_SpTag"/>
+            <order id1="ct_interrogativeAdverb" id2="ct_adverb"/>
+            <order id1="ct_indefiniteMultiplicativeNumeral" id2="ct_numeral"/>
+            <order id1="ct_Aspect" id2="ct_Tense"/>
+            <order id1="ct_unclassifiedPunctuation" id2="ct_punctuation"/>
+            <order id1="ct_indefinitePronoun" id2="ct_pronoun"/>
             <order id1="ct_pss" id2="ct_present"/>
+            <order id1="ct_:" id2="ct_SpTag"/>
+            <order id1="ct_fts" id2="ct_simp"/>
+            <order id1="ct_ptpc" id2="ct_past"/>
+            <order id1="ct_qualifierAdjective" id2="ct_adjective"/>
+            <order id1="ct_plural" id2="ct_grammaticalNumber"/>
+            <order id1="ct_VBG" id2="ct_SpTag"/>
+            <order id1="ct_grammaticalGender" id2="ct_Morphosyntax"/>
+            <order id1="ct_futurePerfect" id2="ct_future"/>
+            <order id1="ct_dativeCase" id2="ct_case"/>
+            <order id1="ct_pspc" id2="ct_cont"/>
+            <order id1="ct_wnRb" id2="ct_WordSense"/>
+            <order id1="ct_participle" id2="ct_verbFormMood"/>
+            <order id1="ct_passiveVoice" id2="ct_voice"/>
+            <order id1="ct_superlative" id2="ct_degree"/>
+            <order id1="ct_ptps" id2="ct_perf"/>
+            <order id1="ct_interrogativeRelativePronoun" id2="ct_interrogativePronoun"/>
+            <order id1="ct_WDT" id2="ct_SpTag"/>
+            <order id1="ct_closeParenthesis" id2="ct_closePunctuation"/>
+            <order id1="ct_perfective" id2="ct_aspect"/>
+            <order id1="ct_ordinalAdjective" id2="ct_adjective"/>
+            <order id1="ct_comparative" id2="ct_degree"/>
+            <order id1="ct_ftpc" id2="ct_perf"/>
+            <order id1="ct_possessiveAdjective" id2="ct_adjective"/>
+            <order id1="ct_psps" id2="ct_perf"/>
+            <order id1="ct_psps" id2="ct_present"/>
+            <order id1="ct_indicative" id2="ct_verbFormMood"/>
+            <order id1="ct_participleAdjective" id2="ct_adjective"/>
+            <order id1="ct_ftc" id2="ct_future"/>
+            <order id1="ct_interrogativeParticle" id2="ct_particle"/>
+            <order id1="ct_subjunctive" id2="ct_verbFormMood"/>
+            <order id1="ct_ftpc" id2="ct_cont"/>
+            <order id1="ct_ftps" id2="ct_simp"/>
+            <order id1="ct_-OPQ-" id2="ct_SpTag"/>
+            <order id1="ct_sinf" id2="ct_infinitive"/>
+            <order id1="ct_comma" id2="ct_secondaryPunctuation"/>
+            <order id1="ct_modal" id2="ct_verb"/>
+            <order id1="ct_partitiveArticle" id2="ct_article"/>
+            <order id1="ct_conditionalParticle" id2="ct_particle"/>
+            <order id1="ct_distinctiveParticle" id2="ct_particle"/>
+            <order id1="ct_feminine" id2="ct_grammaticalGender"/>
+            <order id1="ct_past" id2="ct_grammaticalTense"/>
+            <order id1="ct_ptc" id2="ct_past"/>
+            <order id1="ct_coordinatingConjunction" id2="ct_conjunction"/>
+            <order id1="ct_SYM" id2="ct_SpTag"/>
+            <order id1="ct_pspc" id2="ct_present"/>
+            <order id1="ct_invertedComma" id2="ct_secondaryPunctuation"/>
+            <order id1="ct_preposition" id2="ct_adposition"/>
+            <order id1="ct_adverbialPronoun" id2="ct_pronoun"/>
+            <order id1="ct_strongPersonalPronoun" id2="ct_personalPronoun"/>
+            <order id1="ct_SpTag" id2="ct_LinkArg"/>
+            <order id1="ct_closePunctuation" id2="ct_punctuation"/>
+            <order id1="ct_perf" id2="ct_Relativity"/>
+            <order id1="ct_pspc" id2="ct_perf"/>
+            <order id1="ct_DT" id2="ct_SpTag"/>
+            <order id1="ct_conditional" id2="ct_verbFormMood"/>
+            <order id1="ct_futureParticle" id2="ct_particle"/>
+            <order id1="ct_possessiveDeterminer" id2="ct_determiner"/>
+            <order id1="ct_thirdPerson" id2="ct_person"/>
+            <order id1="ct_personalPronoun" id2="ct_pronoun"/>
+            <order id1="ct_exclamativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_conjunction" id2="ct_partOfSpeech"/>
+            <order id1="ct_mainVerb" id2="ct_verb"/>
+            <order id1="ct_article" id2="ct_determiner"/>
+            <order id1="ct_#" id2="ct_SpTag"/>
+            <order id1="ct_fts" id2="ct_future"/>
+            <order id1="ct_gerund" id2="ct_verbFormMood"/>
+            <order id1="ct_particle" id2="ct_partOfSpeech"/>
+            <order id1="ct_fullArticle" id2="ct_definiteness"/>
+            <order id1="ct_PRP" id2="ct_SpTag"/>
+            <order id1="ct_IN" id2="ct_SpTag"/>
+            <order id1="ct_copula" id2="ct_verb"/>
+            <order id1="ct_positive" id2="ct_degree"/>
+            <order id1="ct_relativeAdverb" id2="ct_adverb"/>
+            <order id1="ct_shortArticle" id2="ct_definiteness"/>
+            <order id1="ct_linf" id2="ct_infinitive"/>
+            <order id1="ct_ftts" id2="ct_itpt"/>
+            <order id1="ct_PRP$" id2="ct_SpTag"/>
+            <order id1="ct_ptpc" id2="ct_perf"/>
+            <order id1="ct_relationNoun" id2="ct_noun"/>
+            <order id1="ct_singular" id2="ct_grammaticalNumber"/>
+            <order id1="ct_negativePronoun" id2="ct_pronoun"/>
+            <order id1="ct_plainVerb" id2="ct_verb"/>
+            <order id1="ct_-LRB-" id2="ct_("/>
+            <order id1="ct_reciprocalPronoun" id2="ct_pronoun"/>
+            <order id1="ct_degree" id2="ct_Morphosyntax"/>
+            <order id1="ct_accusativeCase" id2="ct_case"/>
+            <order id1="ct_slash" id2="ct_unclassifiedPunctuation"/>
+            <order id1="ct_possessivePronoun" id2="ct_pronoun"/>
+            <order id1="ct_NNS" id2="ct_SpTag"/>
+            <order id1="ct_compoundPreposition" id2="ct_preposition"/>
+            <order id1="ct_JJS" id2="ct_SpTag"/>
+            <order id1="ct_wnNn" id2="ct_WordSense"/>
+            <order id1="ct_collectivePronoun" id2="ct_pronoun"/>
+            <order id1="ct_VBD" id2="ct_SpTag"/>
+            <order id1="ct_NNPS" id2="ct_SpTag"/>
+            <order id1="ct_." id2="ct_SpTag"/>
+            <order id1="ct_properNoun" id2="ct_noun"/>
+            <order id1="ct_impersonalPronoun" id2="ct_pronoun"/>
+            <order id1="ct_NN" id2="ct_SpTag"/>
+            <order id1="ct_ftps" id2="ct_future"/>
+            <order id1="ct_fttc" id2="ct_cont"/>
+            <order id1="ct_semiColon" id2="ct_declarativePunctuation"/>
+            <order id1="ct_partOfSpeech" id2="ct_Morphosyntax"/>
+            <order id1="ct_secondaryPunctuation" id2="ct_punctuation"/>
+            <order id1="ct_fusedPronounAuxiliary" id2="ct_pronoun"/>
+            <order id1="ct_POS" id2="ct_SpTag"/>
+            <order id1="ct_determiner" id2="ct_partOfSpeech"/>
+            <order id1="ct_CD" id2="ct_SpTag"/>
+            <order id1="ct_EX" id2="ct_SpTag"/>
+            <order id1="ct_CC" id2="ct_SpTag"/>
+            <order id1="ct_negativeParticle" id2="ct_particle"/>
+            <order id1="ct_voiceNoun" id2="ct_noun"/>
+            <order id1="ct_presentParticipleAdjective" id2="ct_participleAdjective"/>
+            <order id1="ct_verbFormMood" id2="ct_Morphosyntax"/>
+            <order id1="ct_indefiniteOrdinalNumeral" id2="ct_numeral"/>
+            <order id1="ct_simplePreposition" id2="ct_preposition"/>
+            <order id1="ct_possessiveRelativePronoun" id2="ct_possessivePronoun"/>
+            <order id1="ct_pronominalAdverb" id2="ct_adverb"/>
+            <order id1="ct_reflexivePersonalPronoun" id2="ct_personalPronoun"/>
+            <order id1="ct_commonGender" id2="ct_grammaticalGender"/>
+            <order id1="ct_RBS" id2="ct_SpTag"/>
+            <order id1="ct_bullet" id2="ct_partOfSpeech"/>
+            <order id1="ct_ProcOp" id2="ct_Top"/>
+            <order id1="ct_existentialPronoun" id2="ct_pronoun"/>
+            <order id1="ct_grammaticalTense" id2="ct_Morphosyntax"/>
+            <order id1="ct_lightVerb" id2="ct_verb"/>
+            <order id1="ct_invertedQuestionMark" id2="ct_interrogativePunctuation"/>
+            <order id1="ct_grammaticalNumber" id2="ct_Morphosyntax"/>
+            <order id1="ct_pronoun" id2="ct_partOfSpeech"/>
+            <order id1="ct_imperfect" id2="ct_grammaticalTense"/>
+            <order id1="ct_Attr" id2="ct_Top"/>
+            <order id1="ct_point" id2="ct_declarativePunctuation"/>
+            <order id1="ct_genericNumeral" id2="ct_numeral"/>
+            <order id1="ct_present" id2="ct_grammaticalTense"/>
+            <order id1="ct_," id2="ct_SpTag"/>
+            <order id1="ct_interrogativePunctuation" id2="ct_mainPunctuation"/>
+            <order id1="ct_adjective" id2="ct_partOfSpeech"/>
+            <order id1="ct_infinitive" id2="ct_verbFormMood"/>
+            <order id1="ct_ftpc" id2="ct_future"/>
+            <order id1="ct_itpt" id2="ct_Relativity"/>
+            <order id1="ct_affirmativeParticle" id2="ct_particle"/>
+            <order id1="ct_pastPerfect" id2="ct_past"/>
+            <order id1="ct_commonNoun" id2="ct_noun"/>
+            <order id1="ct_vnVb" id2="ct_WordSense"/>
+            <order id1="ct_psps" id2="ct_simp"/>
+            <order id1="ct_(" id2="ct_SpTag"/>
+            <order id1="ct_definiteArticle" id2="ct_article"/>
+            <order id1="ct_ProcOp_Keep" id2="ct_ProcOp"/>
+            <order id1="ct_ProcOp_Replace" id2="ct_ProcOp"/>
         </conceptTypes>
         <relationTypes>
             <rtype id="rt_rcmod" idSignature="ct_LinkArg ct_LinkArg" label="rcmod">
@@ -1341,89 +1348,89 @@
             <rtype id="rt_MatProd" idSignature="ct_LinkArg ct_LinkArg" label="MatProd">
                 <translation descr="" label="MatProd" lang="en"/>
             </rtype>
-            <order id1="rt_Beneficiary" id2="rt_ThemRole"/>
-            <order id1="rt_Predicate" id2="rt_ThemRole"/>
+            <order id1="rt_cop" id2="rt_aux"/>
+            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
+            <order id1="rt_complm" id2="rt_comp"/>
+            <order id1="rt_mark" id2="rt_comp"/>
+            <order id1="rt_nsubj" id2="rt_subj"/>
+            <order id1="rt_prep" id2="rt_mod"/>
             <order id1="rt_cc" id2="rt_dep"/>
-            <order id1="rt_dep" id2="rt_SpRel"/>
-            <order id1="rt_prt" id2="rt_mod"/>
-            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
-            <order id1="rt_predet" id2="rt_mod"/>
-            <order id1="rt_csubjpass" id2="rt_csubj"/>
-            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
-            <order id1="rt_subj" id2="rt_arg"/>
-            <order id1="rt_prepc" id2="rt_prep"/>
-            <order id1="rt_Instrument" id2="rt_ThemRole"/>
+            <order id1="rt_arg" id2="rt_dep"/>
             <order id1="rt_advcl" id2="rt_mod"/>
             <order id1="rt_mod" id2="rt_dep"/>
-            <order id1="rt_Product" id2="rt_MatProd"/>
-            <order id1="rt_Theme" id2="rt_ThemRole"/>
-            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
-            <order id1="rt_mark" id2="rt_comp"/>
-            <order id1="rt_amod" id2="rt_mod"/>
-            <order id1="rt_Cause" id2="rt_ThemRole"/>
-            <order id1="rt_preconj" id2="rt_mod"/>
-            <order id1="rt_purpcl" id2="rt_mod"/>
-            <order id1="rt_Source" id2="rt_LocDstSrc"/>
-            <order id1="rt_Attribute" id2="rt_ThemRole"/>
-            <order id1="rt_Time" id2="rt_ThemRole"/>
-            <order id1="rt_dobj" id2="rt_obj"/>
-            <order id1="rt_Agent" id2="rt_ThemRole"/>
-            <order id1="rt_iobj" id2="rt_obj"/>
-            <order id1="rt_punct" id2="rt_dep"/>
-            <order id1="rt_acomp" id2="rt_comp"/>
-            <order id1="rt_nsubjpass" id2="rt_nsubj"/>
-            <order id1="rt_nsubj" id2="rt_subj"/>
-            <order id1="rt_advmod" id2="rt_mod"/>
-            <order id1="rt_rcmod" id2="rt_mod"/>
-            <order id1="rt_parataxis" id2="rt_dep"/>
-            <order id1="rt_xcomp" id2="rt_comp"/>
-            <order id1="rt_conj" id2="rt_dep"/>
-            <order id1="rt_det" id2="rt_mod"/>
-            <order id1="rt_complm" id2="rt_comp"/>
-            <order id1="rt_possessive" id2="rt_mod"/>
-            <order id1="rt_abbrev" id2="rt_mod"/>
-            <order id1="rt_prep" id2="rt_mod"/>
-            <order id1="rt_Recipent" id2="rt_ThemRole"/>
-            <order id1="rt_infmod" id2="rt_mod"/>
-            <order id1="rt_obj" id2="rt_comp"/>
-            <order id1="rt_partmod" id2="rt_mod"/>
-            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
-            <order id1="rt_Asset" id2="rt_ThemRole"/>
             <order id1="rt_tmod" id2="rt_mod"/>
-            <order id1="rt_pcomp" id2="rt_comp"/>
-            <order id1="rt_Location" id2="rt_LocDstSrc"/>
-            <order id1="rt_agent" id2="rt_arg"/>
-            <order id1="rt_compl" id2="rt_comp"/>
-            <order id1="rt_rel" id2="rt_comp"/>
-            <order id1="rt_Topic" id2="rt_ThemRole"/>
-            <order id1="rt_appos" id2="rt_mod"/>
-            <order id1="rt_ccomp" id2="rt_comp"/>
-            <order id1="rt_auxpass" id2="rt_aux"/>
-            <order id1="rt_Extent" id2="rt_ThemRole"/>
+            <order id1="rt_Instrument" id2="rt_ThemRole"/>
+            <order id1="rt_Recipent" id2="rt_ThemRole"/>
             <order id1="rt_Material" id2="rt_MatProd"/>
-            <order id1="rt_MatProd" id2="rt_ThemRole"/>
-            <order id1="rt_csubj" id2="rt_subj"/>
-            <order id1="rt_aux" id2="rt_dep"/>
-            <order id1="rt_Stimulus" id2="rt_ThemRole"/>
-            <order id1="rt_quantmod" id2="rt_mod"/>
-            <order id1="rt_cop" id2="rt_aux"/>
-            <order id1="rt_arg" id2="rt_dep"/>
-            <order id1="rt_attr" id2="rt_comp"/>
-            <order id1="rt_xsubj" id2="rt_sdep"/>
+            <order id1="rt_dobj" id2="rt_obj"/>
+            <order id1="rt_Experiencer" id2="rt_ThemRole"/>
+            <order id1="rt_rcmod" id2="rt_mod"/>
+            <order id1="rt_Predicate" id2="rt_ThemRole"/>
+            <order id1="rt_predet" id2="rt_mod"/>
+            <order id1="rt_csubjpass" id2="rt_csubj"/>
             <order id1="rt_poss" id2="rt_mod"/>
-            <order id1="rt_Patient" id2="rt_ThemRole"/>
-            <order id1="rt_Actor" id2="rt_ThemRole"/>
-            <order id1="rt_sdep" id2="rt_dep"/>
-            <order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
-            <order id1="rt_expl" id2="rt_dep"/>
-            <order id1="rt_number" id2="rt_mod"/>
-            <order id1="rt_measure" id2="rt_mod"/>
-            <order id1="rt_ref" id2="rt_dep"/>
-            <order id1="rt_neg" id2="rt_advmod"/>
+            <order id1="rt_csubj" id2="rt_subj"/>
             <order id1="rt_pobj" id2="rt_obj"/>
+            <order id1="rt_purpcl" id2="rt_mod"/>
+            <order id1="rt_compl" id2="rt_comp"/>
+            <order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
+            <order id1="rt_quantmod" id2="rt_mod"/>
+            <order id1="rt_amod" id2="rt_mod"/>
             <order id1="rt_num" id2="rt_mod"/>
-            <order id1="rt_nn" id2="rt_mod"/>
+            <order id1="rt_partmod" id2="rt_mod"/>
+            <order id1="rt_ThemRole" id2="rt_BinaryLink"/>
+            <order id1="rt_iobj" id2="rt_obj"/>
+            <order id1="rt_number" id2="rt_mod"/>
+            <order id1="rt_auxpass" id2="rt_aux"/>
             <order id1="rt_comp" id2="rt_arg"/>
+            <order id1="rt_attr" id2="rt_comp"/>
+            <order id1="rt_rel" id2="rt_comp"/>
+            <order id1="rt_acomp" id2="rt_comp"/>
+            <order id1="rt_Stimulus" id2="rt_ThemRole"/>
+            <order id1="rt_xsubj" id2="rt_sdep"/>
+            <order id1="rt_Source" id2="rt_LocDstSrc"/>
+            <order id1="rt_punct" id2="rt_dep"/>
+            <order id1="rt_Topic" id2="rt_ThemRole"/>
+            <order id1="rt_preconj" id2="rt_mod"/>
+            <order id1="rt_ref" id2="rt_dep"/>
+            <order id1="rt_Theme" id2="rt_ThemRole"/>
+            <order id1="rt_dep" id2="rt_SpRel"/>
+            <order id1="rt_Asset" id2="rt_ThemRole"/>
+            <order id1="rt_Actor" id2="rt_ThemRole"/>
+            <order id1="rt_det" id2="rt_mod"/>
+            <order id1="rt_pcomp" id2="rt_comp"/>
+            <order id1="rt_Time" id2="rt_ThemRole"/>
+            <order id1="rt_Extent" id2="rt_ThemRole"/>
+            <order id1="rt_neg" id2="rt_advmod"/>
+            <order id1="rt_sdep" id2="rt_dep"/>
+            <order id1="rt_ccomp" id2="rt_comp"/>
+            <order id1="rt_parataxis" id2="rt_dep"/>
+            <order id1="rt_expl" id2="rt_dep"/>
+            <order id1="rt_prepc" id2="rt_prep"/>
+            <order id1="rt_nn" id2="rt_mod"/>
+            <order id1="rt_prt" id2="rt_mod"/>
+            <order id1="rt_conj" id2="rt_dep"/>
+            <order id1="rt_Location" id2="rt_LocDstSrc"/>
+            <order id1="rt_Patient" id2="rt_ThemRole"/>
+            <order id1="rt_subj" id2="rt_arg"/>
+            <order id1="rt_Destination" id2="rt_LocDstSrc"/>
+            <order id1="rt_advmod" id2="rt_mod"/>
+            <order id1="rt_xcomp" id2="rt_comp"/>
+            <order id1="rt_agent" id2="rt_arg"/>
+            <order id1="rt_Product" id2="rt_MatProd"/>
+            <order id1="rt_abbrev" id2="rt_mod"/>
+            <order id1="rt_Beneficiary" id2="rt_ThemRole"/>
+            <order id1="rt_infmod" id2="rt_mod"/>
+            <order id1="rt_Agent" id2="rt_ThemRole"/>
+            <order id1="rt_Cause" id2="rt_ThemRole"/>
+            <order id1="rt_aux" id2="rt_dep"/>
+            <order id1="rt_measure" id2="rt_mod"/>
+            <order id1="rt_possessive" id2="rt_mod"/>
+            <order id1="rt_Attribute" id2="rt_ThemRole"/>
+            <order id1="rt_SpRel" id2="rt_BinaryLink"/>
+            <order id1="rt_appos" id2="rt_mod"/>
+            <order id1="rt_MatProd" id2="rt_ThemRole"/>
+            <order id1="rt_obj" id2="rt_comp"/>
         </relationTypes>
         <nestingTypes>
             <ntype id="_nt0" label="Nesting">
@@ -1445,4 +1452,48 @@
         </conformity>
         <modules/>
     </support>
+    <rule id="_rule1">
+        <hypt>
+            <graph id="_rule1_hypt" label="proc_article_indefinite" nature="rule" set="article">
+                <concept id="_c1" idType="ct_noun" x="180" y="130"/>
+                <concept id="_c2" idType="ct_indefiniteArticle" x="190" y="310"/>
+                <relation id="_r1" idType="rt_det" x="80" y="220"/>
+                <edge cid="_c1" label="2" rid="_r1"/>
+                <edge cid="_c2" label="1" rid="_r1"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule1_conc">
+                <concept id="_c3" x="660" y="130">
+                    <type id="ct_ProcOp_Add"/>
+                    <type id="ct_indefinite"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c1" idC2="_c3"/>
+        </conPts>
+    </rule>
+    <rule id="_rule2">
+        <hypt>
+            <graph id="_rule2_hypt" label="proc_article_definite" nature="rule" set="article">
+                <concept id="_c4" idType="ct_noun" x="180" y="160"/>
+                <concept id="_c6" idType="ct_definiteArticle" x="190" y="340"/>
+                <relation id="_r2" idType="rt_det" x="80" y="250"/>
+                <edge cid="_c4" label="2" rid="_r2"/>
+                <edge cid="_c6" label="1" rid="_r2"/>
+            </graph>
+        </hypt>
+        <conc>
+            <graph id="_rule2_conc">
+                <concept id="_c5" x="660" y="160">
+                    <type id="ct_ProcOp_Add"/>
+                    <type id="ct_definite"/>
+                </concept>
+            </graph>
+        </conc>
+        <conPts>
+            <couple idC1="_c4" idC2="_c5"/>
+        </conPts>
+    </rule>
 </cogxml>
