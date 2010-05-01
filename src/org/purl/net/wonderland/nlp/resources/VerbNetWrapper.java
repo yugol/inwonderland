@@ -28,12 +28,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.util.CodeTimer;
+import org.purl.net.wonderland.util.XML;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -41,6 +48,70 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public final class VerbNetWrapper {
 
+    public static class VerbForm {
+
+        private final String lemma;
+        private final Map<String, Set<String>> vnClasses = new Hashtable<String, Set<String>>();
+
+        public VerbForm(String lemma) {
+            this.lemma = lemma;
+        }
+
+        public String getLemma() {
+            return lemma;
+        }
+
+        public Set<String> getVnClasses() {
+            return vnClasses.keySet();
+        }
+
+        public void addVnClass(String vc) {
+            if (!vnClasses.containsKey(vc)) {
+                vnClasses.put(vc, new HashSet<String>());
+            }
+        }
+
+        public void addWnSense(String vc, String wnSense) {
+            addVnClass(vc);
+            vnClasses.get(vc).add(wnSense);
+        }
+
+        public Set<String> getWnSenses(String vc) {
+            return vnClasses.get(vc);
+        }
+    }
+
+    public static class VerbNetClassFile {
+
+        private final Document xmlDoc;
+
+        public VerbNetClassFile(String verbClass) throws Exception {
+            File classFile = new File(Configuration.getVerbNetDataFolder(), verbClass);
+            xmlDoc = XML.readXmlFile(classFile);
+        }
+
+        public List<VerbForm> getMembers() {
+            List<VerbForm> members = new ArrayList<VerbForm>();
+            NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
+            for (int i = 0; i < memberNodes.getLength(); ++i) {
+                Element member = (Element) memberNodes.item(i);
+                VerbForm vf = new VerbForm(member.getAttribute("name").replaceAll("\\?", ""));
+                Element verbClass = (Element) member.getParentNode().getParentNode();
+                String vc = verbClass.getAttribute("ID");
+                vf.addVnClass(vc);
+                String[] wnSenses = member.getAttribute("wn").split(" ");
+                for (String wnSense : wnSenses) {
+                    if (wnSense.length() > 0) {
+                        wnSense = wnSense.replaceAll("\\?", "");
+                        vf.addWnSense(vc, WordNetWrapper.senseKeyToOffsetKeyAlpha(wnSense));
+                    }
+                }
+                vf.addVnClass(vc);
+                members.add(vf);
+            }
+            return members;
+        }
+    }
     private static List<String> fileList;
     private static Map<String, VerbForm> verbForms;
 
@@ -53,12 +124,12 @@ public final class VerbNetWrapper {
             CodeTimer timer = new CodeTimer("VerbNetWrapper");
             File fileIndex = Configuration.getVerbNetFileIndexFile();
             if (!fileIndex.exists()) {
-                VerbNetUtil.buildVerbNetFileList(fileIndex);
+                buildVerbNetFileList(fileIndex);
             }
             loadFileIndex();
             File verbIndex = Configuration.getVerbNetVerbIndexFile();
             if (!verbIndex.exists()) {
-                VerbNetUtil.buildVerbNetVerbIndex(verbIndex);
+                buildVerbNetVerbIndex(verbIndex);
             }
             loadVerbIndex();
             timer.stop();
@@ -133,5 +204,55 @@ public final class VerbNetWrapper {
             return classes;
         }
         return null;
+    }
+
+    public static void buildVerbNetFileList(File indexFile) throws FileNotFoundException {
+        int fileCount = 0;
+        PrintWriter fout = new PrintWriter(indexFile);
+        File dataFolder = Configuration.getVerbNetDataFolder();
+        for (File f : dataFolder.listFiles()) {
+            if (f.isFile()) {
+                String name = f.getName();
+                if (name.lastIndexOf(".xml") == (name.length() - 4)) {
+                    fout.println(name);
+                    ++fileCount;
+                }
+            }
+        }
+        fout.close();
+        System.out.println("Found " + fileCount + " VerbNet verb class files.");
+    }
+
+    public static void buildVerbNetVerbIndex(File verbIndex) throws Exception {
+        PrintWriter fout = new PrintWriter(verbIndex);
+        Map<String, VerbForm> localVerbForms = new Hashtable<String, VerbForm>();
+        for (String name : VerbNetWrapper.getFileList()) {
+            VerbNetClassFile verbClass = new VerbNetClassFile(name);
+            for (VerbForm member : verbClass.getMembers()) {
+                VerbForm vf = localVerbForms.get(member.getLemma());
+                if (vf == null) {
+                    localVerbForms.put(member.getLemma(), member);
+                } else {
+                    String vc = member.getVnClasses().iterator().next();
+                    for (String vs : member.getWnSenses(vc)) {
+                        vf.addWnSense(vc, vs);
+                    }
+                }
+            }
+        }
+        for (VerbForm vf : localVerbForms.values()) {
+            for (String vc : vf.getVnClasses()) {
+                Set<String> senses = vf.getWnSenses(vc);
+                if (senses.size() > 0) {
+                    for (String vs : senses) {
+                        fout.println(vf.getLemma() + "," + vc + "," + vs);
+                    }
+                } else {
+                    fout.println(vf.getLemma() + "," + vc + ",");
+                    System.err.println(vf.getLemma());
+                }
+            }
+        }
+        fout.close();
     }
 }

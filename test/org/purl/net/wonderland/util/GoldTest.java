@@ -50,7 +50,6 @@ public class GoldTest {
     private static String corpusFileName = "bedtime/story.txt";
     private static int firstSentence = 1;
     private static int lastSentence = 42;
-    private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
     private static MAFCorpus corpus;
     private static Engine engine;
 
@@ -82,7 +81,7 @@ public class GoldTest {
         saveTestResults();
     }
 
-    @Test
+    // @Test
     public void buildCorpus() throws Exception {
         System.out.println("Building corpus - " + corpusFileName);
 
@@ -100,7 +99,7 @@ public class GoldTest {
         saveTestResults();
     }
 
-    // @Test
+    @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing corpus - " + corpusFileName);
 
@@ -175,7 +174,7 @@ public class GoldTest {
         System.out.println("");
         System.out.println(level);
         System.out.println("  Errors: " + errorCount + " errors in " + errSentences.size() + " sentences, for " + wordCount + " words in " + sentenceCount + " sentences");
-        System.out.println("Duration: " + timeFormatter.format(totalTime / wordCount) + " seconds per word, " + timeFormatter.format(totalTime / sentenceCount) + " seconds per sentence");
+        System.out.println("Duration: " + Formatting.formatTime(totalTime / wordCount) + " seconds per word, " + Formatting.formatTime(totalTime / sentenceCount) + " seconds per sentence");
 
         // fail if at least one error
         assertEquals(0, errorCount);

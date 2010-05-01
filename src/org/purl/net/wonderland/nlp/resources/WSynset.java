@@ -38,14 +38,14 @@ import org.purl.net.wonderland.util.Formatting;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class SynsetWrapper {
+public class WSynset {
 
     private final int index;
     private final String lemma;
     private final Synset sense;
     private IlfRep ilf;
 
-    public SynsetWrapper(int index, String item, Synset sense) {
+    public WSynset(int index, String item, Synset sense) {
         this.index = index;
         this.sense = sense;
         if (item != null) {

@@ -25,22 +25,24 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import edu.stanford.nlp.util.StringUtils;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Queue;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
+import org.purl.net.wonderland.nlp.wsd.Example.RoleData;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -151,18 +153,16 @@ public class Verb {
     }
 
     public List<Rule> getVerbNetProcs() throws Exception {
-        WKB kb = WsdManager.pers.getKb();
         List<Rule> procs = new ArrayList<Rule>();
-        Concept cHypt, cConc;
-        Relation rHypt, rConc;
         for (VerbFrame frame : frames) {
             for (Example example : frame.getExamples()) {
                 if (example.getType() == Example.Type.VerbNet) {
-                    CGraph cg = WsdManager.pers.parse(example.getText());
+                    String text = example.getText();
+                    CGraph cg = WsdManager.pers.parse(text);
                     Rule proc = new Rule(WKBUtil.newUniqueId(), WKBUtil.toProcName(lemma, WKBUtil.newUniqueId()));
 
 
-                    // find VERB_CT
+                    // find VERB
                     Concept verb = null;
                     Iterator<Concept> cit = cg.iteratorConcept();
                     while (cit.hasNext()) {
@@ -177,68 +177,83 @@ public class Verb {
                     }
 
 
-                    // create VERB_CT couple
-                    cHypt = new Concept(WKBUtil.newUniqueId());
-                    cHypt.setIndividual(kb.addIndividual(lemma));
-                    cHypt.setType(WKBUtil.VERB_CT);
-                    cHypt.addType(WKBUtil.toConceptTypeId("indicative"));
-                    cHypt.setHypothesis(true);
-                    proc.addVertex(cHypt);
-
-                    cConc = new Concept(WKBUtil.newUniqueId());
-                    cConc.setType(WKBUtil.LINKARG_CT);
-                    for (String sense : frame.getSenses()) {
-                        String ctId = kb.addConceptType(sense, null);
-                        cConc.addType(ctId);
-                    }
-                    cConc.setConclusion(true);
-                    proc.addVertex(cConc);
-
-                    proc.addCouple(cHypt.getId(), cConc.getId());
+                    // create VERB couple
+                    Concept[] vHyptConc = createVerbConceptHyptConc(proc, frame);
 
 
-                    // find dependencies
-                    Set<String> discovered = new HashSet<String>();
-                    discovered.add(verb.getId());
+                    // get context
+                    Iterator<String> rit = cg.iteratorAdjacents(verb.getId());
+                    while (rit.hasNext()) {
+                        Relation dep = cg.getRelation(rit.next());
 
-                    Iterator<String> sit1 = cg.iteratorAdjacents(verb.getId());
-                    while (sit1.hasNext()) {
-                        String rId = sit1.next();
-                        if (!discovered.contains(rId)) {
-                            discovered.add(rId);
-                            Relation r = cg.getRelation(rId);
-                            Iterator<String> sit2 = cg.iteratorAdjacents(rId);
-                            while (sit2.hasNext()) {
-                                String cId = sit2.next();
-                                if (!discovered.contains(cId)) {
-                                    Concept c = cg.getConcept(cId);
-                                    String individual = c.getIndividual();
-                                    for (Themrole tr : example.getArgs().keySet()) {
-                                        String content = example.getArgs().get(tr);
-                                        if (content.equals(individual)) {
-                                            cHypt = new Concept(WKBUtil.newUniqueId());
-                                            cHypt.setType(WKBUtil.LINKARG_CT);
-                                            cHypt.setHypothesis(true);
-                                            proc.addVertex(cHypt);
+                        List<Concept> connectedConcepts = getConnectedConcepts(cg, verb, dep);
 
-                                            cConc = new Concept(WKBUtil.newUniqueId());
-                                            cConc.setType(WKBUtil.LINKARG_CT);
-                                            cConc.setConclusion(true);
-                                            proc.addVertex(cConc);
+                        example.resetRoleHits();
+                        for (Concept connectedConcept : connectedConcepts) {
+                            String individual = connectedConcept.getIndividual();
+                            Map<Themrole, String> args = example.getArgs();
+                            for (Themrole role : args.keySet()) {
+                                String roleText = args.get(role);
+                                if (roleText.indexOf(individual) >= 0) {
+                                    role.incrementHits();
+                                }
+                            }
+                        }
 
-                                            proc.addCouple(cHypt.getId(), cConc.getId());
+                        Themrole role = example.getBestRole();
+                        if (role != null) {
+                            RoleData roleData = example.getRoleData(role);
 
+                            Relation[] rHyptConc = createRelationHyptConc(proc, role, dep);
 
-                                            rHypt = new Relation(WKBUtil.newUniqueId());
-                                            rHypt.setType(r.getType());
-                                            rHypt.setHypothesis(true);
-                                            proc.addVertex(rHypt);
+                            Iterator<CREdge> eit = cg.iteratorEdge(dep.getId());
+                            while (eit.hasNext()) {
+                                CREdge edge = eit.next();
+                                int numOrder = edge.getNumOrder();
+                                Concept c = cg.getConcept(edge);
+                                if (c == verb) {
+                                    proc.addEdge(vHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
+                                    proc.addEdge(vHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
+                                } else {
+                                    if (roleData.getPrep() == null) {
+                                        Concept[] cHyptConc = createConceptHyptConc(proc);
+                                        proc.addEdge(cHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
+                                        proc.addEdge(cHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
+                                        proc.addCouple(cHyptConc[0].getId(), cHyptConc[1].getId());
+                                    } else {
+                                        Concept cHypt = new Concept(WKBUtil.newUniqueId());
+                                        cHypt.setType(WKBUtil.ADPOSITION_CT);
+                                        cHypt.setIndividual(c.getIndividual());
+                                        cHypt.setHypothesis(true);
+                                        proc.addVertex(cHypt);
+                                        proc.addEdge(cHypt.getId(), rHyptConc[0].getId(), numOrder);
 
-                                            rConc = new Relation(WKBUtil.newUniqueId());
-                                            rConc.setType(WKBUtil.toRelationTypeId(tr.getVnThemrole()));
-                                            rConc.setConclusion(true);
-                                            proc.addVertex(rConc);
+                                        // add level 2
+                                        Iterator<String> rit2 = cg.iteratorAdjacents(c.getId());
+                                        while (rit2.hasNext()) {
+                                            Relation dep2 = cg.getRelation(rit2.next());
+                                            if (dep2 != dep) {
 
+                                                Relation rHypt = new Relation(WKBUtil.newUniqueId());
+                                                rHypt.setType(dep2.getType());
+                                                rHypt.setHypothesis(true);
+                                                proc.addVertex(rHypt);
+
+                                                Iterator<CREdge> eit2 = cg.iteratorEdge(dep2.getId());
+                                                while (eit2.hasNext()) {
+                                                    CREdge edge2 = eit2.next();
+                                                    int numOrder2 = edge2.getNumOrder();
+                                                    Concept c2 = cg.getConcept(edge2);
+                                                    if (c2 == c) {
+                                                        proc.addEdge(cHypt.getId(), rHypt.getId(), numOrder2);
+                                                    } else {
+                                                        Concept[] cHyptConc2 = createConceptHyptConc(proc);
+                                                        proc.addEdge(cHyptConc2[0].getId(), rHypt.getId(), numOrder);
+                                                        proc.addEdge(cHyptConc2[1].getId(), rHyptConc[1].getId(), numOrder);
+                                                        proc.addCouple(cHyptConc2[0].getId(), cHyptConc2[1].getId());
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -253,5 +268,105 @@ public class Verb {
             }
         }
         return procs;
+    }
+
+    private Concept[] createVerbConceptHyptConc(Rule proc, VerbFrame frame) {
+        WKB kb = WsdManager.pers.getKb();
+
+        Concept hypt, conc;
+
+        hypt = new Concept(WKBUtil.newUniqueId());
+        hypt.setIndividual(kb.addIndividual(lemma));
+        hypt.setType(WKBUtil.VERB_CT);
+        hypt.setHypothesis(true);
+        proc.addVertex(hypt);
+
+        conc = new Concept(WKBUtil.newUniqueId());
+        conc.setType(WKBUtil.PROCOP_ADD_CT);
+        for (String sense : frame.getSenses()) {
+            String ctId = kb.addConceptType(sense, null);
+            conc.addType(ctId);
+        }
+        conc.setConclusion(true);
+        proc.addVertex(conc);
+
+        proc.addCouple(hypt.getId(), conc.getId());
+
+        Concept[] hyptConc = new Concept[2];
+        hyptConc[0] = hypt;
+        hyptConc[1] = conc;
+        return hyptConc;
+    }
+
+    private Concept[] createConceptHyptConc(Rule proc) {
+        Concept hypt, conc;
+
+        hypt = new Concept(WKBUtil.newUniqueId());
+        hypt.setType(WKBUtil.LINKARG_CT);
+        hypt.setHypothesis(true);
+        proc.addVertex(hypt);
+
+        conc = new Concept(WKBUtil.newUniqueId());
+        conc.setType(WKBUtil.PROCOP_KEEP_CT);
+        conc.setConclusion(true);
+        proc.addVertex(conc);
+
+        Concept[] hyptConc = new Concept[2];
+        hyptConc[0] = hypt;
+        hyptConc[1] = conc;
+        return hyptConc;
+    }
+
+    private Relation[] createRelationHyptConc(Rule proc, Themrole role, Relation prototype) {
+        Relation hypt, conc;
+
+        hypt = new Relation(WKBUtil.newUniqueId());
+        hypt.setType(prototype.getType());
+        hypt.setHypothesis(true);
+        proc.addVertex(hypt);
+
+        conc = new Relation(WKBUtil.newUniqueId());
+        conc.setType(WKBUtil.toRelationTypeId(role.getVnThemrole()));
+        conc.setConclusion(true);
+        proc.addVertex(conc);
+
+        Relation[] hyptConc = new Relation[2];
+        hyptConc[0] = hypt;
+        hyptConc[1] = conc;
+        return hyptConc;
+    }
+
+    private List<Concept> getConnectedConcepts(CGraph cg, Concept start, Relation direction) {
+        List<Concept> cAdjacents = new ArrayList<Concept>();
+
+        start.setConclusion(true);
+        direction.setConclusion(true);
+
+        Queue<String> bfs = new LinkedList<String>();
+        bfs.add(direction.getId());
+
+        while (bfs.peek() != null) {
+            Iterator<String> it = cg.iteratorAdjacents(bfs.remove());
+            while (it.hasNext()) {
+                String id = it.next();
+                Concept c = cg.getConcept(id);
+                if (c != null) {
+                    if (c.isHypothesis()) {
+                        c.setConclusion(true);
+                        bfs.add(c.getId());
+                        cAdjacents.add(c);
+                    }
+                } else {
+                    Relation r = cg.getRelation(id);
+                    if (r.isHypothesis()) {
+                        r.setConclusion(true);
+                        bfs.add(r.getId());
+                    }
+                }
+            }
+        }
+
+        WKBUtil.setAllConclusion(cg, false);
+        return cAdjacents;
     }
 }

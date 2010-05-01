@@ -144,6 +144,7 @@ public final class WKBUtil {
     public static final String ADJECTIVE_CT = toConceptTypeId(ADJECTIVE);
     public static final String PROPERNOUN_CT = toConceptTypeId(PROPERNOUN);
     public static final String POSSESSIVEADVERB_CT = toConceptTypeId(POSSESIVEADJECIVE);
+    public static final String ADPOSITION_CT = toConceptTypeId(ADPOSITION);
     // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";
@@ -184,7 +185,7 @@ public final class WKBUtil {
     }
 
     public static String toConceptId(WTagging tagging, int index) {
-        return index + "";
+        return index + "-" + handleQuotes(tagging.getWrittenForm());
     }
 
     public static String toRelationId(String label, int index) {
@@ -201,7 +202,13 @@ public final class WKBUtil {
     }
 
     public static int getConceptIndex(String id) {
-        return Integer.parseInt(id);
+        String idStr = id.split("-")[0];
+        return Integer.parseInt(idStr);
+    }
+
+    public static String getConceptWrittenForm(String id) {
+        String writtenForm = id.split("-")[1];
+        return writtenForm;
     }
 
     public static int getLabelIndex(String label) {

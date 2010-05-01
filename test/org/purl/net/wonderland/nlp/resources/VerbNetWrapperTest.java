@@ -27,6 +27,7 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import static org.junit.Assert.*;
 
 /**

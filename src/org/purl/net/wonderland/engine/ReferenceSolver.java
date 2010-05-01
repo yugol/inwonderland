@@ -40,6 +40,7 @@ import org.purl.net.wonderland.kb.WKB;
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
+ * anaphora resolution
  */
 public class ReferenceSolver {
 

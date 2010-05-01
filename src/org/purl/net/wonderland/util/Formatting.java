@@ -33,6 +33,7 @@ import net.didion.jwnl.data.POS;
  */
 public final class Formatting {
 
+    private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
     private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
 
     public static String toWordNetOffset(long offset) {
@@ -81,5 +82,9 @@ public final class Formatting {
             return "2";
         }
         return null;
+    }
+
+    static String formatTime(double d) {
+        return timeFormatter.format(d);
     }
 }
