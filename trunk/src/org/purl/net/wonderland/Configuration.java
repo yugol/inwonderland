@@ -140,7 +140,7 @@ public final class Configuration {
     }
 
     public static void init() {
-        CollocationManager.init();
+        // CollocationManager.init();
         MorphologicalDatabase.init();
         WordNetWrapper.init();
         VerbNetWrapper.init();

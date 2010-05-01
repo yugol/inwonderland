@@ -3,7 +3,7 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -32,8 +32,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.Compare;
 
@@ -43,7 +43,7 @@ import org.purl.net.wonderland.util.Compare;
  */
 public class Engine {
 
-    private WKnowledgeBase kb;
+    private WKB kb;
     private File lastFile = null;
     private Personality personality;
 
@@ -72,7 +72,7 @@ public class Engine {
         } else {
             lastFile = file;
         }
-        kb = new WKnowledgeBase(file);
+        kb = new WKB(file);
         personality.setKb(kb);
     }
 
@@ -90,20 +90,20 @@ public class Engine {
     }
 
     public CGraph getFact(int idx, String level) {
-        if (KbUtil.level1.equals(level)) {
-            return kb.getFactGraph(KbUtil.toLevel1FactId(idx));
+        if (WKBUtil.level1.equals(level)) {
+            return kb.getFactGraph(WKBUtil.toLevel1FactId(idx));
         }
-        if (KbUtil.level2.equals(level)) {
-            return kb.getFactGraph(KbUtil.toLevel2FactId(idx));
+        if (WKBUtil.level2.equals(level)) {
+            return kb.getFactGraph(WKBUtil.toLevel2FactId(idx));
         }
         return null;
     }
 
     public int getFactCount(String level) {
-        if (KbUtil.level1.equals(level)) {
+        if (WKBUtil.level1.equals(level)) {
             return kb.getLevel1FactCount();
         }
-        if (KbUtil.level2.equals(level)) {
+        if (WKBUtil.level2.equals(level)) {
             return kb.getLevel2FactCount();
         }
         return 0;
@@ -135,8 +135,8 @@ public class Engine {
 class ConceptIdComparator implements Comparator<Concept> {
 
     public int compare(Concept o1, Concept o2) {
-        int id1 = KbUtil.getConceptIndex(o1.getId());
-        int id2 = KbUtil.getConceptIndex(o2.getId());
+        int id1 = WKBUtil.getConceptIndex(o1.getId());
+        int id2 = WKBUtil.getConceptIndex(o2.getId());
         return Compare.compare(id1, id2);
     }
 }

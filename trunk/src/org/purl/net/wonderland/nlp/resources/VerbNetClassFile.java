@@ -27,8 +27,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
-import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -38,11 +36,11 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class VNClassFile {
+public class VerbNetClassFile {
 
     private final Document xmlDoc;
 
-    public VNClassFile(String verbClass) throws Exception {
+    public VerbNetClassFile(String verbClass) throws Exception {
         File classFile = new File(Configuration.getVerbNetDataFolder(), verbClass);
         xmlDoc = XML.readXmlFile(classFile);
     }

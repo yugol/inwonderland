@@ -26,6 +26,7 @@ package org.purl.net.wonderland.nlp;
 import java.util.List;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
+import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
@@ -43,12 +44,12 @@ public class MaPennToWTaggingMapper {
             if (tagging.isCollocation()) {
                 // System.out.println(tagging.getWrittenForm());
                 String posTypes = CollocationManager.getTypes(tagging.getLemma());
-                if ("adverb".equals(posTypes)) {
-                    tagging.setPartOfSpeech("adverb");
+                if (WKBUtil.ADVERB.equals(posTypes)) {
+                    tagging.setPartOfSpeech(WKBUtil.ADVERB);
                     continue;
                 }
-                if ("adjective".equals(posTypes)) {
-                    tagging.setPartOfSpeech("adjective");
+                if (WKBUtil.ADJECTIVE.equals(posTypes)) {
+                    tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
                     continue;
                 }
             }
@@ -102,7 +103,7 @@ public class MaPennToWTaggingMapper {
     public void mapDT(WTagging tagging, String tag) {
         String maTag = tagging.getPartsOfSpeech();
         if ("av-dx".equals(maTag)) {
-            tagging.setPartOfSpeech("adverb");
+            tagging.setPartOfSpeech(WKBUtil.ADVERB);
             return;
         }
 
@@ -122,9 +123,9 @@ public class MaPennToWTaggingMapper {
         } else if (ar == null && jjind == null && jjdem != null && pndem != null && pnpos == null) {
             tagging.copyWTags(jjdem);
             if (maTag != null && tagging.getPartsOfSpeech().charAt(0) == 'd') {
-                tagging.setPartOfSpeech("demonstrativeDeterminer");
+                tagging.setPartOfSpeech(WKBUtil.DEMONSTRATIVEDETERMINER);
             } else {
-                tagging.setPartOfSpeech("demonstrativeDeterminer;demonstrativePronoun");
+                tagging.setPartOfSpeech(WKBUtil.DEMONSTRATIVEDETERMINER + WKBUtil.TYPE_SEPARATOR + WKBUtil.DEMONSTRATICEPRONOUN);
             }
         } else if (ar == null && jjind == null && jjdem == null && pndem == null && pnpos != null) {
             tagging.copyWTags(pnpos);
@@ -147,42 +148,42 @@ public class MaPennToWTaggingMapper {
                 String number = TextToNumber.getValue(word);
                 if (number != null) {
                     tagging.setLemma(number);
-                    tagging.setPartOfSpeech("cardinalNumeral");
+                    tagging.setPartOfSpeech(WKBUtil.CARDINALNUMBER);
                     return;
                 }
             } else if (maTag.indexOf("v") == 0) {
                 if (maTag.charAt(2) == 'g') {
-                    tagging.setPartOfSpeech("verb");
-                    tagging.setVerbFormMood("gerund");
+                    tagging.setPartOfSpeech(WKBUtil.VERB);
+                    tagging.setVerbFormMood(WKBUtil.GERUND);
                     return;
                 } else if (maTag.charAt(2) == 'd') {
-                    tagging.setPartOfSpeech("verb");
-                    tagging.setVerbFormMood("indicative");
-                    tagging.setGrammaticalTense("past");
+                    tagging.setPartOfSpeech(WKBUtil.VERB);
+                    tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                    tagging.setGrammaticalTense(WKBUtil.PAST);
                     return;
                 } else if (maTag.charAt(2) == 'z') {
-                    tagging.setPartOfSpeech("verb");
-                    tagging.setVerbFormMood("indicative");
-                    tagging.setGrammaticalTense("present");
-                    tagging.setGrammaticalNumber("singular");
-                    tagging.setPerson("thirdPerson");
+                    tagging.setPartOfSpeech(WKBUtil.VERB);
+                    tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                    tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                    tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
+                    tagging.setPerson(WKBUtil.THIRDPERSON);
                     return;
                 }
             } else if (maTag.indexOf("vvg") > 0) {
-                tagging.setVerbFormMood("gerund");
+                tagging.setVerbFormMood(WKBUtil.GERUND);
             }
         }
 
         if (tag.indexOf("NNP") == 0) {
-            tagging.setPartOfSpeech("properNoun");
+            tagging.setPartOfSpeech(WKBUtil.PROPERNOUN);
         } else {
-            tagging.setPartOfSpeech("commonNoun");
+            tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
         }
 
         if (tag.charAt(tag.length() - 1) == 'S') {
-            tagging.setGrammaticalNumber("plural");
+            tagging.setGrammaticalNumber(WKBUtil.PLURAL);
         } else {
-            tagging.setGrammaticalNumber("singular");
+            tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
         }
 
     }
@@ -195,7 +196,7 @@ public class MaPennToWTaggingMapper {
         if (vb != null) {
             tagging.copyWTagsAndLemma(vb);
         } else {
-            tagging.setPartOfSpeech("verb");
+            tagging.setPartOfSpeech(WKBUtil.VERB);
             String maTag = tagging.getPartsOfSpeech();
 
             if (maTag != null) {
@@ -208,87 +209,87 @@ public class MaPennToWTaggingMapper {
             }
 
             if (tag.equals("VBZ")) {
-                tagging.setVerbFormMood("indicative");
-                tagging.setGrammaticalNumber("singular");
-                tagging.setPerson("thirdPerson");
-                tagging.setGrammaticalTense("present");
+                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
+                tagging.setPerson(WKBUtil.THIRDPERSON);
+                tagging.setGrammaticalTense(WKBUtil.PRESENT);
             } else if (tag.equals("VBP")) {
                 if (maTag != null) {
                     if (maTag.indexOf("j") == 0) {
-                        tagging.setPartOfSpeech("adjective");
+                        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
                         return;
                     } else if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPartOfSpeech("modal");
+                            tagging.setPartOfSpeech(WKBUtil.MODAL);
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setGrammaticalTense("past");
+                                tagging.setGrammaticalTense(WKBUtil.PAST);
                             } else {
-                                tagging.setGrammaticalTense("present");
+                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'd') {
-                            tagging.setVerbFormMood("indicative");
-                            tagging.setGrammaticalTense("past");
+                            tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                            tagging.setGrammaticalTense(WKBUtil.PAST);
                             return;
                         }
                     }
                 }
-                tagging.setVerbFormMood("indicative");
-                tagging.setGrammaticalTense("present");
+                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                tagging.setGrammaticalTense(WKBUtil.PRESENT);
             } else if (tag.equals("VB")) {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPartOfSpeech("modal");
+                            tagging.setPartOfSpeech(WKBUtil.MODAL);
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setGrammaticalTense("past");
+                                tagging.setGrammaticalTense(WKBUtil.PAST);
                             } else {
-                                tagging.setGrammaticalTense("present");
+                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'i') {
-                            tagging.setVerbFormMood("infinitive");
+                            tagging.setVerbFormMood(WKBUtil.INFINITIVE);
                         } else if (maTag.charAt(2) == 'b') {
                             if (maTag.charAt(1) == 'b') {
-                                tagging.setVerbFormMood("infinitive");
+                                tagging.setVerbFormMood(WKBUtil.INFINITIVE);
                             } else {
-                                tagging.setVerbFormMood("indicative");
-                                tagging.setGrammaticalTense("present");
+                                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
                             }
                         } else if (maTag.charAt(2) == 'd') {
-                            tagging.setVerbFormMood("indicative");
-                            tagging.setGrammaticalTense("past");
+                            tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                            tagging.setGrammaticalTense(WKBUtil.PAST);
                         } else if (maTag.charAt(2) == 'n') {
-                            tagging.setVerbFormMood("participle");
-                            tagging.setGrammaticalTense("past");
+                            tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
+                            tagging.setGrammaticalTense(WKBUtil.PAST);
                         }
                     } else if (maTag.indexOf("j") == 0) {
                         IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
                         if (wnWord == null) {
                             wnWord = WordNetWrapper.lookup(word, POS.NOUN);
                             if (wnWord != null) {
-                                tagging.setPartOfSpeech("commonNoun");
-                                tagging.setGrammaticalNumber("singular");
+                                tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
+                                tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
                             }
                         } else {
-                            tagging.setPartOfSpeech("adjective");
+                            tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
                         }
                     }
                 }
             } else if (tag.equals("VBD")) {
-                tagging.setVerbFormMood("indicative");
-                tagging.setGrammaticalTense("past");
+                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                tagging.setGrammaticalTense(WKBUtil.PAST);
             } else if (tag.equals("VBG")) {
                 if (maTag != null) {
                     if (maTag.equals("j-vvg")) {
-                        tagging.setPartOfSpeech("adjective");
-                        tagging.setVerbFormMood("gerund");
+                        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
+                        tagging.setVerbFormMood(WKBUtil.GERUND);
                         return;
                     }
                 }
-                tagging.setVerbFormMood("gerund");
+                tagging.setVerbFormMood(WKBUtil.GERUND);
                 if (word.equals("being")) {
                     tagging.setLemma("be");
                 }
@@ -296,13 +297,13 @@ public class MaPennToWTaggingMapper {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(2) == 'g') {
-                            tagging.setVerbFormMood("gerund");
+                            tagging.setVerbFormMood(WKBUtil.GERUND);
                             return;
                         }
                     }
                 }
-                tagging.setVerbFormMood("participle");
-                tagging.setGrammaticalTense("past");
+                tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
+                tagging.setGrammaticalTense(WKBUtil.PAST);
             }
         }
     }
@@ -312,8 +313,8 @@ public class MaPennToWTaggingMapper {
 
         if (tagging.isCollocation()) {
             String pos = CollocationManager.getTypes(word);
-            if (pos.indexOf("adverb") >= 0) {
-                tagging.setPartOfSpeech("adverb");
+            if (pos.indexOf(WKBUtil.ADVERB) >= 0) {
+                tagging.setPartOfSpeech(WKBUtil.ADVERB);
                 return;
             }
         }
@@ -329,21 +330,21 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("c") == 0) {
-                    tagging.setPartOfSpeech("subordinatingConjunction");
+                    tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION);
                     return;
                 } else if (maTag.indexOf("p") == 0) {
-                    tagging.setPartOfSpeech("adposition");
+                    tagging.setPartOfSpeech(WKBUtil.ADPOSITION);
                     return;
                 } else if (maTag.equals("vvg")) {
-                    tagging.setPartOfSpeech("verb");
-                    tagging.setVerbFormMood("gerund");
+                    tagging.setPartOfSpeech(WKBUtil.VERB);
+                    tagging.setVerbFormMood(WKBUtil.GERUND);
                     return;
                 } else if (maTag.equals("a-acp")) {
-                    tagging.setPartOfSpeech("adverb");
+                    tagging.setPartOfSpeech(WKBUtil.ADVERB);
                     return;
                 }
             }
-            tagging.setPartOfSpeech("subordinatingConjunction;adposition");
+            tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION + WKBUtil.TYPE_SEPARATOR + WKBUtil.ADPOSITION);
         }
     }
 
@@ -354,7 +355,7 @@ public class MaPennToWTaggingMapper {
         if (cjcrd != null) {
             tagging.copyWTags(cjcrd);
         } else {
-            tagging.setPartOfSpeech("coordinatingConjunction");
+            tagging.setPartOfSpeech(WKBUtil.COORDINATINGCONJUNCTION);
         }
     }
 
@@ -385,15 +386,16 @@ public class MaPennToWTaggingMapper {
 
         if (rb != null) {
             tagging.copyWTagsAndLemma(rb);
+            tagging.setPartOfSpeech(WKBUtil.ADVERB);
             return;
         } else {
-            tagging.setPartOfSpeech("adverb");
+            tagging.setPartOfSpeech(WKBUtil.ADVERB);
         }
 
         if (tag.equals("RBR")) {
-            tagging.setDegree("comparative");
+            tagging.setDegree(WKBUtil.COMPARATIVE);
         } else if (tag.equals("RBS")) {
-            tagging.setDegree("superlative");
+            tagging.setDegree(WKBUtil.SUPERLATIVE);
         }
 
         String maTag = tagging.getPartsOfSpeech();
@@ -401,22 +403,22 @@ public class MaPennToWTaggingMapper {
             if (maTag.indexOf("av") == 0) {
                 // if (maTag.indexOf("-j") == 2) {
                 if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
-                    tagging.setPartOfSpeech("mannerAdverb");
+                    tagging.setPartOfSpeech(WKBUtil.MANNERADVERB);
                     tagging.setLemma(word);
                 }
                 // }
                 if (maTag.indexOf('c') > 0) {
-                    tagging.setDegree("comparative");
+                    tagging.setDegree(WKBUtil.COMPARATIVE);
                 }
             } else if (maTag.indexOf('n') == 0) {
-                tagging.setPartOfSpeech("commonNoun");
+                tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
                 if (maTag.indexOf("1") > 0) {
-                    tagging.setGrammaticalNumber("singular");
+                    tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
                 } else if (maTag.indexOf('2') > 0) {
-                    tagging.setGrammaticalNumber("plural");
+                    tagging.setGrammaticalNumber(WKBUtil.PLURAL);
                 }
             } else if (maTag.indexOf("jc") == 0) {
-                tagging.setDegree("comparative");
+                tagging.setDegree(WKBUtil.COMPARATIVE);
             }
         }
     }
@@ -457,29 +459,29 @@ public class MaPennToWTaggingMapper {
         String nmord = TextToNumber.getValue(word);
         if (nmord != null) {
             tagging.setLemma(nmord);
-            tagging.setPartOfSpeech("ordinalAdjective");
+            tagging.setPartOfSpeech(WKBUtil.ORDINALADJECTIVE);
             return;
         }
 
-        tagging.setPartOfSpeech("adjective");
+        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
         if (tag.equals("JJR")) {
-            tagging.setDegree("comparative");
+            tagging.setDegree(WKBUtil.COMPARATIVE);
         } else if (tag.equals("JJS")) {
-            tagging.setDegree("superlative");
+            tagging.setDegree(WKBUtil.SUPERLATIVE);
         }
 
         if (maTag != null) {
             if ("j-vvn".equals(maTag)) {
-                tagging.setVerbFormMood("participle");
-                tagging.setGrammaticalTense("past");
+                tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
+                tagging.setGrammaticalTense(WKBUtil.PAST);
             } else if (maTag.indexOf("vvg") >= 0) {
-                tagging.setVerbFormMood("gerund");
+                tagging.setVerbFormMood(WKBUtil.GERUND);
                 if (maTag.equals("vvg")) {
-                    tagging.setPartOfSpeech("verb");
-                    tagging.setVerbFormMood("gerund");
+                    tagging.setPartOfSpeech(WKBUtil.VERB);
+                    tagging.setVerbFormMood(WKBUtil.GERUND);
                 }
             } else if (maTag.indexOf("av") == 0) {
-                tagging.setPartOfSpeech("adverb");
+                tagging.setPartOfSpeech(WKBUtil.ADVERB);
                 return;
             }
         }
@@ -508,19 +510,19 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("cs") == 0) {
-                    tagging.setPartOfSpeech("subordinatingConjunction");
+                    tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION);
                 } else if (maTag.indexOf("r-crq") == 0) {
-                    tagging.setPartOfSpeech("relativePronoun");
+                    tagging.setPartOfSpeech(WKBUtil.RELATIVEPRONOUN);
                 }
             } else {
-                tagging.setPartOfSpeech("subordinatingConjunction;relativePronoun");
+                tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION + WKBUtil.TYPE_SEPARATOR + WKBUtil.RELATIVEPRONOUN);
             }
         }
     }
 
     void mapCD(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        tagging.setPartOfSpeech("cardinalNumeral");
+        tagging.setPartOfSpeech(WKBUtil.CARDINALNUMBER);
         tagging.setLemma(TextToNumber.getValue(word));
 
         if (tagging.getLemma() == null) {
@@ -541,13 +543,13 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("png") == 0) {
-                    tagging.setPartOfSpeech("possessivePronoun");
+                    tagging.setPartOfSpeech(WKBUtil.POSSESIVEPRONOUN);
                 } else if (maTag.indexOf("po") == 0) {
-                    tagging.setPartOfSpeech("possessiveAdjective");
+                    tagging.setPartOfSpeech(WKBUtil.POSSESIVEADJECIVE);
                 }
             } else {
                 tagging.setLemma(pnpos.getLemma());
-                tagging.setPartOfSpeech("possessiveAdjective;possessivePronoun");
+                tagging.setPartOfSpeech(WKBUtil.POSSESIVEADJECIVE + WKBUtil.TYPE_SEPARATOR + WKBUtil.POSSESIVEPRONOUN);
             }
         }
     }
@@ -563,17 +565,17 @@ public class MaPennToWTaggingMapper {
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if ("q-crq".equals(maTag)) {
-                tagging.setPartOfSpeech("interrogativeAdverb");
+                tagging.setPartOfSpeech(WKBUtil.INTERROGATIVEADVERB);
             } else if ("c-crq".equals(maTag)) {
-                tagging.setPartOfSpeech("relativeAdverb");
+                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
             } else if ("vhdx".equals(maTag)) {
-                tagging.setPartOfSpeech("verb");
-                tagging.setVerbFormMood("indicative");
-                tagging.setGrammaticalTense("past");
+                tagging.setPartOfSpeech(WKBUtil.VERB);
+                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
+                tagging.setGrammaticalTense(WKBUtil.PAST);
             } else if ("a-acp".equals(maTag)) {
-                tagging.setPartOfSpeech("relativeAdverb");
+                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
             } else if ("cs".equals(maTag)) {
-                tagging.setPartOfSpeech("relativeAdverb");
+                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
             }
         }
     }
@@ -584,9 +586,9 @@ public class MaPennToWTaggingMapper {
 
         if (word.equals("there")) {
             if ("a-acp".equals(maTag)) {
-                tagging.setPartOfSpeech("adverb");
+                tagging.setPartOfSpeech(WKBUtil.ADVERB);
             } else {
-                tagging.setPartOfSpeech("existentialPronoun");
+                tagging.setPartOfSpeech(WKBUtil.EXISTENTIALPRONOUN);
             }
         }
     }
@@ -606,8 +608,8 @@ public class MaPennToWTaggingMapper {
 
         if (maTag != null) {
             if (maTag.indexOf("vvg") >= 0) {
-                tagging.setPartOfSpeech("verb");
-                tagging.setVerbFormMood("gerund");
+                tagging.setPartOfSpeech(WKBUtil.VERB);
+                tagging.setVerbFormMood(WKBUtil.GERUND);
             }
         }
     }
@@ -619,11 +621,11 @@ public class MaPennToWTaggingMapper {
 
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
-            tagging.setPartOfSpeech("generalAdverb");
+            tagging.setPartOfSpeech(WKBUtil.GENERALADVERB);
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
         } else {
-            tagging.setPartOfSpeech("adposition;generalAdverb");
+            tagging.setPartOfSpeech(WKBUtil.ADPOSITION + WKBUtil.TYPE_SEPARATOR + WKBUtil.GENERALADVERB);
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
             } else {
@@ -634,7 +636,7 @@ public class MaPennToWTaggingMapper {
 
     void mapPOS(WTagging tagging, String tag) {
         tagging.setLemma("$");
-        tagging.setPartOfSpeech("possessiveParticle");
+        tagging.setPartOfSpeech(WKBUtil.POSSESIVEPARTICLE);
     }
 
     /*
@@ -664,6 +666,6 @@ public class MaPennToWTaggingMapper {
     }
 
     private void mapUH(WTagging tagging, String tag) {
-        tagging.setPartOfSpeech("interjection");
+        tagging.setPartOfSpeech(WKBUtil.INTERJECTION);
     }
 }

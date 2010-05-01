@@ -1,0 +1,811 @@
+<?xml version="1.0"?>
+<wonderlandCorpus_level0>
+    <maf document="sentence 1">
+        <token id="1">Elizabeth</token>
+        <token id="2">had</token>
+        <token id="3">two</token>
+        <token id="4">cats</token>
+        <token id="5">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="2"/>
+        <wordForm lemma="2" tag="crd CD" tokens="3"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="4"/>
+        <wordForm lemma="." tag=". ." tokens="5"/>
+    </maf>
+    <maf document="sentence 2">
+        <token id="1">Their</token>
+        <token id="2">names</token>
+        <token id="3">were</token>
+        <token id="4">Micki</token>
+        <token id="5">and</token>
+        <token id="6">Minnie</token>
+        <token id="7">.</token>
+        <wordForm lemma="their" tag="po32 PRP$" tokens="1"/>
+        <wordForm lemma="name" tag="n2 NNS" tokens="2"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="3"/>
+        <wordForm lemma="micki" tag="np1 NNP" tokens="4"/>
+        <wordForm lemma="and" tag="cc CC" tokens="5"/>
+        <wordForm lemma="minnie" tag="np1 NNP" tokens="6"/>
+        <wordForm lemma="." tag=". ." tokens="7"/>
+    </maf>
+    <maf document="sentence 3">
+        <token id="1">They</token>
+        <token id="2">looked</token>
+        <token id="3">exactly</token>
+        <token id="4">alike</token>
+        <token id="5">.</token>
+        <wordForm lemma="they" tag="pns32 PRP" tokens="1"/>
+        <wordForm lemma="look" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="exactly" tag="av-j RB" tokens="3"/>
+        <wordForm lemma="alike" tag="av RB" tokens="4"/>
+        <wordForm lemma="." tag=". ." tokens="5"/>
+    </maf>
+    <maf document="sentence 4">
+        <token id="1">Micki</token>
+        <token id="2">was</token>
+        <token id="3">a</token>
+        <token id="4">grey</token>
+        <token id="5">cat</token>
+        <token id="6">.</token>
+        <wordForm lemma="micki" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="grey" tag="j-jn JJ" tokens="4"/>
+        <wordForm lemma="cat" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 5">
+        <token id="1">Minnie</token>
+        <token id="2">was</token>
+        <token id="3">a</token>
+        <token id="4">grey</token>
+        <token id="5">cat</token>
+        <token id="6">.</token>
+        <wordForm lemma="minnie" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="grey" tag="j-jn JJ" tokens="4"/>
+        <wordForm lemma="cat" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 6">
+        <token id="1">Micki</token>
+        <token id="2">had</token>
+        <token id="3">a</token>
+        <token id="4">white</token>
+        <token id="5">spot</token>
+        <token id="6">on</token>
+        <token id="7">her</token>
+        <token id="8">chest</token>
+        <token id="9">.</token>
+        <wordForm lemma="micki" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="white" tag="j-jn JJ" tokens="4"/>
+        <wordForm lemma="spot" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="on" tag="p-acp IN" tokens="6"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="7"/>
+        <wordForm lemma="chest" tag="n1 NN" tokens="8"/>
+        <wordForm lemma="." tag=". ." tokens="9"/>
+    </maf>
+    <maf document="sentence 7">
+        <token id="1">Minnie</token>
+        <token id="2">had</token>
+        <token id="3">a</token>
+        <token id="4">white</token>
+        <token id="5">spot</token>
+        <token id="6">on</token>
+        <token id="7">her</token>
+        <token id="8">chest</token>
+        <token id="9">.</token>
+        <wordForm lemma="minnie" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="white" tag="j-jn JJ" tokens="4"/>
+        <wordForm lemma="spot" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="on" tag="p-acp IN" tokens="6"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="7"/>
+        <wordForm lemma="chest" tag="n1 NN" tokens="8"/>
+        <wordForm lemma="." tag=". ." tokens="9"/>
+    </maf>
+    <maf document="sentence 8">
+        <token id="1">Elizabeth</token>
+        <token id="2">never</token>
+        <token id="3">knew</token>
+        <token id="4">which</token>
+        <token id="5">one</token>
+        <token id="6">was</token>
+        <token id="7">in</token>
+        <token id="8">her</token>
+        <token id="9">lap</token>
+        <token id="10">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="never" tag="av-x RB" tokens="2"/>
+        <wordForm lemma="know" tag="vvd VBD" tokens="3"/>
+        <wordForm lemma="which" tag="r-crq WDT" tokens="4"/>
+        <wordForm lemma="one" tag="crd PRP" tokens="5"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="6"/>
+        <wordForm lemma="in" tag="p-acp IN" tokens="7"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="8"/>
+        <wordForm lemma="lap" tag="n1 NN" tokens="9"/>
+        <wordForm lemma="." tag=". ." tokens="10"/>
+    </maf>
+    <maf document="sentence 9">
+        <token id="1">She</token>
+        <token id="2">looked</token>
+        <token id="3">for</token>
+        <token id="4">her</token>
+        <token id="5">brother</token>
+        <token id="6">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="look" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="for" tag="p-acp IN" tokens="3"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="4"/>
+        <wordForm lemma="brother" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 10">
+        <token id="1">He</token>
+        <token id="2">was</token>
+        <token id="3">on</token>
+        <token id="4">his</token>
+        <token id="5">way</token>
+        <token id="6">outside</token>
+        <token id="7">to</token>
+        <token id="8">wash</token>
+        <token id="9">his</token>
+        <token id="10">car</token>
+        <token id="11">.</token>
+        <wordForm lemma="he" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="2"/>
+        <wordForm lemma="on" tag="p-acp IN" tokens="3"/>
+        <wordForm lemma="his" tag="po31 PRP$" tokens="4"/>
+        <wordForm lemma="way" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="outside" tag="n1-an IN" tokens="6"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="7"/>
+        <wordForm lemma="wash" tag="vvi VB" tokens="8"/>
+        <wordForm lemma="his" tag="po31 PRP$" tokens="9"/>
+        <wordForm lemma="car" tag="n1 NN" tokens="10"/>
+        <wordForm lemma="." tag=". ." tokens="11"/>
+    </maf>
+    <maf document="sentence 11">
+        <token id="1">"</token>
+        <token id="2">How</token>
+        <token id="3">do</token>
+        <token id="4">you</token>
+        <token id="5">tell</token>
+        <token id="6">the</token>
+        <token id="7">cats</token>
+        <token id="8">apart</token>
+        <token id="9">?</token>
+        <token id="10">"</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="how" tag="uh-crq NNP" tokens="2"/>
+        <wordForm lemma="do" tag="vdb VBP" tokens="3"/>
+        <wordForm lemma="you" tag="pn22 PRP" tokens="4"/>
+        <wordForm lemma="tell" tag="vvi VB" tokens="5"/>
+        <wordForm lemma="the" tag="dt DT" tokens="6"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="7"/>
+        <wordForm lemma="apart" tag="av RB" tokens="8"/>
+        <wordForm lemma="?" tag="? ." tokens="9"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
+    </maf>
+    <maf document="sentence 12">
+        <token id="1">Elizabeth</token>
+        <token id="2">asked</token>
+        <token id="3">him</token>
+        <token id="4">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="ask" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="he" tag="pno31 PRP" tokens="3"/>
+        <wordForm lemma="." tag=". ." tokens="4"/>
+    </maf>
+    <maf document="sentence 13">
+        <token id="1">"</token>
+        <token id="2">I</token>
+        <token id="3">think</token>
+        <token id="4">Micki</token>
+        <token id="5">'s</token>
+        <token id="6">tail</token>
+        <token id="7">is</token>
+        <token id="8">a</token>
+        <token id="9">little</token>
+        <token id="10">longer</token>
+        <token id="11">,</token>
+        <token id="12">"</token>
+        <token id="13">her</token>
+        <token id="14">brother</token>
+        <token id="15">said</token>
+        <token id="16">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="i" tag="pns11 PRP" tokens="2"/>
+        <wordForm lemma="think" tag="vvb VBP" tokens="3"/>
+        <wordForm lemma="micki" tag="npg1 NNP" tokens="4"/>
+        <wordForm lemma="$" tag="null POS" tokens="5"/>
+        <wordForm lemma="tail" tag="n1 NN" tokens="6"/>
+        <wordForm lemma="be" tag="vbz VBZ" tokens="7"/>
+        <wordForm lemma="a" tag="dt DT" tokens="8"/>
+        <wordForm lemma="little" tag="j RB" tokens="9"/>
+        <wordForm lemma="long" tag="av-jc JJR" tokens="10"/>
+        <wordForm lemma="," tag=", ," tokens="11"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="12"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="13"/>
+        <wordForm lemma="brother" tag="n1 NN" tokens="14"/>
+        <wordForm lemma="say" tag="vvd VBD" tokens="15"/>
+        <wordForm lemma="." tag=". ." tokens="16"/>
+    </maf>
+    <maf document="sentence 14">
+        <token id="1">He</token>
+        <token id="2">went</token>
+        <token id="3">out</token>
+        <token id="4">the</token>
+        <token id="5">door</token>
+        <token id="6">.</token>
+        <wordForm lemma="he" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="go" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="out" tag="av RP" tokens="3"/>
+        <wordForm lemma="the" tag="dt DT" tokens="4"/>
+        <wordForm lemma="door" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 15">
+        <token id="1">Elizabeth</token>
+        <token id="2">took</token>
+        <token id="3">a</token>
+        <token id="4">ruler</token>
+        <token id="5">from</token>
+        <token id="6">her</token>
+        <token id="7">desk</token>
+        <token id="8">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="take" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="ruler" tag="n1 NN" tokens="4"/>
+        <wordForm lemma="from" tag="pp IN" tokens="5"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="6"/>
+        <wordForm lemma="desk" tag="n1 NN" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 16">
+        <token id="1">She</token>
+        <token id="2">measured</token>
+        <token id="3">the</token>
+        <token id="4">cats</token>
+        <token id="5">'</token>
+        <token id="6">tails</token>
+        <token id="7">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="measure" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="the" tag="dt DT" tokens="3"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="4"/>
+        <wordForm lemma="$" tag="' POS" tokens="5"/>
+        <wordForm lemma="tail" tag="n2 NNS" tokens="6"/>
+        <wordForm lemma="." tag=". ." tokens="7"/>
+    </maf>
+    <maf document="sentence 17">
+        <token id="1">Micki</token>
+        <token id="2">'s</token>
+        <token id="3">tail</token>
+        <token id="4">was</token>
+        <token id="5">11</token>
+        <token id="6">inches</token>
+        <token id="7">long</token>
+        <token id="8">.</token>
+        <wordForm lemma="micki" tag="npg1 NNP" tokens="1"/>
+        <wordForm lemma="$" tag="null POS" tokens="2"/>
+        <wordForm lemma="tail" tag="n1 NN" tokens="3"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="4"/>
+        <wordForm lemma="11" tag="crd CD" tokens="5"/>
+        <wordForm lemma="inche" tag="n2 NNS" tokens="6"/>
+        <wordForm lemma="long" tag="j RB" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 18">
+        <token id="1">Minnie</token>
+        <token id="2">'s</token>
+        <token id="3">tail</token>
+        <token id="4">was</token>
+        <token id="5">11</token>
+        <token id="6">inches</token>
+        <token id="7">long</token>
+        <token id="8">.</token>
+        <wordForm lemma="minnie" tag="npg1 NNP" tokens="1"/>
+        <wordForm lemma="$" tag="null POS" tokens="2"/>
+        <wordForm lemma="tail" tag="n1 NN" tokens="3"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="4"/>
+        <wordForm lemma="11" tag="crd CD" tokens="5"/>
+        <wordForm lemma="inche" tag="n2 NNS" tokens="6"/>
+        <wordForm lemma="long" tag="j RB" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 19">
+        <token id="1">There</token>
+        <token id="2">must</token>
+        <token id="3">be</token>
+        <token id="4">some</token>
+        <token id="5">way</token>
+        <token id="6">to</token>
+        <token id="7">know</token>
+        <token id="8">which</token>
+        <token id="9">is</token>
+        <token id="10">which</token>
+        <token id="11">,</token>
+        <token id="12">Elizabeth</token>
+        <token id="13">thought</token>
+        <token id="14">.</token>
+        <wordForm lemma="there" tag="pc-acp EX" tokens="1"/>
+        <wordForm lemma="must" tag="vmb MD" tokens="2"/>
+        <wordForm lemma="be" tag="vbi VB" tokens="3"/>
+        <wordForm lemma="some" tag="d DT" tokens="4"/>
+        <wordForm lemma="way" tag="n1 NN" tokens="5"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="6"/>
+        <wordForm lemma="know" tag="vvi VB" tokens="7"/>
+        <wordForm lemma="which" tag="r-crq WDT" tokens="8"/>
+        <wordForm lemma="be" tag="vbz VBZ" tokens="9"/>
+        <wordForm lemma="which" tag="r-crq WDT" tokens="10"/>
+        <wordForm lemma="," tag=", ," tokens="11"/>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="12"/>
+        <wordForm lemma="think" tag="vvd VBD" tokens="13"/>
+        <wordForm lemma="." tag=". ." tokens="14"/>
+    </maf>
+    <maf document="sentence 20">
+        <token id="1">She</token>
+        <token id="2">meowed</token>
+        <token id="3">at</token>
+        <token id="4">the</token>
+        <token id="5">cats</token>
+        <token id="6">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="meow" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="at" tag="pp IN" tokens="3"/>
+        <wordForm lemma="the" tag="dt DT" tokens="4"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 21">
+        <token id="1">They</token>
+        <token id="2">meowed</token>
+        <token id="3">back</token>
+        <token id="4">at</token>
+        <token id="5">her</token>
+        <token id="6">.</token>
+        <wordForm lemma="they" tag="pns32 PRP" tokens="1"/>
+        <wordForm lemma="meow" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="back" tag="av RB" tokens="3"/>
+        <wordForm lemma="at" tag="pp IN" tokens="4"/>
+        <wordForm lemma="she" tag="pno31 PRP" tokens="5"/>
+        <wordForm lemma="." tag=". ." tokens="6"/>
+    </maf>
+    <maf document="sentence 22">
+        <token id="1">Micki</token>
+        <token id="2">had</token>
+        <token id="3">a</token>
+        <token id="4">high</token>
+        <token id="5">,</token>
+        <token id="6">soft</token>
+        <token id="7">meow</token>
+        <token id="8">.</token>
+        <wordForm lemma="micki" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="high" tag="j JJ" tokens="4"/>
+        <wordForm lemma="," tag=", ," tokens="5"/>
+        <wordForm lemma="soft" tag="j JJ" tokens="6"/>
+        <wordForm lemma="meow" tag="n1 NN" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 23">
+        <token id="1">Minnie</token>
+        <token id="2">had</token>
+        <token id="3">a</token>
+        <token id="4">high</token>
+        <token id="5">,</token>
+        <token id="6">soft</token>
+        <token id="7">meow</token>
+        <token id="8">.</token>
+        <wordForm lemma="minnie" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="2"/>
+        <wordForm lemma="a" tag="dt DT" tokens="3"/>
+        <wordForm lemma="high" tag="j JJ" tokens="4"/>
+        <wordForm lemma="," tag=", ," tokens="5"/>
+        <wordForm lemma="soft" tag="j JJ" tokens="6"/>
+        <wordForm lemma="meow" tag="n1 NN" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 24">
+        <token id="1">She</token>
+        <token id="2">looked</token>
+        <token id="3">deep</token>
+        <token id="4">into</token>
+        <token id="5">their</token>
+        <token id="6">eyes</token>
+        <token id="7">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="look" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="deep" tag="av-jn RB" tokens="3"/>
+        <wordForm lemma="into" tag="pp IN" tokens="4"/>
+        <wordForm lemma="their" tag="po32 PRP$" tokens="5"/>
+        <wordForm lemma="eye" tag="n2 NNS" tokens="6"/>
+        <wordForm lemma="." tag=". ." tokens="7"/>
+    </maf>
+    <maf document="sentence 25">
+        <token id="1">Micki</token>
+        <token id="2">'s</token>
+        <token id="3">eyes</token>
+        <token id="4">were</token>
+        <token id="5">green</token>
+        <token id="6">,</token>
+        <token id="7">with</token>
+        <token id="8">a</token>
+        <token id="9">little</token>
+        <token id="10">yellow</token>
+        <token id="11">.</token>
+        <wordForm lemma="micki" tag="npg1 NNP" tokens="1"/>
+        <wordForm lemma="$" tag="null POS" tokens="2"/>
+        <wordForm lemma="eye" tag="n2 NNS" tokens="3"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="4"/>
+        <wordForm lemma="green" tag="j-jn JJ" tokens="5"/>
+        <wordForm lemma="," tag=", ," tokens="6"/>
+        <wordForm lemma="with" tag="pp IN" tokens="7"/>
+        <wordForm lemma="a" tag="dt DT" tokens="8"/>
+        <wordForm lemma="little" tag="j JJ" tokens="9"/>
+        <wordForm lemma="yellow" tag="j-jn NN" tokens="10"/>
+        <wordForm lemma="." tag=". ." tokens="11"/>
+    </maf>
+    <maf document="sentence 26">
+        <token id="1">Minnie</token>
+        <token id="2">'s</token>
+        <token id="3">eyes</token>
+        <token id="4">were</token>
+        <token id="5">green</token>
+        <token id="6">,</token>
+        <token id="7">with</token>
+        <token id="8">a</token>
+        <token id="9">little</token>
+        <token id="10">yellow</token>
+        <token id="11">.</token>
+        <wordForm lemma="minnie" tag="npg1 NNP" tokens="1"/>
+        <wordForm lemma="$" tag="null POS" tokens="2"/>
+        <wordForm lemma="eye" tag="n2 NNS" tokens="3"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="4"/>
+        <wordForm lemma="green" tag="j-jn JJ" tokens="5"/>
+        <wordForm lemma="," tag=", ," tokens="6"/>
+        <wordForm lemma="with" tag="pp IN" tokens="7"/>
+        <wordForm lemma="a" tag="dt DT" tokens="8"/>
+        <wordForm lemma="little" tag="j JJ" tokens="9"/>
+        <wordForm lemma="yellow" tag="j-jn NN" tokens="10"/>
+        <wordForm lemma="." tag=". ." tokens="11"/>
+    </maf>
+    <maf document="sentence 27">
+        <token id="1">Elizabeth</token>
+        <token id="2">'s</token>
+        <token id="3">mother</token>
+        <token id="4">was</token>
+        <token id="5">on</token>
+        <token id="6">her</token>
+        <token id="7">way</token>
+        <token id="8">into</token>
+        <token id="9">the</token>
+        <token id="10">bathroom</token>
+        <token id="11">to</token>
+        <token id="12">take</token>
+        <token id="13">a</token>
+        <token id="14">shower</token>
+        <token id="15">.</token>
+        <wordForm lemma="elizabeth" tag="npg1 NNP" tokens="1"/>
+        <wordForm lemma="$" tag="null POS" tokens="2"/>
+        <wordForm lemma="mother" tag="n1 NN" tokens="3"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="4"/>
+        <wordForm lemma="on" tag="p-acp IN" tokens="5"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="6"/>
+        <wordForm lemma="way" tag="n1 NN" tokens="7"/>
+        <wordForm lemma="into" tag="pp IN" tokens="8"/>
+        <wordForm lemma="the" tag="dt DT" tokens="9"/>
+        <wordForm lemma="bathroom" tag="n1 NN" tokens="10"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="11"/>
+        <wordForm lemma="take" tag="vvi VB" tokens="12"/>
+        <wordForm lemma="a" tag="dt DT" tokens="13"/>
+        <wordForm lemma="shower" tag="n1 NN" tokens="14"/>
+        <wordForm lemma="." tag=". ." tokens="15"/>
+    </maf>
+    <maf document="sentence 28">
+        <token id="1">"</token>
+        <token id="2">How</token>
+        <token id="3">do</token>
+        <token id="4">you</token>
+        <token id="5">tell</token>
+        <token id="6">the</token>
+        <token id="7">cats</token>
+        <token id="8">apart</token>
+        <token id="9">?</token>
+        <token id="10">"</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="how" tag="uh-crq NNP" tokens="2"/>
+        <wordForm lemma="do" tag="vdb VBP" tokens="3"/>
+        <wordForm lemma="you" tag="pn22 PRP" tokens="4"/>
+        <wordForm lemma="tell" tag="vvi VB" tokens="5"/>
+        <wordForm lemma="the" tag="dt DT" tokens="6"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="7"/>
+        <wordForm lemma="apart" tag="av RB" tokens="8"/>
+        <wordForm lemma="?" tag="? ." tokens="9"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
+    </maf>
+    <maf document="sentence 29">
+        <token id="1">Elizabeth</token>
+        <token id="2">asked</token>
+        <token id="3">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="ask" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="." tag=". ." tokens="3"/>
+    </maf>
+    <maf document="sentence 30">
+        <token id="1">"</token>
+        <token id="2">I</token>
+        <token id="3">do</token>
+        <token id="4">n't</token>
+        <token id="5">,</token>
+        <token id="6">"</token>
+        <token id="7">her</token>
+        <token id="8">mother</token>
+        <token id="9">replied</token>
+        <token id="10">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="i" tag="pns11 PRP" tokens="2"/>
+        <wordForm lemma="do" tag="vdbx VBP" tokens="3"/>
+        <wordForm lemma="not" tag="xx RB" tokens="4"/>
+        <wordForm lemma="," tag=", ," tokens="5"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="6"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="7"/>
+        <wordForm lemma="mother" tag="n1 NN" tokens="8"/>
+        <wordForm lemma="reply" tag="vvd VBD" tokens="9"/>
+        <wordForm lemma="." tag=". ." tokens="10"/>
+    </maf>
+    <maf document="sentence 31">
+        <token id="1">She</token>
+        <token id="2">closed</token>
+        <token id="3">the</token>
+        <token id="4">door</token>
+        <token id="5">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="close" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="the" tag="dt DT" tokens="3"/>
+        <wordForm lemma="door" tag="n1 NN" tokens="4"/>
+        <wordForm lemma="." tag=". ." tokens="5"/>
+    </maf>
+    <maf document="sentence 32">
+        <token id="1">Elizabeth</token>
+        <token id="2">sat</token>
+        <token id="3">down</token>
+        <token id="4">on</token>
+        <token id="5">the</token>
+        <token id="6">sofa</token>
+        <token id="7">with</token>
+        <token id="8">a</token>
+        <token id="9">big</token>
+        <token id="10">sigh</token>
+        <token id="11">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="sit" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="down" tag="a-acp RP" tokens="3"/>
+        <wordForm lemma="on" tag="p-acp IN" tokens="4"/>
+        <wordForm lemma="the" tag="dt DT" tokens="5"/>
+        <wordForm lemma="sofa" tag="n1 NN" tokens="6"/>
+        <wordForm lemma="with" tag="pp IN" tokens="7"/>
+        <wordForm lemma="a" tag="dt DT" tokens="8"/>
+        <wordForm lemma="big" tag="j JJ" tokens="9"/>
+        <wordForm lemma="sigh" tag="n1 NN" tokens="10"/>
+        <wordForm lemma="." tag=". ." tokens="11"/>
+    </maf>
+    <maf document="sentence 33">
+        <token id="1">She</token>
+        <token id="2">did</token>
+        <token id="3">n't</token>
+        <token id="4">know</token>
+        <token id="5">what</token>
+        <token id="6">to</token>
+        <token id="7">do</token>
+        <token id="8">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="do" tag="vddx VBD" tokens="2"/>
+        <wordForm lemma="not" tag="xx RB" tokens="3"/>
+        <wordForm lemma="know" tag="vvi VB" tokens="4"/>
+        <wordForm lemma="what" tag="r-crq WP" tokens="5"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="6"/>
+        <wordForm lemma="do" tag="vdi VB" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 34">
+        <token id="1">I</token>
+        <token id="2">will</token>
+        <token id="3">never</token>
+        <token id="4">be</token>
+        <token id="5">able</token>
+        <token id="6">to</token>
+        <token id="7">tell</token>
+        <token id="8">these</token>
+        <token id="9">cats</token>
+        <token id="10">apart</token>
+        <token id="11">!</token>
+        <token id="12">,</token>
+        <token id="13">she</token>
+        <token id="14">thought</token>
+        <token id="15">.</token>
+        <wordForm lemma="i" tag="pns11 PRP" tokens="1"/>
+        <wordForm lemma="will" tag="vmb MD" tokens="2"/>
+        <wordForm lemma="never" tag="av-x RB" tokens="3"/>
+        <wordForm lemma="be" tag="vbi VB" tokens="4"/>
+        <wordForm lemma="able" tag="j JJ" tokens="5"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="6"/>
+        <wordForm lemma="tell" tag="vvi VB" tokens="7"/>
+        <wordForm lemma="these" tag="d DT" tokens="8"/>
+        <wordForm lemma="cat" tag="n2 NNS" tokens="9"/>
+        <wordForm lemma="apart" tag="av RB" tokens="10"/>
+        <wordForm lemma="!" tag="! ." tokens="11"/>
+        <wordForm lemma="," tag=", ," tokens="12"/>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="13"/>
+        <wordForm lemma="think" tag="vvd VBD" tokens="14"/>
+        <wordForm lemma="." tag=". ." tokens="15"/>
+    </maf>
+    <maf document="sentence 35">
+        <token id="1">She</token>
+        <token id="2">looked</token>
+        <token id="3">down</token>
+        <token id="4">at</token>
+        <token id="5">the</token>
+        <token id="6">cat</token>
+        <token id="7">who</token>
+        <token id="8">sat</token>
+        <token id="9">nearest</token>
+        <token id="10">her</token>
+        <token id="11">feet</token>
+        <token id="12">.</token>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="1"/>
+        <wordForm lemma="look" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="down" tag="a-acp RP" tokens="3"/>
+        <wordForm lemma="at" tag="pp IN" tokens="4"/>
+        <wordForm lemma="the" tag="dt DT" tokens="5"/>
+        <wordForm lemma="cat" tag="n1 NN" tokens="6"/>
+        <wordForm lemma="who" tag="r-crq WP" tokens="7"/>
+        <wordForm lemma="sit" tag="vvd VBD" tokens="8"/>
+        <wordForm lemma="near" tag="js VBG" tokens="9"/>
+        <wordForm lemma="she" tag="pno31 PRP" tokens="10"/>
+        <wordForm lemma="foot" tag="n2 NNS" tokens="11"/>
+        <wordForm lemma="." tag=". ." tokens="12"/>
+    </maf>
+    <maf document="sentence 36">
+        <token id="1">"</token>
+        <token id="2">Which</token>
+        <token id="3">one</token>
+        <token id="4">are</token>
+        <token id="5">you</token>
+        <token id="6">?</token>
+        <token id="7">"</token>
+        <token id="8">she</token>
+        <token id="9">asked</token>
+        <token id="10">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="which" tag="r-crq WDT" tokens="2"/>
+        <wordForm lemma="1" tag="crd CD" tokens="3"/>
+        <wordForm lemma="be" tag="vbb VBP" tokens="4"/>
+        <wordForm lemma="you" tag="pn22 PRP" tokens="5"/>
+        <wordForm lemma="?" tag="? ." tokens="6"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="7"/>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="8"/>
+        <wordForm lemma="ask" tag="vvd VBD" tokens="9"/>
+        <wordForm lemma="." tag=". ." tokens="10"/>
+    </maf>
+    <maf document="sentence 37">
+        <token id="1">"</token>
+        <token id="2">I</token>
+        <token id="3">am</token>
+        <token id="4">Minnie</token>
+        <token id="5">,</token>
+        <token id="6">"</token>
+        <token id="7">the</token>
+        <token id="8">cat</token>
+        <token id="9">replied</token>
+        <token id="10">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="i" tag="pns11 PRP" tokens="2"/>
+        <wordForm lemma="be" tag="vbm VBP" tokens="3"/>
+        <wordForm lemma="minnie" tag="np1 JJ" tokens="4"/>
+        <wordForm lemma="," tag=", ," tokens="5"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="6"/>
+        <wordForm lemma="the" tag="dt DT" tokens="7"/>
+        <wordForm lemma="cat" tag="n1 NN" tokens="8"/>
+        <wordForm lemma="reply" tag="vvd VBD" tokens="9"/>
+        <wordForm lemma="." tag=". ." tokens="10"/>
+    </maf>
+    <maf document="sentence 38">
+        <token id="1">"</token>
+        <token id="2">All</token>
+        <token id="3">you</token>
+        <token id="4">had</token>
+        <token id="5">to</token>
+        <token id="6">do</token>
+        <token id="7">was</token>
+        <token id="8">ask</token>
+        <token id="9">.</token>
+        <token id="10">"</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="all" tag="d DT" tokens="2"/>
+        <wordForm lemma="you" tag="pn22 PRP" tokens="3"/>
+        <wordForm lemma="have" tag="vhd VBD" tokens="4"/>
+        <wordForm lemma="to" tag="pc-acp TO" tokens="5"/>
+        <wordForm lemma="do" tag="vdi VB" tokens="6"/>
+        <wordForm lemma="be" tag="vbd VBD" tokens="7"/>
+        <wordForm lemma="ask" tag="vvi VB" tokens="8"/>
+        <wordForm lemma="." tag=". ." tokens="9"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="10"/>
+    </maf>
+    <maf document="sentence 39">
+        <token id="1">"</token>
+        <token id="2">Oh</token>
+        <token id="3">,</token>
+        <token id="4">"</token>
+        <token id="5">Elizabeth</token>
+        <token id="6">blinked</token>
+        <token id="7">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="oh" tag="uh UH" tokens="2"/>
+        <wordForm lemma="," tag=", ," tokens="3"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="4"/>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="5"/>
+        <wordForm lemma="blink" tag="vvn VBD" tokens="6"/>
+        <wordForm lemma="." tag=". ." tokens="7"/>
+    </maf>
+    <maf document="sentence 40">
+        <token id="1">The</token>
+        <token id="2">cat</token>
+        <token id="3">jumped</token>
+        <token id="4">into</token>
+        <token id="5">her</token>
+        <token id="6">lap</token>
+        <token id="7">.</token>
+        <wordForm lemma="the" tag="dt DT" tokens="1"/>
+        <wordForm lemma="cat" tag="n1 NN" tokens="2"/>
+        <wordForm lemma="jump" tag="vvd VBD" tokens="3"/>
+        <wordForm lemma="into" tag="pp IN" tokens="4"/>
+        <wordForm lemma="her" tag="po31 PRP$" tokens="5"/>
+        <wordForm lemma="lap" tag="n1 NN" tokens="6"/>
+        <wordForm lemma="." tag=". ." tokens="7"/>
+    </maf>
+    <maf document="sentence 41">
+        <token id="1">Elizabeth</token>
+        <token id="2">smiled</token>
+        <token id="3">and</token>
+        <token id="4">began</token>
+        <token id="5">to</token>
+        <token id="6">pet</token>
+        <token id="7">her</token>
+        <token id="8">.</token>
+        <wordForm lemma="elizabeth" tag="np1 NNP" tokens="1"/>
+        <wordForm lemma="smile" tag="vvd VBD" tokens="2"/>
+        <wordForm lemma="and" tag="cc CC" tokens="3"/>
+        <wordForm lemma="begin" tag="vvd VBD" tokens="4"/>
+        <wordForm lemma="to" tag="p-acp TO" tokens="5"/>
+        <wordForm lemma="pet" tag="n1 VB" tokens="6"/>
+        <wordForm lemma="she" tag="pno31 PRP" tokens="7"/>
+        <wordForm lemma="." tag=". ." tokens="8"/>
+    </maf>
+    <maf document="sentence 42">
+        <token id="1">"</token>
+        <token id="2">Hi</token>
+        <token id="3">,</token>
+        <token id="4">Minnie</token>
+        <token id="5">,</token>
+        <token id="6">"</token>
+        <token id="7">she</token>
+        <token id="8">said</token>
+        <token id="9">.</token>
+        <wordForm lemma="&quot;" tag="&quot; ``" tokens="1"/>
+        <wordForm lemma="hi" tag="uh NNP" tokens="2"/>
+        <wordForm lemma="," tag=", ," tokens="3"/>
+        <wordForm lemma="minnie" tag="np1 NNP" tokens="4"/>
+        <wordForm lemma="," tag=", ," tokens="5"/>
+        <wordForm lemma="&quot;" tag="&quot; ''" tokens="6"/>
+        <wordForm lemma="she" tag="pns31 PRP" tokens="7"/>
+        <wordForm lemma="say" tag="vvd VBD" tokens="8"/>
+        <wordForm lemma="." tag=". ." tokens="9"/>
+    </maf>
+</wonderlandCorpus_level0>

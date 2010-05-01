@@ -53,8 +53,8 @@ public class Pipeline {
         Tree parse = StanfordParserWrapper.parse(sentence);
 
         // find collocations
-        CollocationFinder colloFinder = new CollocationFinder(parse, new CollocationManager());
-        parse = colloFinder.getMangledTree();
+        // CollocationFinder colloFinder = new CollocationFinder(parse, new CollocationManager());
+        // parse = colloFinder.getMangledTree();
 
         // get Penn tags
         List<TaggedWord> pennTags = StanfordParserWrapper.getPennPosTags(parse);

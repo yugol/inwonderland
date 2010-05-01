@@ -30,7 +30,7 @@ import edu.stanford.nlp.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
@@ -39,6 +39,8 @@ import org.purl.net.wonderland.kb.KbUtil;
 public class WTagging implements HasWord, HasTag, AdornedWord {
 
     private static final String empty = "";
+    // id
+    private String index = null;
     // word form tags
     private String writtenForm = null; // word form
     private String lemma = null; // dictionary form
@@ -56,6 +58,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
     private String verbFormMood = null; // indicative, subjunctive, conditional, ...
     private String grammaticalTense = null; // present, past, future, ...
     private String definiteness = null; // definite, indefinite, unarticulated
+    private String aspect = null; // ferb aspect
     // other types
     private Set<String> moreTypes = new HashSet<String>();
     // collocation mark
@@ -108,6 +111,28 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
             gender = null;
         }
         this.grammaticalGender = gender;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        if (empty.equals(index)) {
+            index = null;
+        }
+        this.index = index;
+    }
+
+    public String getAspect() {
+        return aspect;
+    }
+
+    public void setAspect(String aspect) {
+        if (empty.equals(aspect)) {
+            aspect = null;
+        }
+        this.aspect = aspect;
     }
 
     public String getLemma() {
@@ -240,7 +265,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         types.addAll(moreTypes);
         String[] typeArray = new String[types.size()];
         for (int i = 0; i < typeArray.length; ++i) {
-            typeArray[i] = KbUtil.toConceptTypeId(types.get(i));
+            typeArray[i] = WKBUtil.toConceptTypeId(types.get(i));
         }
         return typeArray;
     }

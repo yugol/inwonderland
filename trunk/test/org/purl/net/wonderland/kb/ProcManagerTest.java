@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -25,14 +25,14 @@ package org.purl.net.wonderland.kb;
 
 import org.purl.net.wonderland.kb.Procedure;
 import org.purl.net.wonderland.kb.ProcManager;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKB;
 import java.io.File;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 import static org.junit.Assert.*;
 
 /**
@@ -54,19 +54,11 @@ public class ProcManagerTest {
 
     @Test
     public void testReadProcsFromKb() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
+        WKB kb = new WKB(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
         ProcManager procMgr = new ProcManager(kb);
         procMgr.readAllProceduresFromKb();
         assertEquals(1, procMgr.getProcCount());
-        List<Procedure> matches = procMgr.findMatches(KbUtil.procSetMoods, KbUtil.toLevel1FactId(1));
+        List<Procedure> matches = procMgr.findMatches(WKBUtil.procSetMoods, WKBUtil.toLevel1FactId(1));
         assertEquals(1, matches.size());
-    }
-
-    @Test
-    public void testReadProcsFromFile() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
-        ProcManager procMgr = new ProcManager(kb);
-        procMgr.readProcedures(new File(Configuration.getTestFolder(), "test_generators.xml"));
-        assertEquals(1, procMgr.getProcCount());
     }
 }

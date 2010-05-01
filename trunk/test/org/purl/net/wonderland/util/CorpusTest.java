@@ -3,7 +3,7 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -28,7 +28,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
@@ -46,7 +46,7 @@ public class CorpusTest {
         assertEquals("Done.", resp);
 
         Corpus corpus = new Corpus();
-        corpus.buildFrom(msgProc, KbUtil.level1);
+        corpus.buildFrom(msgProc, WKBUtil.level1);
 
         String xml = corpus.toString();
         File cospusFile = new File("corpus.xml");

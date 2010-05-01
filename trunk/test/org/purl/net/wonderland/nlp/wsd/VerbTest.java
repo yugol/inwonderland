@@ -30,8 +30,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.util.IO;
 
 /**
@@ -79,6 +79,6 @@ public class VerbTest {
         List<Rule> procs = v.getVerbNetProcs();
         File file = new File("test." + v.getLemma() + ".cogxml");
         IO.writeProcs(procs, WsdManager.pers.getKb(), file);
-        KbUtil.normalizeKbFile(file);
+        WKBUtil.normalizeKbFile(file);
     }
 }

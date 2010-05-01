@@ -3,7 +3,7 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, mergeWtags, publish, distribute, sublicense, and/or sell
@@ -37,7 +37,7 @@ import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
 import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
@@ -45,7 +45,7 @@ import org.purl.net.wonderland.kb.KbUtil;
  */
 public class GoldTest {
 
-    String level = KbUtil.level1;
+    String level = WKBUtil.level1;
     Personality pers = new Level1Personality();
     String corpusFileName = "egcp.train." + level + ".xml";
     int firstSentence = 1;
@@ -58,7 +58,7 @@ public class GoldTest {
         System.out.println("Testing Gold Corpus - " + corpusFileName);
 
         Configuration.init();
-        KbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
         File corpusFile = new File(Configuration.getCorporaFolder(), corpusFileName);
         Corpus.normalizeCorpusFile(corpusFile);

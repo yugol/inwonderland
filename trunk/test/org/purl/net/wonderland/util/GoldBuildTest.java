@@ -3,7 +3,7 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, lastSentence any person obtaining a copy
+ *  Permission is hereby granted, free of charge, lastSentence any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), lastSentence deal
  *  in the Software without restriction, including without limitation the rights
  *  lastSentence use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -24,14 +24,12 @@
 package org.purl.net.wonderland.util;
 
 import java.io.File;
-import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
-import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 import static org.junit.Assert.*;
 
 /**
@@ -40,37 +38,41 @@ import static org.junit.Assert.*;
  */
 public class GoldBuildTest {
 
-    @Test
-    public void testOne() throws Exception {
-        Engine engine = new Engine();
-        engine.setPersonality(pers);
+    Personality pers = new Level1Personality();
+    String level = WKBUtil.level1;
+    String corpusFileName = "bedtime/story.txt";
+    int firstSentence = 1;
+    int lastSentence = 42;
+    //
+    private final Engine engine;
 
+    public GoldBuildTest() throws Exception {
+        engine = new Engine();
+        engine.setPersonality(pers);
+    }
+
+    // @Test
+    public void testOne() throws Exception {
         String resp = engine.processMessage("May they come with the summer!");
         assertEquals("Done.", resp);
 
         TestUtil.saveKbAndMarkings(engine, level);
     }
-    Personality pers = new Level1Personality();
-    String level = KbUtil.level1;
-    int firstSentence = 983;
-    int lastSentence = 27;
 
-    // @Test
+    @Test
     public void testMany() throws Exception {
         Configuration.init();
-        KbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        List<String> lines = IO.getFileContentAsStringList(new File(Configuration.getCorporaFolder(), "egcp.train.level0.txt"));
-        Engine engine = new Engine();
-        engine.setPersonality(pers);
+        MAFCorpus corpus = new MAFCorpus(new File(Configuration.getCorporaFolder(), corpusFileName));
 
         if (lastSentence < firstSentence) {
-            lastSentence = lines.size() - 1;
+            lastSentence = corpus.getLineCount() - 1;
         }
 
         for (int i = firstSentence; i <= lastSentence; ++i) {
-            String line = lines.get(i - 1);
-            // System.out.println("  " + line);
+            String line = corpus.getPlainLine(i - 1);
+            System.out.println("  " + line);
 
             CodeTimer timer = new CodeTimer("#" + i + " -> (" + (i - firstSentence + 1) + ")");
             String resp = engine.processMessage(line);
@@ -79,6 +81,8 @@ public class GoldBuildTest {
             assertEquals("Done.", resp);
         }
 
-        TestUtil.saveKbAndMarkings(engine, level);
+        engine.saveKb(new File("test.cogxml"));
+        corpus.buildLevelXml(engine, level);
+        corpus.saveLevelXml(new File("test.xml"), level);
     }
 }

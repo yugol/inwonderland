@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -28,8 +28,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 
 /**
  *
@@ -50,16 +50,16 @@ public class IOTest {
 
     @Test
     public void testWriteProcs() throws Exception {
-        WKnowledgeBase kb = new WKnowledgeBase(Configuration.getDefaultParseKBFile());
+        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
         File file = new File("test.rules.cogxml");
-        IO.writeProcs(KbUtil.toProcName(KbUtil.procSetArticles, null), kb, file);
+        IO.writeProcs(WKBUtil.toProcName(WKBUtil.procSetArticles, null), kb, file);
     }
 
     /*
     @Test
     public void testReadProcs() throws Exception {
     System.out.println("readProcs");
-    WKnowledgeBase kb = null;
+    WKB kb = null;
     File file = null;
     IO.readProcs(kb, file);
     fail("The test case is a prototype.");

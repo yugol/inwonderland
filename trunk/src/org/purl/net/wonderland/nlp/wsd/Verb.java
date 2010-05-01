@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -37,8 +37,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.purl.net.wonderland.WonderlandException;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.util.XML;
@@ -151,7 +151,7 @@ public class Verb {
     }
 
     public List<Rule> getVerbNetProcs() throws Exception {
-        WKnowledgeBase kb = WsdManager.pers.getKb();
+        WKB kb = WsdManager.pers.getKb();
         List<Rule> procs = new ArrayList<Rule>();
         Concept cHypt, cConc;
         Relation rHypt, rConc;
@@ -159,10 +159,10 @@ public class Verb {
             for (Example example : frame.getExamples()) {
                 if (example.getType() == Example.Type.VerbNet) {
                     CGraph cg = WsdManager.pers.parse(example.getText());
-                    Rule proc = new Rule(KbUtil.newUniqueId(), KbUtil.toProcName(lemma, KbUtil.newUniqueId()));
+                    Rule proc = new Rule(WKBUtil.newUniqueId(), WKBUtil.toProcName(lemma, WKBUtil.newUniqueId()));
 
 
-                    // find verb
+                    // find VERB_CT
                     Concept verb = null;
                     Iterator<Concept> cit = cg.iteratorConcept();
                     while (cit.hasNext()) {
@@ -177,16 +177,16 @@ public class Verb {
                     }
 
 
-                    // create verb couple
-                    cHypt = new Concept(KbUtil.newUniqueId());
+                    // create VERB_CT couple
+                    cHypt = new Concept(WKBUtil.newUniqueId());
                     cHypt.setIndividual(kb.addIndividual(lemma));
-                    cHypt.setType(KbUtil.verb);
-                    cHypt.addType(KbUtil.toConceptTypeId("indicative"));
+                    cHypt.setType(WKBUtil.VERB_CT);
+                    cHypt.addType(WKBUtil.toConceptTypeId("indicative"));
                     cHypt.setHypothesis(true);
                     proc.addVertex(cHypt);
 
-                    cConc = new Concept(KbUtil.newUniqueId());
-                    cConc.setType(KbUtil.LinkArg);
+                    cConc = new Concept(WKBUtil.newUniqueId());
+                    cConc.setType(WKBUtil.LINKARG_CT);
                     for (String sense : frame.getSenses()) {
                         String ctId = kb.addConceptType(sense, null);
                         cConc.addType(ctId);
@@ -216,26 +216,26 @@ public class Verb {
                                     for (Themrole tr : example.getArgs().keySet()) {
                                         String content = example.getArgs().get(tr);
                                         if (content.equals(individual)) {
-                                            cHypt = new Concept(KbUtil.newUniqueId());
-                                            cHypt.setType(KbUtil.LinkArg);
+                                            cHypt = new Concept(WKBUtil.newUniqueId());
+                                            cHypt.setType(WKBUtil.LINKARG_CT);
                                             cHypt.setHypothesis(true);
                                             proc.addVertex(cHypt);
 
-                                            cConc = new Concept(KbUtil.newUniqueId());
-                                            cConc.setType(KbUtil.LinkArg);
+                                            cConc = new Concept(WKBUtil.newUniqueId());
+                                            cConc.setType(WKBUtil.LINKARG_CT);
                                             cConc.setConclusion(true);
                                             proc.addVertex(cConc);
 
                                             proc.addCouple(cHypt.getId(), cConc.getId());
 
 
-                                            rHypt = new Relation(KbUtil.newUniqueId());
+                                            rHypt = new Relation(WKBUtil.newUniqueId());
                                             rHypt.setType(r.getType());
                                             rHypt.setHypothesis(true);
                                             proc.addVertex(rHypt);
 
-                                            rConc = new Relation(KbUtil.newUniqueId());
-                                            rConc.setType(KbUtil.toRelationTypeId(tr.getVnThemrole()));
+                                            rConc = new Relation(WKBUtil.newUniqueId());
+                                            rConc.setType(WKBUtil.toRelationTypeId(tr.getVnThemrole()));
                                             rConc.setConclusion(true);
                                             proc.addVertex(rConc);
 

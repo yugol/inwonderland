@@ -53,12 +53,12 @@ public final class VerbNetWrapper {
             CodeTimer timer = new CodeTimer("VerbNetWrapper");
             File fileIndex = Configuration.getVerbNetFileIndexFile();
             if (!fileIndex.exists()) {
-                VNUtil.buildVerbNetFileList(fileIndex);
+                VerbNetUtil.buildVerbNetFileList(fileIndex);
             }
             loadFileIndex();
             File verbIndex = Configuration.getVerbNetVerbIndexFile();
             if (!verbIndex.exists()) {
-                VNUtil.buildVerbNetVerbIndex(verbIndex);
+                VerbNetUtil.buildVerbNetVerbIndex(verbIndex);
             }
             loadVerbIndex();
             timer.stop();

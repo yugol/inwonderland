@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -25,7 +25,7 @@ package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
-import org.purl.net.wonderland.kb.KbUtil;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
@@ -50,14 +50,14 @@ public class Level1Personality extends Personality {
 
     @Override
     public String getId() {
-        return KbUtil.level1;
+        return WKBUtil.level1;
     }
 
     @Override
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
-            kb.addFact(fact, KbUtil.level1);
+            kb.addFact(fact, WKBUtil.level1);
         }
         return "Done.";
     }
