@@ -3,7 +3,7 @@
  *
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  *
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, mergeWtags, publish, distribute, sublicense, and/or sell
@@ -29,8 +29,8 @@ import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Procedure;
 import org.purl.net.wonderland.nlp.Pipeline;
@@ -51,11 +51,11 @@ Sneezy	Short beard	brown jacket, orange headpiece, red nose
  */
 public abstract class Personality {
 
-    protected WKnowledgeBase kb = null;
+    protected WKB kb = null;
     protected ProcManager procMgr = null;
     protected ReferenceSolver refSlv = null;
 
-    public void setKb(WKnowledgeBase kb) {
+    public void setKb(WKB kb) {
         this.kb = kb;
         try {
             procMgr = new ProcManager(kb);
@@ -91,28 +91,28 @@ public abstract class Personality {
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyProcSet(fact, KbUtil.procSetMoods);
+        applyProcSet(fact, WKBUtil.procSetMoods);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyProcSet(fact, KbUtil.procSetCollocations);
+        applyProcSet(fact, WKBUtil.procSetCollocations);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyProcSet(fact, KbUtil.procSetArticles);
+        applyProcSet(fact, WKBUtil.procSetArticles);
     }
 
     protected void applyProcSet(CGraph fact, String procSet) throws Exception {
-        KbUtil.setAllConclusion(fact, false);
+        WKBUtil.setAllConclusion(fact, false);
         List<Procedure> matches = procMgr.findMatches(procSet, fact);
         for (Procedure match : matches) {
             if (match != null) {
                 // System.out.println("procedure: " + match.getId());
                 for (Projection proj : match.getProjections()) {
-                    KbUtil.applyProcedure(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                    WKBUtil.applyProcedure(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
                 }
             }
         }
-        KbUtil.setAllConclusion(fact, false);
+        WKBUtil.setAllConclusion(fact, false);
     }
 }

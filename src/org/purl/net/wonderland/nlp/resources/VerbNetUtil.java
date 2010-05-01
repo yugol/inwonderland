@@ -23,7 +23,7 @@
  */
 package org.purl.net.wonderland.nlp.resources;
 
-import org.purl.net.wonderland.nlp.resources.VNClassFile;
+import org.purl.net.wonderland.nlp.resources.VerbNetClassFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -39,7 +39,7 @@ import org.xml.sax.SAXException;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class VNUtil {
+public final class VerbNetUtil {
 
     public static void buildVerbNetFileList(File indexFile) throws FileNotFoundException {
         int fileCount = 0;
@@ -62,7 +62,7 @@ public final class VNUtil {
         PrintWriter fout = new PrintWriter(verbIndex);
         Map<String, VerbForm> verbForms = new Hashtable<String, VerbForm>();
         for (String name : VerbNetWrapper.getFileList()) {
-            VNClassFile verbClass = new VNClassFile(name);
+            VerbNetClassFile verbClass = new VerbNetClassFile(name);
             for (VerbForm member : verbClass.getMembers()) {
                 VerbForm vf = verbForms.get(member.getLemma());
                 if (vf == null) {

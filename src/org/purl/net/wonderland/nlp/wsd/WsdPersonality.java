@@ -26,8 +26,8 @@ package org.purl.net.wonderland.nlp.wsd;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
 import org.purl.net.wonderland.engine.Personality;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 
 /**
  *
@@ -64,16 +64,16 @@ public class WsdPersonality extends Personality {
         List<CGraph> facts = parseMessage(words);
         procMgr.resetSolver();
         CGraph fact = facts.get(0);
-        fact = KbUtil.duplicate(fact);
+        fact = WKBUtil.duplicate(fact);
         processMoods(fact);
         processArticles(fact);
         // processCollocations(fact);
-        // kb.addFact(fact, KbUtil.level2);
+        // kb.addFact(fact, WKBUtil.level2);
         return fact;
 
     }
 
-    public WKnowledgeBase getKb() {
+    public WKB getKb() {
         return kb;
     }
 }

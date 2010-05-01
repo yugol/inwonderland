@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -34,8 +34,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.kb.Attr;
-import org.purl.net.wonderland.kb.KbUtil;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WKB;
 
 /**
  *
@@ -43,13 +43,13 @@ import org.purl.net.wonderland.kb.WKnowledgeBase;
  */
 public class ReferenceSolver {
 
-    private final WKnowledgeBase kb;
+    private final WKB kb;
     private final Hierarchy cTypes;
     private final CGraph story;
     private final List<Concept> targets;
     private final Map<String, Concept> directTargets;
 
-    ReferenceSolver(WKnowledgeBase kb) {
+    ReferenceSolver(WKB kb) {
         this.kb = kb;
         this.cTypes = kb.getVocabulary().getConceptTypeHierarchy();
         this.story = kb.getStory();
@@ -68,15 +68,15 @@ public class ReferenceSolver {
                 refs.put(c, t);
             } else {
                 String[] type = c.getType();
-                Concept c2 = new Concept(KbUtil.newUniqueId());
+                Concept c2 = new Concept(WKBUtil.newUniqueId());
                 c2.setType(type);
                 c2.setIndividual(c.getIndividual());
                 story.addVertex(c2);
-                if (cTypes.isKindOf(type, KbUtil.noun)) {
+                if (cTypes.isKindOf(type, WKBUtil.NOUN_CT)) {
                     targets.add(c2);
                 }
                 refs.put(c, c2);
-                if (cTypes.isKindOf(type, KbUtil.properNoun)) {
+                if (cTypes.isKindOf(type, WKBUtil.PROPERNOUN_CT)) {
                     directTargets.put(c2.getIndividual(), c2);
                 }
             }
@@ -85,7 +85,7 @@ public class ReferenceSolver {
         Iterator<Relation> rit = fact.iteratorRelation();
         while (rit.hasNext()) {
             Relation r = rit.next();
-            Relation r2 = new Relation(KbUtil.newUniqueId());
+            Relation r2 = new Relation(WKBUtil.newUniqueId());
             r2.setType(r.getType());
             story.addVertex(r2);
             Iterator<CREdge> eit = fact.iteratorEdge(r.getId());
@@ -100,13 +100,13 @@ public class ReferenceSolver {
 
     private Concept getTarget(Concept c) {
         String[] type = c.getType();
-        if (cTypes.isKindOf(type, KbUtil.properNoun)) {
+        if (cTypes.isKindOf(type, WKBUtil.PROPERNOUN_CT)) {
             return findByIndividual(c);
         }
-        if (cTypes.isKindOf(type, KbUtil.pronoun)) {
+        if (cTypes.isKindOf(type, WKBUtil.PRONOUN_CT)) {
             return findByType(c);
         }
-        if (cTypes.isKindOf(type, KbUtil.possessiveAdjective)) {
+        if (cTypes.isKindOf(type, WKBUtil.POSSESSIVEADVERB_CT)) {
             return findByType(c);
         }
         return null;

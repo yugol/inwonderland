@@ -26,7 +26,7 @@ package org.purl.net.wonderland.nlp.wsd;
 import java.util.HashSet;
 import java.util.Set;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKB;
 
 /**
  *
@@ -39,7 +39,7 @@ public final class WsdManager {
 
     static {
         try {
-            pers.setKb(new WKnowledgeBase(Configuration.getDefaultParseKBFile()));
+            pers.setKb(new WKB(Configuration.getDefaultParseKBFile()));
         } catch (Exception ex) {
             System.err.println("Error starting WsdManager");
             Configuration.handleException(ex);

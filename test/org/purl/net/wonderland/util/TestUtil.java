@@ -38,9 +38,5 @@ public class TestUtil {
 
         File candidateFile = new File("test.xml");
         candidateFile.delete();
-        Corpus candidate = new Corpus();
-        candidate.buildFrom(candidateFile);
-        candidate.addKnowledgeBase(mp, level);
-        candidate.writeToFile(candidateFile);
     }
 }

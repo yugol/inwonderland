@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,8 +23,6 @@
  */
 package org.purl.net.wonderland.kb;
 
-import aminePlatform.kernel.lexicons.Identifier;
-import aminePlatform.util.cg.CG;
 import edu.stanford.nlp.util.StringUtils;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
@@ -54,9 +52,9 @@ public class ProcManager {
 
     private Map<String, List<Procedure>> procs = new Hashtable<String, List<Procedure>>();
     private final SolverCogitant solver = new SolverCogitant();
-    private final WKnowledgeBase kb;
+    private final WKB kb;
 
-    public ProcManager(WKnowledgeBase kb) {
+    public ProcManager(WKB kb) {
         this.kb = kb;
     }
 
@@ -78,13 +76,13 @@ public class ProcManager {
     }
 
     public void readAllProceduresFromKb() throws Exception {
-        readProcedureSet(KbUtil.procSetArticles);
-        readProcedureSet(KbUtil.procSetMoods);
-        readProcedureSet(KbUtil.procSetCollocations);
+        readProcedureSet(WKBUtil.procSetArticles);
+        readProcedureSet(WKBUtil.procSetMoods);
+        readProcedureSet(WKBUtil.procSetCollocations);
     }
 
     private void readProcedureSet(String set) throws Exception {
-        String setId = KbUtil.toProcName(set, null);
+        String setId = WKBUtil.toProcName(set, null);
         addProcedure(set, null);
         List<Rule> rules = kb.getProcRules(set);
         for (Rule rule : rules) {
@@ -145,69 +143,6 @@ public class ProcManager {
         return proc;
     }
 
-    public void readProcedures(File file) throws Exception {
-        ProcParser parser = new ProcParser();
-        Vocabulary voc = kb.getVocabulary();
-        Iterator<String> r = voc.getRelationTypeHierarchy().iteratorVertex();
-        while (r.hasNext()) {
-            String rt = r.next();
-            parser.addRelationType(voc.getRelationTypeLabel(rt, kb.getLanguage()));
-        }
-        parser.parse(file);
-        for (int i = 0; i < parser.getNameList().size(); ++i) {
-            Procedure proc = buildProcedures(parser, parser.getNameList().get(i), parser.getLhsList().get(i), parser.getRhsList().get(i));
-            addProcedure("amine", proc);
-        }
-    }
-
-    private Procedure buildProcedures(ProcParser parser, String name, CG lhsa, CG rhsa) {
-        CGraph lhsc = new CGraph(UUID.randomUUID().toString(), name, "lhs", "fact");
-        Map<aminePlatform.util.cg.Concept, Concept> lhsMap = mapGraph(lhsa, lhsc, parser);
-        CGraph rhsc = new CGraph(UUID.randomUUID().toString(), name, "rhs", "fact");
-        Map<aminePlatform.util.cg.Concept, Concept> rhsMap = mapGraph(rhsa, rhsc, parser);
-
-        Map<Concept, Concept> rhsLhsMap = new Hashtable<Concept, Concept>();
-        for (aminePlatform.util.cg.Concept lac : lhsMap.keySet()) {
-            // System.out.println(parser.getTypeName(lac.getType()));
-            Object lObj = lac.getDescriptor();
-            if (lObj != null) {
-                Concept lcc = lhsMap.get(lac);
-                String[] lDesc = getDesc(((Identifier) lObj).getName());
-                if (lDesc[0] != null) {
-                    // System.out.println("individual: " + lDesc[0]);
-                    lcc.setIndividual(lDesc[0]);
-                }
-                if (lDesc[1] != null) {
-                    // System.out.println("var: " + lDesc[1]);
-                    for (aminePlatform.util.cg.Concept rac : rhsMap.keySet()) {
-                        Object rObj = rac.getDescriptor();
-                        if (rObj != null) {
-                            String[] rDesc = getDesc(((Identifier) rObj).getName());
-                            if (lDesc[1].equals(rDesc[1])) {
-                                Concept rcc = rhsMap.get(rac);
-                                rhsLhsMap.put(rcc, lcc);
-                                System.out.println("Added map: " + StringUtils.join(lcc.getType(), ";") + " : " + lcc.getIndividual() + " -> " + StringUtils.join(rcc.getType(), ";") + " : " + rcc.getIndividual());
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        for (aminePlatform.util.cg.Concept rac : rhsMap.keySet()) {
-            Object rObj = rac.getDescriptor();
-            if (rObj != null) {
-                String[] rDesc = getDesc(((Identifier) rObj).getName());
-                if (rDesc[0] != null) {
-                    Concept rcc = rhsMap.get(rac);
-                    rcc.setIndividual(rDesc[0]);
-                }
-            }
-        }
-
-        Procedure proc = new ProcImpl(lhsc, rhsc, rhsLhsMap);
-        return proc;
-    }
-
     private String[] getDesc(String str) {
         String[] desc = new String[2];
         int varpos = str.lastIndexOf("var_");
@@ -220,43 +155,6 @@ public class ProcManager {
             desc[1] = str.substring(varpos + 4);
         }
         return desc;
-    }
-
-    private Map<aminePlatform.util.cg.Concept, Concept> mapGraph(CG amineCG, CGraph cogitantCG, ProcParser parser) {
-        Map<aminePlatform.util.cg.Concept, Concept> acMap = new Hashtable<aminePlatform.util.cg.Concept, Concept>();
-        if (amineCG != null) {
-            Enumeration it = amineCG.getConcepts();
-            while (it.hasMoreElements()) {
-                aminePlatform.util.cg.Concept ac = (aminePlatform.util.cg.Concept) it.nextElement();
-                String type = parser.getTypeName(ac.getType());
-                if (type.indexOf("ct_") == 0) {
-                    type = type.substring(3);
-                }
-                String[] types = type.split("__");
-                System.out.print(StringUtils.join(types, ";") + ": ");
-                System.out.println(ac.getDescriptor());
-                Concept cc = new Concept(UUID.randomUUID().toString());
-                for (int i = 0; i < types.length; ++i) {
-                    types[i] = KbUtil.toConceptTypeId(types[i]);
-                }
-                cc.setType(types);
-                cogitantCG.addVertex(cc);
-                acMap.put(ac, cc);
-            }
-            it = amineCG.getRelations();
-            while (it.hasMoreElements()) {
-                aminePlatform.util.cg.Relation ar = (aminePlatform.util.cg.Relation) it.nextElement();
-                String type = parser.getTypeName(ar.getType());
-                // System.out.println(typees);
-                Relation cr = new Relation(UUID.randomUUID().toString());
-                cr.setType(KbUtil.toRelationTypeId(type));
-                cogitantCG.addVertex(cr);
-                cogitantCG.addEdge(acMap.get(ar.getSourceConcept()).getId(), cr.getId(), 1);
-                cogitantCG.addEdge(acMap.get(ar.getTargetConcept()).getId(), cr.getId(), 1);
-            }
-        }
-        System.out.println("");
-        return acMap;
     }
 
     public Procedure findMatch(String procSet, CGraph cg, Set<Procedure> exclude) throws Exception {

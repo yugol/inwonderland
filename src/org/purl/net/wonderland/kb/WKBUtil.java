@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -56,30 +56,81 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class KbUtil {
+public final class WKBUtil {
 
+    public static final String TYPE_SEPARATOR = ";";
+    public static final String ID_SEPARATOR = " ";
+    // morphology types
+    public static final String PARTOFSPEECH = "partOfSpeech";
+    public static final String GRAMMATICALGENDER = "grammaticalGender";
+    public static final String GRAMMATICALNUMBER = "grammaticalNumber";
+    public static final String GRAMMATICALCASE = "grammaticalCase";
+    public static final String GRAMMATICALTENSE = "grammaticalTense";
+    public static final String PERSON = "person";
+    public static final String DEGREE = "degree";
+    public static final String VERBFORMMOOD = "verbFormMood";
+    public static final String DEFINITNESS = "definiteness";
+    public static final String ASPECT = "aspect";
+    // morphology (POS)
+    public static final String ADVERB = "adverb";
+    public static final String NOUN = "noun";
+    public static final String VERB = "verb";
+    public static final String ADJECTIVE = "adjective";
+    public static final String PROPERNOUN = "properNoun";
+    public static final String POSSESIVEADJECIVE = "possessiveAdjective";
+    public static final String PRONOUN = "pronoun";
+    public static final String DEMONSTRATIVEDETERMINER = "demonstrativeDeterminer";
+    public static final String DEMONSTRATICEPRONOUN = "demonstrativePronoun";
+    public static final String CARDINALNUMBER = "cardinalNumeral";
+    public static final String GERUND = "gerund";
+    public static final String INDICATIVE = "indicative";
+    public static final String PAST = "past";
+    public static final String PRESENT = "present";
+    public static final String SINGULAR = "singular";
+    public static final String THIRDPERSON = "thirdPerson";
+    public static final String COMMONNOUN = "commonNoun";
+    public static final String PLURAL = "plural";
+    public static final String MODAL = "modal";
+    public static final String INFINITIVE = "infinitive";
+    public static final String PARTICIPLE = "participle";
+    public static final String SUBORDONATINGCONJUNCTION = "subordinatingConjunction";
+    public static final String ADPOSITION = "adposition";
+    public static final String COORDINATINGCONJUNCTION = "coordinatingConjunction";
+    public static final String COMPARATIVE = "comparative";
+    public static final String SUPERLATIVE = "superlative";
+    public static final String MANNERADVERB = "mannerAdverb";
+    public static final String ORDINALADJECTIVE = "ordinalAdjective";
+    public static final String RELATIVEPRONOUN = "relativePronoun";
+    public static final String RELATIVEADVERB = "relativeAdverb";
+    public static final String POSSESIVEPRONOUN = "possessivePronoun";
+    public static final String INTERROGATIVEADVERB = "interrogativeAdverb";
+    public static final String EXISTENTIALPRONOUN = "existentialPronoun";
+    public static final String GENERALADVERB = "generalAdverb";
+    public static final String POSSESIVEPARTICLE = "possessiveParticle";
+    public static final String INTERJECTION = "interjection";
     // some concept types from the knowledge base support
-    public static final String Top = toConceptTypeId("Top");
-    public static final String Nil = toConceptTypeId("Nil");
-    public static final String LinkArg = toConceptTypeId("LinkArg");
-    public static final String SpTag = toConceptTypeId("SpTag");
-    public static final String partOfSpeech = toConceptTypeId("partOfSpeech");
-    public static final String grammaticalCase = toConceptTypeId("case");
-    public static final String degree = toConceptTypeId("degree");
-    public static final String grammaticalGender = toConceptTypeId("grammaticalGender");
-    public static final String verbFormMood = toConceptTypeId("verbFormMood");
-    public static final String grammaticalNumber = toConceptTypeId("grammaticalNumber");
-    public static final String person = toConceptTypeId("person");
-    public static final String grammaticalTense = toConceptTypeId("grammaticalTense");
-    public static final String definiteness = toConceptTypeId("definiteness");
-    // POS concept types
-    public static final String noun = toConceptTypeId("noun");
-    public static final String verb = toConceptTypeId("verb");
-    public static final String adverb = toConceptTypeId("adverb");
-    public static final String pronoun = toConceptTypeId("pronoun");
-    public static final String adjective = toConceptTypeId("adjective");
-    public static final String properNoun = toConceptTypeId("properNoun");
-    public static final String possessiveAdjective = toConceptTypeId("possessiveAdjective");
+    public static final String TOP_CT = toConceptTypeId("Top");
+    public static final String NIL_CT = toConceptTypeId("Nil");
+    public static final String LINKARG_CT = toConceptTypeId("LinkArg");
+    public static final String SPTAG_CT = toConceptTypeId("SpTag");
+    // morphology concept types
+    public static final String PARTOFSPEECH_CT = toConceptTypeId(PARTOFSPEECH);
+    public static final String GRAMMATICALCASE_CT = toConceptTypeId(GRAMMATICALCASE);
+    public static final String DEGREE_CT = toConceptTypeId(DEGREE);
+    public static final String GRAMMATICALGENDER_CT = toConceptTypeId(GRAMMATICALGENDER);
+    public static final String VERBFORMMOOD_CT = toConceptTypeId(VERBFORMMOOD);
+    public static final String GRAMMATICALNUMBER_CT = toConceptTypeId(GRAMMATICALNUMBER);
+    public static final String PERSON_CT = toConceptTypeId(PERSON);
+    public static final String ASPECT_CT = toConceptTypeId(ASPECT);
+    public static final String GRAMMATICALTENSE_CT = toConceptTypeId(GRAMMATICALTENSE);
+    public static final String DEFINITNESS_CT = toConceptTypeId(DEFINITNESS);
+    public static final String NOUN_CT = toConceptTypeId(NOUN);
+    public static final String VERB_CT = toConceptTypeId(VERB);
+    public static final String ADVERB_CT = toConceptTypeId(ADVERB);
+    public static final String PRONOUN_CT = toConceptTypeId(PRONOUN);
+    public static final String ADJECTIVE_CT = toConceptTypeId(ADJECTIVE);
+    public static final String PROPERNOUN_CT = toConceptTypeId(PROPERNOUN);
+    public static final String POSSESSIVEADVERB_CT = toConceptTypeId(POSSESIVEADJECIVE);
     // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";
@@ -120,20 +171,7 @@ public final class KbUtil {
     }
 
     public static String toConceptId(WTagging tagging, int index) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(handleQuotes(tagging.getWrittenForm()));
-        sb.append("#");
-        sb.append(index);
-        sb.append("=[");
-        if (tagging.getPennTag() != null) {
-            sb.append(handleQuotes(tagging.getPennTag()));
-        }
-        sb.append("]{");
-        if (tagging.getPartsOfSpeech() != null) {
-            sb.append(handleQuotes(tagging.getPartsOfSpeech()));
-        }
-        sb.append("}");
-        return sb.toString();
+        return index + "";
     }
 
     public static String toRelationId(String label, int index) {
@@ -149,39 +187,8 @@ public final class KbUtil {
         return ctl.replace("'", "`");
     }
 
-    public static String getConceptForm(String id) {
-        int end = id.lastIndexOf("#");
-        if (end >= 0) {
-            return id.substring(0, end);
-        }
-        return null;
-    }
-
     public static int getConceptIndex(String id) {
-        int beg = id.lastIndexOf('#') + 1;
-        int end = id.lastIndexOf('=');
-        int index = Integer.parseInt(id.substring(beg, end));
-        return index;
-    }
-
-    public static String getConceptPennTag(String id) {
-        int beg = id.lastIndexOf("[") + 1;
-        int end = id.lastIndexOf("]");
-        if (beg < end) {
-            return id.substring(beg, end);
-        } else {
-            return null;
-        }
-    }
-
-    public static String getConceptMaTag(String id) {
-        int beg = id.lastIndexOf("{") + 1;
-        int end = id.lastIndexOf("}");
-        if (beg < end) {
-            return id.substring(beg, end);
-        } else {
-            return null;
-        }
+        return Integer.parseInt(id);
     }
 
     public static int getLabelIndex(String label) {
@@ -245,7 +252,7 @@ public final class KbUtil {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, KbUtil.toConceptTypeId(label));
+            replaces.put(ct, WKBUtil.toConceptTypeId(label));
             pos = kb.indexOf("<ctype", pos);
         }
 
@@ -273,7 +280,7 @@ public final class KbUtil {
             pos = kb.indexOf("\"", from);
             String label = kb.substring(from, pos);
 
-            replaces.put(ct, KbUtil.toRelationTypeId(label));
+            replaces.put(ct, WKBUtil.toRelationTypeId(label));
             pos = kb.indexOf("<rtype", pos);
         }
 
@@ -295,7 +302,7 @@ public final class KbUtil {
             String id = marker.getAttribute("id");
             replaceIndividualsIds(xmlDoc, id, label);
             marker.setAttribute("id", label);
-            marker.setAttribute("idType", KbUtil.Top);
+            marker.setAttribute("idType", WKBUtil.TOP_CT);
         }
         XML.writeXmlFile(xmlDoc, kbFile);
     }
@@ -423,7 +430,7 @@ public final class KbUtil {
                 String[] rType = r.getType();
                 fact.removeVertex(r.getId());
                 for (Concept toConcept : toConcepts) {
-                    r = new Relation(KbUtil.newUniqueId());
+                    r = new Relation(WKBUtil.newUniqueId());
                     r.setType(rType);
                     fact.addVertex(r);
                     fact.addEdge(fromConcept.getId(), r.getId(), 1);
@@ -468,13 +475,13 @@ public final class KbUtil {
 
             String[] rhsTypes = rhs.getType();
             Arrays.sort(rhsTypes);
-            int idxPos = Arrays.binarySearch(rhsTypes, Nil);
+            int idxPos = Arrays.binarySearch(rhsTypes, NIL_CT);
             if (idxPos < 0) {
-                // no Nil - replace lhs types with rhs types
+                // no NIL_CT - replace lhs types with rhs types
                 actual.setType(rhsTypes);
             } else {
                 if (rhsTypes.length > 1) {
-                    // add all rhs types but LinkArg to lhs
+                    // add all rhs types but LINKARG_CT to lhs
                     String[] actualTypes = actual.getType();
                     String[] lhsTypes = new String[actualTypes.length + rhsTypes.length - 1];
                     System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);
@@ -496,7 +503,7 @@ public final class KbUtil {
 
         // add new concepts
         for (Concept rhs : insert) {
-            Concept actual = new Concept(KbUtil.newUniqueId());
+            Concept actual = new Concept(WKBUtil.newUniqueId());
             actual.setType(rhs.getType());
             actual.setIndividual(rhs.getIndividual());
             fact.addVertex(actual);
@@ -514,7 +521,7 @@ public final class KbUtil {
             String actualConceptId = update.get(rhsConcept.getId());
             String actualRelationId = update.get(rhsRelation.getId());
             if (actualRelationId == null) {
-                Relation actualRelation = new Relation(KbUtil.newUniqueId());
+                Relation actualRelation = new Relation(WKBUtil.newUniqueId());
                 actualRelation.setType(rhsRelation.getType());
                 fact.addVertex(actualRelation);
                 actualRelationId = actualRelation.getId();

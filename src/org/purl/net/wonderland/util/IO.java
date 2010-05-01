@@ -35,7 +35,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.purl.net.wonderland.kb.WKnowledgeBase;
+import org.purl.net.wonderland.kb.WKB;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -48,11 +48,11 @@ public class IO {
 
     private static class ProcWriter extends CogxmlWriter {
 
-        public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
+        public static void writeProcs(String set, WKB kb, File file) throws Exception {
             writeProcs(kb.getProcRules(set), kb, file);
         }
 
-        private static void writeProcs(List<Rule> procs, WKnowledgeBase kb, File file) throws Exception {
+        private static void writeProcs(List<Rule> procs, WKB kb, File file) throws Exception {
             Document xmlDoc = XML.createDocument();
             Element root = xmlDoc.createElement("cogxml");
             xmlDoc.appendChild(root);
@@ -71,7 +71,7 @@ public class IO {
 
     private static class ProcReader extends CogxmlReader {
 
-        public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
+        public static void readProcs(WKB kb, File file) throws Exception {
             Vocabulary voc = kb.getVocabulary();
             Document xmlDoc = XML.readXmlFile(file);
             NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
@@ -118,15 +118,15 @@ public class IO {
         return cpr;
     }
 
-    public static void writeProcs(String set, WKnowledgeBase kb, File file) throws Exception {
+    public static void writeProcs(String set, WKB kb, File file) throws Exception {
         ProcWriter.writeProcs(set, kb, file);
     }
 
-    public static void writeProcs(List<Rule> procs, WKnowledgeBase kb, File file) throws Exception {
+    public static void writeProcs(List<Rule> procs, WKB kb, File file) throws Exception {
         ProcWriter.writeProcs(procs, kb, file);
     }
 
-    public static void readProcs(WKnowledgeBase kb, File file) throws Exception {
+    public static void readProcs(WKB kb, File file) throws Exception {
         ProcReader.readProcs(kb, file);
     }
 }
