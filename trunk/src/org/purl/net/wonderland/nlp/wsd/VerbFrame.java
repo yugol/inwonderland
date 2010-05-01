@@ -116,6 +116,7 @@ public class VerbFrame {
 
                 Example example = new Example(verbLemma, Example.Type.VerbNet, exampleElement.getTextContent().trim());
 
+                Element prevSyntaxElement = null;
                 NodeList syntaxNodes = syntaxElement.getChildNodes();
                 for (int k = 0; k < syntaxNodes.getLength(); k++) {
                     Node syntaxNode = syntaxNodes.item(k);
@@ -149,7 +150,14 @@ public class VerbFrame {
                         }
 
                         Example.RoleData entry = new Example.RoleData(syntaxElement.getTagName(), value.toString(), synrestrs.toString(), selrestrs.toString());
+                        if (prevSyntaxElement != null) {
+                            if (prevSyntaxElement.getTagName().equals("PREP")) {
+                                entry.setPrep(example.getFrame().get(example.getFrame().size() - 1));
+                            }
+                        }
                         example.getFrame().add(entry);
+
+                        prevSyntaxElement = syntaxElement;
                     }
                 }
 

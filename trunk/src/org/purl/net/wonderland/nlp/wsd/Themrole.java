@@ -32,26 +32,28 @@ import java.util.List;
  */
 public class Themrole {
 
-    private final String pnN;
+    private final String pbN;
     private final String pbDescr;
     private final String vnThemrole;
     private final List<String> plusRestrs;
     private final List<String> minusRestrs;
+    private int hits; // used for role selection
 
     public Themrole(String pnN, String pbDescr, String vnThemrole) {
-        this.pnN = pnN;
+        this.pbN = pnN;
         this.pbDescr = pbDescr;
         this.vnThemrole = vnThemrole;
         this.plusRestrs = new ArrayList<String>();
         this.minusRestrs = new ArrayList<String>();
+        hits = 0;
     }
 
     public String getPbDescr() {
         return pbDescr;
     }
 
-    public String getPnN() {
-        return pnN;
+    public String getPbN() {
+        return pbN;
     }
 
     public String getVnThemrole() {
@@ -64,5 +66,17 @@ public class Themrole {
 
     public List<String> getPlusRestrs() {
         return plusRestrs;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void resetHits() {
+        this.hits = 0;
+    }
+
+    public void incrementHits() {
+        this.hits += 1;
     }
 }

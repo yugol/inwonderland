@@ -51,6 +51,7 @@ public class Example {
         private final String value;
         private final String[] synrestrs;
         private final String[] selrestrs;
+        private RoleData prep = null;
 
         public RoleData(String phrase, String value, String synrestrs, String selrestrs) {
             this.phrase = phrase;
@@ -73,6 +74,14 @@ public class Example {
 
         public String[] getSynrestrs() {
             return synrestrs;
+        }
+
+        public RoleData getPrep() {
+            return prep;
+        }
+
+        public void setPrep(RoleData prep) {
+            this.prep = prep;
         }
     }
     //
@@ -163,5 +172,35 @@ public class Example {
             join.append(token.word());
         }
         return join.toString();
+    }
+
+    public void resetRoleHits() {
+        for (Themrole role : args.keySet()) {
+            role.resetHits();
+        }
+    }
+
+    public Themrole getBestRole() {
+        int maxHits = 0;
+        Themrole bestRole = null;
+        for (Themrole role : args.keySet()) {
+            int hits = role.getHits();
+            if (hits > maxHits) {
+                maxHits = hits;
+                bestRole = role;
+            } else if (hits == maxHits) {
+                bestRole = null;
+            }
+        }
+        return bestRole;
+    }
+
+    public RoleData getRoleData(Themrole role) {
+        for (RoleData roleData : frame) {
+            if (role.getVnThemrole().equals(roleData.getValue())) {
+                return roleData;
+            }
+        }
+        return null;
     }
 }

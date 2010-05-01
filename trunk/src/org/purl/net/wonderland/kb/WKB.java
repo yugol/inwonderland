@@ -45,8 +45,8 @@ import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
-import org.purl.net.wonderland.nlp.resources.VerbForm;
 import org.purl.net.wonderland.util.Formatting;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -382,6 +382,7 @@ public class WKB {
         }
         wt.setIndex(idx);
         wt.setLemma(c.getIndividual());
+        wt.setWrittenForm(WKBUtil.getConceptWrittenForm(c.getId()));
         return wt;
     }
 

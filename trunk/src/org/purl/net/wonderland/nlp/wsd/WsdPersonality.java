@@ -65,10 +65,10 @@ public class WsdPersonality extends Personality {
         procMgr.resetSolver();
         CGraph fact = facts.get(0);
         fact = WKBUtil.duplicate(fact);
-        processMoods(fact);
+        // processMoods(fact);
         processArticles(fact);
         // processCollocations(fact);
-        // kb.addFact(fact, WKBUtil.level2);
+        kb.addFact(fact, WKBUtil.level2);
         return fact;
 
     }

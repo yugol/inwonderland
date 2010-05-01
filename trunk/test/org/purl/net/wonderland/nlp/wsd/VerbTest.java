@@ -30,9 +30,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
@@ -77,8 +76,13 @@ public class VerbTest {
     public void testOneVerbToProcs() throws Exception {
         Verb v = new Verb("abduct");
         List<Rule> procs = v.getVerbNetProcs();
+        WKB kb = WsdManager.pers.getKb();
+        for (Rule proc : procs) {
+            kb.addRule(proc);
+        }
         File file = new File("test." + v.getLemma() + ".cogxml");
-        IO.writeProcs(procs, WsdManager.pers.getKb(), file);
+        kb.save(file);
+        // IO.writeProcs(procs, WsdManager.pers.getKb(), file);
         WKBUtil.normalizeKbFile(file);
     }
 }
