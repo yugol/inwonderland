@@ -120,7 +120,10 @@ public final class WKBUtil {
     public static final String COLON = "colon";
     // some concept types from the knowledge base support
     public static final String TOP_CT = toConceptTypeId("Top");
-    public static final String NIL_CT = toConceptTypeId("Nil");
+    public static final String PROCOP_CT = toConceptTypeId("ProcOp");
+    public static final String PROCOP_KEEP_CT = toConceptTypeId("ProcOp_Keep");
+    public static final String PROCOP_ADD_CT = toConceptTypeId("ProcOp_Add");
+    public static final String PROCOP_REPLACE_CT = toConceptTypeId("ProcOp_Replace");
     public static final String LINKARG_CT = toConceptTypeId("LinkArg");
     public static final String SPTAG_CT = toConceptTypeId("SpTag");
     // morphology concept types
@@ -355,17 +358,17 @@ public final class WKBUtil {
 
     public static void applyProcedure(CGraph fact, Projection proj, Procedure proc, boolean markingConcepts, Hierarchy cth) {
         CGraph rhsFact = proc.getRhs();
-        Set<Concept> delete = new HashSet<Concept>();
+        Set<Concept> conceptsToDelete = new HashSet<Concept>();
         Set<String> peers = new TreeSet<String>();
-        Set<Concept> insert = new HashSet<Concept>();
-        Map<String, String> update = new Hashtable<String, String>();
+        Set<Concept> conceptsToInsert = new HashSet<Concept>();
+        Map<String, String> conceptsToUpdate = new Hashtable<String, String>();
 
         // assume all concepts from LHS are to be deleted
         Iterator<Concept> cit = proc.getLhs().iteratorConcept();
         while (cit.hasNext()) {
             Concept lhs = cit.next();
             Concept actual = (Concept) proj.getTarget(lhs.getId());
-            if (actual == null || delete.contains(actual)) {
+            if (actual == null || conceptsToDelete.contains(actual)) {
                 return;
             }
             if (!cth.isKindOf(actual.getType(), lhs.getType())) {
@@ -374,39 +377,37 @@ public final class WKBUtil {
             }
             if (markingConcepts) {
                 if (actual.isConclusion()) {
+                    // the concept has already been processed in a previous rule
                     return;
                 }
             }
-            delete.add(actual);
+            conceptsToDelete.add(actual);
         }
-
-        // finally execute procedure
-        // System.out.println("*" + proc.getId());
 
         // mark all actual lhs concepts
         if (markingConcepts) {
-            for (Concept c : delete) {
+            for (Concept c : conceptsToDelete) {
                 c.setConclusion(true);
             }
         }
 
-        // correct delete, update, insert collections
+        // build delete, update, insert collections
         cit = rhsFact.iteratorConcept();
         while (cit.hasNext()) {
             Concept rhs = cit.next();
             Concept lhs = proc.getRhsLhsConceptMap().get(rhs);
             Concept actual = (Concept) proj.getTarget(lhs.getId());
             if (actual != null) {
-                update.put(rhs.getId(), actual.getId());
-                delete.remove(actual);
+                conceptsToUpdate.put(rhs.getId(), actual.getId());
+                conceptsToDelete.remove(actual);
                 peers.add(actual.getId());
             } else {
-                insert.add(rhs);
+                conceptsToInsert.add(rhs);
             }
         }
 
         // delete concepts
-        for (Concept c : delete) {
+        for (Concept c : conceptsToDelete) {
             List<Relation> from = new ArrayList<Relation>();
             List<Relation> to = new ArrayList<Relation>();
             List<Concept> toConcepts = new ArrayList<Concept>();
@@ -453,9 +454,9 @@ public final class WKBUtil {
         if (rhsFact.iteratorRelation().hasNext()) {
 
             // identify relations to be deleted
-            List<String> remove = new ArrayList<String>();
-            for (String rhsId : update.keySet()) {
-                String actualId = update.get(rhsId);
+            List<String> relationsToDelete = new ArrayList<String>();
+            for (String rhsId : conceptsToUpdate.keySet()) {
+                String actualId = conceptsToUpdate.get(rhsId);
                 peers.remove(actualId);
                 Iterator<String> rIt = fact.iteratorAdjacents(actualId);
                 while (rIt.hasNext()) {
@@ -464,7 +465,7 @@ public final class WKBUtil {
                     while (cIt.hasNext()) {
                         String cId = cIt.next();
                         if (peers.contains(cId)) {
-                            remove.add(rId);
+                            relationsToDelete.add(rId);
                             break;
                         }
                     }
@@ -473,51 +474,51 @@ public final class WKBUtil {
             }
 
             // delete relations
-            for (String rId : remove) {
+            for (String rId : relationsToDelete) {
                 fact.removeVertex(rId);
             }
         }
 
         // update concepts
-        for (String rhsId : update.keySet()) {
+        for (String rhsId : conceptsToUpdate.keySet()) {
+            // update types
             Concept rhs = rhsFact.getConcept(rhsId);
-            Concept actual = fact.getConcept(update.get(rhsId));
+            Concept actual = fact.getConcept(conceptsToUpdate.get(rhsId));
 
             String[] rhsTypes = rhs.getType();
             Arrays.sort(rhsTypes);
-            int idxPos = Arrays.binarySearch(rhsTypes, NIL_CT);
-            if (idxPos < 0) {
-                // no NIL_CT - replace lhs types with rhs types
-                actual.setType(rhsTypes);
-            } else {
-                if (rhsTypes.length > 1) {
-                    // add all rhs types but LINKARG_CT to lhs
-                    String[] actualTypes = actual.getType();
-                    String[] lhsTypes = new String[actualTypes.length + rhsTypes.length - 1];
-                    System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);
-                    int where = actualTypes.length;
-                    for (int i = 0; i < rhsTypes.length; ++i) {
-                        if (i != idxPos) {
-                            lhsTypes[where] = rhsTypes[i];
-                            ++where;
-                        }
-                    }
-                    actual.setType(lhsTypes);
-                }
+
+            int idxPos = Arrays.binarySearch(rhsTypes, PROCOP_KEEP_CT);
+            if (idxPos >= 0) {
+                // keep original types
+            }
+            idxPos = Arrays.binarySearch(rhsTypes, PROCOP_REPLACE_CT);
+            if (idxPos >= 0) {
+                actual.setType(getNoOpTypes(rhsTypes));
+            }
+            idxPos = Arrays.binarySearch(rhsTypes, PROCOP_ADD_CT);
+            if (idxPos >= 0) {
+                String[] actualTypes = actual.getType();
+                rhsTypes = getNoOpTypes(rhsTypes);
+                String[] lhsTypes = new String[actualTypes.length + rhsTypes.length];
+                System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);
+                System.arraycopy(rhsTypes, 0, lhsTypes, actualTypes.length, rhsTypes.length);
+                actual.setType(lhsTypes);
             }
 
+            // update individual
             if (!rhs.isGeneric()) {
                 actual.setIndividual(rhs.getIndividual());
             }
         }
 
         // add new concepts
-        for (Concept rhs : insert) {
+        for (Concept rhs : conceptsToInsert) {
             Concept actual = new Concept(WKBUtil.newUniqueId());
             actual.setType(rhs.getType());
             actual.setIndividual(rhs.getIndividual());
             fact.addVertex(actual);
-            update.put(rhs.getId(), actual.getId());
+            conceptsToUpdate.put(rhs.getId(), actual.getId());
         }
 
         // add new relations
@@ -528,17 +529,27 @@ public final class WKBUtil {
             Concept rhsConcept = rhsFact.getConcept(edge);
             Relation rhsRelation = rhsFact.getRelation(edge);
 
-            String actualConceptId = update.get(rhsConcept.getId());
-            String actualRelationId = update.get(rhsRelation.getId());
+            String actualConceptId = conceptsToUpdate.get(rhsConcept.getId());
+            String actualRelationId = conceptsToUpdate.get(rhsRelation.getId());
             if (actualRelationId == null) {
                 Relation actualRelation = new Relation(WKBUtil.newUniqueId());
                 actualRelation.setType(rhsRelation.getType());
                 fact.addVertex(actualRelation);
                 actualRelationId = actualRelation.getId();
-                update.put(rhsRelation.getId(), actualRelationId);
+                conceptsToUpdate.put(rhsRelation.getId(), actualRelationId);
             }
 
             fact.addEdge(actualConceptId, actualRelationId, edge.getNumOrder());
         }
+    }
+
+    private static String[] getNoOpTypes(String[] types) {
+        List<String> noOpTypes = new ArrayList<String>();
+        for (String type : types) {
+            if (type.indexOf(PROCOP_CT) != 0) {
+                noOpTypes.add(type);
+            }
+        }
+        return noOpTypes.toArray(new String[noOpTypes.size()]);
     }
 }

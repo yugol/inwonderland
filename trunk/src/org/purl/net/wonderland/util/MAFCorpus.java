@@ -107,15 +107,18 @@ public class MAFCorpus {
     private final File plainCorpus;
     private final File level0Corpus;
     private final File level1Corpus;
+    private final File level2Corpus;
     private List<String> plainLines;
-    private final Document[] xmlLevel = new Document[2];
+    private final Document[] xmlLevel = new Document[3];
 
     public MAFCorpus(File plainCorpus) throws Exception {
         this.plainCorpus = plainCorpus;
+
         String root = plainCorpus.getAbsolutePath();
         root = root.substring(0, root.lastIndexOf("."));
         level0Corpus = new File(root + ".level0.xml");
         level1Corpus = new File(root + ".level1.xml");
+        level2Corpus = new File(root + ".level2.xml");
 
         plainLines = IO.getFileContentAsStringList(plainCorpus);
 
@@ -127,6 +130,10 @@ public class MAFCorpus {
 
         if (level1Corpus.exists()) {
             xmlLevel[1] = XML.readXmlFile(level1Corpus);
+        }
+
+        if (level2Corpus.exists()) {
+            xmlLevel[2] = XML.readXmlFile(level2Corpus);
         }
     }
 
@@ -141,6 +148,9 @@ public class MAFCorpus {
     private int getLevelDocument(String level) {
         if (level.equals(WKBUtil.level1)) {
             return 1;
+        }
+        if (level.equals(WKBUtil.level2)) {
+            return 2;
         }
         return -1;
     }

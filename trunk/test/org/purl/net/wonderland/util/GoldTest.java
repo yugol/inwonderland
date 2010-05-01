@@ -31,7 +31,7 @@ import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.engine.Engine;
-import org.purl.net.wonderland.engine.Level1Personality;
+import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -45,8 +45,8 @@ import org.junit.BeforeClass;
  */
 public class GoldTest {
 
-    private static Personality pers = new Level1Personality();
-    private static String level = WKBUtil.level1;
+    private static Personality pers = new Level2Personality();
+    private static String level = WKBUtil.level2;
     private static String corpusFileName = "bedtime/story.txt";
     private static int firstSentence = 1;
     private static int lastSentence = 42;
@@ -82,8 +82,8 @@ public class GoldTest {
         saveTestResults();
     }
 
-    // @Test
-    public void testMany() throws Exception {
+    @Test
+    public void buildCorpus() throws Exception {
         System.out.println("Building corpus - " + corpusFileName);
 
         for (int i = firstSentence; i <= lastSentence; ++i) {
@@ -100,7 +100,7 @@ public class GoldTest {
         saveTestResults();
     }
 
-    @Test
+    // @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing corpus - " + corpusFileName);
 
