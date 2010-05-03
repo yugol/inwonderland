@@ -24,30 +24,48 @@
 package org.purl.net.wonderland.kb;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
+import fr.lirmm.rcr.cogui2.kernel.solver.SolverCogitant;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface Procedure {
+public class ProjectionSolver {
 
-    public CGraph getLhs();
+    private final WKB kb;
+    private final SolverCogitant solver;
 
-    public void setProjections(List<Projection> projections);
+    public ProjectionSolver(WKB kb) {
+        this.kb = kb;
+        this.solver = new SolverCogitant();
+    }
 
-    public List<Projection> getProjections();
+    public void reset() throws Exception {
+        if (solver.isConnected()) {
+            solver.disconnect();
+        }
+        solver.connect();
+        solver.commitVocabulary(kb.getVocabulary());
+    }
 
-    public CGraph getRhs();
+    public List<Proc> findMatches(ProcList procs, CGraph cg) throws Exception {
+        List<Proc> matches = new ArrayList<Proc>();
 
-    public Map<Concept, Concept> getRhsLhsConceptMap();
+        for (Proc proc : procs.getProcs()) {
+            CGraph lhs = proc.getLhs();
+            List<Projection> projections = solver.getProjections(lhs, cg);
+            if (projections.size() > 0) {
+                proc.setProjections(projections);
+                matches.add(proc);
+            } else {
+                proc.setProjections(null);
+            }
+        }
 
-    public String getId();
-
-    public double getPriority();
-
-    public double getLhsComplexity();
+        return matches;
+    }
 }

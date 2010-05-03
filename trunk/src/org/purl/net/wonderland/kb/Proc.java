@@ -23,24 +23,34 @@
  */
 package org.purl.net.wonderland.kb;
 
-import java.util.Comparator;
-import org.purl.net.wonderland.util.Compare;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class PriorityComparator implements Comparator<Procedure> {
+public interface Proc {
 
-    public int compare(Procedure proc1, Procedure proc2) {
-        int cmp = Compare.compare(proc1.getPriority(), proc2.getPriority());
-        if (cmp != 0) {
-            return -cmp;
-        }
-        cmp = Compare.compare(proc1.getLhsComplexity(), proc2.getLhsComplexity());
-        if (cmp == 0) {
-            // System.out.println(proc1.getId() + "[" + proc1.getLhsComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getLhsComplexity() + "]");
-        }
-        return -cmp;
-    }
+    public String getId();
+
+    public CGraph getLhs();
+
+    public CGraph getRhs();
+
+    public double getPriority();
+
+    public double getLhsComplexity();
+
+    public Map<Concept, Concept> getRhsLhsConceptMap();
+
+    public void setProjections(List<Projection> projections);
+
+    public List<Projection> getProjections();
+
+    public Rule getRule();
 }

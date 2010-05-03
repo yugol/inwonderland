@@ -35,6 +35,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.purl.net.wonderland.kb.Proc;
+import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.WKB;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -52,16 +54,16 @@ public class IO {
             writeProcs(kb.getProcRules(set), kb, file);
         }
 
-        private static void writeProcs(List<Rule> procs, WKB kb, File file) throws Exception {
+        private static void writeProcs(ProcList procs, WKB kb, File file) throws Exception {
             Document xmlDoc = XML.createDocument();
             Element root = xmlDoc.createElement("cogxml");
             xmlDoc.appendChild(root);
 
-            Element vocabularyElement = createSupportElement(xmlDoc, "support", kb.getVocabulary(), false, kb.getLanguage(), false);
-            root.appendChild(vocabularyElement);
+            // Element vocabularyElement = createSupportElement(xmlDoc, "support", kb.getVocabulary(), false, kb.getLanguage(), false);
+            // root.appendChild(vocabularyElement);
 
-            for (Rule proc : procs) {
-                Element procElement = createRuleElement(xmlDoc, proc);
+            for (Proc proc : procs.getProcs()) {
+                Element procElement = createRuleElement(xmlDoc, proc.getRule());
                 root.appendChild(procElement);
             }
 
@@ -122,7 +124,7 @@ public class IO {
         ProcWriter.writeProcs(set, kb, file);
     }
 
-    public static void writeProcs(List<Rule> procs, WKB kb, File file) throws Exception {
+    public static void writeProcs(ProcList procs, WKB kb, File file) throws Exception {
         ProcWriter.writeProcs(procs, kb, file);
     }
 

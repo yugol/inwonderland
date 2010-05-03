@@ -31,20 +31,11 @@ import java.util.List;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.ProcManager;
-import org.purl.net.wonderland.kb.Procedure;
+import org.purl.net.wonderland.kb.Proc;
+import org.purl.net.wonderland.kb.ProjectionSolver;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
-/*
-Bashful	Long beard	Brown top, green hat, long eyelashes
-Doc	Short beard	Red tunic, brown hat, glasses
-Dopey	Beardless	Green tunic, purple hat, big ears
-Grumpy	Long beard	Red tunic, brown hat, scowl
-Happy	Short beard	Brown top, orange headpiece, smile
-Sleepy	Long beard	Green top, blue hat, heavy eyelids
-Sneezy	Short beard	brown jacket, orange headpiece, red nose
- */
 /**
  *
  * @author Iulian
@@ -52,15 +43,14 @@ Sneezy	Short beard	brown jacket, orange headpiece, red nose
 public abstract class Personality {
 
     protected WKB kb = null;
+    protected ProjectionSolver projSlv = null;
     protected ProcManager procMgr = null;
-    protected ReferenceSolver refSlv = null;
 
     public void setKb(WKB kb) {
         this.kb = kb;
         try {
+            projSlv = new ProjectionSolver(kb);
             procMgr = new ProcManager(kb);
-            procMgr.readAllProceduresFromKb();
-            refSlv = new ReferenceSolver(kb);
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
             Configuration.handleException(ex);
@@ -104,8 +94,8 @@ public abstract class Personality {
 
     protected void applyProcSet(CGraph fact, String procSet) throws Exception {
         WKBUtil.setAllConclusion(fact, false);
-        List<Procedure> matches = procMgr.findMatches(procSet, fact);
-        for (Procedure match : matches) {
+        List<Proc> matches = projSlv.findMatches(procMgr.getProcSet(procSet), fact);
+        for (Proc match : matches) {
             if (match != null) {
                 // System.out.println("procedure: " + match.getId());
                 for (Projection proj : match.getProjections()) {

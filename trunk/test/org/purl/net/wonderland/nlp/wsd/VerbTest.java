@@ -72,7 +72,7 @@ public class VerbTest {
         System.out.println("");
     }
 
-    @Test
+    // @Test
     public void testOneVerbToProcs() throws Exception {
         Verb v = new Verb("abduct");
         List<Rule> procs = v.getVerbNetProcs();

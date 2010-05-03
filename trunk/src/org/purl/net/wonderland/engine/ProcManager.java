@@ -21,31 +21,52 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb;
+package org.purl.net.wonderland.engine;
 
-import org.purl.net.wonderland.engine.ProcManager;
-import java.io.File;
-import java.util.List;
-import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
-import static org.junit.Assert.*;
+import java.util.Hashtable;
+import java.util.Map;
+import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcManagerTest {
+public class ProcManager {
 
-    @Test
-    public void testReadProcsFromKb() throws Exception {
-        WKB kb = new WKB(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
-        ProcManager procMgr = new ProcManager(kb);
-        assertEquals(2, procMgr.getProcCount());
+    private final Map<String, ProcList> allProcs;
 
-        ProjectionSolver solver = new ProjectionSolver(kb);
-        solver.reset();
-        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WKBUtil.procSetArticles),
-                kb.getFactGraph(WKBUtil.toLevel1FactId(4)));
-        assertEquals(1, matches.size());
+    public ProcManager() {
+        allProcs = new Hashtable<String, ProcList>();
+    }
+
+    public ProcManager(WKB kb) throws Exception {
+        this();
+        readProcedureSet(kb, WKBUtil.procSetArticles);
+        readProcedureSet(kb, WKBUtil.procSetMoods);
+        readProcedureSet(kb, WKBUtil.procSetCollocations);
+    }
+
+    public int getProcCount() {
+        int count = 0;
+        for (ProcList set : allProcs.values()) {
+            count += set.size();
+        }
+        return count;
+    }
+
+    public void putProcList(String name, ProcList procs) {
+        allProcs.put(name, procs);
+    }
+
+    public ProcList getProcSet(String name) {
+        return allProcs.get(name);
+    }
+
+    private void readProcedureSet(WKB kb, String set) throws Exception {
+        ProcList procSet = kb.getProcRules(set);
+        procSet.sort();
+        putProcList(set, procSet);
     }
 }
