@@ -38,6 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
@@ -153,115 +154,121 @@ class Verb {
         return lemma;
     }
 
-    public List<Rule> getVerbNetProcs(WSDPersonality pers) throws Exception {
+    public List<Rule> getVerbNetProcs(WSDPersonality pers) {
         Hierarchy cth = pers.getKb().getVocabulary().getConceptTypeHierarchy();
         List<Rule> procs = new ArrayList<Rule>();
         for (VerbFrame frame : frames) {
             for (Example example : frame.getExamples()) {
-                if (example.getType() == Example.Type.VerbNet) {
-                    String text = example.getText();
-                    CGraph cg = pers.parse(text);
-                    Rule proc = new Rule(WKBUtil.newUniqueId(), WKBUtil.toProcName(lemma, WKBUtil.newUniqueId()));
+                String text = null;
+                try {
+                    if (example.getType() == Example.Type.VerbNet) {
+                        text = example.getText();
+                        CGraph cg = pers.parse(text);
+                        Rule proc = new Rule(WKBUtil.newUniqueId(), WKBUtil.toProcName(lemma, WKBUtil.newUniqueId()));
 
 
-                    // find VERB
-                    Concept verb = null;
-                    List<Concept> verbs = new ArrayList<Concept>();
-                    Iterator<Concept> cit = cg.iteratorConcept();
-                    String verbLemma = example.getVerbLemma();
-                    while (cit.hasNext()) {
-                        Concept c = cit.next();
-                        if (cth.isKindOf(c.getType(), WKBUtil.VERB_CT)) {
-                            verbs.add(c);
-                            if (c.getIndividual().equals(verbLemma)) {
-                                verb = c;
-                                break;
-                            }
-                        }
-                    }
-                    if (verb == null) {
-                        if (verbs.size() == 1) {
-                            verb = verbs.get(0);
-                        } else {
-                            throw new WonderlandException("verb not found");
-                        }
-                    }
-
-
-                    // create VERB couple
-                    Concept[] vHyptConc = createVerbConceptHyptConc(pers.getKb(), proc, frame);
-
-
-                    // get context
-                    Iterator<String> rit = cg.iteratorAdjacents(verb.getId());
-                    while (rit.hasNext()) {
-                        Relation dep = cg.getRelation(rit.next());
-
-                        List<Concept> connectedConcepts = getConnectedConcepts(cg, verb, dep);
-
-                        example.resetRoleHits();
-                        for (Concept connectedConcept : connectedConcepts) {
-                            String individual = connectedConcept.getIndividual();
-                            Map<Themrole, String> args = example.getArgs();
-                            for (Themrole role : args.keySet()) {
-                                String roleText = args.get(role);
-                                if (roleText.indexOf(individual) >= 0) {
-                                    role.incrementHits();
+                        // find VERB
+                        Concept verb = null;
+                        List<Concept> eligible = new ArrayList<Concept>();
+                        Iterator<Concept> cit = cg.iteratorConcept();
+                        String verbLemma = example.getVerbLemma();
+                        while (cit.hasNext()) {
+                            Concept c = cit.next();
+                            if (cth.isKindOf(c.getType(), WKBUtil.VERB_CT)) {
+                                String individual = c.getIndividual();
+                                if (individual.equals(verbLemma)) {
+                                    verb = c;
+                                    break;
+                                }
+                                if (frame.getMembers().contains(individual)) {
+                                    eligible.add(c);
                                 }
                             }
                         }
+                        if (verb == null) {
+                            if (eligible.size() == 1) {
+                                verb = eligible.get(0);
+                            } else {
+                                throw new WonderlandException("verb not found");
+                            }
+                        }
 
-                        Themrole role = example.getBestRole();
-                        if (role != null) {
-                            RoleData roleData = example.getRoleData(role);
 
-                            Relation[] rHyptConc = createRelationHyptConc(proc, role, dep);
+                        // create VERB couple
+                        Concept[] vHyptConc = createVerbConceptHyptConc(pers.getKb(), proc, frame);
 
-                            Iterator<CREdge> eit = cg.iteratorEdge(dep.getId());
-                            while (eit.hasNext()) {
-                                CREdge edge = eit.next();
-                                int numOrder = edge.getNumOrder();
-                                Concept c = cg.getConcept(edge);
-                                if (c == verb) {
-                                    proc.addEdge(vHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
-                                    proc.addEdge(vHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
-                                } else {
-                                    if (roleData.getPrep() == null) {
-                                        Concept[] cHyptConc = createConceptHyptConc(proc);
-                                        proc.addEdge(cHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
-                                        proc.addEdge(cHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
-                                        proc.addCouple(cHyptConc[0].getId(), cHyptConc[1].getId());
+
+                        // get context
+                        Iterator<String> rit = cg.iteratorAdjacents(verb.getId());
+                        while (rit.hasNext()) {
+                            Relation dep = cg.getRelation(rit.next());
+
+                            List<Concept> connectedConcepts = getConnectedConcepts(cg, verb, dep);
+
+                            example.resetRoleHits();
+                            for (Concept connectedConcept : connectedConcepts) {
+                                String individual = connectedConcept.getIndividual();
+                                Map<Themrole, String> args = example.getArgs();
+                                for (Themrole role : args.keySet()) {
+                                    String roleText = args.get(role);
+                                    if (roleText.indexOf(individual) >= 0) {
+                                        role.incrementHits();
+                                    }
+                                }
+                            }
+
+                            Themrole role = example.getBestRole();
+                            if (role != null) {
+                                RoleData roleData = example.getRoleData(role);
+
+                                Relation[] rHyptConc = createRelationHyptConc(proc, role, dep);
+
+                                Iterator<CREdge> eit = cg.iteratorEdge(dep.getId());
+                                while (eit.hasNext()) {
+                                    CREdge edge = eit.next();
+                                    int numOrder = edge.getNumOrder();
+                                    Concept c = cg.getConcept(edge);
+                                    if (c == verb) {
+                                        proc.addEdge(vHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
+                                        proc.addEdge(vHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
                                     } else {
-                                        Concept cHypt = new Concept(WKBUtil.newUniqueId());
-                                        cHypt.setType(WKBUtil.ADPOSITION_CT);
-                                        cHypt.setIndividual(c.getIndividual());
-                                        cHypt.setHypothesis(true);
-                                        proc.addVertex(cHypt);
-                                        proc.addEdge(cHypt.getId(), rHyptConc[0].getId(), numOrder);
+                                        if (roleData.getPrep() == null) {
+                                            Concept[] cHyptConc = createConceptHyptConc(proc);
+                                            proc.addEdge(cHyptConc[0].getId(), rHyptConc[0].getId(), numOrder);
+                                            proc.addEdge(cHyptConc[1].getId(), rHyptConc[1].getId(), numOrder);
+                                            proc.addCouple(cHyptConc[0].getId(), cHyptConc[1].getId());
+                                        } else {
+                                            Concept cHypt = new Concept(WKBUtil.newUniqueId());
+                                            cHypt.setType(WKBUtil.ADPOSITION_CT);
+                                            cHypt.setIndividual(c.getIndividual());
+                                            cHypt.setHypothesis(true);
+                                            proc.addVertex(cHypt);
+                                            proc.addEdge(cHypt.getId(), rHyptConc[0].getId(), numOrder);
 
-                                        // add level 2
-                                        Iterator<String> rit2 = cg.iteratorAdjacents(c.getId());
-                                        while (rit2.hasNext()) {
-                                            Relation dep2 = cg.getRelation(rit2.next());
-                                            if (dep2 != dep) {
+                                            // add level 2
+                                            Iterator<String> rit2 = cg.iteratorAdjacents(c.getId());
+                                            while (rit2.hasNext()) {
+                                                Relation dep2 = cg.getRelation(rit2.next());
+                                                if (dep2 != dep) {
 
-                                                Relation rHypt = new Relation(WKBUtil.newUniqueId());
-                                                rHypt.setType(dep2.getType());
-                                                rHypt.setHypothesis(true);
-                                                proc.addVertex(rHypt);
+                                                    Relation rHypt = new Relation(WKBUtil.newUniqueId());
+                                                    rHypt.setType(dep2.getType());
+                                                    rHypt.setHypothesis(true);
+                                                    proc.addVertex(rHypt);
 
-                                                Iterator<CREdge> eit2 = cg.iteratorEdge(dep2.getId());
-                                                while (eit2.hasNext()) {
-                                                    CREdge edge2 = eit2.next();
-                                                    int numOrder2 = edge2.getNumOrder();
-                                                    Concept c2 = cg.getConcept(edge2);
-                                                    if (c2 == c) {
-                                                        proc.addEdge(cHypt.getId(), rHypt.getId(), numOrder2);
-                                                    } else {
-                                                        Concept[] cHyptConc2 = createConceptHyptConc(proc);
-                                                        proc.addEdge(cHyptConc2[0].getId(), rHypt.getId(), numOrder);
-                                                        proc.addEdge(cHyptConc2[1].getId(), rHyptConc[1].getId(), numOrder);
-                                                        proc.addCouple(cHyptConc2[0].getId(), cHyptConc2[1].getId());
+                                                    Iterator<CREdge> eit2 = cg.iteratorEdge(dep2.getId());
+                                                    while (eit2.hasNext()) {
+                                                        CREdge edge2 = eit2.next();
+                                                        int numOrder2 = edge2.getNumOrder();
+                                                        Concept c2 = cg.getConcept(edge2);
+                                                        if (c2 == c) {
+                                                            proc.addEdge(cHypt.getId(), rHypt.getId(), numOrder2);
+                                                        } else {
+                                                            Concept[] cHyptConc2 = createConceptHyptConc(proc);
+                                                            proc.addEdge(cHyptConc2[0].getId(), rHypt.getId(), numOrder);
+                                                            proc.addEdge(cHyptConc2[1].getId(), rHyptConc[1].getId(), numOrder);
+                                                            proc.addCouple(cHyptConc2[0].getId(), cHyptConc2[1].getId());
+                                                        }
                                                     }
                                                 }
                                             }
@@ -270,11 +277,15 @@ class Verb {
                                 }
                             }
                         }
+
+
+                        // done
+                        procs.add(proc);
                     }
 
-
-                    // done
-                    procs.add(proc);
+                } catch (Exception ex) {
+                    System.err.println(text);
+                    Configuration.reportExceptionConsole(ex);
                 }
             }
         }

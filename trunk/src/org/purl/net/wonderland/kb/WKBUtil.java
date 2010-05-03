@@ -145,6 +145,7 @@ public final class WKBUtil {
     public static final String PROPERNOUN_CT = toConceptTypeId(PROPERNOUN);
     public static final String POSSESSIVEADVERB_CT = toConceptTypeId(POSSESIVEADJECIVE);
     public static final String ADPOSITION_CT = toConceptTypeId(ADPOSITION);
+    public static final String INDICATIVE_CT = toConceptTypeId(INDICATIVE);
     // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";

@@ -67,7 +67,7 @@ public class VerbTest {
         WSDPersonality pers = new WSDPersonality();
         pers.setKb(kb);
 
-        Verb v = new Verb("look");
+        Verb v = new Verb("know");
         List<Rule> procs = v.getVerbNetProcs(pers);
         for (Rule proc : procs) {
             kb.addRule(proc);
