@@ -46,6 +46,7 @@ class VerbFrame {
     private final List<String> senses; // WordNet senses
     private final Map<String, Themrole> roles; // thematic roles from PropBank and VerbNet
     private final List<Example> examples; // roleset examples
+    private final List<String> members; // all verbs applicable to
 
     public VerbFrame(String lemma, String id, String vncls, Map<String, Themrole> roles) throws Exception {
         // this.pbid = id;
@@ -57,6 +58,7 @@ class VerbFrame {
         this.senses = new ArrayList<String>();
         this.roles = roles;
         this.examples = new ArrayList<Example>();
+        this.members = new ArrayList<String>();
         if (this.vncls != null) {
             readVerbNetData(lemma);
         }
@@ -75,7 +77,8 @@ class VerbFrame {
         NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
         for (int i = 0; i < memberNodes.getLength(); i++) {
             Element memberElement = (Element) memberNodes.item(i);
-            if (memberElement.getAttribute("name").replaceAll("\\?", "").equals(lemma)) {
+            String memberLemma = memberElement.getAttribute("name").replaceAll("\\?", "");
+            if (memberLemma.equals(lemma)) {
                 String[] wnSenses = memberElement.getAttribute("wn").split(" ");
                 for (String sense : wnSenses) {
                     if (sense.length() > 0) {
@@ -85,8 +88,8 @@ class VerbFrame {
                 }
                 vnclassElement = (Element) memberElement.getParentNode().getParentNode();
                 vncls = vnclassElement.getAttribute("ID");
-                break;
             }
+            members.add(memberLemma);
         }
 
         if (vnclassElement == null) {
@@ -204,5 +207,9 @@ class VerbFrame {
 
     public List<Example> getExamples() {
         return examples;
+    }
+
+    public List<String> getMembers() {
+        return members;
     }
 }
