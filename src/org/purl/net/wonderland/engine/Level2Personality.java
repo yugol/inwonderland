@@ -56,7 +56,7 @@ public class Level2Personality extends Personality {
     @Override
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
-        procMgr.resetSolver();
+        projSlv.reset();
         for (CGraph fact : facts) {
             kb.addFact(fact, WKBUtil.level1);
             fact = WKBUtil.duplicate(fact);

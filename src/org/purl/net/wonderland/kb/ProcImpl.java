@@ -28,6 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,15 +37,15 @@ import java.util.Map;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcImpl implements Procedure {
+public class ProcImpl implements Proc {
 
     private final String id;
-    private final double priority;
     private final CGraph lhs;
     private final CGraph rhs;
-    private final Map<Concept, Concept> rhsLhsConceptMap;
+    private final Map<Concept, Concept> rhsLhsMapping;
     private final double lhsComplexity;
-    List<Projection> projections;
+    private final double priority;
+    private List<Projection> projections;
 
     public String getId() {
         return id;
@@ -84,7 +85,7 @@ public class ProcImpl implements Procedure {
         this.priority = tempPriority;
         this.lhs = lhs;
         this.rhs = rhs;
-        this.rhsLhsConceptMap = conceptMap;
+        this.rhsLhsMapping = conceptMap;
         this.lhsComplexity = tempComplexity;
     }
 
@@ -105,7 +106,7 @@ public class ProcImpl implements Procedure {
     }
 
     public Map<Concept, Concept> getRhsLhsConceptMap() {
-        return rhsLhsConceptMap;
+        return rhsLhsMapping;
     }
 
     public double getPriority() {
@@ -114,5 +115,15 @@ public class ProcImpl implements Procedure {
 
     public double getLhsComplexity() {
         return lhsComplexity;
+    }
+
+    public Rule getRule() {
+        Rule rule = Rule.createRule(id, id, lhs, rhs);
+        for (Concept c : rhsLhsMapping.keySet()) {
+            String conc = c.getId();
+            String hypt = rhsLhsMapping.get(c).getId();
+            rule.addCouple(hypt, conc);
+        }
+        return rule;
     }
 }

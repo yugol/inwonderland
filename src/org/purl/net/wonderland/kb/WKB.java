@@ -147,8 +147,8 @@ public class WKB {
         kb.addGraph(cg);
     }
 
-    public CGraph getFactGraph(String toLevel1FactId) {
-        return kb.getFactGraph(toLevel1FactId);
+    public CGraph getFactGraph(String factId) {
+        return kb.getFactGraph(factId);
     }
 
     public String addIndividual(String name) {
@@ -275,17 +275,17 @@ public class WKB {
         return senseTypes.toArray(new String[]{});
     }
 
-    public List<Rule> getProcRules(String set) {
+    public ProcList getProcRules(String set) {
+        ProcList procs = new ProcList(set);
         set = WKBUtil.toProcName(set, null);
-        List<Rule> rules = new ArrayList<Rule>();
         Iterator<CGraph> it = kb.IteratorRules();
         while (it.hasNext()) {
             CGraph rule = it.next();
             if (rule.getName().indexOf(set) == 0) {
-                rules.add((Rule) rule);
+                procs.add((Rule) rule);
             }
         }
-        return rules;
+        return procs;
     }
 
     public void deleteRules() {
@@ -404,9 +404,9 @@ public class WKB {
         }
     }
 
-    public void addSenses(CGraph message) {
+    public void addSenses(CGraph fact) {
         Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
-        Iterator<Concept> it = message.iteratorConcept();
+        Iterator<Concept> it = fact.iteratorConcept();
         while (it.hasNext()) {
             Concept c = it.next();
             String lemma = c.getIndividual();

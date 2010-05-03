@@ -56,14 +56,13 @@ public class EtoGleem extends Personality {
     @Override
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
-        procMgr.resetSolver();
+        projSlv.reset();
         for (CGraph fact : facts) {
             processMoods(fact);
             processArticles(fact);
             // processCollocations(fact);
             kb.addSenses(fact);
             kb.addFact(fact, WKBUtil.level2);
-            refSlv.addFact(fact);
         }
         return "Done.";
 

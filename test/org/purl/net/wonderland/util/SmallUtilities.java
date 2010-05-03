@@ -51,6 +51,7 @@ public class SmallUtilities {
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
         WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        //WKBUtil.normalizeKbFile(new File("C:\\Users\\Iulian\\Projects\\wonderland\\res\\test\\bedtime.cogxml"));
     }
 
     // @Test

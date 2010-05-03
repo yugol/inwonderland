@@ -148,6 +148,7 @@ public final class WKBUtil {
     // fact levels
     public static final String level1 = "level1";
     public static final String level2 = "level2";
+    public static final String level3 = "level3";
     // procedures
     public static final String proc = "proc_";
     public static final String procSetArticles = "article";
@@ -363,7 +364,7 @@ public final class WKBUtil {
         timer.stop();
     }
 
-    public static void applyProcedure(CGraph fact, Projection proj, Procedure proc, boolean markingConcepts, Hierarchy cth) {
+    public static void applyProcedure(CGraph fact, Projection proj, Proc proc, boolean markingConcepts, Hierarchy cth) {
         CGraph rhsFact = proc.getRhs();
         Set<Concept> conceptsToDelete = new HashSet<Concept>();
         Set<String> peers = new TreeSet<String>();
