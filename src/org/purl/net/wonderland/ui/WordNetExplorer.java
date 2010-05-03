@@ -44,8 +44,6 @@ import javax.swing.tree.TreePath;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.cg.CogxmlIO;
-import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
@@ -55,8 +53,9 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
  */
 public class WordNetExplorer extends javax.swing.JFrame {
 
+    public static final WordNetExplorer instance = new WordNetExplorer();
     private static final String sensesNodeName = "Senses";
-    private File kbFile = new File(/*System.getProperty("TMP"),*/"_WordNetExplorer_temp_.cogxml");
+    // private File kbFile = new File(/*System.getProperty("TMP"),*/"_WordNetExplorer_temp_.cogxml");
     private WSynset userData = null;
 
     /** Creates new form WordNetExplorer */
@@ -94,10 +93,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         sensePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         senseTextPane = new javax.swing.JTextPane();
-        ilfwnPanel = new javax.swing.JPanel();
-        cgButton = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ilfTextPanel = new javax.swing.JTextPane();
         searchButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -114,7 +109,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WordNet Explorer");
 
         searchLabel.setText("Search item:");
@@ -164,40 +158,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         );
 
         explanationTabs.addTab("Sense", sensePanel);
-
-        cgButton.setText("CG");
-        cgButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cgButtonActionPerformed(evt);
-            }
-        });
-
-        ilfTextPanel.setContentType("text/html");
-        ilfTextPanel.setEditable(false);
-        jScrollPane2.setViewportView(ilfTextPanel);
-
-        javax.swing.GroupLayout ilfwnPanelLayout = new javax.swing.GroupLayout(ilfwnPanel);
-        ilfwnPanel.setLayout(ilfwnPanelLayout);
-        ilfwnPanelLayout.setHorizontalGroup(
-            ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ilfwnPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
-                    .addComponent(cgButton))
-                .addContainerGap())
-        );
-        ilfwnPanelLayout.setVerticalGroup(
-            ilfwnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ilfwnPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cgButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        explanationTabs.addTab("ILF-WN", ilfwnPanel);
 
         sensesSplitPane.setRightComponent(explanationTabs);
 
@@ -321,16 +281,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         displaySenses(node);
     }//GEN-LAST:event_sensesTreeValueChanged
 
-    private void cgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cgButtonActionPerformed
-        try {
-            KnowledgeBase kb = userData.getIlf().buildKnowledgeBase();
-            CogxmlIO.writeCogxmlFile(kb, kbFile);
-            CoGuiWrapper.instance().showGui(kbFile);
-        } catch (Exception ex) {
-            Configuration.reportExceptionConsole(ex);
-        }
-    }//GEN-LAST:event_cgButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -351,11 +301,10 @@ public class WordNetExplorer extends javax.swing.JFrame {
             }
         });
 
-        WordNetWrapper.offsetKeyAlphaTpSenseKey("");
+        WordNetWrapper.offsetKeyAlphaToSenseKey("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton cgButton;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -365,10 +314,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
     private javax.swing.JTabbedPane explanationTabs;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JTextPane ilfTextPanel;
-    private javax.swing.JPanel ilfwnPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
@@ -390,11 +336,28 @@ public class WordNetExplorer extends javax.swing.JFrame {
         if (item != null) {
             item = item.trim();
             item = item.replaceAll("\\s+", "_");
-            searchTextField.setText(item);
-            addSenses(top, "Noun", item, WordNetWrapper.getSenses(item, POS.NOUN));
-            addSenses(top, "Verb", item, WordNetWrapper.getSenses(item, POS.VERB));
-            addSenses(top, "Adjective", item, WordNetWrapper.getSenses(item, POS.ADJECTIVE));
-            addSenses(top, "Adverb", item, WordNetWrapper.getSenses(item, POS.ADVERB));
+
+            if (WordNetWrapper.isSenseKey(item)) {
+                Synset synset = WordNetWrapper.lookup(item);
+                Synset[] senses = new Synset[]{synset};
+                item = synset.getWord(0).getLemma();
+                POS pos = synset.getPOS();
+                if (pos == POS.NOUN) {
+                    addSenses(top, "Noun", item, senses);
+                } else if (pos == POS.ADJECTIVE) {
+                    addSenses(top, "Adjective", item, senses);
+                } else if (pos == POS.ADVERB) {
+                    addSenses(top, "Adverb", item, senses);
+                } else if (pos == POS.VERB) {
+                    addSenses(top, "Verb", item, senses);
+                }
+            } else {
+                searchTextField.setText(item);
+                addSenses(top, "Noun", item, WordNetWrapper.getSenses(item, POS.NOUN));
+                addSenses(top, "Verb", item, WordNetWrapper.getSenses(item, POS.VERB));
+                addSenses(top, "Adjective", item, WordNetWrapper.getSenses(item, POS.ADJECTIVE));
+                addSenses(top, "Adverb", item, WordNetWrapper.getSenses(item, POS.ADVERB));
+            }
         }
 
         TreeModel model = new DefaultTreeModel(top);
@@ -410,15 +373,8 @@ public class WordNetExplorer extends javax.swing.JFrame {
 
         if (userObject instanceof WSynset) {
 
-            ilfTextPanel.setVisible(true);
             userData = (WSynset) userObject;
             senseTextPane.setText(userData.getSenseHTML());
-            if (userData.getIlf() != null && userData.getIlf().isOk()) {
-                cgButton.setEnabled(true);
-            } else {
-                cgButton.setEnabled(false);
-            }
-            ilfTextPanel.setText(userData.getIlfHTML());
 
             // add hypernym
             Synset hypernym = userData.getHypernym();
@@ -430,8 +386,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
 
         } else {
 
-            ilfTextPanel.setVisible(false);
-            cgButton.setEnabled(false);
             if (userObject instanceof String) {
                 String userString = (String) userObject;
                 if (userString.equals(sensesNodeName)) {
@@ -448,7 +402,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         }
 
         senseTextPane.setCaretPosition(0);
-        ilfTextPanel.setCaretPosition(0);
     }
 
     private void addSenses(DefaultMutableTreeNode top, String nodeName, String item, Synset[] senses) {

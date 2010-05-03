@@ -25,7 +25,6 @@ package org.purl.net.wonderland.util;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import net.didion.jwnl.data.POS;
 
 /**
  *
@@ -34,55 +33,6 @@ import net.didion.jwnl.data.POS;
 public final class Formatting {
 
     private static final NumberFormat timeFormatter = new DecimalFormat("0.0000");
-    private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
-
-    public static String toWordNetOffset(long offset) {
-        return senseNumberFormatter.format(offset);
-    }
-
-    public static String toWordNetOffsetKeyAlpha(String particle, long offset) {
-        return particle + Formatting.toWordNetOffset(offset);
-    }
-
-    public static String toWordNetOffsetKeyAlpha(POS pos, long offset) {
-        return getAlpha(pos) + Formatting.toWordNetOffset(offset);
-    }
-
-    public static String toWordNetOffsetKeyNum(POS pos, long offset) {
-        return getNumber(pos) + Formatting.toWordNetOffset(offset);
-    }
-
-    public static String getAlpha(POS pos) {
-        if (pos == POS.NOUN) {
-            return "n";
-        }
-        if (pos == POS.ADJECTIVE) {
-            return "a";
-        }
-        if (pos == POS.ADVERB) {
-            return "r";
-        }
-        if (pos == POS.VERB) {
-            return "v";
-        }
-        return null;
-    }
-
-    public static String getNumber(POS pos) {
-        if (pos == POS.NOUN) {
-            return "1";
-        }
-        if (pos == POS.ADJECTIVE) {
-            return "3";
-        }
-        if (pos == POS.ADVERB) {
-            return "4";
-        }
-        if (pos == POS.VERB) {
-            return "2";
-        }
-        return null;
-    }
 
     static String formatTime(double d) {
         return timeFormatter.format(d);

@@ -233,7 +233,7 @@ public class WKB {
     }
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
-        String senseName = Formatting.toWordNetOffsetKeyAlpha(particle, sense.getOffset());
+        String senseName = WordNetWrapper.toWordNetOffsetKeyAlpha(particle, sense.getOffset());
         String senseId = WKBUtil.toConceptTypeId(senseName);
         if (vocabulary.conceptTypeIdExist(senseId)) {
             return senseId;
@@ -274,7 +274,7 @@ public class WKB {
             return null;
         }
 
-        particle = Formatting.getAlpha(posType);
+        particle = WordNetWrapper.getAlpha(posType);
 
         ArrayList<String> senseTypes = new ArrayList<String>(20);
         try {

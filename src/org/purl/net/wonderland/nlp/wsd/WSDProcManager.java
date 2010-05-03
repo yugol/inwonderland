@@ -59,9 +59,9 @@ public final class WSDProcManager {
         ProcList procs = verbProcs.getProcSet(lemma);
         if (procs == null) {
             try {
-                File procFile = new File(Configuration.getWsdFolder(), "procs/manual/verb/" + lemma + ".rules");
+                File procFile = new File(Configuration.getWsdFolder(), "procs/manual/verb/" + lemma + ".rules.xml");
                 if (!procFile.exists()) {
-                    procFile = new File(Configuration.getWsdFolder(), "procs/automatic/verb/" + lemma + ".rules");
+                    procFile = new File(Configuration.getWsdFolder(), "procs/automatic/verb/" + lemma + ".rules.xml");
                     if (!procFile.exists()) {
                         Verb v = new Verb(lemma);
                         List<Rule> rules = v.getVerbNetProcs(getWSDPers());
@@ -80,9 +80,10 @@ public final class WSDProcManager {
         return procs;
     }
 
-    private WSDPersonality getWSDPers() {
+    private WSDPersonality getWSDPers() throws Exception {
         if (wsdPers == null) {
             wsdPers = new WSDPersonality();
+            wsdPers.setKb(new WKB(Configuration.getDefaultParseKBFile()));
         }
         return wsdPers;
     }

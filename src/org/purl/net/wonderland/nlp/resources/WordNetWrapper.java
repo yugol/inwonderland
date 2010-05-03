@@ -28,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -50,6 +52,7 @@ import org.purl.net.wonderland.util.CodeTimer;
  */
 public final class WordNetWrapper {
 
+    private static final NumberFormat senseNumberFormatter = new DecimalFormat("00000000");
     private static Dictionary dict;
     private static Map<String, String> senseOffset = null;
     private static Map<String, String> offsetSense = null;
@@ -239,7 +242,7 @@ public final class WordNetWrapper {
         }
     }
 
-    public static String offsetKeyAlphaTpSenseKey(String offsetKey) {
+    public static String offsetKeyAlphaToSenseKey(String offsetKey) {
         String sense = null;
 
         try {
@@ -309,5 +312,69 @@ public final class WordNetWrapper {
             default:
                 return null;
         }
+    }
+
+    public static String toWordNetOffset(long offset) {
+        return senseNumberFormatter.format(offset);
+    }
+
+    public static String toWordNetOffsetKeyAlpha(String particle, long offset) {
+        return particle + toWordNetOffset(offset);
+    }
+
+    public static String toWordNetOffsetKeyAlpha(POS pos, long offset) {
+        return getAlpha(pos) + toWordNetOffset(offset);
+    }
+
+    public static String toWordNetOffsetKeyNum(POS pos, long offset) {
+        return getNumber(pos) + toWordNetOffset(offset);
+    }
+
+    public static String getAlpha(POS pos) {
+        if (pos == POS.NOUN) {
+            return "n";
+        }
+        if (pos == POS.ADJECTIVE) {
+            return "a";
+        }
+        if (pos == POS.ADVERB) {
+            return "r";
+        }
+        if (pos == POS.VERB) {
+            return "v";
+        }
+        return null;
+    }
+
+    public static String getNumber(POS pos) {
+        if (pos == POS.NOUN) {
+            return "1";
+        }
+        if (pos == POS.ADJECTIVE) {
+            return "3";
+        }
+        if (pos == POS.ADVERB) {
+            return "4";
+        }
+        if (pos == POS.VERB) {
+            return "2";
+        }
+        return null;
+    }
+
+    public static boolean isSenseKey(String item) {
+        if (item.length() == 9) {
+            char car = item.charAt(0);
+            if (car == 'n' || car == 'v' || car == 'a' || car == 'r'
+                    || car == '1' || car == '2' || car == '3' || car == '4') {
+                String cdr = item.substring(1);
+                try {
+                    Long.parseLong(cdr);
+                    return true;
+                } catch (Exception ex) {
+                }
+            }
+        }
+        return false;
     }
 }

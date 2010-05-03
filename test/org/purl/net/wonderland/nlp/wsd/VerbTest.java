@@ -53,24 +53,28 @@ public class VerbTest {
         }
     }
 
-    @Test
+    // @Test
     public void testOneVerb() throws Exception {
         Verb v = new Verb("abduct");
         System.out.println(v.getLemma());
     }
 
-    // @Test
+    @Test
     public void testOneVerbToProcs() throws Exception {
+        Configuration.init();
+
+        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
         WSDPersonality pers = new WSDPersonality();
-        Verb v = new Verb("abduct");
+        pers.setKb(kb);
+
+        Verb v = new Verb("look");
         List<Rule> procs = v.getVerbNetProcs(pers);
-        WKB kb = pers.getKb();
         for (Rule proc : procs) {
             kb.addRule(proc);
         }
+
         File file = new File("test." + v.getLemma() + ".cogxml");
         kb.save(file);
-        // IO.writeProcs(procs, WSDProcManager.pers.getKb(), file);
         WKBUtil.normalizeKbFile(file);
     }
 }

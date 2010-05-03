@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import org.purl.net.wonderland.nlp.CollocationsManager;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
@@ -53,13 +52,11 @@ public final class Configuration {
     private static final String wnDataFolderKey = "wordNetDataFolder";
     private static final String vnDataFolderKey = "verbNetDataFolder";
     private static final String pbDataFolderKey = "propBankDataFolder";
-    private static final String ilfWnFolderKey = "ilfWnFolder";
     //
     private static File resFolder = null;
     private static File lgParserFolder = null;
     private static File vnDataFolder = null;
     private static File pbDataFolder = null;
-    private static File ilfWnFolder = null;
 
     private static boolean configure(Properties projProp) {
         resFolder = new File(projProp.getProperty(resFolderKey));
@@ -67,7 +64,6 @@ public final class Configuration {
         setWnDataFolder(new File(projProp.getProperty(wnDataFolderKey)));
         vnDataFolder = new File(projProp.getProperty(vnDataFolderKey));
         pbDataFolder = new File(projProp.getProperty(pbDataFolderKey));
-        ilfWnFolder = new File(projProp.getProperty(ilfWnFolderKey));
         return checkConfigure();
     }
 
@@ -77,7 +73,6 @@ public final class Configuration {
         setWnDataFolder(new File(resFolder, "WordNet-3.0/dict"));
         vnDataFolder = new File(resFolder, "verbnet/data");
         pbDataFolder = new File(resFolder, "propbank");
-        ilfWnFolder = new File(resFolder, "ILFWN.v.0.2");
         return checkConfigure();
     }
 
@@ -95,9 +90,6 @@ public final class Configuration {
         }
         if (!getPropBankDataFolder().exists()) {
             System.err.println("Warning: could not find PropBank data folder");
-        }
-        if (!getIlfWnDataFolder().exists()) {
-            System.err.println("Warning: could not find ILF-WN data folder");
         }
         return true;
     }
@@ -263,10 +255,6 @@ public final class Configuration {
 
     public static File getVerbProcsFolder() {
         return new File(getResPath(), "wsd/procs/verb");
-    }
-
-    public static File getIlfWnDataFolder() {
-        return new File(ilfWnFolder, "");
     }
 
     public static File getWsdFolder() {
