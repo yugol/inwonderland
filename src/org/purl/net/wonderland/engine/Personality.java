@@ -25,14 +25,9 @@ package org.purl.net.wonderland.engine;
 
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.ArrayList;
 import java.util.List;
-import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.Proc;
-import org.purl.net.wonderland.kb.ProjectionSolver;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -43,18 +38,9 @@ import org.purl.net.wonderland.nlp.WTagging;
 public abstract class Personality {
 
     protected WKB kb = null;
-    protected ProjectionSolver projSlv = null;
-    protected ProcManager procMgr = null;
 
     public void setKb(WKB kb) {
         this.kb = kb;
-        try {
-            projSlv = new ProjectionSolver(kb);
-            procMgr = new ProcManager(kb);
-        } catch (Exception ex) {
-            System.err.println("Could not set knowledge base");
-            Configuration.handleException(ex);
-        }
     }
 
     public abstract String getWelcomeMessage();
@@ -78,31 +64,5 @@ public abstract class Personality {
         }
 
         return facts;
-    }
-
-    protected void processMoods(CGraph fact) throws Exception {
-        applyProcSet(fact, WKBUtil.procSetMoods);
-    }
-
-    protected void processCollocations(CGraph fact) throws Exception {
-        applyProcSet(fact, WKBUtil.procSetCollocations);
-    }
-
-    protected void processArticles(CGraph fact) throws Exception {
-        applyProcSet(fact, WKBUtil.procSetArticles);
-    }
-
-    protected void applyProcSet(CGraph fact, String procSet) throws Exception {
-        WKBUtil.setAllConclusion(fact, false);
-        List<Proc> matches = projSlv.findMatches(procMgr.getProcSet(procSet), fact);
-        for (Proc match : matches) {
-            if (match != null) {
-                // System.out.println("procedure: " + match.getId());
-                for (Projection proj : match.getProjections()) {
-                    WKBUtil.applyProcedure(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
-                }
-            }
-        }
-        WKBUtil.setAllConclusion(fact, false);
     }
 }

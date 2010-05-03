@@ -53,7 +53,7 @@ public class Pipeline {
         Tree parse = StanfordParserWrapper.parse(sentence);
 
         // find collocations
-        // CollocationFinder colloFinder = new CollocationFinder(parse, new CollocationManager());
+        // CollocationFinder colloFinder = new CollocationFinder(parse, new CollocationsManager());
         // parse = colloFinder.getMangledTree();
 
         // get Penn tags
@@ -63,7 +63,7 @@ public class Pipeline {
                 sentence.get(i).setPennTag(pennTags.get(i).tag());
             }
         } else {
-            sentence = CollocationManager.buildSentenceWithCollocations(sentence, pennTags);
+            sentence = CollocationsManager.buildSentenceWithCollocations(sentence, pennTags);
         }
 
         // map Penn and MorphAdorner tags to W tags

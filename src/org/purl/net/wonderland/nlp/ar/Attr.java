@@ -21,33 +21,30 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.wsd;
-
-import java.util.HashSet;
-import java.util.Set;
-import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKB;
+package org.purl.net.wonderland.nlp.ar;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class WsdManager {
+public class Attr {
 
-    public final static WsdPersonality pers = new WsdPersonality();
-    public static Set<String> syntaxTags = new HashSet<String>();
+    private String number;
+    private String gender;
 
-    static {
-        try {
-            pers.setKb(new WKB(Configuration.getDefaultParseKBFile()));
-        } catch (Exception ex) {
-            System.err.println("Error starting WsdManager");
-            Configuration.handleException(ex);
-        }
+    public String getGender() {
+        return gender;
     }
 
-    public static Verb getVerb(String lemma) throws Exception {
-        Verb v = new Verb(lemma);
-        return v;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

@@ -24,14 +24,36 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.List;
+import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.kb.Proc;
+import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.ProcManager;
+import org.purl.net.wonderland.kb.ProjectionSolver;
+import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.kb.WKBUtil;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level2Personality extends Personality {
+public class Level2Personality extends Level1Personality {
+
+    protected ProjectionSolver projSlv = null;
+    protected ProcManager procMgr = null;
+
+    @Override
+    public void setKb(WKB kb) {
+        super.setKb(kb);
+        try {
+            projSlv = new ProjectionSolver(kb);
+            procMgr = new ProcManager(kb);
+        } catch (Exception ex) {
+            System.err.println("Could not set knowledge base");
+            Configuration.handleException(ex);
+        }
+    }
 
     @Override
     public String getWelcomeMessage() {
@@ -66,5 +88,43 @@ public class Level2Personality extends Personality {
             kb.addFact(fact, WKBUtil.level2);
         }
         return "Done.";
+    }
+
+    protected void processMoods(CGraph fact) throws Exception {
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetMoods), fact);
+    }
+
+    protected void processCollocations(CGraph fact) throws Exception {
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetCollocations), fact);
+    }
+
+    protected void processArticles(CGraph fact) throws Exception {
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetArticles), fact);
+    }
+
+    protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
+        WKBUtil.setAllConclusion(fact, false);
+        List<Proc> matches = projSlv.findMatches(procs, fact);
+        for (Proc match : matches) {
+            if (match != null) {
+                for (Projection proj : match.getProjections()) {
+                    WKBUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                }
+            }
+        }
+        WKBUtil.setAllConclusion(fact, false);
+    }
+
+    protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {
+        List<Proc> matches = projSlv.findMatches(procs, fact);
+        apply_just_one_match:
+        for (Proc match : matches) {
+            if (match != null) {
+                for (Projection proj : match.getProjections()) {
+                    WKBUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                    break apply_just_one_match;
+                }
+            }
+        }
     }
 }

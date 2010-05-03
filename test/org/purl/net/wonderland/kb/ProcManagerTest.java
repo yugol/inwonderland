@@ -23,7 +23,6 @@
  */
 package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.engine.ProcManager;
 import java.io.File;
 import java.util.List;
 import org.junit.Test;

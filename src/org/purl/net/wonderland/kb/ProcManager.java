@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,28 +23,47 @@
  */
 package org.purl.net.wonderland.kb;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Attr {
+public class ProcManager {
 
-    private String number;
-    private String gender;
+    private final Map<String, ProcList> allProcs;
 
-    public String getGender() {
-        return gender;
+    public ProcManager() {
+        allProcs = new Hashtable<String, ProcList>();
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public ProcManager(WKB kb) throws Exception {
+        this();
+        readProcedureSet(kb, WKBUtil.procSetArticles);
+        readProcedureSet(kb, WKBUtil.procSetMoods);
+        readProcedureSet(kb, WKBUtil.procSetCollocations);
     }
 
-    public String getNumber() {
-        return number;
+    public int getProcCount() {
+        int count = 0;
+        for (ProcList set : allProcs.values()) {
+            count += set.size();
+        }
+        return count;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void putProcList(String name, ProcList procs) {
+        allProcs.put(name, procs);
+    }
+
+    public ProcList getProcSet(String name) {
+        return allProcs.get(name);
+    }
+
+    private void readProcedureSet(WKB kb, String set) throws Exception {
+        ProcList procSet = kb.getProcRules(set);
+        procSet.sort();
+        putProcList(set, procSet);
     }
 }
