@@ -29,6 +29,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -153,6 +154,7 @@ class Verb {
     }
 
     public List<Rule> getVerbNetProcs(WSDPersonality pers) throws Exception {
+        Hierarchy cth = pers.getKb().getVocabulary().getConceptTypeHierarchy();
         List<Rule> procs = new ArrayList<Rule>();
         for (VerbFrame frame : frames) {
             for (Example example : frame.getExamples()) {
@@ -164,17 +166,25 @@ class Verb {
 
                     // find VERB
                     Concept verb = null;
+                    List<Concept> verbs = new ArrayList<Concept>();
                     Iterator<Concept> cit = cg.iteratorConcept();
                     String verbLemma = example.getVerbLemma();
                     while (cit.hasNext()) {
                         Concept c = cit.next();
-                        if (c.getIndividual().equals(verbLemma)) {
-                            verb = c;
-                            break;
+                        if (cth.isKindOf(c.getType(), WKBUtil.VERB_CT)) {
+                            verbs.add(c);
+                            if (c.getIndividual().equals(verbLemma)) {
+                                verb = c;
+                                break;
+                            }
                         }
                     }
                     if (verb == null) {
-                        throw new WonderlandException("verb not found");
+                        if (verbs.size() == 1) {
+                            verb = verbs.get(0);
+                        } else {
+                            throw new WonderlandException("verb not found");
+                        }
                     }
 
 

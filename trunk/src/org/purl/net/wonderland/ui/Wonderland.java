@@ -65,7 +65,8 @@ public class Wonderland extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 CoGuiWrapper.instance().hideGui();
-                setVisible(true);
+                showCGButton.setEnabled(true);
+                processMessageButton.setEnabled(true);
             }
         });
 
@@ -100,6 +101,8 @@ public class Wonderland extends javax.swing.JFrame {
         saveKbAsMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
         personalityMenu = new javax.swing.JMenu();
+        toolsMenu = new javax.swing.JMenu();
+        ontExpMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -218,6 +221,18 @@ public class Wonderland extends javax.swing.JFrame {
         personalityMenu.setText("Personality");
         menuBar.add(personalityMenu);
 
+        toolsMenu.setText("Tools");
+
+        ontExpMenuItem.setText("Ontology Explorer...");
+        ontExpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ontExpMenuItemActionPerformed(evt);
+            }
+        });
+        toolsMenu.add(ontExpMenuItem);
+
+        menuBar.add(toolsMenu);
+
         helpMenu.setText("Help");
 
         contentsMenuItem.setText("Contents");
@@ -257,7 +272,8 @@ public class Wonderland extends javax.swing.JFrame {
                 File kbFile = engine.getLastFile();
                 engine.saveKb(kbFile);
                 CoGuiWrapper.instance().showGui(kbFile);
-                setVisible(false);
+                showCGButton.setEnabled(false);
+                processMessageButton.setEnabled(false);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex);
@@ -338,6 +354,10 @@ public class Wonderland extends javax.swing.JFrame {
         noteProgramResponse(engine.getPersonality().getWelcomeMessage());
     }//GEN-LAST:event_formWindowOpened
 
+    private void ontExpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ontExpMenuItemActionPerformed
+        WordNetExplorer.instance.setVisible(true);
+    }//GEN-LAST:event_ontExpMenuItemActionPerformed
+
     private String noteUserMessage() {
         String message = inputTextArea.getText().trim();
         if (message.length() > 0) {
@@ -411,6 +431,7 @@ public class Wonderland extends javax.swing.JFrame {
     private javax.swing.JTabbedPane mainTabs;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel messagesPanel;
+    private javax.swing.JMenuItem ontExpMenuItem;
     private javax.swing.JMenuItem openKbMenuItem;
     private javax.swing.JMenuItem openTextFileMenuItem;
     private javax.swing.JMenu personalityMenu;
@@ -419,6 +440,7 @@ public class Wonderland extends javax.swing.JFrame {
     private javax.swing.JButton showCGButton;
     private javax.swing.JFileChooser textFileChooser;
     private org.purl.net.wonderland.ui.TextFileFilter textFileFilter;
+    private javax.swing.JMenu toolsMenu;
     // End of variables declaration//GEN-END:variables
 
     private void buildPersonalityMenu() {

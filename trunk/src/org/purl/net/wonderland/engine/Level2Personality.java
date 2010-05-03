@@ -121,7 +121,7 @@ public class Level2Personality extends Level1Personality {
         for (Proc match : matches) {
             if (match != null) {
                 for (Projection proj : match.getProjections()) {
-                    WKBUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                    WKBUtil.applyProcMatch(fact, proj, match, false, kb.getVocabulary().getConceptTypeHierarchy());
                     break apply_just_one_match;
                 }
             }

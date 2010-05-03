@@ -29,10 +29,6 @@ import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
-import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.nlp.ilf.IlfRep;
-import org.purl.net.wonderland.nlp.ilf.Pred;
-import org.purl.net.wonderland.util.Formatting;
 
 /**
  *
@@ -43,7 +39,6 @@ public class WSynset {
     private final int index;
     private final String lemma;
     private final Synset sense;
-    private IlfRep ilf;
 
     public WSynset(int index, String item, Synset sense) {
         this.index = index;
@@ -54,16 +49,6 @@ public class WSynset {
         } else {
             this.lemma = null;
         }
-        try {
-            this.ilf = IlfWnWrapper.getPrettyIlf(Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset()));
-        } catch (Exception ex) {
-            this.ilf = null;
-            Configuration.reportExceptionConsole(ex);
-        }
-    }
-
-    public IlfRep getIlf() {
-        return ilf;
     }
 
     @Override
@@ -202,10 +187,10 @@ public class WSynset {
         html.append("<table border='0' cellpadding='0'>");
 
         String key = sense.getKey().toString();
-        String offset = Formatting.toWordNetOffset(sense.getOffset());
-        String offsetKeyAlpha = Formatting.toWordNetOffsetKeyAlpha(sense.getPOS(), sense.getOffset());
-        String offsetKeyNum = Formatting.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset());
-        String senseKey = WordNetWrapper.offsetKeyAlphaTpSenseKey(offsetKeyAlpha);
+        String offset = WordNetWrapper.toWordNetOffset(sense.getOffset());
+        String offsetKeyAlpha = WordNetWrapper.toWordNetOffsetKeyAlpha(sense.getPOS(), sense.getOffset());
+        String offsetKeyNum = WordNetWrapper.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset());
+        String senseKey = WordNetWrapper.offsetKeyAlphaToSenseKey(offsetKeyAlpha);
 
         html.append("<tr>");
         html.append("<td>Key:</td>");
@@ -247,85 +232,6 @@ public class WSynset {
         html.append("</td>");
         html.append("</tr>");
 
-        html.append("</table>");
-        return html.toString();
-    }
-
-    public String getIlfHTML() {
-        StringBuilder html = new StringBuilder();
-        if (ilf == null) {
-            html.append("Data not available !!!");
-        } else {
-
-            html.append(getTextCountHTML(ilf.getText()));
-            html.append("<br/><br/>");
-            html.append("<table border='0' cellpadding='0'>");
-
-            html.append("<tr>");
-            html.append("<th>");
-            html.append("ilf");
-            html.append("</th>");
-            html.append("<th>");
-            html.append("&nbsp;&nbsp;&nbsp;");
-            html.append("</th>");
-            html.append("<th>");
-            html.append("pretty-ilf");
-            html.append("</th>");
-            html.append("<tr>");
-
-            html.append("<tr>");
-            html.append("<td valign='top'>");
-            for (Pred pred : ilf.getIlfs()) {
-                html.append(getPredHTML(pred.toString()));
-                html.append("<br/>");
-            }
-            html.append("</td>");
-            html.append("<td></td>");
-            html.append("<td valign='top'>");
-            for (Pred pred : ilf.getPrettyIlfs()) {
-                html.append(getPredHTML(pred.toString()));
-                html.append("<br/>");
-            }
-            html.append("</td>");
-            html.append("</tr>");
-
-            html.append("</table>");
-        }
-        return html.toString();
-    }
-
-    private String getPredHTML(String rep) {
-        int pos = rep.indexOf("(");
-        StringBuilder html = new StringBuilder("<font color='blue'><b>");
-        html.append(rep.substring(0, pos));
-        html.append("</b></font> ");
-        html.append(rep.substring(pos));
-        return html.toString();
-    }
-
-    private String getTextCountHTML(String rep) {
-        StringBuilder html = new StringBuilder();
-        String[] words = rep.split(" ");
-
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-            html.append(word);
-            html.append("<font color='fuchsia'>");
-            html.append("/" + (i + 1));
-            html.append("</font> ");
-        }
-        return html.toString();
-    }
-
-    private String getDummyHTML() {
-        StringBuilder html = new StringBuilder();
-        html.append("<table border='0' cellpadding='0'>");
-        html.append("<tr>");
-        html.append("<td></td>");
-        html.append("<td>");
-        html.append("");
-        html.append("</td>");
-        html.append("</tr>");
         html.append("</table>");
         return html.toString();
     }
