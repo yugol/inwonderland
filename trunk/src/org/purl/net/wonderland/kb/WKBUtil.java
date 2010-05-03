@@ -173,6 +173,10 @@ public final class WKBUtil {
         return "l2_" + toIdIndex(num);
     }
 
+    public static String toLevel3FactId(int num) {
+        return "l3_" + toIdIndex(num);
+    }
+
     public static String toConceptTypeId(String ctl) {
         return "ct_" + handleQuotes(ctl);
     }
@@ -364,7 +368,7 @@ public final class WKBUtil {
         timer.stop();
     }
 
-    public static void applyProcedure(CGraph fact, Projection proj, Proc proc, boolean markingConcepts, Hierarchy cth) {
+    public static void applyProcMatch(CGraph fact, Projection proj, Proc proc, boolean markingConcepts, Hierarchy cth) {
         CGraph rhsFact = proc.getRhs();
         Set<Concept> conceptsToDelete = new HashSet<Concept>();
         Set<String> peers = new TreeSet<String>();

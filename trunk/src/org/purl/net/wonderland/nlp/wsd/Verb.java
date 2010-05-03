@@ -52,7 +52,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Verb {
+class Verb {
 
     static String normalizeThematicRoleName(String name) {
         return StringUtils.capitalize(name.toLowerCase());
@@ -152,22 +152,23 @@ public class Verb {
         return lemma;
     }
 
-    public List<Rule> getVerbNetProcs() throws Exception {
+    public List<Rule> getVerbNetProcs(WSDPersonality pers) throws Exception {
         List<Rule> procs = new ArrayList<Rule>();
         for (VerbFrame frame : frames) {
             for (Example example : frame.getExamples()) {
                 if (example.getType() == Example.Type.VerbNet) {
                     String text = example.getText();
-                    CGraph cg = WsdManager.pers.parse(text);
+                    CGraph cg = pers.parse(text);
                     Rule proc = new Rule(WKBUtil.newUniqueId(), WKBUtil.toProcName(lemma, WKBUtil.newUniqueId()));
 
 
                     // find VERB
                     Concept verb = null;
                     Iterator<Concept> cit = cg.iteratorConcept();
+                    String verbLemma = example.getVerbLemma();
                     while (cit.hasNext()) {
                         Concept c = cit.next();
-                        if (c.getIndividual().equals(example.getVerbLemma())) {
+                        if (c.getIndividual().equals(verbLemma)) {
                             verb = c;
                             break;
                         }
@@ -178,7 +179,7 @@ public class Verb {
 
 
                     // create VERB couple
-                    Concept[] vHyptConc = createVerbConceptHyptConc(proc, frame);
+                    Concept[] vHyptConc = createVerbConceptHyptConc(pers.getKb(), proc, frame);
 
 
                     // get context
@@ -270,15 +271,14 @@ public class Verb {
         return procs;
     }
 
-    private Concept[] createVerbConceptHyptConc(Rule proc, VerbFrame frame) {
-        WKB kb = WsdManager.pers.getKb();
-
+    private Concept[] createVerbConceptHyptConc(WKB kb, Rule proc, VerbFrame frame) {
         Concept hypt, conc;
 
         hypt = new Concept(WKBUtil.newUniqueId());
         hypt.setIndividual(kb.addIndividual(lemma));
         hypt.setType(WKBUtil.VERB_CT);
         hypt.setHypothesis(true);
+        hypt.setIndividual(kb.addIndividual(lemma));
         proc.addVertex(hypt);
 
         conc = new Concept(WKBUtil.newUniqueId());

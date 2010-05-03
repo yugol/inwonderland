@@ -28,13 +28,24 @@ import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Iterator;
 import java.util.List;
+import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.nlp.wsd.WSDProcManager;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level3Personality extends Personality {
+public class Level3Personality extends Level2Personality {
+
+    protected WSDProcManager wsdProcMgr = null;
+
+    @Override
+    public void setKb(WKB kb) {
+        super.setKb(kb);
+        wsdProcMgr = new WSDProcManager(kb);
+    }
 
     @Override
     public String getWelcomeMessage() {
@@ -76,7 +87,7 @@ public class Level3Personality extends Personality {
         return "Done.";
     }
 
-    private void disambiguate(CGraph fact) {
+    private void disambiguate(CGraph fact) throws Exception {
         Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
         Iterator<Concept> it = fact.iteratorConcept();
         while (it.hasNext()) {
@@ -85,6 +96,12 @@ public class Level3Personality extends Personality {
             String[] types = c.getType();
 
             if (cth.isKindOf(types, WKBUtil.VERB_CT)) {
+                boolean hasVerb = wsdProcMgr.hasVerb(lemma);
+                ProcList wsdProcs = wsdProcMgr.getVerbProcs(lemma);
+                if (!hasVerb) {
+                    projSlv.reset();
+                }
+                applyFirstMatch(wsdProcs, fact);
             }
         }
     }

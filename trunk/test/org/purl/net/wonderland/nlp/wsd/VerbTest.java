@@ -26,8 +26,6 @@ package org.purl.net.wonderland.nlp.wsd;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.WKB;
@@ -39,17 +37,6 @@ import org.purl.net.wonderland.kb.WKBUtil;
  */
 public class VerbTest {
 
-    public VerbTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     // @Test
     public void testAllVerbs() throws Exception {
         for (File file : Configuration.getPropBankDataFolder().listFiles()) {
@@ -58,31 +45,32 @@ public class VerbTest {
             if (endIndex > 0) {
                 lemma = lemma.substring(0, endIndex);
                 Verb v = new Verb(lemma);
-                System.out.println("");
+                System.out.println(">- " + v.getLemma());
             }
         }
-        for (String tag : WsdManager.syntaxTags) {
+        for (String tag : WSDProcManager.syntaxTags) {
             System.out.println(tag);
         }
     }
 
-    // @Test
+    @Test
     public void testOneVerb() throws Exception {
         Verb v = new Verb("abduct");
-        System.out.println("");
+        System.out.println(v.getLemma());
     }
 
     // @Test
     public void testOneVerbToProcs() throws Exception {
+        WSDPersonality pers = new WSDPersonality();
         Verb v = new Verb("abduct");
-        List<Rule> procs = v.getVerbNetProcs();
-        WKB kb = WsdManager.pers.getKb();
+        List<Rule> procs = v.getVerbNetProcs(pers);
+        WKB kb = pers.getKb();
         for (Rule proc : procs) {
             kb.addRule(proc);
         }
         File file = new File("test." + v.getLemma() + ".cogxml");
         kb.save(file);
-        // IO.writeProcs(procs, WsdManager.pers.getKb(), file);
+        // IO.writeProcs(procs, WSDProcManager.pers.getKb(), file);
         WKBUtil.normalizeKbFile(file);
     }
 }

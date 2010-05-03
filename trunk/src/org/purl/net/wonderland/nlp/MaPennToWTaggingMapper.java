@@ -43,7 +43,7 @@ public class MaPennToWTaggingMapper {
 
             if (tagging.isCollocation()) {
                 // System.out.println(tagging.getWrittenForm());
-                String posTypes = CollocationManager.getTypes(tagging.getLemma());
+                String posTypes = CollocationsManager.getTypes(tagging.getLemma());
                 if (WKBUtil.ADVERB.equals(posTypes)) {
                     tagging.setPartOfSpeech(WKBUtil.ADVERB);
                     continue;
@@ -314,7 +314,7 @@ public class MaPennToWTaggingMapper {
         String word = tagging.getWrittenForm().toLowerCase();
 
         if (tagging.isCollocation()) {
-            String pos = CollocationManager.getTypes(word);
+            String pos = CollocationsManager.getTypes(word);
             if (pos.indexOf(WKBUtil.ADVERB) >= 0) {
                 tagging.setPartOfSpeech(WKBUtil.ADVERB);
                 return;

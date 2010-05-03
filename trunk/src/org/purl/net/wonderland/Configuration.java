@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import org.purl.net.wonderland.nlp.CollocationManager;
+import org.purl.net.wonderland.nlp.CollocationsManager;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
@@ -140,7 +140,7 @@ public final class Configuration {
     }
 
     public static void init() {
-        // CollocationManager.init();
+        // CollocationsManager.init();
         MorphologicalDatabase.init();
         WordNetWrapper.init();
         VerbNetWrapper.init();
@@ -267,5 +267,9 @@ public final class Configuration {
 
     public static File getIlfWnDataFolder() {
         return new File(ilfWnFolder, "");
+    }
+
+    public static File getWsdFolder() {
+        return new File(resFolder, "wsd");
     }
 }

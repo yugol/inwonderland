@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.kb;
 
+import org.purl.net.wonderland.nlp.ar.Attr;
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
@@ -34,7 +35,9 @@ import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import net.didion.jwnl.data.POS;
@@ -58,33 +61,45 @@ import org.w3c.dom.NodeList;
  */
 public class WKB {
 
+    private static final int levelCount = 3;
     private static final String storySetName = "story";
     private static final String allName = "all";
     private static final String allId = storySetName + "_" + allName;
     private final String language;
     private final KnowledgeBase kb;
     private final Vocabulary vocabulary;
-    private int level1FactCount;
-    private int level2FactCount;
+    private int[] levelFactCount = new int[levelCount];
 
     public int getLevel1FactCount() {
-        return level1FactCount;
+        return levelFactCount[0];
     }
 
-    public void setLevel1FactCount(int sentenceCount) {
-        this.level1FactCount = sentenceCount;
+    public void setLevel1FactCount(int count) {
+        this.levelFactCount[0] = count;
     }
 
     public int getLevel2FactCount() {
-        return level2FactCount;
+        return levelFactCount[1];
     }
 
-    public void setLevel2FactCount(int level2FactCount) {
-        this.level2FactCount = level2FactCount;
+    public void setLevel2FactCount(int count) {
+        this.levelFactCount[1] = count;
+    }
+
+    private int getLevel3FactCount() {
+        return levelFactCount[2];
+    }
+
+    public void setLevel3FactCount(int count) {
+        this.levelFactCount[2] = count;
     }
 
     public int getFactCount() {
-        return level1FactCount + level2FactCount;
+        int factCount = 0;
+        for (int count : levelFactCount) {
+            factCount += count;
+        }
+        return factCount;
     }
 
     public String getLanguage() {
@@ -97,8 +112,7 @@ public class WKB {
 
     public WKB(File cogxml, String lang) throws Exception {
         language = lang;
-        level1FactCount = 0;
-        level2FactCount = 0;
+        Arrays.fill(levelFactCount, 0);
 
         Document doc = CogxmlReader.read(cogxml);
         NodeList supportList = doc.getElementsByTagName("support");
@@ -112,7 +126,7 @@ public class WKB {
 
         for (CGraph cg : kb.getFactGraphSet().values()) {
             if (cg.getSet().equals(WKBUtil.level1)) {
-                ++level1FactCount;
+                ++levelFactCount[0];
             }
         }
     }
@@ -240,7 +254,7 @@ public class WKB {
         return senseId;
     }
 
-    String[] importWordNetHypernymHierarchy(String word, POS posType) {
+    public String[] importWordNetHypernymHierarchy(String word, POS posType) {
         String parentLabel = null;
         String parentId = null;
         String particle = null;
@@ -397,6 +411,13 @@ public class WKB {
         } else if (set.equals(WKBUtil.level2)) {
             int factCount = getLevel2FactCount() + 1;
             fact.setId(WKBUtil.toLevel2FactId(factCount));
+            fact.setName(WKBUtil.toIdIndex(factCount));
+            fact.setSet(set);
+            kb.addGraph(fact);
+            setLevel2FactCount(factCount);
+        } else if (set.equals(WKBUtil.level3)) {
+            int factCount = getLevel3FactCount() + 1;
+            fact.setId(WKBUtil.toLevel3FactId(factCount));
             fact.setName(WKBUtil.toIdIndex(factCount));
             fact.setSet(set);
             kb.addGraph(fact);

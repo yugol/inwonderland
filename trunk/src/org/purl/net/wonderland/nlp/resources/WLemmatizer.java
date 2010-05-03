@@ -21,62 +21,22 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.wsd;
+package org.purl.net.wonderland.nlp.resources;
 
-import java.util.ArrayList;
-import java.util.List;
+import edu.northwestern.at.utils.corpuslinguistics.lemmatizer.EnglishLemmatizer;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-class Themrole {
+class WLemmatizer extends EnglishLemmatizer {
 
-    private final String pbN;
-    private final String pbDescr;
-    private final String vnThemrole;
-    private final List<String> plusRestrs;
-    private final List<String> minusRestrs;
-    private int hits; // used for role selection
-
-    public Themrole(String pnN, String pbDescr, String vnThemrole) {
-        this.pbN = pnN;
-        this.pbDescr = pbDescr;
-        this.vnThemrole = vnThemrole;
-        this.plusRestrs = new ArrayList<String>();
-        this.minusRestrs = new ArrayList<String>();
-        hits = 0;
+    public WLemmatizer() throws Exception {
+        super();
+        loadMoreIrregularForms();
     }
 
-    public String getPbDescr() {
-        return pbDescr;
-    }
-
-    public String getPbN() {
-        return pbN;
-    }
-
-    public String getVnThemrole() {
-        return vnThemrole;
-    }
-
-    public List<String> getMinusRestrs() {
-        return minusRestrs;
-    }
-
-    public List<String> getPlusRestrs() {
-        return plusRestrs;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public void resetHits() {
-        this.hits = 0;
-    }
-
-    public void incrementHits() {
-        this.hits += 1;
+    private void loadMoreIrregularForms() {
+        irregularForms.put("verb", "own", "own");
     }
 }

@@ -25,7 +25,7 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
-import org.purl.net.wonderland.engine.Personality;
+import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.kb.WKBUtil;
 import org.purl.net.wonderland.kb.WKB;
 
@@ -33,7 +33,7 @@ import org.purl.net.wonderland.kb.WKB;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class WsdPersonality extends Personality {
+class WSDPersonality extends Level2Personality {
 
     @Override
     public String getWelcomeMessage() {

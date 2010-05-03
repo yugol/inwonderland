@@ -39,7 +39,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class VerbFrame {
+class VerbFrame {
 
     // private final String pbid; // PropBank id
     private String vncls = null; // VerbNet class
@@ -125,7 +125,7 @@ public class VerbFrame {
                         syntaxElement = (Element) syntaxNode;
                         String value = syntaxElement.getAttribute("value");
 
-                        WsdManager.syntaxTags.add(syntaxElement.getTagName());
+                        WSDProcManager.syntaxTags.add(syntaxElement.getTagName());
 
                         StringBuilder synrestrs = new StringBuilder();
                         NodeList synrestrsNodes = syntaxElement.getElementsByTagName("SYNRESTRS");

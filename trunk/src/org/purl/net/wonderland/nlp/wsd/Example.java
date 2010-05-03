@@ -37,7 +37,7 @@ import org.purl.net.wonderland.nlp.WTagging;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Example {
+class Example {
 
     public static enum Type {
 

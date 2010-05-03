@@ -43,7 +43,7 @@ import org.purl.net.wonderland.util.CodeTimer;
  *
  * @author Iulian
  */
-public class CollocationManager implements WordNetConnection {
+public class CollocationsManager implements WordNetConnection {
 
     private static Map<String, String> collocations = new Hashtable<String, String>();
 

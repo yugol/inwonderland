@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -21,52 +21,35 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
+package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.io.File;
+import org.junit.Test;
+import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.WKB;
 import org.purl.net.wonderland.kb.WKBUtil;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcManager {
+public class WSDProcManagerTest {
 
-    private final Map<String, ProcList> allProcs;
-
-    public ProcManager() {
-        allProcs = new Hashtable<String, ProcList>();
-    }
-
-    public ProcManager(WKB kb) throws Exception {
-        this();
-        readProcedureSet(kb, WKBUtil.procSetArticles);
-        readProcedureSet(kb, WKBUtil.procSetMoods);
-        readProcedureSet(kb, WKBUtil.procSetCollocations);
-    }
-
-    public int getProcCount() {
-        int count = 0;
-        for (ProcList set : allProcs.values()) {
-            count += set.size();
+    @Test
+    public void testGetVerbProcs() throws Exception {
+        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
+        WSDProcManager wdsMgr = new WSDProcManager(kb);
+        String lemma = "have";
+        ProcList procs = wdsMgr.getVerbProcs(lemma);
+        assertNotNull(procs);
+        for (Proc proc : procs.getProcs()) {
+            kb.addRule(proc.getRule(procs.getName()));
         }
-        return count;
-    }
-
-    public void putProcList(String name, ProcList procs) {
-        allProcs.put(name, procs);
-    }
-
-    public ProcList getProcSet(String name) {
-        return allProcs.get(name);
-    }
-
-    private void readProcedureSet(WKB kb, String set) throws Exception {
-        ProcList procSet = kb.getProcRules(set);
-        procSet.sort();
-        putProcList(set, procSet);
+        File kbFile = new File("wsd.cogxml");
+        kb.save(kbFile);
+        WKBUtil.normalizeKbFile(kbFile);
     }
 }

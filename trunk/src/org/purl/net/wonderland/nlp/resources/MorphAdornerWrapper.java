@@ -25,7 +25,6 @@ package org.purl.net.wonderland.nlp.resources;
 
 import edu.northwestern.at.utils.CharUtils;
 import edu.northwestern.at.utils.corpuslinguistics.adornedword.AdornedWord;
-import edu.northwestern.at.utils.corpuslinguistics.lemmatizer.DefaultLemmatizer;
 import edu.northwestern.at.utils.corpuslinguistics.lemmatizer.Lemmatizer;
 import edu.northwestern.at.utils.corpuslinguistics.lexicon.Lexicon;
 import edu.northwestern.at.utils.corpuslinguistics.partsofspeech.PartOfSpeechTags;
@@ -66,7 +65,7 @@ public final class MorphAdornerWrapper {
             splitter = new DefaultSentenceSplitter();
             splitter.setPartOfSpeechGuesser(posTagger.getPartOfSpeechGuesser());
             wordLexicon = posTagger.getLexicon();
-            lemmatizer = new DefaultLemmatizer();
+            lemmatizer = new WLemmatizer();
             standardizer = new DefaultSpellingStandardizer();
             spellingTokenizer = new PennTreebankTokenizer();
             partOfSpeechTags = wordLexicon.getPartOfSpeechTags();
@@ -98,6 +97,7 @@ public final class MorphAdornerWrapper {
         for (List<AdornedWord> taggedSentence : taggedSentences) {
             List<WTagging> taggings = new ArrayList<WTagging>();
             for (AdornedWord aWord : taggedSentence) {
+                // setStandardSpelling(aWord);
                 setLemma(aWord);
                 aWordToTaggings(taggings, aWord);
             }
@@ -110,25 +110,20 @@ public final class MorphAdornerWrapper {
         String spelling = adornedWord.getSpelling();
         String partOfSpeech = adornedWord.getPartsOfSpeech();
         String lemmata = spelling;
-// Get lemmatization word class
-// for part of speech.
+
+        // Get lemmatization word class for part of speech.
         String lemmaClass = partOfSpeechTags.getLemmaWordClass(partOfSpeech);
-// Do not lemmatize words which
-// should not be lemmatized,
-// including proper names.
+
+        // Do not lemmatize words which should not be lemmatized, including proper names.
         if (lemmatizer.cantLemmatize(spelling) || lemmaClass.equals("none")) {
         } else {
-// Try compound word exceptions
-// list first.
+            // Try compound word exceptions list first.
             lemmata = lemmatizer.lemmatize(spelling, "compound");
-// If lemma not found, keep trying.
+            // If lemma not found, keep trying.
             if (lemmata.equals(spelling)) {
-// Extract individual word parts.
-// May be more than one for a
-// contraction.
+                // Extract individual word parts. May be more than one for a contraction.
                 List wordList = spellingTokenizer.extractWords(spelling);
-// If just one word part,
-// get its lemma.
+                // If just one word part, get its lemma.
                 if (!partOfSpeechTags.isCompoundTag(partOfSpeech) || (wordList.size() == 1)) {
                     if (lemmaClass.length() == 0) {
                         lemmata = lemmatizer.lemmatize(spelling);
@@ -136,10 +131,7 @@ public final class MorphAdornerWrapper {
                         lemmata = lemmatizer.lemmatize(spelling, lemmaClass);
                     }
                 } // More than one word part.
-                // Get lemma for each part and
-                // concatenate them with the
-                // lemma separator to form a
-                // compound lemma.
+                // Get lemma for each part and concatenate them with the lemma separator to form a compound lemma.
                 else {
                     lemmata = "";
                     String lemmaPiece = "";
@@ -151,10 +143,7 @@ public final class MorphAdornerWrapper {
                                 lemmata = lemmata + lemmaSeparator;
                             }
                             lemmaClass = partOfSpeechTags.getLemmaWordClass(posTags[i]);
-                            lemmaPiece =
-                                    lemmatizer.lemmatize(
-                                    wordPiece,
-                                    lemmaClass);
+                            lemmaPiece = lemmatizer.lemmatize(wordPiece, lemmaClass);
                             lemmata = lemmata + lemmaPiece;
                         }
                     }

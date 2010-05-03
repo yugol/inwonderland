@@ -63,25 +63,38 @@ public class IO {
             // root.appendChild(vocabularyElement);
 
             for (Proc proc : procs.getProcs()) {
-                Element procElement = createRuleElement(xmlDoc, proc.getRule());
+                Element procElement = createRuleElement(xmlDoc, proc.getRule(procs.getName()));
                 root.appendChild(procElement);
             }
 
+            XML.writeXmlFile(xmlDoc, file);
+        }
+
+        private static void writeRules(List<Rule> rules, File file) throws Exception {
+            Document xmlDoc = XML.createDocument();
+            Element root = xmlDoc.createElement("cogxml");
+            xmlDoc.appendChild(root);
+            for (Rule rule : rules) {
+                Element procElement = createRuleElement(xmlDoc, rule);
+                root.appendChild(procElement);
+            }
             XML.writeXmlFile(xmlDoc, file);
         }
     }
 
     private static class ProcReader extends CogxmlReader {
 
-        public static void readProcs(WKB kb, File file) throws Exception {
+        private static ProcList readProcs(String name, File file, WKB kb) throws Exception {
+            ProcList procs = new ProcList(name);
             Vocabulary voc = kb.getVocabulary();
             Document xmlDoc = XML.readXmlFile(file);
             NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
             for (int i = 0; i < ruleNodes.getLength(); i++) {
                 Element ruleElement = (Element) ruleNodes.item(i);
-                Rule proc = readRule(ruleElement, voc);
-                kb.addRule(proc);
+                Rule rule = readRule(ruleElement, voc);
+                procs.add(rule);
             }
+            return procs;
         }
     }
 
@@ -128,7 +141,11 @@ public class IO {
         ProcWriter.writeProcs(procs, kb, file);
     }
 
-    public static void readProcs(WKB kb, File file) throws Exception {
-        ProcReader.readProcs(kb, file);
+    public static void writeRules(List<Rule> rules, File file) throws Exception {
+        ProcWriter.writeRules(rules, file);
+    }
+
+    public static ProcList readProcs(String name, File file, WKB kb) throws Exception {
+        return ProcReader.readProcs(name, file, kb);
     }
 }

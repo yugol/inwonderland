@@ -23,15 +23,11 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import java.util.List;
-import org.purl.net.wonderland.kb.WKBUtil;
-
 /**
  *
  * @author Iulian
  */
-public class EtoGleem extends Personality {
+public class EtoGleem extends Level3Personality {
 
     @Override
     public String getWelcomeMessage() {
@@ -51,20 +47,5 @@ public class EtoGleem extends Personality {
     @Override
     public String getId() {
         return "etogleem";
-    }
-
-    @Override
-    public String processMessage(String message) throws Exception {
-        List<CGraph> facts = parseMessage(message);
-        projSlv.reset();
-        for (CGraph fact : facts) {
-            processMoods(fact);
-            processArticles(fact);
-            // processCollocations(fact);
-            kb.addSenses(fact);
-            kb.addFact(fact, WKBUtil.level2);
-        }
-        return "Done.";
-
     }
 }

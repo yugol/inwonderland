@@ -117,8 +117,8 @@ public class ProcImpl implements Proc {
         return lhsComplexity;
     }
 
-    public Rule getRule() {
-        Rule rule = Rule.createRule(id, id, lhs, rhs);
+    public Rule getRule(String setName) {
+        Rule rule = Rule.createRule(id, WKBUtil.toProcName(setName, id), lhs, rhs);
         for (Concept c : rhsLhsMapping.keySet()) {
             String conc = c.getId();
             String hypt = rhsLhsMapping.get(c).getId();

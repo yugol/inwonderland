@@ -52,5 +52,5 @@ public interface Proc {
 
     public List<Projection> getProjections();
 
-    public Rule getRule();
+    public Rule getRule(String setName);
 }
