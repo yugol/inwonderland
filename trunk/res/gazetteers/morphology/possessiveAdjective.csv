@@ -1,0 +1,8 @@
+writtenForm,lemma,partOfSpeech,grammaticalGender,grammaticalNumber,grammaticalCase,person,degree,verbFormMood,grammaticalTense
+her,her,possessiveAdjective,feminine,singular,,thirdPerson,,,
+his,his,possessiveAdjective,masculine,singular,,thirdPerson,,,
+its,its,possessiveAdjective,neuter,singular,,thirdPerson,,,
+my,my,possessiveAdjective,,singular,,firstPerson,,,
+our,our,possessiveAdjective,,plural,,firstPerson,,,
+their,their,possessiveAdjective,,plural,,thirdPerson,,,
+your,your,possessiveAdjective,,,,secondPerson,,,
