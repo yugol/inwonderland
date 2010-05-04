@@ -43,8 +43,8 @@ public class ProcManagerTest {
 
         ProjectionSolver solver = new ProjectionSolver(kb);
         solver.reset();
-        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil_.procSetArticles),
-                kb.getFactGraph(WkbUtil_.toFactId(4, WkbConstants.LEVEL1)));
+        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil.procSetArticles),
+                kb.getFactGraph(WkbUtil.toFactId(4, WkbConstants.LEVEL1)));
         assertEquals(1, matches.size());
     }
 }

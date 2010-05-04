@@ -36,7 +36,7 @@ import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.WTaggingUtil;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 
 /**
  *
@@ -49,7 +49,7 @@ public class GoldTest {
     private static String corpusFileName = "bedtime/story.txt";
     private static int firstSentence = 1;
     private static int lastSentence = 42;
-    private static MafCorpus_ corpus;
+    private static MafCorpus corpus;
     private static Engine engine;
 
     @BeforeClass
@@ -58,9 +58,9 @@ public class GoldTest {
         engine.setPersonality(pers);
 
         Configuration.init();
-        WkbUtil_.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        WkbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        corpus = new MafCorpus_(new File(Configuration.getCorporaFolder(), corpusFileName));
+        corpus = new MafCorpus(new File(Configuration.getCorporaFolder(), corpusFileName));
 
         if (lastSentence < firstSentence) {
             lastSentence = corpus.getPlainLineCount() - 1;

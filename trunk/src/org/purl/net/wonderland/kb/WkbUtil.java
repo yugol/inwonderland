@@ -48,7 +48,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class WkbUtil_ {
+public class WkbUtil {
 
     public static final int UUID_LENGTH = newUniqueId().length();
     public static final int MAX_RELATION_ARG_COUNT = 10;

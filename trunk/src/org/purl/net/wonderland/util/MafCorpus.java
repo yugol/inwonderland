@@ -37,7 +37,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class MafCorpus_ {
+public class MafCorpus {
 
     public static final String TAGSET_NAME = "tagset";
     public static final String TAGSET_ATTRIBUTE_REFERENCE = "ref";
@@ -111,7 +111,7 @@ public class MafCorpus_ {
     private List<String> plainLines;
     private final Document[] xmlLevel = new Document[3];
 
-    public MafCorpus_(File plainCorpus) throws Exception {
+    public MafCorpus(File plainCorpus) throws Exception {
         this.plainCorpus = plainCorpus;
 
         String root = plainCorpus.getAbsolutePath();

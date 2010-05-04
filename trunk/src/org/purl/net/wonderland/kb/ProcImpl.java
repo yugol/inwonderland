@@ -118,7 +118,7 @@ public class ProcImpl implements Proc {
     }
 
     public Rule getRule(String setName) {
-        Rule rule = Rule.createRule(id, WkbUtil_.toProcName(setName, id), lhs, rhs);
+        Rule rule = Rule.createRule(id, WkbUtil.toProcName(setName, id), lhs, rhs);
         for (Concept c : rhsLhsMapping.keySet()) {
             String conc = c.getId();
             String hypt = rhsLhsMapping.get(c).getId();

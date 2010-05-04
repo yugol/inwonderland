@@ -29,7 +29,7 @@ import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.Wkb;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 
 /**
  *
@@ -48,7 +48,7 @@ public class VerbTest {
                 System.out.println(">- " + v.getLemma());
             }
         }
-        for (String tag : WsdProcManager_.syntaxTags) {
+        for (String tag : WsdProcManager.syntaxTags) {
             System.out.println(tag);
         }
     }
@@ -64,7 +64,7 @@ public class VerbTest {
         Configuration.init();
 
         Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
-        WsdPersonality_ pers = new WsdPersonality_();
+        WsdPersonality pers = new WsdPersonality();
         pers.setKb(kb);
 
         Verb v = new Verb("know");
@@ -75,6 +75,6 @@ public class VerbTest {
 
         File file = new File("test." + v.getLemma() + ".cogxml");
         kb.save(file);
-        WkbUtil_.normalizeKbFile(file);
+        WkbUtil.normalizeKbFile(file);
     }
 }

@@ -34,7 +34,7 @@ import org.purl.net.wonderland.Configuration;
  *
  * @author Iulian
  */
-public class WkbTest_ {
+public class WkbTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {

@@ -30,7 +30,7 @@ import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 
 /**
  *
@@ -53,7 +53,7 @@ public class IOTest {
     public void testWriteProcs() throws Exception {
         Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
         File file = new File("test.rules.cogxml");
-        IO.writeProcs(WkbUtil_.toProcName(WkbUtil_.procSetArticles, null), kb, file);
+        IO.writeProcs(WkbUtil.toProcName(WkbUtil.procSetArticles, null), kb, file);
     }
 
     /*

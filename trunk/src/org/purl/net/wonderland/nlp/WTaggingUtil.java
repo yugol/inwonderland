@@ -25,7 +25,7 @@ package org.purl.net.wonderland.nlp;
 
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.util.Corpus;
-import org.purl.net.wonderland.util.MafCorpus_;
+import org.purl.net.wonderland.util.MafCorpus;
 
 /**
  *
@@ -51,7 +51,7 @@ public final class WTaggingUtil {
 
         goldStr = gold.getLemma();
         autoStr = auto.getLemma();
-        checkTag(goldStr, autoStr, MafCorpus_.WORDFORM_ATTR_LEMMA, errStr);
+        checkTag(goldStr, autoStr, MafCorpus.WORDFORM_ATTR_LEMMA, errStr);
 
         goldStr = gold.getVerbFormMood();
         autoStr = auto.getVerbFormMood();

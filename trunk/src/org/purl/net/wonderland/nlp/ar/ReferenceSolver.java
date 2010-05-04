@@ -33,7 +33,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
 
@@ -69,7 +69,7 @@ public class ReferenceSolver {
                 refs.put(c, t);
             } else {
                 String[] type = c.getType();
-                Concept c2 = new Concept(WkbUtil_.newUniqueId());
+                Concept c2 = new Concept(WkbUtil.newUniqueId());
                 c2.setType(type);
                 c2.setIndividual(c.getIndividual());
                 story.addVertex(c2);
@@ -86,7 +86,7 @@ public class ReferenceSolver {
         Iterator<Relation> rit = fact.iteratorRelation();
         while (rit.hasNext()) {
             Relation r = rit.next();
-            Relation r2 = new Relation(WkbUtil_.newUniqueId());
+            Relation r2 = new Relation(WkbUtil.newUniqueId());
             r2.setType(r.getType());
             story.addVertex(r2);
             Iterator<CREdge> eit = fact.iteratorEdge(r.getId());
