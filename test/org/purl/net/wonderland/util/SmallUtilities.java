@@ -30,7 +30,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil_;
 import org.purl.net.wonderland.nlp.MorphologicalDatabase;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -50,8 +51,8 @@ public class SmallUtilities {
     @Test
     public void testNormalizeConceptTypes() throws Exception {
         System.out.println("Normalizing concept types in default .cogxml file");
-        WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
-        //WKBUtil.normalizeKbFile(new File("C:\\Users\\Iulian\\Projects\\wonderland\\res\\test\\bedtime.cogxml"));
+        WkbUtil_.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        //WkbUtil_.normalizeKbFile(new File("C:\\Users\\Iulian\\Projects\\wonderland\\res\\test\\bedtime.cogxml"));
     }
 
     // @Test

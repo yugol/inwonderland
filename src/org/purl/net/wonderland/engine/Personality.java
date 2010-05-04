@@ -27,7 +27,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.ArrayList;
 import java.util.List;
-import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -37,9 +37,9 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public abstract class Personality {
 
-    protected WKB kb = null;
+    protected Wkb kb = null;
 
-    public void setKb(WKB kb) {
+    public void setKb(Wkb kb) {
         this.kb = kb;
     }
 

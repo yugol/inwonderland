@@ -34,11 +34,11 @@ import org.purl.net.wonderland.Configuration;
  *
  * @author Iulian
  */
-public class WKBTest {
+public class WkbTest_ {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
         File cogxml = new File("test_word_import.cogxml");
 
         String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
@@ -67,7 +67,7 @@ public class WKBTest {
 
     @Test
     public void testImportVerbNetHierarchy() throws Exception {
-        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
         File cogxml = new File("test_verb_import.cogxml");
 
         String[] sTypes = kb.importVerbNetHierarchy("zzzb");

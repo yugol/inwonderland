@@ -28,20 +28,20 @@ import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
-import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbUtil_;
 import static org.junit.Assert.*;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class WSDProcManagerTest {
+public class WsdProcManagerTest_ {
 
     @Test
     public void testGetVerbProcs() throws Exception {
-        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
-        WSDProcManager wdsMgr = new WSDProcManager(kb);
+        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
+        WsdProcManager_ wdsMgr = new WsdProcManager_(kb);
         String lemma = "have";
         ProcList procs = wdsMgr.getVerbProcs(lemma);
         assertNotNull(procs);
@@ -50,6 +50,6 @@ public class WSDProcManagerTest {
         }
         File kbFile = new File("wsd.cogxml");
         kb.save(kbFile);
-        WKBUtil.normalizeKbFile(kbFile);
+        WkbUtil_.normalizeKbFile(kbFile);
     }
 }

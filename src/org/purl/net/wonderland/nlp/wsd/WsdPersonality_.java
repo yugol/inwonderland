@@ -23,11 +23,10 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import java.io.File;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
-import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.engine.Level2Personality;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil_;
 
@@ -35,46 +34,47 @@ import org.purl.net.wonderland.kb.WkbUtil_;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class VerbTest {
+class WsdPersonality_ extends Level2Personality {
 
-    // @Test
-    public void testAllVerbs() throws Exception {
-        for (File file : Configuration.getPropBankDataFolder().listFiles()) {
-            String lemma = file.getName();
-            int endIndex = lemma.lastIndexOf(".xml");
-            if (endIndex > 0) {
-                lemma = lemma.substring(0, endIndex);
-                Verb v = new Verb(lemma);
-                System.out.println(">- " + v.getLemma());
-            }
-        }
-        for (String tag : WsdProcManager_.syntaxTags) {
-            System.out.println(tag);
-        }
+    @Override
+    public String getWelcomeMessage() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    // @Test
-    public void testOneVerb() throws Exception {
-        Verb v = new Verb("abduct");
-        System.out.println(v.getLemma());
+    @Override
+    public String getFullName() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Test
-    public void testOneVerbToProcs() throws Exception {
-        Configuration.init();
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
-        WsdPersonality_ pers = new WsdPersonality_();
-        pers.setKb(kb);
+    @Override
+    public String getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-        Verb v = new Verb("know");
-        List<Rule> procs = v.getVerbNetProcs(pers);
-        for (Rule proc : procs) {
-            kb.addRule(proc);
-        }
+    @Override
+    public String processMessage(String message) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-        File file = new File("test." + v.getLemma() + ".cogxml");
-        kb.save(file);
-        WkbUtil_.normalizeKbFile(file);
+    public CGraph parse(String words) throws Exception {
+        List<CGraph> facts = parseMessage(words);
+        projSlv.reset();
+        CGraph fact = facts.get(0);
+        fact = WkbUtil_.duplicate(fact);
+        // processMoods(fact);
+        processArticles(fact);
+        // processCollocations(fact);
+        kb.addFact(fact, WkbConstants.LEVEL2);
+        return fact;
+
+    }
+
+    public Wkb getKb() {
+        return kb;
     }
 }

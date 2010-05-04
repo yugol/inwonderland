@@ -29,9 +29,10 @@ import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.kb.ProcList;
-import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.WKBUtil;
-import org.purl.net.wonderland.nlp.wsd.WSDProcManager;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.nlp.wsd.WsdProcManager_;
 
 /**
  *
@@ -39,12 +40,12 @@ import org.purl.net.wonderland.nlp.wsd.WSDProcManager;
  */
 public class Level3Personality extends Level2Personality {
 
-    protected WSDProcManager wsdProcMgr = null;
+    protected WsdProcManager_ wsdProcMgr = null;
 
     @Override
-    public void setKb(WKB kb) {
+    public void setKb(Wkb kb) {
         super.setKb(kb);
-        wsdProcMgr = new WSDProcManager(kb);
+        wsdProcMgr = new WsdProcManager_(kb);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Level3Personality extends Level2Personality {
 
     @Override
     public String getId() {
-        return WKBUtil.level3;
+        return WkbConstants.LEVEL3;
     }
 
     @Override
@@ -72,17 +73,17 @@ public class Level3Personality extends Level2Personality {
         List<CGraph> facts = parseMessage(message);
         projSlv.reset();
         for (CGraph fact : facts) {
-            kb.addFact(fact, WKBUtil.level1);
+            kb.addFact(fact, WkbConstants.LEVEL1);
 
-            fact = WKBUtil.duplicate(fact);
+            fact = WkbUtil_.duplicate(fact);
             processArticles(fact);
             // processMoods(fact);
             // processCollocations(fact);
-            kb.addFact(fact, WKBUtil.level2);
+            kb.addFact(fact, WkbConstants.LEVEL2);
 
-            fact = WKBUtil.duplicate(fact);
+            fact = WkbUtil_.duplicate(fact);
             disambiguate(fact);
-            kb.addFact(fact, WKBUtil.level3);
+            kb.addFact(fact, WkbConstants.LEVEL3);
         }
         return "Done.";
     }
@@ -95,7 +96,7 @@ public class Level3Personality extends Level2Personality {
             String lemma = c.getIndividual();
             String[] types = c.getType();
 
-            if (cth.isKindOf(types, WKBUtil.VERB_CT)) {
+            if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
                 boolean hasVerb = wsdProcMgr.hasVerb(lemma);
                 ProcList wsdProcs = wsdProcMgr.getVerbProcs(lemma);
                 if (!hasVerb) {

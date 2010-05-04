@@ -32,22 +32,22 @@ import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcManager;
-import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.util.IO;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class WSDProcManager {
+public final class WsdProcManager_ {
 
     static Set<String> syntaxTags = new HashSet<String>();
     //
-    private final WKB kb;
+    private final Wkb kb;
     private final ProcManager verbProcs = new ProcManager();
-    private WSDPersonality wsdPers = null;
+    private WsdPersonality_ wsdPers = null;
 
-    public WSDProcManager(WKB kb) {
+    public WsdProcManager_(Wkb kb) {
         this.kb = kb;
     }
 
@@ -80,10 +80,10 @@ public final class WSDProcManager {
         return procs;
     }
 
-    private WSDPersonality getWSDPers() throws Exception {
+    private WsdPersonality_ getWSDPers() throws Exception {
         if (wsdPers == null) {
-            wsdPers = new WSDPersonality();
-            wsdPers.setKb(new WKB(Configuration.getDefaultParseKBFile()));
+            wsdPers = new WsdPersonality_();
+            wsdPers.setKb(new Wkb(Configuration.getDefaultParseKBFile()));
         }
         return wsdPers;
     }

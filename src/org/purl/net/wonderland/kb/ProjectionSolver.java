@@ -36,10 +36,10 @@ import java.util.List;
  */
 public class ProjectionSolver {
 
-    private final WKB kb;
+    private final Wkb kb;
     private final SolverCogitant solver;
 
-    public ProjectionSolver(WKB kb) {
+    public ProjectionSolver(Wkb kb) {
         this.kb = kb;
         this.solver = new SolverCogitant();
     }

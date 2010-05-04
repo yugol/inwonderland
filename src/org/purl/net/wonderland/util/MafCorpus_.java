@@ -26,7 +26,7 @@ package org.purl.net.wonderland.util;
 import java.io.File;
 import java.util.List;
 import org.purl.net.wonderland.engine.Engine;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.w3c.dom.Document;
@@ -37,7 +37,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class MAFCorpus {
+public class MafCorpus_ {
 
     public static final String TAGSET_NAME = "tagset";
     public static final String TAGSET_ATTRIBUTE_REFERENCE = "ref";
@@ -111,7 +111,7 @@ public class MAFCorpus {
     private List<String> plainLines;
     private final Document[] xmlLevel = new Document[3];
 
-    public MAFCorpus(File plainCorpus) throws Exception {
+    public MafCorpus_(File plainCorpus) throws Exception {
         this.plainCorpus = plainCorpus;
 
         String root = plainCorpus.getAbsolutePath();
@@ -146,10 +146,10 @@ public class MAFCorpus {
     }
 
     private int getLevelDocument(String level) {
-        if (level.equals(WKBUtil.level1)) {
+        if (level.equals(WkbConstants.LEVEL1)) {
             return 1;
         }
-        if (level.equals(WKBUtil.level2)) {
+        if (level.equals(WkbConstants.LEVEL2)) {
             return 2;
         }
         return -1;
@@ -209,7 +209,7 @@ public class MAFCorpus {
                 wordFormElem.setAttribute(WORDFORM_ATTR_LEMMA, wt.getLemma());
                 wordFormElem.setAttribute(WORDFORM_ATTR_TOKENS, "" + (j + 1));
 
-                for (String idx : wt.getIndex().split(WKBUtil.ID_SEPARATOR)) {
+                for (String idx : wt.getIndex().split(WkbConstants.ID_SEPARATOR)) {
                     Element tokenElem = xmlLevel[l].createElement(TOKEN_NAME);
                     Element level0tokenElem = getLevel0Token(sentIdx, Integer.parseInt(idx));
                     tokenElem.setAttribute(TOKEN_ATTR_ID, level0tokenElem.getAttribute(TOKEN_ATTR_ID));
@@ -220,7 +220,7 @@ public class MAFCorpus {
                 Element fsElem = xmlLevel[l].createElement(FS_NAME);
                 if (wt.getPartOfSpeech() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.PARTOFSPEECH);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.PARTOFSPEECH);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getPartOfSpeech());
                     fElem.appendChild(symbolElem);
@@ -228,7 +228,7 @@ public class MAFCorpus {
                 }
                 if (wt.getGrammaticalGender() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.GRAMMATICALGENDER);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.GRAMMATICALGENDER);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getGrammaticalGender());
                     fElem.appendChild(symbolElem);
@@ -236,7 +236,7 @@ public class MAFCorpus {
                 }
                 if (wt.getGrammaticalNumber() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.GRAMMATICALNUMBER);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.GRAMMATICALNUMBER);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getGrammaticalNumber());
                     fElem.appendChild(symbolElem);
@@ -244,7 +244,7 @@ public class MAFCorpus {
                 }
                 if (wt.getGrammaticalCase() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.GRAMMATICALCASE);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.GRAMMATICALCASE);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getGrammaticalCase());
                     fElem.appendChild(symbolElem);
@@ -252,7 +252,7 @@ public class MAFCorpus {
                 }
                 if (wt.getPerson() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.PERSON);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.PERSON);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getPerson());
                     fElem.appendChild(symbolElem);
@@ -260,7 +260,7 @@ public class MAFCorpus {
                 }
                 if (wt.getDegree() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.DEGREE);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.DEGREE);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getDegree());
                     fElem.appendChild(symbolElem);
@@ -268,7 +268,7 @@ public class MAFCorpus {
                 }
                 if (wt.getVerbFormMood() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.VERBFORMMOOD);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.VERBFORMMOOD);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getVerbFormMood());
                     fElem.appendChild(symbolElem);
@@ -276,7 +276,7 @@ public class MAFCorpus {
                 }
                 if (wt.getGrammaticalTense() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.GRAMMATICALTENSE);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.GRAMMATICALTENSE);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getGrammaticalTense());
                     fElem.appendChild(symbolElem);
@@ -284,7 +284,7 @@ public class MAFCorpus {
                 }
                 if (wt.getDefiniteness() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.DEFINITNESS);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.DEFINITNESS);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getDefiniteness());
                     fElem.appendChild(symbolElem);
@@ -292,7 +292,7 @@ public class MAFCorpus {
                 }
                 if (wt.getAspect() != null) {
                     Element fElem = xmlLevel[l].createElement(FEATURE_NAME);
-                    fElem.setAttribute(FEATURE_ATTR_NAME, WKBUtil.ASPECT);
+                    fElem.setAttribute(FEATURE_ATTR_NAME, WkbConstants.ASPECT);
                     Element symbolElem = xmlLevel[l].createElement(STRING_SYMBOL_NAME);
                     symbolElem.setAttribute(SYMBOL_ATTR_VALUE, wt.getAspect());
                     fElem.appendChild(symbolElem);
@@ -340,25 +340,25 @@ public class MAFCorpus {
             String name = fElem.getAttribute(FEATURE_ATTR_NAME);
             Element symbolElem = (Element) fElem.getElementsByTagName(STRING_SYMBOL_NAME).item(0);
             String value = symbolElem.getAttribute(SYMBOL_ATTR_VALUE);
-            if (WKBUtil.PARTOFSPEECH.equals(name)) {
+            if (WkbConstants.PARTOFSPEECH.equals(name)) {
                 wt.setPartOfSpeech(value);
-            } else if (WKBUtil.GRAMMATICALGENDER.equals(name)) {
+            } else if (WkbConstants.GRAMMATICALGENDER.equals(name)) {
                 wt.setGrammaticalGender(value);
-            } else if (WKBUtil.GRAMMATICALNUMBER.equals(name)) {
+            } else if (WkbConstants.GRAMMATICALNUMBER.equals(name)) {
                 wt.setGrammaticalNumber(value);
-            } else if (WKBUtil.GRAMMATICALCASE.equals(name)) {
+            } else if (WkbConstants.GRAMMATICALCASE.equals(name)) {
                 wt.setGrammaticalCase(value);
-            } else if (WKBUtil.GRAMMATICALTENSE.equals(name)) {
+            } else if (WkbConstants.GRAMMATICALTENSE.equals(name)) {
                 wt.setGrammaticalTense(value);
-            } else if (WKBUtil.PERSON.equals(name)) {
+            } else if (WkbConstants.PERSON.equals(name)) {
                 wt.setPerson(value);
-            } else if (WKBUtil.DEGREE.equals(name)) {
+            } else if (WkbConstants.DEGREE.equals(name)) {
                 wt.setDegree(value);
-            } else if (WKBUtil.VERBFORMMOOD.equals(name)) {
+            } else if (WkbConstants.VERBFORMMOOD.equals(name)) {
                 wt.setVerbFormMood(value);
-            } else if (WKBUtil.DEFINITNESS.equals(name)) {
+            } else if (WkbConstants.DEFINITNESS.equals(name)) {
                 wt.setDefiniteness(value);
-            } else if (WKBUtil.ASPECT.equals(name)) {
+            } else if (WkbConstants.ASPECT.equals(name)) {
                 wt.setAspect(value);
             }
         }

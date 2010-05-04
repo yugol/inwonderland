@@ -25,7 +25,7 @@ package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.List;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 
 /**
  *
@@ -50,14 +50,14 @@ public class Level1Personality extends Personality {
 
     @Override
     public String getId() {
-        return WKBUtil.level1;
+        return WkbConstants.LEVEL1;
     }
 
     @Override
     public String processMessage(String message) throws Exception {
         List<CGraph> facts = parseMessage(message);
         for (CGraph fact : facts) {
-            kb.addFact(fact, WKBUtil.level1);
+            kb.addFact(fact, WkbConstants.LEVEL1);
         }
         return "Done.";
     }
