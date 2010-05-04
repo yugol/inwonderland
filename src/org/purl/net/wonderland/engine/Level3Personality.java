@@ -26,6 +26,7 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.kb.ProcList;
@@ -41,6 +42,7 @@ import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 public class Level3Personality extends Level2Personality {
 
     protected WsdProcManager wsdProcMgr = null;
+    protected List<String> report = null;
 
     @Override
     public void setKb(Wkb kb) {
@@ -70,22 +72,26 @@ public class Level3Personality extends Level2Personality {
 
     @Override
     public String processMessage(String message) throws Exception {
+        report = new ArrayList<String>();
         List<CGraph> facts = parseMessage(message);
         projSlv.reset();
         for (CGraph fact : facts) {
             kb.addFact(fact, WkbConstants.LEVEL1);
 
             fact = WkbUtil.duplicate(fact);
-            processArticles(fact);
-            // processMoods(fact);
-            // processCollocations(fact);
+            super.processFact(fact);
             kb.addFact(fact, WkbConstants.LEVEL2);
 
             fact = WkbUtil.duplicate(fact);
-            disambiguate(fact);
+            processFact(fact);
             kb.addFact(fact, WkbConstants.LEVEL3);
         }
         return "Done.";
+    }
+
+    @Override
+    protected void processFact(CGraph fact) throws Exception {
+        disambiguate(fact);
     }
 
     private void disambiguate(CGraph fact) throws Exception {

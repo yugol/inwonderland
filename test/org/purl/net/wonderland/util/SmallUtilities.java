@@ -30,9 +30,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.MorphologicalDatabase;
+import org.purl.net.wonderland.nlp.Gazetteers;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
@@ -65,8 +64,8 @@ public class SmallUtilities {
     // @Test
     public void findTaggingDuplicates() {
         System.out.println("Find polysemy entries in morphological database");
-        for (String form : MorphologicalDatabase.getAllForms()) {
-            List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
+        for (String form : Gazetteers.getAllForms()) {
+            List<WTagging> taggings = Gazetteers.getAllTagings(form);
             if (taggings.size() > 1) {
                 displayTaggings(taggings, form);
             }
@@ -77,7 +76,7 @@ public class SmallUtilities {
     public void findFormInDatabase() {
         System.out.println("Find form in morphological database");
         String form = "whatever";
-        List<WTagging> taggings = MorphologicalDatabase.getAllTagings(form);
+        List<WTagging> taggings = Gazetteers.getAllTagings(form);
         if (taggings.size() > 0) {
             displayTaggings(taggings, form);
         }

@@ -110,11 +110,11 @@ public class MaPennToWTaggingMapper {
         }
 
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging ar = MorphologicalDatabase.article.get(word);
-        WTagging jjind = MorphologicalDatabase.indefiniteDeterminer.get(word);
-        WTagging jjdem = MorphologicalDatabase.demonstrativeDeterminer.get(word);
-        WTagging pndem = MorphologicalDatabase.demonstrativePronoun.get(word);
-        WTagging pnpos = MorphologicalDatabase.possessivePronoun.get(word);
+        WTagging ar = Gazetteers.article.get(word);
+        WTagging jjind = Gazetteers.indefiniteDeterminer.get(word);
+        WTagging jjdem = Gazetteers.demonstrativeDeterminer.get(word);
+        WTagging pndem = Gazetteers.demonstrativePronoun.get(word);
+        WTagging pnpos = Gazetteers.possessivePronoun.get(word);
 
         if (ar != null && jjind == null && jjdem == null && pndem == null && pnpos == null) {
             tagging.copyWTags(ar);
@@ -193,7 +193,7 @@ public class MaPennToWTaggingMapper {
     public void mapVB(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
 
-        WTagging vb = MorphologicalDatabase.verb.get(word);
+        WTagging vb = Gazetteers.verb.get(word);
 
         if (vb != null) {
             tagging.copyWTagsAndLemma(vb);
@@ -321,8 +321,8 @@ public class MaPennToWTaggingMapper {
             }
         }
 
-        WTagging pr = MorphologicalDatabase.adposition.get(word);
-        WTagging cjsub = MorphologicalDatabase.subordinatingConjunction.get(word);
+        WTagging pr = Gazetteers.adposition.get(word);
+        WTagging cjsub = Gazetteers.subordinatingConjunction.get(word);
 
         if (pr != null && cjsub == null) {
             tagging.copyWTags(pr);
@@ -352,7 +352,7 @@ public class MaPennToWTaggingMapper {
 
     void mapCC(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging cjcrd = MorphologicalDatabase.coordinatingConjunction.get(word);
+        WTagging cjcrd = Gazetteers.coordinatingConjunction.get(word);
 
         if (cjcrd != null) {
             tagging.copyWTags(cjcrd);
@@ -364,9 +364,9 @@ public class MaPennToWTaggingMapper {
     void mapPRP(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
 
-        WTagging pnprs = MorphologicalDatabase.personalPronoun.get(word);
-        WTagging pnref = MorphologicalDatabase.reflexivePersonalPronoun.get(word);
-        WTagging pnidf = MorphologicalDatabase.indefinitePronoun.get(word);
+        WTagging pnprs = Gazetteers.personalPronoun.get(word);
+        WTagging pnref = Gazetteers.reflexivePersonalPronoun.get(word);
+        WTagging pnidf = Gazetteers.indefinitePronoun.get(word);
 
         if (pnprs != null) {
             tagging.copyWTags(pnprs);
@@ -379,7 +379,7 @@ public class MaPennToWTaggingMapper {
 
     void mapTO(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging pr = MorphologicalDatabase.adposition.get(word);
+        WTagging pr = Gazetteers.adposition.get(word);
 
         if (pr != null && pr.getLemma().equals("to")) {
             tagging.copyWTags(pr);
@@ -388,7 +388,7 @@ public class MaPennToWTaggingMapper {
 
     void mapRB(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging rb = MorphologicalDatabase.adverb.get(word);
+        WTagging rb = Gazetteers.adverb.get(word);
 
         if (rb != null) {
             tagging.copyWTagsAndLemma(rb);
@@ -433,14 +433,14 @@ public class MaPennToWTaggingMapper {
         String word = tagging.getWrittenForm().toLowerCase();
         String maTag = tagging.getPartsOfSpeech();
 
-        WTagging jj = MorphologicalDatabase.adjective.get(word);
+        WTagging jj = Gazetteers.adjective.get(word);
         if (jj != null) {
             tagging.copyWTags(jj);
             return;
         }
 
-        WTagging jjidf = MorphologicalDatabase.indefiniteDeterminer.get(word);
-        WTagging jjdem = MorphologicalDatabase.demonstrativeDeterminer.get(word);
+        WTagging jjidf = Gazetteers.indefiniteDeterminer.get(word);
+        WTagging jjdem = Gazetteers.demonstrativeDeterminer.get(word);
 
         if (jjidf != null && jjdem == null) {
             tagging.copyWTagsAndLemma(jjidf);
@@ -495,7 +495,7 @@ public class MaPennToWTaggingMapper {
 
     void mapMD(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging md = MorphologicalDatabase.modal.get(word);
+        WTagging md = Gazetteers.modal.get(word);
 
         if (md != null) {
             tagging.copyWTagsAndLemma(md);
@@ -504,8 +504,8 @@ public class MaPennToWTaggingMapper {
 
     void mapWDT(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging pnrel = MorphologicalDatabase.relativePronoun.get(word);
-        WTagging cjsub = MorphologicalDatabase.subordinatingConjunction.get(word);
+        WTagging pnrel = Gazetteers.relativePronoun.get(word);
+        WTagging cjsub = Gazetteers.subordinatingConjunction.get(word);
 
         if (pnrel != null && cjsub == null) {
             tagging.copyWTags(pnrel);
@@ -538,8 +538,8 @@ public class MaPennToWTaggingMapper {
 
     void mapPRPS(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging pnpos = MorphologicalDatabase.possessivePronoun.get(word);
-        WTagging jjpos = MorphologicalDatabase.possessiveAdjective.get(word);
+        WTagging pnpos = Gazetteers.possessivePronoun.get(word);
+        WTagging jjpos = Gazetteers.possessiveAdjective.get(word);
 
         if (pnpos != null && jjpos == null) {
             tagging.copyWTags(pnpos);
@@ -562,7 +562,7 @@ public class MaPennToWTaggingMapper {
 
     void mapWRB(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging rbint = MorphologicalDatabase.interrogativeAdverb.get(word);
+        WTagging rbint = Gazetteers.interrogativeAdverb.get(word);
 
         if (rbint != null) {
             tagging.copyWTags(rbint);
@@ -601,7 +601,7 @@ public class MaPennToWTaggingMapper {
 
     void mapWP(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging pnint = MorphologicalDatabase.interrogativePronoun.get(word);
+        WTagging pnint = Gazetteers.interrogativePronoun.get(word);
 
         if (pnint != null) {
             tagging.copyWTags(pnint);
@@ -622,8 +622,8 @@ public class MaPennToWTaggingMapper {
 
     void mapRP(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging rb = MorphologicalDatabase.adverb.get(word);
-        WTagging pr = MorphologicalDatabase.adposition.get(word);
+        WTagging rb = Gazetteers.adverb.get(word);
+        WTagging pr = Gazetteers.adposition.get(word);
 
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
@@ -647,7 +647,7 @@ public class MaPennToWTaggingMapper {
 
     private boolean tryIndefinitePronoun(WTagging tagging) {
         String word = tagging.getWrittenForm().toLowerCase();
-        WTagging pnidf = MorphologicalDatabase.indefinitePronoun.get(word);
+        WTagging pnidf = Gazetteers.indefinitePronoun.get(word);
         if (pnidf != null) {
             tagging.copyWTagsAndLemma(pnidf);
             return true;

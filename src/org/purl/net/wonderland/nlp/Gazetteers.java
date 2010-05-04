@@ -43,8 +43,9 @@ import org.purl.net.wonderland.util.CodeTimer;
  *
  * @author Iulian
  */
-public abstract class MorphologicalDatabase {
+public abstract class Gazetteers {
 
+    private static final String MAP_STRING_WTAGGING = "java.util.Map<java.lang.String, org.purl.net.wonderland.nlp.WTagging>";
     static Map<String, WTagging> article;
     static Map<String, WTagging> personalPronoun;
     static Map<String, WTagging> possessivePronoun;
@@ -66,8 +67,8 @@ public abstract class MorphologicalDatabase {
     static Map<String, WTagging> adverb;
     static Map<String, WTagging> adjective;
 
-    static Map<String, WTagging> readDataFile(String formFile) throws FileNotFoundException, IOException {
-        formFile = Configuration.getMorphologyFolder().getAbsolutePath() + "/pos/" + formFile;
+    static Map<String, WTagging> readMorphologyDataFile(String formFile) throws FileNotFoundException, IOException {
+        formFile = Configuration.getMorphologyFolder().getAbsolutePath() + "/" + formFile;
         Map<String, WTagging> map = new HashMap<String, WTagging>();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
         try {
@@ -86,11 +87,14 @@ public abstract class MorphologicalDatabase {
     }
 
     static {
-        CodeTimer timer = new CodeTimer("MorphologicalDatabase");
-        for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+        CodeTimer timer = new CodeTimer("Gazetteers");
+        for (Field f : Gazetteers.class.getDeclaredFields()) {
             String name = f.getName();
             try {
-                f.set(null, readDataFile(name + ".csv"));
+                String memberName = f.getGenericType().toString();
+                if (MAP_STRING_WTAGGING.equals(memberName)) {
+                    f.set(null, readMorphologyDataFile(name + ".csv"));
+                }
             } catch (Exception ex) {
                 System.err.println("Error reading '" + name + "'");
                 Configuration.handleException(ex);
@@ -105,7 +109,7 @@ public abstract class MorphologicalDatabase {
         WTagging tagging = null;
 
         try {
-            for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+            for (Field f : Gazetteers.class.getDeclaredFields()) {
                 tagging = ((Map<String, WTagging>) f.get(null)).get(word);
                 if (tagging != null) {
                     tags.add(tagging);
@@ -123,7 +127,7 @@ public abstract class MorphologicalDatabase {
         Set<String> forms = new HashSet<String>();
 
         try {
-            for (Field f : MorphologicalDatabase.class.getDeclaredFields()) {
+            for (Field f : Gazetteers.class.getDeclaredFields()) {
                 forms.addAll(((Map<String, WTagging>) f.get(null)).keySet());
             }
         } catch (Exception ex) {
