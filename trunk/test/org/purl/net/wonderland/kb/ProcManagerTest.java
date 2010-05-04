@@ -37,14 +37,14 @@ public class ProcManagerTest {
 
     @Test
     public void testReadProcsFromKb() throws Exception {
-        WKB kb = new WKB(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
+        Wkb kb = new Wkb(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
         ProcManager procMgr = new ProcManager(kb);
         assertEquals(2, procMgr.getProcCount());
 
         ProjectionSolver solver = new ProjectionSolver(kb);
         solver.reset();
-        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WKBUtil.procSetArticles),
-                kb.getFactGraph(WKBUtil.toLevel1FactId(4)));
+        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil_.procSetArticles),
+                kb.getFactGraph(WkbUtil_.toFactId(4, WkbConstants.LEVEL1)));
         assertEquals(1, matches.size());
     }
 }

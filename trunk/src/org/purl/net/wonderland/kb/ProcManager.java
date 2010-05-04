@@ -38,11 +38,11 @@ public class ProcManager {
         allProcs = new Hashtable<String, ProcList>();
     }
 
-    public ProcManager(WKB kb) throws Exception {
+    public ProcManager(Wkb kb) throws Exception {
         this();
-        readProcedureSet(kb, WKBUtil.procSetArticles);
-        readProcedureSet(kb, WKBUtil.procSetMoods);
-        readProcedureSet(kb, WKBUtil.procSetCollocations);
+        readProcedureSet(kb, WkbUtil_.procSetArticles);
+        readProcedureSet(kb, WkbUtil_.procSetMoods);
+        readProcedureSet(kb, WkbUtil_.procSetCollocations);
     }
 
     public int getProcCount() {
@@ -61,7 +61,7 @@ public class ProcManager {
         return allProcs.get(name);
     }
 
-    private void readProcedureSet(WKB kb, String set) throws Exception {
+    private void readProcedureSet(Wkb kb, String set) throws Exception {
         ProcList procSet = kb.getProcRules(set);
         procSet.sort();
         putProcList(set, procSet);

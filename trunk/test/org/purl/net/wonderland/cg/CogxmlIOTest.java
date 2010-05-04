@@ -25,7 +25,7 @@ package org.purl.net.wonderland.cg;
 
 import java.io.File;
 import org.junit.Test;
-import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 
@@ -49,7 +49,7 @@ public class CogxmlIOTest {
         xmlDoc.appendChild(CogxmlIO.xmlKnowledgeBase(xmlDoc, kb));
         XML.writeXmlFile(xmlDoc, testFile);
 
-        WKB wkb = new WKB(testFile);
+        Wkb wkb = new Wkb(testFile);
 
         System.out.println("");
     }

@@ -35,7 +35,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -50,7 +49,6 @@ import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
-import org.purl.net.wonderland.util.Formatting;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -59,7 +57,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class WKB {
+public class Wkb {
 
     private static final int levelCount = 3;
     private static final String storySetName = "story";
@@ -68,51 +66,35 @@ public class WKB {
     private final String language;
     private final KnowledgeBase kb;
     private final Vocabulary vocabulary;
-    private int[] levelFactCount = new int[levelCount];
-
-    public int getLevel1FactCount() {
-        return levelFactCount[0];
-    }
-
-    public void setLevel1FactCount(int count) {
-        this.levelFactCount[0] = count;
-    }
-
-    public int getLevel2FactCount() {
-        return levelFactCount[1];
-    }
-
-    public void setLevel2FactCount(int count) {
-        this.levelFactCount[1] = count;
-    }
-
-    private int getLevel3FactCount() {
-        return levelFactCount[2];
-    }
-
-    public void setLevel3FactCount(int count) {
-        this.levelFactCount[2] = count;
-    }
+    private int[] factCount = new int[levelCount];
 
     public int getFactCount() {
-        int factCount = 0;
-        for (int count : levelFactCount) {
-            factCount += count;
+        int count = 0;
+        for (int i = 0; i < factCount.length; i++) {
+            count += factCount[i];
         }
-        return factCount;
+        return count;
+    }
+
+    public int getFactCount(String level) {
+        return factCount[WkbUtil_.toLevelIndex(level)];
+    }
+
+    public void setFactCount(int value, String level) {
+        factCount[WkbUtil_.toLevelIndex(level)] = value;
     }
 
     public String getLanguage() {
         return language;
     }
 
-    public WKB(File cogxml) throws Exception {
+    public Wkb(File cogxml) throws Exception {
         this(cogxml, "en");
     }
 
-    public WKB(File cogxml, String lang) throws Exception {
+    public Wkb(File cogxml, String lang) throws Exception {
         language = lang;
-        Arrays.fill(levelFactCount, 0);
+        Arrays.fill(factCount, 0);
 
         Document doc = CogxmlReader.read(cogxml);
         NodeList supportList = doc.getElementsByTagName("support");
@@ -125,14 +107,19 @@ public class WKB {
         kb = CogxmlReader.buildKB(rootElement, vocabulary, language, true);
 
         for (CGraph cg : kb.getFactGraphSet().values()) {
-            if (cg.getSet().equals(WKBUtil.level1)) {
-                ++levelFactCount[0];
+            String cgSet = cg.getSet();
+            if (cgSet.equals(WkbConstants.LEVEL1)) {
+                ++factCount[0];
+            } else if (cgSet.equals(WkbConstants.LEVEL2)) {
+                ++factCount[1];
+            } else if (cgSet.equals(WkbConstants.LEVEL3)) {
+                ++factCount[2];
             }
         }
     }
 
     /**
-     * Will not save edges adjacent to a conclusion relation
+     * !!! Will not save edges adjacent to a conclusion relation
      * @param cogxml
      * @throws Exception
      */
@@ -143,7 +130,7 @@ public class WKB {
     public CGraph getKnowledgeGraph() {
         CGraph cg = kb.getFactGraph(allId);
         if (cg == null) {
-            cg = new CGraph(allId, allName, WKBUtil.level2, "fact");
+            cg = new CGraph(allId, allName, WkbConstants.LEVEL2, "fact");
             kb.addGraph(cg);
         }
         return cg;
@@ -168,17 +155,17 @@ public class WKB {
     public String addIndividual(String name) {
         String individualId = vocabulary.getIndividualId(name, language);
         if (individualId == null) {
-            individualId = WKBUtil.handleQuotes(name);
-            vocabulary.addIndividual(individualId, individualId, WKBUtil.TOP_CT, language);
+            individualId = WkbUtil_.handleQuotes(name);
+            vocabulary.addIndividual(individualId, individualId, WkbConstants.TOP_CT, language);
         }
         return individualId;
     }
 
     public String addConceptType(String name, String parentId) {
-        String ctId = WKBUtil.toConceptTypeId(name);
+        String ctId = WkbUtil_.toConceptTypeId(name);
         vocabulary.addConceptType(ctId, name, null, language);
         if (parentId == null) {
-            vocabulary.getConceptTypeHierarchy().addEdge(ctId, WKBUtil.TOP_CT);
+            vocabulary.getConceptTypeHierarchy().addEdge(ctId, WkbConstants.TOP_CT);
         } else {
             vocabulary.getConceptTypeHierarchy().addEdge(ctId, parentId);
         }
@@ -186,15 +173,15 @@ public class WKB {
     }
 
     public CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
-        CGraph cg = new CGraph(WKBUtil.newUniqueId(), null, null, "fact");
+        CGraph cg = new CGraph(WkbUtil_.newUniqueId(), null, null, "fact");
 
         for (int i = 0; i < words.size(); ++i) {
             WTagging tagging = words.get(i);
-            Concept c = new Concept(WKBUtil.toConceptId(tagging, i + 1));
+            Concept c = new Concept(WkbUtil_.toConceptId(tagging, i + 1));
             String individualId = addIndividual(tagging.getLemma());
             String[] types = null;
             if (tagging.getPartOfSpeech() == null) {
-                types = new String[]{WKBUtil.toConceptTypeId(tagging.getPennTag())};
+                types = new String[]{WkbUtil_.toConceptTypeId(tagging.getPennTag())};
             } else {
                 types = tagging.asTypes();
             }
@@ -206,11 +193,11 @@ public class WKB {
         for (int i = 0; i < deps.size(); ++i) {
             TypedDependency tdep = deps.get(i);
 
-            String gov = getConcept(cg, WKBUtil.getLabelIndex(tdep.gov().nodeString())).getId();
-            String dep = getConcept(cg, WKBUtil.getLabelIndex(tdep.dep().nodeString())).getId();
+            String gov = getConcept(cg, WkbUtil_.retrieveIndexFromLabel(tdep.gov().nodeString())).getId();
+            String dep = getConcept(cg, WkbUtil_.retrieveIndexFromLabel(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
-            String relationType = WKBUtil.toRelationTypeId(relationTypeLabel);
-            String relationId = WKBUtil.toRelationId(relationTypeLabel, (i + 1));
+            String relationType = WkbUtil_.toRelationTypeId(relationTypeLabel);
+            String relationId = WkbUtil_.newUniqueId();
 
             Relation r = new Relation(relationId);
             r.addType(relationType);
@@ -225,7 +212,7 @@ public class WKB {
 
     private Concept getConcept(CGraph cg, int idx) {
         for (Concept c : cg.getConcepts()) {
-            if (idx == WKBUtil.getConceptIndex(c.getId())) {
+            if (idx == WkbUtil_.getConceptIndex(c.getId())) {
                 return c;
             }
         }
@@ -234,7 +221,7 @@ public class WKB {
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
         String senseName = WordNetWrapper.toWordNetOffsetKeyAlpha(particle, sense.getOffset());
-        String senseId = WKBUtil.toConceptTypeId(senseName);
+        String senseId = WkbUtil_.toConceptTypeId(senseName);
         if (vocabulary.conceptTypeIdExist(senseId)) {
             return senseId;
         }
@@ -246,7 +233,7 @@ public class WKB {
         }
 
         String lemma = sense.getWord(0).getLemma().toLowerCase();
-        // String label = "[" + lemma + "] " + WKBUtil.handleQuotes(sense.getGloss());
+        // String label = "[" + lemma + "] " + WkbConstants.handleQuotes(sense.getGloss());
 
         vocabulary.addConceptType(senseId, senseName, lemma, language);
         vocabulary.getConceptTypeHierarchy().addEdge(senseId, parentId);
@@ -259,17 +246,17 @@ public class WKB {
         String parentId = null;
         String particle = null;
         if (posType == POS.NOUN) {
-            parentLabel = "wnNn";
-            parentId = WKBUtil.toConceptTypeId(parentLabel);
+            parentLabel = WkbConstants.WN_NOUN;
+            parentId = WkbUtil_.toConceptTypeId(parentLabel);
         } else if (posType == POS.ADJECTIVE) {
-            parentLabel = "wnJj";
-            parentId = WKBUtil.toConceptTypeId(parentLabel);
+            parentLabel = WkbConstants.WN_ADJECTIVE;
+            parentId = WkbUtil_.toConceptTypeId(parentLabel);
         } else if (posType == POS.ADVERB) {
-            parentLabel = "wnRb";
-            parentId = WKBUtil.toConceptTypeId(parentLabel);
+            parentLabel = WkbConstants.WN_ADVERB;
+            parentId = WkbUtil_.toConceptTypeId(parentLabel);
         } else if (posType == POS.VERB) {
-            parentLabel = "wnVb";
-            parentId = WKBUtil.toConceptTypeId(parentLabel);
+            parentLabel = WkbConstants.WN_VERB;
+            parentId = WkbUtil_.toConceptTypeId(parentLabel);
         } else {
             return null;
         }
@@ -291,7 +278,7 @@ public class WKB {
 
     public ProcList getProcRules(String set) {
         ProcList procs = new ProcList(set);
-        set = WKBUtil.toProcName(set, null);
+        set = WkbUtil_.toProcName(set, null);
         Iterator<CGraph> it = kb.IteratorRules();
         while (it.hasNext()) {
             CGraph rule = it.next();
@@ -322,11 +309,11 @@ public class WKB {
         }
 
         for (String vc : vf.getVnClasses()) {
-            String vcType = importVerbNetClassHierarchy(vc, WKBUtil.toConceptTypeId("vnVb"));
+            String vcType = importVerbNetClassHierarchy(vc, WkbUtil_.toConceptTypeId(WkbConstants.VN_VERB));
             types.add(vcType);
             for (String vs : vf.getWnSenses(vc)) {
                 Synset sense = WordNetWrapper.lookup(vs);
-                String senseType = importWordNetHypernymHierarchy(sense, POS.VERB, "v", WKBUtil.toConceptTypeId("wnVb"));
+                String senseType = importWordNetHypernymHierarchy(sense, POS.VERB, "v", WkbConstants.VN_VERB_CT);
                 types.add(senseType);
             }
         }
@@ -335,7 +322,7 @@ public class WKB {
     }
 
     private String importVerbNetClassHierarchy(String verbClassName, String parentId) {
-        String verbClassId = WKBUtil.toConceptTypeId(verbClassName);
+        String verbClassId = WkbUtil_.toConceptTypeId(verbClassName);
         if (vocabulary.conceptTypeIdExist(verbClassId)) {
             return verbClassId;
         }
@@ -354,37 +341,37 @@ public class WKB {
     public WTagging conceptLabelsToWTagging(Concept c, boolean wPosTagsOnly) {
         WTagging wt = new WTagging();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
-        String idx = c.getId();
+        int idx = WkbUtil_.getConceptIndex(c.getId());
         for (String type : c.getType()) {
             try {
-                if (wPosTagsOnly && cth.isKindOf(type, WKBUtil.SPTAG_CT)) {
+                if (wPosTagsOnly && cth.isKindOf(type, WkbConstants.SPTAG_CT)) {
                     wt = new WTagging();
                     break;
-                } else if (cth.isKindOf(type, WKBUtil.PARTOFSPEECH_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.PARTOFSPEECH_CT)) {
                     String newPos = vocabulary.getConceptTypeLabel(type, language);
                     String pos = wt.getPartOfSpeech();
                     if (pos == null) {
                         wt.setPartOfSpeech(newPos);
                     } else {
-                        wt.setPartOfSpeech(pos + WKBUtil.TYPE_SEPARATOR + newPos);
+                        wt.setPartOfSpeech(pos + WkbConstants.TYPE_SEPARATOR + newPos);
                     }
-                } else if (cth.isKindOf(type, WKBUtil.GRAMMATICALCASE_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALCASE_CT)) {
                     wt.setGrammaticalCase(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.DEGREE_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.DEGREE_CT)) {
                     wt.setDegree(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.GRAMMATICALGENDER_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALGENDER_CT)) {
                     wt.setGrammaticalGender(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.VERBFORMMOOD_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.VERBFORMMOOD_CT)) {
                     wt.setVerbFormMood(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.GRAMMATICALNUMBER_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALNUMBER_CT)) {
                     wt.setGrammaticalNumber(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.PERSON_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.PERSON_CT)) {
                     wt.setPerson(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.GRAMMATICALTENSE_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALTENSE_CT)) {
                     wt.setGrammaticalTense(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.DEFINITNESS_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.DEFINITNESS_CT)) {
                     wt.setDefiniteness(vocabulary.getConceptTypeLabel(type, language));
-                } else if (cth.isKindOf(type, WKBUtil.ASPECT_CT)) {
+                } else if (cth.isKindOf(type, WkbConstants.ASPECT_CT)) {
                     wt.setAspect(vocabulary.getConceptTypeLabel(type, language));
                 } else {
                     wt.addMoreType(vocabulary.getConceptTypeLabel(type, language));
@@ -394,71 +381,20 @@ public class WKB {
                 throw ex;
             }
         }
-        wt.setIndex(idx);
+        if (idx > 0) {
+            wt.setIndex(idx + "");
+        }
         wt.setLemma(c.getIndividual());
-        wt.setWrittenForm(WKBUtil.getConceptWrittenForm(c.getId()));
         return wt;
     }
 
-    public void addFact(CGraph fact, String set) {
-        if (set.equals(WKBUtil.level1)) {
-            int factCount = getLevel1FactCount() + 1;
-            fact.setId(WKBUtil.toLevel1FactId(factCount));
-            fact.setName(WKBUtil.toIdIndex(factCount));
-            fact.setSet(set);
-            kb.addGraph(fact);
-            setLevel1FactCount(factCount);
-        } else if (set.equals(WKBUtil.level2)) {
-            int factCount = getLevel2FactCount() + 1;
-            fact.setId(WKBUtil.toLevel2FactId(factCount));
-            fact.setName(WKBUtil.toIdIndex(factCount));
-            fact.setSet(set);
-            kb.addGraph(fact);
-            setLevel2FactCount(factCount);
-        } else if (set.equals(WKBUtil.level3)) {
-            int factCount = getLevel3FactCount() + 1;
-            fact.setId(WKBUtil.toLevel3FactId(factCount));
-            fact.setName(WKBUtil.toIdIndex(factCount));
-            fact.setSet(set);
-            kb.addGraph(fact);
-            setLevel2FactCount(factCount);
-        }
-    }
-
-    public void addSenses(CGraph fact) {
-        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
-        Iterator<Concept> it = fact.iteratorConcept();
-        while (it.hasNext()) {
-            Concept c = it.next();
-            String lemma = c.getIndividual();
-            String[] types = c.getType();
-            String[] senses = null;
-
-            if (cth.isKindOf(types, WKBUtil.VERB_CT)) {
-            }
-
-            /*
-            if (cth.isKindOf(types, WKBUtil.NOUN_CT)) {
-            senses = importWordNetHypernymHierarchy(lemma, POS.NOUN);
-            } else if (cth.isKindOf(types, WKBUtil.VERB_CT)) {
-            senses = importVerbNetHierarchy(lemma);
-            if (senses == null) {
-            senses = importWordNetHypernymHierarchy(lemma, POS.VERB);
-            }
-            } else if (cth.isKindOf(types, WKBUtil.ADJECTIVE_CT)) {
-            senses = importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
-            } else if (cth.isKindOf(types, WKBUtil.ADVERB_CT)) {
-            senses = importWordNetHypernymHierarchy(lemma, POS.ADVERB);
-            }
-             */
-
-            if (senses != null) {
-                String[] allTypes = new String[types.length + senses.length];
-                System.arraycopy(types, 0, allTypes, 0, types.length);
-                System.arraycopy(senses, 0, allTypes, types.length, senses.length);
-                c.setType(allTypes);
-            }
-        }
+    public void addFact(CGraph fact, String level) {
+        int factNumber = getFactCount(level) + 1;
+        fact.setId(WkbUtil_.toFactId(factNumber, level));
+        fact.setName(WkbUtil_.toIdIndex(factNumber));
+        fact.setSet(level);
+        kb.addGraph(fact);
+        setFactCount(factNumber, level);
     }
 
     public CGraph getStory() {
@@ -474,9 +410,9 @@ public class WKB {
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
         Attr attr = new Attr();
         for (String type : c.getType()) {
-            if (cth.isKindOf(type, WKBUtil.GRAMMATICALGENDER_CT)) {
+            if (cth.isKindOf(type, WkbConstants.GRAMMATICALGENDER_CT)) {
                 attr.setGender(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, WKBUtil.GRAMMATICALNUMBER_CT)) {
+            } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALNUMBER_CT)) {
                 attr.setNumber(vocabulary.getConceptTypeLabel(type, language));
             }
         }

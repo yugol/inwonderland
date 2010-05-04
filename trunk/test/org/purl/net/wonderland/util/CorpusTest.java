@@ -28,7 +28,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level1Personality;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 
 /**
  *
@@ -46,7 +46,7 @@ public class CorpusTest {
         assertEquals("Done.", resp);
 
         Corpus corpus = new Corpus();
-        corpus.buildFrom(msgProc, WKBUtil.level1);
+        corpus.buildFrom(msgProc, WkbConstants.LEVEL1);
 
         String xml = corpus.toString();
         File cospusFile = new File("corpus.xml");

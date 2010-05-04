@@ -28,8 +28,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKBUtil;
-import org.purl.net.wonderland.kb.WKB;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbUtil_;
 
 /**
  *
@@ -50,16 +51,16 @@ public class IOTest {
 
     @Test
     public void testWriteProcs() throws Exception {
-        WKB kb = new WKB(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
         File file = new File("test.rules.cogxml");
-        IO.writeProcs(WKBUtil.toProcName(WKBUtil.procSetArticles, null), kb, file);
+        IO.writeProcs(WkbUtil_.toProcName(WkbUtil_.procSetArticles, null), kb, file);
     }
 
     /*
     @Test
     public void testReadProcs() throws Exception {
     System.out.println("readProcs");
-    WKB kb = null;
+    Wkb kb = null;
     File file = null;
     IO.readProcs(kb, file);
     fail("The test case is a prototype.");

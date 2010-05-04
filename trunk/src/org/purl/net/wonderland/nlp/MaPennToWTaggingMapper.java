@@ -26,7 +26,7 @@ package org.purl.net.wonderland.nlp;
 import java.util.List;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
@@ -44,12 +44,12 @@ public class MaPennToWTaggingMapper {
             if (tagging.isCollocation()) {
                 // System.out.println(tagging.getWrittenForm());
                 String posTypes = CollocationsManager.getTypes(tagging.getLemma());
-                if (WKBUtil.ADVERB.equals(posTypes)) {
-                    tagging.setPartOfSpeech(WKBUtil.ADVERB);
+                if (WkbConstants.ADVERB.equals(posTypes)) {
+                    tagging.setPartOfSpeech(WkbConstants.ADVERB);
                     continue;
                 }
-                if (WKBUtil.ADJECTIVE.equals(posTypes)) {
-                    tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
+                if (WkbConstants.ADJECTIVE.equals(posTypes)) {
+                    tagging.setPartOfSpeech(WkbConstants.ADJECTIVE);
                     continue;
                 }
             }
@@ -105,7 +105,7 @@ public class MaPennToWTaggingMapper {
     public void mapDT(WTagging tagging, String tag) {
         String maTag = tagging.getPartsOfSpeech();
         if ("av-dx".equals(maTag)) {
-            tagging.setPartOfSpeech(WKBUtil.ADVERB);
+            tagging.setPartOfSpeech(WkbConstants.ADVERB);
             return;
         }
 
@@ -125,9 +125,9 @@ public class MaPennToWTaggingMapper {
         } else if (ar == null && jjind == null && jjdem != null && pndem != null && pnpos == null) {
             tagging.copyWTags(jjdem);
             if (maTag != null && tagging.getPartsOfSpeech().charAt(0) == 'd') {
-                tagging.setPartOfSpeech(WKBUtil.DEMONSTRATIVEDETERMINER);
+                tagging.setPartOfSpeech(WkbConstants.DEMONSTRATIVEDETERMINER);
             } else {
-                tagging.setPartOfSpeech(WKBUtil.DEMONSTRATIVEDETERMINER + WKBUtil.TYPE_SEPARATOR + WKBUtil.DEMONSTRATICEPRONOUN);
+                tagging.setPartOfSpeech(WkbConstants.DEMONSTRATIVEDETERMINER + WkbConstants.TYPE_SEPARATOR + WkbConstants.DEMONSTRATICEPRONOUN);
             }
         } else if (ar == null && jjind == null && jjdem == null && pndem == null && pnpos != null) {
             tagging.copyWTags(pnpos);
@@ -150,42 +150,42 @@ public class MaPennToWTaggingMapper {
                 String number = TextToNumber.getValue(word);
                 if (number != null) {
                     tagging.setLemma(number);
-                    tagging.setPartOfSpeech(WKBUtil.CARDINALNUMBER);
+                    tagging.setPartOfSpeech(WkbConstants.CARDINALNUMBER);
                     return;
                 }
             } else if (maTag.indexOf("v") == 0) {
                 if (maTag.charAt(2) == 'g') {
-                    tagging.setPartOfSpeech(WKBUtil.VERB);
-                    tagging.setVerbFormMood(WKBUtil.GERUND);
+                    tagging.setPartOfSpeech(WkbConstants.VERB);
+                    tagging.setVerbFormMood(WkbConstants.GERUND);
                     return;
                 } else if (maTag.charAt(2) == 'd') {
-                    tagging.setPartOfSpeech(WKBUtil.VERB);
-                    tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                    tagging.setGrammaticalTense(WKBUtil.PAST);
+                    tagging.setPartOfSpeech(WkbConstants.VERB);
+                    tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                    tagging.setGrammaticalTense(WkbConstants.PAST);
                     return;
                 } else if (maTag.charAt(2) == 'z') {
-                    tagging.setPartOfSpeech(WKBUtil.VERB);
-                    tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                    tagging.setGrammaticalTense(WKBUtil.PRESENT);
-                    tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
-                    tagging.setPerson(WKBUtil.THIRDPERSON);
+                    tagging.setPartOfSpeech(WkbConstants.VERB);
+                    tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                    tagging.setGrammaticalTense(WkbConstants.PRESENT);
+                    tagging.setGrammaticalNumber(WkbConstants.SINGULAR);
+                    tagging.setPerson(WkbConstants.THIRDPERSON);
                     return;
                 }
             } else if (maTag.indexOf("vvg") > 0) {
-                tagging.setVerbFormMood(WKBUtil.GERUND);
+                tagging.setVerbFormMood(WkbConstants.GERUND);
             }
         }
 
         if (tag.indexOf("NNP") == 0) {
-            tagging.setPartOfSpeech(WKBUtil.PROPERNOUN);
+            tagging.setPartOfSpeech(WkbConstants.PROPERNOUN);
         } else {
-            tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
+            tagging.setPartOfSpeech(WkbConstants.COMMONNOUN);
         }
 
         if (tag.charAt(tag.length() - 1) == 'S') {
-            tagging.setGrammaticalNumber(WKBUtil.PLURAL);
+            tagging.setGrammaticalNumber(WkbConstants.PLURAL);
         } else {
-            tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
+            tagging.setGrammaticalNumber(WkbConstants.SINGULAR);
         }
 
     }
@@ -198,7 +198,7 @@ public class MaPennToWTaggingMapper {
         if (vb != null) {
             tagging.copyWTagsAndLemma(vb);
         } else {
-            tagging.setPartOfSpeech(WKBUtil.VERB);
+            tagging.setPartOfSpeech(WkbConstants.VERB);
             String maTag = tagging.getPartsOfSpeech();
 
             if (maTag != null) {
@@ -211,87 +211,87 @@ public class MaPennToWTaggingMapper {
             }
 
             if (tag.equals("VBZ")) {
-                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
-                tagging.setPerson(WKBUtil.THIRDPERSON);
-                tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                tagging.setGrammaticalNumber(WkbConstants.SINGULAR);
+                tagging.setPerson(WkbConstants.THIRDPERSON);
+                tagging.setGrammaticalTense(WkbConstants.PRESENT);
             } else if (tag.equals("VBP")) {
                 if (maTag != null) {
                     if (maTag.indexOf("j") == 0) {
-                        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
+                        tagging.setPartOfSpeech(WkbConstants.ADJECTIVE);
                         return;
                     } else if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPartOfSpeech(WKBUtil.MODAL);
+                            tagging.setPartOfSpeech(WkbConstants.MODAL);
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setGrammaticalTense(WKBUtil.PAST);
+                                tagging.setGrammaticalTense(WkbConstants.PAST);
                             } else {
-                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                                tagging.setGrammaticalTense(WkbConstants.PRESENT);
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'd') {
-                            tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                            tagging.setGrammaticalTense(WKBUtil.PAST);
+                            tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                            tagging.setGrammaticalTense(WkbConstants.PAST);
                             return;
                         }
                     }
                 }
-                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                tagging.setGrammaticalTense(WkbConstants.PRESENT);
             } else if (tag.equals("VB")) {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(1) == 'm') {
-                            tagging.setPartOfSpeech(WKBUtil.MODAL);
+                            tagging.setPartOfSpeech(WkbConstants.MODAL);
                             if (maTag.charAt(2) == 'd') {
-                                tagging.setGrammaticalTense(WKBUtil.PAST);
+                                tagging.setGrammaticalTense(WkbConstants.PAST);
                             } else {
-                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                                tagging.setGrammaticalTense(WkbConstants.PRESENT);
                             }
                             return;
                         }
                         if (maTag.charAt(2) == 'i') {
-                            tagging.setVerbFormMood(WKBUtil.INFINITIVE);
+                            tagging.setVerbFormMood(WkbConstants.INFINITIVE);
                         } else if (maTag.charAt(2) == 'b') {
                             if (maTag.charAt(1) == 'b') {
-                                tagging.setVerbFormMood(WKBUtil.INFINITIVE);
+                                tagging.setVerbFormMood(WkbConstants.INFINITIVE);
                             } else {
-                                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                                tagging.setGrammaticalTense(WKBUtil.PRESENT);
+                                tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                                tagging.setGrammaticalTense(WkbConstants.PRESENT);
                             }
                         } else if (maTag.charAt(2) == 'd') {
-                            tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                            tagging.setGrammaticalTense(WKBUtil.PAST);
+                            tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                            tagging.setGrammaticalTense(WkbConstants.PAST);
                         } else if (maTag.charAt(2) == 'n') {
-                            tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
-                            tagging.setGrammaticalTense(WKBUtil.PAST);
+                            tagging.setVerbFormMood(WkbConstants.PARTICIPLE);
+                            tagging.setGrammaticalTense(WkbConstants.PAST);
                         }
                     } else if (maTag.indexOf("j") == 0) {
                         IndexWord wnWord = WordNetWrapper.lookup(word, POS.ADJECTIVE);
                         if (wnWord == null) {
                             wnWord = WordNetWrapper.lookup(word, POS.NOUN);
                             if (wnWord != null) {
-                                tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
-                                tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
+                                tagging.setPartOfSpeech(WkbConstants.COMMONNOUN);
+                                tagging.setGrammaticalNumber(WkbConstants.SINGULAR);
                             }
                         } else {
-                            tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
+                            tagging.setPartOfSpeech(WkbConstants.ADJECTIVE);
                         }
                     }
                 }
             } else if (tag.equals("VBD")) {
-                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                tagging.setGrammaticalTense(WKBUtil.PAST);
+                tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                tagging.setGrammaticalTense(WkbConstants.PAST);
             } else if (tag.equals("VBG")) {
                 if (maTag != null) {
                     if (maTag.equals("j-vvg")) {
-                        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
-                        tagging.setVerbFormMood(WKBUtil.GERUND);
+                        tagging.setPartOfSpeech(WkbConstants.ADJECTIVE);
+                        tagging.setVerbFormMood(WkbConstants.GERUND);
                         return;
                     }
                 }
-                tagging.setVerbFormMood(WKBUtil.GERUND);
+                tagging.setVerbFormMood(WkbConstants.GERUND);
                 if (word.equals("being")) {
                     tagging.setLemma("be");
                 }
@@ -299,13 +299,13 @@ public class MaPennToWTaggingMapper {
                 if (maTag != null) {
                     if (maTag.indexOf("v") == 0) {
                         if (maTag.charAt(2) == 'g') {
-                            tagging.setVerbFormMood(WKBUtil.GERUND);
+                            tagging.setVerbFormMood(WkbConstants.GERUND);
                             return;
                         }
                     }
                 }
-                tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
-                tagging.setGrammaticalTense(WKBUtil.PAST);
+                tagging.setVerbFormMood(WkbConstants.PARTICIPLE);
+                tagging.setGrammaticalTense(WkbConstants.PAST);
             }
         }
     }
@@ -315,8 +315,8 @@ public class MaPennToWTaggingMapper {
 
         if (tagging.isCollocation()) {
             String pos = CollocationsManager.getTypes(word);
-            if (pos.indexOf(WKBUtil.ADVERB) >= 0) {
-                tagging.setPartOfSpeech(WKBUtil.ADVERB);
+            if (pos.indexOf(WkbConstants.ADVERB) >= 0) {
+                tagging.setPartOfSpeech(WkbConstants.ADVERB);
                 return;
             }
         }
@@ -332,21 +332,21 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("c") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION);
+                    tagging.setPartOfSpeech(WkbConstants.SUBORDONATINGCONJUNCTION);
                     return;
                 } else if (maTag.indexOf("p") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.ADPOSITION);
+                    tagging.setPartOfSpeech(WkbConstants.ADPOSITION);
                     return;
                 } else if (maTag.equals("vvg")) {
-                    tagging.setPartOfSpeech(WKBUtil.VERB);
-                    tagging.setVerbFormMood(WKBUtil.GERUND);
+                    tagging.setPartOfSpeech(WkbConstants.VERB);
+                    tagging.setVerbFormMood(WkbConstants.GERUND);
                     return;
                 } else if (maTag.equals("a-acp")) {
-                    tagging.setPartOfSpeech(WKBUtil.ADVERB);
+                    tagging.setPartOfSpeech(WkbConstants.ADVERB);
                     return;
                 }
             }
-            tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION + WKBUtil.TYPE_SEPARATOR + WKBUtil.ADPOSITION);
+            tagging.setPartOfSpeech(WkbConstants.SUBORDONATINGCONJUNCTION + WkbConstants.TYPE_SEPARATOR + WkbConstants.ADPOSITION);
         }
     }
 
@@ -357,7 +357,7 @@ public class MaPennToWTaggingMapper {
         if (cjcrd != null) {
             tagging.copyWTags(cjcrd);
         } else {
-            tagging.setPartOfSpeech(WKBUtil.COORDINATINGCONJUNCTION);
+            tagging.setPartOfSpeech(WkbConstants.COORDINATINGCONJUNCTION);
         }
     }
 
@@ -392,16 +392,16 @@ public class MaPennToWTaggingMapper {
 
         if (rb != null) {
             tagging.copyWTagsAndLemma(rb);
-            tagging.setPartOfSpeech(WKBUtil.ADVERB);
+            tagging.setPartOfSpeech(WkbConstants.ADVERB);
             return;
         } else {
-            tagging.setPartOfSpeech(WKBUtil.ADVERB);
+            tagging.setPartOfSpeech(WkbConstants.ADVERB);
         }
 
         if (tag.equals("RBR")) {
-            tagging.setDegree(WKBUtil.COMPARATIVE);
+            tagging.setDegree(WkbConstants.COMPARATIVE);
         } else if (tag.equals("RBS")) {
-            tagging.setDegree(WKBUtil.SUPERLATIVE);
+            tagging.setDegree(WkbConstants.SUPERLATIVE);
         }
 
         String maTag = tagging.getPartsOfSpeech();
@@ -409,22 +409,22 @@ public class MaPennToWTaggingMapper {
             if (maTag.indexOf("av") == 0) {
                 // if (maTag.indexOf("-j") == 2) {
                 if ((word.lastIndexOf("ly") == (word.length() - 2)) && (!word.equals(tagging.getLemma()))) {
-                    tagging.setPartOfSpeech(WKBUtil.MANNERADVERB);
+                    tagging.setPartOfSpeech(WkbConstants.MANNERADVERB);
                     tagging.setLemma(word);
                 }
                 // }
                 if (maTag.indexOf('c') > 0) {
-                    tagging.setDegree(WKBUtil.COMPARATIVE);
+                    tagging.setDegree(WkbConstants.COMPARATIVE);
                 }
             } else if (maTag.indexOf('n') == 0) {
-                tagging.setPartOfSpeech(WKBUtil.COMMONNOUN);
+                tagging.setPartOfSpeech(WkbConstants.COMMONNOUN);
                 if (maTag.indexOf("1") > 0) {
-                    tagging.setGrammaticalNumber(WKBUtil.SINGULAR);
+                    tagging.setGrammaticalNumber(WkbConstants.SINGULAR);
                 } else if (maTag.indexOf('2') > 0) {
-                    tagging.setGrammaticalNumber(WKBUtil.PLURAL);
+                    tagging.setGrammaticalNumber(WkbConstants.PLURAL);
                 }
             } else if (maTag.indexOf("jc") == 0) {
-                tagging.setDegree(WKBUtil.COMPARATIVE);
+                tagging.setDegree(WkbConstants.COMPARATIVE);
             }
         }
     }
@@ -465,29 +465,29 @@ public class MaPennToWTaggingMapper {
         String nmord = TextToNumber.getValue(word);
         if (nmord != null) {
             tagging.setLemma(nmord);
-            tagging.setPartOfSpeech(WKBUtil.ORDINALADJECTIVE);
+            tagging.setPartOfSpeech(WkbConstants.ORDINALADJECTIVE);
             return;
         }
 
-        tagging.setPartOfSpeech(WKBUtil.ADJECTIVE);
+        tagging.setPartOfSpeech(WkbConstants.ADJECTIVE);
         if (tag.equals("JJR")) {
-            tagging.setDegree(WKBUtil.COMPARATIVE);
+            tagging.setDegree(WkbConstants.COMPARATIVE);
         } else if (tag.equals("JJS")) {
-            tagging.setDegree(WKBUtil.SUPERLATIVE);
+            tagging.setDegree(WkbConstants.SUPERLATIVE);
         }
 
         if (maTag != null) {
             if ("j-vvn".equals(maTag)) {
-                tagging.setVerbFormMood(WKBUtil.PARTICIPLE);
-                tagging.setGrammaticalTense(WKBUtil.PAST);
+                tagging.setVerbFormMood(WkbConstants.PARTICIPLE);
+                tagging.setGrammaticalTense(WkbConstants.PAST);
             } else if (maTag.indexOf("vvg") >= 0) {
-                tagging.setVerbFormMood(WKBUtil.GERUND);
+                tagging.setVerbFormMood(WkbConstants.GERUND);
                 if (maTag.equals("vvg")) {
-                    tagging.setPartOfSpeech(WKBUtil.VERB);
-                    tagging.setVerbFormMood(WKBUtil.GERUND);
+                    tagging.setPartOfSpeech(WkbConstants.VERB);
+                    tagging.setVerbFormMood(WkbConstants.GERUND);
                 }
             } else if (maTag.indexOf("av") == 0) {
-                tagging.setPartOfSpeech(WKBUtil.ADVERB);
+                tagging.setPartOfSpeech(WkbConstants.ADVERB);
                 return;
             }
         }
@@ -516,19 +516,19 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("cs") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION);
+                    tagging.setPartOfSpeech(WkbConstants.SUBORDONATINGCONJUNCTION);
                 } else if (maTag.indexOf("r-crq") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.RELATIVEPRONOUN);
+                    tagging.setPartOfSpeech(WkbConstants.RELATIVEPRONOUN);
                 }
             } else {
-                tagging.setPartOfSpeech(WKBUtil.SUBORDONATINGCONJUNCTION + WKBUtil.TYPE_SEPARATOR + WKBUtil.RELATIVEPRONOUN);
+                tagging.setPartOfSpeech(WkbConstants.SUBORDONATINGCONJUNCTION + WkbConstants.TYPE_SEPARATOR + WkbConstants.RELATIVEPRONOUN);
             }
         }
     }
 
     void mapCD(WTagging tagging, String tag) {
         String word = tagging.getWrittenForm().toLowerCase();
-        tagging.setPartOfSpeech(WKBUtil.CARDINALNUMBER);
+        tagging.setPartOfSpeech(WkbConstants.CARDINALNUMBER);
         tagging.setLemma(TextToNumber.getValue(word));
 
         if (tagging.getLemma() == null) {
@@ -549,13 +549,13 @@ public class MaPennToWTaggingMapper {
             String maTag = tagging.getPartsOfSpeech();
             if (maTag != null) {
                 if (maTag.indexOf("png") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.POSSESIVEPRONOUN);
+                    tagging.setPartOfSpeech(WkbConstants.POSSESIVEPRONOUN);
                 } else if (maTag.indexOf("po") == 0) {
-                    tagging.setPartOfSpeech(WKBUtil.POSSESIVEADJECIVE);
+                    tagging.setPartOfSpeech(WkbConstants.POSSESIVEADJECIVE);
                 }
             } else {
                 tagging.setLemma(pnpos.getLemma());
-                tagging.setPartOfSpeech(WKBUtil.POSSESIVEADJECIVE + WKBUtil.TYPE_SEPARATOR + WKBUtil.POSSESIVEPRONOUN);
+                tagging.setPartOfSpeech(WkbConstants.POSSESIVEADJECIVE + WkbConstants.TYPE_SEPARATOR + WkbConstants.POSSESIVEPRONOUN);
             }
         }
     }
@@ -571,17 +571,17 @@ public class MaPennToWTaggingMapper {
         String maTag = tagging.getPartsOfSpeech();
         if (maTag != null) {
             if ("q-crq".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.INTERROGATIVEADVERB);
+                tagging.setPartOfSpeech(WkbConstants.INTERROGATIVEADVERB);
             } else if ("c-crq".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
+                tagging.setPartOfSpeech(WkbConstants.RELATIVEADVERB);
             } else if ("vhdx".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.VERB);
-                tagging.setVerbFormMood(WKBUtil.INDICATIVE);
-                tagging.setGrammaticalTense(WKBUtil.PAST);
+                tagging.setPartOfSpeech(WkbConstants.VERB);
+                tagging.setVerbFormMood(WkbConstants.INDICATIVE);
+                tagging.setGrammaticalTense(WkbConstants.PAST);
             } else if ("a-acp".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
+                tagging.setPartOfSpeech(WkbConstants.RELATIVEADVERB);
             } else if ("cs".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.RELATIVEADVERB);
+                tagging.setPartOfSpeech(WkbConstants.RELATIVEADVERB);
             }
         }
     }
@@ -592,9 +592,9 @@ public class MaPennToWTaggingMapper {
 
         if (word.equals("there")) {
             if ("a-acp".equals(maTag)) {
-                tagging.setPartOfSpeech(WKBUtil.ADVERB);
+                tagging.setPartOfSpeech(WkbConstants.ADVERB);
             } else {
-                tagging.setPartOfSpeech(WKBUtil.EXISTENTIALPRONOUN);
+                tagging.setPartOfSpeech(WkbConstants.EXISTENTIALPRONOUN);
             }
         }
     }
@@ -614,8 +614,8 @@ public class MaPennToWTaggingMapper {
 
         if (maTag != null) {
             if (maTag.indexOf("vvg") >= 0) {
-                tagging.setPartOfSpeech(WKBUtil.VERB);
-                tagging.setVerbFormMood(WKBUtil.GERUND);
+                tagging.setPartOfSpeech(WkbConstants.VERB);
+                tagging.setVerbFormMood(WkbConstants.GERUND);
             }
         }
     }
@@ -627,11 +627,11 @@ public class MaPennToWTaggingMapper {
 
         if (rb != null && pr == null) {
             tagging.copyWTags(rb);
-            tagging.setPartOfSpeech(WKBUtil.GENERALADVERB);
+            tagging.setPartOfSpeech(WkbConstants.GENERALADVERB);
         } else if (rb == null && pr != null) {
             tagging.copyWTags(pr);
         } else {
-            tagging.setPartOfSpeech(WKBUtil.ADPOSITION + WKBUtil.TYPE_SEPARATOR + WKBUtil.GENERALADVERB);
+            tagging.setPartOfSpeech(WkbConstants.ADPOSITION + WkbConstants.TYPE_SEPARATOR + WkbConstants.GENERALADVERB);
             if (rb != null) {
                 tagging.setLemma(rb.getLemma());
             } else {
@@ -642,7 +642,7 @@ public class MaPennToWTaggingMapper {
 
     void mapPOS(WTagging tagging, String tag) {
         tagging.setLemma("$");
-        tagging.setPartOfSpeech(WKBUtil.POSSESIVEPARTICLE);
+        tagging.setPartOfSpeech(WkbConstants.POSSESIVEPARTICLE);
     }
 
     private boolean tryIndefinitePronoun(WTagging tagging) {
@@ -660,23 +660,23 @@ public class MaPennToWTaggingMapper {
     }
 
     private void mapUH(WTagging tagging, String tag) {
-        tagging.setPartOfSpeech(WKBUtil.INTERJECTION);
+        tagging.setPartOfSpeech(WkbConstants.INTERJECTION);
     }
 
     private void mapPunct(WTagging wt, String tag) {
         String word = wt.getWrittenForm();
         if (".".equals(word)) {
-            wt.setPartOfSpeech(WKBUtil.POINT);
+            wt.setPartOfSpeech(WkbConstants.POINT);
         } else if ("``".equals(wt.getPennTag())) {
-            wt.setPartOfSpeech(WKBUtil.QUOTE);
+            wt.setPartOfSpeech(WkbConstants.QUOTE);
         } else if ("''".equals(wt.getPennTag())) {
-            wt.setPartOfSpeech(WKBUtil.QUOTE);
+            wt.setPartOfSpeech(WkbConstants.QUOTE);
         } else if ("?".equals(word)) {
-            wt.setPartOfSpeech(WKBUtil.QUESTIONMARK);
+            wt.setPartOfSpeech(WkbConstants.QUESTIONMARK);
         } else if ("!".equals(word)) {
-            wt.setPartOfSpeech(WKBUtil.EXCLAMATIVEPOINT);
+            wt.setPartOfSpeech(WkbConstants.EXCLAMATIVEPOINT);
         } else if (",".equals(word)) {
-            wt.setPartOfSpeech(WKBUtil.COMMA);
+            wt.setPartOfSpeech(WkbConstants.COMMA);
         }
     }
 }

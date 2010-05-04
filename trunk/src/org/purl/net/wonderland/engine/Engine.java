@@ -32,8 +32,9 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil_;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.Compare;
 
@@ -43,7 +44,7 @@ import org.purl.net.wonderland.util.Compare;
  */
 public class Engine {
 
-    private WKB kb;
+    private Wkb kb;
     private File lastFile = null;
     private Personality personality;
 
@@ -72,7 +73,7 @@ public class Engine {
         } else {
             lastFile = file;
         }
-        kb = new WKB(file);
+        kb = new Wkb(file);
         personality.setKb(kb);
     }
 
@@ -90,27 +91,11 @@ public class Engine {
     }
 
     public CGraph getFact(int idx, String level) {
-        if (WKBUtil.level1.equals(level)) {
-            return kb.getFactGraph(WKBUtil.toLevel1FactId(idx));
-        }
-        if (WKBUtil.level2.equals(level)) {
-            return kb.getFactGraph(WKBUtil.toLevel2FactId(idx));
-        }
-        return null;
+        return kb.getFactGraph(WkbUtil_.toFactId(idx, level));
     }
 
     public int getFactCount(String level) {
-        if (WKBUtil.level1.equals(level)) {
-            return kb.getLevel1FactCount();
-        }
-        if (WKBUtil.level2.equals(level)) {
-            return kb.getLevel2FactCount();
-        }
-        return 0;
-    }
-
-    public int getFactCount() {
-        return kb.getFactCount();
+        return kb.getFactCount(level);
     }
 
     public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
@@ -130,13 +115,17 @@ public class Engine {
 
         return props;
     }
+
+    public int getFactCount() {
+        return kb.getFactCount();
+    }
 }
 
 class ConceptIdComparator implements Comparator<Concept> {
 
     public int compare(Concept o1, Concept o2) {
-        int id1 = WKBUtil.getConceptIndex(o1.getId());
-        int id2 = WKBUtil.getConceptIndex(o2.getId());
+        int id1 = WkbUtil_.getConceptIndex(o1.getId());
+        int id2 = WkbUtil_.getConceptIndex(o2.getId());
         return Compare.compare(id1, id2);
     }
 }

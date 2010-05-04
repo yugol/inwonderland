@@ -30,9 +30,11 @@ import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcManager;
+import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.ProjectionSolver;
-import org.purl.net.wonderland.kb.WKB;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil_;
 
 /**
  *
@@ -44,7 +46,7 @@ public class Level2Personality extends Level1Personality {
     protected ProcManager procMgr = null;
 
     @Override
-    public void setKb(WKB kb) {
+    public void setKb(Wkb kb) {
         super.setKb(kb);
         try {
             projSlv = new ProjectionSolver(kb);
@@ -72,7 +74,7 @@ public class Level2Personality extends Level1Personality {
 
     @Override
     public String getId() {
-        return WKBUtil.level2;
+        return WkbConstants.LEVEL2;
     }
 
     @Override
@@ -80,39 +82,39 @@ public class Level2Personality extends Level1Personality {
         List<CGraph> facts = parseMessage(message);
         projSlv.reset();
         for (CGraph fact : facts) {
-            kb.addFact(fact, WKBUtil.level1);
-            fact = WKBUtil.duplicate(fact);
+            kb.addFact(fact, WkbConstants.LEVEL1);
+            fact = WkbUtil_.duplicate(fact);
             processArticles(fact);
             // processMoods(fact);
             // processCollocations(fact);
-            kb.addFact(fact, WKBUtil.level2);
+            kb.addFact(fact, WkbConstants.LEVEL2);
         }
         return "Done.";
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetMoods), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetMoods), fact);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetCollocations), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetCollocations), fact);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WKBUtil.procSetArticles), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetArticles), fact);
     }
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
-        WKBUtil.setAllConclusion(fact, false);
+        WkbUtil_.setAllConclusion(fact, false);
         List<Proc> matches = projSlv.findMatches(procs, fact);
         for (Proc match : matches) {
             if (match != null) {
                 for (Projection proj : match.getProjections()) {
-                    WKBUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                    ProcUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
                 }
             }
         }
-        WKBUtil.setAllConclusion(fact, false);
+        WkbUtil_.setAllConclusion(fact, false);
     }
 
     protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {
@@ -121,7 +123,7 @@ public class Level2Personality extends Level1Personality {
         for (Proc match : matches) {
             if (match != null) {
                 for (Projection proj : match.getProjections()) {
-                    WKBUtil.applyProcMatch(fact, proj, match, false, kb.getVocabulary().getConceptTypeHierarchy());
+                    ProcUtil.applyProcMatch(fact, proj, match, false, kb.getVocabulary().getConceptTypeHierarchy());
                     break apply_just_one_match;
                 }
             }

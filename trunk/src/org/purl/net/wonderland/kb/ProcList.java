@@ -49,7 +49,7 @@ public class ProcList {
 
     public ProcList(String name) {
         this.setName = name;
-        this.setId = WKBUtil.toProcName(name, null);
+        this.setId = WkbUtil_.toProcName(name, null);
         this.procs = new ArrayList<Proc>();
     }
 
@@ -76,8 +76,8 @@ public class ProcList {
     }
 
     private Proc buildProcedure(Rule rule, String name) {
-        CGraph lhs = new CGraph(WKBUtil.newUniqueId(), name, "lhs", "fact");
-        CGraph rhs = new CGraph(WKBUtil.newUniqueId(), name, "rhs", "fact");
+        CGraph lhs = new CGraph(WkbUtil_.newUniqueId(), name, "lhs", "fact");
+        CGraph rhs = new CGraph(WkbUtil_.newUniqueId(), name, "rhs", "fact");
 
         Iterator<Concept> cit = rule.iteratorConcept();
         while (cit.hasNext()) {

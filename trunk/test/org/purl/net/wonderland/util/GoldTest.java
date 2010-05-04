@@ -24,8 +24,6 @@
 package org.purl.net.wonderland.util;
 
 import java.io.File;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -33,11 +31,12 @@ import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.WTaggingUtil;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import org.purl.net.wonderland.kb.WkbUtil_;
 
 /**
  *
@@ -46,11 +45,11 @@ import org.junit.BeforeClass;
 public class GoldTest {
 
     private static Personality pers = new Level2Personality();
-    private static String level = WKBUtil.level2;
+    private static String level = WkbConstants.LEVEL2;
     private static String corpusFileName = "bedtime/story.txt";
     private static int firstSentence = 1;
     private static int lastSentence = 42;
-    private static MAFCorpus corpus;
+    private static MafCorpus_ corpus;
     private static Engine engine;
 
     @BeforeClass
@@ -59,9 +58,9 @@ public class GoldTest {
         engine.setPersonality(pers);
 
         Configuration.init();
-        WKBUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        WkbUtil_.normalizeKbFile(Configuration.getDefaultParseKBFile());
 
-        corpus = new MAFCorpus(new File(Configuration.getCorporaFolder(), corpusFileName));
+        corpus = new MafCorpus_(new File(Configuration.getCorporaFolder(), corpusFileName));
 
         if (lastSentence < firstSentence) {
             lastSentence = corpus.getPlainLineCount() - 1;
@@ -81,7 +80,7 @@ public class GoldTest {
         saveTestResults();
     }
 
-    // @Test
+    @Test
     public void buildCorpus() throws Exception {
         System.out.println("Building corpus - " + corpusFileName);
 
@@ -99,7 +98,7 @@ public class GoldTest {
         saveTestResults();
     }
 
-    @Test
+    // @Test
     public void testGoldCorpus() throws Exception {
         System.out.println("Testing corpus - " + corpusFileName);
 

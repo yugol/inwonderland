@@ -30,7 +30,8 @@ import edu.stanford.nlp.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil_;
 
 /**
  *
@@ -265,7 +266,7 @@ public class WTagging implements HasWord, HasTag, AdornedWord {
         types.addAll(moreTypes);
         String[] typeArray = new String[types.size()];
         for (int i = 0; i < typeArray.length; ++i) {
-            typeArray[i] = WKBUtil.toConceptTypeId(types.get(i));
+            typeArray[i] = WkbUtil_.toConceptTypeId(types.get(i));
         }
         return typeArray;
     }

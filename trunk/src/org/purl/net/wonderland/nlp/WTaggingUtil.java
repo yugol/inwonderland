@@ -23,9 +23,9 @@
  */
 package org.purl.net.wonderland.nlp;
 
-import org.purl.net.wonderland.kb.WKBUtil;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.util.Corpus;
-import org.purl.net.wonderland.util.MAFCorpus;
+import org.purl.net.wonderland.util.MafCorpus_;
 
 /**
  *
@@ -45,45 +45,45 @@ public final class WTaggingUtil {
                 if (autoStr == null) {
                     autoStr = auto.getPennTag();
                 }
-                printErr(goldStr, autoStr, WKBUtil.PARTOFSPEECH, errStr);
+                printErr(goldStr, autoStr, WkbConstants.PARTOFSPEECH, errStr);
             }
         }
 
         goldStr = gold.getLemma();
         autoStr = auto.getLemma();
-        checkTag(goldStr, autoStr, MAFCorpus.WORDFORM_ATTR_LEMMA, errStr);
+        checkTag(goldStr, autoStr, MafCorpus_.WORDFORM_ATTR_LEMMA, errStr);
 
         goldStr = gold.getVerbFormMood();
         autoStr = auto.getVerbFormMood();
-        checkTag(goldStr, autoStr, WKBUtil.VERBFORMMOOD, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.VERBFORMMOOD, errStr);
 
         goldStr = gold.getGrammaticalTense();
         autoStr = auto.getGrammaticalTense();
-        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALTENSE, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.GRAMMATICALTENSE, errStr);
 
         goldStr = gold.getGrammaticalGender();
         autoStr = auto.getGrammaticalGender();
-        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALGENDER, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.GRAMMATICALGENDER, errStr);
 
         goldStr = gold.getGrammaticalNumber();
         autoStr = auto.getGrammaticalNumber();
-        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALNUMBER, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.GRAMMATICALNUMBER, errStr);
 
         goldStr = gold.getGrammaticalCase();
         autoStr = auto.getGrammaticalCase();
-        checkTag(goldStr, autoStr, WKBUtil.GRAMMATICALCASE, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.GRAMMATICALCASE, errStr);
 
         goldStr = gold.getPerson();
         autoStr = auto.getPerson();
-        checkTag(goldStr, autoStr, WKBUtil.PERSON, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.PERSON, errStr);
 
         goldStr = gold.getDegree();
         autoStr = auto.getDegree();
-        checkTag(goldStr, autoStr, WKBUtil.DEGREE, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.DEGREE, errStr);
 
         goldStr = gold.getDefiniteness();
         autoStr = auto.getDefiniteness();
-        checkTag(goldStr, autoStr, WKBUtil.DEFINITNESS, errStr);
+        checkTag(goldStr, autoStr, WkbConstants.DEFINITNESS, errStr);
 
         return ((errStr.length() > 0) ? (errStr.toString()) : (null));
     }
