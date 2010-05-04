@@ -37,10 +37,11 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public abstract class Personality {
 
-    protected Wkb kb = null;
+    protected List<String> report = null;
+    protected Memory memory = null;
 
-    public void setKb(Wkb kb) {
-        this.kb = kb;
+    public void setMemory(Memory memory) {
+        this.memory = memory;
     }
 
     public abstract String getWelcomeMessage();
@@ -51,9 +52,25 @@ public abstract class Personality {
 
     public abstract String getId();
 
-    public abstract String processMessage(String message) throws Exception;
+    protected abstract void processFact(CGraph fact) throws Exception;
+
+    public String processMessage(String message) throws Exception {
+        report = new ArrayList<String>();
+        List<CGraph> facts = parseMessage(message);
+        preProcessFacts();
+        for (CGraph fact : facts) {
+            processFact(fact);
+        }
+        postProcessFacts();
+        return createReport(report);
+    }
+
+    protected abstract void preProcessFacts() throws Exception;
+
+    protected abstract void postProcessFacts() throws Exception;
 
     protected List<CGraph> parseMessage(String message) {
+        Wkb kb = memory.getStorage();
         List<CGraph> facts = new ArrayList<CGraph>();
 
         for (List<WTagging> sentence : Pipeline.tokenizeAndSplit(message)) {
@@ -64,5 +81,16 @@ public abstract class Personality {
         }
 
         return facts;
+    }
+
+    private String createReport(List<String> report) {
+        StringBuilder sb = new StringBuilder();
+        for (String line : report) {
+            if (sb.length() > 0) {
+                sb.append("\n");
+            }
+            sb.append(line);
+        }
+        return sb.toString();
     }
 }

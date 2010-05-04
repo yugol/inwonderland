@@ -40,9 +40,6 @@ public class ProcManager {
 
     public ProcManager(Wkb kb) throws Exception {
         this();
-        readProcedureSet(kb, WkbUtil.procSetArticles);
-        readProcedureSet(kb, WkbUtil.procSetMoods);
-        readProcedureSet(kb, WkbUtil.procSetCollocations);
     }
 
     public int getProcCount() {
@@ -61,9 +58,4 @@ public class ProcManager {
         return allProcs.get(name);
     }
 
-    private void readProcedureSet(Wkb kb, String set) throws Exception {
-        ProcList procSet = kb.getProcRules(set);
-        procSet.sort();
-        putProcList(set, procSet);
-    }
 }

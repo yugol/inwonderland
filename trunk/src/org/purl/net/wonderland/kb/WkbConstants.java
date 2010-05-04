@@ -118,11 +118,12 @@ public final class WkbConstants {
     public static final String GRAMMATICALTENSE_CT = WkbUtil.toConceptTypeId(GRAMMATICALTENSE);
     public static final String DEFINITNESS_CT = WkbUtil.toConceptTypeId(DEFINITNESS);
     public static final String NOUN_CT = WkbUtil.toConceptTypeId(NOUN);
+    public static final String COMMONNOUN_CT = WkbUtil.toConceptTypeId(COMMONNOUN);
+    public static final String PROPERNOUN_CT = WkbUtil.toConceptTypeId(PROPERNOUN);
     public static final String VERB_CT = WkbUtil.toConceptTypeId(VERB);
     public static final String ADVERB_CT = WkbUtil.toConceptTypeId(ADVERB);
     public static final String PRONOUN_CT = WkbUtil.toConceptTypeId(PRONOUN);
     public static final String ADJECTIVE_CT = WkbUtil.toConceptTypeId(ADJECTIVE);
-    public static final String PROPERNOUN_CT = WkbUtil.toConceptTypeId(PROPERNOUN);
     public static final String POSSESSIVEADVERB_CT = WkbUtil.toConceptTypeId(POSSESIVEADJECIVE);
     public static final String ADPOSITION_CT = WkbUtil.toConceptTypeId(ADPOSITION);
     public static final String INDICATIVE_CT = WkbUtil.toConceptTypeId(INDICATIVE);

@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Set;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
@@ -64,11 +65,10 @@ public final class WsdProcManager {
                     procFile = new File(Configuration.getWsdFolder(), "procs/automatic/verb/" + lemma + ".rules.xml");
                     if (!procFile.exists()) {
                         Verb v = new Verb(lemma);
-                        List<Rule> rules = v.getVerbNetProcs(getWSDPers());
+                        List<Rule> rules = v.getVerbNetProcs(getWsdPers());
                         IO.writeRules(rules, procFile);
                     }
                 }
-                kb.importWordNetHypernymHierarchy(lemma, POS.VERB);
                 procs = IO.readProcs(lemma, procFile, kb);
                 procs.sort();
                 verbProcs.putProcList(lemma, procs);
@@ -80,10 +80,10 @@ public final class WsdProcManager {
         return procs;
     }
 
-    private WsdPersonality getWSDPers() throws Exception {
+    private WsdPersonality getWsdPers() throws Exception {
         if (wsdPers == null) {
             wsdPers = new WsdPersonality();
-            wsdPers.setKb(new Wkb(Configuration.getDefaultParseKBFile()));
+            wsdPers.setMemory(new Memory(Configuration.getDefaultParseKBFile()));
         }
         return wsdPers;
     }

@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,46 +23,37 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import java.io.File;
+import org.purl.net.wonderland.kb.Wkb;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Memory {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
+    private Ltm ltm;
+    private Stm stm;
+
+    public Memory(File file) throws Exception {
+        stm = new Stm(7);
+        ltm = new Ltm(file);
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public Ltm getLtm() {
+        return ltm;
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public Stm getStm() {
+        return stm;
     }
 
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
+    public Wkb getStorage() {
+        return ltm.getDeclarative().getStorage();
     }
 
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
-    protected void processFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
+    public void save(File file) throws Exception {
+        ltm.save(file);
     }
 }

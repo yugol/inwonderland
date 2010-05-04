@@ -256,7 +256,7 @@ public class WkbUtil {
         timer.stop();
     }
 
-    static int toLevelIndex(String level) {
+    public static int toLevelIndex(String level) {
         if (WkbConstants.LEVEL1.equals(level)) {
             return 0;
         }
@@ -267,5 +267,12 @@ public class WkbUtil {
             return 2;
         }
         return -1;
+    }
+
+    public static void joinSetType(Concept c, String[] set1, String[] set2) {
+        String[] types = new String[set1.length + set2.length];
+        System.arraycopy(set1, 0, types, 0, set1.length);
+        System.arraycopy(set2, 0, types, set1.length, set2.length);
+        c.setType(types);
     }
 }

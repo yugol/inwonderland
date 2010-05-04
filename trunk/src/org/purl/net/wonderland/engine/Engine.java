@@ -32,8 +32,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.Configuration;
-import org.purl.net.wonderland.kb.Wkb;
-import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.Compare;
@@ -44,7 +42,7 @@ import org.purl.net.wonderland.util.Compare;
  */
 public class Engine {
 
-    private Wkb kb;
+    private Memory memory;
     private File lastFile = null;
     private Personality personality;
 
@@ -58,7 +56,7 @@ public class Engine {
 
     public void setPersonality(Personality personality) {
         this.personality = personality;
-        this.personality.setKb(kb);
+        this.personality.setMemory(memory);
     }
 
     public Engine() throws Exception {
@@ -73,15 +71,15 @@ public class Engine {
         } else {
             lastFile = file;
         }
-        kb = new Wkb(file);
-        personality.setKb(kb);
+        memory = new Memory(file);
+        personality.setMemory(memory);
     }
 
     public void saveKb(File file) throws Exception {
         if (Configuration.getDefaultParseKBFile().getAbsolutePath().equals(file.getAbsolutePath())) {
             lastFile = null;
         } else {
-            kb.save(file);
+            memory.save(file);
             lastFile = file;
         }
     }
@@ -91,11 +89,11 @@ public class Engine {
     }
 
     public CGraph getFact(int idx, String level) {
-        return kb.getFactGraph(WkbUtil.toFactId(idx, level));
+        return memory.getStorage().getFactGraph(WkbUtil.toFactId(idx, level));
     }
 
     public int getFactCount(String level) {
-        return kb.getFactCount(level);
+        return memory.getLtm().getDeclarative().getStorage().getFactCount(level);
     }
 
     public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
@@ -110,14 +108,14 @@ public class Engine {
 
         WTagging[] props = new WTagging[concepts.size()];
         for (int i = 0; i < props.length; ++i) {
-            props[i] = kb.conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
+            props[i] = memory.getStorage().conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
         }
 
         return props;
     }
 
     public int getFactCount() {
-        return kb.getFactCount();
+        return memory.getLtm().getDeclarative().getStorage().getFactCount();
     }
 }
 

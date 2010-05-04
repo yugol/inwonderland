@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,46 +23,41 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.ProcManager;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Procedural {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
+    private ProcManager quick;
+    private WsdProcManager wsd;
+
+    Procedural(Wkb kb) throws Exception {
+        quick = new ProcManager();
+        readProcedureSet(kb, WkbUtil.procSetArticles);
+        readProcedureSet(kb, WkbUtil.procSetMoods);
+        readProcedureSet(kb, WkbUtil.procSetCollocations);
+        wsd = new WsdProcManager(kb);
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public ProcManager getQuick() {
+        return quick;
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public WsdProcManager getWsd() {
+        return wsd;
     }
 
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
-    }
-
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
-    protected void processFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
+    private void readProcedureSet(Wkb kb, String set) throws Exception {
+        ProcList procSet = kb.getProcRules(set);
+        procSet.sort();
+        quick.putProcList(set, procSet);
     }
 }
