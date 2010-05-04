@@ -26,29 +26,18 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
 public class Level3Personality extends Level2Personality {
-
-    protected WsdProcManager wsdProcMgr = null;
-    protected List<String> report = null;
-
-    @Override
-    public void setKb(Wkb kb) {
-        super.setKb(kb);
-        wsdProcMgr = new WsdProcManager(kb);
-    }
 
     @Override
     public String getWelcomeMessage() {
@@ -62,7 +51,7 @@ public class Level3Personality extends Level2Personality {
 
     @Override
     public String getName() {
-        return "(test) L2";
+        return "(test) L3";
     }
 
     @Override
@@ -71,43 +60,56 @@ public class Level3Personality extends Level2Personality {
     }
 
     @Override
-    public String processMessage(String message) throws Exception {
-        report = new ArrayList<String>();
-        List<CGraph> facts = parseMessage(message);
+    protected void processFact(CGraph fact) throws Exception {
+        super.processFact(fact);
+
+        fact = WkbUtil.duplicate(fact);
+        loadSenses(fact);
         projSlv.reset();
-        for (CGraph fact : facts) {
-            kb.addFact(fact, WkbConstants.LEVEL1);
-
-            fact = WkbUtil.duplicate(fact);
-            super.processFact(fact);
-            kb.addFact(fact, WkbConstants.LEVEL2);
-
-            fact = WkbUtil.duplicate(fact);
-            processFact(fact);
-            kb.addFact(fact, WkbConstants.LEVEL3);
-        }
-        return "Done.";
+        disambiguate(fact);
+        memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
     }
 
-    @Override
-    protected void processFact(CGraph fact) throws Exception {
-        disambiguate(fact);
+    private void loadSenses(CGraph fact) {
+        Wkb storage = memory.getStorage();
+        Hierarchy cth = storage.getVocabulary().getConceptTypeHierarchy();
+
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            String lemma = c.getIndividual();
+            String[] types = c.getType();
+
+            String[] senses = null;
+            if (cth.isKindOf(types, WkbConstants.NOUN_CT)) {
+                if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
+                    senses = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);
+                } else if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
+                }
+            } else if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
+                senses = storage.importWordNetHypernymHierarchy(lemma, POS.VERB);
+            } else if (cth.isKindOf(types, WkbConstants.ADJECTIVE_CT)) {
+                senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
+            } else if (cth.isKindOf(types, WkbConstants.ADVERB_CT)) {
+                senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADVERB);
+            }
+
+            if (senses != null) {
+                WkbUtil.joinSetType(c, types, senses);
+            }
+        }
     }
 
     private void disambiguate(CGraph fact) throws Exception {
-        Hierarchy cth = kb.getVocabulary().getConceptTypeHierarchy();
-        Iterator<Concept> it = fact.iteratorConcept();
-        while (it.hasNext()) {
-            Concept c = it.next();
+        Hierarchy cth = memory.getStorage().getVocabulary().getConceptTypeHierarchy();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
             String lemma = c.getIndividual();
             String[] types = c.getType();
 
             if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
-                boolean hasVerb = wsdProcMgr.hasVerb(lemma);
-                ProcList wsdProcs = wsdProcMgr.getVerbProcs(lemma);
-                if (!hasVerb) {
-                    projSlv.reset();
-                }
+                ProcList wsdProcs = memory.getLtm().getProcedural().getWsd().getVerbProcs(lemma);
                 applyFirstMatch(wsdProcs, fact);
             }
         }

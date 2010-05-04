@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,46 +23,39 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Chunk {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
+    private final Concept concept;
+    private final String pos;
+    private final List<String> senses;
+
+    public Chunk(Concept c, String pos) {
+        this.concept = c;
+        this.pos = pos;
+        senses = new ArrayList<String>();
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public Concept getConcept() {
+        return concept;
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public String getPos() {
+        return pos;
     }
 
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
+    public List<String> getSenses() {
+        return senses;
     }
 
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
+    public void addSenses() {
 
-    @Override
-    protected void processFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
     }
 }

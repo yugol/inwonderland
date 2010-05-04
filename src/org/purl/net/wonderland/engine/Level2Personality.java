@@ -29,10 +29,8 @@ import java.util.List;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
-import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.ProjectionSolver;
-import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
 
@@ -43,14 +41,12 @@ import org.purl.net.wonderland.kb.WkbUtil;
 public class Level2Personality extends Level1Personality {
 
     protected ProjectionSolver projSlv = null;
-    protected ProcManager procMgr = null;
 
     @Override
-    public void setKb(Wkb kb) {
-        super.setKb(kb);
+    public void setMemory(Memory memory) {
+        super.setMemory(memory);
         try {
-            projSlv = new ProjectionSolver(kb);
-            procMgr = new ProcManager(kb);
+            projSlv = new ProjectionSolver(memory.getStorage());
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
             Configuration.handleException(ex);
@@ -78,29 +74,31 @@ public class Level2Personality extends Level1Personality {
     }
 
     @Override
-    public String processMessage(String message) throws Exception {
-        List<CGraph> facts = parseMessage(message);
+    protected void preProcessFacts() throws Exception {
         projSlv.reset();
-        for (CGraph fact : facts) {
-            kb.addFact(fact, WkbConstants.LEVEL1);
+    }
 
-            fact = WkbUtil.duplicate(fact);
-            processFact(fact);
-            kb.addFact(fact, WkbConstants.LEVEL2);
-        }
-        return "Done.";
+    @Override
+    protected void processFact(CGraph fact) throws Exception {
+        super.processFact(fact);
+
+        fact = WkbUtil.duplicate(fact);
+        processArticles(fact);
+        // processMoods(fact);
+        // processCollocations(fact);
+        memory.getStorage().addFact(fact, WkbConstants.LEVEL2);
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetMoods), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetMoods), fact);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetCollocations), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetCollocations), fact);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetArticles), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetArticles), fact);
     }
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
@@ -109,7 +107,7 @@ public class Level2Personality extends Level1Personality {
         for (Proc match : matches) {
             if (match != null) {
                 for (Projection proj : match.getProjections()) {
-                    ProcUtil.applyProcMatch(fact, proj, match, true, kb.getVocabulary().getConceptTypeHierarchy());
+                    ProcUtil.applyProcMatch(fact, proj, match, true, memory.getStorage().getVocabulary().getConceptTypeHierarchy());
                 }
             }
         }
@@ -122,16 +120,10 @@ public class Level2Personality extends Level1Personality {
         for (Proc match : matches) {
             if (match != null) {
                 for (Projection proj : match.getProjections()) {
-                    ProcUtil.applyProcMatch(fact, proj, match, false, kb.getVocabulary().getConceptTypeHierarchy());
+                    ProcUtil.applyProcMatch(fact, proj, match, false, memory.getStorage().getVocabulary().getConceptTypeHierarchy());
                     break apply_just_one_match;
                 }
             }
         }
-    }
-
-    protected void processFact(CGraph fact) throws Exception {
-        processArticles(fact);
-        // processMoods(fact);
-        // processCollocations(fact);
     }
 }

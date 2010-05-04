@@ -27,6 +27,7 @@ import java.io.File;
 import java.util.List;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.w3c.dom.Document;
@@ -146,11 +147,9 @@ public class MafCorpus {
     }
 
     private int getLevelDocument(String level) {
-        if (level.equals(WkbConstants.LEVEL1)) {
-            return 1;
-        }
-        if (level.equals(WkbConstants.LEVEL2)) {
-            return 2;
+        int l = WkbUtil.toLevelIndex(level);
+        if (l >= 0) {
+            ++l;
         }
         return -1;
     }

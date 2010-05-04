@@ -69,12 +69,12 @@ class WsdPersonality extends Level2Personality {
         // processMoods(fact);
         processArticles(fact);
         // processCollocations(fact);
-        kb.addFact(fact, WkbConstants.LEVEL2);
+        memory.getStorage().addFact(fact, WkbConstants.LEVEL2);
         return fact;
 
     }
 
     public Wkb getKb() {
-        return kb;
+        return memory.getStorage();
     }
 }

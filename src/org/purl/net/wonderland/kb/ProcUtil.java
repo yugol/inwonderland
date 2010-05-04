@@ -138,10 +138,7 @@ public class ProcUtil {
             if (idxPos >= 0) {
                 String[] actualTypes = actual.getType();
                 rhsTypes = getNoOpTypes(rhsTypes);
-                String[] lhsTypes = new String[actualTypes.length + rhsTypes.length];
-                System.arraycopy(actualTypes, 0, lhsTypes, 0, actualTypes.length);
-                System.arraycopy(rhsTypes, 0, lhsTypes, actualTypes.length, rhsTypes.length);
-                actual.setType(lhsTypes);
+                WkbUtil.joinSetType(actual, actualTypes, rhsTypes);
             }
 
             // update individual

@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -21,48 +21,13 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+package org.purl.net.wonderland.engine;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Entities {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
-    }
-
-    @Override
-    public String getFullName() {
-        return "Level 1";
-    }
-
-    @Override
-    public String getName() {
-        return "(test) L1";
-    }
-
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
-    }
-
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
-    protected void processFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
-    }
 }

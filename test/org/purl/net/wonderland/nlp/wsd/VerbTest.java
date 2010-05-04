@@ -28,6 +28,7 @@ import java.io.File;
 import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
 
@@ -63,18 +64,18 @@ public class VerbTest {
     public void testOneVerbToProcs() throws Exception {
         Configuration.init();
 
-        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
+        Memory memory = new Memory(Configuration.getDefaultParseKBFile());
         WsdPersonality pers = new WsdPersonality();
-        pers.setKb(kb);
+        pers.setMemory(memory);
 
         Verb v = new Verb("know");
         List<Rule> procs = v.getVerbNetProcs(pers);
         for (Rule proc : procs) {
-            kb.addRule(proc);
+            memory.getStorage().addRule(proc);
         }
 
         File file = new File("test." + v.getLemma() + ".cogxml");
-        kb.save(file);
+        memory.save(file);
         WkbUtil.normalizeKbFile(file);
     }
 }
