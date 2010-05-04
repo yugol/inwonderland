@@ -38,7 +38,7 @@ public class MaToPennTagMapper {
                 if (maPos.equals("vvg")) {
                     wt.setPennTag("VBG");
                 } else if (maPos.indexOf("pn") == 0) {
-                    if (MorphologicalDatabase.personalPronoun.containsKey(wt.getLemma())) {
+                    if (Gazetteers.personalPronoun.containsKey(wt.getLemma())) {
                         wt.setPennTag("PRP");
                     }
                 } else if (maPos.indexOf("po") == 0) {

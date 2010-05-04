@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import org.purl.net.wonderland.nlp.MorphologicalDatabase;
+import org.purl.net.wonderland.nlp.Gazetteers;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -133,7 +133,7 @@ public final class Configuration {
 
     public static void init() {
         // CollocationsManager.init();
-        MorphologicalDatabase.init();
+        Gazetteers.init();
         WordNetWrapper.init();
         VerbNetWrapper.init();
         StanfordParserWrapper.init();
@@ -201,48 +201,24 @@ public final class Configuration {
         return resFolder.getAbsolutePath();
     }
 
-    public static File getStanfordParserFile() {
-        return new File(getResPath(), "stanfordparser/englishPCFG.ser.gz");
-    }
-
-    public static File getCollocationsFolder() {
-        return new File(getResPath(), "morphology");
-    }
-
-    public static File getDefaultParseKBFile() {
-        return new File(getResPath(), "defaultparsekb.cogxml");
+    public static File getTestFolder() {
+        return new File(getResPath(), "test");
     }
 
     public static File getJwnlPropertiesFile() {
         return new File(getResPath(), "jwnl_properties.xml");
     }
 
-    public static File getCorporaFolder() {
-        return new File(resFolder, "corpora");
+    public static File getStanfordParserFile() {
+        return new File(getResPath(), "stanfordparser/englishPCFG.ser.gz");
     }
 
-    public static File getMorphologyFolder() {
-        return new File(getResPath(), "morphology");
-    }
-
-    public static File getTestFolder() {
-        return new File(getResPath(), "test");
-    }
-
-    public static File getLgParserPath() {
-        return new File(lgParserFolder, "");
+    public static File getDefaultParseKBFile() {
+        return new File(getResPath(), "defaultparsekb.cogxml");
     }
 
     public static File getVerbNetDataFolder() {
         return new File(vnDataFolder, "");
-    }
-
-    public static File getPropBankDataFolder() {
-        return new File(pbDataFolder, "");
-    }
-
-    public static File getVerbNetIndexFolder() {
-        return new File(resFolder, "verbnet");
     }
 
     public static File getVerbNetFileIndexFile() {
@@ -253,11 +229,27 @@ public final class Configuration {
         return new File(getVerbNetIndexFolder(), "verb_index.csv");
     }
 
-    public static File getVerbProcsFolder() {
-        return new File(getResPath(), "wsd/procs/verb");
+    public static File getPropBankDataFolder() {
+        return new File(pbDataFolder, "");
+    }
+
+    public static File getCorporaFolder() {
+        return new File(resFolder, "corpora");
     }
 
     public static File getWsdFolder() {
         return new File(resFolder, "wsd");
+    }
+
+    public static File getCollocationsFolder() {
+        return new File(getResPath(), "gazetteers/collocations");
+    }
+
+    public static File getMorphologyFolder() {
+        return new File(getResPath(), "gazetteers/morphology");
+    }
+
+    public static File getVerbNetIndexFolder() {
+        return new File(resFolder, "gazetteers/verbnet");
     }
 }

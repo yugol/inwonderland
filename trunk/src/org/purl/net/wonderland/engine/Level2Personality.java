@@ -83,10 +83,9 @@ public class Level2Personality extends Level1Personality {
         projSlv.reset();
         for (CGraph fact : facts) {
             kb.addFact(fact, WkbConstants.LEVEL1);
+
             fact = WkbUtil.duplicate(fact);
-            processArticles(fact);
-            // processMoods(fact);
-            // processCollocations(fact);
+            processFact(fact);
             kb.addFact(fact, WkbConstants.LEVEL2);
         }
         return "Done.";
@@ -128,5 +127,11 @@ public class Level2Personality extends Level1Personality {
                 }
             }
         }
+    }
+
+    protected void processFact(CGraph fact) throws Exception {
+        processArticles(fact);
+        // processMoods(fact);
+        // processCollocations(fact);
     }
 }
