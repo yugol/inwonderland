@@ -40,9 +40,9 @@ public class ProcManager {
 
     public ProcManager(Wkb kb) throws Exception {
         this();
-        readProcedureSet(kb, WkbUtil_.procSetArticles);
-        readProcedureSet(kb, WkbUtil_.procSetMoods);
-        readProcedureSet(kb, WkbUtil_.procSetCollocations);
+        readProcedureSet(kb, WkbUtil.procSetArticles);
+        readProcedureSet(kb, WkbUtil.procSetMoods);
+        readProcedureSet(kb, WkbUtil.procSetCollocations);
     }
 
     public int getProcCount() {

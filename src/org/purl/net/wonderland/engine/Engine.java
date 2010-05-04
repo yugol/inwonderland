@@ -34,7 +34,7 @@ import java.util.List;
 import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.Compare;
 
@@ -91,7 +91,7 @@ public class Engine {
     }
 
     public CGraph getFact(int idx, String level) {
-        return kb.getFactGraph(WkbUtil_.toFactId(idx, level));
+        return kb.getFactGraph(WkbUtil.toFactId(idx, level));
     }
 
     public int getFactCount(String level) {
@@ -124,8 +124,8 @@ public class Engine {
 class ConceptIdComparator implements Comparator<Concept> {
 
     public int compare(Concept o1, Concept o2) {
-        int id1 = WkbUtil_.getConceptIndex(o1.getId());
-        int id2 = WkbUtil_.getConceptIndex(o2.getId());
+        int id1 = WkbUtil.getConceptIndex(o1.getId());
+        int id2 = WkbUtil.getConceptIndex(o2.getId());
         return Compare.compare(id1, id2);
     }
 }

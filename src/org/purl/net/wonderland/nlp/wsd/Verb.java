@@ -42,7 +42,7 @@ import org.purl.net.wonderland.Configuration;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.wsd.Example.RoleData;
@@ -155,7 +155,7 @@ class Verb {
         return lemma;
     }
 
-    public List<Rule> getVerbNetProcs(WsdPersonality_ pers) {
+    public List<Rule> getVerbNetProcs(WsdPersonality pers) {
         Hierarchy cth = pers.getKb().getVocabulary().getConceptTypeHierarchy();
         List<Rule> procs = new ArrayList<Rule>();
         for (VerbFrame frame : frames) {
@@ -165,7 +165,7 @@ class Verb {
                     if (example.getType() == Example.Type.VerbNet) {
                         text = example.getText();
                         CGraph cg = pers.parse(text);
-                        Rule proc = new Rule(WkbUtil_.newUniqueId(), WkbUtil_.toProcName(lemma, WkbUtil_.newUniqueId()));
+                        Rule proc = new Rule(WkbUtil.newUniqueId(), WkbUtil.toProcName(lemma, WkbUtil.newUniqueId()));
 
 
                         // find VERB
@@ -239,7 +239,7 @@ class Verb {
                                             proc.addEdge(cHyptConc[1].getId(), rHyptConc[1].getId(), 2);
                                             proc.addCouple(cHyptConc[0].getId(), cHyptConc[1].getId());
                                         } else {
-                                            Concept cHypt = new Concept(WkbUtil_.newUniqueId());
+                                            Concept cHypt = new Concept(WkbUtil.newUniqueId());
                                             cHypt.setType(WkbConstants.ADPOSITION_CT);
                                             cHypt.setIndividual(c.getIndividual());
                                             cHypt.setHypothesis(true);
@@ -252,7 +252,7 @@ class Verb {
                                                 Relation dep2 = cg.getRelation(rit2.next());
                                                 if (dep2 != dep) {
 
-                                                    Relation rHypt = new Relation(WkbUtil_.newUniqueId());
+                                                    Relation rHypt = new Relation(WkbUtil.newUniqueId());
                                                     rHypt.setType(dep2.getType());
                                                     rHypt.setHypothesis(true);
                                                     proc.addVertex(rHypt);
@@ -296,14 +296,14 @@ class Verb {
     private Concept[] createVerbConceptHyptConc(Wkb kb, Rule proc, VerbFrame frame) {
         Concept hypt, conc;
 
-        hypt = new Concept(WkbUtil_.newUniqueId());
+        hypt = new Concept(WkbUtil.newUniqueId());
         hypt.setIndividual(kb.addIndividual(lemma));
         hypt.setType(WkbConstants.VERB_CT);
         hypt.setHypothesis(true);
         hypt.setIndividual(kb.addIndividual(lemma));
         proc.addVertex(hypt);
 
-        conc = new Concept(WkbUtil_.newUniqueId());
+        conc = new Concept(WkbUtil.newUniqueId());
         conc.setType(WkbConstants.PROCOP_ADD_CT);
         for (String sense : frame.getSenses()) {
             String ctId = kb.addConceptType(sense, null);
@@ -323,12 +323,12 @@ class Verb {
     private Concept[] createConceptHyptConc(Rule proc) {
         Concept hypt, conc;
 
-        hypt = new Concept(WkbUtil_.newUniqueId());
+        hypt = new Concept(WkbUtil.newUniqueId());
         hypt.setType(WkbConstants.LINKARG_CT);
         hypt.setHypothesis(true);
         proc.addVertex(hypt);
 
-        conc = new Concept(WkbUtil_.newUniqueId());
+        conc = new Concept(WkbUtil.newUniqueId());
         conc.setType(WkbConstants.PROCOP_KEEP_CT);
         conc.setConclusion(true);
         proc.addVertex(conc);
@@ -342,13 +342,13 @@ class Verb {
     private Relation[] createRelationHyptConc(Rule proc, Themrole role, Relation prototype) {
         Relation hypt, conc;
 
-        hypt = new Relation(WkbUtil_.newUniqueId());
+        hypt = new Relation(WkbUtil.newUniqueId());
         hypt.setType(prototype.getType());
         hypt.setHypothesis(true);
         proc.addVertex(hypt);
 
-        conc = new Relation(WkbUtil_.newUniqueId());
-        conc.setType(WkbUtil_.toRelationTypeId(role.getVnThemrole()));
+        conc = new Relation(WkbUtil.newUniqueId());
+        conc.setType(WkbUtil.toRelationTypeId(role.getVnThemrole()));
         conc.setConclusion(true);
         proc.addVertex(conc);
 
@@ -388,7 +388,7 @@ class Verb {
             }
         }
 
-        WkbUtil_.setAllConclusion(cg, false);
+        WkbUtil.setAllConclusion(cg, false);
         return cAdjacents;
     }
 }

@@ -152,7 +152,7 @@ public class ProcUtil {
 
         // add concepts
         for (Concept rhs : conceptsToAdd) {
-            Concept actual = new Concept(WkbUtil_.newUniqueId());
+            Concept actual = new Concept(WkbUtil.newUniqueId());
             actual.setType(rhs.getType());
             actual.setIndividual(rhs.getIndividual());
             fact.addVertex(actual);
@@ -187,7 +187,7 @@ public class ProcUtil {
 
     private static Concept[] getArgs(Relation r, CGraph cg) {
         int argCount = 0;
-        Concept[] tmpArgs = new Concept[WkbUtil_.MAX_RELATION_ARG_COUNT];
+        Concept[] tmpArgs = new Concept[WkbUtil.MAX_RELATION_ARG_COUNT];
         Iterator<CREdge> argEdges = cg.iteratorEdge(r.getId());
         while (argEdges.hasNext()) {
             CREdge argEdge = argEdges.next();
@@ -229,7 +229,7 @@ public class ProcUtil {
     }
 
     private static void addNewRelation(Relation r, Concept[] args, CGraph cg) {
-        String newRelationId = WkbUtil_.newUniqueId();
+        String newRelationId = WkbUtil.newUniqueId();
         Relation newRelation = new Relation(newRelationId);
         newRelation.setType(r.getType());
         cg.addVertex(newRelation);

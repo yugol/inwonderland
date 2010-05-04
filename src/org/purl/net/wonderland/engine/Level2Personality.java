@@ -34,7 +34,7 @@ import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.ProjectionSolver;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
-import org.purl.net.wonderland.kb.WkbUtil_;
+import org.purl.net.wonderland.kb.WkbUtil;
 
 /**
  *
@@ -83,7 +83,7 @@ public class Level2Personality extends Level1Personality {
         projSlv.reset();
         for (CGraph fact : facts) {
             kb.addFact(fact, WkbConstants.LEVEL1);
-            fact = WkbUtil_.duplicate(fact);
+            fact = WkbUtil.duplicate(fact);
             processArticles(fact);
             // processMoods(fact);
             // processCollocations(fact);
@@ -93,19 +93,19 @@ public class Level2Personality extends Level1Personality {
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetMoods), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetMoods), fact);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetCollocations), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetCollocations), fact);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil_.procSetArticles), fact);
+        applyAllNonOverlappingMatches(procMgr.getProcSet(WkbUtil.procSetArticles), fact);
     }
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
-        WkbUtil_.setAllConclusion(fact, false);
+        WkbUtil.setAllConclusion(fact, false);
         List<Proc> matches = projSlv.findMatches(procs, fact);
         for (Proc match : matches) {
             if (match != null) {
@@ -114,7 +114,7 @@ public class Level2Personality extends Level1Personality {
                 }
             }
         }
-        WkbUtil_.setAllConclusion(fact, false);
+        WkbUtil.setAllConclusion(fact, false);
     }
 
     protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {

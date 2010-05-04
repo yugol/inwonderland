@@ -31,8 +31,8 @@ import java.util.List;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
-import org.purl.net.wonderland.kb.WkbUtil_;
-import org.purl.net.wonderland.nlp.wsd.WsdProcManager_;
+import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 
 /**
  *
@@ -40,12 +40,12 @@ import org.purl.net.wonderland.nlp.wsd.WsdProcManager_;
  */
 public class Level3Personality extends Level2Personality {
 
-    protected WsdProcManager_ wsdProcMgr = null;
+    protected WsdProcManager wsdProcMgr = null;
 
     @Override
     public void setKb(Wkb kb) {
         super.setKb(kb);
-        wsdProcMgr = new WsdProcManager_(kb);
+        wsdProcMgr = new WsdProcManager(kb);
     }
 
     @Override
@@ -75,13 +75,13 @@ public class Level3Personality extends Level2Personality {
         for (CGraph fact : facts) {
             kb.addFact(fact, WkbConstants.LEVEL1);
 
-            fact = WkbUtil_.duplicate(fact);
+            fact = WkbUtil.duplicate(fact);
             processArticles(fact);
             // processMoods(fact);
             // processCollocations(fact);
             kb.addFact(fact, WkbConstants.LEVEL2);
 
-            fact = WkbUtil_.duplicate(fact);
+            fact = WkbUtil.duplicate(fact);
             disambiguate(fact);
             kb.addFact(fact, WkbConstants.LEVEL3);
         }

@@ -39,15 +39,15 @@ import org.purl.net.wonderland.util.IO;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public final class WsdProcManager_ {
+public final class WsdProcManager {
 
     static Set<String> syntaxTags = new HashSet<String>();
     //
     private final Wkb kb;
     private final ProcManager verbProcs = new ProcManager();
-    private WsdPersonality_ wsdPers = null;
+    private WsdPersonality wsdPers = null;
 
-    public WsdProcManager_(Wkb kb) {
+    public WsdProcManager(Wkb kb) {
         this.kb = kb;
     }
 
@@ -80,9 +80,9 @@ public final class WsdProcManager_ {
         return procs;
     }
 
-    private WsdPersonality_ getWSDPers() throws Exception {
+    private WsdPersonality getWSDPers() throws Exception {
         if (wsdPers == null) {
-            wsdPers = new WsdPersonality_();
+            wsdPers = new WsdPersonality();
             wsdPers.setKb(new Wkb(Configuration.getDefaultParseKBFile()));
         }
         return wsdPers;
