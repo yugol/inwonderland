@@ -26,7 +26,7 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import java.util.List;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcUtil;
@@ -49,7 +49,7 @@ public class Level2Personality extends Level1Personality {
             projSlv = new ProjectionSolver(memory.getStorage());
         } catch (Exception ex) {
             System.err.println("Could not set knowledge base");
-            Configuration.handleException(ex);
+            W.handleException(ex);
         }
     }
 
@@ -90,15 +90,15 @@ public class Level2Personality extends Level1Personality {
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetMoods), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_MOODS), fact);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetCollocations), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_COLLO), fact);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.procSetArticles), fact);
+        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_ARTICLES), fact);
     }
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {

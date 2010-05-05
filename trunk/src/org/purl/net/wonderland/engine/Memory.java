@@ -56,4 +56,8 @@ public class Memory {
     public void save(File file) throws Exception {
         ltm.save(file);
     }
+
+    public Declarative getDeclarative() {
+        return ltm.getDeclarative();
+    }
 }

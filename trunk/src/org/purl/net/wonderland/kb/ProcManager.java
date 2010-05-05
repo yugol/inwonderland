@@ -38,10 +38,6 @@ public class ProcManager {
         allProcs = new Hashtable<String, ProcList>();
     }
 
-    public ProcManager(Wkb kb) throws Exception {
-        this();
-    }
-
     public int getProcCount() {
         int count = 0;
         for (ProcList set : allProcs.values()) {
@@ -57,5 +53,4 @@ public class ProcManager {
     public ProcList getProcSet(String name) {
         return allProcs.get(name);
     }
-
 }

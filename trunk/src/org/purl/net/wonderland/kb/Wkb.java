@@ -43,7 +43,7 @@ import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Pointer;
 import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -241,7 +241,7 @@ public class Wkb {
         return senseId;
     }
 
-    public String[] importWordNetHypernymHierarchy(String word, POS posType) {
+    public List<String> importWordNetHypernymHierarchy(String word, POS posType) {
         String parentLabel = null;
         String parentId = null;
         String particle = null;
@@ -270,10 +270,10 @@ public class Wkb {
                 senseTypes.add(senseType);
             }
         } catch (RuntimeException ex) {
-            Configuration.reportExceptionConsole(ex);
+            W.reportExceptionConsole(ex);
             return null;
         }
-        return senseTypes.toArray(new String[]{});
+        return senseTypes;
     }
 
     public ProcList getProcRules(String set) {

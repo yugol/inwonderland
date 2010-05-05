@@ -27,7 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Level2Personality;
 import org.purl.net.wonderland.engine.Personality;
@@ -44,9 +44,9 @@ import org.purl.net.wonderland.kb.WkbUtil;
  */
 public class GoldTest {
 
+    private static File corpusFile = W.res(W.RES_BEDTIME_CORPUS);
     private static Personality pers = new Level2Personality();
     private static String level = WkbConstants.LEVEL2;
-    private static String corpusFileName = "bedtime/story.txt";
     private static int firstSentence = 1;
     private static int lastSentence = 42;
     private static MafCorpus corpus;
@@ -57,10 +57,10 @@ public class GoldTest {
         engine = new Engine();
         engine.setPersonality(pers);
 
-        Configuration.init();
-        WkbUtil.normalizeKbFile(Configuration.getDefaultParseKBFile());
+        W.init();
+        WkbUtil.normalizeKbFile(W.getDefaultWkbFile());
 
-        corpus = new MafCorpus(new File(Configuration.getCorporaFolder(), corpusFileName));
+        corpus = new MafCorpus(corpusFile);
 
         if (lastSentence < firstSentence) {
             lastSentence = corpus.getPlainLineCount() - 1;
@@ -80,9 +80,9 @@ public class GoldTest {
         saveTestResults();
     }
 
-    @Test
+    // @Test
     public void buildCorpus() throws Exception {
-        System.out.println("Building corpus - " + corpusFileName);
+        System.out.println("Building corpus - " + corpusFile.getName());
 
         for (int i = firstSentence; i <= lastSentence; ++i) {
             String line = corpus.getPlainLine(i - 1);
@@ -98,9 +98,9 @@ public class GoldTest {
         saveTestResults();
     }
 
-    // @Test
+    @Test
     public void testGoldCorpus() throws Exception {
-        System.out.println("Testing corpus - " + corpusFileName);
+        System.out.println("Testing corpus - " + corpusFile.getName());
 
         List<Integer> errSentences = new ArrayList<Integer>();
         int errorCount = 0;

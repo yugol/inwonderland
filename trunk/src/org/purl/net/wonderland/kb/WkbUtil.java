@@ -53,10 +53,10 @@ public class WkbUtil {
     public static final int UUID_LENGTH = newUniqueId().length();
     public static final int MAX_RELATION_ARG_COUNT = 10;
     //
-    public static final String proc = "proc_";
-    public static final String procSetArticles = "article";
-    public static final String procSetMoods = "mood";
-    public static final String procSetCollocations = "collo";
+    public static final String PROC = "proc_";
+    public static final String PROC_SET_ARTICLES = "article";
+    public static final String PROC_SET_MOODS = "mood";
+    public static final String PROC_SET_COLLO = "collo";
     //
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
 
@@ -81,7 +81,7 @@ public class WkbUtil {
     }
 
     public static String toProcName(String set, String name) {
-        return proc + set + "_" + ((name != null) ? (name) : (""));
+        return PROC + set + "_" + ((name != null) ? (name) : (""));
     }
 
     public static String toConceptId(WTagging tagging, int index) {
@@ -240,7 +240,7 @@ public class WkbUtil {
             Element graphElement = (Element) hyptElement.getElementsByTagName("graph").item(0);
 
             String label = graphElement.getAttribute("label");
-            if (label.indexOf(proc) == 0) {
+            if (label.indexOf(PROC) == 0) {
                 graphElement.setAttribute("set", label.split("_")[1]);
             }
         }

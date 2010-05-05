@@ -24,7 +24,7 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import java.io.File;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 
 /**
  *
@@ -36,6 +36,6 @@ public final class PropBankWrapper {
         if (lemma.equals("con")) {
             lemma = "_con";
         }
-        return new File(Configuration.getPropBankDataFolder(), lemma + ".xml");
+        return new File(W.getPropBankDataFolder(), lemma + ".xml");
     }
 }

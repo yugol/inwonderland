@@ -24,7 +24,6 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.ling.Word;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
@@ -35,7 +34,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TypedDependency;
 import java.io.StringReader;
 import java.util.List;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.util.CodeTimer;
 
 /**
@@ -50,7 +49,7 @@ public final class StanfordParserWrapper {
 
     static {
         CodeTimer timer = new CodeTimer("StanfordParserWrapper");
-        lp = new LexicalizedParser(Configuration.getStanfordParserFile().getAbsolutePath());
+        lp = new LexicalizedParser(W.res(W.RES_SP_FILE_PATH).getAbsolutePath());
         lp.setOptionFlags(new String[]{"-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies,collocations", "-outputFormatOptions", "treeDependencies"});
         dp = new DocumentPreprocessor(lp.getOp().tlpParams.treebankLanguagePack().getTokenizerFactory());
         gsf = lp.getOp().langpack().grammaticalStructureFactory();
@@ -81,7 +80,6 @@ public final class StanfordParserWrapper {
     public static List<TaggedWord> getPennPosTags(Tree parse) {
         return parse.taggedYield();
     }
-
 
     public static void init() {
     }

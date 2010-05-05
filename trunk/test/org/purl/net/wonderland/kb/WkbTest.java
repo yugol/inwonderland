@@ -25,10 +25,11 @@ package org.purl.net.wonderland.kb;
 
 import edu.stanford.nlp.util.StringUtils;
 import java.io.File;
+import java.util.List;
 import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 
 /**
  *
@@ -38,36 +39,36 @@ public class WkbTest {
 
     @Test
     public void testImportWordNetHierarchy() throws Exception {
-        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
         File cogxml = new File("test_word_import.cogxml");
 
-        String[] sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
+        List<String> sTypes = kb.importWordNetHypernymHierarchy("zzzb", POS.NOUN);
         assertNull(sTypes);
 
         sTypes = kb.importWordNetHypernymHierarchy("door", POS.NOUN);
         kb.save(cogxml);
-        assertEquals(5, sTypes.length);
+        assertEquals(5, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
 
         sTypes = kb.importWordNetHypernymHierarchy("can", POS.VERB);
         kb.save(cogxml);
-        assertEquals(2, sTypes.length);
+        assertEquals(2, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
 
         sTypes = kb.importWordNetHypernymHierarchy("big", POS.ADJECTIVE);
         kb.save(cogxml);
-        assertEquals(13, sTypes.length);
+        assertEquals(13, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
 
         sTypes = kb.importWordNetHypernymHierarchy("good", POS.ADVERB);
         kb.save(cogxml);
-        assertEquals(2, sTypes.length);
+        assertEquals(2, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
     }
 
     @Test
     public void testImportVerbNetHierarchy() throws Exception {
-        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
         File cogxml = new File("test_verb_import.cogxml");
 
         String[] sTypes = kb.importVerbNetHierarchy("zzzb");

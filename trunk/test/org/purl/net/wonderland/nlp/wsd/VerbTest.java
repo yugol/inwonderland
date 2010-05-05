@@ -27,7 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
@@ -40,7 +40,7 @@ public class VerbTest {
 
     // @Test
     public void testAllVerbs() throws Exception {
-        for (File file : Configuration.getPropBankDataFolder().listFiles()) {
+        for (File file : W.getPropBankDataFolder().listFiles()) {
             String lemma = file.getName();
             int endIndex = lemma.lastIndexOf(".xml");
             if (endIndex > 0) {
@@ -62,9 +62,9 @@ public class VerbTest {
 
     @Test
     public void testOneVerbToProcs() throws Exception {
-        Configuration.init();
+        W.init();
 
-        Memory memory = new Memory(Configuration.getDefaultParseKBFile());
+        Memory memory = new Memory(W.getDefaultWkbFile());
         WsdPersonality pers = new WsdPersonality();
         pers.setMemory(memory);
 

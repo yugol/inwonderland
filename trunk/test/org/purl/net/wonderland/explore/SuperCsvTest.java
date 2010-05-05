@@ -21,10 +21,8 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.explore;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,7 +30,7 @@ import org.junit.Test;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.nlp.WTagging;
 
 /**
@@ -43,7 +41,7 @@ public class SuperCsvTest {
 
     @Test
     public void testReadCsv() throws FileNotFoundException, IOException {
-        String dbFile = new File(Configuration.getMorphologyFolder(), "pos/article.csv").getCanonicalPath();
+        String dbFile = W.res(W.RES_MORPHOLOGY_FOLDER_PATH, "article.csv").getAbsolutePath();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(dbFile), CsvPreference.EXCEL_PREFERENCE);
         try {
             final String[] header = inFile.getCSVHeader(true);

@@ -28,8 +28,7 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import net.didion.jwnl.data.POS;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcManager;
@@ -42,6 +41,7 @@ import org.purl.net.wonderland.util.IO;
  */
 public final class WsdProcManager {
 
+    private static final String RULES_FILE_EXTENSION = ".rules.xml";
     static Set<String> syntaxTags = new HashSet<String>();
     //
     private final Wkb kb;
@@ -60,9 +60,9 @@ public final class WsdProcManager {
         ProcList procs = verbProcs.getProcSet(lemma);
         if (procs == null) {
             try {
-                File procFile = new File(Configuration.getWsdFolder(), "procs/manual/verb/" + lemma + ".rules.xml");
+                File procFile = W.res(W.RES_WSD_VERB_MANUAL_FOLDER_PATH, lemma + RULES_FILE_EXTENSION);
                 if (!procFile.exists()) {
-                    procFile = new File(Configuration.getWsdFolder(), "procs/automatic/verb/" + lemma + ".rules.xml");
+                    procFile = W.res(W.RES_WSD_VERB_AUTOMATIC_FOLDER_PATH, lemma + RULES_FILE_EXTENSION);
                     if (!procFile.exists()) {
                         Verb v = new Verb(lemma);
                         List<Rule> rules = v.getVerbNetProcs(getWsdPers());
@@ -73,7 +73,7 @@ public final class WsdProcManager {
                 procs.sort();
                 verbProcs.putProcList(lemma, procs);
             } catch (Exception ex) {
-                Configuration.reportExceptionConsole(ex);
+                W.reportExceptionConsole(ex);
                 procs = null;
             }
         }
@@ -83,7 +83,7 @@ public final class WsdProcManager {
     private WsdPersonality getWsdPers() throws Exception {
         if (wsdPers == null) {
             wsdPers = new WsdPersonality();
-            wsdPers.setMemory(new Memory(Configuration.getDefaultParseKBFile()));
+            wsdPers.setMemory(new Memory(W.getDefaultWkbFile()));
         }
         return wsdPers;
     }

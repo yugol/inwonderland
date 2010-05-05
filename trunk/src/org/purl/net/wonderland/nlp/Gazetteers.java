@@ -23,7 +23,7 @@
  */
 package org.purl.net.wonderland.nlp;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -36,8 +36,9 @@ import java.util.Set;
 import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.util.CodeTimer;
+import org.purl.net.wonderland.util.IO;
 
 /**
  *
@@ -66,10 +67,39 @@ public abstract class Gazetteers {
     static Map<String, WTagging> interrogativeAdverb;
     static Map<String, WTagging> adverb;
     static Map<String, WTagging> adjective;
+    //
+    private static final String SET_STRING = "java.util.Set<java.lang.String>";
+    static Set<String> city;
+    static Set<String> country;
+    static Set<String> femaleFirstName;
+    static Set<String> lastName;
+    static Set<String> maleFirstName;
 
-    static Map<String, WTagging> readMorphologyDataFile(String formFile) throws FileNotFoundException, IOException {
-        formFile = Configuration.getMorphologyFolder().getAbsolutePath() + "/" + formFile;
+    public static void init() {
+    }
+
+    static {
+        CodeTimer timer = new CodeTimer("Gazetteers");
+        for (Field f : Gazetteers.class.getDeclaredFields()) {
+            String name = f.getName();
+            try {
+                String memberName = f.getGenericType().toString();
+                if (MAP_STRING_WTAGGING.equals(memberName)) {
+                    f.set(null, readMorphologyDataFile(name + ".csv"));
+                } else if (SET_STRING.equals(memberName)) {
+                    f.set(null, readListDataFile(name + ".txt"));
+                }
+            } catch (Exception ex) {
+                System.err.println("Error reading '" + name + "'");
+                W.handleException(ex);
+            }
+        }
+        timer.stop();
+    }
+
+    static Map<String, WTagging> readMorphologyDataFile(String formFile) throws IOException {
         Map<String, WTagging> map = new HashMap<String, WTagging>();
+        formFile = W.res(W.RES_MORPHOLOGY_FOLDER_PATH, formFile).getAbsolutePath();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
         try {
             final String[] header = inFile.getCSVHeader(true);
@@ -83,24 +113,18 @@ public abstract class Gazetteers {
         return map;
     }
 
-    public static void init() {
-    }
+    static Set<String> readListDataFile(String formFile) throws IOException {
+        Set<String> set = new HashSet<String>();
 
-    static {
-        CodeTimer timer = new CodeTimer("Gazetteers");
-        for (Field f : Gazetteers.class.getDeclaredFields()) {
-            String name = f.getName();
-            try {
-                String memberName = f.getGenericType().toString();
-                if (MAP_STRING_WTAGGING.equals(memberName)) {
-                    f.set(null, readMorphologyDataFile(name + ".csv"));
-                }
-            } catch (Exception ex) {
-                System.err.println("Error reading '" + name + "'");
-                Configuration.handleException(ex);
-            }
-        }
-        timer.stop();
+        File dataFile = W.res(W.RES_SENSES_MANUAL_FOLDER_PATH, formFile);
+        dataFile.createNewFile();
+        IO.readTrimmedLinesInSet(set, dataFile);
+
+        dataFile = W.res(W.RES_SENSES_AUTOMATIC_FOLDER_PATH, formFile);
+        dataFile.createNewFile();
+        IO.readTrimmedLinesInSet(set, dataFile);
+
+        return set;
     }
 
     public static List<WTagging> getAllTagings(String word) {
@@ -117,7 +141,7 @@ public abstract class Gazetteers {
             }
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllTagings");
-            Configuration.handleException(ex);
+            W.handleException(ex);
         }
 
         return tags;
@@ -132,7 +156,7 @@ public abstract class Gazetteers {
             }
         } catch (Exception ex) {
             System.out.println("Error in MorphologicalDatabase.getAllForms");
-            Configuration.handleException(ex);
+            W.handleException(ex);
         }
 
         return forms;

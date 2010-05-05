@@ -33,7 +33,7 @@ import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.dictionary.Dictionary;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 
 /**
  *
@@ -43,7 +43,7 @@ public class WordNetTest {
 
     @Test
     public void testNonVerb() throws JWNLException, FileNotFoundException {
-        JWNL.initialize(new FileInputStream(Configuration.getJwnlPropertiesFile()));
+        JWNL.initialize(new FileInputStream(W.getJwnlPropertiesFile()));
         Dictionary wn = Dictionary.getInstance();
         IndexWord word = wn.lookupIndexWord(POS.NOUN, "dog");
         System.out.println(word.getLemma());
@@ -51,7 +51,7 @@ public class WordNetTest {
 
     @Test
     public void testVerb() throws JWNLException, FileNotFoundException {
-        JWNL.initialize(new FileInputStream(Configuration.getJwnlPropertiesFile()));
+        JWNL.initialize(new FileInputStream(W.getJwnlPropertiesFile()));
         Dictionary wn = Dictionary.getInstance();
         IndexWord word = wn.lookupIndexWord(POS.VERB, "gray");
         String frames = StringUtils.join(word.getSense(1).getVerbFrames(), ", ");

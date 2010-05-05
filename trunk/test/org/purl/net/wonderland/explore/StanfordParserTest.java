@@ -21,7 +21,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.explore;
 
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
@@ -38,7 +37,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import static org.junit.Assert.*;
 
 /**
@@ -67,13 +66,13 @@ public class StanfordParserTest {
                 + "The colourless green ideas sleep furiously.";
         for (List<? extends HasWord> sentence : StanfordParserWrapper.getSentences(text)) {
             assertTrue(StanfordParserWrapper.getParser().parse(sentence));
-            // Configuration.lp.getTreePrint().printTree(Configuration.lp.getBestParse());
+            // W.lp.getTreePrint().printTree(W.lp.getBestParse());
         }
     }
 
     @Test
     public void testDemo() {
-        LexicalizedParser lp = new LexicalizedParser(Configuration.getStanfordParserFile().getAbsolutePath());
+        LexicalizedParser lp = new LexicalizedParser(W.res(W.RES_SP_FILE_PATH).getAbsolutePath());
         lp.setOptionFlags(new String[]{"-maxLength", "80", "-retainTmpSubcategories", "-outputFormat", "penn,typedDependencies", "-outputFormatOptions", "treeDependencies"});
 
         String[] sent = {"They", "left", "one", "by", "one", "."};

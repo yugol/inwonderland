@@ -23,10 +23,14 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbConstants;
 
 /**
  *
@@ -48,5 +52,29 @@ public class Declarative {
 
     public Wkb getStorage() {
         return storage;
+    }
+
+    public List<String> getAllSenses(Concept c) {
+        Hierarchy cth = storage.getVocabulary().getConceptTypeHierarchy();
+        String lemma = c.getIndividual();
+        String[] types = c.getType();
+
+        List<String> senses = null;
+
+        if (cth.isKindOf(types, WkbConstants.NOUN_CT)) {
+            if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
+                senses = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);
+            } else if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
+                senses = new ArrayList<String>();
+            }
+        } else if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
+            senses = storage.importWordNetHypernymHierarchy(lemma, POS.VERB);
+        } else if (cth.isKindOf(types, WkbConstants.ADJECTIVE_CT)) {
+            senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
+        } else if (cth.isKindOf(types, WkbConstants.ADVERB_CT)) {
+            senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADVERB);
+        }
+
+        return senses;
     }
 }

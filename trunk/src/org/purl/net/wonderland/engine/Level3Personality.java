@@ -27,6 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Iterator;
+import java.util.List;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
@@ -71,31 +72,12 @@ public class Level3Personality extends Level2Personality {
     }
 
     private void loadSenses(CGraph fact) {
-        Wkb storage = memory.getStorage();
-        Hierarchy cth = storage.getVocabulary().getConceptTypeHierarchy();
-
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
-            String lemma = c.getIndividual();
-            String[] types = c.getType();
-
-            String[] senses = null;
-            if (cth.isKindOf(types, WkbConstants.NOUN_CT)) {
-                if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
-                    senses = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);
-                } else if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
-                }
-            } else if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
-                senses = storage.importWordNetHypernymHierarchy(lemma, POS.VERB);
-            } else if (cth.isKindOf(types, WkbConstants.ADJECTIVE_CT)) {
-                senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
-            } else if (cth.isKindOf(types, WkbConstants.ADVERB_CT)) {
-                senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADVERB);
-            }
-
-            if (senses != null) {
-                WkbUtil.joinSetType(c, types, senses);
+            List<String> senses = memory.getDeclarative().getAllSenses(c);
+            for (String type : senses) {
+                c.addType(type);
             }
         }
     }

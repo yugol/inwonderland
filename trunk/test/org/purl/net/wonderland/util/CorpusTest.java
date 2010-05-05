@@ -36,7 +36,7 @@ import org.purl.net.wonderland.kb.WkbConstants;
  */
 public class CorpusTest {
 
-    @Test
+    // @Test
     public void testCorpusSimpleOperations() throws Exception {
         Engine msgProc = new Engine();
         msgProc.setPersonality(new Level1Personality());
