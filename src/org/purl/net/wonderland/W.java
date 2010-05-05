@@ -64,6 +64,7 @@ public final class W {
     private static final String RES_VN_INDEX_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/verbnet";
     public static final String RES_VN_FILE_INDEX_FILE_PATH = RES_VN_INDEX_FOLDER_PATH + "/file_index.csv";
     public static final String RES_VN_VERB_INDEX_FILE_PATH = RES_VN_INDEX_FOLDER_PATH + "/verb_index.csv";
+    public static final String RES_VN_WNSENSES_2_THMATIC_ROLE_TYPE_FILE_PATH = RES_VN_INDEX_FOLDER_PATH + "/wn2trt.csv";
     public static final String RES_SP_FILE_PATH = "stanfordparser/englishPCFG.ser.gz";
     public static final String RES_MORPHOLOGY_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/morphology";
     public static final String RES_SENSES_MANUAL_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/senses/" + MANUAL;
