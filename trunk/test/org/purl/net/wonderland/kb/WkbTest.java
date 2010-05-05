@@ -25,6 +25,7 @@ package org.purl.net.wonderland.kb;
 
 import edu.stanford.nlp.util.StringUtils;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
@@ -38,7 +39,20 @@ import org.purl.net.wonderland.W;
 public class WkbTest {
 
     @Test
-    public void testImportWordNetHierarchy() throws Exception {
+    public void testImportWordNetHierarchySense() throws Exception {
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
+        File cogxml = new File("test_senses_import.cogxml");
+
+        List<String> senseTypes = new ArrayList<String>();
+        senseTypes.add(WkbUtil.toConceptTypeId("n10787470"));
+        senseTypes.add(WkbUtil.toConceptTypeId("n00007846"));
+
+        kb.importWordNetHypernymHierarchy(senseTypes);
+        kb.save(cogxml);
+    }
+
+    @Test
+    public void testImportWordNetHierarchyLemma() throws Exception {
         Wkb kb = new Wkb(W.getDefaultWkbFile());
         File cogxml = new File("test_word_import.cogxml");
 

@@ -93,7 +93,7 @@ public class Engine {
     }
 
     public int getFactCount(String level) {
-        return memory.getLtm().getDeclarative().getStorage().getFactCount(level);
+        return memory.getStorage().getFactCount(level);
     }
 
     public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
@@ -115,7 +115,7 @@ public class Engine {
     }
 
     public int getFactCount() {
-        return memory.getLtm().getDeclarative().getStorage().getFactCount();
+        return memory.getStorage().getFactCount();
     }
 }
 

@@ -45,6 +45,7 @@ import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.WonderlandException;
+import org.purl.net.wonderland.WonderlandRuntimeException;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
@@ -242,38 +243,43 @@ public class Wkb {
     }
 
     public List<String> importWordNetHypernymHierarchy(String word, POS posType) {
-        String parentLabel = null;
-        String parentId = null;
-        String particle = null;
-        if (posType == POS.NOUN) {
-            parentLabel = WkbConstants.WN_NOUN;
-            parentId = WkbUtil.toConceptTypeId(parentLabel);
-        } else if (posType == POS.ADJECTIVE) {
-            parentLabel = WkbConstants.WN_ADJECTIVE;
-            parentId = WkbUtil.toConceptTypeId(parentLabel);
-        } else if (posType == POS.ADVERB) {
-            parentLabel = WkbConstants.WN_ADVERB;
-            parentId = WkbUtil.toConceptTypeId(parentLabel);
-        } else if (posType == POS.VERB) {
-            parentLabel = WkbConstants.WN_VERB;
-            parentId = WkbUtil.toConceptTypeId(parentLabel);
-        } else {
-            return null;
-        }
+        String particle = WordNetWrapper.getAlphaPosParticle(posType);
+        String parentId = WkbUtil.getPosParentId(posType);
 
-        particle = WordNetWrapper.getAlpha(posType);
-
-        ArrayList<String> senseTypes = new ArrayList<String>(20);
+        ArrayList<String> senseTypes = null;
         try {
-            for (Synset sense : WordNetWrapper.getSenses(word, posType)) {
-                String senseType = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
-                senseTypes.add(senseType);
+            Synset[] senses = WordNetWrapper.getSenses(word, posType);
+            if (senses != null) {
+                senseTypes = new ArrayList<String>();
+                for (Synset sense : senses) {
+                    String senseType = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
+                    senseTypes.add(senseType);
+                }
             }
         } catch (RuntimeException ex) {
             W.reportExceptionConsole(ex);
-            return null;
+            senseTypes = null;
         }
+
         return senseTypes;
+    }
+
+    public void importWordNetHypernymHierarchy(List<String> senseTypes) {
+        try {
+            for (String senseType : senseTypes) {
+                String senseKey = WkbUtil.toConceptType(senseType);
+                Synset sense = WordNetWrapper.lookup(senseKey);
+                POS posType = sense.getPOS();
+                String particle = senseKey.substring(0, 1);
+                String parentId = WkbUtil.getPosParentId(posType);
+                String senseType2 = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
+                if (!senseType.equals(senseType2)) {
+                    throw new WonderlandRuntimeException("input sense differs from output sense");
+                }
+            }
+        } catch (RuntimeException ex) {
+            W.reportExceptionConsole(ex);
+        }
     }
 
     public ProcList getProcRules(String set) {

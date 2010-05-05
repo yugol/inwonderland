@@ -29,7 +29,6 @@ import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Memory;
-import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
 
 /**

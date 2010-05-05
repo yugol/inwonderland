@@ -28,9 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.Iterator;
 import java.util.List;
-import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.ProcList;
-import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
 
@@ -65,20 +63,49 @@ public class Level3Personality extends Level2Personality {
         super.processFact(fact);
 
         fact = WkbUtil.duplicate(fact);
-        loadSenses(fact);
+        loadWordNetSenses(fact);
+        inferThematicRolesTypes(fact);
+        cleanConceptTypes(fact);
         projSlv.reset();
         disambiguate(fact);
         memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
     }
 
-    private void loadSenses(CGraph fact) {
+    private void loadWordNetSenses(CGraph fact) {
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
-            List<String> senses = memory.getDeclarative().getAllSenses(c);
-            for (String type : senses) {
-                c.addType(type);
+            List<String> senses = memory.getDeclarative().getImportWordNetSenses(c);
+            if (senses != null) {
+                for (String type : senses) {
+                    c.addType(type);
+                }
             }
+        }
+    }
+
+    private void inferThematicRolesTypes(CGraph fact) {
+        Hierarchy cth = memory.getStorage().getVocabulary().getConceptTypeHierarchy();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            String[] types = c.getType();
+            if (cth.isKindOf(types, WkbConstants.NOUN_CT)
+                    || cth.isKindOf(types, WkbConstants.ADJECTIVE_CT)) {
+                List<String> trts = memory.getDeclarative().deriveThematicRolesTypes(types);
+                for (String type : trts) {
+                    c.addType(type);
+                }
+            }
+        }
+    }
+
+    private void cleanConceptTypes(CGraph fact) {
+        Hierarchy cth = memory.getStorage().getVocabulary().getConceptTypeHierarchy();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            WkbUtil.normalizeConcept(c, cth);
         }
     }
 
@@ -91,7 +118,7 @@ public class Level3Personality extends Level2Personality {
             String[] types = c.getType();
 
             if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
-                ProcList wsdProcs = memory.getLtm().getProcedural().getWsd().getVerbProcs(lemma);
+                ProcList wsdProcs = memory.getProcedural().getWsd().getVerbProcs(lemma);
                 applyFirstMatch(wsdProcs, fact);
             }
         }
