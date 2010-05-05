@@ -23,7 +23,6 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
 import org.purl.net.wonderland.kb.Wkb;
 
@@ -33,31 +32,27 @@ import org.purl.net.wonderland.kb.Wkb;
  */
 public class Memory {
 
-    private Ltm ltm;
-    private Stm stm;
+    private Declarative declarative;
+    private Procedural procedural;
 
     public Memory(File file) throws Exception {
-        stm = new Stm(7);
-        ltm = new Ltm(file);
-    }
-
-    public Ltm getLtm() {
-        return ltm;
-    }
-
-    public Stm getStm() {
-        return stm;
-    }
-
-    public Wkb getStorage() {
-        return ltm.getDeclarative().getStorage();
+        declarative = new Declarative(file);
+        procedural = new Procedural(declarative.getStorage());
     }
 
     public void save(File file) throws Exception {
-        ltm.save(file);
+        declarative.save(file);
     }
 
     public Declarative getDeclarative() {
-        return ltm.getDeclarative();
+        return declarative;
+    }
+
+    public Procedural getProcedural() {
+        return procedural;
+    }
+
+    public Wkb getStorage() {
+        return declarative.getStorage();
     }
 }

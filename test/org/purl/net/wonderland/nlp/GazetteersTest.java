@@ -23,7 +23,9 @@
  */
 package org.purl.net.wonderland.nlp;
 
+import java.util.List;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -32,7 +34,27 @@ import org.junit.Test;
 public class GazetteersTest {
 
     @Test
-    public void testInit() {
-        Gazetteers.init();
+    public void wtagging() {
+        assertEquals(15, Gazetteers.personalPronoun.keySet().size());
+    }
+
+    @Test
+    public void sets() {
+        assertTrue(Gazetteers.femaleFirstName.contains("elizabeth"));
+    }
+
+    @Test
+    public void selRestr() {
+        assertEquals(30, Gazetteers.selRestrs.size());
+        assertEquals("ct_abstract", Gazetteers.selRestrs.get("ct_n00002137"));
+    }
+
+    @Test
+    public void getSenses() {
+        assertEquals(5, Gazetteers.senseFile2wns.size());
+        assertEquals("ct_n00007846", Gazetteers.senseFile2wns.get("lastName").get(0));
+        List<String> senses = Gazetteers.getWNSensesFor("elizabeth");
+        assertEquals(1, senses.size());
+        assertEquals("ct_n10787470", senses.get(0));
     }
 }

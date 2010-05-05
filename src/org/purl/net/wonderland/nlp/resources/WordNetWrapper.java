@@ -323,14 +323,14 @@ public final class WordNetWrapper {
     }
 
     public static String toWordNetOffsetKeyAlpha(POS pos, long offset) {
-        return getAlpha(pos) + toWordNetOffset(offset);
+        return getAlphaPosParticle(pos) + toWordNetOffset(offset);
     }
 
     public static String toWordNetOffsetKeyNum(POS pos, long offset) {
-        return getNumber(pos) + toWordNetOffset(offset);
+        return getNumberPosParticle(pos) + toWordNetOffset(offset);
     }
 
-    public static String getAlpha(POS pos) {
+    public static String getAlphaPosParticle(POS pos) {
         if (pos == POS.NOUN) {
             return "n";
         }
@@ -346,7 +346,7 @@ public final class WordNetWrapper {
         return null;
     }
 
-    public static String getNumber(POS pos) {
+    public static String getNumberPosParticle(POS pos) {
         if (pos == POS.NOUN) {
             return "1";
         }

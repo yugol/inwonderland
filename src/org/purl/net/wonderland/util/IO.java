@@ -30,7 +30,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -123,12 +122,11 @@ public class IO {
         return lines;
     }
 
-    public static void readTrimmedLinesInSet(Set<String> set, File dataFile) throws IOException {
+    public static void readLemmaSet(Set<String> set, File dataFile) throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(dataFile));
         String str;
-        List<String> lines = new ArrayList<String>();
         while ((str = in.readLine()) != null) {
-            lines.add(str.trim());
+            set.add(str.trim().toLowerCase());
         }
         in.close();
     }

@@ -90,15 +90,15 @@ public class Level2Personality extends Level1Personality {
     }
 
     protected void processMoods(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_MOODS), fact);
+        applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_MOODS), fact);
     }
 
     protected void processCollocations(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_COLLO), fact);
+        applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_COLLO), fact);
     }
 
     protected void processArticles(CGraph fact) throws Exception {
-        applyAllNonOverlappingMatches(memory.getLtm().getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_ARTICLES), fact);
+        applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_ARTICLES), fact);
     }
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {

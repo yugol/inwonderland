@@ -27,6 +27,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,6 +37,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
+import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
@@ -59,6 +61,8 @@ public class WkbUtil {
     public static final String PROC_SET_COLLO = "collo";
     //
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
+    private static final String CONCEPT_TYPE_PREFIX = "ct_";
+    private static final String RELATION_TYPE_PREFIX = "rt_";
 
     public static String newUniqueId() {
         return UUID.randomUUID().toString();
@@ -73,11 +77,15 @@ public class WkbUtil {
     }
 
     public static String toConceptTypeId(String ctl) {
-        return "ct_" + handleQuotes(ctl);
+        return CONCEPT_TYPE_PREFIX + handleQuotes(ctl);
+    }
+
+    public static String toConceptType(String senseType) {
+        return senseType.substring(CONCEPT_TYPE_PREFIX.length());
     }
 
     public static String toRelationTypeId(String ctl) {
-        return "rt_" + ctl;
+        return RELATION_TYPE_PREFIX + ctl;
     }
 
     public static String toProcName(String set, String name) {
@@ -274,5 +282,51 @@ public class WkbUtil {
         System.arraycopy(set1, 0, types, 0, set1.length);
         System.arraycopy(set2, 0, types, set1.length, set2.length);
         c.setType(types);
+    }
+
+    public static String getPosParentId(POS posType) {
+        String parentId;
+
+        if (posType == POS.NOUN) {
+            parentId = WkbUtil.toConceptTypeId(WkbConstants.WN_NOUN);
+        } else if (posType == POS.ADJECTIVE) {
+            parentId = WkbUtil.toConceptTypeId(WkbConstants.WN_ADJECTIVE);
+        } else if (posType == POS.ADVERB) {
+            parentId = WkbUtil.toConceptTypeId(WkbConstants.WN_ADVERB);
+        } else if (posType == POS.VERB) {
+            parentId = WkbUtil.toConceptTypeId(WkbConstants.WN_VERB);
+        } else {
+            return null;
+        }
+
+        return parentId;
+    }
+
+    public static void normalizeConcept(Concept c, Hierarchy cth) {
+        // keep only UUID as id
+        String id = c.getId();
+        id = id.substring(0, UUID_LENGTH);
+        c.setId(id);
+
+        // remove redundant types (parent type if it has at least one child)
+        String[] types = c.getType();
+        for (int a = 0; a < types.length; a++) {
+            String ta = types[a];
+            for (int b = 0; b < types.length; b++) {
+                String tb = types[b];
+                if (tb != null && (a != b)) {
+                    if (cth.isKindOf(tb, ta)) {
+                        types[a] = null;
+                        break;
+                    }
+                }
+            }
+        }
+        c.setType(new String[0]);
+        for (String type : types) {
+            if (type != null) {
+                c.addType(type);
+            }
+        }
     }
 }

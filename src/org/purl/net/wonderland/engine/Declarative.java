@@ -31,6 +31,7 @@ import java.util.List;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.nlp.Gazetteers;
 
 /**
  *
@@ -38,12 +39,12 @@ import org.purl.net.wonderland.kb.WkbConstants;
  */
 public class Declarative {
 
-    private Wkb storage;
-    private List<Chunk> cache;
+    private final Wkb storage;
+    private final Hierarchy cth;
 
     Declarative(File file) throws Exception {
-        storage = new Wkb(file);
-        cache = new ArrayList<Chunk>();
+        this.storage = new Wkb(file);
+        this.cth = storage.getVocabulary().getConceptTypeHierarchy();
     }
 
     void save(File file) throws Exception {
@@ -54,27 +55,37 @@ public class Declarative {
         return storage;
     }
 
-    public List<String> getAllSenses(Concept c) {
-        Hierarchy cth = storage.getVocabulary().getConceptTypeHierarchy();
+    public List<String> getImportWordNetSenses(Concept c) {
         String lemma = c.getIndividual();
         String[] types = c.getType();
 
-        List<String> senses = null;
+        List<String> senseTypes = null;
 
-        if (cth.isKindOf(types, WkbConstants.NOUN_CT)) {
-            if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
-                senses = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);
-            } else if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
-                senses = new ArrayList<String>();
-            }
+        if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
+            senseTypes = Gazetteers.getWNSensesFor(lemma);
+            storage.importWordNetHypernymHierarchy(senseTypes);
+        } else if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
+            senseTypes = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);
         } else if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
-            senses = storage.importWordNetHypernymHierarchy(lemma, POS.VERB);
+            senseTypes = storage.importWordNetHypernymHierarchy(lemma, POS.VERB);
         } else if (cth.isKindOf(types, WkbConstants.ADJECTIVE_CT)) {
-            senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
+            senseTypes = storage.importWordNetHypernymHierarchy(lemma, POS.ADJECTIVE);
         } else if (cth.isKindOf(types, WkbConstants.ADVERB_CT)) {
-            senses = storage.importWordNetHypernymHierarchy(lemma, POS.ADVERB);
+            senseTypes = storage.importWordNetHypernymHierarchy(lemma, POS.ADVERB);
         }
 
-        return senses;
+        return senseTypes;
+    }
+
+    List<String> deriveThematicRolesTypes(String[] types) {
+        List<String> thematicRoleTypes = new ArrayList<String>();
+        for (String conceptType : types) {
+            for (String registeredType : Gazetteers.selRestrs.keySet()) {
+                if (cth.isKindOf(conceptType, registeredType)) {
+                    thematicRoleTypes.add(Gazetteers.selRestrs.get(registeredType));
+                }
+            }
+        }
+        return thematicRoleTypes;
     }
 }

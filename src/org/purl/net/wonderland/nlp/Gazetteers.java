@@ -30,6 +30,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,6 +38,7 @@ import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 import org.purl.net.wonderland.W;
+import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
 
@@ -74,30 +76,40 @@ public abstract class Gazetteers {
     static Set<String> femaleFirstName;
     static Set<String> lastName;
     static Set<String> maleFirstName;
+    //
+    public static Map<String, String> selRestrs;
+    //
+    static Map<String, List<String>> senseFile2wns;
 
     public static void init() {
     }
 
     static {
         CodeTimer timer = new CodeTimer("Gazetteers");
-        for (Field f : Gazetteers.class.getDeclaredFields()) {
-            String name = f.getName();
-            try {
+        String name = null;
+        try {
+            for (Field f : Gazetteers.class.getDeclaredFields()) {
+                name = f.getName();
                 String memberName = f.getGenericType().toString();
                 if (MAP_STRING_WTAGGING.equals(memberName)) {
                     f.set(null, readMorphologyDataFile(name + ".csv"));
                 } else if (SET_STRING.equals(memberName)) {
                     f.set(null, readListDataFile(name + ".txt"));
+                } else if ("selRestrs".equals(name)) {
+                    f.set(null, readSelRestrs());
+                } else if ("senseFile2wns".equals(name)) {
+                    f.set(null, readSense2wns());
                 }
-            } catch (Exception ex) {
-                System.err.println("Error reading '" + name + "'");
-                W.handleException(ex);
             }
+
+        } catch (Exception ex) {
+            System.err.println("Error reading '" + name + "'");
+            W.handleException(ex);
         }
         timer.stop();
     }
 
-    static Map<String, WTagging> readMorphologyDataFile(String formFile) throws IOException {
+    private static Map<String, WTagging> readMorphologyDataFile(String formFile) throws IOException {
         Map<String, WTagging> map = new HashMap<String, WTagging>();
         formFile = W.res(W.RES_MORPHOLOGY_FOLDER_PATH, formFile).getAbsolutePath();
         ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
@@ -113,18 +125,47 @@ public abstract class Gazetteers {
         return map;
     }
 
-    static Set<String> readListDataFile(String formFile) throws IOException {
+    private static Set<String> readListDataFile(String formFile) throws IOException {
         Set<String> set = new HashSet<String>();
 
         File dataFile = W.res(W.RES_SENSES_MANUAL_FOLDER_PATH, formFile);
         dataFile.createNewFile();
-        IO.readTrimmedLinesInSet(set, dataFile);
+        IO.readLemmaSet(set, dataFile);
 
         dataFile = W.res(W.RES_SENSES_AUTOMATIC_FOLDER_PATH, formFile);
         dataFile.createNewFile();
-        IO.readTrimmedLinesInSet(set, dataFile);
+        IO.readLemmaSet(set, dataFile);
 
         return set;
+    }
+
+    private static Map<String, String> readSelRestrs() throws IOException {
+        Map<String, String> map = new Hashtable<String, String>();
+        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_VN_WNSENSE_2_THEMATIC_ROLE_TYPE_FILE_PATH));
+        for (String line : lines) {
+            String[] chunks = line.split(",");
+            String selRestrType = WkbUtil.toConceptTypeId(chunks[0].trim());
+            for (int i = 1; i < chunks.length; i++) {
+                String senseType = WkbUtil.toConceptTypeId(chunks[i].trim());
+                map.put(senseType, selRestrType);
+            }
+        }
+        return map;
+    }
+
+    private static Map<String, List<String>> readSense2wns() throws IOException {
+        Map<String, List<String>> map = new Hashtable<String, List<String>>();
+        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_SENSE_FILE_2_WNSENSES_MANUAL_FILE_PATH));
+        for (String line : lines) {
+            String[] chunks = line.split(",");
+            List<String> list = new ArrayList<String>();
+            for (int i = 1; i < chunks.length; i++) {
+                String senseType = WkbUtil.toConceptTypeId(chunks[i].trim());
+                list.add(senseType);
+            }
+            map.put(chunks[0].trim(), list);
+        }
+        return map;
     }
 
     public static List<WTagging> getAllTagings(String word) {
@@ -134,13 +175,15 @@ public abstract class Gazetteers {
 
         try {
             for (Field f : Gazetteers.class.getDeclaredFields()) {
-                tagging = ((Map<String, WTagging>) f.get(null)).get(word);
-                if (tagging != null) {
-                    tags.add(tagging);
+                if (MAP_STRING_WTAGGING.equals(f.getGenericType().toString())) {
+                    tagging = ((Map<String, WTagging>) f.get(null)).get(word);
+                    if (tagging != null) {
+                        tags.add(tagging);
+                    }
                 }
             }
         } catch (Exception ex) {
-            System.out.println("Error in MorphologicalDatabase.getAllTagings");
+            System.err.println("Error in MorphologicalDatabase.getAllTagings");
             W.handleException(ex);
         }
 
@@ -152,13 +195,39 @@ public abstract class Gazetteers {
 
         try {
             for (Field f : Gazetteers.class.getDeclaredFields()) {
-                forms.addAll(((Map<String, WTagging>) f.get(null)).keySet());
+                if (MAP_STRING_WTAGGING.equals(f.getGenericType().toString())) {
+                    forms.addAll(((Map<String, WTagging>) f.get(null)).keySet());
+                }
             }
         } catch (Exception ex) {
-            System.out.println("Error in MorphologicalDatabase.getAllForms");
+            System.err.println("Error in MorphologicalDatabase.getAllForms");
             W.handleException(ex);
         }
 
         return forms;
+    }
+
+    public static List<String> getWNSensesFor(String lemma) {
+        List<String> senses = new ArrayList<String>();
+
+        try {
+            for (Field f : Gazetteers.class.getDeclaredFields()) {
+                if (SET_STRING.equals(f.getGenericType().toString())) {
+                    Set<String> set = (Set<String>) f.get(null);
+                    if (set.contains(lemma)) {
+                        List<String> list = senseFile2wns.get(f.getName());
+                        if (list != null) {
+                            senses.addAll(list);
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println("Error in MorphologicalDatabase.getAllForms");
+            W.handleException(ex);
+        }
+
+
+        return senses;
     }
 }
