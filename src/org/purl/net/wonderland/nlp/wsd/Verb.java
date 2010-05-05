@@ -38,7 +38,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
@@ -286,7 +286,7 @@ class Verb {
 
                 } catch (Exception ex) {
                     System.err.println(text);
-                    Configuration.reportExceptionConsole(ex);
+                    W.reportExceptionConsole(ex);
                 }
             }
         }

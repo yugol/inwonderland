@@ -30,11 +30,13 @@ import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
@@ -119,6 +121,16 @@ public class IO {
         }
         in.close();
         return lines;
+    }
+
+    public static void readTrimmedLinesInSet(Set<String> set, File dataFile) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(dataFile));
+        String str;
+        List<String> lines = new ArrayList<String>();
+        while ((str = in.readLine()) != null) {
+            lines.add(str.trim());
+        }
+        in.close();
     }
 
     public static void writeStringToFile(String str, File file) throws IOException {

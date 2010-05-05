@@ -25,7 +25,7 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import java.io.File;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
@@ -40,7 +40,7 @@ public class WsdProcManagerTest {
 
     @Test
     public void testGetVerbProcs() throws Exception {
-        Wkb kb = new Wkb(Configuration.getDefaultParseKBFile());
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
         WsdProcManager wdsMgr = new WsdProcManager(kb);
         String lemma = "have";
         ProcList procs = wdsMgr.getVerbProcs(lemma);

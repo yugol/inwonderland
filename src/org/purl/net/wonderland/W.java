@@ -44,23 +44,47 @@ import org.w3c.dom.NodeList;
  *
  * @author Iulian
  */
-public final class Configuration {
+public final class W {
 
+    private static final String CONFIG_FILE_ATTR_NAME = "wonderland.config";
+    private static final String RES_FOLDER_NAME = "res";
+    private static final String MANUAL = "manual";
+    private static final String AUTOMATIC = "automatic";
+    private static final String DEFAULT_RES_WN_DATA_FOLDER_PATH = "WordNet-3.0/dict";
+    private static final String DEFAULT_RES_VN_DATA_FOLDER_PATH = "verbnet/data";
+    private static final String DEFAULT_RES_PB_DATA_FOLDER_PATH = "propbank";
+    // relative paths
+    private static final String RES_COGUI_FILE_PATH = "cogui/cogitant.dll";
+    private static final String RES_TEST_FOLDER_PATH = "test";
+    private static final String RES_JWNL_PROP_FILE_PATH = "jwnl_properties.xml";
+    private static final String RES_WKB_FILE_PATH = "defaultparsekb.cogxml";
+    private static final String RES_CORPORA_FOLDER_PATH = "corpora";
+    private static final String RES_WSD_FOLDER_PATH = "wsd";
+    private static final String RES_GAZETTEERS_FOLDER_PATH = "gazetteers";
+    private static final String RES_VN_INDEX_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/verbnet";
+    public static final String RES_VN_FILE_INDEX_FILE_PATH = RES_VN_INDEX_FOLDER_PATH + "/file_index.csv";
+    public static final String RES_VN_VERB_INDEX_FILE_PATH = RES_VN_INDEX_FOLDER_PATH + "/verb_index.csv";
+    public static final String RES_SP_FILE_PATH = "stanfordparser/englishPCFG.ser.gz";
+    public static final String RES_MORPHOLOGY_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/morphology";
+    public static final String RES_SENSES_MANUAL_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/senses/" + MANUAL;
+    public static final String RES_SENSES_AUTOMATIC_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/senses/" + AUTOMATIC;
+    public static final String RES_COLLOCATIONS_FOLDER_PATH = RES_GAZETTEERS_FOLDER_PATH + "/collocations";
+    public static final String RES_WSD_VERB_MANUAL_FOLDER_PATH = RES_WSD_FOLDER_PATH + "/procs/" + MANUAL + "/verb";
+    public static final String RES_WSD_VERB_AUTOMATIC_FOLDER_PATH = RES_WSD_FOLDER_PATH + "/procs/" + AUTOMATIC + "/verb";
+    public static final String RES_BEDTIME_CORPUS = RES_CORPORA_FOLDER_PATH + "/bedtime/story.txt";
+    //
     public static boolean testDebug = false;
     private static final String resFolderKey = "resFolder";
-    private static final String lgParserFolderKey = "lgParserFolder";
     private static final String wnDataFolderKey = "wordNetDataFolder";
     private static final String vnDataFolderKey = "verbNetDataFolder";
     private static final String pbDataFolderKey = "propBankDataFolder";
     //
     private static File resFolder = null;
-    private static File lgParserFolder = null;
     private static File vnDataFolder = null;
     private static File pbDataFolder = null;
 
     private static boolean configure(Properties projProp) {
         resFolder = new File(projProp.getProperty(resFolderKey));
-        lgParserFolder = new File(projProp.getProperty(lgParserFolderKey));
         setWnDataFolder(new File(projProp.getProperty(wnDataFolderKey)));
         vnDataFolder = new File(projProp.getProperty(vnDataFolderKey));
         pbDataFolder = new File(projProp.getProperty(pbDataFolderKey));
@@ -68,11 +92,10 @@ public final class Configuration {
     }
 
     private static boolean configure() {
-        resFolder = new File(System.getProperty("user.dir"), "res");
-        lgParserFolder = new File(resFolder, "linkgrammar");
-        setWnDataFolder(new File(resFolder, "WordNet-3.0/dict"));
-        vnDataFolder = new File(resFolder, "verbnet/data");
-        pbDataFolder = new File(resFolder, "propbank");
+        resFolder = new File(System.getProperty("user.dir"), RES_FOLDER_NAME);
+        setWnDataFolder(new File(resFolder, DEFAULT_RES_WN_DATA_FOLDER_PATH));
+        vnDataFolder = new File(resFolder, DEFAULT_RES_VN_DATA_FOLDER_PATH);
+        pbDataFolder = new File(resFolder, DEFAULT_RES_PB_DATA_FOLDER_PATH);
         return checkConfigure();
     }
 
@@ -98,7 +121,7 @@ public final class Configuration {
         boolean configured = false;
 
         try {
-            String configFile = System.getProperty("wonderland.config");
+            String configFile = System.getProperty(CONFIG_FILE_ATTR_NAME);
             if (configFile != null) {
                 File cfg = new File(configFile);
                 if (cfg.exists()) {
@@ -124,7 +147,7 @@ public final class Configuration {
 
         try {
             CodeTimer timer = new CodeTimer("loading cogitatnt.dll");
-            System.load(new File(Configuration.getResPath(), "cogui/cogitant.dll").getCanonicalPath());
+            System.load(new File(resFolder, RES_COGUI_FILE_PATH).getCanonicalPath());
             timer.stop();
         } catch (Exception ex) {
             handleException(ex);
@@ -197,59 +220,31 @@ public final class Configuration {
         }
     }
 
-    public static String getResPath() {
-        return resFolder.getAbsolutePath();
+    public static File res(String relative) {
+        return new File(resFolder, relative);
     }
 
-    public static File getTestFolder() {
-        return new File(getResPath(), "test");
-    }
-
-    public static File getJwnlPropertiesFile() {
-        return new File(getResPath(), "jwnl_properties.xml");
-    }
-
-    public static File getStanfordParserFile() {
-        return new File(getResPath(), "stanfordparser/englishPCFG.ser.gz");
-    }
-
-    public static File getDefaultParseKBFile() {
-        return new File(getResPath(), "defaultparsekb.cogxml");
+    public static File res(String relative1, String relative2) {
+        return new File(res(relative1), relative2);
     }
 
     public static File getVerbNetDataFolder() {
-        return new File(vnDataFolder, "");
-    }
-
-    public static File getVerbNetFileIndexFile() {
-        return new File(getVerbNetIndexFolder(), "file_index.csv");
-    }
-
-    public static File getVerbNetVerbIndexFile() {
-        return new File(getVerbNetIndexFolder(), "verb_index.csv");
+        return vnDataFolder;
     }
 
     public static File getPropBankDataFolder() {
-        return new File(pbDataFolder, "");
+        return pbDataFolder;
     }
 
-    public static File getCorporaFolder() {
-        return new File(resFolder, "corpora");
+    public static File getTestDataFolder() {
+        return res(RES_TEST_FOLDER_PATH);
     }
 
-    public static File getWsdFolder() {
-        return new File(resFolder, "wsd");
+    public static File getJwnlPropertiesFile() {
+        return res(RES_JWNL_PROP_FILE_PATH);
     }
 
-    public static File getCollocationsFolder() {
-        return new File(getResPath(), "gazetteers/collocations");
-    }
-
-    public static File getMorphologyFolder() {
-        return new File(getResPath(), "gazetteers/morphology");
-    }
-
-    public static File getVerbNetIndexFolder() {
-        return new File(resFolder, "gazetteers/verbnet");
+    public static File getDefaultWkbFile() {
+        return new File(resFolder, RES_WKB_FILE_PATH);
     }
 }

@@ -33,7 +33,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.xerces.dom.DocumentImpl;
 import org.apache.xml.serialize.OutputFormat;
 import org.apache.xml.serialize.XMLSerializer;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Engine;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -176,7 +176,7 @@ public class Corpus {
             serializer.serialize(xmlDoc.getDocumentElement());
             return sw.toString();
         } catch (Exception ex) {
-            Configuration.reportExceptionConsole(ex);
+            W.reportExceptionConsole(ex);
         }
         return null;
     }

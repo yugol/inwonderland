@@ -25,7 +25,7 @@ package org.purl.net.wonderland.util;
 
 import java.io.File;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.WTaggingUtil;
@@ -39,7 +39,7 @@ public class MafCorpusTest {
 
     @Test
     public void testGetSentence() throws Exception {
-        MafCorpus corpus = new MafCorpus(new File(Configuration.getCorporaFolder(), "bedtime/story.txt"));
+        MafCorpus corpus = new MafCorpus(W.res(W.RES_BEDTIME_CORPUS));
         WTagging[] sent = corpus.getSentence(1, WkbConstants.LEVEL1);
         assertEquals(5, sent.length);
         String errStr = WTaggingUtil.areConsistent(sent[0], sent[0]);

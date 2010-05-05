@@ -41,9 +41,9 @@ public class Procedural {
 
     Procedural(Wkb kb) throws Exception {
         quick = new ProcManager();
-        readProcedureSet(kb, WkbUtil.procSetArticles);
-        readProcedureSet(kb, WkbUtil.procSetMoods);
-        readProcedureSet(kb, WkbUtil.procSetCollocations);
+        readProcedureSet(kb, WkbUtil.PROC_SET_ARTICLES);
+        readProcedureSet(kb, WkbUtil.PROC_SET_MOODS);
+        readProcedureSet(kb, WkbUtil.PROC_SET_COLLO);
         wsd = new WsdProcManager(kb);
     }
 

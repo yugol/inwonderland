@@ -149,7 +149,7 @@ public class MafCorpus {
     private int getLevelDocument(String level) {
         int l = WkbUtil.toLevelIndex(level);
         if (l >= 0) {
-            ++l;
+            return (l + 1);
         }
         return -1;
     }

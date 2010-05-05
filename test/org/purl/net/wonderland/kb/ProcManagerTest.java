@@ -26,7 +26,7 @@ package org.purl.net.wonderland.kb;
 import java.io.File;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import static org.junit.Assert.*;
 
 /**
@@ -37,13 +37,14 @@ public class ProcManagerTest {
 
     @Test
     public void testReadProcsFromKb() throws Exception {
-        Wkb kb = new Wkb(new File(Configuration.getTestFolder(), "bedtime.cogxml"));
-        ProcManager procMgr = new ProcManager(kb);
+        Wkb kb = new Wkb(new File(W.getTestDataFolder(), "bedtime.cogxml"));
+        ProcManager procMgr = new ProcManager();
+        procMgr.putProcList(WkbUtil.PROC_SET_ARTICLES, kb.getProcRules(WkbUtil.PROC_SET_ARTICLES));
         assertEquals(2, procMgr.getProcCount());
 
         ProjectionSolver solver = new ProjectionSolver(kb);
         solver.reset();
-        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil.procSetArticles),
+        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil.PROC_SET_ARTICLES),
                 kb.getFactGraph(WkbUtil.toFactId(4, WkbConstants.LEVEL1)));
         assertEquals(1, matches.size());
     }

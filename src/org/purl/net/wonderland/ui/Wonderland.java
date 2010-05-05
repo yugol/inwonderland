@@ -40,7 +40,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
-import org.purl.net.wonderland.Configuration;
+import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Personality;
 import org.purl.net.wonderland.kb.CoGuiWrapper;
@@ -300,7 +300,7 @@ public class Wonderland extends javax.swing.JFrame {
             try {
                 message = engine.processMessage(message);
             } catch (Exception ex) {
-                Configuration.reportExceptionConsole(ex);
+                W.reportExceptionConsole(ex);
             }
             noteProgramResponse(message);
         }
@@ -384,7 +384,7 @@ public class Wonderland extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Configuration.getVerbNetDataFolder();
+        W.getVerbNetDataFolder();
 
         try {
             LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
@@ -404,14 +404,14 @@ public class Wonderland extends javax.swing.JFrame {
             Thread libLoader = new Thread(new Runnable() {
 
                 public void run() {
-                    Configuration.init();
+                    W.init();
                     gui.processMessageButton.setEnabled(true);
                 }
             });
             libLoader.run();
         } catch (Exception ex) {
             System.err.println("Error initializing Wonderland");
-            Configuration.handleException(ex);
+            W.handleException(ex);
         }
 
 
@@ -487,7 +487,7 @@ public class Wonderland extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             System.err.println("Error building personality menu. Using defaults.");
-            Configuration.reportExceptionConsole(ex);
+            W.reportExceptionConsole(ex);
             personalityMenu.setVisible(false);
         }
     }
