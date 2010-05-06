@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
+import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.Sentence;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,20 +35,23 @@ import java.util.Map;
 abstract class Example {
 
     protected final String text;
-    protected final Map<VerbRole, String> args;
 
     public Example(String text) {
         this.text = text;
-        this.args = new HashMap<VerbRole, String>();
-    }
-
-    public Map<VerbRole, String> getArgs() {
-        return args;
     }
 
     public String getText() {
         return text;
     }
 
-    public abstract void mapArgs();
+    protected static String joinLemmata(Sentence<HasWord> yield) {
+        StringBuilder join = new StringBuilder();
+        for (HasWord token : yield) {
+            if (join.length() > 0) {
+                join.append(" ");
+            }
+            join.append(token.word());
+        }
+        return join.toString();
+    }
 }

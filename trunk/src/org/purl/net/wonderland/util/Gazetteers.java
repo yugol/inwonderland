@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp;
+package org.purl.net.wonderland.util;
 
 import java.io.File;
 import java.io.FileReader;
@@ -39,8 +39,7 @@ import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.util.CodeTimer;
-import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.nlp.WTagging;
 
 /**
  *
@@ -49,37 +48,39 @@ import org.purl.net.wonderland.util.IO;
 public abstract class Gazetteers {
 
     private static final String MAP_STRING_WTAGGING = "java.util.Map<java.lang.String, org.purl.net.wonderland.nlp.WTagging>";
-    static Map<String, WTagging> article;
-    static Map<String, WTagging> personalPronoun;
-    static Map<String, WTagging> possessivePronoun;
-    static Map<String, WTagging> demonstrativePronoun;
-    static Map<String, WTagging> reflexivePersonalPronoun;
-    static Map<String, WTagging> indefinitePronoun;
-    static Map<String, WTagging> reciprocalPronoun;
-    static Map<String, WTagging> relativePronoun;
-    static Map<String, WTagging> interrogativePronoun;
-    static Map<String, WTagging> adposition;
-    static Map<String, WTagging> coordinatingConjunction;
-    static Map<String, WTagging> subordinatingConjunction;
-    static Map<String, WTagging> indefiniteDeterminer;
-    static Map<String, WTagging> modal;
-    static Map<String, WTagging> demonstrativeDeterminer;
-    static Map<String, WTagging> verb;
-    static Map<String, WTagging> possessiveAdjective;
-    static Map<String, WTagging> interrogativeAdverb;
-    static Map<String, WTagging> adverb;
-    static Map<String, WTagging> adjective;
+    public static Map<String, WTagging> article;
+    public static Map<String, WTagging> personalPronoun;
+    public static Map<String, WTagging> possessivePronoun;
+    public static Map<String, WTagging> demonstrativePronoun;
+    public static Map<String, WTagging> reflexivePersonalPronoun;
+    public static Map<String, WTagging> indefinitePronoun;
+    public static Map<String, WTagging> reciprocalPronoun;
+    public static Map<String, WTagging> relativePronoun;
+    public static Map<String, WTagging> interrogativePronoun;
+    public static Map<String, WTagging> adposition;
+    public static Map<String, WTagging> coordinatingConjunction;
+    public static Map<String, WTagging> subordinatingConjunction;
+    public static Map<String, WTagging> indefiniteDeterminer;
+    public static Map<String, WTagging> modal;
+    public static Map<String, WTagging> demonstrativeDeterminer;
+    public static Map<String, WTagging> verb;
+    public static Map<String, WTagging> possessiveAdjective;
+    public static Map<String, WTagging> interrogativeAdverb;
+    public static Map<String, WTagging> adverb;
+    public static Map<String, WTagging> adjective;
     //
     private static final String SET_STRING = "java.util.Set<java.lang.String>";
-    static Set<String> city;
-    static Set<String> country;
-    static Set<String> femaleFirstName;
-    static Set<String> lastName;
-    static Set<String> maleFirstName;
+    public static Set<String> city;
+    public static Set<String> country;
+    public static Set<String> femaleFirstName;
+    public static Set<String> lastName;
+    public static Set<String> maleFirstName;
     //
     public static Map<String, String> selRestrs;
     //
-    static Map<String, List<String>> senseFile2wns;
+    public static Map<String, List<String>> senseFile2wns;
+    //
+    public static Map<String, String> pb2vn;
 
     public static void init() {
     }
@@ -99,6 +100,8 @@ public abstract class Gazetteers {
                     f.set(null, readSelRestrs());
                 } else if ("senseFile2wns".equals(name)) {
                     f.set(null, readSense2wns());
+                } else if ("pb2vn".equals(name)) {
+                    f.set(null, readSimpleMapping());
                 }
             }
 
@@ -164,6 +167,16 @@ public abstract class Gazetteers {
                 list.add(senseType);
             }
             map.put(chunks[0].trim(), list);
+        }
+        return map;
+    }
+
+    private static Map<String, String> readSimpleMapping() throws IOException {
+        Map<String, String> map = new Hashtable<String, String>();
+        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_WSD_PB_2_VN_FILE_PATH));
+        for (String line : lines) {
+            String[] chunks = line.split(",");
+            map.put(chunks[0].trim(), chunks[1].trim());
         }
         return map;
     }

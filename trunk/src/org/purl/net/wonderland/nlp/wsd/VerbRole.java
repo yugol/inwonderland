@@ -23,8 +23,8 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -38,14 +38,14 @@ class VerbRole {
     private final String pbN;
     private final String pbDescr;
     private final String vnType;
-    private final List<VnRestr> vnSelrestrs;
+    private final Set<VnRestr> vnSelrestrs;
     private int hits; // used for role selection in creating graph procedures
 
     public VerbRole(String pnN, String pbDescr, String vnType) {
         this.pbN = pnN;
         this.pbDescr = pbDescr;
         this.vnType = vnType;
-        this.vnSelrestrs = new ArrayList<VnRestr>();
+        this.vnSelrestrs = new HashSet<VnRestr>();
         hits = 0;
     }
 
@@ -61,7 +61,7 @@ class VerbRole {
         return vnType;
     }
 
-    public List<VnRestr> getVnSelrestrs() {
+    public Set<VnRestr> getVnSelrestrs() {
         return vnSelrestrs;
     }
 

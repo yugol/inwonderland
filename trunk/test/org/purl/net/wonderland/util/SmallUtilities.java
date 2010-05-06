@@ -31,7 +31,6 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.Gazetteers;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;

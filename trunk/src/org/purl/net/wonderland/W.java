@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import org.purl.net.wonderland.nlp.Gazetteers;
+import org.purl.net.wonderland.util.Gazetteers;
 import org.purl.net.wonderland.nlp.resources.MorphAdornerWrapper;
 import org.purl.net.wonderland.nlp.resources.StanfordParserWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -75,6 +75,7 @@ public final class W {
     public static final String RES_WSD_VERB_MANUAL_FOLDER_PATH = RES_WSD_FOLDER_PATH + "/procs/" + MANUAL + "/verb";
     public static final String RES_WSD_VERB_AUTOMATIC_FOLDER_PATH = RES_WSD_FOLDER_PATH + "/procs/" + AUTOMATIC + "/verb";
     public static final String RES_BEDTIME_CORPUS = RES_CORPORA_FOLDER_PATH + "/bedtime/story.txt";
+    public static final String RES_WSD_PB_2_VN_FILE_PATH = RES_GAZETTEERS_FOLDER_PATH + "/wsd/pb2vn.csv";
     //
     public static boolean testDebug = false;
     private static final String resFolderKey = "resFolder";

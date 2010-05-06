@@ -37,15 +37,14 @@ import org.purl.net.wonderland.kb.WkbUtil;
  */
 public class VerbTest {
 
-    @Test
-    public void discoverPropBank() throws Exception {
+    //@Test
+    public void discoverVerbs() throws Exception {
         for (File file : W.getPropBankDataFolder().listFiles()) {
             String lemma = file.getName();
             int endIndex = lemma.lastIndexOf(".xml");
             if (endIndex > 0) {
                 lemma = lemma.substring(0, endIndex);
                 Verb v = new Verb(lemma);
-                System.out.println(">- " + v.getLemma());
             }
         }
     }
@@ -56,18 +55,17 @@ public class VerbTest {
         System.out.println(v.getLemma());
     }
 
-    //@Test
+    @Test
     public void testOneVerbToProcs() throws Exception {
-        W.init();
 
         Memory memory = new Memory(W.getDefaultWkbFile());
         WsdPersonality pers = new WsdPersonality();
         pers.setMemory(memory);
 
         Verb v = new Verb("steal");
-        List<Rule> procs = v.getVerbNetProcs(pers);
-        for (Rule proc : procs) {
-            memory.getStorage().addRule(proc);
+        List<Rule> rules = v.buildProcRules();
+        for (Rule rule : rules) {
+            memory.getStorage().addRule(rule);
         }
 
         File file = new File("test." + v.getLemma() + ".cogxml");
