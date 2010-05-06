@@ -63,4 +63,15 @@ class VnSyntaxItem {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(type);
+        if (value != null) {
+            sb.append(" (");
+            sb.append(value);
+            sb.append(")");
+        }
+        return sb.toString();
+    }
 }

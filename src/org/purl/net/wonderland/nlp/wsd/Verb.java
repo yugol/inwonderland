@@ -121,6 +121,10 @@ class Verb {
             for (VnClass vnClass : roleset.getVnClasses()) {
                 for (VnFrame vnFrame : vnClass.getFrames()) {
                     for (VnExample example : vnFrame.getExamples()) {
+                        System.out.println("");
+                        System.out.println("***************");
+                        System.out.println(vnClass.getId());
+                        System.out.println("***************");
                         example.makeSense(vnClass.getMembers());
                     }
                 }

@@ -25,8 +25,6 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.Sentence;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -34,7 +32,7 @@ import java.util.Map;
  */
 abstract class Example {
 
-    protected final String text;
+    protected String text;
 
     public Example(String text) {
         this.text = text;
