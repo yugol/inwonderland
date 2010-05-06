@@ -41,6 +41,7 @@ import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
+import org.purl.net.wonderland.util.IdUtil;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -52,7 +53,6 @@ import org.w3c.dom.NodeList;
  */
 public class WkbUtil {
 
-    public static final int UUID_LENGTH = newUniqueId().length();
     public static final int MAX_RELATION_ARG_COUNT = 10;
     //
     public static final String PROC = "proc_";
@@ -63,10 +63,6 @@ public class WkbUtil {
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final String CONCEPT_TYPE_PREFIX = "ct_";
     private static final String RELATION_TYPE_PREFIX = "rt_";
-
-    public static String newUniqueId() {
-        return UUID.randomUUID().toString();
-    }
 
     public static String toIdIndex(int num) {
         return idLabelNumberFormatter.format(num);
@@ -93,12 +89,12 @@ public class WkbUtil {
     }
 
     public static String toConceptId(WTagging tagging, int index) {
-        return newUniqueId() + "_" + index;
+        return IdUtil.newId() + "_" + index;
     }
 
     public static int getConceptIndex(String id) {
-        if (id.length() > UUID_LENGTH) {
-            return Integer.parseInt(id.substring(UUID_LENGTH + 1));
+        if (id.length() > IdUtil.UUID_LENGTH) {
+            return Integer.parseInt(id.substring(IdUtil.UUID_LENGTH + 1));
         }
         return -1;
     }
@@ -129,7 +125,7 @@ public class WkbUtil {
     }
 
     public static CGraph duplicate(CGraph cg) {
-        CGraph cg2 = new CGraph(newUniqueId(), cg.getName(), null, cg.getNature());
+        CGraph cg2 = new CGraph(IdUtil.newId(), cg.getName(), null, cg.getNature());
 
         Iterator<Concept> cIt = cg.iteratorConcept();
         while (cIt.hasNext()) {
@@ -305,7 +301,7 @@ public class WkbUtil {
     public static void normalizeConcept(Concept c, Hierarchy cth) {
         // keep only UUID as id
         String id = c.getId();
-        id = id.substring(0, UUID_LENGTH);
+        id = id.substring(0, IdUtil.UUID_LENGTH);
         c.setId(id);
 
         // remove redundant types (parent type if it has at least one child)

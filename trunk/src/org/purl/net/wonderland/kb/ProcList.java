@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.util.Compare;
+import org.purl.net.wonderland.util.IdUtil;
 
 /**
  *
@@ -76,8 +77,8 @@ public class ProcList {
     }
 
     private Proc buildProcedure(Rule rule, String name) {
-        CGraph lhs = new CGraph(WkbUtil.newUniqueId(), name, "lhs", "fact");
-        CGraph rhs = new CGraph(WkbUtil.newUniqueId(), name, "rhs", "fact");
+        CGraph lhs = new CGraph(IdUtil.newId(), name, "lhs", "fact");
+        CGraph rhs = new CGraph(IdUtil.newId(), name, "rhs", "fact");
 
         Iterator<Concept> cit = rule.iteratorConcept();
         while (cit.hasNext()) {
