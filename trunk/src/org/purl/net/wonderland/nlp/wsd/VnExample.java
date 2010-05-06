@@ -23,10 +23,12 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import edu.stanford.nlp.trees.Tree;
+import edu.stanford.nlp.trees.TypedDependency;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.purl.net.wonderland.WonderlandRuntimeException;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -37,20 +39,10 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 class VnExample extends Example {
 
-    class ItemLoad {
-
-        public final VnSyntaxItem syntaxItem;
-        public final Tree phrase;
-        public final String text;
-
-        public ItemLoad(VnSyntaxItem item, Tree node) {
-            this.syntaxItem = item;
-            this.phrase = node;
-            this.text = joinLemmata(node.yield());
-        }
-    }
     private final List<VnSyntaxItem> frame;
-    private List<ItemLoad> matches;
+    private Map<VnSyntaxItem, WTagging> matches;
+    private List<WTagging> sentence;
+    private List<TypedDependency> deps;
 
     VnExample(String text, List<VnSyntaxItem> syntax) {
         super(text);
@@ -58,97 +50,313 @@ class VnExample extends Example {
     }
 
     public void makeSense(List<String> members) {
-        System.out.println("");
-        System.out.println(text);
+        if (text.indexOf("?") == 0) {
+            text = text.substring(1);
+        }
 
-        matches = new ArrayList<ItemLoad>();
+        matches = new HashMap<VnSyntaxItem, WTagging>();
 
         List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
         Object[] result = Pipeline.parse(tokens);
+        sentence = (List<WTagging>) result[0];
+        deps = (List<TypedDependency>) result[1];
 
-        Tree parse = (Tree) result[2];
-        parse = parse.flatten();
-        List<Tree> nodes = parse.getLeaves();
-        for (int i = 0; i < tokens.size(); i++) {
-            nodes.get(i).label().setValue(tokens.get(i).getLemma());
+        System.out.println(text);
+        for (int i = 0; i < sentence.size(); i++) {
+            WTagging word = sentence.get(i);
+            System.out.println("    " + word.getLemma() + " / " + word.getPennTag() + " / " + word.getPartsOfSpeech());
         }
 
-        List<Tree> bfs = parse.getChildrenAsList();
-        int frameCursor = 0;
-        int bfsCursor = 0;
 
-        while (frameCursor < frame.size() && bfsCursor < bfs.size()) {
 
-            Tree node = bfs.get(bfsCursor);
-            String nodeDesc = node.label().value() + " - " + joinLemmata(node.yield());
-            // System.out.println(nodeDesc);
 
-            VnSyntaxItem syntaxItem = frame.get(frameCursor);
-
-            if (isNodeOfType(node, syntaxItem, members)) {
-                ItemLoad itemLoad = new ItemLoad(syntaxItem, node);
-                matches.add(itemLoad);
-                String itemDesc = " * [" + frameCursor + "] " + itemLoad.syntaxItem.getType() + " -> " + itemLoad.text;
-                // System.out.println(itemDesc);
-                ++frameCursor;
-            } else {
-                bfs.addAll(bfs.get(bfsCursor).getChildrenAsList());
-            }
-            ++bfsCursor;
-        }
-
+        int frameVerbPos = -1;
         for (int i = 0; i < frame.size(); i++) {
-            System.out.print("[" + i + "] " + frame.get(i).getType());
-            if (i < matches.size()) {
-                System.out.print(" -> " + matches.get(i).text);
+            VnSyntaxItem item = frame.get(i);
+            if (item.getType().equals("VERB")) {
+                frameVerbPos = i;
+                break;
+            }
+        }
+
+        int sentenceVerbPos = -1;
+        // try find verb by match
+        for (int i = 0; i < sentence.size(); i++) {
+            if (areMatch(i, frameVerbPos, members)) {
+                sentenceVerbPos = i;
+                break;
+            }
+        }
+        // try find verb by tag
+        if (sentenceVerbPos < 0) {
+            for (int i = 0; i < sentence.size(); i++) {
+                WTagging word = sentence.get(i);
+                if (word.getPennTag().indexOf("VB") == 0) {
+                    sentenceVerbPos = i;
+                    break;
+                }
+            }
+        }
+        // try find verb by lemma
+        if (sentenceVerbPos < 0) {
+            for (int i = 0; i < sentence.size(); i++) {
+                WTagging word = sentence.get(i);
+                if (members.contains(word.getLemma())) {
+                    sentenceVerbPos = i;
+                    break;
+                }
+            }
+        }
+        // check 'ed forms
+        if (sentenceVerbPos < 0) {
+            for (int i = 0; i < sentence.size(); i++) {
+                String lemma = sentence.get(i).getLemma();
+                if (lemma.lastIndexOf("ed") == lemma.length() - 2) {
+                    lemma = lemma.substring(0, lemma.length() - 2);
+                }
+                if (members.contains(lemma)) {
+                    sentenceVerbPos = i;
+                    break;
+                }
+            }
+        }
+
+
+
+        createMatch(frameVerbPos, sentenceVerbPos);
+
+        int frameCursor = frameVerbPos - 1;
+        int sentenceCursor = sentenceVerbPos - 1;
+        int lastSentenceMatchPos = sentenceVerbPos;
+        if (frameCursor == 0 && sentenceCursor == 0) {
+            createMatch(frameCursor, sentenceCursor);
+        } else {
+            while (frameCursor >= 0 && sentenceCursor >= 0) {
+                if (areMatch(sentenceCursor, frameCursor, members)) {
+                    createMatch(frameCursor, sentenceCursor);
+                    lastSentenceMatchPos = sentenceCursor;
+                    --frameCursor;
+                }
+                --sentenceCursor;
+                if (sentenceCursor < 0) {
+                    --frameCursor;
+                    sentenceCursor = lastSentenceMatchPos - 1;
+                }
+            }
+        }
+
+        frameCursor = frameVerbPos + 1;
+        sentenceCursor = sentenceVerbPos + 1;
+        lastSentenceMatchPos = sentenceVerbPos;
+        while (frameCursor < frame.size() && sentenceCursor < sentence.size()) {
+            if (areMatch(sentenceCursor, frameCursor, members)) {
+                createMatch(frameCursor, sentenceCursor);
+                lastSentenceMatchPos = sentenceCursor;
+                ++frameCursor;
+            }
+            ++sentenceCursor;
+            if (sentenceCursor >= sentence.size()) {
+                ++frameCursor;
+                sentenceCursor = lastSentenceMatchPos + 1;
+            }
+        }
+
+        // report
+        for (int i = 0; i < frame.size(); i++) {
+            VnSyntaxItem item = frame.get(i);
+            System.out.print("[" + i + "] " + item.toString());
+            WTagging word = matches.get(item);
+            if (word != null) {
+                System.out.print(" -> " + word.getLemma());
             }
             System.out.println("");
         }
+        System.out.println("");
 
         if (frame.size() != matches.size()) {
+            manualMap();
+        }
+        if (frame.size() != matches.size()) {
+            --skip;
+        }
+        if (skip < 0) {
             throw new WonderlandRuntimeException("unmatched frame");
         }
     }
 
-    private boolean isNodeOfType(Tree node, VnSyntaxItem item, List<String> members) {
-        if (!node.isLeaf()) {
+    private void createMatch(int frameCursor, int sentenceCursor) {
+        VnSyntaxItem item = frame.get(frameCursor);
+        WTagging word = sentence.get(sentenceCursor);
+        matches.put(item, word);
+    }
+    //
+    //
+    private static int skip = 1;
+    //
+    //
 
-            String itemType = item.getType();
-            String nodeLabel = node.label().value();
+    private boolean areMatch(int wordIndex, int itemIndex, List<String> members) {
 
-            if ("NP".equals(itemType)) {
-                if ("NP".equals(nodeLabel)) {
+        WTagging word = sentence.get(wordIndex);
+        VnSyntaxItem item = frame.get(itemIndex);
+
+        String itemType = item.getType();
+        String pennPos = word.getPennTag();
+        String maPos = word.getPartsOfSpeech();
+        if (maPos == null) {
+            maPos = "";
+        }
+
+        if ("NP".equals(itemType)) {
+            if (maPos.indexOf("n") == 0) {
+                return true;
+            }
+            if (pennPos.indexOf("NN") == 0) {
+                return true;
+            }
+            if (pennPos.indexOf("PRP") == 0) {
+                return true;
+            }
+            if (pennPos.equals("CD")) {
+                return true;
+            }
+            if (pennPos.equals("RB")) {
+                return true;
+            }
+            if (pennPos.equals("SYM")) {
+                return true;
+            }
+            if (maPos.indexOf("vvg") == 0) {
+                return true;
+            }
+            if (maPos.indexOf("vdi") == 0) {
+                return true;
+            }
+            if (maPos.indexOf("vvi") == 0) {
+                return true;
+            }
+            if (maPos.indexOf("vbi") == 0) {
+                return true;
+            }
+            if (maPos.indexOf("j-jn") == 0) {
+                return true;
+            }
+            if (pennPos.equals("JJ")) {
+                return true;
+            }
+        } else if ("VERB".equals(itemType)) {
+            if (maPos.indexOf("vvg") == 0) {
+                return false;
+            }
+            if (maPos.indexOf("v") == 0) {
+                if (members.contains(word.getLemma())) {
                     return true;
                 }
-            } else if ("VERB".equals(itemType)) {
-                String lemma = joinLemmata(node.yield());
-                if (members.contains(lemma)) {
-                    if ("VBD".equals(nodeLabel)) {
-                        return true;
-                    }
-                    if ("VBP".equals(nodeLabel)) {
-                        return true;
-                    }
-                    if ("VBZ".equals(nodeLabel)) {
-                        return true;
-                    }
-                    if ("VB".equals(nodeLabel)) {
-                        return true;
-                    }
+            }
+        } else if ("PREP".equals(itemType)) {
+
+            if (item.getValue() != null) {
+                List<String> choices = new ArrayList<String>(Arrays.asList(item.getValue().split(" ")));
+                if (choices.contains("in")) {
+                    choices.add("into");
                 }
-            } else if ("PREP".equals(itemType)) {
-                if ("IN".equals(nodeLabel)) {
-                    if (item.getValue() != null) {
-                        String lemma = joinLemmata(node.yield());
-                        String[] choises = item.getValue().split(" ");
-                        if (Arrays.asList(choises).contains(lemma)) {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
+                if (checkContains(choices, wordIndex)) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
+
+            if (pennPos.equals("IN")) {
+                return true;
+            } else if (pennPos.equals("TO")) {
+                return true;
+            } else if (maPos.indexOf("-acp") > 0) {
+                return true;
+            }
+
+        } else if ("ADV".equals(itemType)) {
+            if (pennPos.equals("RB")) {
+                return true;
+            }
+        } else if ("ADJ".equals(itemType)) {
+            if (maPos.indexOf("j") == 0) {
+                return true;
+            }
+            if (pennPos.equals("JJ")) {
+                return true;
+            }
+            if (pennPos.equals("RP")) {
+                return true;
+            }
+            if (maPos.indexOf("vvn") == 0) {
+                return true;
+            }
+        } else if ("LEX".equals(itemType)) {
+            if (pennPos.equals("POS")) {
+                return true;
+            }
+            if (item.getValue() != null) {
+                List<String> choices = new ArrayList<String>(Arrays.asList(item.getValue().split(" ")));
+                if (choices.contains("as")) {
+                    choices.add("to_be");
+                }
+                if (checkContains(choices, wordIndex)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkContains(List<String> choices, int wordIndex) {
+        String lemma = sentence.get(wordIndex).getLemma();
+        for (String choice : choices) {
+            if (choice.indexOf("_") < 0) {
+                if (choice.equals(lemma)) {
+                    return true;
+                }
+            } else {
+                String[] components = choice.split("_");
+                if (!components[0].equals(lemma)) {
+                    return false;
+                }
+                ++wordIndex;
+                for (int i = 1; (i < components.length) && (wordIndex < sentence.size()); wordIndex++, i++) {
+                    String component = components[i];
+                    lemma = sentence.get(wordIndex).getLemma();
+                    if (!component.equals(lemma)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean manualMap() {
+        if (text.equals("It's raining.")) {
+            createMatch(0, 0);
+            createMatch(1, 1);
+            createMatch(2, 2);
+            return true;
+        }
+        if (text.equals("It's raining cats and dogs.")) {
+            createMatch(0, 0);
+            createMatch(1, 1);
+            createMatch(2, 2);
+            createMatch(3, 3);
+            return true;
+        }
+        if (text.equals("Cynthia quaffed down the mixture.")) {
+            createMatch(0, 0);
+            createMatch(1, 1);
+            createMatch(2, 4);
+            createMatch(3, 2);
+            return true;
         }
         return false;
     }

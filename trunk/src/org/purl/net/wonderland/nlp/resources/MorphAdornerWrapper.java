@@ -279,8 +279,11 @@ public final class MorphAdornerWrapper {
             } else if (token.equals("daren't")) {
                 splitNeg(taggings, tOkEn, pos, "dare");
 
+            } else if (token.lastIndexOf("'s") == token.length() - 2) {
+                splitPosesive(taggings, tOkEn, pos, aWord.getLemmata());
+
             } else {
-                System.err.println("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata() + "/" + aWord.getPartsOfSpeech());
+                System.err.println("Unhandeled contraction: " + tOkEn + " -> " + aWord.getLemmata() + " / " + aWord.getPartsOfSpeech());
             }
         } else if (tOkEn.equalsIgnoreCase("cannot")) {
             splitNeg(taggings, tOkEn, new String[]{aWord.getPartsOfSpeech()}, "can");

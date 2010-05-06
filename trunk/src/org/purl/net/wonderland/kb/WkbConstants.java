@@ -61,6 +61,8 @@ public final class WkbConstants {
     public static final String SINGULAR = "singular";
     public static final String THIRDPERSON = "thirdPerson";
     public static final String COMMONNOUN = "commonNoun";
+    public static final String PERSONALPRONOUN = "personalPronoun";
+    public static final String PREPOSITION = "preposition";
     public static final String PLURAL = "plural";
     public static final String MODAL = "modal";
     public static final String INFINITIVE = "infinitive";
