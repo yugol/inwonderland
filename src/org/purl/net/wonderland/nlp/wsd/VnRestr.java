@@ -51,4 +51,27 @@ class VnRestr {
     public String getType() {
         return type;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VnRestr other = (VnRestr) obj;
+        if (positive != other.positive) {
+            return false;
+        }
+        return type.equals(other.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return type.hashCode() * (positive ? 31 : 47);
+    }
 }

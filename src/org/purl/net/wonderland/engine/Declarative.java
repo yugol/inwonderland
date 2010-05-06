@@ -31,7 +31,7 @@ import java.util.List;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbConstants;
-import org.purl.net.wonderland.nlp.Gazetteers;
+import org.purl.net.wonderland.util.Gazetteers;
 
 /**
  *

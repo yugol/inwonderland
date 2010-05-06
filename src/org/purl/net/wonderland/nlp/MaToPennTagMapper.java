@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.nlp;
 
+import org.purl.net.wonderland.util.Gazetteers;
 import java.util.List;
 
 /**

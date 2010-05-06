@@ -21,7 +21,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp;
+package org.purl.net.wonderland.util;
 
 import java.util.List;
 import org.junit.Test;
@@ -54,7 +54,12 @@ public class GazetteersTest {
         assertEquals(5, Gazetteers.senseFile2wns.size());
         assertEquals("ct_n00007846", Gazetteers.senseFile2wns.get("lastName").get(0));
         List<String> senses = Gazetteers.getWNSensesFor("elizabeth");
-        assertEquals(1, senses.size());
-        assertEquals("ct_n10787470", senses.get(0));
+        assertEquals(2, senses.size());
+    }
+
+    @Test
+    public void pb2vn() {
+        assertEquals(1, Gazetteers.pb2vn.size());
+        assertEquals("own-100", Gazetteers.pb2vn.get("own.01"));
     }
 }

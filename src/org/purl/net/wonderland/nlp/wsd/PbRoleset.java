@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.purl.net.wonderland.util.Gazetteers;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -42,18 +43,25 @@ class PbRoleset {
     private final String name;
     private final Map<String, VerbRole> roles; // all thematic roles applicable (including PropBank and VerbNet)
     private final List<PbExample> examples; // PropBank examples
-    private final VnClass vnClass;
+    private final List<VnClass> vnClasses;
 
     public PbRoleset(String lemma, Element rolesetElement, String vncls, int vnclsIdx) throws Exception {
         String vnClassId = makeVnClass(vncls);
-        vncls = (vnClassId == null) ? (null) : (rolesetElement.getAttribute("vncls").split(" ")[vnclsIdx]);
 
         this.lemma = lemma;
         this.id = rolesetElement.getAttribute("id");
         this.name = rolesetElement.getAttribute("name");
+
+        vncls = (vnClassId == null) ? (null) : (rolesetElement.getAttribute("vncls").split(" ")[vnclsIdx]);
         this.roles = makeRoles(rolesetElement, vncls);
+
         this.examples = makeExamples(lemma, roles, rolesetElement);
-        this.vnClass = (vnClassId == null) ? (null) : (new VnClass(lemma, vnClassId, roles));
+
+        if (vnClassId == null) {
+            vnClassId = Gazetteers.pb2vn.get(id);
+        }
+
+        this.vnClasses = VnClass.makeClassesFor(lemma, vnClassId);
     }
 
     private static String makeVnClass(String vncls) {
@@ -149,7 +157,7 @@ class PbRoleset {
         return roles;
     }
 
-    public VnClass getVnClass() {
-        return vnClass;
+    public List<VnClass> getVnClasses() {
+        return vnClasses;
     }
 }

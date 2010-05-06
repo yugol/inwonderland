@@ -33,6 +33,7 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -41,6 +42,31 @@ import org.w3c.dom.NodeList;
  */
 class VnClass {
 
+    static List<VnClass> makeClassesFor(String lemma, String idHint) throws Exception {
+        List<VnClass> vnClasses = new ArrayList<VnClass>();
+
+        if (idHint != null) {
+            List<Element> vnclassElements = new ArrayList<Element>();
+            File vnFile = VerbNetWrapper.getClassFile(idHint);
+            Document xmlDoc = XML.readXmlFile(vnFile);
+            NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
+            for (int i = 0; i < memberNodes.getLength(); i++) {
+                Element memberElement = (Element) memberNodes.item(i);
+                String name = memberElement.getAttribute("name");
+                name = VerbNetWrapper.normalizeName(name);
+                if (name.equals(lemma)) {
+                    vnclassElements.add((Element) memberElement.getParentNode().getParentNode());
+                }
+            }
+
+            for (Element element : vnclassElements) {
+                VnClass vnClass = new VnClass(lemma, element);
+                vnClasses.add(vnClass);
+            }
+        }
+
+        return vnClasses;
+    }
     private final String lemma;
     private final String id;
     private final List<String> members; // all applicable verbs
@@ -48,56 +74,34 @@ class VnClass {
     private final Map<String, VerbRole> themroles;
     private final List<VnFrame> frames;
 
-    VnClass(String lemma, String idHint, Map<String, VerbRole> roles) throws Exception {
+    private VnClass(String lemma, Element vnclassElement) throws Exception {
         this.lemma = lemma;
+        this.id = vnclassElement.getAttribute("ID");
         this.members = new ArrayList<String>();
         this.wnSenses = new ArrayList<String>();
         this.frames = new ArrayList<VnFrame>();
-        this.themroles = (roles == null) ? (new HashMap<String, VerbRole>()) : (roles);
-        this.id = readVerbNetData(idHint);
+        this.themroles = new HashMap<String, VerbRole>();
+        readVerbNetData(vnclassElement);
     }
 
-    private String readVerbNetData(String idHint) throws Exception {
-        StringBuilder idBuff = new StringBuilder();
+    private void readVerbNetData(Element vnclassElement) throws Exception {
 
-        File vnFile = VerbNetWrapper.getClassFile(idHint);
-        Document xmlDoc = XML.readXmlFile(vnFile);
+        makeMembersAndSenses(vnclassElement);
 
-        String vnClassLemma = vnFile.getName();
-        vnClassLemma = vnClassLemma.substring(0, vnClassLemma.indexOf('-'));
+        makeThemrolesHierarchy(vnclassElement);
 
-        List<Element> vnclassElements = makeWnSenses(xmlDoc);
-        for (Element vnclassElement : vnclassElements) {
-
-            // update id
-            String vnclassId = vnclassElement.getAttribute("ID");
-            if (idBuff.length() > 0) {
-                idBuff.append(WsdUtil.SEP);
-            }
-            idBuff.append(vnclassId);
-
-            // fill members
-            makeMembers(vnclassElement);
-
-            // fill thematic roles
-            makeThemroles(vnclassElement);
-
-            // make frames
-            NodeList frameNodes = xmlDoc.getElementsByTagName("FRAME");
-            for (int i = 0; i < frameNodes.getLength(); i++) {
-                Element frameElement = (Element) frameNodes.item(i);
-                VnFrame frame = new VnFrame(frameElement, themroles);
-                frames.add(frame);
-            }
+        Element framesElement = (Element) vnclassElement.getElementsByTagName("FRAMES").item(0);
+        NodeList frameNodes = framesElement.getElementsByTagName("FRAME");
+        for (int i = 0; i < frameNodes.getLength(); i++) {
+            Element frameElement = (Element) frameNodes.item(i);
+            VnFrame frame = new VnFrame(frameElement, themroles);
+            frames.add(frame);
         }
-
-        return ((idBuff.length() > 0) ? (idBuff.toString()) : (null));
     }
 
-    private List<Element> makeWnSenses(Document xmlDoc) {
-        List<Element> vnclassElements = new ArrayList<Element>();
-
-        NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
+    private void makeMembersAndSenses(Element vnclassElement) {
+        Element membersElement = (Element) vnclassElement.getElementsByTagName("MEMBERS").item(0);
+        NodeList memberNodes = membersElement.getElementsByTagName("MEMBER");
         for (int i = 0; i < memberNodes.getLength(); i++) {
             Element memberElement = (Element) memberNodes.item(i);
 
@@ -112,26 +116,39 @@ class VnClass {
                         wnSenses.add(WordNetWrapper.senseKeyToOffsetKeyAlpha(sense));
                     }
                 }
-                vnclassElements.add((Element) memberElement.getParentNode().getParentNode());
             }
-        }
 
-        return vnclassElements;
-    }
-
-    private void makeMembers(Element vnclassElement) {
-        Element membersElement = (Element) vnclassElement.getElementsByTagName("MEMBERS").item(0);
-        NodeList memberNodes = membersElement.getElementsByTagName("MEMBER");
-        for (int i = 0; i < memberNodes.getLength(); i++) {
-            Element memberElement = (Element) memberNodes.item(i);
-            String name = memberElement.getAttribute("name");
-            name = VerbNetWrapper.normalizeName(name);
             members.add(name);
         }
     }
 
+    private void makeThemrolesHierarchy(Element vnclassElement) {
+        List<Element> vnclasses = new ArrayList<Element>();
+
+        Node node = vnclassElement;
+        do {
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                String tag = element.getTagName();
+                if ("VNCLASS".equals(tag)) {
+                    vnclasses.add(0, element);
+                    break;
+                } else if ("VNSUBCLASS".equals(tag)) {
+                    vnclasses.add(0, element);
+
+                }
+            }
+            node = node.getParentNode();
+        } while (true);
+
+        for (Element element : vnclasses) {
+            makeThemroles(element);
+        }
+    }
+
     private void makeThemroles(Element vnclassElement) {
-        NodeList themroleNodes = vnclassElement.getElementsByTagName("THEMROLE");
+        Element themrolesElement = (Element) vnclassElement.getElementsByTagName("THEMROLES").item(0);
+        NodeList themroleNodes = themrolesElement.getElementsByTagName("THEMROLE");
         for (int i = 0; i < themroleNodes.getLength(); i++) {
             Element themroleElement = (Element) themroleNodes.item(i);
 
@@ -147,6 +164,9 @@ class VnClass {
                 Element selrestrsElement = (Element) selrestrsNodes.item(j);
 
                 NodeList selrestrNodes = selrestrsElement.getElementsByTagName("SELRESTR");
+                if (selrestrNodes.getLength() > 0) {
+                    themrole.getVnSelrestrs().clear();
+                }
                 for (int k = 0; k < selrestrNodes.getLength(); k++) {
                     Element selrestrElement = (Element) selrestrNodes.item(k);
                     VnRestr selrestr = new VnRestr(selrestrElement);

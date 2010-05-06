@@ -23,8 +23,8 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -33,26 +33,30 @@ import java.util.List;
 class VnSyntaxItem {
 
     private final String type;
-    private final VerbRole role;
-    private final List<VnRestr> synrestrs;
-    private final List<VnRestr> selrestrs;
+    private final String value;
+    private final Set<VnRestr> synrestrs;
+    private final Set<VnRestr> selrestrs;
 
-    public VnSyntaxItem(String type, VerbRole role) {
+    public VnSyntaxItem(String type, String value) {
         this.type = type;
-        this.role = role;
-        this.synrestrs = new ArrayList<VnRestr>();
-        this.selrestrs = new ArrayList<VnRestr>();
+        if (value == null || "".equals(value)) {
+            this.value = null;
+        } else {
+            this.value = value;
+        }
+        this.synrestrs = new HashSet<VnRestr>();
+        this.selrestrs = new HashSet<VnRestr>();
     }
 
-    public VerbRole getRole() {
-        return role;
+    public String getValue() {
+        return value;
     }
 
-    public List<VnRestr> getSelrestrs() {
+    public Set<VnRestr> getSelrestrs() {
         return selrestrs;
     }
 
-    public List<VnRestr> getSynrestrs() {
+    public Set<VnRestr> getSynrestrs() {
         return synrestrs;
     }
 

@@ -64,15 +64,24 @@ class Verb {
         this.lemma = lemma;
         System.out.println("+ Verb( " + lemma + " )");
         this.rolesets = new ArrayList<PbRoleset>();
-        readPropBankRolesets(lemma);
+        readPropBankPredicates();
     }
 
-    private void readPropBankRolesets(String lemma) throws Exception {
+    private void readPropBankPredicates() throws Exception {
         File pbFile = PropBankWrapper.getVerbFile(lemma);
-
         Document xmlDoc = XML.readXmlFile(pbFile);
 
-        NodeList rolesetNodes = xmlDoc.getElementsByTagName("roleset");
+        NodeList predicateNodes = xmlDoc.getElementsByTagName("predicate");
+        for (int i = 0; i < predicateNodes.getLength(); i++) {
+            Element predicateElement = (Element) predicateNodes.item(i);
+            readPropBankRolesets(predicateElement);
+        }
+    }
+
+    private void readPropBankRolesets(Element predicateElement) throws Exception {
+        String predicateLemma = predicateElement.getAttribute("lemma");
+
+        NodeList rolesetNodes = predicateElement.getElementsByTagName("roleset");
         for (int i = 0; i < rolesetNodes.getLength(); i++) {
             Element rolesetElement = (Element) rolesetNodes.item(i);
 
@@ -86,16 +95,16 @@ class Verb {
                         List<String> possibleClasses = VerbNetWrapper.getClassesLike(vnclsParts[0]);
                         if (possibleClasses != null) {
                             for (String cls : possibleClasses) {
-                                readPropBankRoleset(rolesetElement, lemma, cls, j);
+                                readPropBankRoleset(rolesetElement, predicateLemma, cls, j);
                             }
                         } else {
-                            readPropBankRoleset(rolesetElement, lemma, null, j);
+                            readPropBankRoleset(rolesetElement, predicateLemma, null, j);
                         }
                     } else {
-                        readPropBankRoleset(rolesetElement, lemma, null, j);
+                        readPropBankRoleset(rolesetElement, predicateLemma, null, j);
                     }
                 } else {
-                    readPropBankRoleset(rolesetElement, lemma, vncls, j);
+                    readPropBankRoleset(rolesetElement, predicateLemma, vncls, j);
                 }
             }
         }
@@ -104,6 +113,20 @@ class Verb {
     private void readPropBankRoleset(Element rolesetElement, String lemma, String vncls, int vnclsIdx) throws Exception {
         PbRoleset roleset = new PbRoleset(lemma, rolesetElement, vncls, vnclsIdx);
         rolesets.add(roleset);
+    }
+
+    public List<Rule> buildProcRules() {
+        List<Rule> rules = new ArrayList<Rule>();
+        for (PbRoleset roleset : rolesets) {
+            for (VnClass vnClass : roleset.getVnClasses()) {
+                for (VnFrame vnFrame : vnClass.getFrames()) {
+                    for (VnExample example : vnFrame.getExamples()) {
+                        example.makeSense(vnClass.getMembers());
+                    }
+                }
+            }
+        }
+        return rules;
     }
 
     public List<Rule> getVerbNetProcs(WsdPersonality pers) {
@@ -132,7 +155,7 @@ class Verb {
                                     verb = c;
                                     break;
                                 }
-                                if (roleset.getVnClass().getMembers().contains(individual)) {
+                                if (roleset.getVnClasses().get(0).getMembers().contains(individual)) {
                                     eligible.add(c);
                                 }
                             }
@@ -256,7 +279,7 @@ class Verb {
 
         conc = new Concept(IdUtil.newId());
         conc.setType(WkbConstants.PROCOP_ADD_CT);
-        for (String sense : frame.getVnClass().getWnSenses()) {
+        for (String sense : frame.getVnClasses().get(0).getWnSenses()) {
             String ctId = kb.addConceptType(sense, null);
             conc.addType(ctId);
         }
