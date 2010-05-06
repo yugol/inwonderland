@@ -95,14 +95,14 @@ public final class VerbNetWrapper {
             NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
             for (int i = 0; i < memberNodes.getLength(); ++i) {
                 Element member = (Element) memberNodes.item(i);
-                VerbForm vf = new VerbForm(member.getAttribute("name").replaceAll("\\?", ""));
+                VerbForm vf = new VerbForm(normalizeName(member.getAttribute("name")));
                 Element verbClass = (Element) member.getParentNode().getParentNode();
                 String vc = verbClass.getAttribute("ID");
                 vf.addVnClass(vc);
                 String[] wnSenses = member.getAttribute("wn").split(" ");
                 for (String wnSense : wnSenses) {
                     if (wnSense.length() > 0) {
-                        wnSense = wnSense.replaceAll("\\?", "");
+                        wnSense = normalizeName(wnSense);
                         vf.addWnSense(vc, WordNetWrapper.senseKeyToOffsetKeyAlpha(wnSense));
                     }
                 }
@@ -111,6 +111,10 @@ public final class VerbNetWrapper {
             }
             return members;
         }
+    }
+
+    public static String normalizeName(String str) {
+        return str.replaceAll("\\?", "");
     }
     private static List<String> fileList;
     private static Map<String, VerbForm> verbForms;

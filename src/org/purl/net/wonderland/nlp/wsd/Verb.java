@@ -23,7 +23,6 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import edu.stanford.nlp.util.StringUtils;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
@@ -32,7 +31,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,7 +43,7 @@ import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
-import org.purl.net.wonderland.nlp.wsd.Example.RoleData;
+import org.purl.net.wonderland.nlp.wsd.PbExample.RoleData;
 import org.purl.net.wonderland.util.IdUtil;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
@@ -57,23 +55,21 @@ import org.w3c.dom.NodeList;
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
 class Verb {
-
-    static String normalizeThematicRoleName(String name) {
-        return StringUtils.capitalize(name.toLowerCase());
-    }
     //
+
     private final String lemma;
-    private final List<VerbFrame> frames;
+    private final List<PbRoleset> rolesets;
 
     public Verb(String lemma) throws Exception {
         this.lemma = lemma;
-        System.out.println("* " + lemma);
-        this.frames = new ArrayList<VerbFrame>();
-        readPropBankData(lemma);
+        System.out.println("+ Verb( " + lemma + " )");
+        this.rolesets = new ArrayList<PbRoleset>();
+        readPropBankRolesets(lemma);
     }
 
-    private void readPropBankData(String lemma) throws Exception {
+    private void readPropBankRolesets(String lemma) throws Exception {
         File pbFile = PropBankWrapper.getVerbFile(lemma);
+
         Document xmlDoc = XML.readXmlFile(pbFile);
 
         NodeList rolesetNodes = xmlDoc.getElementsByTagName("roleset");
@@ -81,89 +77,43 @@ class Verb {
             Element rolesetElement = (Element) rolesetNodes.item(i);
 
             String[] vnclss = rolesetElement.getAttribute("vncls").split(" ");
-            for (String vncls : vnclss) {
+            for (int j = 0; j < vnclss.length; j++) {
+                String vncls = vnclss[j];
+
                 if (VerbNetWrapper.getClassFile(vncls) == null) {
                     String[] vnclsParts = vncls.split("-");
                     if (vnclsParts.length > 0) {
                         List<String> possibleClasses = VerbNetWrapper.getClassesLike(vnclsParts[0]);
                         if (possibleClasses != null) {
                             for (String cls : possibleClasses) {
-                                readRoleset(rolesetElement, lemma, cls);
+                                readPropBankRoleset(rolesetElement, lemma, cls, j);
                             }
                         } else {
-                            readRoleset(rolesetElement, lemma, null);
+                            readPropBankRoleset(rolesetElement, lemma, null, j);
                         }
                     } else {
-                        readRoleset(rolesetElement, lemma, null);
+                        readPropBankRoleset(rolesetElement, lemma, null, j);
                     }
                 } else {
-                    readRoleset(rolesetElement, lemma, vncls);
+                    readPropBankRoleset(rolesetElement, lemma, vncls, j);
                 }
             }
         }
     }
 
-    private void readRoleset(Element rolesetElement, String lemma, String vncls) throws Exception {
-        // read roles
-        Map<String, Themrole> roles = new HashMap<String, Themrole>();
-        NodeList roleNodes = rolesetElement.getElementsByTagName("role");
-        for (int j = 0; j < roleNodes.getLength(); j++) {
-            Element roleElement = (Element) roleNodes.item(j);
-            String n = roleElement.getAttribute("n");
-            String desc = roleElement.getAttribute("descr");
-            String vntheta = null;
-            NodeList vnroleNodes = roleElement.getElementsByTagName("vnrole");
-            if (vnroleNodes.getLength() > 0) {
-                Element vnroleElement = (Element) vnroleNodes.item(0);
-                vntheta = normalizeThematicRoleName(vnroleElement.getAttribute("vntheta"));
-            }
-            Themrole role = new Themrole(n, desc, vntheta);
-            roles.put(n, role);
-            if (vntheta != null) {
-                roles.put(vntheta, role);
-            }
-        }
-
-        // create roleset
-        VerbFrame roleset = new VerbFrame(lemma, rolesetElement.getAttribute("id"), vncls, roles);
-        frames.add(roleset);
-
-        // read PropBank examples
-        NodeList exampleNodes = rolesetElement.getElementsByTagName("example");
-        for (int i = 0; i < exampleNodes.getLength(); i++) {
-            Element exampleElement = (Element) exampleNodes.item(i);
-            Element textElement = (Element) exampleElement.getElementsByTagName("text").item(0);
-            Example example = new Example(lemma, Example.Type.PropBank, textElement.getTextContent().trim());
-            NodeList argNodes = exampleElement.getElementsByTagName("arg");
-            for (int j = 0; j < argNodes.getLength(); j++) {
-                Element argElement = (Element) argNodes.item(j);
-                String n = argElement.getAttribute("n");
-                String value = argElement.getTextContent();
-                Themrole role = roles.get(n);
-                if (role != null) {
-                    example.getArgs().put(role, value.trim());
-                }
-            }
-            roleset.getExamples().add(example);
-        }
-    }
-
-    public List<VerbFrame> getFrames() {
-        return frames;
-    }
-
-    public String getLemma() {
-        return lemma;
+    private void readPropBankRoleset(Element rolesetElement, String lemma, String vncls, int vnclsIdx) throws Exception {
+        PbRoleset roleset = new PbRoleset(lemma, rolesetElement, vncls, vnclsIdx);
+        rolesets.add(roleset);
     }
 
     public List<Rule> getVerbNetProcs(WsdPersonality pers) {
         Hierarchy cth = pers.getKb().getVocabulary().getConceptTypeHierarchy();
         List<Rule> procs = new ArrayList<Rule>();
-        for (VerbFrame frame : frames) {
-            for (Example example : frame.getExamples()) {
+        for (PbRoleset roleset : rolesets) {
+            for (PbExample example : roleset.getExamples()) {
                 String text = null;
                 try {
-                    if (example.getType() == Example.Type.VerbNet) {
+                    if (example.getType() == PbExample.Type.VerbNet) {
                         text = example.getText();
                         CGraph cg = pers.parse(text);
                         Rule proc = new Rule(IdUtil.newId(), WkbUtil.toProcName(lemma, IdUtil.newId()));
@@ -182,7 +132,7 @@ class Verb {
                                     verb = c;
                                     break;
                                 }
-                                if (frame.getMembers().contains(individual)) {
+                                if (roleset.getVnClass().getMembers().contains(individual)) {
                                     eligible.add(c);
                                 }
                             }
@@ -197,7 +147,7 @@ class Verb {
 
 
                         // create VERB couple
-                        Concept[] vHyptConc = createVerbConceptHyptConc(pers.getKb(), proc, frame);
+                        Concept[] vHyptConc = createVerbConceptHyptConc(pers.getKb(), proc, roleset);
 
 
                         // get context
@@ -210,8 +160,8 @@ class Verb {
                             example.resetRoleHits();
                             for (Concept connectedConcept : connectedConcepts) {
                                 String individual = connectedConcept.getIndividual();
-                                Map<Themrole, String> args = example.getArgs();
-                                for (Themrole role : args.keySet()) {
+                                Map<VerbRole, String> args = example.getArgs();
+                                for (VerbRole role : args.keySet()) {
                                     String roleText = args.get(role);
                                     if (roleText.indexOf(individual) >= 0) {
                                         role.incrementHits();
@@ -219,7 +169,7 @@ class Verb {
                                 }
                             }
 
-                            Themrole role = example.getBestRole();
+                            VerbRole role = example.getBestRole();
                             if (role != null) {
                                 RoleData roleData = example.getRoleData(role);
 
@@ -294,7 +244,7 @@ class Verb {
         return procs;
     }
 
-    private Concept[] createVerbConceptHyptConc(Wkb kb, Rule proc, VerbFrame frame) {
+    private Concept[] createVerbConceptHyptConc(Wkb kb, Rule proc, PbRoleset frame) {
         Concept hypt, conc;
 
         hypt = new Concept(IdUtil.newId());
@@ -306,7 +256,7 @@ class Verb {
 
         conc = new Concept(IdUtil.newId());
         conc.setType(WkbConstants.PROCOP_ADD_CT);
-        for (String sense : frame.getSenses()) {
+        for (String sense : frame.getVnClass().getWnSenses()) {
             String ctId = kb.addConceptType(sense, null);
             conc.addType(ctId);
         }
@@ -340,7 +290,7 @@ class Verb {
         return hyptConc;
     }
 
-    private Relation[] createRelationHyptConc(Rule proc, Themrole role, Relation prototype) {
+    private Relation[] createRelationHyptConc(Rule proc, VerbRole role, Relation prototype) {
         Relation hypt, conc;
 
         hypt = new Relation(IdUtil.newId());
@@ -349,7 +299,7 @@ class Verb {
         proc.addVertex(hypt);
 
         conc = new Relation(IdUtil.newId());
-        conc.setType(WkbUtil.toRelationTypeId(role.getVnThemrole()));
+        conc.setType(WkbUtil.toRelationTypeId(role.getVnType()));
         conc.setConclusion(true);
         proc.addVertex(conc);
 
@@ -391,5 +341,9 @@ class Verb {
 
         WkbUtil.setAllConclusion(cg, false);
         return cAdjacents;
+    }
+
+    String getLemma() {
+        return lemma;
     }
 }

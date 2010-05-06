@@ -23,30 +23,40 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-abstract class Example {
+class VnSyntaxItem {
 
-    protected final String text;
-    protected final Map<VerbRole, String> args;
+    private final String type;
+    private final VerbRole role;
+    private final List<VnRestr> synrestrs;
+    private final List<VnRestr> selrestrs;
 
-    public Example(String text) {
-        this.text = text;
-        this.args = new HashMap<VerbRole, String>();
+    public VnSyntaxItem(String type, VerbRole role) {
+        this.type = type;
+        this.role = role;
+        this.synrestrs = new ArrayList<VnRestr>();
+        this.selrestrs = new ArrayList<VnRestr>();
     }
 
-    public Map<VerbRole, String> getArgs() {
-        return args;
+    public VerbRole getRole() {
+        return role;
     }
 
-    public String getText() {
-        return text;
+    public List<VnRestr> getSelrestrs() {
+        return selrestrs;
     }
 
-    public abstract void mapArgs();
+    public List<VnRestr> getSynrestrs() {
+        return synrestrs;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

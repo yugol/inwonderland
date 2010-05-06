@@ -23,30 +23,23 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-abstract class Example {
+class VnExample extends Example {
 
-    protected final String text;
-    protected final Map<VerbRole, String> args;
+    private final List<VnSyntaxItem> syntax;
 
-    public Example(String text) {
-        this.text = text;
-        this.args = new HashMap<VerbRole, String>();
+    VnExample(String text, List<VnSyntaxItem> syntax) {
+        super(text);
+        this.syntax = syntax;
     }
 
-    public Map<VerbRole, String> getArgs() {
-        return args;
+    @Override
+    public void mapArgs() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    public String getText() {
-        return text;
-    }
-
-    public abstract void mapArgs();
 }

@@ -23,30 +23,57 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-abstract class Example {
+class VerbRole {
 
-    protected final String text;
-    protected final Map<VerbRole, String> args;
+    static String normalizeThematicRoleName(String name) {
+        return WsdUtil.capitalize(name.toLowerCase());
+    }
+    private final String pbN;
+    private final String pbDescr;
+    private final String vnType;
+    private final List<VnRestr> vnSelrestrs;
+    private int hits; // used for role selection in creating graph procedures
 
-    public Example(String text) {
-        this.text = text;
-        this.args = new HashMap<VerbRole, String>();
+    public VerbRole(String pnN, String pbDescr, String vnType) {
+        this.pbN = pnN;
+        this.pbDescr = pbDescr;
+        this.vnType = vnType;
+        this.vnSelrestrs = new ArrayList<VnRestr>();
+        hits = 0;
     }
 
-    public Map<VerbRole, String> getArgs() {
-        return args;
+    public String getPbDescr() {
+        return pbDescr;
     }
 
-    public String getText() {
-        return text;
+    public String getPbN() {
+        return pbN;
     }
 
-    public abstract void mapArgs();
+    public String getVnType() {
+        return vnType;
+    }
+
+    public List<VnRestr> getVnSelrestrs() {
+        return vnSelrestrs;
+    }
+
+    public int getHits() {
+        return hits;
+    }
+
+    public void resetHits() {
+        this.hits = 0;
+    }
+
+    public void incrementHits() {
+        this.hits += 1;
+    }
 }
