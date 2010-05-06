@@ -37,8 +37,8 @@ import org.purl.net.wonderland.kb.WkbUtil;
  */
 public class VerbTest {
 
-    // @Test
-    public void testAllVerbs() throws Exception {
+    @Test
+    public void discoverPropBank() throws Exception {
         for (File file : W.getPropBankDataFolder().listFiles()) {
             String lemma = file.getName();
             int endIndex = lemma.lastIndexOf(".xml");
@@ -48,18 +48,15 @@ public class VerbTest {
                 System.out.println(">- " + v.getLemma());
             }
         }
-        for (String tag : WsdProcManager.syntaxTags) {
-            System.out.println(tag);
-        }
     }
 
     // @Test
     public void testOneVerb() throws Exception {
-        Verb v = new Verb("abduct");
+        Verb v = new Verb("steal");
         System.out.println(v.getLemma());
     }
 
-    @Test
+    //@Test
     public void testOneVerbToProcs() throws Exception {
         W.init();
 
@@ -67,7 +64,7 @@ public class VerbTest {
         WsdPersonality pers = new WsdPersonality();
         pers.setMemory(memory);
 
-        Verb v = new Verb("know");
+        Verb v = new Verb("steal");
         List<Rule> procs = v.getVerbNetProcs(pers);
         for (Rule proc : procs) {
             memory.getStorage().addRule(proc);

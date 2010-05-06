@@ -42,7 +42,6 @@ import org.purl.net.wonderland.util.IO;
 public final class WsdProcManager {
 
     private static final String RULES_FILE_EXTENSION = ".rules.xml";
-    static Set<String> syntaxTags = new HashSet<String>();
     //
     private final Wkb kb;
     private final ProcManager verbProcs = new ProcManager();

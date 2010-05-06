@@ -23,60 +23,32 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.w3c.dom.Element;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-class Themrole {
+class VnRestr {
 
-    private final String pbN;
-    private final String pbDescr;
-    private final String vnThemrole;
-    private final List<String> plusRestrs;
-    private final List<String> minusRestrs;
-    private int hits; // used for role selection
+    private final boolean positive;
+    private final String type;
 
-    public Themrole(String pnN, String pbDescr, String vnThemrole) {
-        this.pbN = pnN;
-        this.pbDescr = pbDescr;
-        this.vnThemrole = vnThemrole;
-        this.plusRestrs = new ArrayList<String>();
-        this.minusRestrs = new ArrayList<String>();
-        hits = 0;
+    VnRestr(Element element) {
+        String value = element.getAttribute("Value");
+        if ("-".equals(value)) {
+            this.positive = false;
+        } else {
+            this.positive = true;
+        }
+        this.type = element.getAttribute("type");
     }
 
-    public String getPbDescr() {
-        return pbDescr;
+    public boolean isPositive() {
+        return positive;
     }
 
-    public String getPbN() {
-        return pbN;
-    }
-
-    public String getVnThemrole() {
-        return vnThemrole;
-    }
-
-    public List<String> getMinusRestrs() {
-        return minusRestrs;
-    }
-
-    public List<String> getPlusRestrs() {
-        return plusRestrs;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public void resetHits() {
-        this.hits = 0;
-    }
-
-    public void incrementHits() {
-        this.hits += 1;
+    public String getType() {
+        return type;
     }
 }

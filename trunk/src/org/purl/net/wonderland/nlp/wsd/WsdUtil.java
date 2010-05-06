@@ -23,30 +23,19 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-abstract class Example {
+class WsdUtil {
 
-    protected final String text;
-    protected final Map<VerbRole, String> args;
+    static final String SEP = "|";
 
-    public Example(String text) {
-        this.text = text;
-        this.args = new HashMap<VerbRole, String>();
+
+    static String capitalize(String str) {
+        if (str.length() > 0) {
+            str = str.substring(0, 1).toUpperCase() + str.substring(1);
+        }
+        return str;
     }
-
-    public Map<VerbRole, String> getArgs() {
-        return args;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public abstract void mapArgs();
 }
