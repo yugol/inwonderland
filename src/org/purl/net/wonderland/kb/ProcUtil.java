@@ -37,6 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.purl.net.wonderland.util.IdUtil;
 
 /**
  *
@@ -149,7 +150,7 @@ public class ProcUtil {
 
         // add concepts
         for (Concept rhs : conceptsToAdd) {
-            Concept actual = new Concept(WkbUtil.newUniqueId());
+            Concept actual = new Concept(IdUtil.newId());
             actual.setType(rhs.getType());
             actual.setIndividual(rhs.getIndividual());
             fact.addVertex(actual);
@@ -226,7 +227,7 @@ public class ProcUtil {
     }
 
     private static void addNewRelation(Relation r, Concept[] args, CGraph cg) {
-        String newRelationId = WkbUtil.newUniqueId();
+        String newRelationId = IdUtil.newId();
         Relation newRelation = new Relation(newRelationId);
         newRelation.setType(r.getType());
         cg.addVertex(newRelation);

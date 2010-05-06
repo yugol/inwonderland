@@ -46,6 +46,7 @@ import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.wsd.Example.RoleData;
+import org.purl.net.wonderland.util.IdUtil;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -165,7 +166,7 @@ class Verb {
                     if (example.getType() == Example.Type.VerbNet) {
                         text = example.getText();
                         CGraph cg = pers.parse(text);
-                        Rule proc = new Rule(WkbUtil.newUniqueId(), WkbUtil.toProcName(lemma, WkbUtil.newUniqueId()));
+                        Rule proc = new Rule(IdUtil.newId(), WkbUtil.toProcName(lemma, IdUtil.newId()));
 
 
                         // find VERB
@@ -239,7 +240,7 @@ class Verb {
                                             proc.addEdge(cHyptConc[1].getId(), rHyptConc[1].getId(), 2);
                                             proc.addCouple(cHyptConc[0].getId(), cHyptConc[1].getId());
                                         } else {
-                                            Concept cHypt = new Concept(WkbUtil.newUniqueId());
+                                            Concept cHypt = new Concept(IdUtil.newId());
                                             cHypt.setType(WkbConstants.ADPOSITION_CT);
                                             cHypt.setIndividual(c.getIndividual());
                                             cHypt.setHypothesis(true);
@@ -252,7 +253,7 @@ class Verb {
                                                 Relation dep2 = cg.getRelation(rit2.next());
                                                 if (dep2 != dep) {
 
-                                                    Relation rHypt = new Relation(WkbUtil.newUniqueId());
+                                                    Relation rHypt = new Relation(IdUtil.newId());
                                                     rHypt.setType(dep2.getType());
                                                     rHypt.setHypothesis(true);
                                                     proc.addVertex(rHypt);
@@ -296,14 +297,14 @@ class Verb {
     private Concept[] createVerbConceptHyptConc(Wkb kb, Rule proc, VerbFrame frame) {
         Concept hypt, conc;
 
-        hypt = new Concept(WkbUtil.newUniqueId());
+        hypt = new Concept(IdUtil.newId());
         hypt.setIndividual(kb.addIndividual(lemma));
         hypt.setType(WkbConstants.VERB_CT);
         hypt.setHypothesis(true);
         hypt.setIndividual(kb.addIndividual(lemma));
         proc.addVertex(hypt);
 
-        conc = new Concept(WkbUtil.newUniqueId());
+        conc = new Concept(IdUtil.newId());
         conc.setType(WkbConstants.PROCOP_ADD_CT);
         for (String sense : frame.getSenses()) {
             String ctId = kb.addConceptType(sense, null);
@@ -323,12 +324,12 @@ class Verb {
     private Concept[] createConceptHyptConc(Rule proc) {
         Concept hypt, conc;
 
-        hypt = new Concept(WkbUtil.newUniqueId());
+        hypt = new Concept(IdUtil.newId());
         hypt.setType(WkbConstants.LINKARG_CT);
         hypt.setHypothesis(true);
         proc.addVertex(hypt);
 
-        conc = new Concept(WkbUtil.newUniqueId());
+        conc = new Concept(IdUtil.newId());
         conc.setType(WkbConstants.PROCOP_KEEP_CT);
         conc.setConclusion(true);
         proc.addVertex(conc);
@@ -342,12 +343,12 @@ class Verb {
     private Relation[] createRelationHyptConc(Rule proc, Themrole role, Relation prototype) {
         Relation hypt, conc;
 
-        hypt = new Relation(WkbUtil.newUniqueId());
+        hypt = new Relation(IdUtil.newId());
         hypt.setType(prototype.getType());
         hypt.setHypothesis(true);
         proc.addVertex(hypt);
 
-        conc = new Relation(WkbUtil.newUniqueId());
+        conc = new Relation(IdUtil.newId());
         conc.setType(WkbUtil.toRelationTypeId(role.getVnThemrole()));
         conc.setConclusion(true);
         proc.addVertex(conc);

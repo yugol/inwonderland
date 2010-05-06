@@ -50,6 +50,7 @@ import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.util.IdUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -174,7 +175,7 @@ public class Wkb {
     }
 
     public CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
-        CGraph cg = new CGraph(WkbUtil.newUniqueId(), null, null, "fact");
+        CGraph cg = new CGraph(IdUtil.newId(), null, null, "fact");
 
         for (int i = 0; i < words.size(); ++i) {
             WTagging tagging = words.get(i);
@@ -198,7 +199,7 @@ public class Wkb {
             String dep = getConcept(cg, WkbUtil.retrieveIndexFromLabel(tdep.dep().nodeString())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = WkbUtil.toRelationTypeId(relationTypeLabel);
-            String relationId = WkbUtil.newUniqueId();
+            String relationId = IdUtil.newId();
 
             Relation r = new Relation(relationId);
             r.addType(relationType);
