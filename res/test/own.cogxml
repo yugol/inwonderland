@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<cogxml>
+    <support name="vocabulary">
+        <conceptTypes>
+            <ctype id="ct_cardinalNumeral" label="cardinalNumeral">
+                <translation descr="" label="cardinalNumeral" lang="en"/>
+            </ctype>
+            <ctype id="ct_present" label="present">
+                <translation descr="" label="present" lang="en"/>
+            </ctype>
+            <ctype id="ct_firstPerson" label="firstPerson">
+                <translation descr="" label="firstPerson" lang="en"/>
+            </ctype>
+            <ctype id="Top" label="Top">
+                <translation descr="" label="Top" lang="en"/>
+            </ctype>
+            <ctype id="ct_indicative" label="indicative">
+                <translation descr="" label="indicative" lang="en"/>
+            </ctype>
+            <ctype id="ct_point" label="point">
+                <translation descr="" label="point" lang="en"/>
+            </ctype>
+            <ctype id="ct_commonNoun" label="commonNoun">
+                <translation descr="" label="commonNoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_singular" label="singular">
+                <translation descr="" label="singular" lang="en"/>
+            </ctype>
+            <ctype id="ct_verb" label="verb">
+                <translation descr="" label="verb" lang="en"/>
+            </ctype>
+            <ctype id="ct_personalPronoun" label="personalPronoun">
+                <translation descr="" label="personalPronoun" lang="en"/>
+            </ctype>
+            <order id1="ct_cardinalNumeral" id2="Top"/>
+            <order id1="ct_present" id2="Top"/>
+            <order id1="ct_firstPerson" id2="Top"/>
+            <order id1="ct_indicative" id2="Top"/>
+            <order id1="ct_point" id2="Top"/>
+            <order id1="ct_commonNoun" id2="Top"/>
+            <order id1="ct_singular" id2="Top"/>
+            <order id1="ct_verb" id2="Top"/>
+            <order id1="ct_personalPronoun" id2="Top"/>
+        </conceptTypes>
+        <relationTypes>
+            <rtype id="rt_dobj" idSignature="Top Top" label="dobj">
+                <translation descr="" label="dobj" lang="en"/>
+            </rtype>
+            <rtype id="rt_num" idSignature="Top Top" label="num">
+                <translation descr="" label="num" lang="en"/>
+            </rtype>
+            <rtype id="Top2" idSignature="Top Top" label="Top2">
+                <translation descr="" label="Top2" lang="en"/>
+            </rtype>
+            <rtype id="rt_nsubj" idSignature="Top Top" label="nsubj">
+                <translation descr="" label="nsubj" lang="en"/>
+            </rtype>
+            <order id1="rt_dobj" id2="Top2"/>
+            <order id1="rt_num" id2="Top2"/>
+            <order id1="rt_nsubj" id2="Top2"/>
+        </relationTypes>
+        <nestingTypes>
+            <ntype id="LCsQlBGc9NrRqpDCq8UO" label="">
+                <translation descr="" label="" lang="en"/>
+            </ntype>
+        </nestingTypes>
+        <conformity>
+            <marker id="own" idType="Top" label="own"/>
+            <marker id="." idType="Top" label="."/>
+            <marker id="ox" idType="Top" label="ox"/>
+            <marker id="12" idType="Top" label="12"/>
+            <marker id="i" idType="Top" label="i"/>
+        </conformity>
+    </support>
+    <graph id="3enPsBpGra0faEdYPZMj" label="3enPsBpGra0faEdYPZMj" nature="fact" set="default_set">
+        <concept id="fJe5ZjUekbxKaPoW4eHr" idMarker="i" referent="individual">
+            <type id="ct_firstPerson"/>
+            <type id="ct_singular"/>
+            <type id="ct_personalPronoun"/>
+        </concept>
+        <concept id="2fYBb4yTQmDr4K3Lta0f" idMarker="own" referent="individual">
+            <type id="ct_present"/>
+            <type id="ct_indicative"/>
+            <type id="ct_verb"/>
+        </concept>
+        <concept id="8fFj00WA3EgAqClyTgCG" idMarker="12" idType="ct_cardinalNumeral" referent="individual"/>
+        <concept id="MC2Lyca8OUzaKDOl0oQv" idMarker="ox" referent="individual">
+            <type id="ct_commonNoun"/>
+            <type id="ct_singular"/>
+        </concept>
+        <concept id="s5qGIn88zCRBKC14HsSi" idMarker="." idType="ct_point" referent="individual"/>
+        <relation id="2wVRn9D7ojo349JsbR7T" idType="rt_nsubj"/>
+        <relation id="luTqVPnFQvrr4a5ry1fq" idType="rt_num"/>
+        <relation id="3OdDzYhoDvMrqSG1NcVT" idType="rt_dobj"/>
+        <edge cid="MC2Lyca8OUzaKDOl0oQv" label="1" rid="3OdDzYhoDvMrqSG1NcVT"/>
+        <edge cid="8fFj00WA3EgAqClyTgCG" label="1" rid="luTqVPnFQvrr4a5ry1fq"/>
+        <edge cid="fJe5ZjUekbxKaPoW4eHr" label="1" rid="2wVRn9D7ojo349JsbR7T"/>
+        <edge cid="MC2Lyca8OUzaKDOl0oQv" label="2" rid="luTqVPnFQvrr4a5ry1fq"/>
+        <edge cid="2fYBb4yTQmDr4K3Lta0f" label="2" rid="2wVRn9D7ojo349JsbR7T"/>
+        <edge cid="2fYBb4yTQmDr4K3Lta0f" label="2" rid="3OdDzYhoDvMrqSG1NcVT"/>
+    </graph>
+</cogxml>

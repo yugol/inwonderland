@@ -31,8 +31,10 @@ import org.purl.net.wonderland.util.IdUtil;
  */
 public abstract class BasicIdentifiable {
 
-    private final String id;
-    private Object tag = null;
+    protected final String id;
+    protected String label;
+    protected String description;
+    protected String set;
 
     public BasicIdentifiable() {
         this.id = IdUtil.newId();
@@ -46,12 +48,28 @@ public abstract class BasicIdentifiable {
         return id;
     }
 
-    public Object getTag() {
-        return tag;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTag(Object tag) {
-        this.tag = tag;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getSet() {
+        return set;
+    }
+
+    public void setSet(String set) {
+        this.set = set;
     }
 
     @Override

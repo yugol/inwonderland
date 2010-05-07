@@ -24,7 +24,11 @@
 package org.purl.net.wonderland.nlp.wsd;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import org.purl.net.wonderland.cg.Path;
+import org.purl.net.wonderland.cg.Vertex;
+import org.purl.net.wonderland.nlp.WTagging;
 
 /**
  *
@@ -36,6 +40,8 @@ class VnSyntaxItem {
     private final String value;
     private final Set<VnRestr> synrestrs;
     private final Set<VnRestr> selrestrs;
+    private WTagging word = null;
+    private Path path = null;
 
     public VnSyntaxItem(String type, String value) {
         this.type = type;
@@ -73,5 +79,21 @@ class VnSyntaxItem {
             sb.append(")");
         }
         return sb.toString();
+    }
+
+    public WTagging getWord() {
+        return word;
+    }
+
+    public void setWord(WTagging word) {
+        this.word = word;
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
+    public void setPath(Path path) {
+        this.path = path;
     }
 }

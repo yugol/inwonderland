@@ -23,11 +23,14 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Relation extends BasicIdentifiable {
+public class Relation extends Vertex {
 
     private final RelationType type;
     private final Edge[] edges;
@@ -50,4 +53,16 @@ public class Relation extends BasicIdentifiable {
     void addEdge(Edge edge) {
         edges[edge.getLabel()] = edge;
     }
+
+    @Override
+    public Collection<Edge> getEdges() {
+        return Arrays.asList(edges);
+    }
+
+    @Override
+    public String toString() {
+        return type.getLabel();
+    }
+
+
 }

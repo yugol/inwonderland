@@ -23,9 +23,9 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.ArrayList;
 import java.util.List;
+import org.purl.net.wonderland.cg.KnowledgeBase;
 
 /**
  *
@@ -51,12 +51,12 @@ class Verb {
         return lemma;
     }
 
-    public List<Rule> buildProcRules() {
-        List<Rule> rules = new ArrayList<Rule>();
-        for (VnClass vnClass : vnClases) {
+    public List<KnowledgeBase> buildProcRules() {
+        List<KnowledgeBase> rules = new ArrayList<KnowledgeBase>();
+        for (VnClass vnClass : getVnClases()) {
             for (VnFrame vnFrame : vnClass.getFrames()) {
                 for (VnExample example : vnFrame.getExamples()) {
-                    example.makeSense(vnClass.getMembers());
+                    rules.add(example.getProcRule());
                 }
             }
         }
