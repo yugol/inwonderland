@@ -28,6 +28,7 @@ import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -74,10 +75,8 @@ public abstract class Personality {
         List<CGraph> facts = new ArrayList<CGraph>();
 
         for (List<WTagging> sentence : Pipeline.tokenizeAndSplit(message)) {
-            Object[] parse = Pipeline.parse(sentence);
-            sentence = (List<WTagging>) parse[0];
-            List<TypedDependency> deps = (List<TypedDependency>) parse[1];
-            facts.add(kb.buildFactGraph(sentence, deps));
+            ParseResult parseResult = Pipeline.parse(sentence);
+            facts.add(kb.buildFactGraph(parseResult));
         }
 
         return facts;

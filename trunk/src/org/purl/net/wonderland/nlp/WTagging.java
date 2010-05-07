@@ -30,7 +30,6 @@ import edu.stanford.nlp.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
 
 /**

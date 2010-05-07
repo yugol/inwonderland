@@ -23,10 +23,11 @@
  */
 package org.purl.net.wonderland.cg;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import org.purl.net.wonderland.WonderlandRuntimeException;
 
 /**
  *
@@ -34,11 +35,13 @@ import java.util.Set;
  */
 public class ConceptualGraph extends BasicClassifiable {
 
-    private final Map<String, Concept> concepts = new HashMap<String, Concept>();
-    private final Map<String, Relation> relations = new HashMap<String, Relation>();
+    private final Map<String, Concept> concepts = new LinkedHashMap<String, Concept>();
+    private final Map<String, Relation> relations = new LinkedHashMap<String, Relation>();
     private final Set<Edge> edges = new HashSet<Edge>();
 
     public ConceptualGraph() {
+        setLabel(getId());
+        setSet(Support.DEFAULT_SET);
     }
 
     public ConceptualGraph(String id) {
@@ -66,8 +69,13 @@ public class ConceptualGraph extends BasicClassifiable {
     }
 
     public void add(Edge edge) {
-        edges.add(edge);
-        edge.getRelation().addEdge(edge);
-        edge.getConcept().addEdge(edge);
+        if (concepts.containsKey(edge.getConcept().getId())
+                && relations.containsKey(edge.getRelation().getId())) {
+            edges.add(edge);
+            edge.getRelation().addEdge(edge);
+            edge.getConcept().addEdge(edge);
+        } else {
+            throw new WonderlandRuntimeException("vertex is not in graph");
+        }
     }
 }

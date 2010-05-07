@@ -118,7 +118,7 @@ class PbRoleset {
             Element textElement = (Element) exampleElement.getElementsByTagName("text").item(0);
             String text = textElement.getTextContent().trim();
 
-            PbExample example = new PbExample(lemma, PbExample.Type.PropBank, text);
+            PbExample example = new PbExample(lemma, text);
 
             NodeList argNodes = exampleElement.getElementsByTagName("arg");
             for (int j = 0; j < argNodes.getLength(); j++) {

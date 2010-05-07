@@ -23,13 +23,14 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import edu.stanford.nlp.trees.TypedDependency;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.purl.net.wonderland.WonderlandRuntimeException;
+import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
 
@@ -41,8 +42,7 @@ class VnExample extends Example {
 
     private final List<VnSyntaxItem> frame;
     private Map<VnSyntaxItem, WTagging> matches;
-    private List<WTagging> sentence;
-    private List<TypedDependency> deps;
+    private ParseResult parseResult;
 
     VnExample(String text, List<VnSyntaxItem> syntax) {
         super(text);
@@ -60,18 +60,13 @@ class VnExample extends Example {
         matches = new HashMap<VnSyntaxItem, WTagging>();
 
         List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
-        Object[] result = Pipeline.parse(tokens);
-        sentence = (List<WTagging>) result[0];
-        deps = (List<TypedDependency>) result[1];
+        parseResult = Pipeline.parse(tokens);
 
         System.out.println(text);
-        for (int i = 0; i < sentence.size(); i++) {
-            WTagging word = sentence.get(i);
+        for (int i = 0; i < parseResult.getSentenceSize(); i++) {
+            WTagging word = parseResult.getTaggedWord(i);
             System.out.println("    " + word.getLemma() + " / " + word.getPennTag() + " / " + word.getPartsOfSpeech());
         }
-
-
-
 
         int frameVerbPos = -1;
         for (int i = 0; i < frame.size(); i++) {
@@ -84,7 +79,7 @@ class VnExample extends Example {
 
         int sentenceVerbPos = -1;
         // try find verb by match
-        for (int i = 0; i < sentence.size(); i++) {
+        for (int i = 0; i < parseResult.getSentenceSize(); i++) {
             if (areMatch(i, frameVerbPos, members)) {
                 sentenceVerbPos = i;
                 break;
@@ -92,8 +87,8 @@ class VnExample extends Example {
         }
         // try find verb by tag
         if (sentenceVerbPos < 0) {
-            for (int i = 0; i < sentence.size(); i++) {
-                WTagging word = sentence.get(i);
+            for (int i = 0; i < parseResult.getSentenceSize(); i++) {
+                WTagging word = parseResult.getTaggedWord(i);
                 if (word.getPennTag().indexOf("VB") == 0) {
                     sentenceVerbPos = i;
                     break;
@@ -102,8 +97,8 @@ class VnExample extends Example {
         }
         // try find verb by lemma
         if (sentenceVerbPos < 0) {
-            for (int i = 0; i < sentence.size(); i++) {
-                WTagging word = sentence.get(i);
+            for (int i = 0; i < parseResult.getSentenceSize(); i++) {
+                WTagging word = parseResult.getTaggedWord(i);
                 if (members.contains(word.getLemma())) {
                     sentenceVerbPos = i;
                     break;
@@ -112,8 +107,8 @@ class VnExample extends Example {
         }
         // check 'ed forms
         if (sentenceVerbPos < 0) {
-            for (int i = 0; i < sentence.size(); i++) {
-                String lemma = sentence.get(i).getLemma();
+            for (int i = 0; i < parseResult.getSentenceSize(); i++) {
+                String lemma = parseResult.getTaggedWord(i).getLemma();
                 if (lemma.lastIndexOf("ed") == lemma.length() - 2) {
                     lemma = lemma.substring(0, lemma.length() - 2);
                 }
@@ -151,14 +146,14 @@ class VnExample extends Example {
         frameCursor = frameVerbPos + 1;
         sentenceCursor = sentenceVerbPos + 1;
         lastSentenceMatchPos = sentenceVerbPos;
-        while (frameCursor < frame.size() && sentenceCursor < sentence.size()) {
+        while (frameCursor < frame.size() && sentenceCursor < parseResult.getSentenceSize()) {
             if (areMatch(sentenceCursor, frameCursor, members)) {
                 createMatch(frameCursor, sentenceCursor);
                 lastSentenceMatchPos = sentenceCursor;
                 ++frameCursor;
             }
             ++sentenceCursor;
-            if (sentenceCursor >= sentence.size()) {
+            if (sentenceCursor >= parseResult.getSentenceSize()) {
                 ++frameCursor;
                 sentenceCursor = lastSentenceMatchPos + 1;
             }
@@ -186,13 +181,13 @@ class VnExample extends Example {
 
     private void createMatch(int frameCursor, int sentenceCursor) {
         VnSyntaxItem item = frame.get(frameCursor);
-        WTagging word = sentence.get(sentenceCursor);
+        WTagging word = parseResult.getTaggedWord(sentenceCursor);
         matches.put(item, word);
     }
 
     private boolean areMatch(int wordIndex, int itemIndex, List<String> members) {
 
-        WTagging word = sentence.get(wordIndex);
+        WTagging word = parseResult.getTaggedWord(wordIndex);
         VnSyntaxItem item = frame.get(itemIndex);
 
         String itemType = item.getType();
@@ -310,7 +305,7 @@ class VnExample extends Example {
     }
 
     private boolean checkContains(List<String> choices, int wordIndex) {
-        String lemma = sentence.get(wordIndex).getLemma();
+        String lemma = parseResult.getTaggedWord(wordIndex).getLemma();
         for (String choice : choices) {
             if (choice.indexOf("_") < 0) {
                 if (choice.equals(lemma)) {
@@ -322,9 +317,9 @@ class VnExample extends Example {
                     return false;
                 }
                 ++wordIndex;
-                for (int i = 1; (i < components.length) && (wordIndex < sentence.size()); wordIndex++, i++) {
+                for (int i = 1; (i < components.length) && (wordIndex < parseResult.getSentenceSize()); wordIndex++, i++) {
                     String component = components[i];
-                    lemma = sentence.get(wordIndex).getLemma();
+                    lemma = parseResult.getTaggedWord(wordIndex).getLemma();
                     if (!component.equals(lemma)) {
                         return false;
                     }
@@ -373,5 +368,10 @@ class VnExample extends Example {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Rule getProcRule() {
+        return null;
     }
 }

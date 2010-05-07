@@ -162,7 +162,7 @@ public class MafCorpus {
 
         int sentIdx = 1;
         for (List<WTagging> sentence : Pipeline.tokenizeAndSplit(corpus)) {
-            sentence = (List<WTagging>) Pipeline.parse(sentence)[0];
+            sentence = Pipeline.parse(sentence).getTaggedSentence();
 
             Element mafElem = xmlLevel[0].createElement(MAF_NAME);
             mafElem.setAttribute(MAF_ATTR_DOCUMENT, SENTENCE + sentIdx);
