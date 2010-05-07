@@ -38,7 +38,6 @@ import org.w3c.dom.NodeList;
  */
 class PbRoleset {
 
-    private final String lemma;
     private final String id;
     private final String name;
     private final Map<String, VerbRole> roles; // all thematic roles applicable (including PropBank and VerbNet)
@@ -48,7 +47,6 @@ class PbRoleset {
     public PbRoleset(String lemma, Element rolesetElement, String vncls, int vnclsIdx) throws Exception {
         String vnClassId = makeVnClass(vncls);
 
-        this.lemma = lemma;
         this.id = rolesetElement.getAttribute("id");
         this.name = rolesetElement.getAttribute("name");
 
@@ -61,7 +59,11 @@ class PbRoleset {
             vnClassId = Gazetteers.pb2vn.get(id);
         }
 
-        this.vnClasses = VnClass.makeClassesFor(lemma, vnClassId);
+        if (vnClassId == null) {
+            this.vnClasses = null;
+        } else {
+            this.vnClasses = VnClass.makeClassesFor(lemma, vnClassId);
+        }
     }
 
     private static String makeVnClass(String vncls) {
@@ -143,10 +145,6 @@ class PbRoleset {
 
     public String getId() {
         return id;
-    }
-
-    public String getLemma() {
-        return lemma;
     }
 
     public String getName() {

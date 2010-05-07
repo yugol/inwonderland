@@ -53,6 +53,9 @@ class VnExample extends Example {
         if (text.indexOf("?") == 0) {
             text = text.substring(1);
         }
+        if (text.equals("Susan and Rachel talked.") && frame.size() == 3) {
+            text = "Susan and Rachel talked together.";
+        }
 
         matches = new HashMap<VnSyntaxItem, WTagging>();
 
@@ -177,9 +180,6 @@ class VnExample extends Example {
             manualMap();
         }
         if (frame.size() != matches.size()) {
-            --skip;
-        }
-        if (skip < 0) {
             throw new WonderlandRuntimeException("unmatched frame");
         }
     }
@@ -189,11 +189,6 @@ class VnExample extends Example {
         WTagging word = sentence.get(sentenceCursor);
         matches.put(item, word);
     }
-    //
-    //
-    private static int skip = 1;
-    //
-    //
 
     private boolean areMatch(int wordIndex, int itemIndex, List<String> members) {
 
@@ -259,6 +254,9 @@ class VnExample extends Example {
                 List<String> choices = new ArrayList<String>(Arrays.asList(item.getValue().split(" ")));
                 if (choices.contains("in")) {
                     choices.add("into");
+                }
+                if (choices.contains("about")) {
+                    choices.add("on");
                 }
                 if (checkContains(choices, wordIndex)) {
                     return true;
@@ -338,6 +336,15 @@ class VnExample extends Example {
     }
 
     private boolean manualMap() {
+
+        if (text.equals("The clothes dried wrinkled.")) {
+            frame.remove(2);
+            matches.clear();
+            createMatch(0, 1);
+            createMatch(1, 2);
+            createMatch(2, 3);
+            return true;
+        }
         if (text.equals("It's raining.")) {
             createMatch(0, 0);
             createMatch(1, 1);
@@ -356,6 +363,13 @@ class VnExample extends Example {
             createMatch(1, 1);
             createMatch(2, 4);
             createMatch(3, 2);
+            return true;
+        }
+        if (text.equals("Nonperforming assets at these banks declined by %15.")) {
+            createMatch(0, 1);
+            createMatch(1, 5);
+            createMatch(2, 6);
+            createMatch(3, 8);
             return true;
         }
         return false;
