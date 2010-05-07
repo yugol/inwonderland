@@ -23,14 +23,16 @@
  */
 package org.purl.net.wonderland.cg;
 
+import edu.northwestern.at.utils.Compare;
 import java.util.ArrayList;
 import java.util.List;
+import org.purl.net.wonderland.WonderlandRuntimeException;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Path {
+public class Path implements Comparable<Path> {
 
     private final List<Vertex> vertices;
     private final List<Edge> edges;
@@ -72,5 +74,21 @@ public class Path {
 
     public Edge getEdge(int i) {
         return edges.get(i);
+    }
+
+    public int compareTo(Path o) {
+        return Compare.compare(size(), o.size());
+    }
+
+    public void trim(int requiredSize) {
+        if (requiredSize < 0) {
+            throw new WonderlandRuntimeException("invalid argument " + requiredSize);
+        }
+        int sz = size();
+        while (sz > requiredSize) {
+            --sz;
+            vertices.remove(sz);
+            edges.remove(sz - 1);
+        }
     }
 }

@@ -24,10 +24,8 @@
 package org.purl.net.wonderland.nlp.wsd;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import org.purl.net.wonderland.cg.Path;
-import org.purl.net.wonderland.cg.Vertex;
 import org.purl.net.wonderland.nlp.WTagging;
 
 /**
