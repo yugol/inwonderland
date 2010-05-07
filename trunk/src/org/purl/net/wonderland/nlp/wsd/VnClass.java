@@ -139,7 +139,7 @@ class VnClass {
         NodeList frameNodes = framesElement.getElementsByTagName("FRAME");
         for (int i = 0; i < frameNodes.getLength(); i++) {
             Element frameElement = (Element) frameNodes.item(i);
-            VnFrame frame = new VnFrame(frameElement, themroles);
+            VnFrame frame = new VnFrame(frameElement, themroles, this);
             frames.add(frame);
         }
     }

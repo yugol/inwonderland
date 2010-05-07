@@ -41,12 +41,12 @@ class VnFrame {
     private final List<VnExample> examples;
     private final List<VnSyntaxItem> syntax;
 
-    VnFrame(Element frameElement, Map<String, VerbRole> themroles) {
+    VnFrame(Element frameElement, Map<String, VerbRole> themroles, VnClass vnClass) {
         Element descriptionElement = (Element) frameElement.getElementsByTagName("DESCRIPTION").item(0);
         this.primaryDescription = descriptionElement.getAttribute("primary");
         this.secondaryDescription = descriptionElement.getAttribute("secondary");
         this.syntax = makeSyntax(frameElement, themroles);
-        this.examples = makeExamples(frameElement, syntax);
+        this.examples = makeExamples(frameElement, syntax, vnClass.getMembers());
     }
 
     private static List<VnSyntaxItem> makeSyntax(Element frameElement, Map<String, VerbRole> themroles) {
@@ -86,13 +86,13 @@ class VnFrame {
         return syntax;
     }
 
-    private static List<VnExample> makeExamples(Element frameElement, List<VnSyntaxItem> syntax) {
+    private static List<VnExample> makeExamples(Element frameElement, List<VnSyntaxItem> syntax, List<String> members) {
         List<VnExample> examples = new ArrayList<VnExample>();
 
         NodeList exampleNodes = frameElement.getElementsByTagName("EXAMPLE");
         for (int i = 0; i < exampleNodes.getLength(); i++) {
             Element exampleElement = (Element) exampleNodes.item(i);
-            VnExample example = new VnExample(exampleElement.getTextContent(), syntax);
+            VnExample example = new VnExample(exampleElement.getTextContent(), syntax, members);
             examples.add(example);
         }
 

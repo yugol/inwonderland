@@ -23,13 +23,15 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.purl.net.wonderland.WonderlandRuntimeException;
+import org.purl.net.wonderland.cg.Concept;
+import org.purl.net.wonderland.cg.ConceptualGraph;
+import org.purl.net.wonderland.cg.KnowledgeBase;
+import org.purl.net.wonderland.cg.Path;
+import org.purl.net.wonderland.cg.Rule;
 import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -40,24 +42,23 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 class VnExample extends Example {
 
-    private final List<VnSyntaxItem> frame;
-    private Map<VnSyntaxItem, WTagging> matches;
+    private final Frame frame;
+    private final List<String> members;
     private ParseResult parseResult;
 
-    VnExample(String text, List<VnSyntaxItem> syntax) {
+    VnExample(String text, List<VnSyntaxItem> syntax, List<String> members) {
         super(text);
-        this.frame = syntax;
+        this.frame = new Frame(syntax);
+        this.members = members;
     }
 
-    public void makeSense(List<String> members) {
+    public void makeSense() {
         if (text.indexOf("?") == 0) {
             text = text.substring(1);
         }
         if (text.equals("Susan and Rachel talked.") && frame.size() == 3) {
             text = "Susan and Rachel talked together.";
         }
-
-        matches = new HashMap<VnSyntaxItem, WTagging>();
 
         List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
         parseResult = Pipeline.parse(tokens);
@@ -68,14 +69,7 @@ class VnExample extends Example {
             System.out.println("    " + word.getLemma() + " / " + word.getPennTag() + " / " + word.getPartsOfSpeech());
         }
 
-        int frameVerbPos = -1;
-        for (int i = 0; i < frame.size(); i++) {
-            VnSyntaxItem item = frame.get(i);
-            if (item.getType().equals("VERB")) {
-                frameVerbPos = i;
-                break;
-            }
-        }
+        int frameVerbPos = frame.getVerbIndex();
 
         int sentenceVerbPos = -1;
         // try find verb by match
@@ -121,17 +115,17 @@ class VnExample extends Example {
 
 
 
-        createMatch(frameVerbPos, sentenceVerbPos);
+        createMapping(frameVerbPos, sentenceVerbPos);
 
         int frameCursor = frameVerbPos - 1;
         int sentenceCursor = sentenceVerbPos - 1;
         int lastSentenceMatchPos = sentenceVerbPos;
         if (frameCursor == 0 && sentenceCursor == 0) {
-            createMatch(frameCursor, sentenceCursor);
+            createMapping(frameCursor, sentenceCursor);
         } else {
             while (frameCursor >= 0 && sentenceCursor >= 0) {
                 if (areMatch(sentenceCursor, frameCursor, members)) {
-                    createMatch(frameCursor, sentenceCursor);
+                    createMapping(frameCursor, sentenceCursor);
                     lastSentenceMatchPos = sentenceCursor;
                     --frameCursor;
                 }
@@ -148,7 +142,7 @@ class VnExample extends Example {
         lastSentenceMatchPos = sentenceVerbPos;
         while (frameCursor < frame.size() && sentenceCursor < parseResult.getSentenceSize()) {
             if (areMatch(sentenceCursor, frameCursor, members)) {
-                createMatch(frameCursor, sentenceCursor);
+                createMapping(frameCursor, sentenceCursor);
                 lastSentenceMatchPos = sentenceCursor;
                 ++frameCursor;
             }
@@ -163,7 +157,7 @@ class VnExample extends Example {
         for (int i = 0; i < frame.size(); i++) {
             VnSyntaxItem item = frame.get(i);
             System.out.print("[" + i + "] " + item.toString());
-            WTagging word = matches.get(item);
+            WTagging word = item.getWord();
             if (word != null) {
                 System.out.print(" -> " + word.getLemma());
             }
@@ -171,18 +165,18 @@ class VnExample extends Example {
         }
         System.out.println("");
 
-        if (frame.size() != matches.size()) {
+        if (!frame.isMappedCompletely()) {
             manualMap();
         }
-        if (frame.size() != matches.size()) {
+        if (!frame.isMappedCompletely()) {
             throw new WonderlandRuntimeException("unmatched frame");
         }
     }
 
-    private void createMatch(int frameCursor, int sentenceCursor) {
+    private void createMapping(int frameCursor, int sentenceCursor) {
         VnSyntaxItem item = frame.get(frameCursor);
         WTagging word = parseResult.getTaggedWord(sentenceCursor);
-        matches.put(item, word);
+        item.setWord(word);
     }
 
     private boolean areMatch(int wordIndex, int itemIndex, List<String> members) {
@@ -334,44 +328,75 @@ class VnExample extends Example {
 
         if (text.equals("The clothes dried wrinkled.")) {
             frame.remove(2);
-            matches.clear();
-            createMatch(0, 1);
-            createMatch(1, 2);
-            createMatch(2, 3);
+            createMapping(0, 1);
+            createMapping(1, 2);
+            createMapping(2, 3);
             return true;
         }
         if (text.equals("It's raining.")) {
-            createMatch(0, 0);
-            createMatch(1, 1);
-            createMatch(2, 2);
+            createMapping(0, 0);
+            createMapping(1, 1);
+            createMapping(2, 2);
             return true;
         }
         if (text.equals("It's raining cats and dogs.")) {
-            createMatch(0, 0);
-            createMatch(1, 1);
-            createMatch(2, 2);
-            createMatch(3, 3);
+            createMapping(0, 0);
+            createMapping(1, 1);
+            createMapping(2, 2);
+            createMapping(3, 3);
             return true;
         }
         if (text.equals("Cynthia quaffed down the mixture.")) {
-            createMatch(0, 0);
-            createMatch(1, 1);
-            createMatch(2, 4);
-            createMatch(3, 2);
+            createMapping(0, 0);
+            createMapping(1, 1);
+            createMapping(2, 4);
+            createMapping(3, 2);
             return true;
         }
         if (text.equals("Nonperforming assets at these banks declined by %15.")) {
-            createMatch(0, 1);
-            createMatch(1, 5);
-            createMatch(2, 6);
-            createMatch(3, 8);
+            createMapping(0, 1);
+            createMapping(1, 5);
+            createMapping(2, 6);
+            createMapping(3, 8);
             return true;
         }
         return false;
     }
 
     @Override
-    public Rule getProcRule() {
-        return null;
+    public KnowledgeBase getProcRule() {
+        // map syntax elements to text
+        makeSense();
+
+        // clean frame
+        frame.removeUnmapped();
+        int frameVerbIndex = frame.getVerbIndex();
+        if (frameVerbIndex < 0) {
+            throw new WonderlandRuntimeException("frame does not have a verb");
+        }
+
+        // get parse graph
+        ConceptualGraph parseGraph = parseResult.getConceptualGraph();
+
+        // find paths
+        Concept verbConcept = parseResult.getConcept(frame.get(frameVerbIndex).getWord());
+        for (int i = 0; i < frame.size(); i++) {
+            VnSyntaxItem item = frame.get(i);
+            Concept nonVerbConcept = parseResult.getConcept(item.getWord());
+            Path path = parseGraph.findPath(verbConcept, nonVerbConcept);
+            item.setPath(path);
+        }
+
+        // create frame context
+        frame.cleanContext();
+
+        // fianlly create the rule
+        Rule proc = frame.getProcRule();
+
+        // store rule into knowledge base and return
+        KnowledgeBase kb = parseResult.getKb();
+        kb.addRule(proc);
+
+        return kb;
     }
 }

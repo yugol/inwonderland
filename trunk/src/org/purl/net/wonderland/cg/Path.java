@@ -23,26 +23,54 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class BasicClassifiable extends BasicLabeled {
+public class Path {
 
-    protected String set;
+    private final List<Vertex> vertices;
+    private final List<Edge> edges;
 
-    public BasicClassifiable() {
+    public Path(List<Vertex> vertices) {
+        this.vertices = vertices;
+        this.edges = new ArrayList<Edge>();
+        findEdges();
     }
 
-    public BasicClassifiable(String id) {
-        super(id);
+    private void findEdges() {
+        for (int i = 0; i < vertices.size() - 1; i++) {
+            Vertex v1 = vertices.get(i);
+            Vertex v2 = vertices.get(i + 1);
+            for (Edge edge : v1.getEdges()) {
+                if (edge.getOther(v1) == v2) {
+                    edges.add(edge);
+                    break;
+                }
+            }
+        }
     }
 
-    public String getSet() {
-        return set;
+    public List<Edge> getEdges() {
+        return edges;
     }
 
-    public void setSet(String set) {
-        this.set = set;
+    public List<Vertex> getVertices() {
+        return vertices;
+    }
+
+    public int size() {
+        return vertices.size();
+    }
+
+    public Vertex getVertex(int i) {
+        return vertices.get(i);
+    }
+
+    public Edge getEdge(int i) {
+        return edges.get(i);
     }
 }

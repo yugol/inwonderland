@@ -27,7 +27,7 @@ package org.purl.net.wonderland.cg;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ConceptType extends BasicDescriptible {
+public class ConceptType extends BasicIdentifiable {
 
     private final ConceptTypeSet parents = new ConceptTypeSet();
 

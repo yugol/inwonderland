@@ -23,9 +23,9 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.HashMap;
 import java.util.Map;
+import org.purl.net.wonderland.cg.KnowledgeBase;
 
 /**
  *
@@ -51,7 +51,7 @@ class PbExample extends Example {
     }
 
     @Override
-    public Rule getProcRule() {
+    public KnowledgeBase getProcRule() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

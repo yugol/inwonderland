@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,11 +31,11 @@ import java.util.Set;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Concept extends BasicIdentifiable {
+public class Concept extends Vertex {
 
     private final ConceptTypeSet types = new ConceptTypeSet();
-    private final Set<Edge> edges = new HashSet<Edge>();
     private Individual individual = null;
+    private final Set<Edge> edges = new HashSet<Edge>();
 
     public Concept() {
         super();
@@ -63,4 +64,16 @@ public class Concept extends BasicIdentifiable {
     public ConceptTypeSet getTypes() {
         return types;
     }
+
+    @Override
+    public Collection<Edge> getEdges() {
+        return edges;
+    }
+
+    @Override
+    public String toString() {
+        return individual.getLabel();
+    }
+
+
 }

@@ -33,7 +33,6 @@ import org.purl.net.wonderland.cg.Concept;
 import org.purl.net.wonderland.cg.ConceptType;
 import org.purl.net.wonderland.cg.ConceptualGraph;
 import org.purl.net.wonderland.cg.Edge;
-import org.purl.net.wonderland.cg.Individual;
 import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.cg.Relation;
 import org.purl.net.wonderland.cg.RelationType;
@@ -107,6 +106,10 @@ public class ParseResult {
 
     public ConceptualGraph getConceptualGraph() {
         return getKb().getFacts().values().iterator().next().iterator().next();
+    }
+
+    public Concept getConcept(WTagging word) {
+        return wt2c.get(word);
     }
 
     public KnowledgeBase getKb() {

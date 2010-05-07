@@ -68,4 +68,8 @@ public class KnowledgeBase {
         }
         factSet.add(cg);
     }
+
+    public void addRule(Rule proc) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

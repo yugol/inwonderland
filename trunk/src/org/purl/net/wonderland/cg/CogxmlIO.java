@@ -394,9 +394,14 @@ public class CogxmlIO {
         return cogxmlElement;
     }
 
-    public static void writeCogxmlFile(KnowledgeBase kb, File kbFile) throws Exception {
+    public static void writeCogxmlFile(KnowledgeBase kb, File cogxmlFile) throws Exception {
         Document xmlDoc = XML.createDocument();
         xmlDoc.appendChild(xmlKnowledgeBase(xmlDoc, kb));
-        XML.writeXmlFile(xmlDoc, kbFile);
+        XML.writeXmlFile(xmlDoc, cogxmlFile);
+    }
+
+    static KnowledgeBase readCogxmlFile(File cogxmlFile) throws Exception {
+        Document xmlDoc = XML.readXmlFile(cogxmlFile);
+        return CogxmlIO.createKnowledgeBase(xmlDoc.getDocumentElement(), "en");
     }
 }

@@ -23,9 +23,14 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import org.purl.net.wonderland.WonderlandRuntimeException;
 
@@ -33,7 +38,7 @@ import org.purl.net.wonderland.WonderlandRuntimeException;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ConceptualGraph extends BasicClassifiable {
+public class ConceptualGraph extends BasicIdentifiable {
 
     private final Map<String, Concept> concepts = new LinkedHashMap<String, Concept>();
     private final Map<String, Relation> relations = new LinkedHashMap<String, Relation>();
@@ -77,5 +82,56 @@ public class ConceptualGraph extends BasicClassifiable {
         } else {
             throw new WonderlandRuntimeException("vertex is not in graph");
         }
+    }
+
+    private void cleanPrev() {
+        for (Vertex v : concepts.values()) {
+            v.prev = null;
+        }
+        for (Vertex v : relations.values()) {
+            v.prev = null;
+        }
+    }
+
+    public Path findPath(Vertex from, Vertex to) {
+        if (from == null || to == null) {
+            return null;
+        }
+
+        List<Vertex> vertices = new ArrayList<Vertex>();
+
+        if (from == to) {
+            vertices.add(to);
+        } else {
+            cleanPrev();
+            Queue<Vertex> queue = new ArrayDeque<Vertex>();
+
+            from.prev = from;
+            queue.add(from);
+
+            while (queue.size() > 0) {
+                from = queue.poll();
+                for (Edge edge : from.getEdges()) {
+                    Vertex adj = edge.getOther(from);
+                    if (adj.prev == null) {
+                        if (adj == to) {
+                            vertices.add(adj);
+                            while (from.prev != from) {
+                                vertices.add(from);
+                                from = from.prev;
+                            }
+                            vertices.add(from);
+                            Collections.reverse(vertices);
+                            break;
+                        } else {
+                            adj.prev = from;
+                            queue.add(adj);
+                        }
+                    }
+                }
+            }
+
+        }
+        return (vertices.size() > 0) ? (new Path(vertices)) : (null);
     }
 }

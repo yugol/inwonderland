@@ -30,6 +30,8 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
+import org.purl.net.wonderland.cg.CogxmlIO;
+import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
@@ -40,7 +42,7 @@ import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
  */
 public class VerbTest {
 
-    @Test
+    //@Test
     public void discoverVerbs() throws Exception {
         List<String> verbs = new ArrayList<String>(VerbNetWrapper.getVerbIndex().keySet());
         Collections.sort(verbs);
@@ -61,21 +63,13 @@ public class VerbTest {
         System.out.println(v.getLemma());
     }
 
-    // @Test
+    @Test
     public void testOneVerbToProcs() throws Exception {
-
-        Memory memory = new Memory(W.getDefaultWkbFile());
-        WsdPersonality pers = new WsdPersonality();
-        pers.setMemory(memory);
-
-        Verb v = new Verb("abandon");
-        List<Rule> rules = v.buildProcRules();
-        for (Rule rule : rules) {
-            memory.getStorage().addRule(rule);
+        Verb v = new Verb("own");
+        List<KnowledgeBase> rules = v.buildProcRules();
+        for (int i = 0; i < rules.size(); i++) {
+            File file = new File("rules." + v.getLemma() + "-" + i + ".cogxml");
+            CogxmlIO.writeCogxmlFile(rules.get(i), file);
         }
-
-        File file = new File("test." + v.getLemma() + ".cogxml");
-        memory.save(file);
-        WkbUtil.normalizeKbFile(file);
     }
 }

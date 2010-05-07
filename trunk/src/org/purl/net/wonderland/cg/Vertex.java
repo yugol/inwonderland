@@ -23,26 +23,31 @@
  */
 package org.purl.net.wonderland.cg;
 
+import java.util.Collection;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public abstract class BasicDescriptible extends BasicLabeled {
+public abstract class Vertex extends BasicIdentifiable {
 
-    protected String description;
+    protected Object tag;
+    protected Vertex prev = null;
 
-    public BasicDescriptible() {
+    public Vertex() {
     }
 
-    public BasicDescriptible(String id) {
+    public Vertex(String id) {
         super(id);
     }
 
-    public String getDescription() {
-        return description;
+    public Object getTag() {
+        return tag;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTag(Object tag) {
+        this.tag = tag;
     }
+
+    public abstract Collection<Edge> getEdges();
 }

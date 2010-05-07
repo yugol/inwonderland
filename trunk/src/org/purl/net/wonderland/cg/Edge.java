@@ -29,8 +29,8 @@ package org.purl.net.wonderland.cg;
  */
 public class Edge {
 
-    private final Relation relation;
-    private final Concept concept;
+    private final Vertex relation;
+    private final Vertex concept;
     private final int label;
 
     public Edge(Relation relation, Concept concept, int label) {
@@ -40,11 +40,11 @@ public class Edge {
     }
 
     public Concept getConcept() {
-        return concept;
+        return (Concept) concept;
     }
 
     public Relation getRelation() {
-        return relation;
+        return (Relation) relation;
     }
 
     public int getLabel() {
@@ -77,4 +77,13 @@ public class Edge {
         return true;
     }
 
+    public Vertex getOther(Vertex v) {
+        if (v == concept) {
+            return relation;
+        }
+        if (v == relation) {
+            return concept;
+        }
+        return null;
+    }
 }

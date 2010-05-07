@@ -27,7 +27,7 @@ package org.purl.net.wonderland.cg;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class RelationType extends BasicDescriptible {
+public class RelationType extends BasicIdentifiable {
 
     private RelationType parent = null;
     private final ConceptTypeSet[] signature;

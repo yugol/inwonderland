@@ -27,7 +27,7 @@ package org.purl.net.wonderland.cg;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class NestingType extends BasicDescriptible {
+public class NestingType extends BasicIdentifiable {
 
     public NestingType() {
     }
