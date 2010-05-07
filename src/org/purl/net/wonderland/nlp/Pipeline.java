@@ -45,7 +45,7 @@ public class Pipeline {
         return StanfordParserWrapper.getSentences(text);
     }
 
-    public static Object[] parse(List<WTagging> sentence) {
+    public static ParseResult parse(List<WTagging> sentence) {
         // pre-tag sentence
         preTagMapper.map(sentence);
 
@@ -73,10 +73,15 @@ public class Pipeline {
         List<TypedDependency> deps = StanfordParserWrapper.getDependencies(parse);
 
         // return tags and dependencies
-        return new Object[]{sentence, deps, parse};
+        return new ParseResult(sentence, parse, deps);
     }
 
     public static List<List<WTagging>> tokenizeAndSplit(String text) {
         return MorphAdornerWrapper.tagText(text);
+    }
+
+    public static ParseResult parseFirstSentence(String text) {
+        List<WTagging> firstSentence = tokenizeAndSplit(text).get(0);
+        return parse(firstSentence);
     }
 }

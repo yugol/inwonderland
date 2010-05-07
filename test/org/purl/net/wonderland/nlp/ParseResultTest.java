@@ -21,25 +21,23 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.cg;
+package org.purl.net.wonderland.nlp;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import org.junit.Test;
+import org.purl.net.wonderland.cg.CogxmlIO;
+import org.purl.net.wonderland.cg.KnowledgeBase;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Procedure extends BasicClassifiable {
+public class ParseResultTest {
 
-    private final ConceptualGraph hypt;
-    private final ConceptualGraph conc;
-    private final Map<Concept, Concept> fwd = new HashMap<Concept, Concept>();
-    private final Map<Concept, Concept> bwd = new HashMap<Concept, Concept>();
-
-    public Procedure(String id, ConceptualGraph hypt, ConceptualGraph conc) {
-        super(id);
-        this.hypt = hypt;
-        this.conc = conc;
+    @Test
+    public void testKnowledgeBase() throws Exception {
+        ParseResult pr = Pipeline.parseFirstSentence("Colorless green ideas sleep furiously.");
+        KnowledgeBase kb = pr.getKb();
+        CogxmlIO.writeCogxmlFile(kb, new File("wkb.cogxml"));
     }
 }

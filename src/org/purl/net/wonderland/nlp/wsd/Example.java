@@ -25,6 +25,7 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.Sentence;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 
 /**
  *
@@ -52,4 +53,6 @@ abstract class Example {
         }
         return join.toString();
     }
+
+    public abstract Rule getProcRule();
 }

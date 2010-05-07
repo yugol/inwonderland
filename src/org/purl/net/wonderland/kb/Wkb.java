@@ -46,6 +46,7 @@ import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.WonderlandRuntimeException;
+import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.IdUtil;
@@ -172,11 +173,11 @@ public class Wkb {
         return ctId;
     }
 
-    public CGraph buildFactGraph(List<WTagging> words, List<TypedDependency> deps) {
+    public CGraph buildFactGraph(ParseResult parseResult) {
         CGraph cg = new CGraph(IdUtil.newId(), null, null, "fact");
 
-        for (int i = 0; i < words.size(); ++i) {
-            WTagging tagging = words.get(i);
+        for (int i = 0; i < parseResult.getTaggedSentence().size(); ++i) {
+            WTagging tagging = parseResult.getTaggedWord(i);
             Concept c = new Concept(WkbUtil.toConceptId(tagging, i + 1));
             String individualId = addIndividual(tagging.getLemma());
             String[] types = null;
@@ -190,11 +191,11 @@ public class Wkb {
             cg.addVertex(c);
         }
 
-        for (int i = 0; i < deps.size(); ++i) {
-            TypedDependency tdep = deps.get(i);
+        for (int i = 0; i < parseResult.getDependencies().size(); ++i) {
+            TypedDependency tdep = parseResult.getDependency(i);
 
-            String gov = getConcept(cg, WkbUtil.retrieveIndexFromLabel(tdep.gov().nodeString())).getId();
-            String dep = getConcept(cg, WkbUtil.retrieveIndexFromLabel(tdep.dep().nodeString())).getId();
+            String gov = getConcept(cg, parseResult.getIndex(tdep.gov())).getId();
+            String dep = getConcept(cg, parseResult.getIndex(tdep.dep())).getId();
             String relationTypeLabel = tdep.reln().getShortName();
             String relationType = WkbUtil.toRelationTypeId(relationTypeLabel);
             String relationId = IdUtil.newId();

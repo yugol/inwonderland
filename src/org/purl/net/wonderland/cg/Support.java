@@ -32,9 +32,20 @@ import java.util.Map;
  */
 public class Support {
 
+    public static final int MAX_ARITY = 10;
+    public static final String TOP_ID = "Top";
+    public static final String DEFAULT_SET = "default_set";
+    //
+    private final ConceptType topConceptType;
+    private final RelationType[] topRelationType;
     private final Map<String, ConceptType> conceptTypes = new HashMap<String, ConceptType>();
     private final Map<String, RelationType> relationTypes = new HashMap<String, RelationType>();
     private final Map<String, Individual> individuals = new HashMap<String, Individual>();
+
+    public Support() {
+        topConceptType = addConceptType(TOP_ID);
+        topRelationType = new RelationType[MAX_ARITY];
+    }
 
     Map<String, ConceptType> getConceptTypes() {
         return conceptTypes;
@@ -70,10 +81,12 @@ public class Support {
             ct = new ConceptType(id);
             ct.setLabel(id);
             add(ct);
-            return ct;
-        } else {
-            return null;
+
+            if (!id.equals(TOP_ID)) {
+                ct.addParent(topConceptType);
+            }
         }
+        return ct;
     }
 
     public Individual getIndividual(String id) {
@@ -83,13 +96,14 @@ public class Support {
     public Individual addIndividual(String id, ConceptType ct) {
         Individual marker = individuals.get(id);
         if (marker == null) {
+            if (ct == null) {
+                ct = topConceptType;
+            }
             marker = new Individual(id, ct);
             marker.setLabel(id);
             add(marker);
-            return marker;
-        } else {
-            return null;
         }
+        return marker;
     }
 
     public RelationType getRelationType(String id) {
@@ -97,14 +111,26 @@ public class Support {
     }
 
     public RelationType addRelationType(String id, int arity) {
+        String topId = TOP_ID + arity;
         RelationType rt = relationTypes.get(id);
         if (rt == null) {
             rt = new RelationType(id, arity);
+            ConceptTypeSet[] sig = rt.getSignature();
+            for (int i = 0; i < sig.length; i++) {
+                sig[i].add(topConceptType);
+            }
             rt.setLabel(id);
             add(rt);
-            return rt;
-        } else {
-            return null;
+
+            RelationType parent = topRelationType[arity - 1];
+            if (!id.equals(topId) && parent == null) {
+                parent = addRelationType(topId, arity);
+                topRelationType[arity - 1] = parent;
+            }
+            if (!id.equals(topId)) {
+                rt.setParent(parent);
+            }
         }
+        return rt;
     }
 }

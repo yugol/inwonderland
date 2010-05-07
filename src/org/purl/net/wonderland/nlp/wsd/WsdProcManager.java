@@ -64,7 +64,7 @@ public final class WsdProcManager {
                     procFile = W.res(W.RES_WSD_VERB_AUTOMATIC_FOLDER_PATH, lemma + RULES_FILE_EXTENSION);
                     if (!procFile.exists()) {
                         Verb v = new Verb(lemma);
-                        List<Rule> rules = v.getVerbNetProcs(getWsdPers());
+                        List<Rule> rules = v.buildProcRules();
                         IO.writeRules(rules, procFile);
                     }
                 }

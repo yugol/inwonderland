@@ -23,35 +23,19 @@
  */
 package org.purl.net.wonderland.cg;
 
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Individual extends BasicIdentifiable {
+public class SupportTest {
 
-    private final ConceptType type;
-    private String label;
-
-    public Individual(String label) {
-        super();
-        this.type = null;
-        this.label = label;
-    }
-
-    public Individual(String id, ConceptType type) {
-        super(id);
-        this.type = type;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public ConceptType getType() {
-        return type;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
+    @Test
+    public void testAddRelationType() {
+        Support support = new Support();
+        RelationType rt = support.addRelationType("abc", 2);
+        assertEquals("Top2", rt.getParent().getId());
     }
 }

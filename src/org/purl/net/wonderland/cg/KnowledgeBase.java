@@ -38,7 +38,6 @@ public class KnowledgeBase {
     private final Support support;
     private final Map<String, Set<ConceptualGraph>> facts = new HashMap<String, Set<ConceptualGraph>>();
     private final Map<String, Set<Rule>> rules = new HashMap<String, Set<Rule>>();
-    private final Map<String, Set<Procedure>> procedures = new HashMap<String, Set<Procedure>>();
 
     public KnowledgeBase() {
         this("en", new Support());

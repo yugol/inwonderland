@@ -36,6 +36,10 @@ public class Concept extends BasicIdentifiable {
     private final Set<Edge> edges = new HashSet<Edge>();
     private Individual individual = null;
 
+    public Concept() {
+        super();
+    }
+
     public Concept(String id) {
         super(id);
     }

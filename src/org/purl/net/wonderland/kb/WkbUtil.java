@@ -72,12 +72,12 @@ public class WkbUtil {
         return "l" + (toLevelIndex(level) + 1) + "_" + toIdIndex(num);
     }
 
-    public static String toConceptTypeId(String ctl) {
-        return CONCEPT_TYPE_PREFIX + handleQuotes(ctl);
+    public static String toConceptTypeId(String typeLabel) {
+        return CONCEPT_TYPE_PREFIX + handleQuotes(typeLabel);
     }
 
-    public static String toConceptType(String senseType) {
-        return senseType.substring(CONCEPT_TYPE_PREFIX.length());
+    public static String toConceptType(String typeId) {
+        return typeId.substring(CONCEPT_TYPE_PREFIX.length());
     }
 
     public static String toRelationTypeId(String ctl) {
@@ -106,11 +106,6 @@ public class WkbUtil {
             ctl = "-OPQ-";
         }
         return ctl.replace("'", "`");
-    }
-
-    public static int retrieveIndexFromLabel(String label) {
-        int beg = label.lastIndexOf("-") + 1;
-        return Integer.parseInt(label.substring(beg));
     }
 
     public static void setAllConclusion(CGraph lhs, boolean b) {

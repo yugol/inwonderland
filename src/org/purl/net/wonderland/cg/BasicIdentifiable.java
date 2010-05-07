@@ -23,7 +23,7 @@
  */
 package org.purl.net.wonderland.cg;
 
-import java.util.UUID;
+import org.purl.net.wonderland.util.IdUtil;
 
 /**
  *
@@ -31,10 +31,11 @@ import java.util.UUID;
  */
 public abstract class BasicIdentifiable {
 
-    protected final String id;
+    private final String id;
+    private Object tag = null;
 
     public BasicIdentifiable() {
-        this.id = UUID.randomUUID().toString().replace("-", "");
+        this.id = IdUtil.newId();
     }
 
     public BasicIdentifiable(String id) {
@@ -43,6 +44,14 @@ public abstract class BasicIdentifiable {
 
     public String getId() {
         return id;
+    }
+
+    public Object getTag() {
+        return tag;
+    }
+
+    public void setTag(Object tag) {
+        this.tag = tag;
     }
 
     @Override
