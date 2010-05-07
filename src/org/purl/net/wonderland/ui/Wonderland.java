@@ -286,7 +286,7 @@ public class Wonderland extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = textFileChooser.getSelectedFile();
             try {
-                String message = org.purl.net.wonderland.util.IO.getFileContentAsString(file);
+                String message = org.purl.net.wonderland.util.IO.readFileAsString(file);
                 inputTextArea.setText(message);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex);

@@ -24,10 +24,8 @@
 package org.purl.net.wonderland.nlp.resources;
 
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import java.util.Set;
 import org.junit.Test;
-import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import static org.junit.Assert.*;
 
 /**
@@ -35,17 +33,6 @@ import static org.junit.Assert.*;
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
 public class VerbNetWrapperTest {
-
-    public VerbNetWrapperTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Test
     public void testGetFileList() {
@@ -55,18 +42,26 @@ public class VerbNetWrapperTest {
 
     @Test
     public void testGetVerbClasses() {
-        VerbForm result = VerbNetWrapper.getVerbClasses("make");
-        assertEquals(3, result.getVnClasses().size());
-        assertEquals(8, result.getWnSenses("build-26.1-1").size());
+        Set<String> result = VerbNetWrapper.getVerbIndex().get("make");
+        assertEquals(3, result.size());
 
-        result = VerbNetWrapper.getVerbClasses("abound");
-        assertEquals(1, result.getVnClasses().size());
-        assertEquals(2, result.getWnSenses("swarm-47.5.1-2-1").size());
+        result = VerbNetWrapper.getVerbIndex().get("abound");
+        assertEquals(1, result.size());
 
-        result = VerbNetWrapper.getVerbClasses("wriggle_out");
-        assertEquals(1, result.getVnClasses().size());
-        assertEquals(0, result.getWnSenses("withdraw-82-1").size());
+        result = VerbNetWrapper.getVerbIndex().get("wriggle_out");
+        assertEquals(1, result.size());
+    }
 
+    @Test
+    public void testGetClassFile() {
+        assertEquals("withdraw-82.xml", VerbNetWrapper.getClassFile("82").getName());
+        assertEquals("withdraw-82.xml", VerbNetWrapper.getClassFile("82-2").getName());
+    }
 
+    @Test
+    public void testGetClassesLike() {
+        List<String> list = VerbNetWrapper.getClassesLike("82");
+        assertEquals(1, list.size());
+        assertEquals("82", list.get(0));
     }
 }

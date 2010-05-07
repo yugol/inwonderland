@@ -97,9 +97,6 @@ public final class WkbConstants {
     public static final String WN_ADJECTIVE = "wnJj";
     public static final String WN_ADVERB = "wnRb";
     public static final String WN_VERB = "wnVb";
-    // VerbNet root concept types
-    public static final String VN_VERB = "vnVb";
-    public static final String VN_VERB_CT = WkbUtil.toConceptTypeId(VN_VERB);
     // VerbNet selection restrictions (thematic roles types)
     public static final String ABSTRACT_CT = "abstract";
     public static final String ANIMAL = "animal";

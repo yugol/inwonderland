@@ -121,7 +121,7 @@ public class MafCorpus {
         level1Corpus = new File(root + ".level1.xml");
         level2Corpus = new File(root + ".level2.xml");
 
-        plainLines = IO.getFileContentAsStringList(plainCorpus);
+        plainLines = IO.readFileAsStringList(plainCorpus);
 
         if (level0Corpus.exists()) {
             xmlLevel[0] = XML.readXmlFile(level0Corpus);
@@ -155,7 +155,7 @@ public class MafCorpus {
     }
 
     private void buildLevel0Xml() throws Exception {
-        String corpus = IO.getFileContentAsString(plainCorpus);
+        String corpus = IO.readFileAsString(plainCorpus);
 
         xmlLevel[0] = XML.createDocument();
         xmlLevel[0].appendChild(xmlLevel[0].createElement(WONDERLANDCORPUS + "level0"));

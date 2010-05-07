@@ -47,8 +47,6 @@ import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.WonderlandRuntimeException;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
-import org.purl.net.wonderland.nlp.resources.VerbNetWrapper.VerbForm;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.IdUtil;
 import org.w3c.dom.Document;
@@ -305,44 +303,6 @@ public class Wkb {
         for (CGraph rule : rules) {
             kb.delete(rule);
         }
-    }
-
-    String[] importVerbNetHierarchy(String verb) {
-        List<String> types = new ArrayList<String>();
-
-        VerbForm vf = VerbNetWrapper.getVerbClasses(verb);
-        if (vf == null) {
-            return null;
-        }
-
-        for (String vc : vf.getVnClasses()) {
-            String vcType = importVerbNetClassHierarchy(vc, WkbUtil.toConceptTypeId(WkbConstants.VN_VERB));
-            types.add(vcType);
-            for (String vs : vf.getWnSenses(vc)) {
-                Synset sense = WordNetWrapper.lookup(vs);
-                String senseType = importWordNetHypernymHierarchy(sense, POS.VERB, "v", WkbConstants.VN_VERB_CT);
-                types.add(senseType);
-            }
-        }
-
-        return types.toArray(new String[]{});
-    }
-
-    private String importVerbNetClassHierarchy(String verbClassName, String parentId) {
-        String verbClassId = WkbUtil.toConceptTypeId(verbClassName);
-        if (vocabulary.conceptTypeIdExist(verbClassId)) {
-            return verbClassId;
-        }
-
-        String parentName = verbClassName.substring(0, verbClassName.lastIndexOf('-'));
-        if (parentName.indexOf('-') >= 0) {
-            parentId = importVerbNetClassHierarchy(parentName, parentId);
-        }
-
-        vocabulary.addConceptType(verbClassId, verbClassName, "", language);
-        vocabulary.getConceptTypeHierarchy().addEdge(verbClassId, parentId);
-
-        return verbClassId;
     }
 
     public WTagging conceptLabelsToWTagging(Concept c, boolean wPosTagsOnly) {

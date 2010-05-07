@@ -45,14 +45,14 @@ public class GazetteersTest {
 
     @Test
     public void selRestr() {
-        assertEquals(30, Gazetteers.selRestrs.size());
-        assertEquals("ct_abstract", Gazetteers.selRestrs.get("ct_n00002137"));
+        assertEquals(30, Gazetteers.wn2themroletype.size());
+        assertEquals("ct_abstract", Gazetteers.wn2themroletype.get("ct_n00002137"));
     }
 
     @Test
     public void getSenses() {
-        assertEquals(5, Gazetteers.senseFile2wns.size());
-        assertEquals("ct_n00007846", Gazetteers.senseFile2wns.get("lastName").get(0));
+        assertEquals(5, Gazetteers.sensefile2wn.size());
+        assertEquals("ct_n00007846", Gazetteers.sensefile2wn.get("lastName").get(0));
         List<String> senses = Gazetteers.getWNSensesFor("elizabeth");
         assertEquals(2, senses.size());
     }
@@ -60,6 +60,6 @@ public class GazetteersTest {
     @Test
     public void pb2vn() {
         assertEquals(1, Gazetteers.pb2vn.size());
-        assertEquals("own-100", Gazetteers.pb2vn.get("own.01"));
+        assertEquals("100", Gazetteers.pb2vn.get("own.01"));
     }
 }
