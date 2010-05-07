@@ -50,7 +50,7 @@ public final class VerbNetWrapper {
         return str.replaceAll("\\?", "");
     }
 
-    private static String normalizeClassId(String id) {
+    public static String normalizeClassId(String id) {
         int pos = id.indexOf("-");
         return id.substring(pos + 1);
     }

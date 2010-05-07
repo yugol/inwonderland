@@ -25,11 +25,14 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 
 /**
  *
@@ -39,17 +42,15 @@ public class VerbTest {
 
     @Test
     public void discoverVerbs() throws Exception {
-        String startFrom = "speak";
-        for (File file : W.getPropBankDataFolder().listFiles()) {
-            String lemma = file.getName();
-            int endIndex = lemma.lastIndexOf(".xml");
-            if (endIndex > 0) {
-                lemma = lemma.substring(0, endIndex);
-                int cmp = startFrom.compareTo(lemma);
-                if (cmp <= 0) {
-                    Verb v = new Verb(lemma);
-                    v.buildProcRules();
-                }
+        List<String> verbs = new ArrayList<String>(VerbNetWrapper.getVerbIndex().keySet());
+        Collections.sort(verbs);
+        String startFrom = "spawn";
+        for (String lemma : verbs) {
+            if (startFrom.compareTo(lemma) <= 0) {
+                Verb v = new Verb(lemma);
+                System.out.println("* " + v.getLemma());
+                v.getVnClases();
+                v.buildProcRules();
             }
         }
     }

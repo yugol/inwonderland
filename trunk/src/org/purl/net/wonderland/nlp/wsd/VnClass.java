@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.purl.net.wonderland.WonderlandRuntimeException;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.XML;
@@ -46,17 +47,58 @@ class VnClass {
     static List<VnClass> makeClassesFor(String lemma, String idHint) throws Exception {
         List<VnClass> vnClasses = new ArrayList<VnClass>();
 
-        if (idHint != null) {
-            List<Element> vnclassElements = new ArrayList<Element>();
-            File vnFile = VerbNetWrapper.getClassFile(idHint);
-            Document xmlDoc = XML.readXmlFile(vnFile);
-            NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
-            for (int i = 0; i < memberNodes.getLength(); i++) {
-                Element memberElement = (Element) memberNodes.item(i);
-                String name = memberElement.getAttribute("name");
-                name = VerbNetWrapper.normalizeName(name);
-                if (name.equals(lemma)) {
-                    vnclassElements.add((Element) memberElement.getParentNode().getParentNode());
+        List<Element> vnclassElements = new ArrayList<Element>();
+
+        File vnFile = VerbNetWrapper.getClassFile(idHint);
+        Document xmlDoc = XML.readXmlFile(vnFile);
+
+        NodeList memberNodes = xmlDoc.getElementsByTagName("MEMBER");
+        for (int i = 0; i < memberNodes.getLength(); i++) {
+            Element memberElement = (Element) memberNodes.item(i);
+
+            String name = memberElement.getAttribute("name");
+            name = VerbNetWrapper.normalizeName(name);
+            if (name.equals(lemma)) {
+                vnclassElements.add((Element) memberElement.getParentNode().getParentNode());
+            }
+        }
+
+        for (Element element : vnclassElements) {
+            VnClass vnClass = new VnClass(lemma, element);
+            vnClasses.add(vnClass);
+        }
+
+        return vnClasses;
+    }
+
+    static List<VnClass> makeClassesFor(String lemma) {
+        try {
+            List<VnClass> vnClasses = new ArrayList<VnClass>();
+
+            Set<String> vnClassIds = VerbNetWrapper.getVerbIndex().get(lemma);
+            List<Element> vnclassElements = new ArrayList<Element>(vnClassIds.size());
+
+            for (String classId : vnClassIds) {
+                File vnFile = VerbNetWrapper.getClassFile(classId);
+                Document xmlDoc = XML.readXmlFile(vnFile);
+
+                NodeList vnclassNodes = xmlDoc.getElementsByTagName("VNCLASS");
+                for (int i = 0; i < vnclassNodes.getLength(); i++) {
+                    Element vnclassElement = (Element) vnclassNodes.item(i);
+                    String id = vnclassElement.getAttribute("ID");
+                    id = VerbNetWrapper.normalizeClassId(id);
+                    if (vnClassIds.contains(id)) {
+                        vnclassElements.add(vnclassElement);
+                    }
+                }
+                vnclassNodes = xmlDoc.getElementsByTagName("VNSUBCLASS");
+                for (int i = 0; i < vnclassNodes.getLength(); i++) {
+                    Element vnclassElement = (Element) vnclassNodes.item(i);
+                    String id = vnclassElement.getAttribute("ID");
+                    id = VerbNetWrapper.normalizeClassId(id);
+                    if (vnClassIds.contains(id)) {
+                        vnclassElements.add(vnclassElement);
+                    }
                 }
             }
 
@@ -64,17 +106,11 @@ class VnClass {
                 VnClass vnClass = new VnClass(lemma, element);
                 vnClasses.add(vnClass);
             }
+
+            return vnClasses;
+        } catch (Exception ex) {
+            throw new WonderlandRuntimeException(ex);
         }
-
-        return vnClasses;
-    }
-
-    static List<VnClass> makeClassesFor(String lemma) throws Exception {
-        List<VnClass> vnClasses = new ArrayList<VnClass>();
-
-        Set<String> vnClassIds = VerbNetWrapper.getVerbIndex().get(lemma);
-
-        return vnClasses;
     }
     private final String lemma;
     private final String id;

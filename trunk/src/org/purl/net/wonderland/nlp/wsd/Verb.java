@@ -29,7 +29,6 @@ import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -41,92 +40,39 @@ import org.purl.net.wonderland.WonderlandException;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.resources.PropBankWrapper;
-import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.wsd.PbExample.RoleData;
 import org.purl.net.wonderland.util.IdUtil;
-import org.purl.net.wonderland.util.XML;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
 class Verb {
-    //
 
     private final String lemma;
-    private final List<PbRoleset> rolesets;
+    private List<VnClass> vnClases = null;
 
     public Verb(String lemma) throws Exception {
         this.lemma = lemma;
-        System.out.println("+ Verb( " + lemma + " )");
-        this.rolesets = new ArrayList<PbRoleset>();
-        readPropBankPredicates();
     }
 
-    private void readPropBankPredicates() throws Exception {
-        File pbFile = PropBankWrapper.getVerbFile(lemma);
-        Document xmlDoc = XML.readXmlFile(pbFile);
-
-        NodeList predicateNodes = xmlDoc.getElementsByTagName("predicate");
-        for (int i = 0; i < predicateNodes.getLength(); i++) {
-            Element predicateElement = (Element) predicateNodes.item(i);
-            readPropBankRolesets(predicateElement);
+    public List<VnClass> getVnClases() {
+        if (vnClases == null) {
+            vnClases = VnClass.makeClassesFor(lemma);
         }
-    }
-
-    private void readPropBankRolesets(Element predicateElement) throws Exception {
-        String predicateLemma = predicateElement.getAttribute("lemma");
-
-        NodeList rolesetNodes = predicateElement.getElementsByTagName("roleset");
-        for (int i = 0; i < rolesetNodes.getLength(); i++) {
-            Element rolesetElement = (Element) rolesetNodes.item(i);
-
-            String[] vnclss = rolesetElement.getAttribute("vncls").split(" ");
-            for (int j = 0; j < vnclss.length; j++) {
-                String vncls = vnclss[j];
-
-                if (VerbNetWrapper.getClassFile(vncls) == null) {
-                    String[] vnclsParts = vncls.split("-");
-                    if (vnclsParts.length > 0) {
-                        List<String> possibleClasses = VerbNetWrapper.getClassesLike(vnclsParts[0]);
-                        if (possibleClasses != null) {
-                            for (String cls : possibleClasses) {
-                                readPropBankRoleset(rolesetElement, predicateLemma, cls, j);
-                            }
-                        } else {
-                            readPropBankRoleset(rolesetElement, predicateLemma, null, j);
-                        }
-                    } else {
-                        readPropBankRoleset(rolesetElement, predicateLemma, null, j);
-                    }
-                } else {
-                    readPropBankRoleset(rolesetElement, predicateLemma, vncls, j);
-                }
-            }
-        }
-    }
-
-    private void readPropBankRoleset(Element rolesetElement, String lemma, String vncls, int vnclsIdx) throws Exception {
-        PbRoleset roleset = new PbRoleset(lemma, rolesetElement, vncls, vnclsIdx);
-        rolesets.add(roleset);
+        return vnClases;
     }
 
     public List<Rule> buildProcRules() {
         List<Rule> rules = new ArrayList<Rule>();
-        for (PbRoleset roleset : rolesets) {
-            for (VnClass vnClass : roleset.getVnClasses()) {
-                for (VnFrame vnFrame : vnClass.getFrames()) {
-                    for (VnExample example : vnFrame.getExamples()) {
-                        System.out.println("");
-                        System.out.println("***************");
-                        System.out.println(vnClass.getId());
-                        System.out.println("***************");
-                        example.makeSense(vnClass.getMembers());
-                    }
+        for (VnClass vnClass : vnClases) {
+            for (VnFrame vnFrame : vnClass.getFrames()) {
+                for (VnExample example : vnFrame.getExamples()) {
+                    System.out.println("");
+                    System.out.println("***************");
+                    System.out.println(vnClass.getId());
+                    System.out.println("***************");
+                    example.makeSense(vnClass.getMembers());
                 }
             }
         }
@@ -136,7 +82,7 @@ class Verb {
     public List<Rule> getVerbNetProcs(WsdPersonality pers) {
         Hierarchy cth = pers.getKb().getVocabulary().getConceptTypeHierarchy();
         List<Rule> procs = new ArrayList<Rule>();
-        for (PbRoleset roleset : rolesets) {
+        for (PbRoleset roleset : new ArrayList<PbRoleset>()) {
             for (PbExample example : roleset.getExamples()) {
                 String text = null;
                 try {
