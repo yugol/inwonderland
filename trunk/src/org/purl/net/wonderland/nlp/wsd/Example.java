@@ -55,5 +55,5 @@ abstract class Example {
         return join.toString();
     }
 
-    public abstract KnowledgeBase getProcRule();
+    public abstract KnowledgeBase getProcRule(String lemma);
 }

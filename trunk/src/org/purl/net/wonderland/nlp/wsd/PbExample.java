@@ -51,7 +51,7 @@ class PbExample extends Example {
     }
 
     @Override
-    public KnowledgeBase getProcRule() {
+    public KnowledgeBase getProcRule(String lemma) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

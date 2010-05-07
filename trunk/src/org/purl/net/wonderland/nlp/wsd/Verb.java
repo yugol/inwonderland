@@ -56,7 +56,7 @@ class Verb {
         for (VnClass vnClass : getVnClases()) {
             for (VnFrame vnFrame : vnClass.getFrames()) {
                 for (VnExample example : vnFrame.getExamples()) {
-                    rules.add(example.getProcRule());
+                    rules.add(example.getProcRule(lemma));
                 }
             }
         }

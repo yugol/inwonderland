@@ -24,8 +24,13 @@
 package org.purl.net.wonderland.nlp.wsd;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import org.purl.net.wonderland.cg.KnowledgeBase;
+import org.purl.net.wonderland.cg.Path;
 import org.purl.net.wonderland.cg.Rule;
+import org.purl.net.wonderland.cg.Vertex;
 
 /**
  *
@@ -91,10 +96,54 @@ class Frame {
     }
 
     void cleanContext() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        List<Path> paths = new ArrayList<Path>();
+        for (VnSyntaxItem item : syntax) {
+            paths.add(item.getPath());
+        }
+        Collections.sort(paths);
+
+        int[] requiredSizes = new int[paths.size()];
+        Arrays.fill(requiredSizes, 3);
+
+        for (int i = 0; i < requiredSizes.length; i++) {
+            Path longPath = paths.get(i);
+            if (longPath.size() <= 3) {
+                requiredSizes[i] = longPath.size();
+            } else {
+                for (int j = 0; j < i; j++) {
+                    Path shortPath = paths.get(j);
+                    int minLongPathLen = mostDistantIntersection(shortPath, longPath) + 3;
+                    if (minLongPathLen > requiredSizes[i]) {
+                        requiredSizes[i] = minLongPathLen;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < requiredSizes.length; i++) {
+            Path path = paths.get(i);
+            int requiredSize = requiredSizes[i];
+            if (path.size() > requiredSize) {
+                path.trim(requiredSize);
+            }
+        }
     }
 
-    Rule getProcRule() {
+    private static int mostDistantIntersection(Path shortPath, Path longPath) {
+        int pos = -1;
+        for (int i = 0; i < longPath.size(); i += 2) {
+            Vertex lv = longPath.getVertex(i);
+            for (int j = 0; j < shortPath.size(); j += 2) {
+                Vertex sv = shortPath.getVertex(j);
+                if (lv == sv) {
+                    pos = i;
+                }
+            }
+        }
+        return pos;
+    }
+
+    void makeProcRule(String lemma, KnowledgeBase kb) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

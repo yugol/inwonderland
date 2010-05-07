@@ -31,7 +31,6 @@ import org.purl.net.wonderland.cg.Concept;
 import org.purl.net.wonderland.cg.ConceptualGraph;
 import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.cg.Path;
-import org.purl.net.wonderland.cg.Rule;
 import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -364,7 +363,7 @@ class VnExample extends Example {
     }
 
     @Override
-    public KnowledgeBase getProcRule() {
+    public KnowledgeBase getProcRule(String lemma) {
         // map syntax elements to text
         makeSense();
 
@@ -390,13 +389,8 @@ class VnExample extends Example {
         // create frame context
         frame.cleanContext();
 
-        // fianlly create the rule
-        Rule proc = frame.getProcRule();
-
-        // store rule into knowledge base and return
-        KnowledgeBase kb = parseResult.getKb();
-        kb.addRule(proc);
-
-        return kb;
+        // create the rule in knowledge base and return
+        frame.makeProcRule(lemma, parseResult.getKb());
+        return parseResult.getKb();
     }
 }
