@@ -33,8 +33,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
@@ -99,36 +104,61 @@ public class IO {
         }
     }
 
-    public static String getFileContentAsString(File file) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(file));
-        String str;
+    public static String getClassPathRoot(Class<?> c) {
+        String cpr = c.getCanonicalName();
+        cpr = cpr.substring(0, cpr.lastIndexOf("."));
+        return cpr;
+    }
+
+    public static String readFileAsString(File file) throws IOException {
         StringBuffer sb = new StringBuffer();
-        while ((str = in.readLine()) != null) {
-            sb.append(str);
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = in.readLine()) != null) {
+            sb.append(line);
             sb.append("\n");
         }
         in.close();
         return sb.toString();
     }
 
-    public static List<String> getFileContentAsStringList(File file) throws IOException {
+    public static List<String> readFileAsStringList(File file) throws IOException {
+        List<String> list = new ArrayList<String>();
         BufferedReader in = new BufferedReader(new FileReader(file));
-        String str;
-        List<String> lines = new ArrayList<String>();
-        while ((str = in.readLine()) != null) {
-            lines.add(str);
+        String line;
+        while ((line = in.readLine()) != null) {
+            list.add(line);
         }
         in.close();
-        return lines;
+        return list;
     }
 
-    public static void readLemmaSet(Set<String> set, File dataFile) throws IOException {
-        BufferedReader in = new BufferedReader(new FileReader(dataFile));
-        String str;
-        while ((str = in.readLine()) != null) {
-            set.add(str.trim().toLowerCase());
+    public static Map<String, String> readCsvFileAsMapOneToOne(File file) throws IOException {
+        Map<String, String> map = new HashMap<String, String>();
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = in.readLine()) != null) {
+            String[] chunks = line.split(",");
+            map.put(chunks[0].trim(), chunks[1].trim());
         }
         in.close();
+        return map;
+    }
+
+    public static Map<String, Set<String>> readCsvFileAsMapOneToManySet(File file) throws IOException {
+        Map<String, Set<String>> map = new HashMap<String, Set<String>>();
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = in.readLine()) != null) {
+            String[] chunks = line.split(",");
+            Set<String> set = new HashSet<String>();
+            for (int i = 1; i < chunks.length; i++) {
+                set.add(chunks[i].trim());
+            }
+            map.put(chunks[0].trim(), set);
+        }
+        in.close();
+        return map;
     }
 
     public static void writeStringToFile(String str, File file) throws IOException {
@@ -137,10 +167,17 @@ public class IO {
         out.close();
     }
 
-    public static String getClassPathRoot(Class<?> c) {
-        String cpr = c.getCanonicalName();
-        cpr = cpr.substring(0, cpr.lastIndexOf("."));
-        return cpr;
+    public static void writeMapToCsvFile(Map<String, Collection<String>> map, File file) throws IOException {
+        PrintWriter out = new PrintWriter(file);
+        for (String key : map.keySet()) {
+            out.print(key);
+            for (String val : map.get(key)) {
+                out.print(",");
+                out.print(val);
+            }
+            out.println();
+        }
+        out.close();
     }
 
     public static void writeProcs(String set, Wkb kb, File file) throws Exception {

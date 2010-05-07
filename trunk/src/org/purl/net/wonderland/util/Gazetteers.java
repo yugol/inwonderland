@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,16 +31,15 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.supercsv.io.CsvBeanReader;
-import org.supercsv.io.ICsvBeanReader;
-import org.supercsv.prefs.CsvPreference;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.WTagging;
+import org.supercsv.io.CsvBeanReader;
+import org.supercsv.io.ICsvBeanReader;
+import org.supercsv.prefs.CsvPreference;
 
 /**
  *
@@ -76,9 +76,9 @@ public abstract class Gazetteers {
     public static Set<String> lastName;
     public static Set<String> maleFirstName;
     //
-    public static Map<String, String> selRestrs;
+    public static Map<String, String> wn2themroletype;
     //
-    public static Map<String, List<String>> senseFile2wns;
+    public static Map<String, List<String>> sensefile2wn;
     //
     public static Map<String, String> pb2vn;
 
@@ -92,16 +92,33 @@ public abstract class Gazetteers {
             for (Field f : Gazetteers.class.getDeclaredFields()) {
                 name = f.getName();
                 String memberName = f.getGenericType().toString();
+
                 if (MAP_STRING_WTAGGING.equals(memberName)) {
-                    f.set(null, readMorphologyDataFile(name + ".csv"));
+
+                    String fileName = name + ".csv";
+                    fileName = W.res(W.RES_MORPHOLOGY_FOLDER_PATH, fileName).getAbsolutePath();
+                    f.set(null, readMorphologyDataFile(fileName));
+
                 } else if (SET_STRING.equals(memberName)) {
-                    f.set(null, readListDataFile(name + ".txt"));
-                } else if ("selRestrs".equals(name)) {
-                    f.set(null, readSelRestrs());
-                } else if ("senseFile2wns".equals(name)) {
-                    f.set(null, readSense2wns());
+
+                    String fileName = name + ".txt";
+                    f.set(null, readSenseData(fileName));
+
+                } else if ("wn2themroletype".equals(name)) {
+
+                    File file = W.res(W.RES_VN_WNSENSE_2_THEMATIC_ROLE_TYPE_FILE_PATH);
+                    f.set(null, readWn2themroletype(file));
+
+                } else if ("sensefile2wn".equals(name)) {
+
+                    File file = W.res(W.RES_SENSE_FILE_2_WNSENSES_MANUAL_FILE_PATH);
+                    f.set(null, readSensefile2wn(file));
+
                 } else if ("pb2vn".equals(name)) {
-                    f.set(null, readSimpleMapping());
+
+                    File file = W.res(W.RES_WSD_PB_2_VN_FILE_PATH);
+                    f.set(null, IO.readCsvFileAsMapOneToOne(file));
+
                 }
             }
 
@@ -112,10 +129,9 @@ public abstract class Gazetteers {
         timer.stop();
     }
 
-    private static Map<String, WTagging> readMorphologyDataFile(String formFile) throws IOException {
+    private static Map<String, WTagging> readMorphologyDataFile(String fileName) throws IOException {
         Map<String, WTagging> map = new HashMap<String, WTagging>();
-        formFile = W.res(W.RES_MORPHOLOGY_FOLDER_PATH, formFile).getAbsolutePath();
-        ICsvBeanReader inFile = new CsvBeanReader(new FileReader(formFile), CsvPreference.EXCEL_PREFERENCE);
+        ICsvBeanReader inFile = new CsvBeanReader(new FileReader(fileName), CsvPreference.EXCEL_PREFERENCE);
         try {
             final String[] header = inFile.getCSVHeader(true);
             WTagging tagging;
@@ -128,23 +144,32 @@ public abstract class Gazetteers {
         return map;
     }
 
-    private static Set<String> readListDataFile(String formFile) throws IOException {
+    private static Set<String> readSenseData(String fileName) throws IOException {
         Set<String> set = new HashSet<String>();
 
-        File dataFile = W.res(W.RES_SENSES_MANUAL_FOLDER_PATH, formFile);
+        File dataFile = W.res(W.RES_SENSES_MANUAL_FOLDER_PATH, fileName);
         dataFile.createNewFile();
-        IO.readLemmaSet(set, dataFile);
+        readFileIntoSet(set, dataFile);
 
-        dataFile = W.res(W.RES_SENSES_AUTOMATIC_FOLDER_PATH, formFile);
+        dataFile = W.res(W.RES_SENSES_AUTOMATIC_FOLDER_PATH, fileName);
         dataFile.createNewFile();
-        IO.readLemmaSet(set, dataFile);
+        readFileIntoSet(set, dataFile);
 
         return set;
     }
 
-    private static Map<String, String> readSelRestrs() throws IOException {
-        Map<String, String> map = new Hashtable<String, String>();
-        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_VN_WNSENSE_2_THEMATIC_ROLE_TYPE_FILE_PATH));
+    private static void readFileIntoSet(Set<String> set, File dataFile) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(dataFile));
+        String str;
+        while ((str = in.readLine()) != null) {
+            set.add(str.trim().toLowerCase());
+        }
+        in.close();
+    }
+
+    private static Map<String, String> readWn2themroletype(File file) throws IOException {
+        Map<String, String> map = new HashMap<String, String>();
+        List<String> lines = IO.readFileAsStringList(file);
         for (String line : lines) {
             String[] chunks = line.split(",");
             String selRestrType = WkbUtil.toConceptTypeId(chunks[0].trim());
@@ -156,9 +181,9 @@ public abstract class Gazetteers {
         return map;
     }
 
-    private static Map<String, List<String>> readSense2wns() throws IOException {
-        Map<String, List<String>> map = new Hashtable<String, List<String>>();
-        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_SENSE_FILE_2_WNSENSES_MANUAL_FILE_PATH));
+    private static Map<String, List<String>> readSensefile2wn(File file) throws IOException {
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        List<String> lines = IO.readFileAsStringList(file);
         for (String line : lines) {
             String[] chunks = line.split(",");
             List<String> list = new ArrayList<String>();
@@ -167,16 +192,6 @@ public abstract class Gazetteers {
                 list.add(senseType);
             }
             map.put(chunks[0].trim(), list);
-        }
-        return map;
-    }
-
-    private static Map<String, String> readSimpleMapping() throws IOException {
-        Map<String, String> map = new Hashtable<String, String>();
-        List<String> lines = IO.getFileContentAsStringList(W.res(W.RES_WSD_PB_2_VN_FILE_PATH));
-        for (String line : lines) {
-            String[] chunks = line.split(",");
-            map.put(chunks[0].trim(), chunks[1].trim());
         }
         return map;
     }
@@ -228,7 +243,7 @@ public abstract class Gazetteers {
                 if (SET_STRING.equals(f.getGenericType().toString())) {
                     Set<String> set = (Set<String>) f.get(null);
                     if (set.contains(lemma)) {
-                        List<String> list = senseFile2wns.get(f.getName());
+                        List<String> list = sensefile2wn.get(f.getName());
                         if (list != null) {
                             senses.addAll(list);
                         }

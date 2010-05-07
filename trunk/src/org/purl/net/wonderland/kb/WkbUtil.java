@@ -156,7 +156,7 @@ public class WkbUtil {
     }
 
     private static void normalizeConceptTypes(File kbFile) throws FileNotFoundException, IOException {
-        String kb = IO.getFileContentAsString(kbFile);
+        String kb = IO.readFileAsString(kbFile);
 
         Map<String, String> replaces = new Hashtable<String, String>();
         int pos = kb.indexOf("<ctype");
@@ -183,7 +183,7 @@ public class WkbUtil {
     }
 
     private static void normalizeRelationTypes(File kbFile) throws FileNotFoundException, IOException {
-        String kb = IO.getFileContentAsString(kbFile);
+        String kb = IO.readFileAsString(kbFile);
 
         Map<String, String> replaces = new Hashtable<String, String>();
         int pos = kb.indexOf("<rtype");

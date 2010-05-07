@@ -80,9 +80,9 @@ public class Declarative {
     List<String> deriveThematicRolesTypes(String[] types) {
         List<String> thematicRoleTypes = new ArrayList<String>();
         for (String conceptType : types) {
-            for (String registeredType : Gazetteers.selRestrs.keySet()) {
+            for (String registeredType : Gazetteers.wn2themroletype.keySet()) {
                 if (cth.isKindOf(conceptType, registeredType)) {
-                    thematicRoleTypes.add(Gazetteers.selRestrs.get(registeredType));
+                    thematicRoleTypes.add(Gazetteers.wn2themroletype.get(registeredType));
                 }
             }
         }

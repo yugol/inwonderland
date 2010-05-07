@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.XML;
@@ -64,6 +65,14 @@ class VnClass {
                 vnClasses.add(vnClass);
             }
         }
+
+        return vnClasses;
+    }
+
+    static List<VnClass> makeClassesFor(String lemma) throws Exception {
+        List<VnClass> vnClasses = new ArrayList<VnClass>();
+
+        Set<String> vnClassIds = VerbNetWrapper.getVerbIndex().get(lemma);
 
         return vnClasses;
     }

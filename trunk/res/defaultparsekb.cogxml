@@ -476,9 +476,6 @@
 <ctype id="ct_substance" label="substance" x="880" y="3830">
 <translation descr="" label="substance" lang="en"/>
 </ctype>
-<ctype id="ct_vnVb" label="vnVb" x="660" y="3880">
-<translation descr="VerbNet verb" label="vnVb" lang="en"/>
-</ctype>
 <ctype id="ct_rigid" label="rigid" x="1100" y="4280">
 <translation descr="" label="rigid" lang="en"/>
 </ctype>
@@ -851,674 +848,673 @@
 <ctype id="ct_positive" label="positive" x="1100" y="2600">
 <translation descr="http://www.isocat.org/rest/dc/1420" label="positive" lang="en"/>
 </ctype>
-<order id1="ct_fullArticle" id2="ct_definiteness"/>
-<order id1="ct_reflexiveDeterminer" id2="ct_determiner"/>
-<order id1="ct_NN" id2="ct_SpTag"/>
-<order id1="ct_negativePronoun" id2="ct_pronoun"/>
-<order id1="ct_futureParticle" id2="ct_particle"/>
-<order id1="ct_PDT" id2="ct_SpTag"/>
-<order id1="ct_exclamativePronoun" id2="ct_pronoun"/>
-<order id1="ct_RP" id2="ct_SpTag"/>
-<order id1="ct_-CLQ-" id2="ct_SpTag"/>
-<order id1="ct_emphaticPronoun" id2="ct_pronoun"/>
-<order id1="ct_interrogativeParticle" id2="ct_particle"/>
-<order id1="ct_genericNumeral" id2="ct_numeral"/>
-<order id1="ct_noun" id2="ct_partOfSpeech"/>
-<order id1="ct_solid" id2="ct_concrete"/>
-<order id1="ct_collectivePronoun" id2="ct_pronoun"/>
-<order id1="ct_openParenthesis" id2="ct_openPunctuation"/>
-<order id1="ct_indicative" id2="ct_verbFormMood"/>
-<order id1="ct_imperfect" id2="ct_grammaticalTense"/>
-<order id1="ct_reflexivePossessivePronoun" id2="ct_reflexivePersonalPronoun"/>
-<order id1="ct_VBN" id2="ct_SpTag"/>
-<order id1="ct_RBR" id2="ct_SpTag"/>
-<order id1="ct_preposition" id2="ct_adposition"/>
-<order id1="ct_ordinalAdjective" id2="ct_adjective"/>
-<order id1="ct_lightVerb" id2="ct_verb"/>
-<order id1="ct_garment" id2="ct_artifact"/>
-<order id1="ct_wnJj" id2="ct_adjective"/>
-<order id1="ct_activeVoice" id2="ct_voice"/>
-<order id1="ct_MD" id2="ct_SpTag"/>
-<order id1="ct_WRB" id2="ct_SpTag"/>
-<order id1="ct_wnVb" id2="ct_verb"/>
-<order id1="ct_NNP" id2="ct_SpTag"/>
-<order id1="ct_indefinite" id2="ct_definiteness"/>
-<order id1="ct_EX" id2="ct_SpTag"/>
-<order id1="ct_superlativeParticle" id2="ct_particle"/>
-<order id1="ct_numeral" id2="ct_partOfSpeech"/>
-<order id1="ct_," id2="ct_SpTag"/>
-<order id1="ct_linf" id2="ct_infinitive"/>
-<order id1="ct_wnNn" id2="ct_noun"/>
-<order id1="ct_RBS" id2="ct_SpTag"/>
-<order id1="ct_." id2="ct_SpTag"/>
-<order id1="ct_interrogativePronoun" id2="ct_pronoun"/>
-<order id1="ct_relativePronoun" id2="ct_pronoun"/>
-<order id1="ct_UH" id2="ct_SpTag"/>
-<order id1="ct_PRP" id2="ct_SpTag"/>
-<order id1="ct_adjective" id2="ct_partOfSpeech"/>
-<order id1="ct_animal" id2="ct_animate"/>
-<order id1="ct_inchoative" id2="ct_aspect"/>
-<order id1="ct_particle" id2="ct_partOfSpeech"/>
-<order id1="ct_natural" id2="ct_concrete"/>
-<order id1="ct_unclassifiedPunctuation" id2="ct_punctuation"/>
-<order id1="ct_relationNoun" id2="ct_noun"/>
-<order id1="ct_indefiniteMultiplicativeNumeral" id2="ct_numeral"/>
-<order id1="ct_perfect" id2="ct_present"/>
-<order id1="ct_fusedPreposition" id2="ct_preposition"/>
-<order id1="ct_comestible" id2="ct_phys_obj"/>
-<order id1="ct_punctuation" id2="ct_partOfSpeech"/>
-<order id1="ct_masculine" id2="ct_grammaticalGender"/>
-<order id1="ct_indefinitePronoun" id2="ct_pronoun"/>
-<order id1="ct_PRP$" id2="ct_SpTag"/>
-<order id1="ct_shortArticle" id2="ct_definiteness"/>
-<order id1="ct_interrogativeAdverb" id2="ct_adverb"/>
-<order id1="ct_neuter" id2="ct_grammaticalGender"/>
-<order id1="ct_scalar" id2="ct_SelRestr"/>
-<order id1="ct_middleVoice" id2="ct_voice"/>
-<order id1="ct_wnRb" id2="ct_WordSense"/>
-<order id1="ct_openPunctuation" id2="ct_punctuation"/>
-<order id1="ct_comparative" id2="ct_degree"/>
-<order id1="ct_positive" id2="ct_degree"/>
-<order id1="ct_(" id2="ct_SpTag"/>
-<order id1="ct_ProcOp_Add" id2="ct_ProcOp"/>
-<order id1="ct_concrete" id2="ct_SelRestr"/>
-<order id1="ct_adverb" id2="ct_partOfSpeech"/>
-<order id1="ct_fusedPrepositionDeterminer" id2="ct_fusedPreposition"/>
-<order id1="ct_demonstrativeDeterminer" id2="ct_determiner"/>
-<order id1="ct_vnVb" id2="ct_WordSense"/>
-<order id1="ct_secondaryPunctuation" id2="ct_punctuation"/>
-<order id1="ct_article" id2="ct_determiner"/>
-<order id1="ct_slash" id2="ct_unclassifiedPunctuation"/>
+<order id1="ct_fusedPronounAuxiliary" id2="ct_pronoun"/>
 <order id1="ct_present" id2="ct_grammaticalTense"/>
-<order id1="ct_-OPQ-" id2="ct_SpTag"/>
-<order id1="ct_object" id2="ct_location"/>
-<order id1="ct_ProcOp_Keep" id2="ct_ProcOp"/>
-<order id1="ct_currency" id2="ct_SelRestr"/>
-<order id1="ct_allusivePronoun" id2="ct_pronoun"/>
-<order id1="ct_tool" id2="ct_artifact"/>
-<order id1="ct_phys_obj" id2="ct_concrete"/>
-<order id1="ct_unclassifiedParticle" id2="ct_particle"/>
-<order id1="ct_IN" id2="ct_SpTag"/>
-<order id1="ct_point" id2="ct_declarativePunctuation"/>
-<order id1="ct_superlative" id2="ct_degree"/>
-<order id1="ct_interrogativeCardinalNumeral" id2="ct_numeral"/>
-<order id1="ct_bullet" id2="ct_partOfSpeech"/>
-<order id1="ct_relativeDeterminer" id2="ct_determiner"/>
-<order id1="ct_postposition" id2="ct_adposition"/>
-<order id1="ct_comma" id2="ct_secondaryPunctuation"/>
-<order id1="ct_partOfSpeech" id2="ct_Morphosyntax"/>
-<order id1="ct_exclamativePoint" id2="ct_declarativePunctuation"/>
-<order id1="ct_organization" id2="ct_SelRestr"/>
-<order id1="ct_TO" id2="ct_SpTag"/>
-<order id1="ct_firstPerson" id2="ct_person"/>
-<order id1="ct_artifact" id2="ct_phys_obj"/>
-<order id1="ct_interrogativeMultiplicativeNumeral" id2="ct_numeral"/>
-<order id1="ct_possessiveAdjective" id2="ct_adjective"/>
-<order id1="ct_conditionalPronoun" id2="ct_pronoun"/>
-<order id1="ct_commonGender" id2="ct_grammaticalGender"/>
-<order id1="ct_imperfective" id2="ct_aspect"/>
-<order id1="ct_circumposition" id2="ct_adposition"/>
-<order id1="ct_plant" id2="ct_natural"/>
-<order id1="ct_copula" id2="ct_verb"/>
-<order id1="ct_existentialPronoun" id2="ct_pronoun"/>
-<order id1="ct_state" id2="ct_SelRestr"/>
-<order id1="ct_nonrigid" id2="ct_solid"/>
-<order id1="ct_possessiveRelativePronoun" id2="ct_possessivePronoun"/>
-<order id1="ct_possessiveRelativePronoun" id2="ct_relativePronoun"/>
-<order id1="ct_possessivePronoun" id2="ct_pronoun"/>
-<order id1="ct_time" id2="ct_SelRestr"/>
-<order id1="ct_multiplicativeNumeral" id2="ct_numeral"/>
-<order id1="ct_DT" id2="ct_SpTag"/>
-<order id1="ct_future" id2="ct_grammaticalTense"/>
-<order id1="ct_JJR" id2="ct_SpTag"/>
-<order id1="ct_strongPersonalPronoun" id2="ct_personalPronoun"/>
-<order id1="ct_interrogativePunctuation" id2="ct_mainPunctuation"/>
-<order id1="ct_reciprocalPronoun" id2="ct_pronoun"/>
-<order id1="ct_$" id2="ct_SpTag"/>
-<order id1="ct_mainPunctuation" id2="ct_punctuation"/>
-<order id1="ct_imperative" id2="ct_verbFormMood"/>
-<order id1="ct_region" id2="ct_location"/>
-<order id1="ct_questionMark" id2="ct_interrogativePunctuation"/>
-<order id1="ct_conditionalParticle" id2="ct_particle"/>
-<order id1="ct_mannerAdverb" id2="ct_generalAdverb"/>
-<order id1="ct_communication" id2="ct_abstract"/>
-<order id1="ct_possessiveDeterminer" id2="ct_determiner"/>
-<order id1="ct_reflexivePossessivePronoun" id2="ct_possessivePronoun"/>
-<order id1="ct_S" id2="ct_SpTag"/>
-<order id1="ct_)" id2="ct_SpTag"/>
-<order id1="ct_pronominalAdverb" id2="ct_adverb"/>
-<order id1="ct_int_control" id2="ct_concrete"/>
-<order id1="ct_machine" id2="ct_int_control"/>
-<order id1="ct_grammaticalGender" id2="ct_Morphosyntax"/>
-<order id1="ct_VBG" id2="ct_SpTag"/>
-<order id1="ct_VP" id2="ct_SpTag"/>
-<order id1="ct_DCR" id2="ct_LinkArg"/>
-<order id1="ct_possessiveParticle" id2="ct_particle"/>
-<order id1="ct_WDT" id2="ct_SpTag"/>
-<order id1="ct_plainVerb" id2="ct_verb"/>
-<order id1="ct_genitiveCase" id2="ct_case"/>
-<order id1="ct_singular" id2="ct_grammaticalNumber"/>
-<order id1="ct_commonNoun" id2="ct_noun"/>
-<order id1="ct_feminine" id2="ct_grammaticalGender"/>
-<order id1="ct_:" id2="ct_SpTag"/>
-<order id1="ct_mainVerb" id2="ct_verb"/>
-<order id1="ct_fusedPrepositionPronoun" id2="ct_partOfSpeech"/>
-<order id1="ct_personalPronoun" id2="ct_pronoun"/>
-<order id1="ct_wnJj" id2="ct_WordSense"/>
-<order id1="ct_abstract" id2="ct_SelRestr"/>
-<order id1="ct_simplePreposition" id2="ct_preposition"/>
-<order id1="ct_demonstrativePronoun" id2="ct_pronoun"/>
-<order id1="ct_JJ" id2="ct_SpTag"/>
-<order id1="ct_interrogativeRelativePronoun" id2="ct_relativePronoun"/>
-<order id1="ct_reflexivePersonalPronoun" id2="ct_refl"/>
-<order id1="ct_futurePerfect" id2="ct_future"/>
-<order id1="ct_animate" id2="ct_natural"/>
-<order id1="ct_semiColon" id2="ct_declarativePunctuation"/>
-<order id1="ct_adposition" id2="ct_partOfSpeech"/>
-<order id1="ct_impersonalPronoun" id2="ct_pronoun"/>
-<order id1="ct_WordSense" id2="ct_LinkArg"/>
-<order id1="ct_cardinalNumeral" id2="ct_numeral"/>
-<order id1="ct_numeralFraction" id2="ct_numeral"/>
-<order id1="ct_case" id2="ct_Morphosyntax"/>
-<order id1="ct_VBP" id2="ct_SpTag"/>
-<order id1="ct_location" id2="ct_SelRestr"/>
-<order id1="ct_NNPS" id2="ct_SpTag"/>
-<order id1="ct_pointy" id2="ct_shape"/>
-<order id1="ct_wnNn" id2="ct_WordSense"/>
-<order id1="ct_suspensionPoints" id2="ct_unclassifiedPunctuation"/>
-<order id1="ct_subjunctive" id2="ct_verbFormMood"/>
-<order id1="ct_presentParticipleAdjective" id2="ct_participleAdjective"/>
-<order id1="ct_VBZ" id2="ct_SpTag"/>
-<order id1="ct_plural" id2="ct_SelRestr"/>
+<order id1="ct_animal" id2="ct_animate"/>
+<order id1="ct_aspect" id2="ct_Morphosyntax"/>
+<order id1="ct_Morphosyntax" id2="ct_DCR"/>
 <order id1="ct_substance" id2="ct_concrete"/>
-<order id1="ct_SpTag" id2="ct_LinkArg"/>
-<order id1="ct_LinkArg" id2="ct_Top"/>
-<order id1="ct_place" id2="ct_location"/>
-<order id1="ct_relativeAdverb" id2="ct_adverb"/>
-<order id1="ct_SYM" id2="ct_SpTag"/>
+<order id1="ct_RBR" id2="ct_SpTag"/>
+<order id1="ct_subjunctive" id2="ct_verbFormMood"/>
+<order id1="ct_ProcOp_Keep" id2="ct_ProcOp"/>
+<order id1="ct_UH" id2="ct_SpTag"/>
+<order id1="ct_slash" id2="ct_unclassifiedPunctuation"/>
+<order id1="ct_adverbialPronoun" id2="ct_pronoun"/>
+<order id1="ct_degree" id2="ct_Morphosyntax"/>
+<order id1="ct_gerund" id2="ct_verbFormMood"/>
 <order id1="ct_closePunctuation" id2="ct_punctuation"/>
+<order id1="ct_natural" id2="ct_concrete"/>
+<order id1="ct_interrogativePronoun" id2="ct_pronoun"/>
 <order id1="ct_ProcOp" id2="ct_LinkArg"/>
-<order id1="ct_VBD" id2="ct_SpTag"/>
-<order id1="ct_rigid" id2="ct_solid"/>
+<order id1="ct_wnVb" id2="ct_WordSense"/>
+<order id1="ct_definite" id2="ct_definiteness"/>
+<order id1="ct_CC" id2="ct_SpTag"/>
+<order id1="ct_plural" id2="ct_SelRestr"/>
+<order id1="ct_JJ" id2="ct_SpTag"/>
+<order id1="ct_multiplicativeNumeral" id2="ct_numeral"/>
+<order id1="ct_firstPerson" id2="ct_person"/>
+<order id1="ct_deficientVerb" id2="ct_partOfSpeech"/>
+<order id1="ct_SYM" id2="ct_SpTag"/>
+<order id1="ct_LinkArg" id2="ct_Top"/>
+<order id1="ct_conditionalParticle" id2="ct_particle"/>
+<order id1="ct_postposition" id2="ct_adposition"/>
+<order id1="ct_plural" id2="ct_grammaticalNumber"/>
+<order id1="ct_TO" id2="ct_SpTag"/>
+<order id1="ct_SelRestr" id2="ct_LinkArg"/>
+<order id1="ct_quote" id2="ct_unclassifiedPunctuation"/>
+<order id1="ct_infinitiveParticle" id2="ct_particle"/>
+<order id1="ct_WRB" id2="ct_SpTag"/>
+<order id1="ct_:" id2="ct_SpTag"/>
 <order id1="ct_interrogativeDeterminer" id2="ct_determiner"/>
+<order id1="ct_numeralFraction" id2="ct_numeral"/>
+<order id1="ct_int_control" id2="ct_concrete"/>
+<order id1="ct_," id2="ct_SpTag"/>
 <order id1="ct_infinitive" id2="ct_verbFormMood"/>
-<order id1="ct_interrogativeRelativePronoun" id2="ct_interrogativePronoun"/>
-<order id1="ct_voice" id2="ct_Morphosyntax"/>
-<order id1="ct_prepositionalAdverb" id2="ct_partOfSpeech"/>
+<order id1="ct_particle" id2="ct_partOfSpeech"/>
 <order id1="ct_properNoun" id2="ct_noun"/>
+<order id1="ct_existentialPronoun" id2="ct_pronoun"/>
+<order id1="ct_pronoun" id2="ct_partOfSpeech"/>
+<order id1="ct_wnNn" id2="ct_noun"/>
+<order id1="ct_PDT" id2="ct_SpTag"/>
+<order id1="ct_animate" id2="ct_natural"/>
+<order id1="ct_indefiniteMultiplicativeNumeral" id2="ct_numeral"/>
+<order id1="ct_demonstrativeDeterminer" id2="ct_determiner"/>
+<order id1="ct_strongPersonalPronoun" id2="ct_personalPronoun"/>
+<order id1="ct_$" id2="ct_SpTag"/>
+<order id1="ct_possessiveRelativePronoun" id2="ct_possessivePronoun"/>
+<order id1="ct_NNP" id2="ct_SpTag"/>
+<order id1="ct_presentativePronoun" id2="ct_pronoun"/>
+<order id1="ct_sinf" id2="ct_infinitive"/>
+<order id1="ct_pronominalAdverb" id2="ct_adverb"/>
+<order id1="ct_-RRB-" id2="ct_)"/>
+<order id1="ct_-OPQ-" id2="ct_SpTag"/>
+<order id1="ct_possessiveAdjective" id2="ct_adjective"/>
+<order id1="ct_fusedPrepositionDeterminer" id2="ct_fusedPreposition"/>
+<order id1="ct_reflexivePossessivePronoun" id2="ct_reflexivePersonalPronoun"/>
+<order id1="ct_relativePronoun" id2="ct_pronoun"/>
+<order id1="ct_indefiniteOrdinalNumeral" id2="ct_numeral"/>
+<order id1="ct_solid" id2="ct_concrete"/>
+<order id1="ct_plainVerb" id2="ct_verb"/>
+<order id1="ct_participle" id2="ct_verbFormMood"/>
+<order id1="ct_currency" id2="ct_SelRestr"/>
+<order id1="ct_closeParenthesis" id2="ct_closePunctuation"/>
+<order id1="ct_wnRb" id2="ct_WordSense"/>
 <order id1="ct_-LRB-" id2="ct_("/>
-<order id1="ct_qualifierAdjective" id2="ct_adjective"/>
-<order id1="ct_reflexivePersonalPronoun" id2="ct_personalPronoun"/>
-<order id1="ct_diminutiveNoun" id2="ct_noun"/>
-<order id1="ct_RB" id2="ct_SpTag"/>
-<order id1="ct_cessative" id2="ct_aspect"/>
+<order id1="ct_verbFormMood" id2="ct_Morphosyntax"/>
+<order id1="ct_declarativePunctuation" id2="ct_mainPunctuation"/>
+<order id1="ct_indefiniteArticle" id2="ct_article"/>
+<order id1="ct_impersonalPronoun" id2="ct_pronoun"/>
+<order id1="ct_time" id2="ct_SelRestr"/>
+<order id1="ct_PRP$" id2="ct_SpTag"/>
+<order id1="ct_indefinitePronoun" id2="ct_pronoun"/>
+<order id1="ct_region" id2="ct_location"/>
+<order id1="ct_cardinalNumeral" id2="ct_numeral"/>
+<order id1="ct_FW" id2="ct_SpTag"/>
+<order id1="ct_presentParticipleAdjective" id2="ct_participleAdjective"/>
+<order id1="ct_communication" id2="ct_abstract"/>
+<order id1="ct_affirmativeParticle" id2="ct_particle"/>
+<order id1="ct_fusedPreposition" id2="ct_preposition"/>
+<order id1="ct_VBN" id2="ct_SpTag"/>
+<order id1="ct_mannerAdverb" id2="ct_generalAdverb"/>
 <order id1="ct_secondPerson" id2="ct_person"/>
-<order id1="ct_weakPersonalPronoun" id2="ct_personalPronoun"/>
-<order id1="ct_person" id2="ct_Morphosyntax"/>
+<order id1="ct_adjective" id2="ct_partOfSpeech"/>
+<order id1="ct_-CLQ-" id2="ct_SpTag"/>
+<order id1="ct_VBG" id2="ct_SpTag"/>
+<order id1="ct_)" id2="ct_SpTag"/>
+<order id1="ct_shape" id2="ct_concrete"/>
+<order id1="ct_qualifierAdjective" id2="ct_adjective"/>
+<order id1="ct_secondaryPunctuation" id2="ct_punctuation"/>
+<order id1="ct_ProcOp_Add" id2="ct_ProcOp"/>
+<order id1="ct_idea" id2="ct_abstract"/>
+<order id1="ct_concrete" id2="ct_SelRestr"/>
+<order id1="ct_RBS" id2="ct_SpTag"/>
+<order id1="ct_refl" id2="ct_SelRestr"/>
+<order id1="ct_machine" id2="ct_int_control"/>
+<order id1="ct_wnJj" id2="ct_adjective"/>
+<order id1="ct_force" id2="ct_int_control"/>
+<order id1="ct_commonGender" id2="ct_grammaticalGender"/>
+<order id1="ct_simplePreposition" id2="ct_preposition"/>
+<order id1="ct_reciprocalPronoun" id2="ct_pronoun"/>
+<order id1="ct_wnNn" id2="ct_WordSense"/>
+<order id1="ct_fusedPrepositionPronoun" id2="ct_partOfSpeech"/>
 <order id1="ct_verb" id2="ct_partOfSpeech"/>
 <order id1="ct_negativeParticle" id2="ct_particle"/>
-<order id1="ct_coordinatingConjunction" id2="ct_conjunction"/>
-<order id1="ct_distinctiveParticle" id2="ct_particle"/>
-<order id1="ct_indefiniteArticle" id2="ct_article"/>
-<order id1="ct_compoundPreposition" id2="ct_preposition"/>
-<order id1="ct_sinf" id2="ct_infinitive"/>
-<order id1="ct_declarativePunctuation" id2="ct_mainPunctuation"/>
-<order id1="ct_ProcOp_Replace" id2="ct_ProcOp"/>
-<order id1="ct_definiteArticle" id2="ct_article"/>
-<order id1="ct_SelRestr" id2="ct_LinkArg"/>
-<order id1="ct_voiceNoun" id2="ct_noun"/>
-<order id1="ct_Morphosyntax" id2="ct_DCR"/>
-<order id1="ct_past" id2="ct_grammaticalTense"/>
-<order id1="ct_irreflexivePersonalPronoun" id2="ct_personalPronoun"/>
-<order id1="ct_interjection" id2="ct_partOfSpeech"/>
-<order id1="ct_grammaticalNumber" id2="ct_Morphosyntax"/>
-<order id1="ct_definite" id2="ct_definiteness"/>
-<order id1="ct_aspect" id2="ct_Morphosyntax"/>
-<order id1="ct_body_part" id2="ct_animate"/>
-<order id1="ct_NNS" id2="ct_SpTag"/>
-<order id1="ct_passiveVoice" id2="ct_voice"/>
-<order id1="ct_elongated" id2="ct_shape"/>
-<order id1="ct_POS" id2="ct_SpTag"/>
-<order id1="ct_idea" id2="ct_abstract"/>
-<order id1="ct_accusativeCase" id2="ct_case"/>
-<order id1="ct_FW" id2="ct_SpTag"/>
-<order id1="ct_dativeCase" id2="ct_case"/>
-<order id1="ct_unaccomplished" id2="ct_aspect"/>
-<order id1="ct_coordinationParticle" id2="ct_particle"/>
-<order id1="ct_grammaticalTense" id2="ct_Morphosyntax"/>
-<order id1="ct_massNoun" id2="ct_noun"/>
-<order id1="ct_LS" id2="ct_SpTag"/>
-<order id1="ct_pronoun" id2="ct_partOfSpeech"/>
-<order id1="ct_participle" id2="ct_verbFormMood"/>
-<order id1="ct_presentativePronoun" id2="ct_pronoun"/>
-<order id1="ct_indefiniteCardinalNumeral" id2="ct_numeral"/>
-<order id1="ct_sound" id2="ct_abstract"/>
-<order id1="ct_comparativeParticle" id2="ct_particle"/>
-<order id1="ct_thirdPerson" id2="ct_person"/>
-<order id1="ct_determiner" id2="ct_partOfSpeech"/>
-<order id1="ct_CC" id2="ct_SpTag"/>
-<order id1="ct_force" id2="ct_int_control"/>
-<order id1="ct_exclamativeDeterminer" id2="ct_determiner"/>
-<order id1="ct_conditional" id2="ct_verbFormMood"/>
-<order id1="ct_vehicle" id2="ct_artifact"/>
-<order id1="ct_JJS" id2="ct_SpTag"/>
-<order id1="ct_indefiniteDeterminer" id2="ct_determiner"/>
-<order id1="ct_shape" id2="ct_concrete"/>
-<order id1="ct_infinitiveParticle" id2="ct_particle"/>
-<order id1="ct_WP" id2="ct_SpTag"/>
-<order id1="ct_adverbialPronoun" id2="ct_pronoun"/>
-<order id1="ct_pastParticipleAdjective" id2="ct_participleAdjective"/>
-<order id1="ct_relativeParticle" id2="ct_particle"/>
-<order id1="ct_degree" id2="ct_Morphosyntax"/>
-<order id1="ct_#" id2="ct_SpTag"/>
-<order id1="ct_invertedComma" id2="ct_secondaryPunctuation"/>
-<order id1="ct_closeParenthesis" id2="ct_closePunctuation"/>
-<order id1="ct_invertedQuestionMark" id2="ct_interrogativePunctuation"/>
-<order id1="ct_subordinatingConjunction" id2="ct_conjunction"/>
-<order id1="ct_nominativeCase" id2="ct_case"/>
-<order id1="ct_verbFormMood" id2="ct_Morphosyntax"/>
-<order id1="ct_human" id2="ct_animate"/>
-<order id1="ct_plural" id2="ct_grammaticalNumber"/>
-<order id1="ct_affirmativeParticle" id2="ct_particle"/>
-<order id1="ct_WP$" id2="ct_SpTag"/>
-<order id1="ct_-RRB-" id2="ct_)"/>
-<order id1="ct_modal" id2="ct_verb"/>
-<order id1="ct_wnRb" id2="ct_adverb"/>
-<order id1="ct_gerund" id2="ct_verbFormMood"/>
-<order id1="ct_deficientVerb" id2="ct_partOfSpeech"/>
-<order id1="ct_indefiniteOrdinalNumeral" id2="ct_numeral"/>
-<order id1="ct_pastPerfect" id2="ct_past"/>
-<order id1="ct_quote" id2="ct_unclassifiedPunctuation"/>
-<order id1="ct_conjunction" id2="ct_partOfSpeech"/>
-<order id1="ct_wnVb" id2="ct_WordSense"/>
-<order id1="ct_interrogativeOrdinalNumeral" id2="ct_numeral"/>
-<order id1="ct_CD" id2="ct_SpTag"/>
-<order id1="ct_perfective" id2="ct_aspect"/>
-<order id1="ct_definiteness" id2="ct_Morphosyntax"/>
-<order id1="ct_VB" id2="ct_SpTag"/>
-<order id1="ct_generalAdverb" id2="ct_adverb"/>
-<order id1="ct_fusedPronounAuxiliary" id2="ct_pronoun"/>
-<order id1="ct_refl" id2="ct_SelRestr"/>
 <order id1="ct_colon" id2="ct_secondaryPunctuation"/>
+<order id1="ct_relativeParticle" id2="ct_particle"/>
+<order id1="ct_nonrigid" id2="ct_solid"/>
+<order id1="ct_relationNoun" id2="ct_noun"/>
+<order id1="ct_invertedQuestionMark" id2="ct_interrogativePunctuation"/>
+<order id1="ct_mainPunctuation" id2="ct_punctuation"/>
+<order id1="ct_#" id2="ct_SpTag"/>
+<order id1="ct_negativePronoun" id2="ct_pronoun"/>
+<order id1="ct_MD" id2="ct_SpTag"/>
+<order id1="ct_definiteness" id2="ct_Morphosyntax"/>
+<order id1="ct_preposition" id2="ct_adposition"/>
+<order id1="ct_dativeCase" id2="ct_case"/>
+<order id1="ct_artifact" id2="ct_phys_obj"/>
+<order id1="ct_inchoative" id2="ct_aspect"/>
+<order id1="ct_interrogativeParticle" id2="ct_particle"/>
+<order id1="ct_compoundPreposition" id2="ct_preposition"/>
+<order id1="ct_interrogativeMultiplicativeNumeral" id2="ct_numeral"/>
+<order id1="ct_POS" id2="ct_SpTag"/>
+<order id1="ct_SpTag" id2="ct_LinkArg"/>
+<order id1="ct_grammaticalTense" id2="ct_Morphosyntax"/>
+<order id1="ct_imperative" id2="ct_verbFormMood"/>
+<order id1="ct_prepositionalAdverb" id2="ct_partOfSpeech"/>
+<order id1="ct_JJS" id2="ct_SpTag"/>
+<order id1="ct_fullArticle" id2="ct_definiteness"/>
+<order id1="ct_conditionalPronoun" id2="ct_pronoun"/>
+<order id1="ct_VBD" id2="ct_SpTag"/>
+<order id1="ct_plant" id2="ct_natural"/>
+<order id1="ct_numeral" id2="ct_partOfSpeech"/>
+<order id1="ct_scalar" id2="ct_SelRestr"/>
+<order id1="ct_VP" id2="ct_SpTag"/>
+<order id1="ct_modal" id2="ct_verb"/>
 <order id1="ct_participleAdjective" id2="ct_adjective"/>
+<order id1="ct_garment" id2="ct_artifact"/>
+<order id1="ct_exclamativePronoun" id2="ct_pronoun"/>
+<order id1="ct_weakPersonalPronoun" id2="ct_personalPronoun"/>
+<order id1="ct_mainVerb" id2="ct_verb"/>
+<order id1="ct_indicative" id2="ct_verbFormMood"/>
+<order id1="ct_perfective" id2="ct_aspect"/>
+<order id1="ct_masculine" id2="ct_grammaticalGender"/>
+<order id1="ct_reflexiveDeterminer" id2="ct_determiner"/>
+<order id1="ct_linf" id2="ct_infinitive"/>
+<order id1="ct_determiner" id2="ct_partOfSpeech"/>
+<order id1="ct_LS" id2="ct_SpTag"/>
+<order id1="ct_elongated" id2="ct_shape"/>
+<order id1="ct_organization" id2="ct_SelRestr"/>
+<order id1="ct_exclamativePoint" id2="ct_declarativePunctuation"/>
+<order id1="ct_shortArticle" id2="ct_definiteness"/>
+<order id1="ct_invertedComma" id2="ct_secondaryPunctuation"/>
+<order id1="ct_ProcOp_Replace" id2="ct_ProcOp"/>
+<order id1="ct_subordinatingConjunction" id2="ct_conjunction"/>
+<order id1="ct_semiColon" id2="ct_declarativePunctuation"/>
+<order id1="ct_interjection" id2="ct_partOfSpeech"/>
+<order id1="ct_openPunctuation" id2="ct_punctuation"/>
+<order id1="ct_thirdPerson" id2="ct_person"/>
+<order id1="ct_PRP" id2="ct_SpTag"/>
+<order id1="ct_DCR" id2="ct_LinkArg"/>
+<order id1="ct_vehicle" id2="ct_artifact"/>
+<order id1="ct_object" id2="ct_location"/>
+<order id1="ct_lightVerb" id2="ct_verb"/>
+<order id1="ct_nominativeCase" id2="ct_case"/>
+<order id1="ct_circumposition" id2="ct_adposition"/>
+<order id1="ct_irreflexivePersonalPronoun" id2="ct_personalPronoun"/>
+<order id1="ct_cessative" id2="ct_aspect"/>
+<order id1="ct_singular" id2="ct_grammaticalNumber"/>
+<order id1="ct_phys_obj" id2="ct_concrete"/>
+<order id1="ct_demonstrativePronoun" id2="ct_pronoun"/>
+<order id1="ct_adposition" id2="ct_partOfSpeech"/>
+<order id1="ct_tool" id2="ct_artifact"/>
+<order id1="ct_adverb" id2="ct_partOfSpeech"/>
+<order id1="ct_perfect" id2="ct_present"/>
+<order id1="ct_(" id2="ct_SpTag"/>
+<order id1="ct_noun" id2="ct_partOfSpeech"/>
+<order id1="ct_WordSense" id2="ct_LinkArg"/>
+<order id1="ct_WP$" id2="ct_SpTag"/>
+<order id1="ct_interrogativePunctuation" id2="ct_mainPunctuation"/>
+<order id1="ct_NNPS" id2="ct_SpTag"/>
+<order id1="ct_interrogativeOrdinalNumeral" id2="ct_numeral"/>
+<order id1="ct_personalPronoun" id2="ct_pronoun"/>
+<order id1="ct_unaccomplished" id2="ct_aspect"/>
+<order id1="ct_point" id2="ct_declarativePunctuation"/>
+<order id1="ct_WDT" id2="ct_SpTag"/>
+<order id1="ct_VBZ" id2="ct_SpTag"/>
+<order id1="ct_allusivePronoun" id2="ct_pronoun"/>
+<order id1="ct_ordinalAdjective" id2="ct_adjective"/>
+<order id1="ct_feminine" id2="ct_grammaticalGender"/>
+<order id1="ct_DT" id2="ct_SpTag"/>
+<order id1="ct_EX" id2="ct_SpTag"/>
+<order id1="ct_positive" id2="ct_degree"/>
+<order id1="ct_futurePerfect" id2="ct_future"/>
+<order id1="ct_S" id2="ct_SpTag"/>
+<order id1="ct_exclamativeDeterminer" id2="ct_determiner"/>
+<order id1="ct_grammaticalNumber" id2="ct_Morphosyntax"/>
+<order id1="ct_reflexivePersonalPronoun" id2="ct_refl"/>
+<order id1="ct_grammaticalGender" id2="ct_Morphosyntax"/>
+<order id1="ct_comestible" id2="ct_phys_obj"/>
+<order id1="ct_superlativeParticle" id2="ct_particle"/>
+<order id1="ct_diminutiveNoun" id2="ct_noun"/>
+<order id1="ct_middleVoice" id2="ct_voice"/>
+<order id1="ct_comparativeParticle" id2="ct_particle"/>
+<order id1="ct_passiveVoice" id2="ct_voice"/>
+<order id1="ct_possessiveRelativePronoun" id2="ct_relativePronoun"/>
+<order id1="ct_generalAdverb" id2="ct_adverb"/>
+<order id1="ct_WP" id2="ct_SpTag"/>
+<order id1="ct_person" id2="ct_Morphosyntax"/>
+<order id1="ct_interrogativeAdverb" id2="ct_adverb"/>
+<order id1="ct_body_part" id2="ct_animate"/>
+<order id1="ct_accusativeCase" id2="ct_case"/>
+<order id1="ct_abstract" id2="ct_SelRestr"/>
+<order id1="ct_future" id2="ct_grammaticalTense"/>
+<order id1="ct_NNS" id2="ct_SpTag"/>
+<order id1="ct_imperfective" id2="ct_aspect"/>
+<order id1="ct_openParenthesis" id2="ct_openPunctuation"/>
+<order id1="ct_coordinationParticle" id2="ct_particle"/>
+<order id1="ct_neuter" id2="ct_grammaticalGender"/>
+<order id1="ct_indefiniteDeterminer" id2="ct_determiner"/>
+<order id1="ct_rigid" id2="ct_solid"/>
+<order id1="ct_genericNumeral" id2="ct_numeral"/>
+<order id1="ct_massNoun" id2="ct_noun"/>
+<order id1="ct_collectivePronoun" id2="ct_pronoun"/>
+<order id1="ct_interrogativeRelativePronoun" id2="ct_relativePronoun"/>
+<order id1="ct_indefinite" id2="ct_definiteness"/>
+<order id1="ct_pastPerfect" id2="ct_past"/>
+<order id1="ct_coordinatingConjunction" id2="ct_conjunction"/>
+<order id1="ct_questionMark" id2="ct_interrogativePunctuation"/>
+<order id1="ct_emphaticPronoun" id2="ct_pronoun"/>
+<order id1="ct_." id2="ct_SpTag"/>
+<order id1="ct_unclassifiedParticle" id2="ct_particle"/>
+<order id1="ct_RB" id2="ct_SpTag"/>
+<order id1="ct_case" id2="ct_Morphosyntax"/>
+<order id1="ct_copula" id2="ct_verb"/>
+<order id1="ct_voice" id2="ct_Morphosyntax"/>
+<order id1="ct_pointy" id2="ct_shape"/>
+<order id1="ct_bullet" id2="ct_partOfSpeech"/>
 <order id1="ct_partitiveArticle" id2="ct_article"/>
+<order id1="ct_reflexivePossessivePronoun" id2="ct_possessivePronoun"/>
+<order id1="ct_NN" id2="ct_SpTag"/>
+<order id1="ct_distinctiveParticle" id2="ct_particle"/>
+<order id1="ct_CD" id2="ct_SpTag"/>
+<order id1="ct_relativeAdverb" id2="ct_adverb"/>
+<order id1="ct_commonNoun" id2="ct_noun"/>
+<order id1="ct_comma" id2="ct_secondaryPunctuation"/>
+<order id1="ct_VB" id2="ct_SpTag"/>
+<order id1="ct_human" id2="ct_animate"/>
+<order id1="ct_relativeDeterminer" id2="ct_determiner"/>
+<order id1="ct_wnVb" id2="ct_verb"/>
+<order id1="ct_voiceNoun" id2="ct_noun"/>
+<order id1="ct_JJR" id2="ct_SpTag"/>
+<order id1="ct_conditional" id2="ct_verbFormMood"/>
+<order id1="ct_wnRb" id2="ct_adverb"/>
+<order id1="ct_reflexivePersonalPronoun" id2="ct_personalPronoun"/>
+<order id1="ct_interrogativeRelativePronoun" id2="ct_interrogativePronoun"/>
+<order id1="ct_place" id2="ct_location"/>
+<order id1="ct_futureParticle" id2="ct_particle"/>
+<order id1="ct_pastParticipleAdjective" id2="ct_participleAdjective"/>
+<order id1="ct_past" id2="ct_grammaticalTense"/>
+<order id1="ct_possessivePronoun" id2="ct_pronoun"/>
+<order id1="ct_superlative" id2="ct_degree"/>
+<order id1="ct_indefiniteCardinalNumeral" id2="ct_numeral"/>
+<order id1="ct_activeVoice" id2="ct_voice"/>
+<order id1="ct_possessiveDeterminer" id2="ct_determiner"/>
+<order id1="ct_wnJj" id2="ct_WordSense"/>
+<order id1="ct_partOfSpeech" id2="ct_Morphosyntax"/>
+<order id1="ct_imperfect" id2="ct_grammaticalTense"/>
+<order id1="ct_suspensionPoints" id2="ct_unclassifiedPunctuation"/>
+<order id1="ct_punctuation" id2="ct_partOfSpeech"/>
+<order id1="ct_possessiveParticle" id2="ct_particle"/>
+<order id1="ct_state" id2="ct_SelRestr"/>
+<order id1="ct_IN" id2="ct_SpTag"/>
+<order id1="ct_definiteArticle" id2="ct_article"/>
+<order id1="ct_location" id2="ct_SelRestr"/>
+<order id1="ct_interrogativeCardinalNumeral" id2="ct_numeral"/>
+<order id1="ct_RP" id2="ct_SpTag"/>
+<order id1="ct_VBP" id2="ct_SpTag"/>
+<order id1="ct_conjunction" id2="ct_partOfSpeech"/>
+<order id1="ct_sound" id2="ct_abstract"/>
+<order id1="ct_article" id2="ct_determiner"/>
+<order id1="ct_comparative" id2="ct_degree"/>
+<order id1="ct_genitiveCase" id2="ct_case"/>
+<order id1="ct_unclassifiedPunctuation" id2="ct_punctuation"/>
 </conceptTypes>
 <relationTypes>
-<rtype id="rt_Agent" idSignature="ct_LinkArg ct_LinkArg" label="Agent" x="288.0" y="1270.0">
+<rtype id="rt_Agent" idSignature="ct_LinkArg ct_LinkArg" label="Agent">
 <translation descr="" label="Agent" lang="en"/>
 </rtype>
-<rtype id="rt_Source" idSignature="ct_LinkArg ct_LinkArg" label="Source" x="381.0" y="2050.0">
+<rtype id="rt_Source" idSignature="ct_LinkArg ct_LinkArg" label="Source">
 <translation descr="" label="Source" lang="en"/>
 </rtype>
-<rtype id="rt_Extent" idSignature="ct_LinkArg ct_LinkArg" label="Extent" x="288.0" y="1930.0">
+<rtype id="rt_Extent" idSignature="ct_LinkArg ct_LinkArg" label="Extent">
 <translation descr="" label="Extent" lang="en"/>
 </rtype>
-<rtype id="rt_Experiencer" idSignature="ct_LinkArg ct_LinkArg" label="Experiencer" x="288.0" y="2110.0">
+<rtype id="rt_Experiencer" idSignature="ct_LinkArg ct_LinkArg" label="Experiencer">
 <translation descr="" label="Experiencer" lang="en"/>
 </rtype>
-<rtype id="rt_rcmod" idSignature="ct_LinkArg ct_LinkArg" label="rcmod" x="381.0" y="250.0">
+<rtype id="rt_rcmod" idSignature="ct_LinkArg ct_LinkArg" label="rcmod">
 <translation descr="relative clause modifier" label="rcmod" lang="en"/>
 </rtype>
-<rtype id="rt_Value" idSignature="ct_LinkArg ct_LinkArg" label="Value" x="288.0" y="1750.0">
+<rtype id="rt_Value" idSignature="ct_LinkArg ct_LinkArg" label="Value">
 <translation descr="" label="Value" lang="en"/>
 </rtype>
-<rtype id="rt_purpcl" idSignature="ct_LinkArg ct_LinkArg" label="purpcl" x="381.0" y="1210.0">
+<rtype id="rt_purpcl" idSignature="ct_LinkArg ct_LinkArg" label="purpcl">
 <translation descr="purpose clause modifier" label="purpcl" lang="en"/>
 </rtype>
-<rtype id="rt_cc" idSignature="ct_LinkArg ct_LinkArg" label="cc" x="288.0" y="970.0">
+<rtype id="rt_cc" idSignature="ct_LinkArg ct_LinkArg" label="cc">
 <translation descr="coordination" label="cc" lang="en"/>
 </rtype>
-<rtype id="rt_obj" idSignature="ct_LinkArg ct_LinkArg" label="obj" x="474.0" y="1330.0">
+<rtype id="rt_obj" idSignature="ct_LinkArg ct_LinkArg" label="obj">
 <translation descr="object" label="obj" lang="en"/>
 </rtype>
-<rtype id="rt_Location" idSignature="ct_LinkArg ct_LinkArg" label="Location" x="381.0" y="1990.0">
+<rtype id="rt_Location" idSignature="ct_LinkArg ct_LinkArg" label="Location">
 <translation descr="" label="Location" lang="en"/>
 </rtype>
-<rtype id="rt_neg" idSignature="ct_LinkArg ct_LinkArg" label="neg" x="474.0" y="610.0">
+<rtype id="rt_neg" idSignature="ct_LinkArg ct_LinkArg" label="neg">
 <translation descr="negation modifier" label="neg" lang="en"/>
 </rtype>
-<rtype id="rt_SpRel" idSignature="ct_LinkArg ct_LinkArg" label="SpRel" x="102.0" y="1030.0">
+<rtype id="rt_SpRel" idSignature="ct_LinkArg ct_LinkArg" label="SpRel">
 <translation descr="Stanford Parser dependency" label="SpRel" lang="en"/>
 </rtype>
-<rtype id="rt_possessive" idSignature="ct_LinkArg ct_LinkArg" label="possessive" x="381.0" y="730.0">
+<rtype id="rt_possessive" idSignature="ct_LinkArg ct_LinkArg" label="possessive">
 <translation descr="possessive modifier (`s)" label="possessive" lang="en"/>
 </rtype>
-<rtype id="rt_pobj" idSignature="ct_LinkArg ct_LinkArg" label="pobj" x="567.0" y="1210.0">
+<rtype id="rt_pobj" idSignature="ct_LinkArg ct_LinkArg" label="pobj">
 <translation descr="object of preposition" label="pobj" lang="en"/>
 </rtype>
-<rtype id="rt_punct" idSignature="ct_LinkArg ct_LinkArg" label="punct" x="288.0" y="850.0">
+<rtype id="rt_punct" idSignature="ct_LinkArg ct_LinkArg" label="punct">
 <translation descr="punctuation" label="punct" lang="en"/>
 </rtype>
-<rtype id="rt_nsubjpass" idSignature="ct_LinkArg ct_LinkArg" label="nsubjpass" x="567.0" y="1690.0">
+<rtype id="rt_nsubjpass" idSignature="ct_LinkArg ct_LinkArg" label="nsubjpass">
 <translation descr="passive nominal subject" label="nsubjpass" lang="en"/>
 </rtype>
-<rtype id="rt_appos" idSignature="ct_LinkArg ct_LinkArg" label="appos" x="381.0" y="310.0">
+<rtype id="rt_appos" idSignature="ct_LinkArg ct_LinkArg" label="appos">
 <translation descr="appositional modifier" label="appos" lang="en"/>
 </rtype>
-<rtype id="rt_Actor" idSignature="ct_LinkArg ct_LinkArg" label="Actor" x="288.0" y="2290.0">
+<rtype id="rt_Actor" idSignature="ct_LinkArg ct_LinkArg" label="Actor">
 <translation descr="" label="Actor" lang="en"/>
 </rtype>
-<rtype id="rt_xcomp" idSignature="ct_LinkArg ct_LinkArg" label="xcomp" x="474.0" y="1210.0">
+<rtype id="rt_xcomp" idSignature="ct_LinkArg ct_LinkArg" label="xcomp">
 <translation descr="clausal complement with external subject" label="xcomp" lang="en"/>
 </rtype>
-<rtype id="rt_BinaryLink" idSignature="ct_LinkArg ct_LinkArg" label="BinaryLink" x="9.0" y="1270.0">
+<rtype id="rt_BinaryLink" idSignature="ct_LinkArg ct_LinkArg" label="BinaryLink">
 <translation descr="syntactic relation" label="BinaryLink" lang="en"/>
 </rtype>
-<rtype id="rt_partmod" idSignature="ct_LinkArg ct_LinkArg" label="partmod" x="381.0" y="430.0">
+<rtype id="rt_partmod" idSignature="ct_LinkArg ct_LinkArg" label="partmod">
 <translation descr="participial modifier" label="partmod" lang="en"/>
 </rtype>
-<rtype id="rt_Asset" idSignature="ct_LinkArg ct_LinkArg" label="Asset" x="288.0" y="1870.0">
+<rtype id="rt_Asset" idSignature="ct_LinkArg ct_LinkArg" label="Asset">
 <translation descr="" label="Asset" lang="en"/>
 </rtype>
-<rtype id="rt_auxpass" idSignature="ct_LinkArg ct_LinkArg" label="auxpass" x="381.0" y="1450.0">
+<rtype id="rt_auxpass" idSignature="ct_LinkArg ct_LinkArg" label="auxpass">
 <translation descr="passive auxiliary" label="auxpass" lang="en"/>
 </rtype>
-<rtype id="rt_attr" idSignature="ct_LinkArg ct_LinkArg" label="attr" x="474.0" y="970.0">
+<rtype id="rt_attr" idSignature="ct_LinkArg ct_LinkArg" label="attr">
 <translation descr="attributive" label="attr" lang="en"/>
 </rtype>
-<rtype id="rt_comp" idSignature="ct_LinkArg ct_LinkArg" label="comp" x="381.0" y="1570.0">
+<rtype id="rt_comp" idSignature="ct_LinkArg ct_LinkArg" label="comp">
 <translation descr="complement" label="comp" lang="en"/>
 </rtype>
-<rtype id="rt_pcomp" idSignature="ct_LinkArg ct_LinkArg" label="pcomp" x="474.0" y="790.0">
+<rtype id="rt_pcomp" idSignature="ct_LinkArg ct_LinkArg" label="pcomp">
 <translation descr="prepositional complement" label="pcomp" lang="en"/>
 </rtype>
-<rtype id="rt_Patient2" idSignature="ct_LinkArg ct_LinkArg" label="Patient2" x="381.0" y="1870.0">
+<rtype id="rt_Patient2" idSignature="ct_LinkArg ct_LinkArg" label="Patient2">
 <translation descr="" label="Patient2" lang="en"/>
 </rtype>
-<rtype id="rt_arg" idSignature="ct_LinkArg ct_LinkArg" label="arg" x="288.0" y="1030.0">
+<rtype id="rt_arg" idSignature="ct_LinkArg ct_LinkArg" label="arg">
 <translation descr="argument" label="arg" lang="en"/>
 </rtype>
-<rtype id="rt_Patient1" idSignature="ct_LinkArg ct_LinkArg" label="Patient1" x="381.0" y="1810.0">
+<rtype id="rt_Patient1" idSignature="ct_LinkArg ct_LinkArg" label="Patient1">
 <translation descr="" label="Patient1" lang="en"/>
 </rtype>
-<rtype id="rt_number" idSignature="ct_LinkArg ct_LinkArg" label="number" x="381.0" y="850.0">
+<rtype id="rt_number" idSignature="ct_LinkArg ct_LinkArg" label="number">
 <translation descr="element of compound number" label="number" lang="en"/>
 </rtype>
-<rtype id="rt_Material" idSignature="ct_LinkArg ct_LinkArg" label="Material" x="381.0" y="1690.0">
+<rtype id="rt_Material" idSignature="ct_LinkArg ct_LinkArg" label="Material">
 <translation descr="" label="Material" lang="en"/>
 </rtype>
-<rtype id="rt_prt" idSignature="ct_LinkArg ct_LinkArg" label="prt" x="381.0" y="130.0">
+<rtype id="rt_prt" idSignature="ct_LinkArg ct_LinkArg" label="prt">
 <translation descr="phrasal verb particle" label="prt" lang="en"/>
 </rtype>
-<rtype id="rt_dep" idSignature="ct_LinkArg ct_LinkArg" label="dep" x="195.0" y="790.0">
+<rtype id="rt_dep" idSignature="ct_LinkArg ct_LinkArg" label="dep">
 <translation descr="dependent" label="dep" lang="en"/>
 </rtype>
-<rtype id="rt_aux" idSignature="ct_LinkArg ct_LinkArg" label="aux" x="288.0" y="610.0">
+<rtype id="rt_aux" idSignature="ct_LinkArg ct_LinkArg" label="aux">
 <translation descr="auxiliary" label="aux" lang="en"/>
 </rtype>
-<rtype id="rt_det" idSignature="ct_LinkArg ct_LinkArg" label="det" x="381.0" y="1030.0">
+<rtype id="rt_det" idSignature="ct_LinkArg ct_LinkArg" label="det">
 <translation descr="determiner" label="det" lang="en"/>
 </rtype>
-<rtype id="rt_ref" idSignature="ct_LinkArg ct_LinkArg" label="ref" x="288.0" y="730.0">
+<rtype id="rt_ref" idSignature="ct_LinkArg ct_LinkArg" label="ref">
 <translation descr="referent" label="ref" lang="en"/>
 </rtype>
-<rtype id="rt_Proposition" idSignature="ct_LinkArg ct_LinkArg" label="Proposition" x="288.0" y="1810.0">
+<rtype id="rt_Proposition" idSignature="ct_LinkArg ct_LinkArg" label="Proposition">
 <translation descr="" label="Proposition" lang="en"/>
 </rtype>
-<rtype id="rt_Product" idSignature="ct_LinkArg ct_LinkArg" label="Product" x="381.0" y="1630.0">
+<rtype id="rt_Product" idSignature="ct_LinkArg ct_LinkArg" label="Product">
 <translation descr="" label="Product" lang="en"/>
 </rtype>
-<rtype id="rt_quantmod" idSignature="ct_LinkArg ct_LinkArg" label="quantmod" x="381.0" y="70.0">
+<rtype id="rt_quantmod" idSignature="ct_LinkArg ct_LinkArg" label="quantmod">
 <translation descr="quantifier modifier" label="quantmod" lang="en"/>
 </rtype>
-<rtype id="rt_nsubj" idSignature="ct_LinkArg ct_LinkArg" label="nsubj" x="474.0" y="1690.0">
+<rtype id="rt_nsubj" idSignature="ct_LinkArg ct_LinkArg" label="nsubj">
 <translation descr="nominal subject" label="nsubj" lang="en"/>
 </rtype>
-<rtype id="rt_abbrev" idSignature="ct_LinkArg ct_LinkArg" label="abbrev" x="381.0" y="970.0">
+<rtype id="rt_abbrev" idSignature="ct_LinkArg ct_LinkArg" label="abbrev">
 <translation descr="abbreviation modifier" label="abbrev" lang="en"/>
 </rtype>
-<rtype id="rt_Stimulus" idSignature="ct_LinkArg ct_LinkArg" label="Stimulus" x="288.0" y="1210.0">
+<rtype id="rt_Stimulus" idSignature="ct_LinkArg ct_LinkArg" label="Stimulus">
 <translation descr="" label="Stimulus" lang="en"/>
 </rtype>
-<rtype id="rt_ccomp" idSignature="ct_LinkArg ct_LinkArg" label="ccomp" x="474.0" y="1150.0">
+<rtype id="rt_ccomp" idSignature="ct_LinkArg ct_LinkArg" label="ccomp">
 <translation descr="clausal complement with internal subject" label="ccomp" lang="en"/>
 </rtype>
-<rtype id="rt_rel" idSignature="ct_LinkArg ct_LinkArg" label="rel" x="474.0" y="910.0">
+<rtype id="rt_rel" idSignature="ct_LinkArg ct_LinkArg" label="rel">
 <translation descr="relative (word introducing a rcmod)" label="rel" lang="en"/>
 </rtype>
-<rtype id="rt_complm" idSignature="ct_LinkArg ct_LinkArg" label="complm" x="474.0" y="1090.0">
+<rtype id="rt_complm" idSignature="ct_LinkArg ct_LinkArg" label="complm">
 <translation descr="complementizer" label="complm" lang="en"/>
 </rtype>
-<rtype id="rt_nn" idSignature="ct_LinkArg ct_LinkArg" label="nn" x="381.0" y="1090.0">
+<rtype id="rt_nn" idSignature="ct_LinkArg ct_LinkArg" label="nn">
 <translation descr="noun compound modifier" label="nn" lang="en"/>
 </rtype>
-<rtype id="rt_Patient" idSignature="ct_LinkArg ct_LinkArg" label="Patient" x="288.0" y="1150.0">
+<rtype id="rt_Patient" idSignature="ct_LinkArg ct_LinkArg" label="Patient">
 <translation descr="" label="Patient" lang="en"/>
 </rtype>
-<rtype id="rt_preconj" idSignature="ct_LinkArg ct_LinkArg" label="preconj" x="381.0" y="10.0">
+<rtype id="rt_preconj" idSignature="ct_LinkArg ct_LinkArg" label="preconj">
 <translation descr="preconjunct" label="preconj" lang="en"/>
 </rtype>
-<rtype id="rt_MatProd" idSignature="ct_LinkArg ct_LinkArg" label="MatProd" x="288.0" y="1090.0">
+<rtype id="rt_MatProd" idSignature="ct_LinkArg ct_LinkArg" label="MatProd">
 <translation descr="" label="MatProd" lang="en"/>
 </rtype>
-<rtype id="rt_csubj" idSignature="ct_LinkArg ct_LinkArg" label="csubj" x="474.0" y="1750.0">
+<rtype id="rt_csubj" idSignature="ct_LinkArg ct_LinkArg" label="csubj">
 <translation descr="clausal subject" label="csubj" lang="en"/>
 </rtype>
-<rtype id="rt_acomp" idSignature="ct_LinkArg ct_LinkArg" label="acomp" x="474.0" y="850.0">
+<rtype id="rt_acomp" idSignature="ct_LinkArg ct_LinkArg" label="acomp">
 <translation descr="adjectival complement" label="acomp" lang="en"/>
 </rtype>
-<rtype id="rt_Theme" idSignature="ct_LinkArg ct_LinkArg" label="Theme" x="288.0" y="2230.0">
+<rtype id="rt_Theme" idSignature="ct_LinkArg ct_LinkArg" label="Theme">
 <translation descr="" label="Theme" lang="en"/>
 </rtype>
-<rtype id="rt_LocDstSrc" idSignature="ct_LinkArg ct_LinkArg" label="LocDstSrc" x="288.0" y="2050.0">
+<rtype id="rt_LocDstSrc" idSignature="ct_LinkArg ct_LinkArg" label="LocDstSrc">
 <translation descr="" label="LocDstSrc" lang="en"/>
 </rtype>
-<rtype id="rt_prep" idSignature="ct_LinkArg ct_LinkArg" label="prep" x="381.0" y="1330.0">
+<rtype id="rt_prep" idSignature="ct_LinkArg ct_LinkArg" label="prep">
 <translation descr="prepositional modifier" label="prep" lang="en"/>
 </rtype>
-<rtype id="rt_parataxis" idSignature="ct_LinkArg ct_LinkArg" label="parataxis" x="288.0" y="910.0">
+<rtype id="rt_parataxis" idSignature="ct_LinkArg ct_LinkArg" label="parataxis">
 <translation descr="parataxis" label="parataxis" lang="en"/>
 </rtype>
-<rtype id="rt_dobj" idSignature="ct_LinkArg ct_LinkArg" label="dobj" x="567.0" y="1330.0">
+<rtype id="rt_dobj" idSignature="ct_LinkArg ct_LinkArg" label="dobj">
 <translation descr="direct object" label="dobj" lang="en"/>
 </rtype>
-<rtype id="rt_predet" idSignature="ct_LinkArg ct_LinkArg" label="predet" x="381.0" y="910.0">
+<rtype id="rt_predet" idSignature="ct_LinkArg ct_LinkArg" label="predet">
 <translation descr="predeterminer" label="predet" lang="en"/>
 </rtype>
-<rtype id="rt_mod" idSignature="ct_LinkArg ct_LinkArg" label="mod" x="288.0" y="490.0">
+<rtype id="rt_mod" idSignature="ct_LinkArg ct_LinkArg" label="mod">
 <translation descr="modifier" label="mod" lang="en"/>
 </rtype>
-<rtype id="rt_Destination" idSignature="ct_LinkArg ct_LinkArg" label="Destination" x="381.0" y="1930.0">
+<rtype id="rt_Destination" idSignature="ct_LinkArg ct_LinkArg" label="Destination">
 <translation descr="" label="Destination" lang="en"/>
 </rtype>
-<rtype id="rt_expl" idSignature="ct_LinkArg ct_LinkArg" label="expl" x="288.0" y="790.0">
+<rtype id="rt_expl" idSignature="ct_LinkArg ct_LinkArg" label="expl">
 <translation descr="expletive (expletive &quot;there&quot;)" label="expl" lang="en"/>
 </rtype>
-<rtype id="rt_advmod" idSignature="ct_LinkArg ct_LinkArg" label="advmod" x="381.0" y="610.0">
+<rtype id="rt_advmod" idSignature="ct_LinkArg ct_LinkArg" label="advmod">
 <translation descr="adverbial modifier" label="advmod" lang="en"/>
 </rtype>
-<rtype id="rt_xsubj" idSignature="ct_LinkArg ct_LinkArg" label="xsubj" x="381.0" y="1270.0">
+<rtype id="rt_xsubj" idSignature="ct_LinkArg ct_LinkArg" label="xsubj">
 <translation descr="controlling subject" label="xsubj" lang="en"/>
 </rtype>
-<rtype id="rt_infmod" idSignature="ct_LinkArg ct_LinkArg" label="infmod" x="381.0" y="790.0">
+<rtype id="rt_infmod" idSignature="ct_LinkArg ct_LinkArg" label="infmod">
 <translation descr="infinitival modifier" label="infmod" lang="en"/>
 </rtype>
-<rtype id="rt_Theme1" idSignature="ct_LinkArg ct_LinkArg" label="Theme1" x="381.0" y="2170.0">
+<rtype id="rt_Theme1" idSignature="ct_LinkArg ct_LinkArg" label="Theme1">
 <translation descr="" label="Theme1" lang="en"/>
 </rtype>
-<rtype id="rt_conj" idSignature="ct_LinkArg ct_LinkArg" label="conj" x="288.0" y="670.0">
+<rtype id="rt_conj" idSignature="ct_LinkArg ct_LinkArg" label="conj">
 <translation descr="conjunct" label="conj" lang="en"/>
 </rtype>
-<rtype id="rt_Theme2" idSignature="ct_LinkArg ct_LinkArg" label="Theme2" x="381.0" y="2110.0">
+<rtype id="rt_Theme2" idSignature="ct_LinkArg ct_LinkArg" label="Theme2">
 <translation descr="" label="Theme2" lang="en"/>
 </rtype>
-<rtype id="rt_Recipient" idSignature="ct_LinkArg ct_LinkArg" label="Recipient" x="288.0" y="1690.0">
+<rtype id="rt_Recipient" idSignature="ct_LinkArg ct_LinkArg" label="Recipient">
 <translation descr="" label="Recipient" lang="en"/>
 </rtype>
-<rtype id="rt_prepc" idSignature="ct_LinkArg ct_LinkArg" label="prepc" x="474.0" y="730.0">
+<rtype id="rt_prepc" idSignature="ct_LinkArg ct_LinkArg" label="prepc">
 <translation descr="prepositional modifier when the prepositional phrase is a clause" label="prepc" lang="en"/>
 </rtype>
-<rtype id="rt_Beneficiary" idSignature="ct_LinkArg ct_LinkArg" label="Beneficiary" x="288.0" y="1570.0">
+<rtype id="rt_Beneficiary" idSignature="ct_LinkArg ct_LinkArg" label="Beneficiary">
 <translation descr="" label="Beneficiary" lang="en"/>
 </rtype>
-<rtype id="rt_Attribute" idSignature="ct_LinkArg ct_LinkArg" label="Attribute" x="288.0" y="1510.0">
+<rtype id="rt_Attribute" idSignature="ct_LinkArg ct_LinkArg" label="Attribute">
 <translation descr="" label="Attribute" lang="en"/>
 </rtype>
-<rtype id="rt_sdep" idSignature="ct_LinkArg ct_LinkArg" label="sdep" x="288.0" y="550.0">
+<rtype id="rt_sdep" idSignature="ct_LinkArg ct_LinkArg" label="sdep">
 <translation descr="semantic dependent" label="sdep" lang="en"/>
 </rtype>
-<rtype id="rt_mark" idSignature="ct_LinkArg ct_LinkArg" label="mark" x="474.0" y="1030.0">
+<rtype id="rt_mark" idSignature="ct_LinkArg ct_LinkArg" label="mark">
 <translation descr="marker (word introducing an advcl)" label="mark" lang="en"/>
 </rtype>
-<rtype id="rt_poss" idSignature="ct_LinkArg ct_LinkArg" label="poss" x="381.0" y="370.0">
+<rtype id="rt_poss" idSignature="ct_LinkArg ct_LinkArg" label="poss">
 <translation descr="possession modifier" label="poss" lang="en"/>
 </rtype>
-<rtype id="rt_Time" idSignature="ct_LinkArg ct_LinkArg" label="Time" x="288.0" y="1630.0">
+<rtype id="rt_Time" idSignature="ct_LinkArg ct_LinkArg" label="Time">
 <translation descr="" label="Time" lang="en"/>
 </rtype>
-<rtype id="rt_compl" idSignature="ct_LinkArg ct_LinkArg" label="compl" x="474.0" y="1270.0">
+<rtype id="rt_compl" idSignature="ct_LinkArg ct_LinkArg" label="compl">
 <translation descr="complementizer" label="compl" lang="en"/>
 </rtype>
-<rtype id="rt_Predicate" idSignature="ct_LinkArg ct_LinkArg" label="Predicate" x="288.0" y="2170.0">
+<rtype id="rt_Predicate" idSignature="ct_LinkArg ct_LinkArg" label="Predicate">
 <translation descr="" label="Predicate" lang="en"/>
 </rtype>
-<rtype id="rt_agent" idSignature="ct_LinkArg ct_LinkArg" label="agent" x="381.0" y="1510.0">
+<rtype id="rt_agent" idSignature="ct_LinkArg ct_LinkArg" label="agent">
 <translation descr="agent" label="agent" lang="en"/>
 </rtype>
-<rtype id="rt_Actor2" idSignature="ct_LinkArg ct_LinkArg" label="Actor2" x="381.0" y="2230.0">
+<rtype id="rt_Actor2" idSignature="ct_LinkArg ct_LinkArg" label="Actor2">
 <translation descr="" label="Actor2" lang="en"/>
 </rtype>
-<rtype id="rt_ThemRole" idSignature="ct_LinkArg ct_LinkArg" label="VerbRole" x="195.0" y="1690.0">
+<rtype id="rt_ThemRole" idSignature="ct_LinkArg ct_LinkArg" label="VerbRole">
 <translation descr="thematic role from VerbNet" label="VerbRole" lang="en"/>
 </rtype>
-<rtype id="rt_advcl" idSignature="ct_LinkArg ct_LinkArg" label="advcl" x="381.0" y="1150.0">
+<rtype id="rt_advcl" idSignature="ct_LinkArg ct_LinkArg" label="advcl">
 <translation descr="adverbial clause modifier" label="advcl" lang="en"/>
 </rtype>
-<rtype id="rt_num" idSignature="ct_LinkArg ct_LinkArg" label="num" x="381.0" y="190.0">
+<rtype id="rt_num" idSignature="ct_LinkArg ct_LinkArg" label="num">
 <translation descr="numeric modifier" label="num" lang="en"/>
 </rtype>
-<rtype id="rt_Actor1" idSignature="ct_LinkArg ct_LinkArg" label="Actor1" x="381.0" y="2290.0">
+<rtype id="rt_Actor1" idSignature="ct_LinkArg ct_LinkArg" label="Actor1">
 <translation descr="" label="Actor1" lang="en"/>
 </rtype>
-<rtype id="rt_Cause" idSignature="ct_LinkArg ct_LinkArg" label="Cause" x="288.0" y="1990.0">
+<rtype id="rt_Cause" idSignature="ct_LinkArg ct_LinkArg" label="Cause">
 <translation descr="" label="Cause" lang="en"/>
 </rtype>
-<rtype id="rt_cop" idSignature="ct_LinkArg ct_LinkArg" label="cop" x="381.0" y="1390.0">
+<rtype id="rt_cop" idSignature="ct_LinkArg ct_LinkArg" label="cop">
 <translation descr="copula" label="cop" lang="en"/>
 </rtype>
-<rtype id="rt_measure" idSignature="ct_LinkArg ct_LinkArg" label="measure" x="381.0" y="490.0">
+<rtype id="rt_measure" idSignature="ct_LinkArg ct_LinkArg" label="measure">
 <translation descr="measure-phrase modifier" label="measure" lang="en"/>
 </rtype>
-<rtype id="rt_Instrument" idSignature="ct_LinkArg ct_LinkArg" label="Instrument" x="288.0" y="1450.0">
+<rtype id="rt_Instrument" idSignature="ct_LinkArg ct_LinkArg" label="Instrument">
 <translation descr="" label="Instrument" lang="en"/>
 </rtype>
-<rtype id="rt_amod" idSignature="ct_LinkArg ct_LinkArg" label="amod" x="381.0" y="550.0">
+<rtype id="rt_amod" idSignature="ct_LinkArg ct_LinkArg" label="amod">
 <translation descr="adjectival modifier" label="amod" lang="en"/>
 </rtype>
-<rtype id="rt_subj" idSignature="ct_LinkArg ct_LinkArg" label="subj" x="381.0" y="1750.0">
+<rtype id="rt_subj" idSignature="ct_LinkArg ct_LinkArg" label="subj">
 <translation descr="subject" label="subj" lang="en"/>
 </rtype>
-<rtype id="rt_Oblique" idSignature="ct_LinkArg ct_LinkArg" label="Oblique" x="288.0" y="1330.0">
+<rtype id="rt_Oblique" idSignature="ct_LinkArg ct_LinkArg" label="Oblique">
 <translation descr="" label="Oblique" lang="en"/>
 </rtype>
-<rtype id="rt_Topic" idSignature="ct_LinkArg ct_LinkArg" label="Topic" x="288.0" y="1390.0">
+<rtype id="rt_Topic" idSignature="ct_LinkArg ct_LinkArg" label="Topic">
 <translation descr="" label="Topic" lang="en"/>
 </rtype>
-<rtype id="rt_csubjpass" idSignature="ct_LinkArg ct_LinkArg" label="csubjpass" x="567.0" y="1750.0">
+<rtype id="rt_csubjpass" idSignature="ct_LinkArg ct_LinkArg" label="csubjpass">
 <translation descr="passive clausal subject" label="csubjpass" lang="en"/>
 </rtype>
-<rtype id="rt_tmod" idSignature="ct_LinkArg ct_LinkArg" label="tmod" x="381.0" y="670.0">
+<rtype id="rt_tmod" idSignature="ct_LinkArg ct_LinkArg" label="tmod">
 <translation descr="temporal modifier" label="tmod" lang="en"/>
 </rtype>
-<rtype id="rt_iobj" idSignature="ct_LinkArg ct_LinkArg" label="iobj" x="567.0" y="1270.0">
+<rtype id="rt_iobj" idSignature="ct_LinkArg ct_LinkArg" label="iobj">
 <translation descr="indirect object" label="iobj" lang="en"/>
 </rtype>
-<rtype id="_rt1" idSignature="ct_LinkArg ct_LinkArg" label="SemRole" x="102.0" y="1510.0">
+<rtype id="_rt1" idSignature="ct_LinkArg ct_LinkArg" label="SemRole">
 <translation descr="semantic role for a part of speech" label="SemRole" lang="en"/>
 </rtype>
-<order id1="rt_Oblique" id2="rt_ThemRole"/>
-<order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
-<order id1="rt_Theme1" id2="rt_Theme"/>
-<order id1="rt_parataxis" id2="rt_dep"/>
-<order id1="rt_Topic" id2="rt_ThemRole"/>
-<order id1="rt_Patient1" id2="rt_Patient"/>
-<order id1="rt_MatProd" id2="rt_ThemRole"/>
-<order id1="rt_quantmod" id2="rt_mod"/>
 <order id1="rt_comp" id2="rt_arg"/>
-<order id1="rt_conj" id2="rt_dep"/>
-<order id1="rt_Actor1" id2="rt_Actor"/>
-<order id1="rt_Material" id2="rt_MatProd"/>
-<order id1="rt_Asset" id2="rt_ThemRole"/>
-<order id1="rt_partmod" id2="rt_mod"/>
-<order id1="rt_sdep" id2="rt_dep"/>
-<order id1="rt_complm" id2="rt_comp"/>
-<order id1="rt_mark" id2="rt_comp"/>
-<order id1="rt_acomp" id2="rt_comp"/>
-<order id1="rt_SpRel" id2="rt_BinaryLink"/>
-<order id1="rt_predet" id2="rt_mod"/>
-<order id1="rt_Theme2" id2="rt_Theme"/>
-<order id1="rt_Actor" id2="rt_ThemRole"/>
-<order id1="rt_Patient" id2="rt_ThemRole"/>
-<order id1="rt_Beneficiary" id2="rt_ThemRole"/>
-<order id1="rt_Recipient" id2="rt_ThemRole"/>
+<order id1="rt_Extent" id2="rt_ThemRole"/>
+<order id1="rt_quantmod" id2="rt_mod"/>
+<order id1="rt_Proposition" id2="rt_ThemRole"/>
+<order id1="rt_auxpass" id2="rt_aux"/>
+<order id1="rt_ref" id2="rt_dep"/>
+<order id1="rt_infmod" id2="rt_mod"/>
+<order id1="rt_pobj" id2="rt_obj"/>
+<order id1="rt_tmod" id2="rt_mod"/>
+<order id1="rt_Experiencer" id2="rt_ThemRole"/>
+<order id1="rt_Theme" id2="rt_ThemRole"/>
+<order id1="rt_mod" id2="rt_dep"/>
+<order id1="rt_xcomp" id2="rt_comp"/>
+<order id1="rt_agent" id2="rt_arg"/>
+<order id1="rt_poss" id2="rt_mod"/>
+<order id1="rt_Theme1" id2="rt_Theme"/>
 <order id1="rt_nsubjpass" id2="rt_nsubj"/>
-<order id1="rt_Value" id2="rt_ThemRole"/>
+<order id1="rt_amod" id2="rt_mod"/>
+<order id1="rt_obj" id2="rt_comp"/>
+<order id1="rt_appos" id2="rt_mod"/>
+<order id1="rt_xsubj" id2="rt_sdep"/>
+<order id1="rt_Cause" id2="rt_ThemRole"/>
+<order id1="rt_Attribute" id2="rt_ThemRole"/>
+<order id1="rt_Time" id2="rt_ThemRole"/>
+<order id1="rt_MatProd" id2="rt_ThemRole"/>
+<order id1="rt_det" id2="rt_mod"/>
+<order id1="rt_complm" id2="rt_comp"/>
+<order id1="rt_Topic" id2="rt_ThemRole"/>
+<order id1="rt_Asset" id2="rt_ThemRole"/>
+<order id1="rt_neg" id2="rt_advmod"/>
+<order id1="rt_Location" id2="rt_LocDstSrc"/>
 <order id1="rt_prt" id2="rt_mod"/>
 <order id1="rt_Agent" id2="rt_ThemRole"/>
-<order id1="rt_Destination" id2="rt_LocDstSrc"/>
-<order id1="rt_mod" id2="rt_dep"/>
-<order id1="rt_Product" id2="rt_MatProd"/>
-<order id1="rt_iobj" id2="rt_obj"/>
-<order id1="rt_Actor2" id2="rt_Actor"/>
-<order id1="rt_det" id2="rt_mod"/>
-<order id1="rt_agent" id2="rt_arg"/>
-<order id1="rt_Theme" id2="rt_ThemRole"/>
-<order id1="rt_neg" id2="rt_advmod"/>
-<order id1="rt_rcmod" id2="rt_mod"/>
-<order id1="rt_num" id2="rt_mod"/>
-<order id1="rt_ccomp" id2="rt_comp"/>
-<order id1="rt_poss" id2="rt_mod"/>
-<order id1="rt_Experiencer" id2="rt_ThemRole"/>
-<order id1="rt_amod" id2="rt_mod"/>
-<order id1="rt_compl" id2="rt_comp"/>
-<order id1="rt_Time" id2="rt_ThemRole"/>
-<order id1="rt_nsubj" id2="rt_subj"/>
-<order id1="rt_csubj" id2="rt_subj"/>
-<order id1="rt_Source" id2="rt_LocDstSrc"/>
-<order id1="rt_Stimulus" id2="rt_ThemRole"/>
-<order id1="rt_infmod" id2="rt_mod"/>
-<order id1="rt_prepc" id2="rt_prep"/>
-<order id1="rt_tmod" id2="rt_mod"/>
-<order id1="rt_Proposition" id2="rt_ThemRole"/>
-<order id1="rt_Attribute" id2="rt_ThemRole"/>
-<order id1="rt_Cause" id2="rt_ThemRole"/>
+<order id1="rt_Beneficiary" id2="rt_ThemRole"/>
+<order id1="rt_predet" id2="rt_mod"/>
 <order id1="rt_nn" id2="rt_mod"/>
+<order id1="rt_Patient1" id2="rt_Patient"/>
 <order id1="rt_cop" id2="rt_aux"/>
-<order id1="rt_abbrev" id2="rt_mod"/>
-<order id1="rt_measure" id2="rt_mod"/>
-<order id1="rt_ref" id2="rt_dep"/>
-<order id1="rt_dep" id2="rt_SpRel"/>
-<order id1="rt_aux" id2="rt_dep"/>
-<order id1="rt_xcomp" id2="rt_comp"/>
-<order id1="rt_Extent" id2="rt_ThemRole"/>
-<order id1="rt_rel" id2="rt_comp"/>
-<order id1="rt_advcl" id2="rt_mod"/>
-<order id1="rt_Predicate" id2="rt_ThemRole"/>
-<order id1="rt_advmod" id2="rt_mod"/>
-<order id1="rt_xsubj" id2="rt_sdep"/>
-<order id1="rt_number" id2="rt_mod"/>
-<order id1="rt_possessive" id2="rt_mod"/>
-<order id1="rt_subj" id2="rt_arg"/>
-<order id1="rt_ThemRole" id2="_rt1"/>
-<order id1="rt_obj" id2="rt_comp"/>
-<order id1="rt_attr" id2="rt_comp"/>
-<order id1="rt_pcomp" id2="rt_comp"/>
-<order id1="rt_expl" id2="rt_dep"/>
-<order id1="rt_appos" id2="rt_mod"/>
-<order id1="rt_auxpass" id2="rt_aux"/>
-<order id1="rt_punct" id2="rt_dep"/>
-<order id1="rt_pobj" id2="rt_obj"/>
-<order id1="rt_Patient2" id2="rt_Patient"/>
 <order id1="rt_csubjpass" id2="rt_csubj"/>
-<order id1="rt_preconj" id2="rt_mod"/>
-<order id1="rt_prep" id2="rt_mod"/>
-<order id1="rt_dobj" id2="rt_obj"/>
-<order id1="rt_Instrument" id2="rt_ThemRole"/>
+<order id1="rt_partmod" id2="rt_mod"/>
+<order id1="rt_iobj" id2="rt_obj"/>
+<order id1="rt_aux" id2="rt_dep"/>
+<order id1="rt_acomp" id2="rt_comp"/>
+<order id1="rt_Recipient" id2="rt_ThemRole"/>
+<order id1="rt_dep" id2="rt_SpRel"/>
+<order id1="rt_compl" id2="rt_comp"/>
 <order id1="rt_purpcl" id2="rt_mod"/>
+<order id1="rt_subj" id2="rt_arg"/>
+<order id1="rt_mark" id2="rt_comp"/>
+<order id1="rt_Patient2" id2="rt_Patient"/>
+<order id1="rt_Patient" id2="rt_ThemRole"/>
+<order id1="rt_ccomp" id2="rt_comp"/>
 <order id1="rt_arg" id2="rt_dep"/>
-<order id1="rt_cc" id2="rt_dep"/>
-<order id1="rt_Location" id2="rt_LocDstSrc"/>
+<order id1="rt_number" id2="rt_mod"/>
+<order id1="rt_num" id2="rt_mod"/>
 <order id1="_rt1" id2="rt_BinaryLink"/>
+<order id1="rt_measure" id2="rt_mod"/>
+<order id1="rt_SpRel" id2="rt_BinaryLink"/>
+<order id1="rt_preconj" id2="rt_mod"/>
+<order id1="rt_Product" id2="rt_MatProd"/>
+<order id1="rt_sdep" id2="rt_dep"/>
+<order id1="rt_Oblique" id2="rt_ThemRole"/>
+<order id1="rt_Theme2" id2="rt_Theme"/>
+<order id1="rt_punct" id2="rt_dep"/>
+<order id1="rt_Stimulus" id2="rt_ThemRole"/>
+<order id1="rt_advmod" id2="rt_mod"/>
+<order id1="rt_advcl" id2="rt_mod"/>
+<order id1="rt_prepc" id2="rt_prep"/>
+<order id1="rt_rel" id2="rt_comp"/>
+<order id1="rt_parataxis" id2="rt_dep"/>
+<order id1="rt_ThemRole" id2="_rt1"/>
+<order id1="rt_abbrev" id2="rt_mod"/>
+<order id1="rt_prep" id2="rt_mod"/>
+<order id1="rt_pcomp" id2="rt_comp"/>
+<order id1="rt_Material" id2="rt_MatProd"/>
+<order id1="rt_Value" id2="rt_ThemRole"/>
+<order id1="rt_Predicate" id2="rt_ThemRole"/>
+<order id1="rt_Actor2" id2="rt_Actor"/>
+<order id1="rt_nsubj" id2="rt_subj"/>
+<order id1="rt_Actor" id2="rt_ThemRole"/>
+<order id1="rt_expl" id2="rt_dep"/>
+<order id1="rt_rcmod" id2="rt_mod"/>
+<order id1="rt_Destination" id2="rt_LocDstSrc"/>
+<order id1="rt_attr" id2="rt_comp"/>
+<order id1="rt_Source" id2="rt_LocDstSrc"/>
+<order id1="rt_conj" id2="rt_dep"/>
+<order id1="rt_possessive" id2="rt_mod"/>
+<order id1="rt_Instrument" id2="rt_ThemRole"/>
+<order id1="rt_cc" id2="rt_dep"/>
+<order id1="rt_LocDstSrc" id2="rt_ThemRole"/>
+<order id1="rt_dobj" id2="rt_obj"/>
+<order id1="rt_csubj" id2="rt_subj"/>
+<order id1="rt_Actor1" id2="rt_Actor"/>
 </relationTypes>
 <nestingTypes>
 <ntype id="_nt0" label="Nesting">

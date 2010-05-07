@@ -79,28 +79,4 @@ public class WkbTest {
         assertEquals(2, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
     }
-
-    @Test
-    public void testImportVerbNetHierarchy() throws Exception {
-        Wkb kb = new Wkb(W.getDefaultWkbFile());
-        File cogxml = new File("test_verb_import.cogxml");
-
-        String[] sTypes = kb.importVerbNetHierarchy("zzzb");
-        assertNull(sTypes);
-
-        sTypes = kb.importVerbNetHierarchy("atomize");
-        kb.save(cogxml);
-        assertEquals(1, sTypes.length);
-        System.out.println(StringUtils.join(sTypes, ", "));
-
-        sTypes = kb.importVerbNetHierarchy("blab");
-        kb.save(cogxml);
-        assertEquals(2, sTypes.length);
-        System.out.println(StringUtils.join(sTypes, ", "));
-
-        sTypes = kb.importVerbNetHierarchy("make");
-        kb.save(cogxml);
-        assertEquals(15, sTypes.length);
-        System.out.println(StringUtils.join(sTypes, ", "));
-    }
 }
