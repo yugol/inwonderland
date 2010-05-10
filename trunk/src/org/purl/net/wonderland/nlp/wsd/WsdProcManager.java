@@ -23,9 +23,7 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
-import java.util.List;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.ProcList;
@@ -62,8 +60,7 @@ public final class WsdProcManager {
                     procFile = W.res(W.RES_WSD_VERB_AUTOMATIC_FOLDER_PATH, lemma + RULES_FILE_EXTENSION);
                     if (!procFile.exists()) {
                         Verb v = new Verb(lemma);
-                        //List<Rule> rules = v.buildProcRules();
-                        //IO.writeRules(rules, procFile);
+                        v.storeProcRules(procFile);
                     }
                 }
                 procs = IO.readProcs(lemma, procFile, kb);

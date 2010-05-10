@@ -38,6 +38,8 @@ import org.w3c.dom.NodeList;
  */
 public class CogxmlIO {
 
+    public static final String COGXML_NAME = "cogxml";
+
     public static ConceptType createConceptType(Element elt, String lang) {
         ConceptType ct = new ConceptType(elt.getAttribute("id"));
         NodeList translationNodes = elt.getElementsByTagName("translation");
@@ -447,7 +449,7 @@ public class CogxmlIO {
     }
 
     public static Element xmlKnowledgeBase(Document xmlDoc, KnowledgeBase kb) {
-        Element cogxmlElement = xmlDoc.createElement("cogxml");
+        Element cogxmlElement = xmlDoc.createElement(COGXML_NAME);
         Element supportElement = xmlSupport(xmlDoc, kb.getSupport(), kb.getLanguage());
         cogxmlElement.appendChild(supportElement);
         for (Set<ConceptualGraph> cgSet : kb.getFacts().values()) {

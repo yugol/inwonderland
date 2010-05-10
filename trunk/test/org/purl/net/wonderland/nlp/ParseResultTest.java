@@ -36,7 +36,7 @@ public class ParseResultTest {
 
     @Test
     public void testKnowledgeBase() throws Exception {
-        ParseResult pr = Pipeline.parseFirstSentence("Colorless green ideas sleep furiously.");
+        ParseResult pr = Pipeline.parseFirstSentence("He considered what to do.");
         KnowledgeBase kb = pr.getKb();
         CogxmlIO.writeCogxmlFile(kb, new File("wkb.cogxml"));
     }

@@ -219,12 +219,19 @@ public class Wkb {
         }
         return null;
     }
+    private List<String> discoveredHypernymChain;
 
     private String importWordNetHypernymHierarchy(Synset sense, POS posType, String particle, String parentId) {
         String senseName = WordNetWrapper.toWordNetOffsetKeyAlpha(particle, sense.getOffset());
         String senseId = WkbUtil.toConceptTypeId(senseName);
         if (vocabulary.conceptTypeIdExist(senseId)) {
             return senseId;
+        }
+
+        if (discoveredHypernymChain.contains(senseId)) {
+            return WkbUtil.toConceptTypeId(WkbConstants.WN_VERB);
+        } else {
+            discoveredHypernymChain.add(senseId);
         }
 
         Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
@@ -252,6 +259,7 @@ public class Wkb {
             if (senses != null) {
                 senseTypes = new ArrayList<String>();
                 for (Synset sense : senses) {
+                    discoveredHypernymChain = new ArrayList<String>();
                     String senseType = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
                     senseTypes.add(senseType);
                 }
@@ -272,6 +280,7 @@ public class Wkb {
                 POS posType = sense.getPOS();
                 String particle = senseKey.substring(0, 1);
                 String parentId = WkbUtil.getPosParentId(posType);
+                discoveredHypernymChain = new ArrayList<String>();
                 String senseType2 = importWordNetHypernymHierarchy(sense, posType, particle, parentId);
                 if (!senseType.equals(senseType2)) {
                     throw new WonderlandRuntimeException("input sense differs from output sense");

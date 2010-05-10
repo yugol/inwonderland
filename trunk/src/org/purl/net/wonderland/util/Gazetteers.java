@@ -224,7 +224,7 @@ public abstract class Gazetteers {
 
             map.put(chunks[1].trim(), list);
         }
-        
+
         return mapmap;
     }
 
@@ -291,6 +291,11 @@ public abstract class Gazetteers {
     }
 
     public static List<String> getWnSensesForVnId(String lemma, String vnId) {
-        return vn2wn.get(lemma).get(vnId);
+        Map<String, List<String>> map = vn2wn.get(lemma);
+        if (map != null) {
+            return map.get(vnId);
+        } else {
+            return new ArrayList<String>();
+        }
     }
 }

@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ConceptualGraphTest {
+public class PathTest {
 
     private ConceptualGraph cg;
     private KnowledgeBase kb;
@@ -46,8 +46,8 @@ public class ConceptualGraphTest {
     private Relation _dobj;
     private Path path;
 
-    public ConceptualGraphTest() throws Exception {
-        File cogxmlFile = new File(W.getTestDataFolder(), "own.cogxml");
+    public PathTest() throws Exception {
+        File cogxmlFile = new File(W.getTestDataFolder(), "path-1.cogxml");
         kb = CogxmlIO.readCogxmlFile(cogxmlFile);
         cg = kb.getFacts().values().iterator().next().iterator().next();
         _i = cg.getConcepts().get("fJe5ZjUekbxKaPoW4eHr");
@@ -130,5 +130,18 @@ public class ConceptualGraphTest {
 
         path = cg.findPath(_point, _nsubj);
         assertNull(path);
+    }
+
+    @Test
+    public void testFindPathCycle() throws Exception {
+        File cogxmlFile = new File(W.getTestDataFolder(), "path-2.cogxml");
+        KnowledgeBase kbCycle = CogxmlIO.readCogxmlFile(cogxmlFile);
+        ConceptualGraph cgCycle = kbCycle.getFacts().values().iterator().next().iterator().next();
+        Concept _consider = cgCycle.getConcepts().get("p1Dyy2pfzNVCKJHQ5Akq");
+        Concept _do = cgCycle.getConcepts().get("AEAtZGt7NzZ5KiQSC4B2");
+
+        path = cg.findPath(_consider, _do);
+        assertEquals(3, path.size());
+        assertEquals(_consider, path.getVertex(0));
     }
 }
