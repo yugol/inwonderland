@@ -54,6 +54,10 @@ public final class XML {
     }
 
     public static void writeXmlFile(Document xmlDoc, File file) throws IOException {
+        IO.writeStringToFile(toString(xmlDoc), file);
+    }
+
+    public static String toString(Document xmlDoc) throws IOException {
         StringWriter sw = new StringWriter();
         OutputFormat of = new OutputFormat("XML", null, true);
         of.setIndent(2);
@@ -62,6 +66,6 @@ public final class XML {
         XMLSerializer serializer = new XMLSerializer(sw, of);
         serializer.asDOMSerializer();
         serializer.serialize(xmlDoc.getDocumentElement());
-        IO.writeStringToFile(sw.toString(), file);
+        return sw.toString();
     }
 }

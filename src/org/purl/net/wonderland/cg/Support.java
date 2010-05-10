@@ -32,19 +32,28 @@ import java.util.Map;
  */
 public class Support {
 
+    static Support createEmptySupport() {
+        return new Support();
+    }
+
+    public static Support createDefaultSupport() {
+        Support support = new Support();
+        support.topConceptType = support.addConceptType(TOP_ID);
+        support.topRelationType = new RelationType[MAX_ARITY];
+        return support;
+    }
+    //
     public static final int MAX_ARITY = 10;
     public static final String TOP_ID = "Top";
     public static final String DEFAULT_SET = "default_set";
     //
-    private final ConceptType topConceptType;
-    private final RelationType[] topRelationType;
+    private ConceptType topConceptType;
+    private RelationType[] topRelationType;
     private final Map<String, ConceptType> conceptTypes = new HashMap<String, ConceptType>();
     private final Map<String, RelationType> relationTypes = new HashMap<String, RelationType>();
     private final Map<String, Individual> individuals = new HashMap<String, Individual>();
 
-    public Support() {
-        topConceptType = addConceptType(TOP_ID);
-        topRelationType = new RelationType[MAX_ARITY];
+    private Support() {
     }
 
     Map<String, ConceptType> getConceptTypes() {
