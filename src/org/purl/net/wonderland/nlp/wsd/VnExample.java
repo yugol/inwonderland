@@ -62,7 +62,6 @@ class VnExample extends Example {
         List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
         parseResult = Pipeline.parse(tokens);
 
-        System.out.println("");
         System.out.println("[" + vnClass.getId() + "]");
         System.out.println(text);
         for (int i = 0; i < parseResult.getSentenceSize(); i++) {
@@ -364,6 +363,9 @@ class VnExample extends Example {
 
     @Override
     public KnowledgeBase getProcRule(String lemma) {
+        System.out.println("");
+        System.out.println("<" + lemma + ">");
+
         // map syntax elements to text
         makeSense();
 

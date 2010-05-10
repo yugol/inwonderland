@@ -77,6 +77,10 @@ class VnClass {
             List<VnClass> vnClasses = new ArrayList<VnClass>();
 
             Set<String> vnClassIds = VerbNetWrapper.getVerbIndex().get(lemma);
+            if (vnClassIds == null) {
+                return null;
+            }
+
             List<Element> vnclassElements = new ArrayList<Element>(vnClassIds.size());
 
             for (String classId : vnClassIds) {

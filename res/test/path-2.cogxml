@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<cogxml>
+    <support name="vocabulary">
+        <conceptTypes>
+            <ctype id="ct_masculine" label="masculine">
+                <translation descr="" label="masculine" lang="en"/>
+            </ctype>
+            <ctype id="Top" label="Top">
+                <translation descr="" label="Top" lang="en"/>
+            </ctype>
+            <ctype id="ct_indicative" label="indicative">
+                <translation descr="" label="indicative" lang="en"/>
+            </ctype>
+            <ctype id="ct_interrogativePronoun" label="interrogativePronoun">
+                <translation descr="" label="interrogativePronoun" lang="en"/>
+            </ctype>
+            <ctype id="ct_point" label="point">
+                <translation descr="" label="point" lang="en"/>
+            </ctype>
+            <ctype id="ct_past" label="past">
+                <translation descr="" label="past" lang="en"/>
+            </ctype>
+            <ctype id="ct_thirdPerson" label="thirdPerson">
+                <translation descr="" label="thirdPerson" lang="en"/>
+            </ctype>
+            <ctype id="ct_singular" label="singular">
+                <translation descr="" label="singular" lang="en"/>
+            </ctype>
+            <ctype id="ct_infinitive" label="infinitive">
+                <translation descr="" label="infinitive" lang="en"/>
+            </ctype>
+            <ctype id="ct_preposition" label="preposition">
+                <translation descr="" label="preposition" lang="en"/>
+            </ctype>
+            <ctype id="ct_verb" label="verb">
+                <translation descr="" label="verb" lang="en"/>
+            </ctype>
+            <ctype id="ct_personalPronoun" label="personalPronoun">
+                <translation descr="" label="personalPronoun" lang="en"/>
+            </ctype>
+            <order id1="ct_masculine" id2="Top"/>
+            <order id1="ct_indicative" id2="Top"/>
+            <order id1="ct_interrogativePronoun" id2="Top"/>
+            <order id1="ct_point" id2="Top"/>
+            <order id1="ct_past" id2="Top"/>
+            <order id1="ct_thirdPerson" id2="Top"/>
+            <order id1="ct_singular" id2="Top"/>
+            <order id1="ct_infinitive" id2="Top"/>
+            <order id1="ct_preposition" id2="Top"/>
+            <order id1="ct_verb" id2="Top"/>
+            <order id1="ct_personalPronoun" id2="Top"/>
+        </conceptTypes>
+        <relationTypes>
+            <rtype id="Top2" idSignature="Top Top" label="Top2">
+                <translation descr="" label="Top2" lang="en"/>
+            </rtype>
+            <rtype id="rt_aux" idSignature="Top Top" label="aux">
+                <translation descr="" label="aux" lang="en"/>
+            </rtype>
+            <rtype id="rt_nsubj" idSignature="Top Top" label="nsubj">
+                <translation descr="" label="nsubj" lang="en"/>
+            </rtype>
+            <rtype id="rt_ccomp" idSignature="Top Top" label="ccomp">
+                <translation descr="" label="ccomp" lang="en"/>
+            </rtype>
+            <rtype id="rt_xcomp" idSignature="Top Top" label="xcomp">
+                <translation descr="" label="xcomp" lang="en"/>
+            </rtype>
+            <order id1="rt_aux" id2="Top2"/>
+            <order id1="rt_nsubj" id2="Top2"/>
+            <order id1="rt_ccomp" id2="Top2"/>
+            <order id1="rt_xcomp" id2="Top2"/>
+        </relationTypes>
+        <nestingTypes>
+            <ntype id="lyvcDABHptGNqeS0q3GO" label="">
+                <translation descr="" label="" lang="en"/>
+            </ntype>
+        </nestingTypes>
+        <conformity>
+            <marker id="to" idType="Top" label="to"/>
+            <marker id="what" idType="Top" label="what"/>
+            <marker id="consider" idType="Top" label="consider"/>
+            <marker id="do" idType="Top" label="do"/>
+            <marker id="he" idType="Top" label="he"/>
+            <marker id="." idType="Top" label="."/>
+        </conformity>
+    </support>
+    <graph id="IAwqrzjQKwCDqAIuotSU" label="IAwqrzjQKwCDqAIuotSU" nature="fact" set="default_set">
+        <concept id="eCbr0Q03e1zeaa5KEQIM" idMarker="he" referent="individual">
+            <type id="ct_masculine"/>
+            <type id="ct_thirdPerson"/>
+            <type id="ct_singular"/>
+            <type id="ct_personalPronoun"/>
+        </concept>
+        <concept id="p1Dyy2pfzNVCKJHQ5Akq" idMarker="consider" referent="individual">
+            <type id="ct_indicative"/>
+            <type id="ct_past"/>
+            <type id="ct_verb"/>
+        </concept>
+        <concept id="l3ZmxJdCQ4mzqhkVvo3t" idMarker="what" idType="ct_interrogativePronoun" referent="individual"/>
+        <concept id="zBXH67CaWismqecEC5qZ" idMarker="to" idType="ct_preposition" referent="individual"/>
+        <concept id="AEAtZGt7NzZ5KiQSC4B2" idMarker="do" referent="individual">
+            <type id="ct_infinitive"/>
+            <type id="ct_verb"/>
+        </concept>
+        <concept id="eLXET0A3KMaIaM1X1oug" idMarker="." idType="ct_point" referent="individual"/>
+        <relation id="sXC2qqiTy0WvKwowZRIE" idType="rt_nsubj"/>
+        <relation id="NPOUUn2sk7Dh4C4yljD1" idType="rt_nsubj"/>
+        <relation id="jXd5qohHfMlkqaBrnpju" idType="rt_aux"/>
+        <relation id="24dABi4wAkil49CUzUkB" idType="rt_ccomp"/>
+        <relation id="u58EVMVTzf9paVSi7NHl" idType="rt_xcomp"/>
+        <edge cid="AEAtZGt7NzZ5KiQSC4B2" label="1" rid="u58EVMVTzf9paVSi7NHl"/>
+        <edge cid="p1Dyy2pfzNVCKJHQ5Akq" label="2" rid="24dABi4wAkil49CUzUkB"/>
+        <edge cid="AEAtZGt7NzZ5KiQSC4B2" label="1" rid="24dABi4wAkil49CUzUkB"/>
+        <edge cid="zBXH67CaWismqecEC5qZ" label="1" rid="jXd5qohHfMlkqaBrnpju"/>
+        <edge cid="l3ZmxJdCQ4mzqhkVvo3t" label="1" rid="NPOUUn2sk7Dh4C4yljD1"/>
+        <edge cid="eCbr0Q03e1zeaa5KEQIM" label="1" rid="sXC2qqiTy0WvKwowZRIE"/>
+        <edge cid="AEAtZGt7NzZ5KiQSC4B2" label="2" rid="jXd5qohHfMlkqaBrnpju"/>
+        <edge cid="p1Dyy2pfzNVCKJHQ5Akq" label="2" rid="sXC2qqiTy0WvKwowZRIE"/>
+        <edge cid="p1Dyy2pfzNVCKJHQ5Akq" label="2" rid="u58EVMVTzf9paVSi7NHl"/>
+        <edge cid="AEAtZGt7NzZ5KiQSC4B2" label="2" rid="NPOUUn2sk7Dh4C4yljD1"/>
+    </graph>
+</cogxml>

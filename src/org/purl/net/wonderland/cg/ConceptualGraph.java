@@ -109,6 +109,7 @@ public class ConceptualGraph extends BasicIdentifiable {
             from.prev = from;
             queue.add(from);
 
+            FIND_PATH:
             while (queue.size() > 0) {
                 from = queue.poll();
                 for (Edge edge : from.getEdges()) {
@@ -122,7 +123,7 @@ public class ConceptualGraph extends BasicIdentifiable {
                             }
                             vertices.add(from);
                             Collections.reverse(vertices);
-                            break;
+                            break FIND_PATH;
                         } else {
                             adj.prev = from;
                             queue.add(adj);

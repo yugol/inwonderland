@@ -79,4 +79,14 @@ public class WkbTest {
         assertEquals(2, sTypes.size());
         System.out.println(StringUtils.join(sTypes, ", "));
     }
+
+    @Test
+    public void testImportWordNetBlinkError() throws Exception {
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
+        File cogxml = new File("test_blink_import.cogxml");
+        List<String> sTypes = kb.importWordNetHypernymHierarchy("blink", POS.VERB);
+        kb.save(cogxml);
+        assertEquals(3, sTypes.size());
+        System.out.println(StringUtils.join(sTypes, ", "));
+    }
 }

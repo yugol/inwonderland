@@ -61,11 +61,12 @@ public class VerbTest {
 
     @Test
     public void testOneVerbToProcs() throws Exception {
-        Verb v = new Verb("have");
+        Verb v = new Verb("know");
         List<KnowledgeBase> rules = v.buildProcRules();
         for (int i = 0; i < rules.size(); i++) {
             File file = new File("rules." + v.getLemma() + "-" + i + ".cogxml");
             CogxmlIO.writeCogxmlFile(rules.get(i), file);
         }
+        v.storeProcRules(new File("rules." + v.getLemma() + ".cogxml"));
     }
 }
