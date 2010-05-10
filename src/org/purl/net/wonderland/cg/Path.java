@@ -91,4 +91,12 @@ public class Path implements Comparable<Path> {
             edges.remove(sz - 1);
         }
     }
+
+    public Vertex getFirstVertex() {
+        return vertices.get(0);
+    }
+
+    public Vertex getLastVertex() {
+        return vertices.get(vertices.size() - 1);
+    }
 }

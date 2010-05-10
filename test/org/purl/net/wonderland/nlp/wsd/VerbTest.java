@@ -23,17 +23,13 @@
  */
 package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
-import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.cg.CogxmlIO;
 import org.purl.net.wonderland.cg.KnowledgeBase;
-import org.purl.net.wonderland.engine.Memory;
-import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 
 /**
@@ -65,7 +61,7 @@ public class VerbTest {
 
     @Test
     public void testOneVerbToProcs() throws Exception {
-        Verb v = new Verb("own");
+        Verb v = new Verb("have");
         List<KnowledgeBase> rules = v.buildProcRules();
         for (int i = 0; i < rules.size(); i++) {
             File file = new File("rules." + v.getLemma() + "-" + i + ".cogxml");

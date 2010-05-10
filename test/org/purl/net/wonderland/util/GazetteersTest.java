@@ -53,7 +53,7 @@ public class GazetteersTest {
     public void getSenses() {
         assertEquals(5, Gazetteers.sensefile2wn.size());
         assertEquals("ct_n00007846", Gazetteers.sensefile2wn.get("lastName").get(0));
-        List<String> senses = Gazetteers.getWNSensesFor("elizabeth");
+        List<String> senses = Gazetteers.getWnSensesFromNamedEntity("elizabeth");
         assertEquals(2, senses.size());
     }
 
@@ -61,5 +61,11 @@ public class GazetteersTest {
     public void pb2vn() {
         assertEquals(1, Gazetteers.pb2vn.size());
         assertEquals("100", Gazetteers.pb2vn.get("own.01"));
+    }
+
+    @Test
+    public void vn2wn() {
+        assertEquals(1, Gazetteers.vn2wn.size());
+        assertEquals("v01156834", Gazetteers.getWnSensesForVnId("have", "devour-39.4-1").get(0));
     }
 }

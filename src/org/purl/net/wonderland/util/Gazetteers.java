@@ -81,6 +81,8 @@ public abstract class Gazetteers {
     public static Map<String, List<String>> sensefile2wn;
     //
     public static Map<String, String> pb2vn;
+    //
+    public static Map<String, Map<String, List<String>>> vn2wn;
 
     public static void init() {
     }
@@ -118,6 +120,11 @@ public abstract class Gazetteers {
 
                     File file = W.res(W.RES_WSD_PB_2_VN_FILE_PATH);
                     f.set(null, IO.readCsvFileAsMapOneToOne(file));
+
+                } else if ("vn2wn".equals(name)) {
+
+                    File file = W.res(W.RES_WSD_VN_2_WN_FILE_PATH);
+                    f.set(null, readCsvFileAsMapMapToMany(file));
 
                 }
             }
@@ -196,6 +203,31 @@ public abstract class Gazetteers {
         return map;
     }
 
+    private static Map<String, Map<String, List<String>>> readCsvFileAsMapMapToMany(File file) throws IOException {
+        Map<String, Map<String, List<String>>> mapmap = new HashMap<String, Map<String, List<String>>>();
+
+        List<String> lines = IO.readFileAsStringList(file);
+        for (String line : lines) {
+            String[] chunks = line.split(",");
+
+            Map<String, List<String>> map = mapmap.get(chunks[0].trim());
+            if (map == null) {
+                map = new HashMap<String, List<String>>();
+                mapmap.put(chunks[0].trim(), map);
+            }
+
+            List<String> list = new ArrayList<String>();
+            for (int i = 2; i < chunks.length; i++) {
+                String senseType = chunks[i].trim();
+                list.add(senseType);
+            }
+
+            map.put(chunks[1].trim(), list);
+        }
+        
+        return mapmap;
+    }
+
     public static List<WTagging> getAllTagings(String word) {
         word = word.toLowerCase();
         List<WTagging> tags = new ArrayList<WTagging>();
@@ -235,7 +267,7 @@ public abstract class Gazetteers {
         return forms;
     }
 
-    public static List<String> getWNSensesFor(String lemma) {
+    public static List<String> getWnSensesFromNamedEntity(String lemma) {
         List<String> senses = new ArrayList<String>();
 
         try {
@@ -255,7 +287,10 @@ public abstract class Gazetteers {
             W.handleException(ex);
         }
 
-
         return senses;
+    }
+
+    public static List<String> getWnSensesForVnId(String lemma, String vnId) {
+        return vn2wn.get(lemma).get(vnId);
     }
 }

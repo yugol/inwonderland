@@ -62,7 +62,7 @@ public class Declarative {
         List<String> senseTypes = null;
 
         if (cth.isKindOf(types, WkbConstants.PROPERNOUN_CT)) {
-            senseTypes = Gazetteers.getWNSensesFor(lemma);
+            senseTypes = Gazetteers.getWnSensesFromNamedEntity(lemma);
             storage.importWordNetHypernymHierarchy(senseTypes);
         } else if (cth.isKindOf(types, WkbConstants.COMMONNOUN_CT)) {
             senseTypes = storage.importWordNetHypernymHierarchy(lemma, POS.NOUN);

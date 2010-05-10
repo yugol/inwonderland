@@ -36,7 +36,6 @@ import java.text.NumberFormat;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.UUID;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
