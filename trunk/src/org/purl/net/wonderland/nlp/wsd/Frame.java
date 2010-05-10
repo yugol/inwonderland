@@ -27,10 +27,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.purl.net.wonderland.cg.Concept;
+import org.purl.net.wonderland.cg.ConceptType;
+import org.purl.net.wonderland.cg.Edge;
 import org.purl.net.wonderland.cg.KnowledgeBase;
 import org.purl.net.wonderland.cg.Path;
+import org.purl.net.wonderland.cg.Relation;
+import org.purl.net.wonderland.cg.RelationType;
 import org.purl.net.wonderland.cg.Rule;
+import org.purl.net.wonderland.cg.Support;
 import org.purl.net.wonderland.cg.Vertex;
+import org.purl.net.wonderland.kb.WkbConstants;
+import org.purl.net.wonderland.kb.WkbUtil;
 
 /**
  *
@@ -143,7 +151,113 @@ class Frame {
         return pos;
     }
 
-    void makeProcRule(String lemma, KnowledgeBase kb) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    void makeProcRule(VnClass vnClass, String lemma, KnowledgeBase kb) {
+        cleanContext();
+
+        // make support
+        Support support = kb.getSupport();
+        ConceptType cType = support.addConceptType(WkbConstants.LINKARG_CT);
+        cType.setLabel(WkbConstants.LINKARG);
+
+        cType = support.addConceptType(WkbConstants.VERB_CT);
+        cType.setLabel(WkbConstants.VERB);
+
+        cType = support.addConceptType(WkbConstants.PROCOP_KEEP_CT);
+        cType.setLabel(WkbConstants.PROCOP_KEEP);
+        cType.getParents().clear();
+        cType.addParent(support.getConceptType(WkbConstants.LINKARG_CT));
+
+        cType = support.addConceptType(WkbConstants.PROCOP_ADD_CT);
+        cType.setLabel(WkbConstants.PROCOP_ADD);
+        cType.getParents().clear();
+        cType.addParent(support.getConceptType(WkbConstants.LINKARG_CT));
+
+        Rule rule = new Rule();
+        rule.setLabel(WkbUtil.toProcName(lemma, rule.getId()));
+        rule.setSet(lemma);
+
+        // map the verb
+        VnSyntaxItem verbItem = syntax.get(verbIndex);
+        Concept vConcept = (Concept) verbItem.getPath().getFirstVertex();
+
+        Concept vHyptConcept = new Concept(vConcept.getId());
+        vHyptConcept.addType(support.getConceptType(WkbConstants.VERB_CT));
+        vHyptConcept.setIndividual(support.addIndividual(lemma, null));
+        rule.getHypt().add(vHyptConcept);
+
+        Concept vConcConcept = new Concept();
+        vConcConcept.addType(support.getConceptType(WkbConstants.PROCOP_ADD_CT));
+        for (String senseKey : vnClass.getWnSenses()) {
+            cType = support.addConceptType(WkbUtil.toConceptTypeId(senseKey));
+            cType.setLabel(senseKey);
+            vConcConcept.addType(cType);
+        }
+        rule.getConc().add(vConcConcept);
+
+        rule.getCouples().put(vHyptConcept, vConcConcept);
+
+        // map the context
+        for (VnSyntaxItem item : syntax) {
+
+            Path path = item.getPath();
+
+            for (int i = 1; i < path.size() - 1; i++) {
+                Vertex v = path.getVertex(i);
+                String vId = v.getId();
+                if (v instanceof Concept) {
+                    // Concept c = (Concept) v;
+                    Concept hyptConcept = rule.getHypt().getConcepts().get(vId);
+                    if (hyptConcept == null) {
+                        hyptConcept = new Concept(vId);
+                        hyptConcept.addType(support.getConceptType(WkbConstants.LINKARG_CT));
+                        rule.getHypt().add(hyptConcept);
+                    }
+                } else if (v instanceof Relation) {
+                    Relation r = (Relation) v;
+                    Relation hyptRelation = rule.getHypt().getRelations().get(vId);
+                    if (hyptRelation == null) {
+                        hyptRelation = new Relation(vId, r.getType());
+                        rule.getHypt().add(hyptRelation);
+                    }
+                }
+            }
+
+            Concept c = (Concept) path.getLastVertex();
+            Concept hyptConcept = rule.getHypt().getConcepts().get(c.getId());
+            if (hyptConcept == null) {
+                hyptConcept = new Concept(c.getId());
+                hyptConcept.addType(support.getConceptType(WkbConstants.LINKARG_CT));
+                rule.getHypt().add(hyptConcept);
+            }
+
+            for (int i = 0; i < path.size() - 1; i++) {
+                Edge e = path.getEdge(i);
+                Relation hyptRelation = rule.getHypt().getRelations().get(e.getRelation().getId());
+                if (!hyptRelation.isComplete()) {
+                    hyptConcept = rule.getHypt().getConcepts().get(e.getConcept().getId());
+                    rule.getHypt().add(new Edge(hyptRelation, hyptConcept, e.getLabel()));
+                }
+            }
+
+            if ("NP".equals(item.getType())) {
+                Concept concConcept = new Concept();
+                concConcept.addType(support.getConceptType(WkbConstants.PROCOP_KEEP_CT));
+                rule.getConc().add(concConcept);
+
+                RelationType rType = support.addRelationType(WkbUtil.toRelationTypeId(item.getValue()), 2);
+                rType.setLabel(item.getValue());
+                rType.getSignature()[0].add(support.getConceptType(WkbConstants.LINKARG_CT));
+                rType.getSignature()[1].add(support.getConceptType(WkbConstants.LINKARG_CT));
+                Relation concRelation = new Relation(rType);
+                rule.getConc().add(concRelation);
+
+                rule.getConc().add(new Edge(concRelation, vConcConcept, 0));
+                rule.getConc().add(new Edge(concRelation, concConcept, 1));
+
+                rule.getCouples().put(hyptConcept, concConcept);
+            }
+        }
+
+        kb.addRule(rule);
     }
 }

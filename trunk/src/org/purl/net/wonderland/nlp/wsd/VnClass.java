@@ -32,6 +32,7 @@ import java.util.Set;
 import org.purl.net.wonderland.WonderlandRuntimeException;
 import org.purl.net.wonderland.nlp.resources.VerbNetWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
+import org.purl.net.wonderland.util.Gazetteers;
 import org.purl.net.wonderland.util.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -127,6 +128,9 @@ class VnClass {
         this.frames = new ArrayList<VnFrame>();
         this.themroles = new HashMap<String, VerbRole>();
         readVerbNetData(vnclassElement);
+        if (wnSenses.size() == 0) {
+            wnSenses.addAll(Gazetteers.getWnSensesForVnId(lemma, id));
+        }
     }
 
     private void readVerbNetData(Element vnclassElement) throws Exception {

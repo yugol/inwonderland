@@ -64,5 +64,12 @@ public class Relation extends Vertex {
         return type.getLabel();
     }
 
-
+    public boolean isComplete() {
+        for (Edge e : edges) {
+            if (e == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

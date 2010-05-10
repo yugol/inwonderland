@@ -41,14 +41,14 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 class VnExample extends Example {
 
+    private final VnClass vnClass;
     private final Frame frame;
-    private final List<String> members;
     private ParseResult parseResult;
 
-    VnExample(String text, List<VnSyntaxItem> syntax, List<String> members) {
+    VnExample(String text, VnFrame frame) {
         super(text);
-        this.frame = new Frame(syntax);
-        this.members = members;
+        this.frame = new Frame(frame.getSyntax());
+        this.vnClass = frame.getVnClass();
     }
 
     public void makeSense() {
@@ -62,6 +62,8 @@ class VnExample extends Example {
         List<WTagging> tokens = Pipeline.tokenizeAndSplit(text).get(0);
         parseResult = Pipeline.parse(tokens);
 
+        System.out.println("");
+        System.out.println("[" + vnClass.getId() + "]");
         System.out.println(text);
         for (int i = 0; i < parseResult.getSentenceSize(); i++) {
             WTagging word = parseResult.getTaggedWord(i);
@@ -73,7 +75,7 @@ class VnExample extends Example {
         int sentenceVerbPos = -1;
         // try find verb by match
         for (int i = 0; i < parseResult.getSentenceSize(); i++) {
-            if (areMatch(i, frameVerbPos, members)) {
+            if (areMatch(i, frameVerbPos)) {
                 sentenceVerbPos = i;
                 break;
             }
@@ -92,7 +94,7 @@ class VnExample extends Example {
         if (sentenceVerbPos < 0) {
             for (int i = 0; i < parseResult.getSentenceSize(); i++) {
                 WTagging word = parseResult.getTaggedWord(i);
-                if (members.contains(word.getLemma())) {
+                if (vnClass.getMembers().contains(word.getLemma())) {
                     sentenceVerbPos = i;
                     break;
                 }
@@ -105,16 +107,15 @@ class VnExample extends Example {
                 if (lemma.lastIndexOf("ed") == lemma.length() - 2) {
                     lemma = lemma.substring(0, lemma.length() - 2);
                 }
-                if (members.contains(lemma)) {
+                if (vnClass.getMembers().contains(lemma)) {
                     sentenceVerbPos = i;
                     break;
                 }
             }
         }
 
-
-
         createMapping(frameVerbPos, sentenceVerbPos);
+
 
         int frameCursor = frameVerbPos - 1;
         int sentenceCursor = sentenceVerbPos - 1;
@@ -123,7 +124,7 @@ class VnExample extends Example {
             createMapping(frameCursor, sentenceCursor);
         } else {
             while (frameCursor >= 0 && sentenceCursor >= 0) {
-                if (areMatch(sentenceCursor, frameCursor, members)) {
+                if (areMatch(sentenceCursor, frameCursor)) {
                     createMapping(frameCursor, sentenceCursor);
                     lastSentenceMatchPos = sentenceCursor;
                     --frameCursor;
@@ -140,7 +141,7 @@ class VnExample extends Example {
         sentenceCursor = sentenceVerbPos + 1;
         lastSentenceMatchPos = sentenceVerbPos;
         while (frameCursor < frame.size() && sentenceCursor < parseResult.getSentenceSize()) {
-            if (areMatch(sentenceCursor, frameCursor, members)) {
+            if (areMatch(sentenceCursor, frameCursor)) {
                 createMapping(frameCursor, sentenceCursor);
                 lastSentenceMatchPos = sentenceCursor;
                 ++frameCursor;
@@ -162,7 +163,6 @@ class VnExample extends Example {
             }
             System.out.println("");
         }
-        System.out.println("");
 
         if (!frame.isMappedCompletely()) {
             manualMap();
@@ -178,8 +178,8 @@ class VnExample extends Example {
         item.setWord(word);
     }
 
-    private boolean areMatch(int wordIndex, int itemIndex, List<String> members) {
-
+    private boolean areMatch(int wordIndex, int itemIndex) {
+        List<String> members = vnClass.getMembers();
         WTagging word = parseResult.getTaggedWord(wordIndex);
         VnSyntaxItem item = frame.get(itemIndex);
 
@@ -386,11 +386,8 @@ class VnExample extends Example {
             item.setPath(path);
         }
 
-        // create frame context
-        frame.cleanContext();
-
         // create the rule in knowledge base and return
-        frame.makeProcRule(lemma, parseResult.getKb());
+        frame.makeProcRule(vnClass, lemma, parseResult.getKb());
         return parseResult.getKb();
     }
 }

@@ -36,17 +36,19 @@ import org.w3c.dom.NodeList;
  */
 class VnFrame {
 
-    private final String primaryDescription;
-    private final String secondaryDescription;
+    private final VnClass vnClass;
+    // private final String primaryDescription;
+    // private final String secondaryDescription;
     private final List<VnExample> examples;
     private final List<VnSyntaxItem> syntax;
 
     VnFrame(Element frameElement, Map<String, VerbRole> themroles, VnClass vnClass) {
-        Element descriptionElement = (Element) frameElement.getElementsByTagName("DESCRIPTION").item(0);
-        this.primaryDescription = descriptionElement.getAttribute("primary");
-        this.secondaryDescription = descriptionElement.getAttribute("secondary");
+        this.vnClass = vnClass;
+        // Element descriptionElement = (Element) frameElement.getElementsByTagName("DESCRIPTION").item(0);
+        // this.primaryDescription = descriptionElement.getAttribute("primary");
+        // this.secondaryDescription = descriptionElement.getAttribute("secondary");
         this.syntax = makeSyntax(frameElement, themroles);
-        this.examples = makeExamples(frameElement, syntax, vnClass.getMembers());
+        this.examples = makeExamples(frameElement, this);
     }
 
     private static List<VnSyntaxItem> makeSyntax(Element frameElement, Map<String, VerbRole> themroles) {
@@ -86,13 +88,13 @@ class VnFrame {
         return syntax;
     }
 
-    private static List<VnExample> makeExamples(Element frameElement, List<VnSyntaxItem> syntax, List<String> members) {
+    private static List<VnExample> makeExamples(Element frameElement, VnFrame vnFrame) {
         List<VnExample> examples = new ArrayList<VnExample>();
 
         NodeList exampleNodes = frameElement.getElementsByTagName("EXAMPLE");
         for (int i = 0; i < exampleNodes.getLength(); i++) {
             Element exampleElement = (Element) exampleNodes.item(i);
-            VnExample example = new VnExample(exampleElement.getTextContent(), syntax, members);
+            VnExample example = new VnExample(exampleElement.getTextContent(), vnFrame);
             examples.add(example);
         }
 
@@ -101,5 +103,13 @@ class VnFrame {
 
     public List<VnExample> getExamples() {
         return examples;
+    }
+
+    public VnClass getVnClass() {
+        return vnClass;
+    }
+
+    public List<VnSyntaxItem> getSyntax() {
+        return syntax;
     }
 }

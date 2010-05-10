@@ -127,10 +127,14 @@ public final class WkbConstants {
     // some concept types from the knowledge base support
     public static final String TOP_CT = WkbUtil.toConceptTypeId("Top");
     public static final String PROCOP_CT = WkbUtil.toConceptTypeId("ProcOp");
-    public static final String PROCOP_KEEP_CT = WkbUtil.toConceptTypeId("ProcOp_Keep");
-    public static final String PROCOP_ADD_CT = WkbUtil.toConceptTypeId("ProcOp_Add");
-    public static final String PROCOP_REPLACE_CT = WkbUtil.toConceptTypeId("ProcOp_Replace");
-    public static final String LINKARG_CT = WkbUtil.toConceptTypeId("LinkArg");
+    public static final String PROCOP_KEEP = "ProcOp_Keep";
+    public static final String PROCOP_KEEP_CT = WkbUtil.toConceptTypeId(PROCOP_KEEP);
+    public static final String PROCOP_REPLACE = "ProcOp_Replace";
+    public static final String PROCOP_REPLACE_CT = WkbUtil.toConceptTypeId(PROCOP_REPLACE);
+    public static final String PROCOP_ADD = "ProcOp_Add";
+    public static final String PROCOP_ADD_CT = WkbUtil.toConceptTypeId(PROCOP_ADD);
+    public static final String LINKARG = "LinkArg";
+    public static final String LINKARG_CT = WkbUtil.toConceptTypeId(LINKARG);
     public static final String SPTAG_CT = WkbUtil.toConceptTypeId("SpTag");
     // morphology concept types
     public static final String PARTOFSPEECH_CT = WkbUtil.toConceptTypeId(PARTOFSPEECH);
