@@ -390,4 +390,16 @@ public class Wkb {
     public void addRule(Rule rule) {
         kb.addRule(rule);
     }
+
+    public int gerRuleCount() {
+        return kb.getRuleSet().values().size();
+    }
+
+    public int getConceptTypeCount() {
+        return vocabulary.getConceptTypeCount();
+    }
+
+    public int getRelationTypeCount() {
+        return vocabulary.getRelationTypeCount();
+    }
 }

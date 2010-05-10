@@ -21,13 +21,43 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 package org.purl.net.wonderland.cg;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Rule {
+public class Rule extends BasicIdentifiable {
 
+    private final ConceptualGraph hypt;
+    private final ConceptualGraph conc;
+    private final Map<Concept, Concept> couples;
+
+    public Rule() {
+        this.hypt = new ConceptualGraph(id + "_hypt");
+        this.conc = new ConceptualGraph(id + "_conc");
+        this.couples = new HashMap<Concept, Concept>();
+    }
+
+    public Rule(String id, ConceptualGraph hypt, ConceptualGraph conc) {
+        super(id);
+        this.hypt = hypt;
+        this.conc = conc;
+        this.couples = new HashMap<Concept, Concept>();
+    }
+
+    public ConceptualGraph getConc() {
+        return conc;
+    }
+
+    public Map<Concept, Concept> getCouples() {
+        return couples;
+    }
+
+    public ConceptualGraph getHypt() {
+        return hypt;
+    }
 }

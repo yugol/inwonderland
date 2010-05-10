@@ -40,7 +40,7 @@ public class KnowledgeBase {
     private final Map<String, Set<Rule>> rules = new HashMap<String, Set<Rule>>();
 
     public KnowledgeBase() {
-        this("en", new Support());
+        this("en", Support.createDefaultSupport());
     }
 
     public KnowledgeBase(String language, Support support) {
@@ -69,7 +69,16 @@ public class KnowledgeBase {
         factSet.add(cg);
     }
 
-    public void addRule(Rule proc) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void addRule(Rule rule) {
+        Set<Rule> ruleSet = rules.get(rule.getSet());
+        if (ruleSet == null) {
+            ruleSet = new HashSet<Rule>();
+            rules.put(rule.getSet(), ruleSet);
+        }
+        ruleSet.add(rule);
+    }
+
+    public Map<String, Set<Rule>> getRules() {
+        return rules;
     }
 }

@@ -31,7 +31,6 @@ import java.util.Collection;
  */
 public abstract class Vertex extends BasicIdentifiable {
 
-    protected boolean conclusion;
     protected Object tag;
     protected Vertex prev = null;
 
@@ -48,14 +47,6 @@ public abstract class Vertex extends BasicIdentifiable {
 
     public void setTag(Object tag) {
         this.tag = tag;
-    }
-
-    public boolean isConclusion() {
-        return conclusion;
-    }
-
-    public void setConclusion(boolean conclusion) {
-        this.conclusion = conclusion;
     }
 
     public abstract Collection<Edge> getEdges();

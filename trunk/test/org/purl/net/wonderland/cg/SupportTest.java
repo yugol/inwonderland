@@ -34,7 +34,7 @@ public class SupportTest {
 
     @Test
     public void testAddRelationType() {
-        Support support = new Support();
+        Support support = Support.createDefaultSupport();
         RelationType rt = support.addRelationType("abc", 2);
         assertEquals("Top2", rt.getParent().getId());
     }

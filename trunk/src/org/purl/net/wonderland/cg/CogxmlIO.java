@@ -91,7 +91,7 @@ public class CogxmlIO {
     }
 
     public static Support createSupport(Element elt, String lang) {
-        Support support = new Support();
+        Support support = Support.createEmptySupport();
 
         Element conceptTypesElement = (Element) elt.getElementsByTagName("conceptTypes").item(0);
         NodeList ctypeNodes = conceptTypesElement.getElementsByTagName("ctype");
@@ -184,6 +184,33 @@ public class CogxmlIO {
         return cg;
     }
 
+    public static Rule createRule(Element elt, Support support) {
+        String id = elt.getAttribute("id");
+
+        Element hyptElement = (Element) elt.getElementsByTagName("hypt").item(0);
+        Element hyptCgElement = (Element) hyptElement.getElementsByTagName("graph").item(0);
+        ConceptualGraph hyptCg = createConceptualGraph(hyptCgElement, support);
+
+        Element concElement = (Element) elt.getElementsByTagName("conc").item(0);
+        Element concCgElement = (Element) concElement.getElementsByTagName("graph").item(0);
+        ConceptualGraph concCg = createConceptualGraph(concCgElement, support);
+
+        Rule rule = new Rule(id, hyptCg, concCg);
+        rule.setLabel(hyptCgElement.getAttribute("label"));
+        rule.setSet(hyptCgElement.getAttribute("set"));
+
+        Element conPtsElement = (Element) elt.getElementsByTagName("conPts").item(0);
+        NodeList coupleNodes = conPtsElement.getElementsByTagName("couple");
+        for (int i = 0; i < coupleNodes.getLength(); i++) {
+            Element coupleElement = (Element) coupleNodes.item(i);
+            Concept keyConcept = hyptCg.getConcepts().get(coupleElement.getAttribute("idC1"));
+            Concept valueConcept = concCg.getConcepts().get(coupleElement.getAttribute("idC2"));
+            rule.getCouples().put(keyConcept, valueConcept);
+        }
+
+        return rule;
+    }
+
     public static KnowledgeBase createKnowledgeBase(Element elt, String lang) {
         Element supportElement = (Element) elt.getElementsByTagName("support").item(0);
         Support support = createSupport(supportElement, lang);
@@ -195,6 +222,8 @@ public class CogxmlIO {
                 String tag = elementNode.getTagName();
                 if (tag.equals("graph")) {
                     kb.addFact(createConceptualGraph(elementNode, support));
+                } else if (tag.equals("rule")) {
+                    kb.addRule(createRule(elementNode, support));
                 }
             }
             node = node.getNextSibling();
@@ -381,27 +410,73 @@ public class CogxmlIO {
         return graphElement;
     }
 
+    public static Element xmlRule(Document xmlDoc, Rule rule) {
+        Element ruleElement = xmlDoc.createElement("rule");
+        ruleElement.setAttribute("id", rule.getId());
+
+        Element hyptElement = xmlDoc.createElement("hypt");
+        Element hyptCgElement = xmlConceptualGraph(xmlDoc, rule.getHypt());
+        hyptCgElement.setAttribute("id", rule.getId() + "_hypt");
+        hyptCgElement.setAttribute("label", rule.getLabel());
+        hyptCgElement.setAttribute("set", rule.getSet());
+        hyptCgElement.setAttribute("nature", "rule");
+        hyptElement.appendChild(hyptCgElement);
+
+        Element concElement = xmlDoc.createElement("conc");
+        Element concCgElement = xmlConceptualGraph(xmlDoc, rule.getConc());
+        concCgElement.setAttribute("id", rule.getId() + "_conc");
+        concCgElement.removeAttribute("label");
+        concCgElement.removeAttribute("set");
+        concCgElement.removeAttribute("nature");
+        concElement.appendChild(concCgElement);
+
+        Element conPtsElement = xmlDoc.createElement("conPts");
+        for (Concept keyConcept : rule.getCouples().keySet()) {
+            Concept valueConcept = rule.getCouples().get(keyConcept);
+            Element coupleElement = xmlDoc.createElement("couple");
+            coupleElement.setAttribute("idC1", keyConcept.getId());
+            coupleElement.setAttribute("idC2", valueConcept.getId());
+            conPtsElement.appendChild(coupleElement);
+        }
+
+        ruleElement.appendChild(hyptElement);
+        ruleElement.appendChild(concElement);
+        ruleElement.appendChild(conPtsElement);
+
+        return ruleElement;
+    }
+
     public static Element xmlKnowledgeBase(Document xmlDoc, KnowledgeBase kb) {
         Element cogxmlElement = xmlDoc.createElement("cogxml");
         Element supportElement = xmlSupport(xmlDoc, kb.getSupport(), kb.getLanguage());
         cogxmlElement.appendChild(supportElement);
-        for (Set<ConceptualGraph> cgs : kb.getFacts().values()) {
-            for (ConceptualGraph cg : cgs) {
-                Element graphElement = xmlConceptualGraph(xmlDoc, cg);
-                cogxmlElement.appendChild(graphElement);
+        for (Set<ConceptualGraph> cgSet : kb.getFacts().values()) {
+            for (ConceptualGraph cg : cgSet) {
+                Element cgElement = xmlConceptualGraph(xmlDoc, cg);
+                cogxmlElement.appendChild(cgElement);
+            }
+        }
+        for (Set<Rule> ruleSet : kb.getRules().values()) {
+            for (Rule rule : ruleSet) {
+                Element ruleElement = xmlRule(xmlDoc, rule);
+                cogxmlElement.appendChild(ruleElement);
             }
         }
         return cogxmlElement;
     }
 
-    public static void writeCogxmlFile(KnowledgeBase kb, File cogxmlFile) throws Exception {
+    public static Document xmlDoc(KnowledgeBase kb) throws Exception {
         Document xmlDoc = XML.createDocument();
         xmlDoc.appendChild(xmlKnowledgeBase(xmlDoc, kb));
-        XML.writeXmlFile(xmlDoc, cogxmlFile);
+        return xmlDoc;
     }
 
-    static KnowledgeBase readCogxmlFile(File cogxmlFile) throws Exception {
+    public static KnowledgeBase readCogxmlFile(File cogxmlFile) throws Exception {
         Document xmlDoc = XML.readXmlFile(cogxmlFile);
         return CogxmlIO.createKnowledgeBase(xmlDoc.getDocumentElement(), "en");
+    }
+
+    public static void writeCogxmlFile(KnowledgeBase kb, File cogxmlFile) throws Exception {
+        XML.writeXmlFile(xmlDoc(kb), cogxmlFile);
     }
 }
