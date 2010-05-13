@@ -34,7 +34,7 @@ public class Level1Personality extends Personality {
 
     @Override
     public String getWelcomeMessage() {
-        return "tokenizing, splitting, parsing, finding collocations, creating dependency graphs";
+        return "basic parsing -> CG";
     }
 
     @Override

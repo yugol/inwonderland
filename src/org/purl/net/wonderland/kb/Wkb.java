@@ -178,7 +178,7 @@ public class Wkb {
 
         for (int i = 0; i < parseResult.getTaggedSentence().size(); ++i) {
             WTagging tagging = parseResult.getTaggedWord(i);
-            Concept c = new Concept(WkbUtil.toConceptId(tagging, i + 1));
+            Concept c = new Concept(IdUtil.newId());
             String individualId = addIndividual(tagging.getLemma());
             String[] types = null;
             if (tagging.getPartOfSpeech() == null) {
@@ -212,10 +212,12 @@ public class Wkb {
     }
 
     private Concept getConcept(CGraph cg, int idx) {
+        int i = 1;
         for (Concept c : cg.getConcepts()) {
-            if (idx == WkbUtil.getConceptIndex(c.getId())) {
+            if (idx == i) {
                 return c;
             }
+            ++i;
         }
         return null;
     }
@@ -318,7 +320,6 @@ public class Wkb {
     public WTagging conceptLabelsToWTagging(Concept c, boolean wPosTagsOnly) {
         WTagging wt = new WTagging();
         Hierarchy cth = vocabulary.getConceptTypeHierarchy();
-        int idx = WkbUtil.getConceptIndex(c.getId());
         for (String type : c.getType()) {
             try {
                 if (wPosTagsOnly && cth.isKindOf(type, WkbConstants.SPTAG_CT)) {
@@ -354,12 +355,9 @@ public class Wkb {
                     wt.addMoreType(vocabulary.getConceptTypeLabel(type, language));
                 }
             } catch (RuntimeException ex) {
-                System.err.println("At concept: " + type + " : " + idx + " -> " + wt.getLemma());
+                System.err.println("At concept: " + type + " : " + wt.getLemma());
                 throw ex;
             }
-        }
-        if (idx > 0) {
-            wt.setIndex(idx + "");
         }
         wt.setLemma(c.getIndividual());
         return wt;

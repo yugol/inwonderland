@@ -40,7 +40,7 @@ public class Level3Personality extends Level2Personality {
 
     @Override
     public String getWelcomeMessage() {
-        return "disambiguating";
+        return "disambiguation, semantic role identification";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Level3Personality extends Level2Personality {
     protected void processFact(CGraph fact) throws Exception {
         super.processFact(fact);
 
-        fact = WkbUtil.duplicate(fact, true);
+        fact = WkbUtil.duplicate(fact);
         loadWordNetSenses(fact);
         inferThematicRolesTypes(fact);
         cleanConceptTypes(fact);
