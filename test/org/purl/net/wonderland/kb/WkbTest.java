@@ -24,6 +24,7 @@
 package org.purl.net.wonderland.kb;
 
 import edu.stanford.nlp.util.StringUtils;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +32,22 @@ import net.didion.jwnl.data.POS;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
+import org.purl.net.wonderland.util.IdUtil;
 
 /**
  *
  * @author Iulian
  */
 public class WkbTest {
+
+    @Test
+    public void testWkb() throws Exception {
+        Wkb kb = new Wkb(W.getDefaultWkbFile());
+        kb.getLowConf().addVertex(new Concept(IdUtil.newId()));
+        kb.getHighConf().addVertex(new Concept(IdUtil.newId()));
+        File cogxml = new File("test_wkb.cogxml");
+        kb.save(cogxml);
+    }
 
     @Test
     public void testImportWordNetHierarchySense() throws Exception {

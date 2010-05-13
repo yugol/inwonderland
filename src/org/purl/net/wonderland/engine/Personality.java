@@ -23,11 +23,11 @@
  */
 package org.purl.net.wonderland.engine;
 
-import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import java.util.ArrayList;
 import java.util.List;
 import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.nlp.ParseResult;
 import org.purl.net.wonderland.nlp.Pipeline;
 import org.purl.net.wonderland.nlp.WTagging;
@@ -40,9 +40,11 @@ public abstract class Personality {
 
     protected List<String> report = null;
     protected Memory memory = null;
+    private int currentFactId;
 
     public void setMemory(Memory memory) {
         this.memory = memory;
+        currentFactId = memory.getStorage().getFactCount(WkbConstants.LEVEL3);
     }
 
     public abstract String getWelcomeMessage();
@@ -53,20 +55,25 @@ public abstract class Personality {
 
     public abstract String getId();
 
-    protected abstract void processFact(CGraph fact) throws Exception;
+    public int getCurrentFactId() {
+        return currentFactId;
+    }
 
     public String processMessage(String message) throws Exception {
         report = new ArrayList<String>();
         List<CGraph> facts = parseMessage(message);
         preProcessFacts();
         for (CGraph fact : facts) {
-            processFact(fact);
+            ++currentFactId;
+            handleFact(fact);
         }
         postProcessFacts();
         return createReport(report);
     }
 
     protected abstract void preProcessFacts() throws Exception;
+
+    protected abstract void handleFact(CGraph fact) throws Exception;
 
     protected abstract void postProcessFacts() throws Exception;
 

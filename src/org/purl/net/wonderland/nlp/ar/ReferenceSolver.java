@@ -54,7 +54,7 @@ public class ReferenceSolver {
     ReferenceSolver(Wkb kb) {
         this.kb = kb;
         this.cTypes = kb.getVocabulary().getConceptTypeHierarchy();
-        this.story = kb.getStory();
+        this.story = kb.getLowConf();
         this.targets = new ArrayList<Concept>();
         this.directTargets = new Hashtable<String, Concept>();
     }

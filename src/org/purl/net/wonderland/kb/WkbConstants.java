@@ -93,6 +93,7 @@ public final class WkbConstants {
     public static final String SEMICOLON = "semiColon";
     public static final String COLON = "colon";
     // WordNet root concept types
+    public static final String WN_SENSE_CT = WkbUtil.toConceptTypeId("wnSense");
     public static final String WN_NOUN = "wnNn";
     public static final String WN_ADJECTIVE = "wnJj";
     public static final String WN_ADVERB = "wnRb";
@@ -161,5 +162,6 @@ public final class WkbConstants {
     public static final String LEVEL1 = "level1";
     public static final String LEVEL2 = "level2";
     public static final String LEVEL3 = "level3";
+    public static final String LEVEL4 = "level4";
     // other
 }

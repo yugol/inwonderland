@@ -72,6 +72,6 @@ public class CogxmlIOTest {
         assertEquals(wkb1.getConceptTypeCount(), wkb2.getConceptTypeCount());
         assertEquals(wkb1.getRelationTypeCount(), wkb2.getRelationTypeCount());
         assertEquals(wkb1.getFactCount(), wkb2.getFactCount());
-        assertEquals(wkb1.gerRuleCount(), wkb2.gerRuleCount());
+        assertEquals(wkb1.getRuleCount(), wkb2.getRuleCount());
     }
 }

@@ -26,11 +26,15 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.nlg.SentenceBuilder;
+import org.purl.net.wonderland.nlp.resources.SynsetWrapper;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
  *
@@ -59,16 +63,24 @@ public class Level3Personality extends Level2Personality {
     }
 
     @Override
-    protected void processFact(CGraph fact) throws Exception {
-        super.processFact(fact);
-
+    protected void handleFact(CGraph fact) throws Exception {
+        super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
+        processFactLevel3(fact);
+        memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
+    }
+
+    @Override
+    protected void postProcessFacts() throws Exception {
+    }
+
+    protected void processFactLevel3(CGraph fact) throws Exception {
+        processFactLevel2(fact);
         loadWordNetSenses(fact);
         inferThematicRolesTypes(fact);
         cleanConceptTypes(fact);
         projSlv.reset();
         disambiguate(fact);
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
     }
 
     private void loadWordNetSenses(CGraph fact) {
@@ -106,6 +118,7 @@ public class Level3Personality extends Level2Personality {
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
             WkbUtil.normalizeConceptType(c, cth);
+            checkSenses(c, cth);
         }
     }
 
@@ -121,6 +134,42 @@ public class Level3Personality extends Level2Personality {
                 ProcList wsdProcs = memory.getProcedural().getWsd().getVerbProcs(lemma);
                 applyFirstMatch(wsdProcs, fact);
             }
+        }
+    }
+
+    private void checkSenses(Concept c, Hierarchy cth) {
+        List<String> senses = new ArrayList<String>();
+        for (String type : c.getType()) {
+            if (cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
+                senses.add(type);
+            }
+        }
+
+        Issue issue = null;
+        switch (senses.size()) {
+            case 0:
+                issue = new Issue(c.getId(), getCurrentFactId(), Issue.Type.NO_SENSE_AMBIGUITY);
+                memory.add(issue);
+                break;
+
+            case 1:
+                SynsetWrapper sense = new SynsetWrapper(WordNetWrapper.lookup(WkbUtil.toConceptType(senses.get(0))));
+                SentenceBuilder sb = new SentenceBuilder();
+                sb.setSubject(c.getIndividual());
+                String ex = sense.getFirstExplanation();
+                if (ex != null) {
+                    sb.setVerb("be");
+                    sb.addComplement(ex);
+                } else {
+                    sb.setVerb("as in");
+                    sb.addComplement(ex);
+                }
+                report.add(sb.toString());
+                break;
+
+            default:
+                issue = new Issue(c.getId(), getCurrentFactId(), Issue.Type.SENSE_AMBIGUITY);
+                memory.add(issue);
         }
     }
 }
