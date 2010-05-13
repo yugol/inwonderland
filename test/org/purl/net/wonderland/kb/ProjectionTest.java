@@ -24,7 +24,6 @@
 package org.purl.net.wonderland.kb;
 
 import java.io.File;
-import java.util.List;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
 import static org.junit.Assert.*;

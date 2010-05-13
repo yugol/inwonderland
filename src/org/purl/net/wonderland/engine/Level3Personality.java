@@ -62,7 +62,7 @@ public class Level3Personality extends Level2Personality {
     protected void processFact(CGraph fact) throws Exception {
         super.processFact(fact);
 
-        fact = WkbUtil.duplicate(fact);
+        fact = WkbUtil.duplicate(fact, true);
         loadWordNetSenses(fact);
         inferThematicRolesTypes(fact);
         cleanConceptTypes(fact);
@@ -105,7 +105,7 @@ public class Level3Personality extends Level2Personality {
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
-            WkbUtil.normalizeConcept(c, cth);
+            WkbUtil.normalizeConceptType(c, cth);
         }
     }
 

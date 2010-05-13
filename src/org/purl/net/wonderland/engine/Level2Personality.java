@@ -81,7 +81,7 @@ public class Level2Personality extends Level1Personality {
     protected void processFact(CGraph fact) throws Exception {
         super.processFact(fact);
 
-        fact = WkbUtil.duplicate(fact);
+        fact = WkbUtil.duplicate(fact, false);
         processArticles(fact);
         // processMoods(fact);
         // processCollocations(fact);
@@ -112,7 +112,7 @@ public class Level2Personality extends Level1Personality {
     protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {
         MatchList matches = projSlv.findMatches(procs, fact);
         if (matches.size() > 0) {
-            ProcUtil.applyProcMatch(fact, matches.get(0), true, memory.getCth());
+            ProcUtil.applyProcMatch(fact, matches.get(0), false, memory.getCth());
         }
     }
 }
