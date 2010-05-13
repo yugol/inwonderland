@@ -23,41 +23,27 @@
  */
 package org.purl.net.wonderland.kb;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
-import fr.lirmm.rcr.cogui2.kernel.solver.SolverCogitant;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProjectionSolver {
+public class Match {
 
-    private final Wkb kb;
-    private final SolverCogitant solver;
+    private final Proc procedure;
+    private final Projection projection;
 
-    public ProjectionSolver(Wkb kb) {
-        this.kb = kb;
-        this.solver = new SolverCogitant();
+    public Match(Proc procedure, Projection projection) {
+        this.procedure = procedure;
+        this.projection = projection;
     }
 
-    public void reset() throws Exception {
-        if (solver.isConnected()) {
-            solver.disconnect();
-        }
-        solver.connect();
-        solver.commitVocabulary(kb.getVocabulary());
+    public Proc getProcedure() {
+        return procedure;
     }
 
-    public MatchList findMatches(ProcList procs, CGraph cg) throws Exception {
-        MatchList matches = new MatchList();
-        for (Proc proc : procs) {
-            List<Projection> projections = solver.getProjections(proc.getLhs(), cg);
-            matches.add(proc, projections);
-        }
-        return matches;
+    public Projection getProjection() {
+        return projection;
     }
 }

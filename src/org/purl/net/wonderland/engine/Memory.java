@@ -23,6 +23,7 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.io.File;
 import org.purl.net.wonderland.kb.Wkb;
 
@@ -54,5 +55,9 @@ public class Memory {
 
     public Wkb getStorage() {
         return declarative.getStorage();
+    }
+
+    public Hierarchy getCth() {
+        return declarative.getCth();
     }
 }

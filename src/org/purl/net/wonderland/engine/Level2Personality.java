@@ -24,10 +24,9 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import java.util.List;
 import org.purl.net.wonderland.W;
-import org.purl.net.wonderland.kb.Proc;
+import org.purl.net.wonderland.kb.Match;
+import org.purl.net.wonderland.kb.MatchList;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.ProjectionSolver;
@@ -103,27 +102,17 @@ public class Level2Personality extends Level1Personality {
 
     protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
         WkbUtil.setAllConclusion(fact, false);
-        List<Proc> matches = projSlv.findMatches(procs, fact);
-        for (Proc match : matches) {
-            if (match != null) {
-                for (Projection proj : match.getProjections()) {
-                    ProcUtil.applyProcMatch(fact, proj, match, true, memory.getStorage().getVocabulary().getConceptTypeHierarchy());
-                }
-            }
+        MatchList matches = projSlv.findMatches(procs, fact);
+        for (Match match : matches) {
+            ProcUtil.applyProcMatch(fact, match, true, memory.getCth());
         }
         WkbUtil.setAllConclusion(fact, false);
     }
 
     protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {
-        List<Proc> matches = projSlv.findMatches(procs, fact);
-        apply_just_one_match:
-        for (Proc match : matches) {
-            if (match != null) {
-                for (Projection proj : match.getProjections()) {
-                    ProcUtil.applyProcMatch(fact, proj, match, false, memory.getStorage().getVocabulary().getConceptTypeHierarchy());
-                    break apply_just_one_match;
-                }
-            }
+        MatchList matches = projSlv.findMatches(procs, fact);
+        if (matches.size() > 0) {
+            ProcUtil.applyProcMatch(fact, matches.get(0), true, memory.getCth());
         }
     }
 }

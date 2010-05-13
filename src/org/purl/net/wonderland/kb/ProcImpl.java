@@ -26,11 +26,9 @@ package org.purl.net.wonderland.kb;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,7 +43,6 @@ public class ProcImpl implements Proc {
     private final Map<Concept, Concept> rhsLhsMapping;
     private final double lhsComplexity;
     private final double priority;
-    private List<Projection> projections;
 
     public String getId() {
         return id;
@@ -93,19 +90,11 @@ public class ProcImpl implements Proc {
         return lhs;
     }
 
-    public void setProjections(List<Projection> projections) {
-        this.projections = projections;
-    }
-
-    public List<Projection> getProjections() {
-        return projections;
-    }
-
     public CGraph getRhs() {
         return rhs;
     }
 
-    public Map<Concept, Concept> getRhsLhsConceptMap() {
+    public Map<Concept, Concept> getRhsLhsMap() {
         return rhsLhsMapping;
     }
 
@@ -113,7 +102,7 @@ public class ProcImpl implements Proc {
         return priority;
     }
 
-    public double getLhsComplexity() {
+    public double getComplexity() {
         return lhsComplexity;
     }
 

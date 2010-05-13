@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -21,50 +21,41 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.util;
+package org.purl.net.wonderland.kb;
 
-import java.io.File;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.purl.net.wonderland.W;
-import org.purl.net.wonderland.kb.WkbConstants;
-import org.purl.net.wonderland.kb.Wkb;
-import org.purl.net.wonderland.kb.WkbUtil;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class IOTest {
+public class MatchList implements Iterable<Match> {
 
-    public IOTest() {
+    private final List<Match> matches;
+
+    public MatchList() {
+        matches = new ArrayList<Match>();
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
+    public void add(Proc proc, List<Projection> projections) {
+        for (Projection proj : projections) {
+            Match match = new Match(proc, proj);
+            matches.add(match);
+        }
     }
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
+    public int size() {
+        return matches.size();
     }
 
-    @Test
-    public void testWriteProcs() throws Exception {
-        Wkb kb = new Wkb(W.getDefaultWkbFile());
-        File file = new File("test.rules.cogxml");
-        IO.writeProcs(WkbUtil.toProcName(WkbUtil.PROC_SET_ARTICLES, null), kb, file);
+    public Match get(int index) {
+        return matches.get(index);
     }
 
-    /*
-    @Test
-    public void testReadProcs() throws Exception {
-    System.out.println("readProcs");
-    Wkb kb = null;
-    File file = null;
-    IO.readProcs(kb, file);
-    fail("The test case is a prototype.");
+    public Iterator<Match> iterator() {
+        return matches.iterator();
     }
-     * 
-     */
 }

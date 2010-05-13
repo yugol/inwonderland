@@ -45,7 +45,7 @@ public class WsdProcManagerTest {
         String lemma = "have";
         ProcList procs = wdsMgr.getVerbProcs(lemma);
         assertNotNull(procs);
-        for (Proc proc : procs.getProcs()) {
+        for (Proc proc : procs) {
             kb.addRule(proc.getRule(procs.getName()));
         }
         File kbFile = new File("wsd.cogxml");

@@ -45,7 +45,9 @@ import org.purl.net.wonderland.util.IdUtil;
  */
 public class ProcUtil {
 
-    public static void applyProcMatch(CGraph fact, Projection proj, Proc proc, boolean markingConcepts, Hierarchy cth) {
+    public static void applyProcMatch(CGraph fact, Match match, boolean markingConcepts, Hierarchy cth) {
+        Proc proc = match.getProcedure();
+        Projection proj = match.getProjection();
         CGraph lhsFact = proc.getLhs();
         CGraph rhsFact = proc.getRhs();
 
@@ -54,7 +56,7 @@ public class ProcUtil {
         Set<Concept> conceptsToAdd = new HashSet<Concept>();
 
         // assume all concepts from LHS are to be deleted
-        Iterator<Concept> cit = proc.getLhs().iteratorConcept();
+        Iterator<Concept> cit = lhsFact.iteratorConcept();
         while (cit.hasNext()) {
             Concept lhs = cit.next();
             Concept actual = (Concept) proj.getTarget(lhs.getId());
@@ -85,7 +87,7 @@ public class ProcUtil {
         cit = rhsFact.iteratorConcept();
         while (cit.hasNext()) {
             Concept rhs = cit.next();
-            Concept lhs = proc.getRhsLhsConceptMap().get(rhs);
+            Concept lhs = proc.getRhsLhsMap().get(rhs);
             Concept actual = (Concept) proj.getTarget(lhs.getId());
             if (actual != null) {
                 conceptsRhsActual.put(rhs.getId(), actual.getId());
