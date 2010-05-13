@@ -37,7 +37,6 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import net.didion.jwnl.data.POS;
-import org.purl.net.wonderland.nlp.WTagging;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.IdUtil;
@@ -87,17 +86,6 @@ public class WkbUtil {
         return PROC + set + "_" + ((name != null) ? (name) : (""));
     }
 
-    public static String toConceptId(WTagging tagging, int index) {
-        return IdUtil.newId() + "_" + index;
-    }
-
-    public static int getConceptIndex(String id) {
-        if (id.length() > IdUtil.UUID_LENGTH) {
-            return Integer.parseInt(id.substring(IdUtil.UUID_LENGTH + 1));
-        }
-        return -1;
-    }
-
     public static String normalizeId(String id) {
         return id.substring(0, IdUtil.UUID_LENGTH);
     }
@@ -122,14 +110,13 @@ public class WkbUtil {
         }
     }
 
-    public static CGraph duplicate(CGraph cg, boolean normalizeIds) {
+    public static CGraph duplicate(CGraph cg) {
         CGraph cg2 = new CGraph(IdUtil.newId(), cg.getName(), null, cg.getNature());
 
         Iterator<Concept> cIt = cg.iteratorConcept();
         while (cIt.hasNext()) {
             Concept c = cIt.next();
-            String id = normalizeIds ? normalizeId(c.getId()) : c.getId();
-            Concept c2 = new Concept(id);
+            Concept c2 = new Concept(c.getId());
             c2.setType(c.getType());
             c2.setIndividual(c.getIndividual());
             cg2.addVertex(c2);
@@ -138,8 +125,7 @@ public class WkbUtil {
         Iterator<Relation> rIt = cg.iteratorRelation();
         while (rIt.hasNext()) {
             Relation r = rIt.next();
-            String id = normalizeIds ? normalizeId(r.getId()) : r.getId();
-            Relation r2 = new Relation(id);
+            Relation r2 = new Relation(r.getId());
             r2.setType(r.getType());
             cg2.addVertex(r2);
         }
@@ -149,9 +135,7 @@ public class WkbUtil {
             CREdge edge = eIt.next();
             Concept c = cg.getConcept(edge);
             Relation r = cg.getRelation(edge);
-            String cId = normalizeIds ? normalizeId(c.getId()) : c.getId();
-            String rId = normalizeIds ? normalizeId(r.getId()) : r.getId();
-            cg2.addEdge(cId, rId, edge.getNumOrder());
+            cg2.addEdge(c.getId(), r.getId(), edge.getNumOrder());
         }
 
         return cg2;

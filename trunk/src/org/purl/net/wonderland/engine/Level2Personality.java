@@ -54,7 +54,7 @@ public class Level2Personality extends Level1Personality {
 
     @Override
     public String getWelcomeMessage() {
-        return "recognizing tenses, finding collocations, logics";
+        return "grouping tokens";
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Level2Personality extends Level1Personality {
     protected void processFact(CGraph fact) throws Exception {
         super.processFact(fact);
 
-        fact = WkbUtil.duplicate(fact, false);
+        fact = WkbUtil.duplicate(fact);
         processArticles(fact);
         // processMoods(fact);
         // processCollocations(fact);

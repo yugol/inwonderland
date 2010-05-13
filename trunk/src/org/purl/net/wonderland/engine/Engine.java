@@ -99,16 +99,12 @@ public class Engine {
     public WTagging[] getFactWTaggings(int idx, boolean newTagsOnly, String level) {
         CGraph cg = getFact(idx, level);
 
-        List<Concept> concepts = new ArrayList<Concept>();
-        Iterator<Concept> it = cg.iteratorConcept();
-        while (it.hasNext()) {
-            concepts.add(it.next());
-        }
-        Collections.sort(concepts, new ConceptIdComparator());
-
-        WTagging[] props = new WTagging[concepts.size()];
-        for (int i = 0; i < props.length; ++i) {
-            props[i] = memory.getStorage().conceptLabelsToWTagging(concepts.get(i), newTagsOnly);
+        WTagging[] props = new WTagging[cg.getConcepts().size()];
+        int conceptIndex = 0;
+        for (Concept c : cg.getConcepts()) {
+            props[conceptIndex] = memory.getStorage().conceptLabelsToWTagging(c, newTagsOnly);
+            props[conceptIndex].setIndex((conceptIndex + 1) + "");
+            ++conceptIndex;
         }
 
         return props;
@@ -116,14 +112,5 @@ public class Engine {
 
     public int getFactCount() {
         return memory.getStorage().getFactCount();
-    }
-}
-
-class ConceptIdComparator implements Comparator<Concept> {
-
-    public int compare(Concept o1, Concept o2) {
-        int id1 = WkbUtil.getConceptIndex(o1.getId());
-        int id2 = WkbUtil.getConceptIndex(o2.getId());
-        return Compare.compare(id1, id2);
     }
 }
