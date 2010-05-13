@@ -55,6 +55,10 @@ public class Declarative {
         return storage;
     }
 
+    public Hierarchy getCth() {
+        return cth;
+    }
+
     public List<String> getImportWordNetSenses(Concept c) {
         String lemma = c.getIndividual();
         String[] types = c.getType();

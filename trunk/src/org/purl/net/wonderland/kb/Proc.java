@@ -44,13 +44,9 @@ public interface Proc {
 
     public double getPriority();
 
-    public double getLhsComplexity();
+    public double getComplexity();
 
-    public Map<Concept, Concept> getRhsLhsConceptMap();
-
-    public void setProjections(List<Projection> projections);
-
-    public List<Projection> getProjections();
+    public Map<Concept, Concept> getRhsLhsMap();
 
     public Rule getRule(String setName);
 }

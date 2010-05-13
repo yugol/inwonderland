@@ -42,7 +42,7 @@ import org.purl.net.wonderland.util.IdUtil;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcList {
+public class ProcList implements Iterable<Proc> {
 
     private final String setName;
     private final String setId;
@@ -58,10 +58,6 @@ public class ProcList {
         return setName;
     }
 
-    public List<Proc> getProcs() {
-        return procs;
-    }
-
     public void sort() {
         Collections.sort(procs, new ProcComparator());
     }
@@ -74,6 +70,10 @@ public class ProcList {
         String procName = rule.getName().substring(setId.length());
         Proc proc = buildProcedure(rule, procName);
         procs.add(proc);
+    }
+
+    public Iterator<Proc> iterator() {
+        return procs.iterator();
     }
 
     private Proc buildProcedure(Rule rule, String name) {
@@ -134,9 +134,9 @@ class ProcComparator implements Comparator<Proc> {
         if (cmp != 0) {
             return -cmp;
         }
-        cmp = Compare.compare(proc1.getLhsComplexity(), proc2.getLhsComplexity());
+        cmp = Compare.compare(proc1.getComplexity(), proc2.getComplexity());
         if (cmp == 0) {
-            // System.out.println(proc1.getId() + "[" + proc1.getLhsComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getLhsComplexity() + "]");
+            // System.out.println(proc1.getId() + "[" + proc1.getComplexity() + "] <=> " + proc2.getId() + "[" + proc2.getComplexity() + "]");
         }
         return -cmp;
     }

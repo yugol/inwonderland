@@ -24,7 +24,6 @@
 package org.purl.net.wonderland.util;
 
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
-import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
 import java.io.BufferedReader;
@@ -41,7 +40,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.Wkb;
 import org.w3c.dom.Document;
@@ -53,40 +51,6 @@ import org.w3c.dom.NodeList;
  * @author Iulian
  */
 public class IO {
-
-    private static class ProcWriter extends CogxmlWriter {
-
-        public static void writeProcs(String set, Wkb kb, File file) throws Exception {
-            writeProcs(kb.getProcRules(set), kb, file);
-        }
-
-        private static void writeProcs(ProcList procs, Wkb kb, File file) throws Exception {
-            Document xmlDoc = XML.createDocument();
-            Element root = xmlDoc.createElement("cogxml");
-            xmlDoc.appendChild(root);
-
-            // Element vocabularyElement = createSupportElement(xmlDoc, "support", kb.getVocabulary(), false, kb.getLanguage(), false);
-            // root.appendChild(vocabularyElement);
-
-            for (Proc proc : procs.getProcs()) {
-                Element procElement = createRuleElement(xmlDoc, proc.getRule(procs.getName()));
-                root.appendChild(procElement);
-            }
-
-            XML.writeXmlFile(xmlDoc, file);
-        }
-
-        private static void writeRules(List<Rule> rules, File file) throws Exception {
-            Document xmlDoc = XML.createDocument();
-            Element root = xmlDoc.createElement("cogxml");
-            xmlDoc.appendChild(root);
-            for (Rule rule : rules) {
-                Element procElement = createRuleElement(xmlDoc, rule);
-                root.appendChild(procElement);
-            }
-            XML.writeXmlFile(xmlDoc, file);
-        }
-    }
 
     private static class ProcReader extends CogxmlReader {
 
@@ -178,18 +142,6 @@ public class IO {
             out.println();
         }
         out.close();
-    }
-
-    public static void writeProcs(String set, Wkb kb, File file) throws Exception {
-        ProcWriter.writeProcs(set, kb, file);
-    }
-
-    public static void writeProcs(ProcList procs, Wkb kb, File file) throws Exception {
-        ProcWriter.writeProcs(procs, kb, file);
-    }
-
-    public static void writeRules(List<Rule> rules, File file) throws Exception {
-        ProcWriter.writeRules(rules, file);
     }
 
     public static ProcList readProcs(String name, File file, Wkb kb) throws Exception {

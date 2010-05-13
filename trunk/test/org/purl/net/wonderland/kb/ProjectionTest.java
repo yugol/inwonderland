@@ -33,10 +33,10 @@ import static org.junit.Assert.*;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcManagerTest {
+public class ProjectionTest {
 
     @Test
-    public void testReadProcsFromKb() throws Exception {
+    public void testProjection() throws Exception {
         Wkb kb = new Wkb(new File(W.getTestDataFolder(), "bedtime.cogxml"));
         ProcManager procMgr = new ProcManager();
         procMgr.putProcList(WkbUtil.PROC_SET_ARTICLES, kb.getProcRules(WkbUtil.PROC_SET_ARTICLES));
@@ -44,8 +44,12 @@ public class ProcManagerTest {
 
         ProjectionSolver solver = new ProjectionSolver(kb);
         solver.reset();
-        List<Proc> matches = solver.findMatches(procMgr.getProcSet(WkbUtil.PROC_SET_ARTICLES),
+        MatchList matches = solver.findMatches(procMgr.getProcSet(WkbUtil.PROC_SET_ARTICLES),
                 kb.getFactGraph(WkbUtil.toFactId(4, WkbConstants.LEVEL1)));
         assertEquals(1, matches.size());
+
+        for (Match m : matches) {
+            m.getProcedure();
+        }
     }
 }
