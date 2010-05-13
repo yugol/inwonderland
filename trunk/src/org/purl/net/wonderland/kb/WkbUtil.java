@@ -98,6 +98,10 @@ public class WkbUtil {
         return -1;
     }
 
+    public static String normalizeId(String id) {
+        return id.substring(0, IdUtil.UUID_LENGTH);
+    }
+
     public static String handleQuotes(String ctl) {
         if ("''".equals(ctl)) {
             ctl = "-CLQ-";
@@ -118,13 +122,14 @@ public class WkbUtil {
         }
     }
 
-    public static CGraph duplicate(CGraph cg) {
+    public static CGraph duplicate(CGraph cg, boolean normalizeIds) {
         CGraph cg2 = new CGraph(IdUtil.newId(), cg.getName(), null, cg.getNature());
 
         Iterator<Concept> cIt = cg.iteratorConcept();
         while (cIt.hasNext()) {
             Concept c = cIt.next();
-            Concept c2 = new Concept(c.getId());
+            String id = normalizeIds ? normalizeId(c.getId()) : c.getId();
+            Concept c2 = new Concept(id);
             c2.setType(c.getType());
             c2.setIndividual(c.getIndividual());
             cg2.addVertex(c2);
@@ -133,7 +138,8 @@ public class WkbUtil {
         Iterator<Relation> rIt = cg.iteratorRelation();
         while (rIt.hasNext()) {
             Relation r = rIt.next();
-            Relation r2 = new Relation(r.getId());
+            String id = normalizeIds ? normalizeId(r.getId()) : r.getId();
+            Relation r2 = new Relation(id);
             r2.setType(r.getType());
             cg2.addVertex(r2);
         }
@@ -143,7 +149,9 @@ public class WkbUtil {
             CREdge edge = eIt.next();
             Concept c = cg.getConcept(edge);
             Relation r = cg.getRelation(edge);
-            cg2.addEdge(c.getId(), r.getId(), edge.getNumOrder());
+            String cId = normalizeIds ? normalizeId(c.getId()) : c.getId();
+            String rId = normalizeIds ? normalizeId(r.getId()) : r.getId();
+            cg2.addEdge(cId, rId, edge.getNumOrder());
         }
 
         return cg2;
@@ -292,13 +300,7 @@ public class WkbUtil {
         return parentId;
     }
 
-    public static void normalizeConcept(Concept c, Hierarchy cth) {
-        // keep only UUID as id
-        String id = c.getId();
-        id = id.substring(0, IdUtil.UUID_LENGTH);
-        c.setId(id);
-
-        // remove redundant types (parent type if it has at least one child)
+    public static void normalizeConceptType(Concept c, Hierarchy cth) {
         String[] types = c.getType();
         for (int a = 0; a < types.length; a++) {
             String ta = types[a];

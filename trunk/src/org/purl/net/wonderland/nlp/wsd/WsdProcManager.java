@@ -25,7 +25,6 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import java.io.File;
 import org.purl.net.wonderland.W;
-import org.purl.net.wonderland.engine.Memory;
 import org.purl.net.wonderland.kb.ProcList;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
@@ -41,7 +40,7 @@ public final class WsdProcManager {
     //
     private final Wkb kb;
     private final ProcManager verbProcs = new ProcManager();
-    private WsdPersonality wsdPers = null;
+    // private WsdPersonality wsdPers = null;
 
     public WsdProcManager(Wkb kb) {
         this.kb = kb;
@@ -72,14 +71,6 @@ public final class WsdProcManager {
             }
         }
         return procs;
-    }
-
-    private WsdPersonality getWsdPers() throws Exception {
-        if (wsdPers == null) {
-            wsdPers = new WsdPersonality();
-            wsdPers.setMemory(new Memory(W.getDefaultWkbFile()));
-        }
-        return wsdPers;
     }
 }
 

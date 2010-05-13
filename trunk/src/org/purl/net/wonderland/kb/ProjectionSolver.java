@@ -23,11 +23,23 @@
  */
 package org.purl.net.wonderland.kb;
 
+import cogitant.base.Environment;
+import cogitant.base.Graph;
+import cogitant.base.GraphObject;
+import cogitant.base.IOHandler;
+import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CgObject;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.model.DefaultProjection;
 import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Vocabulary;
-import fr.lirmm.rcr.cogui2.kernel.solver.SolverCogitant;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -37,25 +49,140 @@ import java.util.List;
 public class ProjectionSolver {
 
     private final Wkb kb;
-    private final SolverCogitant solver;
+    private boolean connected = false; // a flag to disable if native cogitant library can't be loaded
+    private Environment environment = null; // Cogitatnt evironmentn
 
     public ProjectionSolver(Wkb kb) {
         this.kb = kb;
-        this.solver = new SolverCogitant();
+    }
+
+    public boolean connect() throws Exception {
+        try {
+            environment = new cogitant.jni.Environment();
+            environment.setIOConfig(IOHandler.ConfigPropertyBool.AUTOCREATEINDIVIDUALS, true);
+            environment.setIOConfig(IOHandler.ConfigPropertyBool.KEEPGRAPHOBJECTIDENTIFIERS, true);
+            connected = true;
+        } catch (Throwable t) {
+            connected = false;
+            System.out.println("native cogitant library can't be used");
+            throw new Exception(t);
+        }
+        return connected;
+    }
+
+    private void disconnect() {
+        connected = false;
+        environment = null;
     }
 
     public void reset() throws Exception {
-        if (solver.isConnected()) {
-            solver.disconnect();
+        if (connected) {
+            disconnect();
         }
-        solver.connect();
-        solver.commitVocabulary(kb.getVocabulary());
+        connect();
+        commitVocabulary(kb.getVocabulary());
+    }
+
+    private void commitVocabulary(Vocabulary vocabulary) throws Exception {
+        if (connected) {
+            StringWriter stringWriter = new StringWriter();
+            CogxmlWriter.writeVocabulary(stringWriter, vocabulary, true, "en", false);
+            environment.loadSupport(
+                    new java.io.ByteArrayInputStream(stringWriter.toString().getBytes("UTF-8")),
+                    IOHandler.Format.COGXML);
+        }
+    }
+
+    private void commitGraph(CGraph graph) throws Exception {
+        if (connected) {
+            cogitant.base.Graph g = ((Environment) environment).findGraph(graph.getId());
+            if (g != null) {
+                ((Environment) environment).deleteGraph(g);
+            }
+            StringWriter stringWriter = new StringWriter();
+            CogxmlWriter.writeGraphForCogitant(stringWriter, graph);
+            try {
+                ((Environment) environment).loadObjects(
+                        new java.io.ByteArrayInputStream(stringWriter.toString().getBytes("UTF-8")),
+                        IOHandler.Format.COGXML);
+
+            } catch (Exception e) {
+                System.out.println("problem with:\n" + stringWriter.toString());
+            }
+
+        }
+    }
+
+    private List<Projection> getProjections(CGraph g1, CGraph g2) throws Exception {
+        if (connected) {
+            List<Projection> result = new ArrayList<Projection>();
+
+            // load graphs
+            Graph cogitant_g1 = environment.findGraph(g1.getId());
+            if (cogitant_g1 == null) {
+                commitGraph(g1);
+                cogitant_g1 = environment.findGraph(g1.getId());
+            }
+            Graph cogitant_g2 = environment.findGraph(g2.getId());
+            if (cogitant_g2 == null) {
+                commitGraph(g2);
+                cogitant_g2 = environment.findGraph(g2.getId());
+            }
+
+            // find projections
+            Collection<cogitant.base.Projection> projs = environment.projectionFind(cogitant_g1, cogitant_g2);
+
+            // read projections
+            for (cogitant.base.Projection proj : projs) {
+                ArrayList<CgObject> targets = new ArrayList<CgObject>();
+                HashMap<String, CgObject> sourceIndex = new HashMap<String, CgObject>();
+
+                // map concepts
+                Iterator<Concept> ic1 = g1.iteratorConcept(true);
+                while (ic1.hasNext()) {
+                    Concept concept = ic1.next();
+                    GraphObject o1 = cogitant_g1.findByIdentifier(concept.getId());
+                    if (o1 == null) {
+                        System.out.println("can't find " + concept.getId() + " graph MUST be reloaded in cogitant");
+                        continue;
+                    }
+                    GraphObject o2 = proj.imageOf(o1);
+                    if (o2 != null) {
+                        String tgtId = o2.identifier();
+                        Concept targetConcept = g2.getConcept(tgtId, true);
+                        sourceIndex.put(o1.identifier(), targetConcept);
+                        targets.add(targetConcept);
+                    }
+                }
+
+                // map relations
+                Iterator<Relation> ir1 = g1.iteratorRelation(true);
+                while (ir1.hasNext()) {
+                    Relation relation = ir1.next();
+                    GraphObject o1 = cogitant_g1.findByIdentifier(relation.getId());
+                    if (o1 == null) {
+                        System.out.println("can't find " + relation.getId() + " graph MUST be reloaded in cogitant");
+                        continue;
+                    }
+                    GraphObject o2 = proj.imageOf(o1);
+                    if (o2 != null) {
+                        Relation targetRelation = g2.getRelation(o2.identifier(), true);
+                        sourceIndex.put(o1.identifier(), targetRelation);
+                        targets.add(targetRelation);
+                    }
+                }
+
+                result.add(new DefaultProjection(g1, g2, sourceIndex, targets));
+            }
+            return result;
+        }
+        return null;
     }
 
     public MatchList findMatches(ProcList procs, CGraph cg) throws Exception {
         MatchList matches = new MatchList();
         for (Proc proc : procs) {
-            List<Projection> projections = solver.getProjections(proc.getLhs(), cg);
+            List<Projection> projections = getProjections(proc.getLhs(), cg);
             matches.add(proc, projections);
         }
         return matches;
