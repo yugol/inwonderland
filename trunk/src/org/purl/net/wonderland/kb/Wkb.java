@@ -61,9 +61,9 @@ import org.w3c.dom.NodeList;
 public class Wkb {
 
     private static final int levelCount = 3;
-    private static final String storySetName = "story";
-    private static final String allName = "all";
-    private static final String allId = storySetName + "_" + allName;
+    private static final String storySet = "story";
+    private static final String lowConfGraph = "lowConf";
+    private static final String highConfGraph = "highConf";
     private final String language;
     private final KnowledgeBase kb;
     private final Vocabulary vocabulary;
@@ -126,15 +126,7 @@ public class Wkb {
      */
     public void save(File cogxml) throws Exception {
         CogxmlWriter.write(cogxml, kb, language);
-    }
-
-    public CGraph getKnowledgeGraph() {
-        CGraph cg = kb.getFactGraph(allId);
-        if (cg == null) {
-            cg = new CGraph(allId, allName, WkbConstants.LEVEL2, "fact");
-            kb.addGraph(cg);
-        }
-        return cg;
+        WkbUtil.normalizeKbFile(cogxml);
     }
 
     public Iterable<CGraph> getFactSetOrderedByNameIterator(String set) {
@@ -372,13 +364,22 @@ public class Wkb {
         setFactCount(factNumber, level);
     }
 
-    public CGraph getStory() {
-        CGraph story = kb.getFactGraph(allId);
-        if (story == null) {
-            story = new CGraph(allId, allName, storySetName, "fact");
-            kb.addGraph(story);
+    public CGraph getLowConf() {
+        CGraph lowConf = kb.getFactGraph(lowConfGraph);
+        if (lowConf == null) {
+            lowConf = new CGraph(lowConfGraph, lowConfGraph, storySet, "fact");
+            kb.addGraph(lowConf);
         }
-        return story;
+        return lowConf;
+    }
+
+    public CGraph getHighConf() {
+        CGraph lowConf = kb.getFactGraph(highConfGraph);
+        if (lowConf == null) {
+            lowConf = new CGraph(highConfGraph, highConfGraph, storySet, "fact");
+            kb.addGraph(lowConf);
+        }
+        return lowConf;
     }
 
     public Attr getAttr(Concept c) {
@@ -398,7 +399,7 @@ public class Wkb {
         kb.addRule(rule);
     }
 
-    public int gerRuleCount() {
+    public int getRuleCount() {
         return kb.getRuleSet().values().size();
     }
 

@@ -29,11 +29,10 @@
  */
 package org.purl.net.wonderland.ui;
 
-import org.purl.net.wonderland.nlp.resources.WSynset;
+import org.purl.net.wonderland.nlp.resources.SynsetFormatter;
 import com.jidesoft.plaf.LookAndFeelFactory;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.util.Enumeration;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -56,7 +55,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
     public static final WordNetExplorer instance = new WordNetExplorer();
     private static final String sensesNodeName = "Senses";
     // private File kbFile = new File(/*System.getProperty("TMP"),*/"_WordNetExplorer_temp_.cogxml");
-    private WSynset userData = null;
+    private SynsetFormatter userData = null;
 
     /** Creates new form WordNetExplorer */
     public WordNetExplorer() {
@@ -257,7 +256,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
 //        TreePath path = sensesTree.getPathForLocation(evt.getX(), evt.getY());
 //        try {
 //            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
-//            WSynset sd = (WSynset) node.getUserObject();
+//            SynsetFormatter sd = (SynsetFormatter) node.getUserObject();
 //            senseTextPane.setVisible(true);
 //            senseTextPane.setText(sd.getSenseHTML());
 //        } catch (Exception ex) {
@@ -371,15 +370,15 @@ public class WordNetExplorer extends javax.swing.JFrame {
 
         userData = null;
 
-        if (userObject instanceof WSynset) {
+        if (userObject instanceof SynsetFormatter) {
 
-            userData = (WSynset) userObject;
+            userData = (SynsetFormatter) userObject;
             senseTextPane.setText(userData.getSenseHTML());
 
             // add hypernym
-            Synset hypernym = userData.getHypernym();
+            Synset hypernym = userData.getWrapper().getHypernym();
             if (hypernym != null) {
-                DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(new WSynset(-1, null, hypernym));
+                DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(new SynsetFormatter(-1, null, hypernym));
                 node.add(node2);
                 expandAll(sensesTree, new TreePath(node.getPath()), true);
             }
@@ -414,7 +413,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             }
             for (int i = 0; i < senses.length; i++) {
                 Synset synset = senses[i];
-                DefaultMutableTreeNode node = new DefaultMutableTreeNode(new WSynset(i, item, synset));
+                DefaultMutableTreeNode node = new DefaultMutableTreeNode(new SynsetFormatter(i, item, synset));
                 top.add(node);
             }
         }
@@ -449,7 +448,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
         html.append("<br/><br/>");
         html.append("<table border='0' cellpadding='0'>");
         for (int i = 0; i < root.getChildCount(); i++) {
-            WSynset synsetData = (WSynset) ((DefaultMutableTreeNode) root.getChildAt(i)).getUserObject();
+            SynsetFormatter synsetData = (SynsetFormatter) ((DefaultMutableTreeNode) root.getChildAt(i)).getUserObject();
             html.append("<tr>");
             html.append("<td valign='top'>");
             html.append((i + 1) + ".&nbsp;");
@@ -457,7 +456,7 @@ public class WordNetExplorer extends javax.swing.JFrame {
             html.append("<td>");
             html.append(synsetData.getWordsHTML());
             html.append(" -- ");
-            for (String item : synsetData.getExplanations()) {
+            for (String item : synsetData.getWrapper().getExplanations()) {
                 html.append("<br/>(");
                 html.append(item);
                 html.append(")");

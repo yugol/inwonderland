@@ -23,10 +23,7 @@
  */
 package org.purl.net.wonderland.nlp.resources;
 
-import java.util.ArrayList;
 import net.didion.jwnl.data.IndexWord;
-import net.didion.jwnl.data.Pointer;
-import net.didion.jwnl.data.PointerType;
 import net.didion.jwnl.data.Synset;
 import net.didion.jwnl.data.Word;
 
@@ -34,15 +31,15 @@ import net.didion.jwnl.data.Word;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class WSynset {
+public class SynsetFormatter {
 
     private final int index;
     private final String lemma;
-    private final Synset sense;
+    private final SynsetWrapper sense;
 
-    public WSynset(int index, String item, Synset sense) {
+    public SynsetFormatter(int index, String item, Synset sense) {
         this.index = index;
-        this.sense = sense;
+        this.sense = new SynsetWrapper(sense);
         if (item != null) {
             IndexWord word = WordNetWrapper.lookup(item, sense.getPOS());
             this.lemma = word.getLemma().replace(" ", "_");
@@ -54,42 +51,10 @@ public class WSynset {
     @Override
     public String toString() {
         if (index >= 0) {
-            return (index + 1) + ". " + sense.getWord(0).getLemma();
+            return (index + 1) + ". " + sense.getSynset().getWord(0).getLemma();
         } else {
-            return sense.getWord(0).getLemma();
+            return sense.getSynset().getWord(0).getLemma();
         }
-    }
-
-    public Synset getHypernym() {
-        Pointer[] ptrs = sense.getPointers(PointerType.HYPERNYM);
-        if (ptrs.length > 0) {
-            return WordNetWrapper.lookup(ptrs[0].getTargetOffset(), sense.getPOS());
-        }
-        return null;
-    }
-
-    public String[] getExplanations() {
-        ArrayList<String> explanations = new ArrayList<String>();
-        for (String item : sense.getGloss().split(";")) {
-            item = item.trim();
-            if (item.charAt(0) != '"') {
-                explanations.add(item);
-            } else {
-                break;
-            }
-        }
-        return explanations.toArray(new String[explanations.size()]);
-    }
-
-    public String[] getExamples() {
-        ArrayList<String> examples = new ArrayList<String>();
-        for (String item : sense.getGloss().split(";")) {
-            item = item.trim();
-            if (item.charAt(0) == '"') {
-                examples.add(item);
-            }
-        }
-        return examples.toArray(new String[examples.size()]);
     }
 
     public String getSenseHTML() {
@@ -122,7 +87,7 @@ public class WSynset {
 
     public String getExplanationsHTML() {
         StringBuilder html = new StringBuilder();
-        String[] explanations = getExplanations();
+        String[] explanations = sense.getExplanations();
         if (explanations.length > 0) {
             html.append("<table border='0' cellpadding='0'>");
             for (int i = 0; i < explanations.length; i++) {
@@ -142,7 +107,7 @@ public class WSynset {
 
     public String getExamplesHTML() {
         StringBuilder html = new StringBuilder();
-        String[] examples = getExamples();
+        String[] examples = sense.getExamples();
         if (examples.length > 0) {
             html.append("<table border='0' cellpadding='0'>");
             for (int i = 0; i < examples.length; i++) {
@@ -163,7 +128,7 @@ public class WSynset {
     public String getWordsHTML() {
         StringBuilder html = new StringBuilder();
 
-        Word[] words = sense.getWords();
+        Word[] words = sense.getSynset().getWords();
         for (int i = 0; i < words.length; i++) {
             Word word = words[i];
             if (i > 0) {
@@ -186,10 +151,10 @@ public class WSynset {
         StringBuilder html = new StringBuilder();
         html.append("<table border='0' cellpadding='0'>");
 
-        String key = sense.getKey().toString();
-        String offset = WordNetWrapper.toWordNetOffset(sense.getOffset());
-        String offsetKeyAlpha = WordNetWrapper.toWordNetOffsetKeyAlpha(sense.getPOS(), sense.getOffset());
-        String offsetKeyNum = WordNetWrapper.toWordNetOffsetKeyNum(sense.getPOS(), sense.getOffset());
+        String key = sense.getSynset().getKey().toString();
+        String offset = WordNetWrapper.toWordNetOffset(sense.getSynset().getOffset());
+        String offsetKeyAlpha = WordNetWrapper.toWordNetOffsetKeyAlpha(sense.getSynset().getPOS(), sense.getSynset().getOffset());
+        String offsetKeyNum = WordNetWrapper.toWordNetOffsetKeyNum(sense.getSynset().getPOS(), sense.getSynset().getOffset());
         String senseKey = WordNetWrapper.offsetKeyAlphaToSenseKey(offsetKeyAlpha);
 
         html.append("<tr>");
@@ -234,5 +199,9 @@ public class WSynset {
 
         html.append("</table>");
         return html.toString();
+    }
+
+    public SynsetWrapper getWrapper() {
+        return sense;
     }
 }

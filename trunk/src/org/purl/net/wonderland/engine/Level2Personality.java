@@ -78,14 +78,17 @@ public class Level2Personality extends Level1Personality {
     }
 
     @Override
-    protected void processFact(CGraph fact) throws Exception {
-        super.processFact(fact);
-
+    protected void handleFact(CGraph fact) throws Exception {
+        super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
+        processFactLevel2(fact);
+        memory.getStorage().addFact(fact, WkbConstants.LEVEL2);
+    }
+
+    protected void processFactLevel2(CGraph fact) throws Exception {
         processArticles(fact);
         // processMoods(fact);
         // processCollocations(fact);
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL2);
     }
 
     protected void processMoods(CGraph fact) throws Exception {
