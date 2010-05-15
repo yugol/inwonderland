@@ -42,7 +42,7 @@ public class Level2Personality extends Level1Personality {
     protected ProjectionSolver projSlv = null;
 
     @Override
-    public void setMemory(Memory memory) {
+    public void setMemory(Mem memory) {
         super.setMemory(memory);
         try {
             projSlv = new ProjectionSolver(memory.getStorage());

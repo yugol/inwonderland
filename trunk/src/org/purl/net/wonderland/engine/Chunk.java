@@ -33,15 +33,17 @@ import org.purl.net.wonderland.kb.WkbConstants;
  */
 public class Chunk {
 
-    private final String id;
+    protected final String conceptId;
+    protected final int factIdx;
     private final String lemma;
     private String partOfSpeech = null;
     private String grammaticalGender = null;
     private String grammaticalNumber = null;
     private String person = null;
 
-    public Chunk(Concept c, Hierarchy cth) {
-        this.id = c.getId();
+    public Chunk(Concept c, int factIdx, Hierarchy cth) {
+        this.conceptId = c.getId();
+        this.factIdx = factIdx;
         this.lemma = c.getIndividual();
 
         for (String type : c.getType()) {
@@ -65,8 +67,8 @@ public class Chunk {
         return grammaticalNumber;
     }
 
-    public String getId() {
-        return id;
+    public String getConceptId() {
+        return conceptId;
     }
 
     public String getPartOfSpeech() {
@@ -79,5 +81,9 @@ public class Chunk {
 
     public String getLemma() {
         return lemma;
+    }
+
+    public int getFactIdx() {
+        return factIdx;
     }
 }

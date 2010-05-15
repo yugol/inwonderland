@@ -21,43 +21,41 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
+package org.purl.net.wonderland.nlp.wsd;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import org.purl.net.wonderland.kb.Procs;
-import org.purl.net.wonderland.kb.ProcManager;
-import org.purl.net.wonderland.kb.Wkb;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import java.util.Iterator;
+import java.util.List;
+import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Procedural {
+public class WsdProc extends Proc {
 
-    private ProcManager quick;
-    private WsdProcManager wsd;
+    private final List<String> senses;
 
-    Procedural(Wkb kb) throws Exception {
-        quick = new ProcManager();
-        readProcedureSet(kb, WkbUtil.PROC_SET_ARTICLES);
-        readProcedureSet(kb, WkbUtil.PROC_SET_MOODS);
-        readProcedureSet(kb, WkbUtil.PROC_SET_COLLO);
-        wsd = new WsdProcManager(kb);
+    public WsdProc(Proc proc) {
+        super(proc);
+        this.senses = findSenseTypes();
     }
 
-    public ProcManager getQuick() {
-        return quick;
+    public List<String> getSenseTypes() {
+        return senses;
     }
 
-    public WsdProcManager getWsd() {
-        return wsd;
-    }
-
-    private void readProcedureSet(Wkb kb, String set) throws Exception {
-        Procs procSet = kb.getProcRules(set);
-        procSet.sort();
-        quick.putProcList(set, procSet);
+    private List<String> findSenseTypes() {
+        List<String> list = null;
+        Iterator<Concept> conceptIterator = getRhs().iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            list = WkbUtil.getSenseTypes(c);
+            if (list.size() > 0) {
+                break;
+            }
+        }
+        return list;
     }
 }

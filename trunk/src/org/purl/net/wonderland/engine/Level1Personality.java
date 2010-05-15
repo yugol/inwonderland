@@ -53,17 +53,8 @@ public class Level1Personality extends Personality {
     }
 
     @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
     protected CGraph handleFact(CGraph fact) throws Exception {
         memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
         return fact;
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
     }
 }

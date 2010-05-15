@@ -39,10 +39,10 @@ import org.purl.net.wonderland.nlp.WTagging;
 public abstract class Personality {
 
     protected List<String> report = null;
-    protected Memory memory = null;
+    protected Mem memory = null;
     private int currentFactId;
 
-    public void setMemory(Memory memory) {
+    public void setMemory(Mem memory) {
         this.memory = memory;
         currentFactId = memory.getStorage().getFactCount(WkbConstants.LEVEL3);
     }
@@ -58,24 +58,6 @@ public abstract class Personality {
     public int getCurrentFactId() {
         return currentFactId;
     }
-
-    public String processMessage(String message) throws Exception {
-        report = new ArrayList<String>();
-        List<CGraph> facts = parseMessage(message);
-        preProcessFacts();
-        for (CGraph fact : facts) {
-            ++currentFactId;
-            handleFact(fact);
-        }
-        postProcessFacts();
-        return createReport(report);
-    }
-
-    protected abstract void preProcessFacts() throws Exception;
-
-    protected abstract CGraph handleFact(CGraph fact) throws Exception;
-
-    protected abstract void postProcessFacts() throws Exception;
 
     protected List<CGraph> parseMessage(String message) {
         Wkb kb = memory.getStorage();
@@ -98,5 +80,34 @@ public abstract class Personality {
             sb.append(line);
         }
         return sb.toString();
+    }
+
+    protected void preHandleMessage() throws Exception {
+        report = new ArrayList<String>();
+    }
+
+    public String handleMessage(String message) throws Exception {
+        preHandleMessage();
+        processMessage(message);
+        postHandleMessage();
+        return createReport(report);
+    }
+
+    protected void preProcessFacts() throws Exception {
+    }
+
+    protected void processMessage(String message) throws Exception {
+        List<CGraph> facts = parseMessage(message);
+        preProcessFacts();
+        for (CGraph fact : facts) {
+            ++currentFactId;
+            handleFact(fact);
+        }
+    }
+
+    protected abstract CGraph handleFact(CGraph fact) throws Exception;
+
+    protected void postHandleMessage() throws Exception {
+        report.add("Done.");
     }
 }

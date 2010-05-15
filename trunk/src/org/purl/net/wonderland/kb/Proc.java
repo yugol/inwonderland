@@ -23,30 +23,105 @@
  */
 package org.purl.net.wonderland.kb;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
+import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public interface Proc {
+public class Proc {
 
-    public String getId();
+    private final String id;
+    private final CGraph lhs;
+    private final CGraph rhs;
+    private final Map<Concept, Concept> rhsLhsMapping;
+    private final double lhsComplexity;
+    private final double priority;
 
-    public CGraph getLhs();
+    public String getId() {
+        return id;
+    }
 
-    public CGraph getRhs();
+    public Proc(Proc proc) {
+        this.id = proc.getId();
+        this.lhs = proc.getLhs();
+        this.rhs = proc.getRhs();
+        this.rhsLhsMapping = proc.getRhsLhsMap();
+        this.lhsComplexity = proc.getComplexity();
+        this.priority = proc.getPriority();
+    }
 
-    public double getPriority();
+    public Proc(CGraph lhs, CGraph rhs, Map<Concept, Concept> conceptMap) {
+        double tempPriority = 0.5;
+        String tempId = lhs.getName();
+        int priSepPos = tempId.lastIndexOf("_");
+        if (priSepPos >= 0) {
+            String priSepStr = tempId.substring(priSepPos + 1);
+            try {
+                tempPriority = Double.parseDouble(priSepStr);
+                tempId = tempId.substring(0, priSepPos);
+            } catch (NumberFormatException ex) {
+            }
+        }
 
-    public double getComplexity();
+        double tempComplexity = 0;
+        Iterator<Concept> cIt = lhs.iteratorConcept();
+        while (cIt.hasNext()) {
+            tempComplexity += 1;
+            cIt.next();
+        }
+        Iterator<Relation> rIt = lhs.iteratorRelation();
+        while (rIt.hasNext()) {
+            tempComplexity += 1;
+            rIt.next();
+        }
+        Iterator<CREdge> eIt = lhs.iteratorEdge();
+        while (eIt.hasNext()) {
+            tempComplexity += 1;
+            eIt.next();
+        }
 
-    public Map<Concept, Concept> getRhsLhsMap();
+        this.id = tempId;
+        this.priority = tempPriority;
+        this.lhs = lhs;
+        this.rhs = rhs;
+        this.rhsLhsMapping = conceptMap;
+        this.lhsComplexity = tempComplexity;
+    }
 
-    public Rule getRule(String setName);
+    public CGraph getLhs() {
+        return lhs;
+    }
+
+    public CGraph getRhs() {
+        return rhs;
+    }
+
+    public Map<Concept, Concept> getRhsLhsMap() {
+        return rhsLhsMapping;
+    }
+
+    public double getPriority() {
+        return priority;
+    }
+
+    public double getComplexity() {
+        return lhsComplexity;
+    }
+
+    public Rule getRule(String setName) {
+        Rule rule = Rule.createRule(id, WkbUtil.toProcName(setName, id), lhs, rhs);
+        for (Concept c : rhsLhsMapping.keySet()) {
+            String conc = c.getId();
+            String hypt = rhsLhsMapping.get(c).getId();
+            rule.addCouple(hypt, conc);
+        }
+        return rule;
+    }
 }

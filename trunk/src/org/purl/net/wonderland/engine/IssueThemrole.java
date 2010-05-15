@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import org.purl.net.wonderland.kb.Matches;
 
 /**
@@ -33,8 +35,12 @@ class IssueThemrole extends Issue {
 
     protected final Matches matches;
 
-    public IssueThemrole(String id, int currentFactId, Matches matches) {
-        super(id, currentFactId);
+    public IssueThemrole(Concept c, int factIdx, Hierarchy cth, Matches matches) {
+        super(c, factIdx, cth);
         this.matches = matches;
+    }
+
+    public Matches getMatches() {
+        return matches;
     }
 }

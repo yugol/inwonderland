@@ -21,20 +21,43 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.nlg;
+package org.purl.net.wonderland.engine;
 
-import simplenlg.realiser.Realiser;
-import simplenlg.realiser.SPhraseSpec;
+import fr.lirmm.rcr.cogui2.kernel.model.Rule;
+import org.purl.net.wonderland.kb.Procs;
+import org.purl.net.wonderland.kb.ProcManager;
+import org.purl.net.wonderland.kb.Wkb;
+import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.wsd.WsdProcManager;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class SentenceBuilder extends SPhraseSpec {
+public class MemProcedural {
 
-    @Override
-    public String toString() {
-        Realiser realizer = new Realiser();
-        return realizer.realise(this);
+    private ProcManager quick;
+    private WsdProcManager wsd;
+
+    MemProcedural(Wkb kb) throws Exception {
+        quick = new ProcManager();
+        readProcedureSet(kb, WkbUtil.PROC_SET_ARTICLES);
+        readProcedureSet(kb, WkbUtil.PROC_SET_MOODS);
+        readProcedureSet(kb, WkbUtil.PROC_SET_COLLO);
+        wsd = new WsdProcManager(kb);
+    }
+
+    public ProcManager getQuick() {
+        return quick;
+    }
+
+    public WsdProcManager getWsd() {
+        return wsd;
+    }
+
+    private void readProcedureSet(Wkb kb, String set) throws Exception {
+        Procs procSet = kb.getProcRules(set);
+        procSet.sort();
+        quick.putProcList(set, procSet);
     }
 }

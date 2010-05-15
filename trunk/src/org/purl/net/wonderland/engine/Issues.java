@@ -24,7 +24,6 @@
 package org.purl.net.wonderland.engine;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,29 +32,37 @@ import java.util.List;
  */
 public class Issues {
 
-    private final LinkedList<Issue> issues;
+    private final List<Issue> issues;
 
     public Issues() {
-        this.issues = new LinkedList<Issue>();
+        this.issues = new ArrayList<Issue>();
     }
 
     public void add(Issue issue) {
         issues.add(issue);
     }
 
-    public void stack(Issue issue) {
-        issues.addFirst(issue);
-    }
-
-    public List<Issue> getSenseIssues(String id) {
-        List<Issue> selection = new ArrayList<Issue>();
+    public Issues getIssues(String id) {
+        Issues selection = new Issues();
         for (Issue issue : issues) {
-            if (issue instanceof IssueSense) {
-                if (issue.getConceptId().equals(id)) {
-                    selection.add(issue);
-                }
+            if (issue.getConceptId().equals(id)) {
+                selection.add(issue);
             }
         }
-        return ((selection.size() > 0) ? (selection) : (null));
+        return (selection.size() > 0) ? (selection) : (null);
+    }
+
+    public int size() {
+        return issues.size();
+    }
+
+    public List<Issue> getIssues(Class issueClass) {
+        List<Issue> selection = new ArrayList<Issue>();
+        for (Issue issue : issues) {
+            if (issue.getClass().equals(issueClass)) {
+                selection.add(issue);
+            }
+        }
+        return selection;
     }
 }

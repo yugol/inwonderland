@@ -21,20 +21,28 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.nlg;
+package org.purl.net.wonderland.engine;
 
-import simplenlg.realiser.Realiser;
-import simplenlg.realiser.SPhraseSpec;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class SentenceBuilder extends SPhraseSpec {
+public class MemWorking {
 
-    @Override
-    public String toString() {
-        Realiser realizer = new Realiser();
-        return realizer.realise(this);
+    private final int maxSize = 10;
+    private final List<Chunk> chunks;
+
+    public MemWorking() {
+        this.chunks = new ArrayList<Chunk>();
+    }
+
+    public void add(Chunk ck) {
+        if (chunks.size() >= maxSize) {
+            chunks.clear();
+        }
+        chunks.add(ck);
     }
 }

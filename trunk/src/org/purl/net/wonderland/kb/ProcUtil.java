@@ -60,6 +60,7 @@ public class ProcUtil {
         while (cit.hasNext()) {
             Concept lhs = cit.next();
             Concept actual = (Concept) proj.getTarget(lhs.getId());
+            actual = fact.getConcept(actual.getId()); // when applying procedure to a different graph than the one initially matched
             if (actual == null || conceptsToDelete.contains(actual)) {
                 return;
             }
@@ -89,6 +90,7 @@ public class ProcUtil {
             Concept rhs = cit.next();
             Concept lhs = proc.getRhsLhsMap().get(rhs);
             Concept actual = (Concept) proj.getTarget(lhs.getId());
+            actual = fact.getConcept(actual.getId());
             if (actual != null) {
                 conceptsRhsActual.put(rhs.getId(), actual.getId());
                 conceptsToDelete.remove(actual);
@@ -104,6 +106,7 @@ public class ProcUtil {
             Concept[] args = getArgs(r, lhsFact);
             for (int i = 0; i < args.length; i++) {
                 args[i] = (Concept) proj.getTarget(args[i].getId());
+                args[i] = fact.getConcept(args[i].getId());
             }
             for (Relation actual : getRelationsOfIdenticalType(args, r, fact)) {
                 fact.removeVertex(actual.getId());
