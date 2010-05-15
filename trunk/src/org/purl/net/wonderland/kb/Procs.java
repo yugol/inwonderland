@@ -42,13 +42,13 @@ import org.purl.net.wonderland.util.IdUtil;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class ProcList implements Iterable<Proc> {
+public class Procs implements Iterable<Proc> {
 
     private final String setName;
     private final String setId;
     private final List<Proc> procs;
 
-    public ProcList(String name) {
+    public Procs(String name) {
         this.setName = name;
         this.setId = WkbUtil.toProcName(name, null);
         this.procs = new ArrayList<Proc>();

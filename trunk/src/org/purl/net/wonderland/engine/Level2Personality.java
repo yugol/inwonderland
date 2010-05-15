@@ -26,8 +26,8 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.Match;
-import org.purl.net.wonderland.kb.MatchList;
-import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.Matches;
+import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.ProjectionSolver;
 import org.purl.net.wonderland.kb.WkbConstants;
@@ -78,14 +78,15 @@ public class Level2Personality extends Level1Personality {
     }
 
     @Override
-    protected void handleFact(CGraph fact) throws Exception {
-        super.handleFact(fact);
+    protected CGraph handleFact(CGraph fact) throws Exception {
+        fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
         processFactLevel2(fact);
         memory.getStorage().addFact(fact, WkbConstants.LEVEL2);
+        return fact;
     }
 
-    protected void processFactLevel2(CGraph fact) throws Exception {
+    private void processFactLevel2(CGraph fact) throws Exception {
         processArticles(fact);
         // processMoods(fact);
         // processCollocations(fact);
@@ -103,19 +104,12 @@ public class Level2Personality extends Level1Personality {
         applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_ARTICLES), fact);
     }
 
-    protected void applyAllNonOverlappingMatches(ProcList procs, CGraph fact) throws Exception {
+    protected void applyAllNonOverlappingMatches(Procs procs, CGraph fact) throws Exception {
         WkbUtil.setAllConclusion(fact, false);
-        MatchList matches = projSlv.findMatches(procs, fact);
+        Matches matches = projSlv.findMatches(procs, fact);
         for (Match match : matches) {
             ProcUtil.applyProcMatch(fact, match, true, memory.getCth());
         }
         WkbUtil.setAllConclusion(fact, false);
-    }
-
-    protected void applyFirstMatch(ProcList procs, CGraph fact) throws Exception {
-        MatchList matches = projSlv.findMatches(procs, fact);
-        if (matches.size() > 0) {
-            ProcUtil.applyProcMatch(fact, matches.get(0), false, memory.getCth());
-        }
     }
 }

@@ -43,7 +43,7 @@ public class ProjectionTest {
 
         ProjectionSolver solver = new ProjectionSolver(kb);
         solver.reset();
-        MatchList matches = solver.findMatches(procMgr.getProcSet(WkbUtil.PROC_SET_ARTICLES),
+        Matches matches = solver.findMatches(procMgr.getProcSet(WkbUtil.PROC_SET_ARTICLES),
                 kb.getFactGraph(WkbUtil.toFactId(4, WkbConstants.LEVEL1)));
         assertEquals(1, matches.size());
 

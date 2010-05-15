@@ -73,7 +73,7 @@ public abstract class Personality {
 
     protected abstract void preProcessFacts() throws Exception;
 
-    protected abstract void handleFact(CGraph fact) throws Exception;
+    protected abstract CGraph handleFact(CGraph fact) throws Exception;
 
     protected abstract void postProcessFacts() throws Exception;
 

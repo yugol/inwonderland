@@ -25,7 +25,7 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import java.io.File;
 import org.purl.net.wonderland.W;
-import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.util.IO;
@@ -50,8 +50,8 @@ public final class WsdProcManager {
         return verbProcs.getProcSet(lemma) != null;
     }
 
-    public ProcList getVerbProcs(String lemma) {
-        ProcList procs = verbProcs.getProcSet(lemma);
+    public Procs getVerbProcs(String lemma) {
+        Procs procs = verbProcs.getProcSet(lemma);
         if (procs == null) {
             try {
                 File procFile = W.res(W.RES_WSD_VERB_MANUAL_FOLDER_PATH, lemma + RULES_FILE_EXTENSION);

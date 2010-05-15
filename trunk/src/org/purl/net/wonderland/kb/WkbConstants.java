@@ -154,8 +154,8 @@ public final class WkbConstants {
     public static final String VERB_CT = WkbUtil.toConceptTypeId(VERB);
     public static final String ADVERB_CT = WkbUtil.toConceptTypeId(ADVERB);
     public static final String PRONOUN_CT = WkbUtil.toConceptTypeId(PRONOUN);
+    public static final String POSSESIVEADJECIVE_CT = WkbUtil.toConceptTypeId(POSSESIVEADJECIVE);
     public static final String ADJECTIVE_CT = WkbUtil.toConceptTypeId(ADJECTIVE);
-    public static final String POSSESSIVEADVERB_CT = WkbUtil.toConceptTypeId(POSSESIVEADJECIVE);
     public static final String ADPOSITION_CT = WkbUtil.toConceptTypeId(ADPOSITION);
     public static final String INDICATIVE_CT = WkbUtil.toConceptTypeId(INDICATIVE);
     // fact levels

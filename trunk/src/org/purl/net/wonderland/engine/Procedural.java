@@ -24,7 +24,7 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.Rule;
-import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
@@ -56,7 +56,7 @@ public class Procedural {
     }
 
     private void readProcedureSet(Wkb kb, String set) throws Exception {
-        ProcList procSet = kb.getProcRules(set);
+        Procs procSet = kb.getProcRules(set);
         procSet.sort();
         quick.putProcList(set, procSet);
     }

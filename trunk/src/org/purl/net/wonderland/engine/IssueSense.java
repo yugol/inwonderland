@@ -21,30 +21,20 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.nlp.ar;
+package org.purl.net.wonderland.engine;
+
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Attr {
+class IssueSense extends Issue {
 
-    private String number;
-    private String gender;
+    protected final List<String> senseTypes;
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
+    public IssueSense(String id, int currentFactId, List<String> senseTypes) {
+        super(id, currentFactId);
+        this.senseTypes = senseTypes;
     }
 }

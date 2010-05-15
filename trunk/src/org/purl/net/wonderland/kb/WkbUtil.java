@@ -33,8 +33,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import net.didion.jwnl.data.POS;
 import org.purl.net.wonderland.util.CodeTimer;
@@ -74,7 +76,7 @@ public class WkbUtil {
         return CONCEPT_TYPE_PREFIX + handleQuotes(typeLabel);
     }
 
-    public static String toConceptType(String typeId) {
+    public static String toConceptTypeLabel(String typeId) {
         return typeId.substring(CONCEPT_TYPE_PREFIX.length());
     }
 
@@ -304,5 +306,26 @@ public class WkbUtil {
                 c.addType(type);
             }
         }
+    }
+
+    public static List<String> getSenseTypes(Concept c, Hierarchy cth) {
+        List<String> senseTypes = new ArrayList<String>();
+        for (String type : c.getType()) {
+            if (cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
+                senseTypes.add(type);
+            }
+        }
+        return senseTypes;
+    }
+
+    public static void setSense(Concept c, Hierarchy cth, String senseType) {
+        List<String> senseTypes = new ArrayList<String>();
+        for (String type : c.getType()) {
+            if (!cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
+                senseTypes.add(type);
+            }
+        }
+        senseTypes.add(senseType);
+        c.setType(senseTypes.toArray(new String[senseTypes.size()]));
     }
 }
