@@ -284,7 +284,7 @@ public final class WordNetWrapper {
         return lookup(offset, posType);
     }
 
-    private static POS getPosAlpha(char senseType) {
+    public static POS getPosAlpha(char senseType) {
         switch (senseType) {
             case 'n':
                 return POS.NOUN;
@@ -299,7 +299,7 @@ public final class WordNetWrapper {
         }
     }
 
-    private static POS getPosNum(char senseType) {
+    public static POS getPosNum(char senseType) {
         switch (senseType) {
             case '1':
                 return POS.NOUN;

@@ -123,7 +123,7 @@ public class ParseResult {
                 Concept c = new Concept();
                 for (String typeId : wt.asTypes()) {
                     ConceptType cType = kb.getSupport().addConceptType(typeId);
-                    cType.setLabel(WkbUtil.toConceptType(typeId));
+                    cType.setLabel(WkbUtil.toConceptTypeLabel(typeId));
                     c.addType(cType);
                 }
                 c.setIndividual(kb.getSupport().addIndividual(wt.getLemma(), null));

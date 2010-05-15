@@ -24,8 +24,8 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import java.util.ArrayList;
-import java.util.List;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
+import org.purl.net.wonderland.kb.WkbConstants;
 
 /**
  *
@@ -33,29 +33,51 @@ import java.util.List;
  */
 public class Chunk {
 
-    private final Concept concept;
-    private final String pos;
-    private final List<String> senses;
+    private final String id;
+    private final String lemma;
+    private String partOfSpeech = null;
+    private String grammaticalGender = null;
+    private String grammaticalNumber = null;
+    private String person = null;
 
-    public Chunk(Concept c, String pos) {
-        this.concept = c;
-        this.pos = pos;
-        senses = new ArrayList<String>();
+    public Chunk(Concept c, Hierarchy cth) {
+        this.id = c.getId();
+        this.lemma = c.getIndividual();
+
+        for (String type : c.getType()) {
+            if (cth.isKindOf(type, WkbConstants.PARTOFSPEECH_CT)) {
+                partOfSpeech = type;
+            } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALGENDER_CT)) {
+                grammaticalGender = type;
+            } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALNUMBER_CT)) {
+                grammaticalNumber = type;
+            } else if (cth.isKindOf(type, WkbConstants.PERSON_CT)) {
+                person = type;
+            }
+        }
     }
 
-    public Concept getConcept() {
-        return concept;
+    public String getGrammaticalGender() {
+        return grammaticalGender;
     }
 
-    public String getPos() {
-        return pos;
+    public String getGrammaticalNumber() {
+        return grammaticalNumber;
     }
 
-    public List<String> getSenses() {
-        return senses;
+    public String getId() {
+        return id;
     }
 
-    public void addSenses() {
+    public String getPartOfSpeech() {
+        return partOfSpeech;
+    }
 
+    public String getPerson() {
+        return person;
+    }
+
+    public String getLemma() {
+        return lemma;
     }
 }

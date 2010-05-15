@@ -23,7 +23,6 @@
  */
 package org.purl.net.wonderland.kb;
 
-import org.purl.net.wonderland.nlp.ar.Attr;
 import edu.stanford.nlp.trees.TypedDependency;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlReader;
 import fr.lirmm.rcr.cogui2.kernel.io.CogxmlWriter;
@@ -142,6 +141,11 @@ public class Wkb {
     }
 
     public CGraph getFactGraph(String factId) {
+        return kb.getFactGraph(factId);
+    }
+
+    public CGraph getFactGraph(int idx, String level) {
+        String factId = WkbUtil.toFactId(idx, level);
         return kb.getFactGraph(factId);
     }
 
@@ -269,7 +273,7 @@ public class Wkb {
     public void importWordNetHypernymHierarchy(List<String> senseTypes) {
         try {
             for (String senseType : senseTypes) {
-                String senseKey = WkbUtil.toConceptType(senseType);
+                String senseKey = WkbUtil.toConceptTypeLabel(senseType);
                 Synset sense = WordNetWrapper.lookup(senseKey);
                 POS posType = sense.getPOS();
                 String particle = senseKey.substring(0, 1);
@@ -285,8 +289,8 @@ public class Wkb {
         }
     }
 
-    public ProcList getProcRules(String set) {
-        ProcList procs = new ProcList(set);
+    public Procs getProcRules(String set) {
+        Procs procs = new Procs(set);
         set = WkbUtil.toProcName(set, null);
         Iterator<CGraph> it = kb.IteratorRules();
         while (it.hasNext()) {
@@ -364,7 +368,7 @@ public class Wkb {
         setFactCount(factNumber, level);
     }
 
-    public CGraph getLowConf() {
+    public CGraph getLowConfGraph() {
         CGraph lowConf = kb.getFactGraph(lowConfGraph);
         if (lowConf == null) {
             lowConf = new CGraph(lowConfGraph, lowConfGraph, storySet, "fact");
@@ -373,26 +377,13 @@ public class Wkb {
         return lowConf;
     }
 
-    public CGraph getHighConf() {
+    public CGraph getHighConfGraph() {
         CGraph lowConf = kb.getFactGraph(highConfGraph);
         if (lowConf == null) {
             lowConf = new CGraph(highConfGraph, highConfGraph, storySet, "fact");
             kb.addGraph(lowConf);
         }
         return lowConf;
-    }
-
-    public Attr getAttr(Concept c) {
-        Hierarchy cth = vocabulary.getConceptTypeHierarchy();
-        Attr attr = new Attr();
-        for (String type : c.getType()) {
-            if (cth.isKindOf(type, WkbConstants.GRAMMATICALGENDER_CT)) {
-                attr.setGender(vocabulary.getConceptTypeLabel(type, language));
-            } else if (cth.isKindOf(type, WkbConstants.GRAMMATICALNUMBER_CT)) {
-                attr.setNumber(vocabulary.getConceptTypeLabel(type, language));
-            }
-        }
-        return attr;
     }
 
     public void addRule(Rule rule) {
@@ -409,5 +400,10 @@ public class Wkb {
 
     public int getRelationTypeCount() {
         return vocabulary.getRelationTypeCount();
+    }
+
+    public Concept getConcept(String conceptId, int factIdx, String level) {
+        CGraph cg = getFactGraph(factIdx, level);
+        return cg.getConcept(conceptId);
     }
 }

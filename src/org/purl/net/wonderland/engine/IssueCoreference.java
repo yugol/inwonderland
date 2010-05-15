@@ -21,41 +21,20 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.kb;
+package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Projection;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class MatchList implements Iterable<Match> {
+class IssueCoreference extends Issue {
 
-    private final List<Match> matches;
+    public final List<Chunk> matches;
 
-    public MatchList() {
-        matches = new ArrayList<Match>();
-    }
-
-    public void add(Proc proc, List<Projection> projections) {
-        for (Projection proj : projections) {
-            Match match = new Match(proc, proj);
-            matches.add(match);
-        }
-    }
-
-    public int size() {
-        return matches.size();
-    }
-
-    public Match get(int index) {
-        return matches.get(index);
-    }
-
-    public Iterator<Match> iterator() {
-        return matches.iterator();
+    public IssueCoreference(String conceptId, int factIdx, List<Chunk> matches) {
+        super(conceptId, factIdx);
+        this.matches = matches;
     }
 }

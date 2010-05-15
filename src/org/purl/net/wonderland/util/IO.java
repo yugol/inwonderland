@@ -40,7 +40,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.Wkb;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -54,8 +54,8 @@ public class IO {
 
     private static class ProcReader extends CogxmlReader {
 
-        private static ProcList readProcs(String name, File file, Wkb kb) throws Exception {
-            ProcList procs = new ProcList(name);
+        private static Procs readProcs(String name, File file, Wkb kb) throws Exception {
+            Procs procs = new Procs(name);
             Vocabulary voc = kb.getVocabulary();
             Document xmlDoc = XML.readXmlFile(file);
             NodeList ruleNodes = xmlDoc.getElementsByTagName("rule");
@@ -144,7 +144,7 @@ public class IO {
         out.close();
     }
 
-    public static ProcList readProcs(String name, File file, Wkb kb) throws Exception {
+    public static Procs readProcs(String name, File file, Wkb kb) throws Exception {
         return ProcReader.readProcs(name, file, kb);
     }
 }

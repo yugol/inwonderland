@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -21,49 +21,41 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-package org.purl.net.wonderland.engine;
+package org.purl.net.wonderland.kb;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Matches implements Iterable<Match> {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "basic parsing -> CG";
+    private final List<Match> matches;
+
+    public Matches() {
+        matches = new ArrayList<Match>();
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public void add(Proc proc, List<Projection> projections) {
+        for (Projection proj : projections) {
+            Match match = new Match(proc, proj);
+            matches.add(match);
+        }
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public int size() {
+        return matches.size();
     }
 
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
+    public Match get(int index) {
+        return matches.get(index);
     }
 
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
-    protected CGraph handleFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-        return fact;
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
+    public Iterator<Match> iterator() {
+        return matches.iterator();
     }
 }

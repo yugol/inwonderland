@@ -26,10 +26,12 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.purl.net.wonderland.kb.ProcList;
+import net.didion.jwnl.data.POS;
+import org.purl.net.wonderland.kb.Matches;
+import org.purl.net.wonderland.kb.Procs;
+import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.nlg.SentenceBuilder;
@@ -63,19 +65,19 @@ public class Level3Personality extends Level2Personality {
     }
 
     @Override
-    protected void handleFact(CGraph fact) throws Exception {
-        super.handleFact(fact);
+    protected CGraph handleFact(CGraph fact) throws Exception {
+        fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
         processFactLevel3(fact);
         memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
+        return fact;
     }
 
     @Override
     protected void postProcessFacts() throws Exception {
     }
 
-    protected void processFactLevel3(CGraph fact) throws Exception {
-        processFactLevel2(fact);
+    private void processFactLevel3(CGraph fact) throws Exception {
         loadWordNetSenses(fact);
         inferThematicRolesTypes(fact);
         cleanConceptTypes(fact);
@@ -118,7 +120,7 @@ public class Level3Personality extends Level2Personality {
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
             WkbUtil.normalizeConceptType(c, cth);
-            checkSenses(c, cth);
+            makeSense(c, cth);
         }
     }
 
@@ -131,45 +133,57 @@ public class Level3Personality extends Level2Personality {
             String[] types = c.getType();
 
             if (cth.isKindOf(types, WkbConstants.VERB_CT)) {
-                ProcList wsdProcs = memory.getProcedural().getWsd().getVerbProcs(lemma);
-                applyFirstMatch(wsdProcs, fact);
+                Procs wsdProcs = memory.getProcedural().getWsd().getVerbProcs(lemma);
+                Matches matches = projSlv.findMatches(wsdProcs, fact);
+                if (matches.size() == 1) {
+                    ProcUtil.applyProcMatch(fact, matches.get(0), false, memory.getCth());
+                } else {
+                    Issue issue = new IssueThemrole(c.getId(), getCurrentFactId(), matches);
+                    memory.add(issue);
+                }
             }
         }
     }
 
-    private void checkSenses(Concept c, Hierarchy cth) {
-        List<String> senses = new ArrayList<String>();
-        for (String type : c.getType()) {
-            if (cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
-                senses.add(type);
+    private void makeSense(Concept c, Hierarchy cth) {
+        List<String> senseTypes = WkbUtil.getSenseTypes(c, cth);
+
+        if (senseTypes == null) {
+            Issue issue = new IssueSense(c.getId(), getCurrentFactId(), null);
+            memory.add(issue);
+        } else {
+            if (senseTypes.size() == 1) {
+                reportSense(c, WkbUtil.toConceptTypeLabel(senseTypes.get(0)));
+            } else {
+                Issue issue = new IssueSense(c.getId(), getCurrentFactId(), senseTypes);
+                memory.add(issue);
             }
         }
+    }
 
-        Issue issue = null;
-        switch (senses.size()) {
-            case 0:
-                issue = new Issue(c.getId(), getCurrentFactId(), Issue.Type.NO_SENSE_AMBIGUITY);
-                memory.add(issue);
-                break;
-
-            case 1:
-                SynsetWrapper sense = new SynsetWrapper(WordNetWrapper.lookup(WkbUtil.toConceptType(senses.get(0))));
-                SentenceBuilder sb = new SentenceBuilder();
-                sb.setSubject(c.getIndividual());
-                String ex = sense.getFirstExplanation();
-                if (ex != null) {
-                    sb.setVerb("be");
-                    sb.addComplement(ex);
-                } else {
-                    sb.setVerb("as in");
-                    sb.addComplement(ex);
-                }
-                report.add(sb.toString());
-                break;
-
-            default:
-                issue = new Issue(c.getId(), getCurrentFactId(), Issue.Type.SENSE_AMBIGUITY);
-                memory.add(issue);
+    private void reportSense(Concept c, String senseKey) {
+        SynsetWrapper sense = new SynsetWrapper(WordNetWrapper.lookup(senseKey));
+        SentenceBuilder sb = new SentenceBuilder();
+        sb.setSubject(c.getIndividual());
+        String ex = sense.getFirstExplanation();
+        if (ex != null) {
+            POS pos = WordNetWrapper.getPosAlpha(senseKey.charAt(0));
+            if (pos == POS.VERB) {
+                sb.setVerb("mean");
+                sb.addComplement("to " + ex);
+            } else {
+                sb.setVerb("be");
+                sb.addComplement(ex);
+            }
+        } else {
+            sb.setVerb("as in");
+            sb.addComplement(ex);
         }
+        report.add(sb.toString());
+    }
+
+    protected void reportSense(Concept c) {
+        List<String> senseTypes = WkbUtil.getSenseTypes(c, memory.getCth());
+        reportSense(c, WkbUtil.toConceptTypeLabel(senseTypes.get(0)));
     }
 }

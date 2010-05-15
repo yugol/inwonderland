@@ -27,22 +27,21 @@ package org.purl.net.wonderland.engine;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Issue {
+public abstract class Issue {
 
-    public static enum Type {
+    protected final String conceptId;
+    protected final int factIdx;
 
-        NO_SENSE_AMBIGUITY,
-        SENSE_AMBIGUITY,
-        ROLES_AMBIGUIY,
-        REFERENCE_AMBIGUITY
-    }
-    private final String conceptId;
-    private final int factId;
-    private final Type type;
-
-    public Issue(String conceptId, int factId, Type type) {
-        this.factId = factId;
+    public Issue(String conceptId, int factIdx) {
+        this.factIdx = factIdx;
         this.conceptId = conceptId;
-        this.type = type;
+    }
+
+    public String getConceptId() {
+        return conceptId;
+    }
+
+    public int getFactIdx() {
+        return factIdx;
     }
 }

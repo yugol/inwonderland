@@ -32,25 +32,25 @@ import java.util.Map;
  */
 public class ProcManager {
 
-    private final Map<String, ProcList> allProcs;
+    private final Map<String, Procs> allProcs;
 
     public ProcManager() {
-        allProcs = new Hashtable<String, ProcList>();
+        allProcs = new Hashtable<String, Procs>();
     }
 
     public int getProcCount() {
         int count = 0;
-        for (ProcList set : allProcs.values()) {
+        for (Procs set : allProcs.values()) {
             count += set.size();
         }
         return count;
     }
 
-    public void putProcList(String name, ProcList procs) {
+    public void putProcList(String name, Procs procs) {
         allProcs.put(name, procs);
     }
 
-    public ProcList getProcSet(String name) {
+    public Procs getProcSet(String name) {
         return allProcs.get(name);
     }
 }

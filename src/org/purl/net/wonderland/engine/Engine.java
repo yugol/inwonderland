@@ -26,15 +26,9 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.WkbUtil;
 import org.purl.net.wonderland.nlp.WTagging;
-import org.purl.net.wonderland.util.Compare;
 
 /**
  *
@@ -79,7 +73,7 @@ public class Engine {
         if (W.getDefaultWkbFile().getAbsolutePath().equals(file.getAbsolutePath())) {
             lastFile = null;
         } else {
-            memory.save(file);
+            memory.getDeclarative().save(file);
             lastFile = file;
         }
     }

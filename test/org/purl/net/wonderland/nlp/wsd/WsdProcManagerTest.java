@@ -27,7 +27,7 @@ import java.io.File;
 import org.junit.Test;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.Proc;
-import org.purl.net.wonderland.kb.ProcList;
+import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.Wkb;
 import org.purl.net.wonderland.kb.WkbUtil;
 import static org.junit.Assert.*;
@@ -43,7 +43,7 @@ public class WsdProcManagerTest {
         Wkb kb = new Wkb(W.getDefaultWkbFile());
         WsdProcManager wdsMgr = new WsdProcManager(kb);
         String lemma = "have";
-        ProcList procs = wdsMgr.getVerbProcs(lemma);
+        Procs procs = wdsMgr.getVerbProcs(lemma);
         assertNotNull(procs);
         for (Proc proc : procs) {
             kb.addRule(proc.getRule(procs.getName()));

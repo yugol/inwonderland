@@ -179,8 +179,8 @@ public class ProjectionSolver {
         return null;
     }
 
-    public MatchList findMatches(ProcList procs, CGraph cg) throws Exception {
-        MatchList matches = new MatchList();
+    public Matches findMatches(Procs procs, CGraph cg) throws Exception {
+        Matches matches = new Matches();
         for (Proc proc : procs) {
             List<Projection> projections = getProjections(proc.getLhs(), cg);
             matches.add(proc, projections);

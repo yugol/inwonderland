@@ -3,7 +3,7 @@
  * 
  *  Copyright 2010 Iulian Goriac <iulian.goriac@gmail.com>.
  * 
- *  Permission is hereby granted, free of charge, to any PERSON_CT obtaining a copy
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -23,47 +23,39 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
-import org.purl.net.wonderland.kb.WkbConstants;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Level1Personality extends Personality {
+public class Issues {
 
-    @Override
-    public String getWelcomeMessage() {
-        return "basic parsing -> CG";
+    private final LinkedList<Issue> issues;
+
+    public Issues() {
+        this.issues = new LinkedList<Issue>();
     }
 
-    @Override
-    public String getFullName() {
-        return "Level 1";
+    public void add(Issue issue) {
+        issues.add(issue);
     }
 
-    @Override
-    public String getName() {
-        return "(test) L1";
+    public void stack(Issue issue) {
+        issues.addFirst(issue);
     }
 
-    @Override
-    public String getId() {
-        return WkbConstants.LEVEL1;
-    }
-
-    @Override
-    protected void preProcessFacts() throws Exception {
-    }
-
-    @Override
-    protected CGraph handleFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
-        return fact;
-    }
-
-    @Override
-    protected void postProcessFacts() throws Exception {
-        report.add("Done.");
+    public List<Issue> getSenseIssues(String id) {
+        List<Issue> selection = new ArrayList<Issue>();
+        for (Issue issue : issues) {
+            if (issue instanceof IssueSense) {
+                if (issue.getConceptId().equals(id)) {
+                    selection.add(issue);
+                }
+            }
+        }
+        return ((selection.size() > 0) ? (selection) : (null));
     }
 }

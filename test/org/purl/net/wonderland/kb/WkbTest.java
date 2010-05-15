@@ -43,8 +43,8 @@ public class WkbTest {
     @Test
     public void testWkb() throws Exception {
         Wkb kb = new Wkb(W.getDefaultWkbFile());
-        kb.getLowConf().addVertex(new Concept(IdUtil.newId()));
-        kb.getHighConf().addVertex(new Concept(IdUtil.newId()));
+        kb.getLowConfGraph().addVertex(new Concept(IdUtil.newId()));
+        kb.getHighConfGraph().addVertex(new Concept(IdUtil.newId()));
         File cogxml = new File("test_wkb.cogxml");
         kb.save(cogxml);
     }
