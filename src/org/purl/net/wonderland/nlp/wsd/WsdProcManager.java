@@ -25,6 +25,7 @@ package org.purl.net.wonderland.nlp.wsd;
 
 import java.io.File;
 import org.purl.net.wonderland.W;
+import org.purl.net.wonderland.kb.Proc;
 import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
@@ -64,6 +65,13 @@ public final class WsdProcManager {
                 }
                 procs = IO.readProcs(lemma, procFile, kb);
                 procs.sort();
+
+                Procs wsdProcs = new Procs(lemma);
+                for (Proc proc : procs) {
+                    wsdProcs.add(new WsdProc(proc));
+                }
+                procs = wsdProcs;
+
                 verbProcs.putProcList(lemma, procs);
             } catch (Exception ex) {
                 W.reportExceptionConsole(ex);

@@ -32,25 +32,27 @@ import org.purl.net.wonderland.kb.Wkb;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Memory {
+public class Mem {
 
-    private final Declarative declarative;
-    private final Procedural procedural;
+    private final MemDeclarative declarative;
+    private final MemProcedural procedural;
+    private final MemWorking working;
     private final Issues issues;
     private final Entities entities;
 
-    public Memory(File file) throws Exception {
-        this.declarative = new Declarative(file);
-        this.procedural = new Procedural(declarative.getStorage());
+    public Mem(File file) throws Exception {
+        this.declarative = new MemDeclarative(file);
+        this.procedural = new MemProcedural(declarative.getStorage());
+        this.working = new MemWorking();
         this.issues = new Issues();
         this.entities = new Entities();
     }
 
-    public Declarative getDeclarative() {
+    public MemDeclarative getDeclarative() {
         return declarative;
     }
 
-    public Procedural getProcedural() {
+    public MemProcedural getProcedural() {
         return procedural;
     }
 
@@ -66,11 +68,15 @@ public class Memory {
         issues.add(issue);
     }
 
-    List<Issue> getSenseIssues(String id) {
-        return issues.getSenseIssues(id);
-    }
-
     public Entities getEntities() {
         return entities;
+    }
+
+    public MemWorking getWorking() {
+        return working;
+    }
+
+    Issues getIssues(String id) {
+        return issues.getIssues(id);
     }
 }

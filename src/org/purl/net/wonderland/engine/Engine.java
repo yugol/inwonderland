@@ -36,7 +36,7 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public class Engine {
 
-    private Memory memory;
+    private Mem memory;
     private File lastFile = null;
     private Personality personality;
 
@@ -65,7 +65,7 @@ public class Engine {
         } else {
             lastFile = file;
         }
-        memory = new Memory(file);
+        memory = new Mem(file);
         personality.setMemory(memory);
     }
 
@@ -79,7 +79,7 @@ public class Engine {
     }
 
     public String processMessage(String msg) throws Exception {
-        return personality.processMessage(msg);
+        return personality.handleMessage(msg);
     }
 
     public CGraph getFact(int idx, String level) {

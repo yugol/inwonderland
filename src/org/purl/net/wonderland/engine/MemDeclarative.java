@@ -37,12 +37,12 @@ import org.purl.net.wonderland.util.Gazetteers;
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public class Declarative {
+public class MemDeclarative {
 
     private final Wkb storage;
     private final Hierarchy cth;
 
-    Declarative(File file) throws Exception {
+    MemDeclarative(File file) throws Exception {
         this.storage = new Wkb(file);
         this.cth = storage.getVocabulary().getConceptTypeHierarchy();
     }

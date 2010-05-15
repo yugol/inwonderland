@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.List;
 
 /**
@@ -33,8 +35,8 @@ class IssueSense extends Issue {
 
     protected final List<String> senseTypes;
 
-    public IssueSense(String id, int currentFactId, List<String> senseTypes) {
-        super(id, currentFactId);
+    public IssueSense(Concept c, int factIdx, Hierarchy cth, List<String> senseTypes) {
+        super(c, factIdx, cth);
         this.senseTypes = senseTypes;
     }
 }

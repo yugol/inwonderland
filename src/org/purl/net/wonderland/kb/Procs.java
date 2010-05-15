@@ -35,6 +35,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.purl.net.wonderland.nlp.wsd.WsdProc;
 import org.purl.net.wonderland.util.Compare;
 import org.purl.net.wonderland.util.IdUtil;
 
@@ -69,6 +70,10 @@ public class Procs implements Iterable<Proc> {
     public void add(Rule rule) {
         String procName = rule.getName().substring(setId.length());
         Proc proc = buildProcedure(rule, procName);
+        procs.add(proc);
+    }
+
+    public void add(Proc proc) {
         procs.add(proc);
     }
 
@@ -122,7 +127,7 @@ public class Procs implements Iterable<Proc> {
             rhsLhsMap.put(r, l);
         }
 
-        Proc proc = new ProcImpl(lhs, rhs, rhsLhsMap);
+        Proc proc = new Proc(lhs, rhs, rhsLhsMap);
         return proc;
     }
 }

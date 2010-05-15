@@ -34,11 +34,13 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import net.didion.jwnl.data.POS;
+import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 import org.purl.net.wonderland.util.CodeTimer;
 import org.purl.net.wonderland.util.IO;
 import org.purl.net.wonderland.util.IdUtil;
@@ -308,24 +310,40 @@ public class WkbUtil {
         }
     }
 
-    public static List<String> getSenseTypes(Concept c, Hierarchy cth) {
+    public static List<String> getSenseTypes(Concept c) {
         List<String> senseTypes = new ArrayList<String>();
         for (String type : c.getType()) {
-            if (cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
+            if (WordNetWrapper.isSenseKey(toConceptTypeLabel(type))) {
                 senseTypes.add(type);
             }
         }
         return senseTypes;
     }
 
-    public static void setSense(Concept c, Hierarchy cth, String senseType) {
+    public static List<String> getNonSenseTypes(Concept c) {
         List<String> senseTypes = new ArrayList<String>();
         for (String type : c.getType()) {
-            if (!cth.isKindOf(type, WkbConstants.WN_SENSE_CT)) {
+            if (!WordNetWrapper.isSenseKey(toConceptTypeLabel(type))) {
                 senseTypes.add(type);
             }
         }
-        senseTypes.add(senseType);
-        c.setType(senseTypes.toArray(new String[senseTypes.size()]));
+        return senseTypes;
+    }
+
+    public static void setSenseType(Concept c, String senseType) {
+        List<String> types = getNonSenseTypes(c);
+        types.add(senseType);
+        c.setType(types.toArray(new String[types.size()]));
+    }
+
+    public static void setSenseTypes(Concept c, Collection<String> senseTypes) {
+        List<String> types = getNonSenseTypes(c);
+        types.addAll(senseTypes);
+        c.setType(types.toArray(new String[types.size()]));
+    }
+
+    public static void removeSenseTypes(Concept c) {
+        List<String> types = getNonSenseTypes(c);
+        c.setType(types.toArray(new String[types.size()]));
     }
 }

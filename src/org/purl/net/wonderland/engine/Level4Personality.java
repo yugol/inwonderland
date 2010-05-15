@@ -28,21 +28,24 @@ import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
 import fr.lirmm.rcr.cogui2.kernel.model.Relation;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.purl.net.wonderland.W;
+import org.purl.net.wonderland.kb.Match;
+import org.purl.net.wonderland.kb.Matches;
+import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
+import org.purl.net.wonderland.nlp.nlg.SentenceBuilder;
+import org.purl.net.wonderland.nlp.wsd.WsdProc;
 
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
 public class Level4Personality extends Level3Personality {
-
-    private List<Chunk> factChunks = new ArrayList<Chunk>();
 
     @Override
     public String getWelcomeMessage() {
@@ -68,7 +71,6 @@ public class Level4Personality extends Level3Personality {
     protected CGraph handleFact(CGraph fact) throws Exception {
         fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
-        factChunks.clear();
         processFactLevel4(fact);
         CGraph lowConf = memory.getStorage().getLowConfGraph();
         merge(fact, lowConf);
@@ -79,19 +81,61 @@ public class Level4Personality extends Level3Personality {
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
-            disambiguateToFirstSense(c);
-            Chunk ck = new Chunk(c, memory.getCth());
-            factChunks.add(ck);
+            defaultSolveIssues(c, fact);
         }
     }
 
-    private void disambiguateToFirstSense(Concept c) {
-        List<Issue> issues = memory.getSenseIssues(c.getId());
+    private void defaultSolveIssues(Concept c, CGraph fact) {
+        Issues issues = memory.getIssues(c.getId());
         if (issues != null) {
-            List<String> senses = memory.getDeclarative().getImportWordNetSenses(c);
-            if (senses != null) {
-                WkbUtil.setSense(c, memory.getCth(), senses.get(0));
-                reportSense(c);
+
+            // find sense
+            String sense = null;
+            List<Issue> senseIssues = issues.getIssues(IssueSense.class);
+            if (senseIssues.size() > 0) {
+                List<String> conceptSenses = WkbUtil.getSenseTypes(c);
+                List<String> wnSenses = memory.getDeclarative().getImportWordNetSenses(c);
+                if (wnSenses != null) {
+                    if (conceptSenses.size() > 0) {
+                        for (String senseType : wnSenses) {
+                            if (conceptSenses.contains(senseType)) {
+                                sense = senseType;
+                                break;
+                            }
+                        }
+                    } else if (wnSenses.size() > 0) {
+                        sense = wnSenses.get(0);
+                    }
+                }
+            }
+
+            // find thematic roles
+            Match match = null;
+            List<Issue> themrolesIssues = issues.getIssues(IssueThemrole.class);
+            if (themrolesIssues.size() > 0) {
+                IssueThemrole issue = (IssueThemrole) themrolesIssues.get(0);
+                Matches matches = issue.getMatches();
+                if (matches != null && matches.size() > 0) {
+                    match = matches.get(0);
+                    if (sense != null) {
+                        for (Match m : matches) {
+                            if (((WsdProc) m.getProcedure()).getSenseTypes().contains(sense)) {
+                                match = m;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // solve issues
+            if (match != null) {
+                ProcUtil.applyProcMatch(fact, match, false, memory.getCth());
+            }
+            if (sense != null) {
+                WkbUtil.setSenseType(c, sense);
+            } else {
+                WkbUtil.normalizeConceptType(c, memory.getCth());
             }
         }
     }
@@ -99,11 +143,14 @@ public class Level4Personality extends Level3Personality {
     private void merge(CGraph fact, CGraph lowConf) {
         Entities entities = memory.getEntities();
         Map<String, String> refMap = new HashMap<String, String>();
+        Hierarchy cth = memory.getCth();
 
         // find matches
-        Hierarchy cth = memory.getCth();
-        for (Chunk ck : factChunks) {
-            String conceptId = ck.getId();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            String conceptId = c.getId();
+            Chunk ck = new Chunk(c, getCurrentFactId(), memory.getCth());
             List<Chunk> matches = null;
 
             if (cth.isKindOf(ck.getPartOfSpeech(), WkbConstants.PROPERNOUN_CT)) {
@@ -124,19 +171,21 @@ public class Level4Personality extends Level3Personality {
 
             if (matches == null) {
                 refMap.put(conceptId, conceptId);
-                Issue issue = new IssueCoreference(ck.getId(), getCurrentFactId(), matches);
+                Issue issue = new IssueCoreference(c, getCurrentFactId(), cth, matches);
                 memory.add(issue);
             } else {
-                refMap.put(conceptId, matches.get(0).getId());
+                Chunk ref = matches.get(0);
+                refMap.put(conceptId, ref.getConceptId());
+                reportCoreference(ck, ref);
                 if (matches.size() > 1) {
-                    Issue issue = new IssueCoreference(ck.getId(), getCurrentFactId(), matches);
+                    Issue issue = new IssueCoreference(c, getCurrentFactId(), cth, matches);
                     memory.add(issue);
                 }
             }
         }
 
         // merge fact
-        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept factConcept = conceptIterator.next();
             String refId = refMap.get(factConcept.getId());
@@ -164,6 +213,16 @@ public class Level4Personality extends Level3Personality {
                 String refId = refMap.get(fact.getConcept(edge).getId());
                 lowConf.addEdge(refId, relationId, edge.getNumOrder());
             }
+        }
+    }
+
+    protected void reportCoreference(Chunk ck, Chunk ref) {
+        if (W.reportCorefernces) {
+            SentenceBuilder sb = new SentenceBuilder();
+            sb.setSubject("'" + ck.getLemma() + "'");
+            sb.setVerb("reffer");
+            sb.addComplement("to '" + ref.getLemma() + "'");
+            report.add(sb.toString());
         }
     }
 }

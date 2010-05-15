@@ -41,6 +41,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import org.purl.net.wonderland.W;
 
 /**
  *
@@ -64,8 +65,7 @@ public class ProjectionSolver {
             connected = true;
         } catch (Throwable t) {
             connected = false;
-            System.out.println("native cogitant library can't be used");
-            throw new Exception(t);
+            W.reportExceptionConsole(t);
         }
         return connected;
     }
@@ -107,7 +107,7 @@ public class ProjectionSolver {
                         IOHandler.Format.COGXML);
 
             } catch (Exception e) {
-                System.out.println("problem with:\n" + stringWriter.toString());
+                W.reportExceptionConsole(e);
             }
 
         }

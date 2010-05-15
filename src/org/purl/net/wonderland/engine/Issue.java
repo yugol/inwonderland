@@ -23,25 +23,16 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
+
 /**
  *
  * @author Iulian Goriac <iulian.goriac@gmail.com>
  */
-public abstract class Issue {
+public abstract class Issue extends Chunk {
 
-    protected final String conceptId;
-    protected final int factIdx;
-
-    public Issue(String conceptId, int factIdx) {
-        this.factIdx = factIdx;
-        this.conceptId = conceptId;
-    }
-
-    public String getConceptId() {
-        return conceptId;
-    }
-
-    public int getFactIdx() {
-        return factIdx;
+    public Issue(Concept c, int factIdx, Hierarchy cth) {
+        super(c, factIdx, cth);
     }
 }

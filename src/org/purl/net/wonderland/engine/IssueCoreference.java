@@ -23,6 +23,8 @@
  */
 package org.purl.net.wonderland.engine;
 
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
 import java.util.List;
 
 /**
@@ -33,8 +35,8 @@ class IssueCoreference extends Issue {
 
     public final List<Chunk> matches;
 
-    public IssueCoreference(String conceptId, int factIdx, List<Chunk> matches) {
-        super(conceptId, factIdx);
+    public IssueCoreference(Concept c, int factIdx, Hierarchy cth, List<Chunk> matches) {
+        super(c, factIdx, cth);
         this.matches = matches;
     }
 }

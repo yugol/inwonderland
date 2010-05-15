@@ -45,7 +45,11 @@ import org.w3c.dom.NodeList;
  * @author Iulian
  */
 public final class W {
+    // running options
 
+    public static boolean reportSenses = false;
+    public static boolean reportCorefernces = true;
+    // absolute paths
     private static final String CONFIG_FILE_ATTR_NAME = "wonderland.config";
     private static final String RES_FOLDER_NAME = "res";
     private static final String MANUAL = "manual";
