@@ -26,19 +26,17 @@ package org.purl.net.wonderland.engine;
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
 import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
 import fr.lirmm.rcr.cogui2.kernel.model.Concept;
-import fr.lirmm.rcr.cogui2.kernel.model.Relation;
+import fr.lirmm.rcr.cogui2.kernel.model.Projection;
 import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.kb.Match;
 import org.purl.net.wonderland.kb.Matches;
 import org.purl.net.wonderland.kb.ProcUtil;
 import org.purl.net.wonderland.kb.WkbConstants;
 import org.purl.net.wonderland.kb.WkbUtil;
-import org.purl.net.wonderland.nlp.nlg.SentenceBuilder;
 import org.purl.net.wonderland.nlp.wsd.WsdProc;
 
 /**
@@ -49,7 +47,7 @@ public class Level4Personality extends Level3Personality {
 
     @Override
     public String getWelcomeMessage() {
-        return "combine facts";
+        return "user input interpretation";
     }
 
     @Override
@@ -72,12 +70,75 @@ public class Level4Personality extends Level3Personality {
         fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
         processFactLevel4(fact);
-        CGraph lowConf = memory.getStorage().getLowConfGraph();
-        merge(fact, lowConf);
+
+        FactNature nature = findNature(fact);
+        if (nature == FactNature.QUESTION) {
+            processQuestion(fact);
+            memory.getStorage().addFact(fact, getCurrentFactId(), WkbConstants.LEVEL4);
+            answerQuestion(fact);
+            return null;
+        }
+
         return fact;
     }
 
-    private void processFactLevel4(CGraph fact) {
+    private void processQuestion(CGraph fact) throws Exception {
+        applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_QUESTION), fact);
+        cleanQuestion(fact);
+    }
+
+    private void cleanQuestion(CGraph fact) {
+        List<Concept> conceptsToDelete = new ArrayList<Concept>();
+        Hierarchy cth = memory.getCth();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            Iterator<CREdge> links = fact.iteratorEdge(c.getId());
+            if (!links.hasNext()) {
+                cth.isKindOf(c.getType(), WkbConstants.INTERROGATIVEPUNCTUATION_CT);
+                conceptsToDelete.add(c);
+            }
+            c.setIndividual(null);
+            List<String> senseTypes = WkbUtil.getSenseTypes(c);
+            if (senseTypes.size() == 0) {
+                senseTypes.add(WkbConstants.LINKARG_CT);
+            }
+            c.setType(senseTypes.toArray(new String[senseTypes.size()]));
+        }
+        for (Concept c : conceptsToDelete) {
+            fact.removeVertex(c.getId());
+        }
+    }
+
+    private void answerQuestion(CGraph fact) throws Exception {
+        List<Projection> matches = projSlv.findMatches(fact, memory.getStorage().getLowConfGraph());
+        if (matches.size() > 0) {
+            List<Concept> wildcards = getWildcards(fact);
+            for (Projection match : matches) {
+                for (Concept c : wildcards) {
+                    Concept answer = (Concept) match.getTarget(c.getId());
+                    report.add(answer.getIndividual());
+                }
+            }
+        } else {
+            report.add("No answer was found to that question.");
+        }
+    }
+
+    private List<Concept> getWildcards(CGraph fact) {
+        List<Concept> list = new ArrayList<Concept>();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            List<String> type = Arrays.asList(c.getType());
+            if (type.contains(WkbConstants.LINKARG_CT)) {
+                list.add(c);
+            }
+        }
+        return list;
+    }
+
+    protected void processFactLevel4(CGraph fact) {
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
@@ -137,92 +198,6 @@ public class Level4Personality extends Level3Personality {
             } else {
                 WkbUtil.normalizeConceptType(c, memory.getCth());
             }
-        }
-    }
-
-    private void merge(CGraph fact, CGraph lowConf) {
-        Entities entities = memory.getEntities();
-        Map<String, String> refMap = new HashMap<String, String>();
-        Hierarchy cth = memory.getCth();
-
-        // find matches
-        Iterator<Concept> conceptIterator = fact.iteratorConcept();
-        while (conceptIterator.hasNext()) {
-            Concept c = conceptIterator.next();
-            String conceptId = c.getId();
-            Chunk ck = new Chunk(c, getCurrentFactId(), memory.getCth());
-            List<Chunk> matches = null;
-
-            if (cth.isKindOf(ck.getPartOfSpeech(), WkbConstants.PROPERNOUN_CT)) {
-                matches = entities.findMatchesProperNoun(ck);
-                if (matches == null) {
-                    entities.add(ck);
-                }
-            } else if (cth.isKindOf(ck.getPartOfSpeech(), WkbConstants.NOUN_CT)) {
-                entities.add(ck);
-            } else if (cth.isKindOf(ck.getPartOfSpeech(), WkbConstants.PRONOUN_CT)) {
-                matches = entities.findMatchesPronoun(ck);
-            } else if (cth.isKindOf(ck.getPartOfSpeech(), WkbConstants.POSSESIVEADJECIVE_CT)) {
-                matches = entities.findMatchesPronoun(ck);
-            } else {
-                refMap.put(conceptId, conceptId);
-                continue;
-            }
-
-            if (matches == null) {
-                refMap.put(conceptId, conceptId);
-                Issue issue = new IssueCoreference(c, getCurrentFactId(), cth, matches);
-                memory.add(issue);
-            } else {
-                Chunk ref = matches.get(0);
-                refMap.put(conceptId, ref.getConceptId());
-                reportCoreference(ck, ref);
-                if (matches.size() > 1) {
-                    Issue issue = new IssueCoreference(c, getCurrentFactId(), cth, matches);
-                    memory.add(issue);
-                }
-            }
-        }
-
-        // merge fact
-        conceptIterator = fact.iteratorConcept();
-        while (conceptIterator.hasNext()) {
-            Concept factConcept = conceptIterator.next();
-            String refId = refMap.get(factConcept.getId());
-            Concept refConcept = lowConf.getConcept(refId);
-            if (refConcept == null) {
-                refConcept = fact.getConcept(refId);
-                Concept c = new Concept(refId);
-                c.setType(refConcept.getType());
-                c.setIndividual(refConcept.getIndividual());
-                lowConf.addVertex(refConcept);
-            }
-        }
-
-        Iterator<Relation> relationIterator = fact.iteratorRelation();
-        while (relationIterator.hasNext()) {
-            Relation factRelation = relationIterator.next();
-            String relationId = factRelation.getId();
-            Relation r = new Relation(relationId);
-            r.setType(factRelation.getType());
-            lowConf.addVertex(r);
-
-            Iterator<CREdge> edgeIterator = fact.iteratorEdge(relationId);
-            while (edgeIterator.hasNext()) {
-                CREdge edge = edgeIterator.next();
-                String refId = refMap.get(fact.getConcept(edge).getId());
-                lowConf.addEdge(refId, relationId, edge.getNumOrder());
-            }
-        }
-    }
-
-    protected void reportCoreference(Chunk ck, Chunk ref) {
-        if (W.reportCorefernces) {
-            SentenceBuilder sb = new SentenceBuilder();
-            sb.setSubject("'" + ck.getLemma() + "'");
-            sb.setVerb("reffer");
-            sb.addComplement("to '" + ref.getLemma() + "'");
-            report.add(sb.toString());
         }
     }
 }

@@ -187,4 +187,8 @@ public class ProjectionSolver {
         }
         return matches;
     }
+
+    public List<Projection> findMatches(CGraph g1, CGraph g2) throws Exception {
+        return getProjections(g1, g2);
+    }
 }

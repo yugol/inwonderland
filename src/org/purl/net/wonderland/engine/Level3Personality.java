@@ -74,11 +74,11 @@ public class Level3Personality extends Level2Personality {
         fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
         processFactLevel3(fact);
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL3);
+        memory.getStorage().addFact(fact, getCurrentFactId(), WkbConstants.LEVEL3);
         return fact;
     }
 
-    private void processFactLevel3(CGraph fact) throws Exception {
+    protected void processFactLevel3(CGraph fact) throws Exception {
         loadWordNetSenses(fact);
         inferThematicRolesTypes(fact);
         projSlv.reset();

@@ -38,6 +38,10 @@ import org.purl.net.wonderland.nlp.WTagging;
  */
 public abstract class Personality {
 
+    public enum FactNature {
+
+        STATEMENT, QUESTION, COMMAND
+    }
     protected List<String> report = null;
     protected Mem memory = null;
     private int currentFactId;
@@ -108,6 +112,8 @@ public abstract class Personality {
     protected abstract CGraph handleFact(CGraph fact) throws Exception;
 
     protected void postHandleMessage() throws Exception {
-        report.add("Done.");
+        if (report.size() == 0) {
+            report.add("Ok");
+        }
     }
 }

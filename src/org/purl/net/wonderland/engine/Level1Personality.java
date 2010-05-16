@@ -24,6 +24,10 @@
 package org.purl.net.wonderland.engine;
 
 import fr.lirmm.rcr.cogui2.kernel.model.CGraph;
+import fr.lirmm.rcr.cogui2.kernel.model.CREdge;
+import fr.lirmm.rcr.cogui2.kernel.model.Concept;
+import fr.lirmm.rcr.cogui2.kernel.util.Hierarchy;
+import java.util.Iterator;
 import org.purl.net.wonderland.kb.WkbConstants;
 
 /**
@@ -54,7 +58,22 @@ public class Level1Personality extends Personality {
 
     @Override
     protected CGraph handleFact(CGraph fact) throws Exception {
-        memory.getStorage().addFact(fact, WkbConstants.LEVEL1);
+        memory.getStorage().addFact(fact, getCurrentFactId(), WkbConstants.LEVEL1);
         return fact;
+    }
+
+    protected FactNature findNature(CGraph fact) {
+        Hierarchy cth = memory.getCth();
+        Iterator<Concept> conceptIterator = fact.iteratorConcept();
+        while (conceptIterator.hasNext()) {
+            Concept c = conceptIterator.next();
+            Iterator<CREdge> links = fact.iteratorEdge(c.getId());
+            if (!links.hasNext()) {
+                if (cth.isKindOf(c.getType(), WkbConstants.INTERROGATIVEPUNCTUATION_CT)) {
+                    return FactNature.QUESTION;
+                }
+            }
+        }
+        return FactNature.STATEMENT;
     }
 }

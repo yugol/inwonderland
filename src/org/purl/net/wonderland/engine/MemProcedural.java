@@ -23,7 +23,6 @@
  */
 package org.purl.net.wonderland.engine;
 
-import fr.lirmm.rcr.cogui2.kernel.model.Rule;
 import org.purl.net.wonderland.kb.Procs;
 import org.purl.net.wonderland.kb.ProcManager;
 import org.purl.net.wonderland.kb.Wkb;
@@ -44,6 +43,7 @@ public class MemProcedural {
         readProcedureSet(kb, WkbUtil.PROC_SET_ARTICLES);
         readProcedureSet(kb, WkbUtil.PROC_SET_MOODS);
         readProcedureSet(kb, WkbUtil.PROC_SET_COLLO);
+        readProcedureSet(kb, WkbUtil.PROC_SET_QUESTION);
         wsd = new WsdProcManager(kb);
     }
 

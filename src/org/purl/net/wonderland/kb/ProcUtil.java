@@ -89,8 +89,11 @@ public class ProcUtil {
         while (cit.hasNext()) {
             Concept rhs = cit.next();
             Concept lhs = proc.getRhsLhsMap().get(rhs);
-            Concept actual = (Concept) proj.getTarget(lhs.getId());
-            actual = fact.getConcept(actual.getId());
+            Concept actual = null;
+            if (lhs != null) {
+                actual = (Concept) proj.getTarget(lhs.getId());
+                actual = fact.getConcept(actual.getId());
+            }
             if (actual != null) {
                 conceptsRhsActual.put(rhs.getId(), actual.getId());
                 conceptsToDelete.remove(actual);

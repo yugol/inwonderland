@@ -48,7 +48,7 @@ public final class W {
     // running options
 
     public static boolean reportSenses = false;
-    public static boolean reportCorefernces = true;
+    public static boolean reportCorefernces = false;
     // absolute paths
     private static final String CONFIG_FILE_ATTR_NAME = "wonderland.config";
     private static final String RES_FOLDER_NAME = "res";

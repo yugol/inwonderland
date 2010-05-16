@@ -82,6 +82,7 @@ public final class WkbConstants {
     public static final String GENERALADVERB = "generalAdverb";
     public static final String POSSESIVEPARTICLE = "possessiveParticle";
     public static final String INTERJECTION = "interjection";
+    public static final String INTERROGATIVEPUNCTUATION = "interrogativePunctuation";
     // punctuation
     public static final String POINT = "point";
     public static final String QUOTE = "quote";
@@ -158,10 +159,12 @@ public final class WkbConstants {
     public static final String ADJECTIVE_CT = WkbUtil.toConceptTypeId(ADJECTIVE);
     public static final String ADPOSITION_CT = WkbUtil.toConceptTypeId(ADPOSITION);
     public static final String INDICATIVE_CT = WkbUtil.toConceptTypeId(INDICATIVE);
+    public static final String INTERROGATIVEPUNCTUATION_CT = WkbUtil.toConceptTypeId(INTERROGATIVEPUNCTUATION);
     // fact levels
     public static final String LEVEL1 = "level1";
     public static final String LEVEL2 = "level2";
     public static final String LEVEL3 = "level3";
     public static final String LEVEL4 = "level4";
+    public static final String LEVEL5 = "level5";
     // other
 }
