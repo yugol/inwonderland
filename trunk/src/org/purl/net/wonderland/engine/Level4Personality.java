@@ -69,9 +69,9 @@ public class Level4Personality extends Level3Personality {
     protected CGraph handleFact(CGraph fact) throws Exception {
         fact = super.handleFact(fact);
         fact = WkbUtil.duplicate(fact);
+        FactNature nature = findNature(fact);
         processFactLevel4(fact);
 
-        FactNature nature = findNature(fact);
         if (nature == FactNature.QUESTION) {
             processQuestion(fact);
             memory.getStorage().addFact(fact, getCurrentFactId(), WkbConstants.LEVEL4);
@@ -88,25 +88,15 @@ public class Level4Personality extends Level3Personality {
     }
 
     private void cleanQuestion(CGraph fact) {
-        List<Concept> conceptsToDelete = new ArrayList<Concept>();
-        Hierarchy cth = memory.getCth();
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
-            Iterator<CREdge> links = fact.iteratorEdge(c.getId());
-            if (!links.hasNext()) {
-                cth.isKindOf(c.getType(), WkbConstants.INTERROGATIVEPUNCTUATION_CT);
-                conceptsToDelete.add(c);
-            }
             c.setIndividual(null);
             List<String> senseTypes = WkbUtil.getSenseTypes(c);
             if (senseTypes.size() == 0) {
                 senseTypes.add(WkbConstants.LINKARG_CT);
             }
             c.setType(senseTypes.toArray(new String[senseTypes.size()]));
-        }
-        for (Concept c : conceptsToDelete) {
-            fact.removeVertex(c.getId());
         }
     }
 
@@ -139,10 +129,24 @@ public class Level4Personality extends Level3Personality {
     }
 
     protected void processFactLevel4(CGraph fact) {
+        List<Concept> conceptsToDelete = new ArrayList<Concept>();
+        Hierarchy cth = memory.getCth();
+
         Iterator<Concept> conceptIterator = fact.iteratorConcept();
         while (conceptIterator.hasNext()) {
             Concept c = conceptIterator.next();
+            if (cth.isKindOf(c.getType(), WkbConstants.PUNCTUATION_CT)) {
+                Iterator<CREdge> links = fact.iteratorEdge(c.getId());
+                if (!links.hasNext()) {
+                    conceptsToDelete.add(c);
+                }
+                continue;
+            }
             defaultSolveIssues(c, fact);
+        }
+
+        for (Concept c : conceptsToDelete) {
+            fact.removeVertex(c.getId());
         }
     }
 
