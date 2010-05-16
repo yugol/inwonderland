@@ -103,6 +103,7 @@ public class Wonderland extends javax.swing.JFrame {
         personalityMenu = new javax.swing.JMenu();
         toolsMenu = new javax.swing.JMenu();
         ontExpMenuItem = new javax.swing.JMenuItem();
+        optionsMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -231,6 +232,14 @@ public class Wonderland extends javax.swing.JFrame {
         });
         toolsMenu.add(ontExpMenuItem);
 
+        optionsMenuItem.setText("Options...");
+        optionsMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionsMenuItemActionPerformed(evt);
+            }
+        });
+        toolsMenu.add(optionsMenuItem);
+
         menuBar.add(toolsMenu);
 
         helpMenu.setText("Help");
@@ -358,6 +367,12 @@ public class Wonderland extends javax.swing.JFrame {
         WordNetExplorer.instance.setVisible(true);
     }//GEN-LAST:event_ontExpMenuItemActionPerformed
 
+    private void optionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsMenuItemActionPerformed
+        OptionsDlg dlg = new OptionsDlg(this, true);
+        dlg.centerScreen();
+        dlg.setVisible(true);
+    }//GEN-LAST:event_optionsMenuItemActionPerformed
+
     private String noteUserMessage() {
         String message = inputTextArea.getText().trim();
         if (message.length() > 0) {
@@ -434,6 +449,7 @@ public class Wonderland extends javax.swing.JFrame {
     private javax.swing.JMenuItem ontExpMenuItem;
     private javax.swing.JMenuItem openKbMenuItem;
     private javax.swing.JMenuItem openTextFileMenuItem;
+    private javax.swing.JMenuItem optionsMenuItem;
     private javax.swing.JMenu personalityMenu;
     private javax.swing.JButton processMessageButton;
     private javax.swing.JMenuItem saveKbAsMenuItem;

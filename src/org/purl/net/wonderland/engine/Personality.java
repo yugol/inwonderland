@@ -113,7 +113,7 @@ public abstract class Personality {
 
     protected void postHandleMessage() throws Exception {
         if (report.size() == 0) {
-            report.add("Ok");
+            report.add("Ok.");
         }
     }
 }
