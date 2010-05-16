@@ -59,7 +59,7 @@ import org.w3c.dom.NodeList;
  */
 public class Wkb {
 
-    private static final int levelCount = 3;
+    private static final int levelCount = 4;
     private static final String storySet = "story";
     private static final String lowConfGraph = "lowConf";
     private static final String highConfGraph = "highConf";
@@ -144,7 +144,7 @@ public class Wkb {
         return kb.getFactGraph(factId);
     }
 
-    public CGraph getFactGraph(int idx, String level) {
+    public CGraph getFact(int idx, String level) {
         String factId = WkbUtil.toFactId(idx, level);
         return kb.getFactGraph(factId);
     }
@@ -359,13 +359,12 @@ public class Wkb {
         return wt;
     }
 
-    public void addFact(CGraph fact, String level) {
-        int factNumber = getFactCount(level) + 1;
+    public void addFact(CGraph fact, int factNumber, String level) {
         fact.setId(WkbUtil.toFactId(factNumber, level));
         fact.setName(WkbUtil.toIdIndex(factNumber));
         fact.setSet(level);
         kb.addGraph(fact);
-        setFactCount(factNumber, level);
+        setFactCount(getFactCount(level) + 1, level);
     }
 
     public CGraph getLowConfGraph() {
@@ -403,7 +402,7 @@ public class Wkb {
     }
 
     public Concept getConcept(String conceptId, int factIdx, String level) {
-        CGraph cg = getFactGraph(factIdx, level);
+        CGraph cg = getFact(factIdx, level);
         return cg.getConcept(conceptId);
     }
 }

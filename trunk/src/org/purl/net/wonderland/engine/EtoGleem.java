@@ -27,7 +27,7 @@ package org.purl.net.wonderland.engine;
  *
  * @author Iulian
  */
-public class EtoGleem extends Level4Personality {
+public class EtoGleem extends Level5Personality {
 
     @Override
     public String getWelcomeMessage() {

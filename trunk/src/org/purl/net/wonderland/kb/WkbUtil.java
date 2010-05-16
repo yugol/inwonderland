@@ -61,6 +61,7 @@ public class WkbUtil {
     public static final String PROC_SET_ARTICLES = "article";
     public static final String PROC_SET_MOODS = "mood";
     public static final String PROC_SET_COLLO = "collo";
+    public static final String PROC_SET_QUESTION = "question";
     //
     private static final NumberFormat idLabelNumberFormatter = new DecimalFormat("00000");
     private static final String CONCEPT_TYPE_PREFIX = "ct_";
@@ -259,6 +260,9 @@ public class WkbUtil {
         }
         if (WkbConstants.LEVEL3.equals(level)) {
             return 2;
+        }
+        if (WkbConstants.LEVEL4.equals(level)) {
+            return 3;
         }
         return -1;
     }
