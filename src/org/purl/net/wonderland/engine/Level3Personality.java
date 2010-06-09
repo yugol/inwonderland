@@ -147,7 +147,7 @@ public class Level3Personality extends Level2Personality {
                 // apply match and/or senses
                 if (matches.size() == 1 || senseTypes.size() == 1) {
                     WkbUtil.removeSenseTypes(c);
-                    ProcUtil.applyProcMatch(fact, matches.get(0), false, cth);
+                    ProcUtil.applyProc(fact, matches.get(0), false, cth);
                 } else {
                     if (senseTypes.size() > 0) {
                         WkbUtil.setSenseTypes(c, senseTypes);

@@ -22,7 +22,7 @@
  *  THE SOFTWARE.
  */
 
-package org.purl.net.wonderland.kb;
+package org.purl.net.wonderland.ui;
 
 import cogui.appli.stda.CoguiStandAloneProject;
 import cogui.appli.stda.CoguiStdaActionFactory;

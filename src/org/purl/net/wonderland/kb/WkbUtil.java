@@ -60,6 +60,7 @@ public class WkbUtil {
     public static final String PROC = "proc_";
     public static final String PROC_SET_ARTICLES = "article";
     public static final String PROC_SET_MOODS = "mood";
+    public static final String PROC_SET_TENSE = "tense";
     public static final String PROC_SET_COLLO = "collo";
     public static final String PROC_SET_QUESTION = "question";
     //

@@ -41,6 +41,7 @@ public class MemProcedural {
     MemProcedural(Wkb kb) throws Exception {
         quick = new ProcManager();
         readProcedureSet(kb, WkbUtil.PROC_SET_ARTICLES);
+        readProcedureSet(kb, WkbUtil.PROC_SET_TENSE);
         readProcedureSet(kb, WkbUtil.PROC_SET_MOODS);
         readProcedureSet(kb, WkbUtil.PROC_SET_COLLO);
         readProcedureSet(kb, WkbUtil.PROC_SET_QUESTION);
