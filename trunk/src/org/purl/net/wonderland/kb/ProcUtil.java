@@ -45,7 +45,7 @@ import org.purl.net.wonderland.util.IdUtil;
  */
 public class ProcUtil {
 
-    public static void applyProcMatch(CGraph fact, Match match, boolean markingConcepts, Hierarchy cth) {
+    public static void applyProc(CGraph fact, Match match, boolean markingConcepts, Hierarchy cth) {
         Proc proc = match.getProcedure();
         Projection proj = match.getProjection();
         CGraph lhsFact = proc.getLhs();

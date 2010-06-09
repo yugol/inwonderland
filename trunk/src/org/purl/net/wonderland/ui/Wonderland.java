@@ -30,7 +30,6 @@ package org.purl.net.wonderland.ui;
 
 import java.awt.event.ActionEvent;
 import org.purl.net.wonderland.util.UI;
-import com.jidesoft.plaf.LookAndFeelFactory;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -40,10 +39,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.UIManager;
 import org.purl.net.wonderland.W;
 import org.purl.net.wonderland.engine.Engine;
 import org.purl.net.wonderland.engine.Personality;
-import org.purl.net.wonderland.kb.CoGuiWrapper;
 
 /**
  *
@@ -364,7 +363,7 @@ public class Wonderland extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void ontExpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ontExpMenuItemActionPerformed
-        WordNetExplorer.instance.setVisible(true);
+        WordNetExplorer.instance().setVisible(true);
     }//GEN-LAST:event_ontExpMenuItemActionPerformed
 
     private void optionsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsMenuItemActionPerformed
@@ -402,7 +401,7 @@ public class Wonderland extends javax.swing.JFrame {
         W.getVerbNetDataFolder();
 
         try {
-            LookAndFeelFactory.installDefaultLookAndFeelAndExtension();
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Throwable t) {
             System.err.println("Problem occurs when loading Default Look & Feel");
             return;

@@ -195,7 +195,7 @@ public class Level4Personality extends Level3Personality {
 
             // solve issues
             if (match != null) {
-                ProcUtil.applyProcMatch(fact, match, false, memory.getCth());
+                ProcUtil.applyProc(fact, match, false, memory.getCth());
             }
             if (sense != null) {
                 WkbUtil.setSenseType(c, sense);

@@ -88,8 +88,13 @@ public class Level2Personality extends Level1Personality {
 
     protected void processFactLevel2(CGraph fact) throws Exception {
         processArticles(fact);
+        processTenses(fact);
         // processMoods(fact);
         // processCollocations(fact);
+    }
+
+    protected void processTenses(CGraph fact) throws Exception {
+        applyAllNonOverlappingMatches(memory.getProcedural().getQuick().getProcSet(WkbUtil.PROC_SET_TENSE), fact);
     }
 
     protected void processMoods(CGraph fact) throws Exception {
@@ -108,7 +113,7 @@ public class Level2Personality extends Level1Personality {
         WkbUtil.setAllConclusion(fact, false);
         Matches matches = projSlv.findMatches(procs, fact);
         for (Match match : matches) {
-            ProcUtil.applyProcMatch(fact, match, true, memory.getCth());
+            ProcUtil.applyProc(fact, match, true, memory.getCth());
         }
         WkbUtil.setAllConclusion(fact, false);
     }

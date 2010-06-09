@@ -31,8 +31,6 @@ package org.purl.net.wonderland.ui;
 
 import org.purl.net.wonderland.nlp.resources.SynsetFormatter;
 import com.jidesoft.plaf.LookAndFeelFactory;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.Enumeration;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -43,7 +41,6 @@ import javax.swing.tree.TreePath;
 import net.didion.jwnl.data.POS;
 import net.didion.jwnl.data.Synset;
 import org.purl.net.wonderland.W;
-import org.purl.net.wonderland.kb.CoGuiWrapper;
 import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
 
 /**
@@ -52,8 +49,15 @@ import org.purl.net.wonderland.nlp.resources.WordNetWrapper;
  */
 public class WordNetExplorer extends javax.swing.JFrame {
 
-    public static final WordNetExplorer instance = new WordNetExplorer();
+    private static WordNetExplorer instance = null;
     private static final String sensesNodeName = "Senses";
+
+    static WordNetExplorer instance() {
+        if (instance == null) {
+            instance = new WordNetExplorer();
+        }
+        return instance;
+    }
     // private File kbFile = new File(/*System.getProperty("TMP"),*/"_WordNetExplorer_temp_.cogxml");
     private SynsetFormatter userData = null;
 
@@ -62,16 +66,6 @@ public class WordNetExplorer extends javax.swing.JFrame {
         initComponents();
         setSize(800, 600);
         fillResponse(null);
-
-        CoGuiWrapper.instance().setWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                CoGuiWrapper.instance().hideGui();
-                setVisible(true);
-            }
-        });
-
     }
 
     /** This method is called from within the constructor to
