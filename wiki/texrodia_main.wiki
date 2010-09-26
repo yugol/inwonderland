@@ -5,7 +5,7 @@ A tiny filter used to alter `.tex` files before processing
 them with (La)TeX. It changes Romanian diacritics with corresponding TeX
 macros as can be seen in the table below.
 
-|| *Unicode character* || *TeX Macro* ||
+|| *Unicode character* || *TeX macro* ||
 || Ă || \u{A} ||
 || ă || \u{a} ||
 || Â || \^{A} ||
