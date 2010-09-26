@@ -9,7 +9,7 @@ Inspired by the Logo programming language, a particular attention was paid on or
 
 
 == Keywords ==
-LearningAid, TurtleGraphics, IDE
+Learning.Aid, Turtle.Graphics, IDE
 
 == Dependencies ==
   * The Jython Project [http://www.jython.org/]
