@@ -1,0 +1,31 @@
+\documentclass[12pt]{article}
+
+\title{Diacritice în limba română}
+\author{âăîșț ÂĂÎȘȚ}
+
+\begin{document}
+\maketitle
+
+\begin{tabular}{|c|c|}
+\hline Symbol & MBCE \\ 
+\hline â & C3A2 \\ 
+\hline Â & C382 \\ 
+\hline ă & C483 \\ 
+\hline Ă & C482 \\ 
+\hline î & C3AE \\ 
+\hline Î & C38E \\ 
+\hline ș & C899 \\ 
+\hline Ș & C898 \\ 
+\hline ț & C89B \\ 
+\hline Ț & C89A \\ 
+\hline 
+\end{tabular} 
+
+
+
+
+
+
+
+
+\end{document}
