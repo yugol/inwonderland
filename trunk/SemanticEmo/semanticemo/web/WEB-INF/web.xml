@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- filter>
+        <filter-name>SessionFilter</filter-name>
+        <filter-class>ro.uaic.info.semanticemo.SessionFilter</filter-class>
+        <init-param>
+            <param-name>emoSearchEngine</param-name>
+            <param-value>emoSearchEngine</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SessionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping -->
+    <servlet>
+        <servlet-name>FullEmoWheel</servlet-name>
+        <servlet-class>ro.uaic.info.semanticemo.FullEmoWheel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResultEmoWheel</servlet-name>
+        <servlet-class>ro.uaic.info.semanticemo.ResultEmoWheel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArticleHtml</servlet-name>
+        <servlet-class>ro.uaic.info.semanticemo.ArticleHtml</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArticleText</servlet-name>
+        <servlet-class>ro.uaic.info.semanticemo.ArticleText</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArticleEmoMarkup</servlet-name>
+        <servlet-class>ro.uaic.info.semanticemo.ArticleEmoMarkup</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FullEmoWheel</servlet-name>
+        <url-pattern>/FullEmoWheel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResultEmoWheel</servlet-name>
+        <url-pattern>/ResultEmoWheel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArticleText</servlet-name>
+        <url-pattern>/ArticleText</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArticleEmoMarkup</servlet-name>
+        <url-pattern>/ArticleEmoMarkup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArticleHtml</servlet-name>
+        <url-pattern>/ArticleHtml</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <env-entry>
+        <env-entry-name>wonderland.data.path</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>C:/Users/Iulian/Projects/wanderland/data/</env-entry-value>
+    </env-entry>
+</web-app>
