@@ -13,7 +13,7 @@ Learning.Aid, Turtle.Graphics, IDE
 
 == Dependencies ==
   * The Jython Project [http://www.jython.org/]
-  * NetBeans IDE [http://netbeans.org/]
+  * Net.Beans IDE [http://netbeans.org/]
   * Logo Foundation [http://el.media.mit.edu/logo-foundation/logo/index.html]
   * jturtle-code [http://www.rg16.at/~glingl/jturtle-code/]
   * jEdit [http://www.jedit.org/]
