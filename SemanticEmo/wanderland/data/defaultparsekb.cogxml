@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cogxml>
+<support name="vocabulary">
+<conceptTypes>
+<ctype id="_ct25" label="NNS" x="515" y="258">
+<translation descr="Noun, plural" label="NNS" lang="en"/>
+</ctype>
+<ctype id="_ct24" label="NNPS" x="919" y="320">
+<translation descr="Proper Noun, plural" label="NNPS" lang="en"/>
+</ctype>
+<ctype id="_ct23" label="NNP" x="818" y="320">
+<translation descr="Proper Noun, singular" label="NNP" lang="en"/>
+</ctype>
+<ctype id="_ct22" label="Proper noun" x="919" y="258">
+<translation descr="" label="Proper noun" lang="en"/>
+</ctype>
+<ctype id="_ct29" label="SpPronoun" x="414" y="196">
+<translation descr="" label="SpPronoun" lang="en"/>
+</ctype>
+<ctype id="_ct28" label="POS" x="1828" y="196">
+<translation descr="Possessive Ending &#10;e.g. Nouns ending in 's" label="POS" lang="en"/>
+</ctype>
+<ctype id="_ct27" label="PDT" x="1222" y="196">
+<translation descr="Predeterminer &#10;e.g. all, both ... when they precede an article" label="PDT" lang="en"/>
+</ctype>
+<ctype id="_ct68" label=":" x="1121" y="258">
+<translation descr="" label=":" lang="en"/>
+</ctype>
+<ctype id="_ct69" label="``" x="616" y="258">
+<translation descr="" label="``" lang="en"/>
+</ctype>
+<ctype id="_ct66" label="," x="717" y="258">
+<translation descr="" label="," lang="en"/>
+</ctype>
+<ctype id="_ct67" label="." x="1323" y="258">
+<translation descr="" label="." lang="en"/>
+</ctype>
+<ctype id="_ct61" label="#" x="1222" y="258">
+<translation descr="" label="#" lang="en"/>
+</ctype>
+<ctype id="_ct60" label="SpPunct" x="919" y="196">
+<translation descr="" label="SpPunct" lang="en"/>
+</ctype>
+<ctype id="_ct65" label=")" x="1525" y="258">
+<translation descr="" label=")" lang="en"/>
+</ctype>
+<ctype id="_ct64" label="(" x="1424" y="258">
+<translation descr="" label="(" lang="en"/>
+</ctype>
+<ctype id="_ct63" label="&quot;" x="818" y="258">
+<translation descr="" label="&quot;" lang="en"/>
+</ctype>
+<ctype id="_ct62" label="$" x="1020" y="258">
+<translation descr="" label="$" lang="en"/>
+</ctype>
+<ctype id="_ct20" label="MD" x="1525" y="196">
+<translation descr="Modal &#10;e.g. can, could, might, may..." label="MD" lang="en"/>
+</ctype>
+<ctype id="_ct21" label="NN" x="1020" y="196">
+<translation descr="Noun, singular or mass" label="NN" lang="en"/>
+</ctype>
+<ctype id="_ct34" label="RBS" x="2434" y="258">
+<translation descr="Adverb, superlative" label="RBS" lang="en"/>
+</ctype>
+<ctype id="_ct33" label="RBR" x="2333" y="258">
+<translation descr="Adverb, comparative &#10;Adverbs with the comparative ending -er, with a strictly comparative meaning." label="RBR" lang="en"/>
+</ctype>
+<ctype id="_ct36" label="SYM" x="1121" y="196">
+<translation descr="Symbol &#10;Should be used for mathematical, scientific or technical symbols" label="SYM" lang="en"/>
+</ctype>
+<ctype id="_ct35" label="RP" x="1626" y="196">
+<translation descr="Particle" label="RP" lang="en"/>
+</ctype>
+<ctype id="_ct38" label="UH" x="2434" y="196">
+<translation descr="Interjection &#10;e.g. uh, well, yes, my..." label="UH" lang="en"/>
+</ctype>
+<ctype id="_ct37" label="TO" x="2333" y="196">
+<translation descr="to" label="TO" lang="en"/>
+</ctype>
+<ctype id="_ct39" label="SpVerb" x="2131" y="196">
+<translation descr="" label="SpVerb" lang="en"/>
+</ctype>
+<ctype id="_ct0" label="Top" x="1626" y="10">
+<translation descr="" label="Top" lang="en"/>
+</ctype>
+<ctype id="_ct1" label="SpTagging" x="1626" y="72">
+<translation descr="Stanford Parser part of speech tagging" label="SpTagging" lang="en"/>
+</ctype>
+<ctype id="_ct72" label="WP" x="10" y="258">
+<translation descr="Wh-pronoun &#10;e.g. what, who, whom..." label="WP" lang="en"/>
+</ctype>
+<ctype id="_ct74" label="-RRB-" x="1525" y="320">
+<translation descr="" label="-RRB-" lang="en"/>
+</ctype>
+<ctype id="_ct73" label="-LRB-" x="1424" y="320">
+<translation descr="" label="-LRB-" lang="en"/>
+</ctype>
+<ctype id="_ct30" label="PRP" x="111" y="258">
+<translation descr="Personal Pronoun &#10;e.g. I, me, you, he..." label="PRP" lang="en"/>
+</ctype>
+<ctype id="_ct31" label="PRP$" x="313" y="258">
+<translation descr="Possessive Pronoun &#10;e.g. my, your, mine, yours..." label="PRP$" lang="en"/>
+</ctype>
+<ctype id="_ct32" label="RB" x="2535" y="196">
+<translation descr="Adverb &#10;Most words that end in -ly as well as degree words like quite, too and very" label="RB" lang="en"/>
+</ctype>
+<ctype id="_ct48" label="WRB" x="2232" y="258">
+<translation descr="Wh-adverb &#10;e.g. how, where why" label="WRB" lang="en"/>
+</ctype>
+<ctype id="_ct46" label="WDT" x="414" y="258">
+<translation descr="Wh-determiner &#10;e.g. which, and that when it is used as a relative pronoun" label="WDT" lang="en"/>
+</ctype>
+<ctype id="_ct47" label="WP$" x="212" y="258">
+<translation descr="Possessive wh-pronoun &#10;e.g. whose" label="WP$" lang="en"/>
+</ctype>
+<ctype id="_ct44" label="VBP" x="1828" y="258">
+<translation descr="Verb, non-3rd person singular present" label="VBP" lang="en"/>
+</ctype>
+<ctype id="_ct45" label="VBZ" x="2131" y="258">
+<translation descr="Verb, 3rd person singular present" label="VBZ" lang="en"/>
+</ctype>
+<ctype id="_ct43" label="VBN" x="1626" y="258">
+<translation descr="Verb, past participle" label="VBN" lang="en"/>
+</ctype>
+<ctype id="_ct42" label="VBG" x="1727" y="258">
+<translation descr="Verb, gerund or persent participle" label="VBG" lang="en"/>
+</ctype>
+<ctype id="_ct41" label="VBD" x="1929" y="258">
+<translation descr="Verb, past tense &#10;includes the conditional form of the verb to be" label="VBD" lang="en"/>
+</ctype>
+<ctype id="_ct40" label="VB" x="2030" y="258">
+<translation descr="Verb, base form &#10;subsumes imperatives, infinitives and subjunctives" label="VB" lang="en"/>
+</ctype>
+<ctype id="_ct16" label="JJ" x="2636" y="196">
+<translation descr="Adjective" label="JJ" lang="en"/>
+</ctype>
+<ctype id="_ct15" label="IN" x="1727" y="196">
+<translation descr="Preposision or subordinating conjunction" label="IN" lang="en"/>
+</ctype>
+<ctype id="_ct18" label="JJS" x="2535" y="258">
+<translation descr="Adjective, superlative" label="JJS" lang="en"/>
+</ctype>
+<ctype id="_ct17" label="JJR" x="2636" y="258">
+<translation descr="Adjective, comparative" label="JJR" lang="en"/>
+</ctype>
+<ctype id="_ct12" label="DT" x="818" y="196">
+<translation descr="Determiner" label="DT" lang="en"/>
+</ctype>
+<ctype id="_ct11" label="CD" x="1323" y="196">
+<translation descr="Cardinal Number" label="CD" lang="en"/>
+</ctype>
+<ctype id="_ct14" label="FW" x="2232" y="196">
+<translation descr="Foreign Word" label="FW" lang="en"/>
+</ctype>
+<ctype id="_ct13" label="EX" x="2030" y="196">
+<translation descr="Existential 'there'" label="EX" lang="en"/>
+</ctype>
+<ctype id="_ct59" label="SpPosTag" x="1626" y="134">
+<translation descr="" label="SpPosTag" lang="en"/>
+</ctype>
+<ctype id="_ct19" label="LS" x="1424" y="196">
+<translation descr="List Item Marker" label="LS" lang="en"/>
+</ctype>
+<ctype id="_ct10" label="CC" x="1929" y="196">
+<translation descr="Coordinating conjunction &#10;e.g. and,but,or..." label="CC" lang="en"/>
+</ctype>
+<order id1="_ct63" id2="_ct60"/>
+<order id1="_ct61" id2="_ct60"/>
+<order id1="_ct44" id2="_ct39"/>
+<order id1="_ct48" id2="_ct32"/>
+<order id1="_ct40" id2="_ct39"/>
+<order id1="_ct38" id2="_ct59"/>
+<order id1="_ct33" id2="_ct32"/>
+<order id1="_ct45" id2="_ct39"/>
+<order id1="_ct43" id2="_ct39"/>
+<order id1="_ct62" id2="_ct60"/>
+<order id1="_ct41" id2="_ct39"/>
+<order id1="_ct67" id2="_ct60"/>
+<order id1="_ct24" id2="_ct22"/>
+<order id1="_ct36" id2="_ct59"/>
+<order id1="_ct72" id2="_ct29"/>
+<order id1="_ct64" id2="_ct60"/>
+<order id1="_ct21" id2="_ct59"/>
+<order id1="_ct20" id2="_ct59"/>
+<order id1="_ct60" id2="_ct59"/>
+<order id1="_ct31" id2="_ct29"/>
+<order id1="_ct27" id2="_ct59"/>
+<order id1="_ct73" id2="_ct64"/>
+<order id1="_ct13" id2="_ct59"/>
+<order id1="_ct46" id2="_ct12"/>
+<order id1="_ct1" id2="_ct0"/>
+<order id1="_ct47" id2="_ct29"/>
+<order id1="_ct35" id2="_ct59"/>
+<order id1="_ct15" id2="_ct59"/>
+<order id1="_ct65" id2="_ct60"/>
+<order id1="_ct12" id2="_ct59"/>
+<order id1="_ct37" id2="_ct59"/>
+<order id1="_ct29" id2="_ct59"/>
+<order id1="_ct22" id2="_ct21"/>
+<order id1="_ct68" id2="_ct60"/>
+<order id1="_ct11" id2="_ct59"/>
+<order id1="_ct23" id2="_ct22"/>
+<order id1="_ct25" id2="_ct21"/>
+<order id1="_ct34" id2="_ct32"/>
+<order id1="_ct30" id2="_ct29"/>
+<order id1="_ct10" id2="_ct59"/>
+<order id1="_ct18" id2="_ct16"/>
+<order id1="_ct59" id2="_ct1"/>
+<order id1="_ct14" id2="_ct59"/>
+<order id1="_ct39" id2="_ct59"/>
+<order id1="_ct69" id2="_ct60"/>
+<order id1="_ct42" id2="_ct39"/>
+<order id1="_ct16" id2="_ct59"/>
+<order id1="_ct32" id2="_ct59"/>
+<order id1="_ct19" id2="_ct59"/>
+<order id1="_ct28" id2="_ct59"/>
+<order id1="_ct66" id2="_ct60"/>
+<order id1="_ct17" id2="_ct16"/>
+<order id1="_ct74" id2="_ct65"/>
+</conceptTypes>
+<relationTypes>
+<rtype id="_rt19" idSignature="_ct59 _ct59" label="nsubj">
+<translation descr="nominal subject" label="nsubj" lang="en"/>
+</rtype>
+<rtype id="_rt15" idSignature="_ct59 _ct59" label="agent">
+<translation descr="agent" label="agent" lang="en"/>
+</rtype>
+<rtype id="_rt14" idSignature="_ct59 _ct59" label="cop">
+<translation descr="copula" label="cop" lang="en"/>
+</rtype>
+<rtype id="_rt17" idSignature="_ct59 _ct59" label="subj">
+<translation descr="subject" label="subj" lang="en"/>
+</rtype>
+<rtype id="_rt16" idSignature="_ct59 _ct59" label="comp">
+<translation descr="complement" label="comp" lang="en"/>
+</rtype>
+<rtype id="_rt11" idSignature="_ct59 _ct59" label="sdep">
+<translation descr="semantic dependent" label="sdep" lang="en"/>
+</rtype>
+<rtype id="_rt10" idSignature="_ct59 _ct59" label="ref">
+<translation descr="referent" label="ref" lang="en"/>
+</rtype>
+<rtype id="_rt13" idSignature="_ct59 _ct59" label="auxpass">
+<translation descr="passive auxiliary" label="auxpass" lang="en"/>
+</rtype>
+<rtype id="_rt12" idSignature="_ct59 _ct59" label="xsubj">
+<translation descr="controlling subject" label="xsubj" lang="en"/>
+</rtype>
+<rtype id="_rt58" idSignature="_ct59 _ct59" label="pcomp">
+<translation descr="prepositional complement" label="pcomp" lang="en"/>
+</rtype>
+<rtype id="_rt59" idSignature="_ct59 _ct59" label="complm">
+<translation descr="complementizer" label="complm" lang="en"/>
+</rtype>
+<rtype id="_rt20" idSignature="_ct59 _ct59" label="nsubjpass">
+<translation descr="passive nominal subject" label="nsubjpass" lang="en"/>
+</rtype>
+<rtype id="_rt56" idSignature="_ct59 _ct59" label="rel">
+<translation descr="relative (word introducing a rcmod)" label="rel" lang="en"/>
+</rtype>
+<rtype id="_rt57" idSignature="_ct59 _ct59" label="cc">
+<translation descr="coordination" label="cc" lang="en"/>
+</rtype>
+<rtype id="_rt54" idSignature="_ct59 _ct59" label="pobj">
+<translation descr="object of preposition" label="pobj" lang="en"/>
+</rtype>
+<rtype id="_rt55" idSignature="_ct59 _ct59" label="mark">
+<translation descr="marker (word introducing an advcl)" label="mark" lang="en"/>
+</rtype>
+<rtype id="_rt29" idSignature="_ct59 _ct59" label="predet">
+<translation descr="predeterminer" label="predet" lang="en"/>
+</rtype>
+<rtype id="_rt28" idSignature="_ct59 _ct59" label="det">
+<translation descr="determiner" label="det" lang="en"/>
+</rtype>
+<rtype id="_rt27" idSignature="_ct59 _ct59" label="purpcl">
+<translation descr="purpose clause modifier" label="purpcl" lang="en"/>
+</rtype>
+<rtype id="_rt26" idSignature="_ct59 _ct59" label="advcl">
+<translation descr="adverbial clause modifier" label="advcl" lang="en"/>
+</rtype>
+<rtype id="_rt25" idSignature="_ct59 _ct59" label="appos">
+<translation descr="appositional modifier" label="appos" lang="en"/>
+</rtype>
+<rtype id="_rt24" idSignature="_ct59 _ct59" label="amod">
+<translation descr="adjectival modifier" label="amod" lang="en"/>
+</rtype>
+<rtype id="_rt23" idSignature="_ct59 _ct59" label="abbrev">
+<translation descr="abbreviation modifier" label="abbrev" lang="en"/>
+</rtype>
+<rtype id="_rt22" idSignature="_ct59 _ct59" label="csubjpass">
+<translation descr="passive clausal subject" label="csubjpass" lang="en"/>
+</rtype>
+<rtype id="_rt21" idSignature="_ct59 _ct59" label="csubj">
+<translation descr="clausal subject" label="csubj" lang="en"/>
+</rtype>
+<rtype id="_rt30" idSignature="_ct59 _ct59" label="preconj">
+<translation descr="preconjunct" label="preconj" lang="en"/>
+</rtype>
+<rtype id="_rt31" idSignature="_ct59 _ct59" label="infmod">
+<translation descr="infinitival modifier" label="infmod" lang="en"/>
+</rtype>
+<rtype id="_rt42" idSignature="_ct59 _ct59" label="prep">
+<translation descr="prepositional modifier" label="prep" lang="en"/>
+</rtype>
+<rtype id="_rt41" idSignature="_ct59 _ct59" label="number">
+<translation descr="element of compound number" label="number" lang="en"/>
+</rtype>
+<rtype id="_rt40" idSignature="_ct59 _ct59" label="num">
+<translation descr="numeric modifier" label="num" lang="en"/>
+</rtype>
+<rtype id="_rt0" idSignature="_ct0 _ct0" label="Link">
+<translation descr="" label="Link" lang="en"/>
+</rtype>
+<rtype id="_rt1" idSignature="_ct59 _ct59" label="dep">
+<translation descr="dependent" label="dep" lang="en"/>
+</rtype>
+<rtype id="_rt34" idSignature="_ct59 _ct59" label="neg">
+<translation descr="negation modifier" label="neg" lang="en"/>
+</rtype>
+<rtype id="_rt2" idSignature="_ct59 _ct59" label="aux">
+<translation descr="auxiliary" label="aux" lang="en"/>
+</rtype>
+<rtype id="_rt35" idSignature="_ct59 _ct59" label="rcmod">
+<translation descr="relative clause modifier" label="rcmod" lang="en"/>
+</rtype>
+<rtype id="_rt3" idSignature="_ct59 _ct59" label="arg">
+<translation descr="argument" label="arg" lang="en"/>
+</rtype>
+<rtype id="_rt32" idSignature="_ct59 _ct59" label="partmod">
+<translation descr="participial modifier" label="partmod" lang="en"/>
+</rtype>
+<rtype id="_rt4" idSignature="_ct59 _ct59" label="prepc">
+<translation descr="prepositional modifier when the prepositional phrase is a clause" label="prepc" lang="en"/>
+</rtype>
+<rtype id="_rt33" idSignature="_ct59 _ct59" label="advmod">
+<translation descr="adverbial modifier" label="advmod" lang="en"/>
+</rtype>
+<rtype id="_rt5" idSignature="_ct59 _ct59" label="conj">
+<translation descr="conjunct" label="conj" lang="en"/>
+</rtype>
+<rtype id="_rt38" idSignature="_ct59 _ct59" label="measure">
+<translation descr="measure-phrase modifier" label="measure" lang="en"/>
+</rtype>
+<rtype id="_rt6" idSignature="_ct59 _ct59" label="expl">
+<translation descr="expletive (expletive &quot;there&quot;)" label="expl" lang="en"/>
+</rtype>
+<rtype id="_rt39" idSignature="_ct59 _ct59" label="nn">
+<translation descr="noun compound modifier" label="nn" lang="en"/>
+</rtype>
+<rtype id="_rt36" idSignature="_ct59 _ct59" label="quantmod">
+<translation descr="quantifier modifier" label="quantmod" lang="en"/>
+</rtype>
+<rtype id="_rt7" idSignature="_ct59 _ct59" label="mod">
+<translation descr="modifier" label="mod" lang="en"/>
+</rtype>
+<rtype id="_rt37" idSignature="_ct59 _ct59" label="tmod">
+<translation descr="temporal modifier" label="tmod" lang="en"/>
+</rtype>
+<rtype id="_rt8" idSignature="_ct59 _ct59" label="parataxis">
+<translation descr="parataxis" label="parataxis" lang="en"/>
+</rtype>
+<rtype id="_rt9" idSignature="_ct59 _ct59" label="punct">
+<translation descr="punctuation" label="punct" lang="en"/>
+</rtype>
+<rtype id="_rt51" idSignature="_ct59 _ct59" label="obj">
+<translation descr="object" label="obj" lang="en"/>
+</rtype>
+<rtype id="_rt50" idSignature="_ct59 _ct59" label="compl">
+<translation descr="complementizer" label="compl" lang="en"/>
+</rtype>
+<rtype id="_rt53" idSignature="_ct59 _ct59" label="iobj">
+<translation descr="indirect object" label="iobj" lang="en"/>
+</rtype>
+<rtype id="_rt52" idSignature="_ct59 _ct59" label="dobj">
+<translation descr="direct object" label="dobj" lang="en"/>
+</rtype>
+<rtype id="_rt43" idSignature="_ct59 _ct59" label="poss">
+<translation descr="possession modifier" label="poss" lang="en"/>
+</rtype>
+<rtype id="_rt44" idSignature="_ct59 _ct59" label="possessive">
+<translation descr="possessive modifier ('s)" label="possessive" lang="en"/>
+</rtype>
+<rtype id="_rt45" idSignature="_ct59 _ct59" label="prt">
+<translation descr="phrasal verb particle" label="prt" lang="en"/>
+</rtype>
+<rtype id="_rt46" idSignature="_ct59 _ct59" label="acomp">
+<translation descr="adjectival complement" label="acomp" lang="en"/>
+</rtype>
+<rtype id="_rt47" idSignature="_ct59 _ct59" label="attr">
+<translation descr="attributive" label="attr" lang="en"/>
+</rtype>
+<rtype id="_rt48" idSignature="_ct59 _ct59" label="ccomp">
+<translation descr="clausal complement with internal subject" label="ccomp" lang="en"/>
+</rtype>
+<rtype id="_rt49" idSignature="_ct59 _ct59" label="xcomp">
+<translation descr="clausal complement with external subject" label="xcomp" lang="en"/>
+</rtype>
+<rtype id="_rt60" idSignature="_ct59 _ct59" label="SpRel">
+<translation descr="Stanford Parser dependency" label="SpRel" lang="en"/>
+</rtype>
+<order id1="_rt33" id2="_rt7"/>
+<order id1="_rt34" id2="_rt33"/>
+<order id1="_rt54" id2="_rt51"/>
+<order id1="_rt48" id2="_rt16"/>
+<order id1="_rt56" id2="_rt16"/>
+<order id1="_rt30" id2="_rt7"/>
+<order id1="_rt42" id2="_rt7"/>
+<order id1="_rt5" id2="_rt1"/>
+<order id1="_rt31" id2="_rt7"/>
+<order id1="_rt22" id2="_rt21"/>
+<order id1="_rt2" id2="_rt1"/>
+<order id1="_rt20" id2="_rt19"/>
+<order id1="_rt51" id2="_rt16"/>
+<order id1="_rt29" id2="_rt7"/>
+<order id1="_rt21" id2="_rt17"/>
+<order id1="_rt28" id2="_rt7"/>
+<order id1="_rt19" id2="_rt17"/>
+<order id1="_rt11" id2="_rt1"/>
+<order id1="_rt36" id2="_rt7"/>
+<order id1="_rt14" id2="_rt2"/>
+<order id1="_rt9" id2="_rt1"/>
+<order id1="_rt35" id2="_rt7"/>
+<order id1="_rt24" id2="_rt7"/>
+<order id1="_rt6" id2="_rt1"/>
+<order id1="_rt17" id2="_rt3"/>
+<order id1="_rt44" id2="_rt7"/>
+<order id1="_rt41" id2="_rt7"/>
+<order id1="_rt46" id2="_rt16"/>
+<order id1="_rt45" id2="_rt7"/>
+<order id1="_rt23" id2="_rt7"/>
+<order id1="_rt32" id2="_rt7"/>
+<order id1="_rt38" id2="_rt7"/>
+<order id1="_rt13" id2="_rt2"/>
+<order id1="_rt53" id2="_rt51"/>
+<order id1="_rt8" id2="_rt1"/>
+<order id1="_rt39" id2="_rt7"/>
+<order id1="_rt47" id2="_rt16"/>
+<order id1="_rt50" id2="_rt16"/>
+<order id1="_rt58" id2="_rt16"/>
+<order id1="_rt3" id2="_rt1"/>
+<order id1="_rt27" id2="_rt7"/>
+<order id1="_rt55" id2="_rt16"/>
+<order id1="_rt12" id2="_rt11"/>
+<order id1="_rt57" id2="_rt1"/>
+<order id1="_rt26" id2="_rt7"/>
+<order id1="_rt1" id2="_rt60"/>
+<order id1="_rt43" id2="_rt7"/>
+<order id1="_rt16" id2="_rt3"/>
+<order id1="_rt4" id2="_rt42"/>
+<order id1="_rt15" id2="_rt3"/>
+<order id1="_rt59" id2="_rt16"/>
+<order id1="_rt60" id2="_rt0"/>
+<order id1="_rt37" id2="_rt7"/>
+<order id1="_rt52" id2="_rt51"/>
+<order id1="_rt7" id2="_rt1"/>
+<order id1="_rt40" id2="_rt7"/>
+<order id1="_rt49" id2="_rt16"/>
+<order id1="_rt25" id2="_rt7"/>
+<order id1="_rt10" id2="_rt1"/>
+</relationTypes>
+<nestingTypes>
+<ntype id="_nt0" label="Nesting">
+<translation descr="" label="Nesting" lang="en"/>
+</ntype>
+</nestingTypes>
+<conformity/>
+<modules/>
+</support>
+<graph id="_g1" label="_g1" nature="fact" set="default_set"/>
+</cogxml>
