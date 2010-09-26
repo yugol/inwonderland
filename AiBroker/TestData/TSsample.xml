@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ts>	
+	<parameters>
+		<parameter val="" min="" max="100" type="">param1</parameter>
+		<parameter val="5" min="" max="" type="">param3</parameter>
+	</parameters>
+	<rule>(And (MomentumZeroline param1) (MomentumLowerUpperBound param2 param3 ))</rule>
+</ts>

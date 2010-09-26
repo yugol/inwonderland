@@ -1,0 +1,320 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectGuid>{1FBD787F-1131-4D8C-874E-9E2534A02A7B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TradingCommon</RootNamespace>
+    <AssemblyName>TradingCommon</AssemblyName>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Iulian\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Test' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE;TEST</DefineConstants>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\..\..\lib\ANTLR-3.1.3\bin\net-2.0\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-math-2.0">
+      <HintPath>..\..\..\lib\commons-math-2.0\commons-math-2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\lib\ikvm-0.42.0.3\bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\..\..\lib\ikvm-0.42.0.3\bin\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\..\Program Files\SharpDevelop\3.0\bin\Tools\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TA-Lib-Core">
+      <HintPath>..\..\..\lib\ta-lib\dotnet\src\Release\TA-Lib-Core.dll</HintPath>
+    </Reference>
+    <Reference Include="weka">
+      <HintPath>..\..\..\lib\Weka-3-6\weka.exe</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>..\..\..\lib\zedgraph_dll_v515\zedgraph_dll_v5.1.5\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis\RelativeTrendEvolution.cs" />
+    <Compile Include="Analysis\RelativeTrendEvolution_Test.cs">
+      <DependentUpon>RelativeTrendEvolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BidAsk.cs" />
+    <Compile Include="BoundedDataSpec.cs" />
+    <Compile Include="DataSpec.cs" />
+    <Compile Include="EOD.cs" />
+    <Compile Include="EOD_Test.cs">
+      <DependentUpon>EOD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Indicators\Delta.cs" />
+    <Compile Include="Indicators\Delta_Test.cs">
+      <DependentUpon>Delta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Indicators\Psar.cs" />
+    <Compile Include="Indicators\Psar_Test.cs">
+      <DependentUpon>Psar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Storage\DataUtil.cs" />
+    <Compile Include="Storage\DataUtil_Test.cs">
+      <DependentUpon>DataUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tick.cs" />
+    <Compile Include="Tick_Test.cs">
+      <DependentUpon>Tick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSeries.cs" />
+    <Compile Include="TimeSeries_Test.cs">
+      <DependentUpon>TimeSeries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeSlice.cs" />
+    <Compile Include="Title.cs" />
+    <Compile Include="Title_Test.cs">
+      <DependentUpon>Title.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRuleNode.cs" />
+    <Compile Include="Traders\BasicRules\BasicRule_Test.cs">
+      <DependentUpon>BasicRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\CciLambert.cs" />
+    <Compile Include="Traders\BasicRules\CciLambert_Test.cs">
+      <DependentUpon>CciLambert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\CciReversal.cs" />
+    <Compile Include="Traders\BasicRules\CciReversal_Test.cs">
+      <DependentUpon>CciReversal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\MacdSma.cs" />
+    <Compile Include="Traders\BasicRules\MacdSma_Test.cs">
+      <DependentUpon>MacdSma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\MomentumLowerUpperBound_Test.cs">
+      <DependentUpon>MomentumLowerUpperBound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\RsiReversal.cs" />
+    <Compile Include="Traders\BasicRules\RsiReversal_Test.cs">
+      <DependentUpon>RsiReversal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\SmaSmaIntersection.cs" />
+    <Compile Include="Traders\BasicRules\SmaSmaIntersection_Test.cs">
+      <DependentUpon>SmaSmaIntersection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\BasicRules\StochasticsSma.cs" />
+    <Compile Include="Traders\BasicRules\StochasticsSma_Test.cs">
+      <DependentUpon>StochasticsSma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\CompositionRuleNode.cs" />
+    <Compile Include="Traders\Decision.cs" />
+    <Compile Include="Traders\Optimization\FitnessParameters.cs" />
+    <Compile Include="Traders\Optimization\TSGA.cs" />
+    <Compile Include="Traders\Optimization\ISolution.cs" />
+    <Compile Include="Traders\Optimization\GAParameters.cs" />
+    <Compile Include="Traders\Optimization\Search\GenotypeParameters.cs" />
+    <Compile Include="Traders\Optimization\Search\SearchParameters.cs" />
+    <Compile Include="Traders\Optimization\Search\TSRuleGenotype.cs" />
+    <Compile Include="Traders\Optimization\Search\TSRuleGenotype_Test.cs">
+      <DependentUpon>TSRuleGenotype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\Search\TSSeeker.cs" />
+    <Compile Include="Traders\Optimization\SimulationParameters.cs" />
+    <Compile Include="Traders\Optimization\SimulatorSpec.cs" />
+    <Compile Include="Traders\Optimization\SolutionBuffer.cs" />
+    <Compile Include="Traders\Optimization\Solution.cs" />
+    <Compile Include="Traders\Optimization\TSGA_Test.cs">
+      <DependentUpon>TSGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\TSGenotype.cs" />
+    <Compile Include="Traders\Optimization\TSOptimizer.cs" />
+    <Compile Include="Traders\Optimization\TSTraderSimulation.cs" />
+    <Compile Include="Traders\Optimization\TSTraderSimulation_Test.cs">
+      <DependentUpon>TSTraderSimulation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\Tune\TSParameterGenotype.cs" />
+    <Compile Include="Traders\Optimization\Tune\TSParameterGenotype_Test.cs">
+      <DependentUpon>TSparameterGenotype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\Tune\TSTuner.cs" />
+    <Compile Include="Traders\Optimization\Tune\TSTunerBruteForce.cs" />
+    <Compile Include="Traders\Optimization\Tune\TSTunerBruteForce_Test.cs">
+      <DependentUpon>TSTunerBruteForce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\Tune\TSTunerGA.cs" />
+    <Compile Include="Traders\Optimization\Tune\TSTunerGA_Test.cs">
+      <DependentUpon>TSTunerGA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Optimization\Tune\TuneParameters.cs" />
+    <Compile Include="Traders\Optimization\Tune\ParameterGene.cs" />
+    <Compile Include="Traders\RuleTree_Test.cs">
+      <DependentUpon>RuleTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\TSParameter.cs" />
+    <Compile Include="Traders\TSParameterInt.cs" />
+    <Compile Include="Traders\TSParameterReal.cs" />
+    <Compile Include="Traders\TSParameter_Test.cs">
+      <DependentUpon>TSParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\RuleTree.cs" />
+    <Compile Include="Traders\Trade.cs" />
+    <Compile Include="Traders\TradingSystem.cs" />
+    <Compile Include="Traders\TradingSystem_Test.cs">
+      <DependentUpon>TradingSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\TSParser.cs" />
+    <Compile Include="Traders\TSParser_Test.cs">
+      <DependentUpon>TsParser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\TSStatus.cs" />
+    <Compile Include="Traders\TSStatus_Test.cs">
+      <DependentUpon>TSStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\TSTrader.cs" />
+    <Compile Include="Traders\TSTraderTester.cs" />
+    <Compile Include="Traders\BasicRules\BasicRule.cs" />
+    <Compile Include="Traders\BasicRules\MomentumLowerUpperBound.cs" />
+    <Compile Include="Traders\BasicRules\MomentumZeroline.cs" />
+    <Compile Include="Traders\BasicRules\MomentumZeroline_Test.cs">
+      <DependentUpon>MomentumZeroline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\CompositionRules\And.cs" />
+    <Compile Include="Traders\CompositionRules\And_Test.cs">
+      <DependentUpon>And.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\CompositionRules\CompositionRule.cs" />
+    <Compile Include="Traders\CompositionRules\Or.cs" />
+    <Compile Include="Traders\CompositionRules\Or_Test.cs">
+      <DependentUpon>Or.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\RuleParsing\RuleLexer.cs" />
+    <Compile Include="Traders\RuleParsing\RuleParser.cs" />
+    <Compile Include="Traders\Operation.cs" />
+    <Compile Include="Traders\Operation_Test.cs">
+      <DependentUpon>Operation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Order.cs" />
+    <Compile Include="Traders\Order_Test.cs">
+      <DependentUpon>Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Traders\Transaction.cs" />
+    <Compile Include="Traders\Transaction_Test.cs">
+      <DependentUpon>Transaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\ComboTickTitleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Ui\ComboTickTitleSelector.Designer.cs">
+      <DependentUpon>ComboTickTitleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\TitleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ui\TitleDialog.Designer.cs">
+      <DependentUpon>TitleDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\TreeTitleSelector.cs" />
+    <Compile Include="Ui\TreeTitleSelector.Designer.cs">
+      <DependentUpon>TreeTitleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\XORDrawing.cs" />
+    <Compile Include="Util\ArrayUtil.cs" />
+    <Compile Include="Util\DTUtil.cs" />
+    <Compile Include="Util\DTUtil_Test.cs">
+      <DependentUpon>DTUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\LinearMapper.cs" />
+    <Compile Include="Util\LinearMapper_Test.cs">
+      <DependentUpon>LinearMapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\TicksUtil.cs" />
+    <Compile Include="Util\TicksUtil_Test.cs">
+      <DependentUpon>TicksUtil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\WebPage.cs" />
+    <Compile Include="Util\WebUtil.cs" />
+    <Compile Include="Util\WebUtil_Test.cs">
+      <DependentUpon>WebUtil.cs</DependentUpon>
+    </Compile>
+    <None Include="..\AiBroker.config">
+      <Link>AiBroker.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Traders\RuleParsing\BuildRuleParser.bat" />
+    <None Include="Traders\RuleParsing\Rule.g" />
+    <None Include="Traders\RuleParsing\Rule.tokens" />
+    <None Include="tradingStatusReport.xsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Ui\ComboTickTitleSelector.resx">
+      <DependentUpon>ComboTickTitleSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\TitleDialog.resx">
+      <DependentUpon>TitleDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ui\TreeTitleSelector.resx">
+      <DependentUpon>TreeTitleSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="TradingCommon.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Analysis" />
+    <Folder Include="Traders\Optimization\Tune" />
+    <Folder Include="Traders\Optimization\Search" />
+    <Folder Include="Util" />
+    <Folder Include="Traders\Optimization" />
+    <Folder Include="Traders\BasicRules" />
+    <Folder Include="Traders\CompositionRules" />
+    <Folder Include="Traders\RuleParsing" />
+  </ItemGroup>
+</Project>
