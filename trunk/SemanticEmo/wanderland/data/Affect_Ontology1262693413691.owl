@@ -1,0 +1,1409 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY Ontology1262693413691 "http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:Ontology1262693413691="http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasControl -->
+
+    <owl:DatatypeProperty rdf:about="#hasControl">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#UtilitarianEmotion"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasIndex -->
+
+    <owl:DatatypeProperty rdf:about="#hasIndex">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#GEWEmotionalCategory"/>
+        <rdfs:domain rdf:resource="#UtilitarianEmotion"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasIntensity -->
+
+    <owl:DatatypeProperty rdf:about="#hasIntensity">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#UtilitarianEmotion"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasLabel -->
+
+    <owl:DatatypeProperty rdf:about="#hasLabel">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#GEWEmotionalCategory"/>
+        <rdfs:domain rdf:resource="#UtilitarianEmotion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasTextMark -->
+
+    <owl:DatatypeProperty rdf:about="#hasTextMark">
+        <rdfs:domain rdf:resource="#AffectiveState"/>
+        <rdfs:domain rdf:resource="#Modifier"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#hasValence -->
+
+    <owl:DatatypeProperty rdf:about="#hasValence">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#UtilitarianEmotion"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#AestheticEmotion -->
+
+    <owl:Class rdf:about="#AestheticEmotion">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#AffectDisposition -->
+
+    <owl:Class rdf:about="#AffectDisposition">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#AffectiveState -->
+
+    <owl:Class rdf:about="#AffectiveState">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Attitude -->
+
+    <owl:Class rdf:about="#Attitude">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWEmotionalCategory -->
+
+    <owl:Class rdf:about="#GEWEmotionalCategory">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasIndex"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;nonNegativeInteger"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasLabel"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#InterpersonalStance -->
+
+    <owl:Class rdf:about="#InterpersonalStance">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#InverseModifier -->
+
+    <owl:Class rdf:about="#InverseModifier">
+        <rdfs:subClassOf rdf:resource="#Modifier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Modifier -->
+
+    <owl:Class rdf:about="#Modifier">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#hasTextMark"/>
+                <owl:someValuesFrom rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Mood -->
+
+    <owl:Class rdf:about="#Mood">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#NegativeModifier -->
+
+    <owl:Class rdf:about="#NegativeModifier">
+        <rdfs:subClassOf rdf:resource="#Modifier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#PositiveModifier -->
+
+    <owl:Class rdf:about="#PositiveModifier">
+        <rdfs:subClassOf rdf:resource="#Modifier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Preference -->
+
+    <owl:Class rdf:about="#Preference">
+        <rdfs:subClassOf rdf:resource="#AffectiveState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#SelfModifier -->
+
+    <owl:Class rdf:about="#SelfModifier">
+        <rdfs:subClassOf rdf:resource="#Modifier"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#UtilitarianEmotion -->
+
+    <owl:Class rdf:about="#UtilitarianEmotion">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#AffectiveState"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasTextMark"/>
+                        <owl:someValuesFrom rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasControl"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;int"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasIntensity"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;nonNegativeInteger"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasLabel"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#hasValence"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                        <owl:onDataRange rdf:resource="&xsd;int"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Aggravatedness -->
+
+    <UtilitarianEmotion rdf:about="#Aggravatedness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-2</hasValence>
+        <hasControl rdf:datatype="&xsd;int">12</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">aggrava*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">aggravated</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Anger -->
+
+    <UtilitarianEmotion rdf:about="#Anger">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-12</hasValence>
+        <hasControl rdf:datatype="&xsd;int">61</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">anger</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">angr*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">angry</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">resent*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Apprehensiveness -->
+
+    <owl:Thing rdf:about="#Apprehensiveness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-20</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-31</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">alarm*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">apprehens*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">apprehensive</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Astonishment -->
+
+    <owl:Thing rdf:about="#Astonishment">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-36</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">7</hasValence>
+        <hasTextMark rdf:datatype="&xsd;string">astonish*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">astonished</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#AtFault -->
+
+    <UtilitarianEmotion rdf:about="#AtFault">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-12</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-2</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">fault*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling at fault</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Attentiveness -->
+
+    <UtilitarianEmotion rdf:about="#Attentiveness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-10</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">6</hasValence>
+        <hasTextMark rdf:datatype="&xsd;string">attenti*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">attentive</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Blameworthiness -->
+
+    <UtilitarianEmotion rdf:about="#Blameworthiness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-36</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-7</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">blame*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling blameworthy</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Cheerfulness -->
+
+    <owl:Thing rdf:about="#Cheerfulness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">10</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">6</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">amus*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">cheer*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">cheerful</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">fun</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">funn*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">humor*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">laugh*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">playf*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">rollick*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">smil*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Comfort -->
+
+    <owl:Thing rdf:about="#Comfort">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-17</hasControl>
+        <hasValence rdf:datatype="&xsd;int">85</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">comfort*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling comfortable</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">seren*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">tranquil*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Conceitedness -->
+
+    <UtilitarianEmotion rdf:about="#Conceitedness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">17</hasValence>
+        <hasControl rdf:datatype="&xsd;int">85</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">conceit*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >flushed with pride</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Confidence -->
+
+    <UtilitarianEmotion rdf:about="#Confidence">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-48</hasControl>
+        <hasValence rdf:datatype="&xsd;int">72</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">confident</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">confident*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">faith*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Contempt -->
+
+    <owl:Thing rdf:about="#Contempt">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-34</hasValence>
+        <hasControl rdf:datatype="&xsd;int">51</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">contempt*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">contemptuos</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Content -->
+
+    <owl:Thing rdf:about="#Content">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">12</hasControl>
+        <hasValence rdf:datatype="&xsd;int">61</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">content</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">content*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">glow*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Dejection -->
+
+    <owl:Thing rdf:about="#Dejection">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-12</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-61</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">deject*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">dejected</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Deligt -->
+
+    <UtilitarianEmotion rdf:about="#Deligt">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">17</hasControl>
+        <hasValence rdf:datatype="&xsd;int">85</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">delight*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">delighted</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Desperation -->
+
+    <owl:Thing rdf:about="#Desperation">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-17</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-85</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">despaired</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">desperat*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Disdain -->
+
+    <owl:Thing rdf:about="#Disdain">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-6</hasValence>
+        <hasControl rdf:datatype="&xsd;int">10</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">disdain*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">disdainful</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Disgracefulness -->
+
+    <UtilitarianEmotion rdf:about="#Disgracefulness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-20</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-31</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">disgrace*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling disgrace</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">humili*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Disgust -->
+
+    <UtilitarianEmotion rdf:about="#Disgust">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-51</hasValence>
+        <hasControl rdf:datatype="&xsd;int">34</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">disgust*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">feeling disgust</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Dislike -->
+
+    <UtilitarianEmotion rdf:about="#Dislike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-10</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">6</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">dislik*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">feeling dislike</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Disreputableness -->
+
+    <UtilitarianEmotion rdf:about="#Disreputableness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-48</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-72</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">disreput*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling disreputable</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Distaste -->
+
+    <UtilitarianEmotion rdf:about="#Distaste">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-31</hasValence>
+        <hasControl rdf:datatype="&xsd;int">20</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">distast*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling distaste</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">loath*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Distrust -->
+
+    <owl:Thing rdf:about="#Distrust">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-12</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">2</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">distrust*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling distrust</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Ease -->
+
+    <UtilitarianEmotion rdf:about="#Ease">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-12</hasControl>
+        <hasValence rdf:datatype="&xsd;int">61</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">calm*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">casual</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">detach*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">ease*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feelilng at ease</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">laid-back</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">relax*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Elation -->
+
+    <UtilitarianEmotion rdf:about="#Elation">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">20</hasValence>
+        <hasControl rdf:datatype="&xsd;int">31</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">elat*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">elated</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Embarrassment -->
+
+    <UtilitarianEmotion rdf:about="#Embarrassment">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-10</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-6</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">abash*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">devout*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">embarassed</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">embarras*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">humb*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">humility</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Enthrallment -->
+
+    <UtilitarianEmotion rdf:about="#Enthrallment">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-72</hasControl>
+        <hasValence rdf:datatype="&xsd;int">48</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">enthrall*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">enthralled</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Envy -->
+
+    <owl:Thing rdf:about="#Envy">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-61</hasValence>
+        <hasControl rdf:datatype="&xsd;int">12</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">envious</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">envious*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">envy*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Exaltation -->
+
+    <UtilitarianEmotion rdf:about="#Exaltation">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">48</hasValence>
+        <hasControl rdf:datatype="&xsd;int">72</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">climax</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">ecsta*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">exalt*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">exalted</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">orgas*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Exhilaration -->
+
+    <owl:Thing rdf:about="#Exhilaration">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">34</hasValence>
+        <hasControl rdf:datatype="&xsd;int">51</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">exhilar*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">exhilarated</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Expectancy -->
+
+    <owl:Thing rdf:about="#Expectancy">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-6</hasControl>
+        <hasValence rdf:datatype="&xsd;int">10</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">expect*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">expectant</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Fascination -->
+
+    <UtilitarianEmotion rdf:about="#Fascination">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-51</hasControl>
+        <hasValence rdf:datatype="&xsd;int">34</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">fascina*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">fascinated</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Fear -->
+
+    <UtilitarianEmotion rdf:about="#Fear">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-34</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-51</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">afraid*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">fear*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">fearful</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">fright*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">scare*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWAngerLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWAngerLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">5</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Anger</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWContemptLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWContemptLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">6</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Contempt</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWDisgustLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWDisgustLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">7</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Disgust</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWElationLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWElationLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">3</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Elation</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWEnvyLike -->
+
+    <owl:Thing rdf:about="#GEWEnvyLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">8</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Envy</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWFearLike -->
+
+    <owl:Thing rdf:about="#GEWFearLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">11</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Fear</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWGuiltLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWGuiltLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">9</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Guilt</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWHopeLike -->
+
+    <owl:Thing rdf:about="#GEWHopeLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">15</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Hope</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWInterestLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWInterestLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">14</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Interest</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWJoyLike -->
+
+    <owl:Thing rdf:about="#GEWJoyLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">2</hasIndex>
+        <hasLabel>Joy</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWPrideLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWPrideLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">4</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Pride</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWReliefLike -->
+
+    <owl:Thing rdf:about="#GEWReliefLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">16</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Relief</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWSadnessLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWSadnessLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">12</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Sadness</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWSatisfactionLike -->
+
+    <owl:Thing rdf:about="#GEWSatisfactionLike">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <hasIndex rdf:datatype="&xsd;int">1</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Satisfaction</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWShameLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWShameLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">10</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Shame</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#GEWSurpriseLike -->
+
+    <GEWEmotionalCategory rdf:about="#GEWSurpriseLike">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasIndex rdf:datatype="&xsd;int">13</hasIndex>
+        <hasLabel rdf:datatype="&xsd;string">Surprise</hasLabel>
+    </GEWEmotionalCategory>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Gratification -->
+
+    <owl:Thing rdf:about="#Gratification">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">12</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">2</hasValence>
+        <hasTextMark rdf:datatype="&xsd;string">gratif*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">gratified</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">gratit*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">thank*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Grudge -->
+
+    <UtilitarianEmotion rdf:about="#Grudge">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-36</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">7</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">grudg*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">grudging</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Guilt -->
+
+    <UtilitarianEmotion rdf:about="#Guilt">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-17</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-85</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">feeling guilty</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">guilt*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Happyness -->
+
+    <UtilitarianEmotion rdf:about="#Happyness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">20</hasControl>
+        <hasValence rdf:datatype="&xsd;int">31</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">felicit*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">happie*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">happine*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">happy</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">happy*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">merr*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#HighSpiritedness -->
+
+    <owl:Thing rdf:about="#HighSpiritedness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">10</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">6</hasValence>
+        <hasLabel rdf:datatype="&xsd;string">in high spirits</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">inspir*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">soul</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">soulful*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">spirit*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Hope -->
+
+    <UtilitarianEmotion rdf:about="#Hope">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-20</hasControl>
+        <hasValence rdf:datatype="&xsd;int">31</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">buoyan*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">hop*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">hopeful</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Interest -->
+
+    <owl:Thing rdf:about="#Interest">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-31</hasControl>
+        <hasValence rdf:datatype="&xsd;int">20</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">interes*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">interested</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Irritation -->
+
+    <UtilitarianEmotion rdf:about="#Irritation">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-7</hasValence>
+        <hasControl rdf:datatype="&xsd;int">36</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">irrita*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">irritated</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Jealousness -->
+
+    <owl:Thing rdf:about="#Jealousness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-85</hasValence>
+        <hasControl rdf:datatype="&xsd;int">17</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">covetous*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">jealous</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">jealous*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Joy -->
+
+    <owl:Thing rdf:about="#Joy">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">34</hasControl>
+        <hasValence rdf:datatype="&xsd;int">51</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">delect*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">enjoy*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">joy*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">joyful</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#LowSpiritedness -->
+
+    <owl:Thing rdf:about="#LowSpiritedness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-12</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-2</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">dissatisf*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">in low spirits</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">uninspir*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#ModifInv -->
+
+    <owl:Thing rdf:about="#ModifInv">
+        <rdf:type rdf:resource="#InverseModifier"/>
+        <hasTextMark rdf:datatype="&xsd;string">not</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#ModifNeg -->
+
+    <owl:Thing rdf:about="#ModifNeg">
+        <rdf:type rdf:resource="#NegativeModifier"/>
+        <hasTextMark rdf:datatype="&xsd;string">low</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#ModifPos -->
+
+    <PositiveModifier rdf:about="#ModifPos">
+        <rdf:type rdf:resource="#GEWEmotionalCategory"/>
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasTextMark rdf:datatype="&xsd;string">high</hasTextMark>
+    </PositiveModifier>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#ModifSelf -->
+
+    <owl:Thing rdf:about="#ModifSelf">
+        <rdf:type rdf:resource="#SelfModifier"/>
+        <hasTextMark rdf:datatype="&xsd;string">auto</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">self</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Nervousness -->
+
+    <UtilitarianEmotion rdf:about="#Nervousness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-10</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-6</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">nervous</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">nervous*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Optimism -->
+
+    <UtilitarianEmotion rdf:about="#Optimism">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-34</hasControl>
+        <hasValence rdf:datatype="&xsd;int">51</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">optim*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">optimistic</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Overjoy -->
+
+    <UtilitarianEmotion rdf:about="#Overjoy">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">48</hasControl>
+        <hasValence rdf:datatype="&xsd;int">72</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">bliss*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">enchant*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">overjoy*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">overjoyed</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">thrill*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">zest*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Panick -->
+
+    <owl:Thing rdf:about="#Panick">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-48</hasValence>
+        <hasControl rdf:datatype="&xsd;int">-72</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">aghast*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">dread*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">horr*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">panic*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">panicked</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">terror*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Pleasantness -->
+
+    <owl:Thing rdf:about="#Pleasantness">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">12</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">2</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">pleasa*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">pleased</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">pleased</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Pride -->
+
+    <UtilitarianEmotion rdf:about="#Pride">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">12</hasValence>
+        <hasControl rdf:datatype="&xsd;int">61</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">pride*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">proud</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">proud*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Puzzledness -->
+
+    <UtilitarianEmotion rdf:about="#Puzzledness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-12</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">2</hasValence>
+        <hasLabel rdf:datatype="&xsd;string">puzzeld</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">puzzle*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Rage -->
+
+    <owl:Thing rdf:about="#Rage">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-17</hasValence>
+        <hasControl rdf:datatype="&xsd;int">85</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">enrag*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">full of rage</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">furious*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">fury</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">infuriat*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">irate</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">mad</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">madd*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">rag*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Relief -->
+
+    <owl:Thing rdf:about="#Relief">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasControl rdf:datatype="&xsd;int">-7</hasControl>
+        <hasValence rdf:datatype="&xsd;int">36</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">relie*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">relieved</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Reproachableness -->
+
+    <UtilitarianEmotion rdf:about="#Reproachableness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-12</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-61</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">contriti*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >deserving reproach</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">remorse*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">repent*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Repulsion -->
+
+    <owl:Thing rdf:about="#Repulsion">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-48</hasValence>
+        <hasControl rdf:datatype="&xsd;int">72</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">acrimon*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling repulsion</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">hate*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">hatred</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">rancor*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">repuls*</hasTextMark>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Revolt -->
+
+    <owl:Thing rdf:about="#Revolt">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">-72</hasValence>
+        <hasControl rdf:datatype="&xsd;int">48</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">detest*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">revolt*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">revolted</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Sadness -->
+
+    <UtilitarianEmotion rdf:about="#Sadness">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-36</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-7</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasLabel rdf:datatype="&xsd;string">sad</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">sad*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">unhapp*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Satisfaction -->
+
+    <owl:Thing rdf:about="#Satisfaction">
+        <rdf:type rdf:resource="#UtilitarianEmotion"/>
+        <hasValence rdf:datatype="&xsd;int">36</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasControl rdf:datatype="&xsd;int">7</hasControl>
+        <hasTextMark rdf:datatype="&xsd;string">great*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">satisf*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">satisfied</hasLabel>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Scorn -->
+
+    <UtilitarianEmotion rdf:about="#Scorn">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasValence rdf:datatype="&xsd;int">-20</hasValence>
+        <hasControl rdf:datatype="&xsd;int">31</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">scorn*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">scornful</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#SelfSatisfaction -->
+
+    <UtilitarianEmotion rdf:about="#SelfSatisfaction">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">36</hasControl>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">37</hasIntensity>
+        <hasValence rdf:datatype="&xsd;int">7</hasValence>
+        <hasTextMark rdf:datatype="&xsd;string">auto-satisf*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">self-esteem*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">self-satisf*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">self-satisfied</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">selfesteem*</hasTextMark>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Shame -->
+
+    <UtilitarianEmotion rdf:about="#Shame">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-34</hasControl>
+        <hasValence rdf:datatype="&xsd;int">-51</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">asham*</hasTextMark>
+        <hasTextMark rdf:datatype="&xsd;string">shame*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">shameful</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Stupefaction -->
+
+    <UtilitarianEmotion rdf:about="#Stupefaction">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-85</hasControl>
+        <hasValence rdf:datatype="&xsd;int">17</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">87</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">stupef*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">stupefied</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Surprise -->
+
+    <UtilitarianEmotion rdf:about="#Surprise">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-61</hasControl>
+        <hasValence rdf:datatype="&xsd;int">12</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">62</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">surpris*</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string">surprised</hasLabel>
+    </UtilitarianEmotion>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/0/Ontology1262693413691.owl#Unburden -->
+
+    <UtilitarianEmotion rdf:about="#Unburden">
+        <rdf:type rdf:resource="&owl;Thing"/>
+        <hasControl rdf:datatype="&xsd;int">-2</hasControl>
+        <hasValence rdf:datatype="&xsd;int">12</hasValence>
+        <hasIntensity rdf:datatype="&xsd;nonNegativeInteger">12</hasIntensity>
+        <hasTextMark rdf:datatype="&xsd;string">carefree</hasTextMark>
+        <hasLabel rdf:datatype="&xsd;string"
+            >feeling unburdened</hasLabel>
+        <hasTextMark rdf:datatype="&xsd;string">unburden*</hasTextMark>
+    </UtilitarianEmotion>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
