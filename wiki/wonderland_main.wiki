@@ -1,0 +1,35 @@
+#summary Desktop chat bot
+
+= Wonderland =
+This project parses natural language sentences to conceptual graphs
+trying to build a knowledge base out of the parse trees. After that
+it uses CG projection mechanism to find answers to natural language
+questions. The project also provides an intuitive WordNet browser.
+
+
+== Keywords ==
+Conceptual Graphs, NLP
+
+
+== Dependencies == 
+  * Cogitant [http://cogitant.sourceforge.net/]
+  * CoGui [http://www.lirmm.fr/cogui/]
+  * WordNet [http://wordnet.princeton.edu/]
+  * The Stanford Parser [http://nlp.stanford.edu/software/lex-parser.shtml]
+  * MorphAdorner [http://morphadorner.northwestern.edu/]
+  * Super CSV [http://supercsv.sourceforge.net/]
+  * JWNL [http://sourceforge.net/projects/jwordnet/]
+  * NetBeans [http://netbeans.org/]
+
+
+== Usage ==
+_needs update_
+
+copy *englishPCFG.ser.gz* from _Stanford Parser_ distribution to `/res` folder
+
+copy *cogitant.dll* from _CoGui_ distribution to `/res` folder
+
+edit *jwnl_properties.xml* to indicate the _WordNet_ `dict` folder in 
+`<param name="dictionary_path" value="... here ..."/>`
+
+== References ==  
