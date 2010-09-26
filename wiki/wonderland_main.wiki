@@ -33,3 +33,5 @@ edit *jwnl_properties.xml* to indicate the _WordNet_ `dict` folder in
 `<param name="dictionary_path" value="... here ..."/>`
 
 == References ==  
+[https://inwonderland.googlecode.com/svn/trunk/wonderland/cg-nlp/cg-nlp.pdf Parsing Natural Language Sentences to Conceptual Graphs] is a summary of the dissertation paper
+presenting the theory behind this application. 
