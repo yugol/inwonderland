@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectGuid>{89F4A1C1-A1C6-483E-B292-B16D03582EC7}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -17,7 +18,8 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Iulian\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -56,9 +58,15 @@
       <HintPath>..\..\..\lib\CsvReader_bin\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="Tao.FreeGlut" />
     <Reference Include="Tao.OpenGl" />
     <Reference Include="Tao.Platform.Windows" />
@@ -137,6 +145,7 @@
       <DependentUpon>VisualizerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="VisualizerController.cs" />
+    <None Include="app.config" />
     <None Include="TradingVisualizer.ico" />
     <EmbeddedResource Include="Ui\ChartContent.resx">
       <DependentUpon>ChartContent.cs</DependentUpon>

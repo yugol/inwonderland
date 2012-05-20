@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectGuid>{866EB16A-BBAA-4F0D-8CC2-6BEB49AE7C73}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -17,7 +18,8 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <SourceAnalysisOverrideSettingsFile>C:\Documents and Settings\Iulian\Application Data\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -62,6 +64,9 @@
       <HintPath>..\..\..\..\..\Program Files\SharpDevelop\3.0\bin\Tools\NUnit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="weka">
@@ -192,6 +197,7 @@
     <Compile Include="Ui\TSTunerControl_V2D.cs">
       <DependentUpon>TSTunerControl.cs</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="TradingSimulator.ico" />
     <EmbeddedResource Include="Ui\DataSetSelector.resx">
       <DependentUpon>DataSetSelector.cs</DependentUpon>
