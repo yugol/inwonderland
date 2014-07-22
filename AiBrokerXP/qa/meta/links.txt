@@ -1,0 +1,8 @@
+Specificatii contracte futures
+http://www.sibex.ro/index.php?p=specAllFut&l=ro
+
+Specificatii contracte futures (detalii)
+http://www.sibex.ro/index.php?p=specfut&s=DEDJIA_RON&l=ro
+
+Yahoo history
+http://finance.yahoo.com/q/hp?s=YHOO
