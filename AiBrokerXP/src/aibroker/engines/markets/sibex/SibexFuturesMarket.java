@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.Context;
 import aibroker.engines.markets.Market;
+import aibroker.util.Moment;
 
 public class SibexFuturesMarket extends Market implements Runnable {
 
@@ -125,20 +126,16 @@ public class SibexFuturesMarket extends Market implements Runnable {
     public static final String        SIBEX_FUTURES_URL = "http://www.sibex.ro/index.php?p=realMarket&s=1&l=en&sort=1";
 
     private final Map<String, Record> status            = new HashMap<String, Record>();
-    private boolean                   opened            = true;
-
-    public void close() {
-        opened = false;
-    }
 
     @Override
     public boolean isClosed() {
-        return !opened;
+        return !isOpened();
     }
 
     @Override
     public boolean isOpened() {
-        return opened;
+        final String time = Moment.getNow().toIsoTime();
+        return time.compareTo(Context.getSibexCloseTime()) < 0;
     }
 
     @Override
@@ -147,7 +144,7 @@ public class SibexFuturesMarket extends Market implements Runnable {
             try {
                 logger.info("Reading Sibex futures");
                 update();
-                Thread.sleep(Context.SIBEX_REFRESH_FREQUENCY);
+                Thread.sleep(Context.getSibexPollInterval());
             } catch (final Exception e) {
                 logger.error("", e);
             }

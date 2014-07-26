@@ -21,13 +21,7 @@ import aibroker.util.convenience.Databases;
 public final class Context extends Properties {
 
     public static String getLogFolder() {
-        String logFolder = (String) instance.get(LOG_FOLDER);
-        if (isNullOrBlank(logFolder)) {
-            logFolder = System.getProperty("user.home") + "/AiBrokerXP/logfiles/";
-            logger.warn(LOG_FOLDER + " is not specified! Using: " + logFolder);
-            instance.put(LOG_FOLDER, logFolder);
-            instance.store();
-        }
+        final String logFolder = get(FOLDER_LOG_KEY, System.getProperty("user.home") + "/AiBrokerXP/logfiles/");
         new File(logFolder).mkdirs();
         return logFolder;
     }
@@ -37,7 +31,7 @@ public final class Context extends Properties {
     }
 
     public static Rectangle getManagerWindowBounds() {
-        final String bounds = (String) instance.get(MANAGER_WINDOW_BOUNDS);
+        final String bounds = get(MANAGER_WINDOW_BOUNDS_KEY, null);
         if (isNullOrBlank(bounds)) {
             return new Rectangle(100, 100, 1024, 768);
         } else {
@@ -49,17 +43,17 @@ public final class Context extends Properties {
     }
 
     public static Databases getMonitorLastDatabase() {
-        final String foo = (String) instance.get(MONITOR_LAST_DATABASE);
+        final String foo = get(MONITOR_LAST_DATABASE_KEY, null);
         if (foo != null) { return Databases.valueOf(foo); }
         return null;
     }
 
     public static String getMonitorLastSequence() {
-        return (String) instance.get(MONITOR_LAST_SEQUENCE);
+        return get(MONITOR_LAST_SEQUENCE_KEY, null);
     }
 
     public static Rectangle getMonitorWindowBounds() {
-        final String bounds = (String) instance.get(MONITOR_WINDOW_BOUNDS);
+        final String bounds = get(MONITOR_WINDOW_BOUNDS_KEY, null);
         if (isNullOrBlank(bounds)) {
             return new Rectangle(100, 100, 800, 600);
         } else {
@@ -71,67 +65,67 @@ public final class Context extends Properties {
     }
 
     public static String getQuotesFolder() {
-        String quotesFolder = (String) instance.get(QUOTES_FOLDER);
-        if (isNullOrBlank(quotesFolder)) {
-            quotesFolder = System.getProperty("user.home") + "/AiBrokerXP/quotes/";
-            logger.warn(QUOTES_FOLDER + " is not specified! Using: " + quotesFolder);
-            instance.put(QUOTES_FOLDER, quotesFolder);
-            instance.store();
-        }
+        final String quotesFolder = get(FOLDER_QUOTES_KEY, System.getProperty("user.home") + "/AiBrokerXP/quotes/");
         new File(quotesFolder).mkdirs();
         return quotesFolder;
     }
 
+    public static String getSibexCloseTime() {
+        return get(SIBEX_CLOSE_TIME_KEY, "23:30:00");
+    }
+
+    public static String getSibexOpenTime() {
+        return get(SIBEX_OPEN_TIME_KEY, "09:55:00");
+    }
+
+    public static long getSibexPollInterval() {
+        return Long.parseLong(get(SIBEX_POLL_INTERVAL_KEY, 5000));
+    }
+
     public static String getWekaFolder() {
-        String wekaFolder = (String) instance.get(WEKA_FOLDER);
-        if (isNullOrBlank(wekaFolder)) {
-            wekaFolder = System.getProperty("user.home") + "/AiBrokerXP/wekafiles/";
-            logger.warn(WEKA_FOLDER + " is not specified! Using: " + wekaFolder);
-            instance.put(WEKA_FOLDER, wekaFolder);
-            instance.store();
-        }
+        final String wekaFolder = get(FOLDER_WEKA_KEY, System.getProperty("user.home") + "/AiBrokerXP/wekafiles/");
         new File(wekaFolder).mkdirs();
         return wekaFolder;
     }
 
     public static void setManagerWindowBounds(final Rectangle val) {
         if (val == null) {
-            instance.remove(MANAGER_WINDOW_BOUNDS);
+            instance.remove(MANAGER_WINDOW_BOUNDS_KEY);
         } else {
             final StringBuilder bounds = new StringBuilder();
             bounds.append(val.x).append(",").append(val.y).append(",");
             bounds.append(val.width).append(",").append(val.height);
-            instance.put(MANAGER_WINDOW_BOUNDS, bounds.toString());
+            instance.put(MANAGER_WINDOW_BOUNDS_KEY, bounds.toString());
         }
         instance.store();
     }
 
     public static void setMonitorLastDatabase(final Databases val) {
         if (val == null) {
-            instance.remove(MONITOR_LAST_DATABASE);
+            instance.remove(MONITOR_LAST_DATABASE_KEY);
         } else {
-            instance.put(MONITOR_LAST_DATABASE, val.toString());
+            instance.put(MONITOR_LAST_DATABASE_KEY, val.toString());
         }
         instance.store();
     }
 
     public static void setMonitorLastName(final String val) {
         if (val == null) {
-            instance.remove(MONITOR_LAST_SEQUENCE);
+            instance.remove(MONITOR_LAST_SEQUENCE_KEY);
         } else {
-            instance.put(MONITOR_LAST_SEQUENCE, val);
+            instance.put(MONITOR_LAST_SEQUENCE_KEY, val);
         }
         instance.store();
     }
 
     public static void setMonitorWindowBounds(final Rectangle val) {
         if (val == null) {
-            instance.remove(MONITOR_WINDOW_BOUNDS);
+            instance.remove(MONITOR_WINDOW_BOUNDS_KEY);
         } else {
             final StringBuilder bounds = new StringBuilder();
             bounds.append(val.x).append(",").append(val.y).append(",");
             bounds.append(val.width).append(",").append(val.height);
-            instance.put(MONITOR_WINDOW_BOUNDS, bounds.toString());
+            instance.put(MONITOR_WINDOW_BOUNDS_KEY, bounds.toString());
         }
         instance.store();
     }
@@ -146,26 +140,38 @@ public final class Context extends Properties {
         }
     }
 
+    private static String get(final String key, final Object defaultValue) {
+        String value = (String) instance.get(key);
+        if (isNullOrBlank(value)) {
+            value = String.valueOf(defaultValue);
+            if (defaultValue != null) {
+                logger.warn(key + " is not specified! Using: " + value);
+                instance.put(key, value);
+                instance.store();
+            }
+        }
+        return value;
+    }
+
     public static final String   APPLICATION_NAME              = "AI-Broker XP";
 
     private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
-    private static final String  MONITOR_WINDOW_BOUNDS         = "monitor.window.bounds";
-    private static final String  MONITOR_LAST_DATABASE         = "monitor.lastDatabase";
-    private static final String  MONITOR_LAST_SEQUENCE         = "monitor.lastSequence";
-    private static final String  MANAGER_WINDOW_BOUNDS         = "manager.window.bounds";
-
-    private static final String  LOG_FOLDER                    = "logFolder";
-    private static final String  QUOTES_FOLDER                 = "quotesFolder";
-    private static final String  WEKA_FOLDER                   = "wekaFolder";
+    private static final String  FOLDER_LOG_KEY                = "logFolder";
+    private static final String  FOLDER_QUOTES_KEY             = "quotesFolder";
+    private static final String  FOLDER_WEKA_KEY               = "wekaFolder";
+    private static final String  MANAGER_WINDOW_BOUNDS_KEY     = "manager.window.bounds";
+    private static final String  MONITOR_LAST_DATABASE_KEY     = "monitor.lastDatabase";
+    private static final String  MONITOR_LAST_SEQUENCE_KEY     = "monitor.lastSequence";
+    private static final String  MONITOR_WINDOW_BOUNDS_KEY     = "monitor.window.bounds";
+    private static final String  SIBEX_CLOSE_TIME_KEY          = "sibex.close.time";
+    private static final String  SIBEX_OPEN_TIME_KEY           = "sibex.open.time";
+    private static final String  SIBEX_POLL_INTERVAL_KEY       = "sibex.poll.interval";
 
     public static final int      FIRST_YEAR                    = 2000;
     public static final int      LAST_YEAR                     = 2015;
     public static final int      FUTURES_MASS_UPDATE_LAST_YEAR = 2014;
 
-    public static final long     SIBEX_REFRESH_FREQUENCY       = 5000;
-
     private static final Logger  logger                        = LoggerFactory.getLogger(Context.class);
-
     private static final Context instance                      = new Context(PROPERTIES_FILE_NAME);
 
     static {
