@@ -88,8 +88,8 @@ public class SqlDatabase extends QuotesDatabase {
     }
 
     @Override
-    public Sequence getSequence(final SequenceSelector selector) {
-        Sequence sequence = null;
+    public SqlSequence getSequence(final SequenceSelector selector) {
+        SqlSequence sequence = null;
         if (selector.isJoinSettlements()) {
             final VirtualSqlSequence vSequence = new VirtualSqlSequence(this, selector.toBuilder());
             vSequence.setJoinSettlements(true);
@@ -132,7 +132,7 @@ public class SqlDatabase extends QuotesDatabase {
                 for (final Moment settlement : settlements) {
                     selectorClone.setSettlement(settlement);
                     final SequenceDescriptor builder = sequenceReader.readSequences(selectorClone).get(0);
-                    final SqlSequence tempSequence = (SqlSequence) getSequence(builder.toSelector());
+                    final SqlSequence tempSequence = getSequence(builder.toSelector());
                     sequences.add(tempSequence);
                 }
             } else {

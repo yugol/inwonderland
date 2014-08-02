@@ -23,6 +23,7 @@ public class Selectors {
 
     public static final SequenceSelector               DEAPL                  = new SequenceSelector();
     public static final SequenceSelector               DEDJIA_RON_DEC13_DAILY = new SequenceSelector();
+    public static final SequenceSelector               TLV                    = new SequenceSelector();
 
     static {
         DEAPL.setMarket(Market.FUTURES);
@@ -42,6 +43,14 @@ public class Selectors {
         DEDJIA_RON_DEC13_DAILY.setFeed(Feed.ORIG);
         DEDJIA_RON_DEC13_DAILY.setSampling(Sampling.DAILY);
         VALUES.put("DEDJIA_RON_DEC13_DAILY", DEDJIA_RON_DEC13_DAILY);
+    }
+
+    static {
+        TLV.setMarket(Market.REGS);
+        TLV.setSymbol("TLV");
+        TLV.setFeed(Feed.ORIG);
+        TLV.setSampling(Sampling.DAILY);
+        VALUES.put("TLV", TLV);
     }
 
 }
