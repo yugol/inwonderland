@@ -11,8 +11,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.SequenceDescriptor;
+import aibroker.model.domains.Sampling;
 import aibroker.model.drivers.sql.SqlSequence;
 import aibroker.model.update.sources.bvb.BvbSequenceDescriptionReader;
+import aibroker.util.SamplingUtil;
 
 public class XlsxAnalysis {
 
@@ -49,8 +51,18 @@ public class XlsxAnalysis {
 
         Sheet sheet = getSheet("General");
         fillGeneralSheet(sheet);
+
+        Quotes quotes = this.sequence.getQuotes();
         sheet = getSheet(sequence.getSampling().toString());
-        fillQuotesAnalysis(sheet, this.sequence.getQuotes());
+        fillQuotesAnalysis(sheet, quotes);
+
+        quotes = SamplingUtil.resample(quotes, Sampling.DAILY, Sampling.WEEKLY);
+        sheet = getSheet(Sampling.WEEKLY.toString());
+        fillQuotesAnalysis(sheet, quotes);
+
+        quotes = SamplingUtil.resample(quotes, Sampling.WEEKLY, Sampling.MONTHLY);
+        sheet = getSheet(Sampling.MONTHLY.toString());
+        fillQuotesAnalysis(sheet, quotes);
     }
 
     public void save(final File xlsxFile) throws IOException {
@@ -69,7 +81,8 @@ public class XlsxAnalysis {
     }
 
     private double calculateProfitIncrement() {
-        return Math.pow(10, Math.round(Math.log10(profitPoint)));
+        return 0.01;
+        // return Math.pow(10, Math.round(Math.log10(profitPoint)));
     }
 
     private double calculateProfitPoint() {
@@ -148,6 +161,8 @@ public class XlsxAnalysis {
     }
 
     private void fillQuotesAnalysis(final Sheet sheet, final Quotes quotes) {
+        Cell cell = null;
+
         int rownum = 0;
         Row row = sheet.createRow(rownum++);
 
@@ -166,7 +181,7 @@ public class XlsxAnalysis {
             row = sheet.createRow(rownum);
             colIdx = 0;
 
-            Cell cell = row.createCell(colIdx++);
+            cell = row.createCell(colIdx++);
             cell.setCellValue(ohlc.moment.toIsoDate());
             cell.setCellStyle(dateStyle);
 
@@ -205,9 +220,150 @@ public class XlsxAnalysis {
             rownum++;
         }
 
-        for (int i = 0; i < colIdx; ++i) {
-            // sheet.autoSizeColumn(i);
-        }
+        rownum = 0;
+        final int summaryCol = colIdx + 2;
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue(""); // L
+        row.createCell(colIdx++).setCellValue("CNT"); // M
+        row.createCell(colIdx++).setCellValue("MAX"); // N
+        row.createCell(colIdx++).setCellValue("AVG"); // O
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue("dH");
+        row.createCell(colIdx++).setCellFormula("COUNTA(F2:F" + quotes.size() + 1 + ")");
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("MAX(F2:F" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("AVERAGE(F2:F" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue("dL");
+        row.createCell(colIdx++).setCellFormula("COUNTA(G2:G" + quotes.size() + 1 + ")");
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("MAX(G2:G" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("AVERAGE(G2:G" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue("dA");
+        row.createCell(colIdx++).setCellFormula("COUNTA(H2:H" + quotes.size() + 1 + ")");
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("MAX(H2:H" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+        cell = row.createCell(colIdx++);
+        cell.setCellFormula("AVERAGE(H2:H" + quotes.size() + 1 + ")");
+        cell.setCellStyle(priceStyle);
+
+        rownum++;
+        rownum++;
+        rownum++;
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue("PNT"); // L
+        row.createCell(colIdx++).setCellValue("CNT"); // M
+        row.createCell(colIdx++).setCellValue("MIN"); // N
+        row.createCell(colIdx++).setCellValue("UP"); // O
+        row.createCell(colIdx++).setCellValue("DOWN"); // P
+        row.createCell(colIdx++).setCellValue("GAIN"); // Q
+
+        double pricePoint = profitPoint;
+        int eventCount = 0;
+        double maxLow = 0;
+        do {
+            eventCount = 0;
+            maxLow = 0;
+
+            for (final Ohlc ohlc : quotes) {
+                final double dH = ohlc.high - ohlc.open;
+                if (dH >= pricePoint) {
+                    eventCount++;
+                    final double dL = ohlc.open - ohlc.low;
+                    if (dL > maxLow) {
+                        maxLow = dL;
+                    }
+                }
+            }
+
+            row = sheet.getRow(rownum++);
+            colIdx = summaryCol;
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(pricePoint);
+            cell.setCellStyle(priceStyle);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(eventCount);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(maxLow);
+            cell.setCellStyle(priceStyle);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(pricePoint * eventCount);
+            cell.setCellStyle(priceStyle);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellFormula(quotes.size() - eventCount + " * P7");
+            cell.setCellStyle(priceStyle);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellFormula("O" + rownum + " - P" + rownum);
+            cell.setCellStyle(priceStyle);
+
+            pricePoint += profitIncrement;
+        } while (eventCount > 0);
+
+        rownum++;
+        rownum++;
+        rownum++;
+
+        row = sheet.getRow(rownum++);
+        colIdx = summaryCol;
+        row.createCell(colIdx++).setCellValue("PNT"); // L
+        row.createCell(colIdx++).setCellValue("CNT"); // M
+        row.createCell(colIdx++).setCellValue("DOWN"); // N
+
+        pricePoint = profitIncrement;
+        eventCount = 0;
+        do {
+            eventCount = 0;
+            maxLow = 0;
+
+            for (final Ohlc ohlc : quotes) {
+                final double dL = ohlc.open - ohlc.low;
+                if (dL <= pricePoint) {
+                    eventCount++;
+                }
+            }
+
+            row = sheet.getRow(rownum++);
+            colIdx = summaryCol;
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(pricePoint);
+            cell.setCellStyle(priceStyle);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(eventCount);
+
+            cell = row.createCell(colIdx++);
+            cell.setCellValue(pricePoint * eventCount);
+            cell.setCellStyle(priceStyle);
+
+            pricePoint += profitIncrement;
+        } while (pricePoint < 0.1);
+
+        sheet.autoSizeColumn(0);
     }
 
     private Sheet getSheet(final String name) {
