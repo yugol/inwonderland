@@ -18,6 +18,7 @@ public class XlsxExporterTest {
         final XlsxExporter expt = new XlsxExporter();
         expt.add(seq);
         expt.save(file);
+        System.out.println("Saved in: " + file.getCanonicalPath());
     }
 
 }

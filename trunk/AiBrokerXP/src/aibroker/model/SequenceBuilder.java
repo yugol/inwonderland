@@ -12,8 +12,6 @@ import aibroker.util.StringUtil;
 
 public class SequenceBuilder {
 
-    public static final String SETTLEMENT_SEPERATOR = "-";
-
     public static Moment calculateSettlement(final int month, int year) {
         if (year < 1000) {
             year += 2000;
@@ -65,25 +63,27 @@ public class SequenceBuilder {
         return month + year;
     }
 
-    private final String symbol;
-    protected Moment     settlement;
-    private String       name;
-    private Market       market;
-    private Feed         feed;
+    public static final String SETTLEMENT_SEPERATOR = "-";
 
-    private Sampling     sampling;
-    private Grouping     grouping;
-    private String       support;
-    private Double       multiplier;
+    private final String       symbol;
+    protected Moment           settlement;
+    private String             name;
+    private Market             market;
+    private Feed               feed;
 
-    private Double       margin;
-    private double       fee;
-    private Updater       updater   = Updater.NONE;
-    private Moment       firstDayOfTransaction;
+    private Sampling           sampling;
+    private Grouping           grouping;
+    private String             support;
+    private Double             multiplier;
 
-    private String       tableId;
+    private Double             margin;
+    private double             fee;
+    private Updater            updater              = Updater.NONE;
+    private Moment             firstDayOfTransaction;
 
-    private Boolean      favourite = false;
+    private String             tableId;
+
+    private Boolean            favourite            = false;
 
     public SequenceBuilder(final String name) {
         this(getSymbol(name), getSettlement(name));
