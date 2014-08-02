@@ -35,7 +35,15 @@ public class SequenceSelector implements Cloneable {
 
     @Override
     public SequenceSelector clone() throws CloneNotSupportedException {
-        return (SequenceSelector) super.clone();
+        final SequenceSelector dolly = new SequenceSelector();
+        dolly.feed = feed;
+        dolly.grouping = grouping;
+        dolly.market = market;
+        dolly.settlement = settlement;
+        dolly.sampling = sampling;
+        dolly.symbol = symbol;
+        dolly.joinSettlements = joinSettlements;
+        return dolly;
     }
 
     public Feed getFeed() {

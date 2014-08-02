@@ -97,26 +97,32 @@ public class SqlDatabase extends QuotesDatabase {
         return super.getSequence(selector);
     }
 
+    private void readSequences() throws SQLException {
+        for (final SequenceBuilder sb : new ReadSequences(conn).readSequences(new SequenceSelector())) {
+            final SqlSequence sequence = new SqlSequence(this, sb);
+            sequences.put(sequence.getTableId(), sequence);
+        }
+    }
+
     @Override
-    public List<? extends Sequence> getSequences(final SequenceSelector selector) {
+    protected List<? extends Sequence> getSequences(final SequenceSelector selector) {
         final List<Sequence> sequences = new ArrayList<Sequence>();
         try {
+            final SequenceSelector selectorClone = selector.clone();
             if (selector.isJoinSettlements()) {
-                final SequenceSelector tempSelector = selector.clone();
-                tempSelector.setSampling(Sampling.SECOND);
-                final List<Moment> settlements = new ReadSettlements(getConnection()).readSettlements(tempSelector);
-                tempSelector.setJoinSettlements(false);
+                selectorClone.setSampling(Sampling.SECOND);
+                final List<Moment> settlements = new ReadSettlements(getConnection()).readSettlements(selectorClone);
+                selectorClone.setJoinSettlements(false);
                 final ReadSequences sequenceReader = new ReadSequences(getConnection());
                 for (final Moment settlement : settlements) {
-                    tempSelector.setSettlement(settlement);
-                    final SequenceBuilder builder = sequenceReader.readSequences(tempSelector).get(0);
+                    selectorClone.setSettlement(settlement);
+                    final SequenceBuilder builder = sequenceReader.readSequences(selectorClone).get(0);
                     final SqlSequence tempSequence = (SqlSequence) getSequence(builder.toSelector());
                     sequences.add(tempSequence);
                 }
             } else {
-                final Sampling selectorSampling = selector.getSampling();
-                selector.setSampling(null);
-                final List<SequenceBuilder> builders = new ReadSequences(conn).readSequences(selector);
+                selectorClone.setSampling(null);
+                final List<SequenceBuilder> builders = new ReadSequences(conn).readSequences(selectorClone);
                 Collections.sort(builders, new Comparator<SequenceBuilder>() {
 
                     @Override
@@ -125,21 +131,27 @@ public class SqlDatabase extends QuotesDatabase {
                     }
 
                 });
-                if (selectorSampling == null) {
+                if (selector.getSampling() == null) {
                     for (final SequenceBuilder sb : builders) {
                         final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                         sequences.add(sequence);
                     }
                 } else {
                     for (final SequenceBuilder sb : builders) {
-                        if (selectorSampling == sb.sampling()) {
+                        if (selector.getSampling() == sb.sampling()) {
                             final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                             sequences.add(sequence);
                         }
                     }
                     if (sequences.size() == 0 && builders.size() > 0) {
                         final SqlSequence sequence = (SqlSequence) getSequence(builders.get(0).tableId());
-                        sequences.add(sequence);
+                        if (sequence.getSampling() == selector.getSampling()) {
+                            sequences.add(sequence);
+                        } else {
+                            final VirtualSqlSequence vSequence = sequence.cloneVirtual();
+                            vSequence.setSampling(selector.getSampling());
+                            sequences.add(vSequence);
+                        }
                     }
                 }
             }
@@ -147,13 +159,6 @@ public class SqlDatabase extends QuotesDatabase {
             throw new BrokerException(e);
         }
         return sequences;
-    }
-
-    private void readSequences() throws SQLException {
-        for (final SequenceBuilder sb : new ReadSequences(conn).readSequences(new SequenceSelector())) {
-            final SqlSequence sequence = new SqlSequence(this, sb);
-            sequences.put(sequence.getTableId(), sequence);
-        }
     }
 
     @SuppressWarnings("unchecked")
