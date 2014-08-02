@@ -23,7 +23,7 @@ public class XlsxExporter {
     public XlsxExporter() {
         dateStyle = createCellStyle("yyyy-MM-dd");
         // timeStyle = createCellStyle("HH:mm:ss");
-        priceStyle = createCellStyle("General");
+        priceStyle = createCellStyle("0.0000");
         // volumeStyle = createCellStyle("0");
     }
 
