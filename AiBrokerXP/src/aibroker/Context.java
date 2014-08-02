@@ -20,6 +20,12 @@ import aibroker.util.convenience.Databases;
 @SuppressWarnings("serial")
 public final class Context extends Properties {
 
+    public static String getExportFolder() {
+        final String exportFolder = get(FOLDER_EXPORT_KEY, System.getProperty("user.home") + "/AiBrokerXP/export/");
+        new File(exportFolder).mkdirs();
+        return exportFolder;
+    }
+
     public static String getLogFolder() {
         final String logFolder = get(FOLDER_LOG_KEY, System.getProperty("user.home") + "/AiBrokerXP/logfiles/");
         new File(logFolder).mkdirs();
@@ -154,8 +160,9 @@ public final class Context extends Properties {
     }
 
     public static final String   APPLICATION_NAME              = "AI-Broker XP";
-
     private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
+
+    private static final String  FOLDER_EXPORT_KEY             = "exportFolder";
     private static final String  FOLDER_LOG_KEY                = "logFolder";
     private static final String  FOLDER_QUOTES_KEY             = "quotesFolder";
     private static final String  FOLDER_WEKA_KEY               = "wekaFolder";

@@ -11,6 +11,14 @@ import aibroker.util.Moment;
 
 public class Selectors {
 
+    public static SequenceSelector valueOf(final String name) {
+        return VALUES.get(name);
+    }
+
+    public static SequenceSelector[] values() {
+        return VALUES.values().toArray(new SequenceSelector[0]);
+    }
+
     private static class LockableSelector extends SequenceSelector {
 
         private boolean locked = false;
@@ -63,9 +71,11 @@ public class Selectors {
 
     }
 
-    private static final Map<String, SequenceSelector> VALUES = new LinkedHashMap<String, SequenceSelector>();
+    private static final Map<String, SequenceSelector> VALUES                 = new LinkedHashMap<String, SequenceSelector>();
 
-    public static final LockableSelector               DEAPL  = new LockableSelector();
+    public static final LockableSelector               DEAPL                  = new LockableSelector();
+    public static final LockableSelector               DEDJIA_RON_DEC13_DAILY = new LockableSelector();
+
     static {
         DEAPL.setMarket(Market.FUTURES);
         DEAPL.setSymbol("DEAPL");
@@ -77,12 +87,15 @@ public class Selectors {
         VALUES.put("DEAPL", DEAPL);
     }
 
-    public static SequenceSelector valueOf(final String name) {
-        return VALUES.get(name);
-    }
-
-    public static SequenceSelector[] values() {
-        return VALUES.values().toArray(new SequenceSelector[0]);
+    static {
+        DEDJIA_RON_DEC13_DAILY.setMarket(Market.FUTURES);
+        DEDJIA_RON_DEC13_DAILY.setSymbol("DEDJIA_RON");
+        DEDJIA_RON_DEC13_DAILY.setSettlement(Moment.fromIso("2013-12-31"));
+        DEDJIA_RON_DEC13_DAILY.setJoinSettlements(false);
+        DEDJIA_RON_DEC13_DAILY.setFeed(Feed.ORIG);
+        DEDJIA_RON_DEC13_DAILY.setSampling(Sampling.DAILY);
+        // DEDJIA_RON_DEC13_DAILY.lock();
+        VALUES.put("DEDJIA_RON_DEC13_DAILY", DEDJIA_RON_DEC13_DAILY);
     }
 
 }
