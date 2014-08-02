@@ -49,6 +49,7 @@ import aibroker.agents.manager.actions.BackupDatabaseAction;
 import aibroker.agents.manager.actions.CloseApplicationAction;
 import aibroker.agents.manager.actions.DeleteQuotesAction;
 import aibroker.agents.manager.actions.DropDatabaseContentAction;
+import aibroker.agents.manager.actions.ExportAction;
 import aibroker.agents.manager.actions.ImportQuotesAction;
 import aibroker.agents.manager.actions.OpenDatabaseAction;
 import aibroker.agents.manager.actions.SaveSequenceAction;
@@ -173,6 +174,7 @@ public class QuotesManager implements TreeSelectionListener {
     private final Action              saveSequenceAction;
     private final Action              updateAllQuotesAction;
     private final Action              updateSequenceAction;
+    private final Action              action;
 
     /**
      * Create the application.
@@ -188,6 +190,7 @@ public class QuotesManager implements TreeSelectionListener {
         saveSequenceAction = new SaveSequenceAction(this);
         updateAllQuotesAction = new UpdateAllQuotesAction(this);
         updateSequenceAction = new UpdateSequenceAction(this);
+        action = new ExportAction(this);
 
         initialize();
 
@@ -716,6 +719,7 @@ public class QuotesManager implements TreeSelectionListener {
         sequenceOperationsPanel.add(btnImport, gbc_btnImport);
 
         btnExport = new JButton("Export...");
+        btnExport.setAction(action);
         final GridBagConstraints gbc_btnExport = new GridBagConstraints();
         gbc_btnExport.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnExport.insets = new Insets(0, 0, 5, 0);
