@@ -36,8 +36,6 @@ public abstract class QuotesDatabase implements Iterable<Sequence> {
         return sequences.size();
     }
 
-    public abstract List<? extends Sequence> getSequences(SequenceSelector selector);
-
     @Override
     public Iterator<Sequence> iterator() {
         return sequences.values().iterator();
@@ -54,6 +52,8 @@ public abstract class QuotesDatabase implements Iterable<Sequence> {
     protected Sequence getSequence(final String symbol) {
         return sequences.get(symbol);
     }
+
+    protected abstract List<? extends Sequence> getSequences(SequenceSelector selector);
 
     protected abstract Quotes readQuotes(Sequence sequence);
 

@@ -19,62 +19,10 @@ public class Selectors {
         return VALUES.values().toArray(new SequenceSelector[0]);
     }
 
-    private static class LockableSelector extends SequenceSelector {
-
-        private boolean locked = false;
-
-        @Override
-        public void setFeed(final Feed feed) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setFeed(feed);
-        }
-
-        @Override
-        public void setGrouping(final Grouping grpuping) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setGrouping(grpuping);
-        }
-
-        @Override
-        public void setJoinSettlements(final boolean joinSettlements) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setJoinSettlements(joinSettlements);
-        }
-
-        @Override
-        public void setMarket(final Market market) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setMarket(market);
-        }
-
-        @Override
-        public void setSampling(final Sampling sampling) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setSampling(sampling);
-        }
-
-        @Override
-        public void setSettlement(final Moment settlement) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setSettlement(settlement);
-        }
-
-        @Override
-        public void setSymbol(final String symbol) {
-            if (locked) { throw new UnsupportedOperationException(); }
-            super.setSymbol(symbol);
-        }
-
-        private void lock() {
-            locked = true;
-        }
-
-    }
-
     private static final Map<String, SequenceSelector> VALUES                 = new LinkedHashMap<String, SequenceSelector>();
 
-    public static final LockableSelector               DEAPL                  = new LockableSelector();
-    public static final LockableSelector               DEDJIA_RON_DEC13_DAILY = new LockableSelector();
+    public static final SequenceSelector               DEAPL                  = new SequenceSelector();
+    public static final SequenceSelector               DEDJIA_RON_DEC13_DAILY = new SequenceSelector();
 
     static {
         DEAPL.setMarket(Market.FUTURES);
@@ -83,7 +31,6 @@ public class Selectors {
         DEAPL.setFeed(Feed.ORIG);
         DEAPL.setGrouping(Grouping.TICK);
         DEAPL.setSampling(Sampling.SECOND);
-        DEAPL.lock();
         VALUES.put("DEAPL", DEAPL);
     }
 
@@ -94,7 +41,6 @@ public class Selectors {
         DEDJIA_RON_DEC13_DAILY.setJoinSettlements(false);
         DEDJIA_RON_DEC13_DAILY.setFeed(Feed.ORIG);
         DEDJIA_RON_DEC13_DAILY.setSampling(Sampling.DAILY);
-        // DEDJIA_RON_DEC13_DAILY.lock();
         VALUES.put("DEDJIA_RON_DEC13_DAILY", DEDJIA_RON_DEC13_DAILY);
     }
 
