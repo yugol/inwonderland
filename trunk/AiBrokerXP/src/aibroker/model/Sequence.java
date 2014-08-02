@@ -13,7 +13,7 @@ public abstract class Sequence {
     protected Updater              updater;
     protected Quotes               quotes;
 
-    protected Sequence(final QuotesDatabase qDb, final SequenceBuilder sb) {
+    protected Sequence(final QuotesDatabase qDb, final SequenceDescriptor sb) {
         this.qDb = qDb;
         symbol = sb.symbol().trim().toUpperCase();
         settlement = sb.settlement();
@@ -53,7 +53,7 @@ public abstract class Sequence {
     }
 
     public String getName() {
-        return SequenceBuilder.getName(symbol, settlement);
+        return SequenceDescriptor.getName(symbol, settlement);
     }
 
     public Quotes getQuotes() {
@@ -68,7 +68,7 @@ public abstract class Sequence {
     }
 
     public String getSettlementString() {
-        if (settlement != null) { return SequenceBuilder.toSettlementString(settlement); }
+        if (settlement != null) { return SequenceDescriptor.toSettlementString(settlement); }
         return null;
     }
 

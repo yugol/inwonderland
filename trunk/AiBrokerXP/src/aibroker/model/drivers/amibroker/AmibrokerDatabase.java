@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
@@ -46,7 +46,7 @@ public class AmibrokerDatabase extends QuotesDatabase {
     }
 
     @Override
-    public AmibrokerSequence add(final SequenceBuilder tBuilder) {
+    public AmibrokerSequence add(final SequenceDescriptor tBuilder) {
         final AmibrokerSequence aSequence = new AmibrokerSequence(this, tBuilder);
         aSequence.setName(aSequence.getName());
         aSequence.setPointValue(1f);
@@ -56,7 +56,7 @@ public class AmibrokerDatabase extends QuotesDatabase {
     }
 
     public AmibrokerSequence add(final String name) {
-        return add(new SequenceBuilder(name));
+        return add(new SequenceDescriptor(name));
     }
 
     @Override

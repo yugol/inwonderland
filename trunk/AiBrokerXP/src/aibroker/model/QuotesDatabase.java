@@ -16,7 +16,7 @@ public abstract class QuotesDatabase implements Iterable<Sequence> {
         this.dbLocation = dbLocation;
     }
 
-    public abstract Sequence add(SequenceBuilder tBuilder);
+    public abstract Sequence add(SequenceDescriptor tBuilder);
 
     public abstract void drop() throws Exception;
 

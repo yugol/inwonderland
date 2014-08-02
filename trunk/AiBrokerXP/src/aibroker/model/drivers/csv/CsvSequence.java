@@ -1,6 +1,6 @@
 package aibroker.model.drivers.csv;
 
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.Sequence;
 import aibroker.model.domains.Grouping;
 
@@ -12,7 +12,7 @@ public class CsvSequence extends Sequence {
 
     private final Grouping type;
 
-    CsvSequence(final CsvDatabase csvDb, final SequenceBuilder sb) {
+    CsvSequence(final CsvDatabase csvDb, final SequenceDescriptor sb) {
         super(csvDb, sb);
         type = sb.grouping();
     }

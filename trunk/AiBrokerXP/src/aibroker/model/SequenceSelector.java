@@ -13,10 +13,10 @@ public class SequenceSelector implements Cloneable {
         final SequenceSelector selector = new SequenceSelector();
         if (!StringUtil.isNullOrBlank(name)) {
             name = name.trim();
-            selector.setSymbol(SequenceBuilder.getSymbol(name));
-            final String settlement = SequenceBuilder.getSettlement(name);
+            selector.setSymbol(SequenceDescriptor.getSymbol(name));
+            final String settlement = SequenceDescriptor.getSettlement(name);
             if (!StringUtil.isNullOrBlank(settlement)) {
-                selector.setSettlement(SequenceBuilder.parseSettlement(settlement));
+                selector.setSettlement(SequenceDescriptor.parseSettlement(settlement));
             }
         }
         return selector;
@@ -59,7 +59,7 @@ public class SequenceSelector implements Cloneable {
     }
 
     public String getName() {
-        return SequenceBuilder.getName(symbol, settlement);
+        return SequenceDescriptor.getName(symbol, settlement);
     }
 
     public Sampling getSampling() {
@@ -106,8 +106,8 @@ public class SequenceSelector implements Cloneable {
         this.symbol = symbol;
     }
 
-    public SequenceBuilder toBuilder() {
-        final SequenceBuilder sb = new SequenceBuilder(getSymbol(), getSettlement());
+    public SequenceDescriptor toBuilder() {
+        final SequenceDescriptor sb = new SequenceDescriptor(getSymbol(), getSettlement());
         sb.feed(getFeed());
         sb.grouping(getGrouping());
         sb.market(getMarket());

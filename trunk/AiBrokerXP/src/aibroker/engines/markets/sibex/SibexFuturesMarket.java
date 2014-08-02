@@ -1,8 +1,5 @@
 package aibroker.engines.markets.sibex;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -10,37 +7,10 @@ import org.slf4j.LoggerFactory;
 import aibroker.Context;
 import aibroker.engines.markets.Market;
 import aibroker.util.Moment;
+import aibroker.util.NumberUtil;
+import aibroker.util.WebUtil;
 
 public class SibexFuturesMarket extends Market implements Runnable {
-
-    static String getSnapshot() throws Exception {
-        final URL url = new URL(SIBEX_FUTURES_URL);
-        try (BufferedReader urlReader = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            final StringBuilder html = new StringBuilder();
-            String line = null;
-            while ((line = urlReader.readLine()) != null) {
-                html.append(line);
-            }
-            return html.toString();
-        }
-    }
-
-    static float parseFloat(String str) {
-        if (str == null) { return 0; }
-        str = str.trim();
-        if (str.length() == 0) { return 0; }
-        str = str.replace(".", "");
-        str = str.replace(",", ".");
-        return Float.parseFloat(str);
-    }
-
-    static int parseInt(String str) {
-        if (str == null) { return 0; }
-        str = str.trim();
-        if (str.length() == 0) { return 0; }
-        str = str.replace(".", "");
-        return Integer.parseInt(str);
-    }
 
     static Record readRecord(final String snapshot, final int index) {
         int beginIndex = index + 8;
@@ -66,19 +36,19 @@ public class SibexFuturesMarket extends Market implements Runnable {
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setBidPrice(parseFloat(snapshot.substring(beginIndex, endIndex)));
+        record.setBidPrice(NumberUtil.parseFloat(snapshot.substring(beginIndex, endIndex)));
 
         // Ask Price
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setAskPrice(parseFloat(snapshot.substring(beginIndex, endIndex)));
+        record.setAskPrice(NumberUtil.parseFloat(snapshot.substring(beginIndex, endIndex)));
 
         // Last Price
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setLastPrice(parseFloat(snapshot.substring(beginIndex, endIndex)));
+        record.setLastPrice(NumberUtil.parseFloat(snapshot.substring(beginIndex, endIndex)));
 
         // Delta Day
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
@@ -90,19 +60,19 @@ public class SibexFuturesMarket extends Market implements Runnable {
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setVolume(parseInt(snapshot.substring(beginIndex, endIndex)));
+        record.setVolume(NumberUtil.parseInt(snapshot.substring(beginIndex, endIndex)));
 
         // Trades
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setTrades(parseInt(snapshot.substring(beginIndex, endIndex)));
+        record.setTrades(NumberUtil.parseInt(snapshot.substring(beginIndex, endIndex)));
 
         // Open int
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
         beginIndex = snapshot.indexOf(">", beginIndex) + 1;
         endIndex = snapshot.indexOf("</td>", beginIndex);
-        record.setOpenInt(parseInt(snapshot.substring(beginIndex, endIndex)));
+        record.setOpenInt(NumberUtil.parseInt(snapshot.substring(beginIndex, endIndex)));
 
         // Delta Open Int Prev day
         beginIndex = snapshot.indexOf("<td", beginIndex + 1);
@@ -172,7 +142,7 @@ public class SibexFuturesMarket extends Market implements Runnable {
     }
 
     private void update() throws Exception {
-        final String snapshot = getSnapshot();
+        final String snapshot = WebUtil.getPageHtml(SIBEX_FUTURES_URL);
         int index = snapshot.indexOf("newTemplatehead");
         while ((index = snapshot.indexOf("<tr id=\"", index)) >= 0) {
             final Record record = readRecord(snapshot, index);

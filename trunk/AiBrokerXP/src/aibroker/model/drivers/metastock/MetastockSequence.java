@@ -1,7 +1,7 @@
 package aibroker.model.drivers.metastock;
 
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.domains.Sampling;
 import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
@@ -10,7 +10,7 @@ import aibroker.util.Moment;
 public class MetastockSequence extends Sequence {
 
     public static MetastockSequence fromRawData(final MetastockDatabase msq, final byte[] data, final int offset) {
-        final SequenceBuilder sb = new SequenceBuilder(ByteCodec.readString(data, offset + FormatDescriptor.SYMBOL_0, FormatDescriptor.SYMBOL_LEN));
+        final SequenceDescriptor sb = new SequenceDescriptor(ByteCodec.readString(data, offset + FormatDescriptor.SYMBOL_0, FormatDescriptor.SYMBOL_LEN));
         final MetastockSequence sequence = new MetastockSequence(msq, sb);
         switch (MetastockDecoder.readByteAsChar(data, offset + FormatDescriptor.TIME_FRAME)) {
             case 'Y':
@@ -59,7 +59,7 @@ public class MetastockSequence extends Sequence {
     private Moment   lastDate;
     private boolean  autorun;
 
-    MetastockSequence(final MetastockDatabase msDb, final SequenceBuilder sb) {
+    MetastockSequence(final MetastockDatabase msDb, final SequenceDescriptor sb) {
         super(msDb, sb);
     }
 

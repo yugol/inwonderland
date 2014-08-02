@@ -7,7 +7,7 @@ import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
@@ -21,7 +21,7 @@ public class MetastockDatabase extends QuotesDatabase {
     }
 
     @Override
-    public Sequence add(final SequenceBuilder tBuilder) {
+    public Sequence add(final SequenceDescriptor tBuilder) {
         throw new UnsupportedOperationException();
     }
 

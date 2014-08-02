@@ -22,7 +22,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import aibroker.Context;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.domains.Feed;
 import aibroker.model.drivers.sql.SqlSequence;
 import aibroker.model.update.SequenceUpdateListener;
@@ -242,7 +242,7 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
     }
 
     private void appendName(final StringBuilder message, final String symbol, final String settlement) {
-        message.append(SequenceBuilder.getName(symbol, settlement));
+        message.append(SequenceDescriptor.getName(symbol, settlement));
     }
 
     private SqlSequence canUpdate(final SqlSequence sequence) {

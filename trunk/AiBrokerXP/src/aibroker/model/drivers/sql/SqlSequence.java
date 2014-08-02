@@ -7,7 +7,7 @@ import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
@@ -41,7 +41,7 @@ public class SqlSequence extends Sequence {
     protected Moment   firstDayOfTransaction;
     protected boolean  favourite;
 
-    SqlSequence(final QuotesDatabase qDb, final SequenceBuilder sb) {
+    SqlSequence(final QuotesDatabase qDb, final SequenceDescriptor sb) {
         super(qDb, sb);
 
         tableId = isNullOrBlank(sb.tableId()) ? getNewQuotesTableName() : sb.tableId();
@@ -86,7 +86,7 @@ public class SqlSequence extends Sequence {
     }
 
     public VirtualSqlSequence cloneVirtual() {
-        final SequenceBuilder sb = new SequenceBuilder(getSymbol(), getSettlement());
+        final SequenceDescriptor sb = new SequenceDescriptor(getSymbol(), getSettlement());
         sb.tableId("N/A");
         sb.favourite(isFavourite());
         sb.fee(getFee());
