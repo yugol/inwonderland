@@ -1,5 +1,6 @@
 package aibroker.model.drivers.sql;
 
+import java.util.ArrayList;
 import java.util.List;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.SequenceBuilder;
@@ -13,6 +14,13 @@ public class VirtualSqlSequence extends SqlSequence {
 
     VirtualSqlSequence(final QuotesDatabase qDb, final SequenceBuilder sb) {
         super(qDb, sb);
+    }
+
+    public void add(final SqlSequence sequence) {
+        if (baseSequences == null) {
+            baseSequences = new ArrayList<SqlSequence>();
+        }
+        baseSequences.add(sequence);
     }
 
     public List<SqlSequence> getBaseSequences() {
@@ -43,6 +51,7 @@ public class VirtualSqlSequence extends SqlSequence {
         this.settlement = settlement;
     }
 
+    @Override
     public SequenceSelector toSelector() {
         final SequenceSelector selector = new SequenceSelector();
         selector.setFeed(getFeed());
