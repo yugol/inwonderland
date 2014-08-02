@@ -6,7 +6,7 @@ import java.util.Calendar;
 import org.junit.Test;
 import aibroker.Context;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
@@ -24,7 +24,7 @@ public class SqlDatabaseTest {
     public void testAddSequence() throws Exception {
         final SqlDatabase sqlDb = new SqlDatabase(DB_FILE);
 
-        SequenceBuilder b = new SequenceBuilder("sif5");
+        SequenceDescriptor b = new SequenceDescriptor("sif5");
         b.name("SIF5");
         b.market(Market.REGS);
         b.grouping(Grouping.OHLC);
@@ -33,7 +33,7 @@ public class SqlDatabaseTest {
         b.favourite(false);
         sqlDb.add(b);
 
-        b = new SequenceBuilder("DESIF5", new Moment(2007, Calendar.JUNE, 30));
+        b = new SequenceDescriptor("DESIF5", new Moment(2007, Calendar.JUNE, 30));
         b.name("DESIF5-IUN07");
         b.market(Market.FUTURES);
         b.grouping(Grouping.TICK);

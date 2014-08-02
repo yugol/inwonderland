@@ -11,7 +11,7 @@ import org.apache.commons.io.FileUtils;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.model.domains.Grouping;
 import aibroker.util.BrokerException;
@@ -49,7 +49,7 @@ public class CsvDatabase extends QuotesDatabase {
     }
 
     @Override
-    public Sequence add(final SequenceBuilder tBuilder) {
+    public Sequence add(final SequenceDescriptor tBuilder) {
         return add(new CsvSequence(this, tBuilder));
     }
 
@@ -115,7 +115,7 @@ public class CsvDatabase extends QuotesDatabase {
             if (sequenceName.startsWith(PREFIX)) {
                 sequenceName = sequenceName.substring(1);
             }
-            final SequenceBuilder tBuilder = new SequenceBuilder(sequenceName);
+            final SequenceDescriptor tBuilder = new SequenceDescriptor(sequenceName);
 
             if (fileName.endsWith(TICK_EXT.toUpperCase())) {
                 tBuilder.grouping(Grouping.TICK);

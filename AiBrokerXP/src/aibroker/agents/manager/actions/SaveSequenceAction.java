@@ -6,7 +6,7 @@ import javax.swing.tree.TreePath;
 import aibroker.agents.manager.QuotesManager;
 import aibroker.agents.manager.util.QuotesTreeManager;
 import aibroker.agents.manager.util.SettlementMonth;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -38,10 +38,10 @@ public class SaveSequenceAction extends AbstractAction {
             if (!Market.REGS.equals(market)) {
                 final int month = ((SettlementMonth) view.cbbSettlementMonth.getSelectedItem()).index;
                 final int year = (Integer) view.cbbSettlementYear.getSelectedItem();
-                settlement = SequenceBuilder.calculateSettlement(month, year);
+                settlement = SequenceDescriptor.calculateSettlement(month, year);
             }
 
-            final SequenceBuilder builder = new SequenceBuilder(symbol, settlement);
+            final SequenceDescriptor builder = new SequenceDescriptor(symbol, settlement);
             builder.name(view.txtName.getText());
             builder.market(market);
             builder.feed((Feed) view.cbbFeed.getSelectedItem());

@@ -10,7 +10,7 @@ import aibroker.model.domains.Updater;
 import aibroker.util.Moment;
 import aibroker.util.StringUtil;
 
-public class SequenceBuilder {
+public class SequenceDescriptor {
 
     public static Moment calculateSettlement(final int month, int year) {
         if (year < 1000) {
@@ -85,25 +85,29 @@ public class SequenceBuilder {
 
     private Boolean            favourite            = false;
 
-    public SequenceBuilder(final String name) {
+    private int                blockSize            = 1;
+
+    private float              lastPrice;
+
+    public SequenceDescriptor(final String name) {
         this(getSymbol(name), getSettlement(name));
         this.name = name;
     }
 
-    public SequenceBuilder(final String symbol, final int month, final int year) {
+    public SequenceDescriptor(final String symbol, final int month, final int year) {
         this(symbol, calculateSettlement(month, year));
     }
 
-    public SequenceBuilder(final String symbol, final Moment settlement) {
+    public SequenceDescriptor(final String symbol, final Moment settlement) {
         this.symbol = symbol;
         this.settlement = settlement;
     }
 
-    public SequenceBuilder(final String symbol, final String settlement) {
+    public SequenceDescriptor(final String symbol, final String settlement) {
         this(symbol, parseSettlement(settlement));
     }
 
-    public SequenceBuilder(final String symbol, final String month, final int year) {
+    public SequenceDescriptor(final String symbol, final String month, final int year) {
         this(symbol, calculateSettlement(Moment.monthNameToIndex(month), year));
     }
 
@@ -111,7 +115,7 @@ public class SequenceBuilder {
         return favourite;
     }
 
-    public SequenceBuilder favourite(final Boolean favourite) {
+    public SequenceDescriptor favourite(final Boolean favourite) {
         this.favourite = favourite;
         return this;
     }
@@ -120,7 +124,7 @@ public class SequenceBuilder {
         return fee;
     }
 
-    public SequenceBuilder fee(final double fee) {
+    public SequenceDescriptor fee(final double fee) {
         this.fee = fee;
         return this;
     }
@@ -129,7 +133,7 @@ public class SequenceBuilder {
         return feed;
     }
 
-    public SequenceBuilder feed(final Feed feed) {
+    public SequenceDescriptor feed(final Feed feed) {
         this.feed = feed;
         return this;
     }
@@ -138,12 +142,12 @@ public class SequenceBuilder {
         return firstDayOfTransaction;
     }
 
-    public SequenceBuilder firstDayOfTransaction(final Moment firstDayOfTransaction) {
+    public SequenceDescriptor firstDayOfTransaction(final Moment firstDayOfTransaction) {
         this.firstDayOfTransaction = firstDayOfTransaction;
         return this;
     }
 
-    public SequenceBuilder firstDayOfTransaction(final String isoDate) {
+    public SequenceDescriptor firstDayOfTransaction(final String isoDate) {
         if (isNullOrBlank(isoDate)) {
             firstDayOfTransaction = null;
             return this;
@@ -151,11 +155,19 @@ public class SequenceBuilder {
         return firstDayOfTransaction(Moment.fromIso(isoDate));
     }
 
+    public int getBlockSize() {
+        return blockSize;
+    }
+
+    public float getLastPrice() {
+        return lastPrice;
+    }
+
     public Grouping grouping() {
         return grouping;
     }
 
-    public SequenceBuilder grouping(final Grouping grouping) {
+    public SequenceDescriptor grouping(final Grouping grouping) {
         this.grouping = grouping;
         return this;
     }
@@ -164,7 +176,7 @@ public class SequenceBuilder {
         return margin;
     }
 
-    public SequenceBuilder margin(final Double margin) {
+    public SequenceDescriptor margin(final Double margin) {
         this.margin = margin;
         return this;
     }
@@ -173,7 +185,7 @@ public class SequenceBuilder {
         return market;
     }
 
-    public SequenceBuilder market(final Market market) {
+    public SequenceDescriptor market(final Market market) {
         this.market = market;
         return this;
     }
@@ -182,7 +194,7 @@ public class SequenceBuilder {
         return multiplier;
     }
 
-    public SequenceBuilder multiplier(final Double multiplier) {
+    public SequenceDescriptor multiplier(final Double multiplier) {
         this.multiplier = multiplier;
         return this;
     }
@@ -191,7 +203,7 @@ public class SequenceBuilder {
         return name;
     }
 
-    public SequenceBuilder name(final String name) {
+    public SequenceDescriptor name(final String name) {
         this.name = name;
         return this;
     }
@@ -200,9 +212,17 @@ public class SequenceBuilder {
         return sampling;
     }
 
-    public SequenceBuilder sampling(final Sampling sampling) {
+    public SequenceDescriptor sampling(final Sampling sampling) {
         this.sampling = sampling;
         return this;
+    }
+
+    public void setBlockSize(final int blockSize) {
+        this.blockSize = blockSize;
+    }
+
+    public void setLastPrice(final float lastPrice) {
+        this.lastPrice = lastPrice;
     }
 
     public Moment settlement() {
@@ -213,7 +233,7 @@ public class SequenceBuilder {
         return support;
     }
 
-    public SequenceBuilder support(final String support) {
+    public SequenceDescriptor support(final String support) {
         this.support = support;
         return this;
     }
@@ -226,7 +246,7 @@ public class SequenceBuilder {
         return tableId;
     }
 
-    public SequenceBuilder tableId(final String tableId) {
+    public SequenceDescriptor tableId(final String tableId) {
         this.tableId = tableId;
         return this;
     }
@@ -246,7 +266,7 @@ public class SequenceBuilder {
         return updater;
     }
 
-    public SequenceBuilder updater(final Updater updater) {
+    public SequenceDescriptor updater(final Updater updater) {
         this.updater = updater;
         return this;
     }

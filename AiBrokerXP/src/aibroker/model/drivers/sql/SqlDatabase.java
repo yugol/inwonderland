@@ -14,7 +14,7 @@ import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.model.domains.Sampling;
 import aibroker.model.drivers.sql.queries.CountRowsQuery;
@@ -51,7 +51,7 @@ public class SqlDatabase extends QuotesDatabase {
     }
 
     @Override
-    public SqlSequence add(final SequenceBuilder sb) {
+    public SqlSequence add(final SequenceDescriptor sb) {
         logger.debug(sb.toString());
         try {
             final SqlSequence sequence = new SqlSequence(this, sb);
@@ -113,7 +113,7 @@ public class SqlDatabase extends QuotesDatabase {
     }
 
     private void readSequences() throws SQLException {
-        for (final SequenceBuilder sb : new ReadSequences(conn).readSequences(new SequenceSelector())) {
+        for (final SequenceDescriptor sb : new ReadSequences(conn).readSequences(new SequenceSelector())) {
             final SqlSequence sequence = new SqlSequence(this, sb);
             sequences.put(sequence.getTableId(), sequence);
         }
@@ -131,28 +131,28 @@ public class SqlDatabase extends QuotesDatabase {
                 final ReadSequences sequenceReader = new ReadSequences(getConnection());
                 for (final Moment settlement : settlements) {
                     selectorClone.setSettlement(settlement);
-                    final SequenceBuilder builder = sequenceReader.readSequences(selectorClone).get(0);
+                    final SequenceDescriptor builder = sequenceReader.readSequences(selectorClone).get(0);
                     final SqlSequence tempSequence = (SqlSequence) getSequence(builder.toSelector());
                     sequences.add(tempSequence);
                 }
             } else {
                 selectorClone.setSampling(null);
-                final List<SequenceBuilder> builders = new ReadSequences(conn).readSequences(selectorClone);
-                Collections.sort(builders, new Comparator<SequenceBuilder>() {
+                final List<SequenceDescriptor> builders = new ReadSequences(conn).readSequences(selectorClone);
+                Collections.sort(builders, new Comparator<SequenceDescriptor>() {
 
                     @Override
-                    public int compare(final SequenceBuilder o1, final SequenceBuilder o2) {
+                    public int compare(final SequenceDescriptor o1, final SequenceDescriptor o2) {
                         return o1.sampling().compareTo(o2.sampling());
                     }
 
                 });
                 if (selector.getSampling() == null) {
-                    for (final SequenceBuilder sb : builders) {
+                    for (final SequenceDescriptor sb : builders) {
                         final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                         sequences.add(sequence);
                     }
                 } else {
-                    for (final SequenceBuilder sb : builders) {
+                    for (final SequenceDescriptor sb : builders) {
                         if (selector.getSampling() == sb.sampling()) {
                             final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                             sequences.add(sequence);

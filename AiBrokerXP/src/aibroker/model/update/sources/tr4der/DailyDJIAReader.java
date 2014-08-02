@@ -11,7 +11,7 @@ import aibroker.Context;
 import aibroker.model.Ohlc;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
-import aibroker.model.SequenceBuilder;
+import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.model.domains.Grouping;
 import aibroker.model.drivers.csv.CsvDatabase;
@@ -31,7 +31,7 @@ public class DailyDJIAReader {
 
             Sequence sequence = qDb.getSequence(SequenceSelector.fromName(Stocks.DEDJIA_RON.supportSymbol));
             if (sequence == null) {
-                sequence = qDb.add(new SequenceBuilder(Stocks.DEDJIA_RON.supportSymbol).grouping(Grouping.OHLC));
+                sequence = qDb.add(new SequenceDescriptor(Stocks.DEDJIA_RON.supportSymbol).grouping(Grouping.OHLC));
             }
             sequence.getQuotes().clear();
 
