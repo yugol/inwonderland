@@ -1,10 +1,9 @@
 package aibroker.model.drivers.sql;
 
 import static org.junit.Assert.assertNotNull;
-import java.io.File;
 import java.util.Calendar;
 import org.junit.Test;
-import aibroker.Context;
+import aibroker.TestConfig;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -12,17 +11,14 @@ import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
-import aibroker.util.FileUtil;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 
 public class SqlDatabaseTest {
 
-    public final static File DB_FILE = new File(Context.getQuotesFolder(), "test." + FileUtil.QDB_EXTENSION);
-
     // @Test
     public void testAddSequence() throws Exception {
-        final SqlDatabase sqlDb = new SqlDatabase(DB_FILE);
+        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
 
         SequenceDescriptor b = new SequenceDescriptor("sif5");
         b.name("SIF5");
@@ -65,7 +61,7 @@ public class SqlDatabaseTest {
 
     @Test
     public void testSqlDatabase() throws Exception {
-        final SqlDatabase sqlDb = new SqlDatabase(DB_FILE);
+        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
         assertNotNull(sqlDb);
         System.out.println(sqlDb.countRows());
         sqlDb.close();
