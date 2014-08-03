@@ -1,4 +1,4 @@
-package aibroker.model.primitives;
+package aibroker.model;
 
 import static org.junit.Assert.assertEquals;
 import java.io.File;
