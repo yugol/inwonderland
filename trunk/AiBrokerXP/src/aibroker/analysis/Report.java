@@ -130,6 +130,13 @@ public abstract class Report {
         row.createCell(colIdx++).setCellValue("Symbol:");
         row.createCell(colIdx++).setCellValue(descriptor.symbol());
 
+        if (sequence.isRegular()) {
+            row = ensureRow(sheet, rownum++);
+            colIdx = 0;
+            row.createCell(colIdx++).setCellValue("Company:");
+            row.createCell(colIdx++).setCellValue(descriptor.name());
+        }
+
         row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Market:");
