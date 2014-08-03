@@ -1,4 +1,4 @@
-package aibroker.model.cloud.yahoo;
+package aibroker.model.cloud.sources.yahoo;
 
 import java.util.Calendar;
 import java.util.List;
