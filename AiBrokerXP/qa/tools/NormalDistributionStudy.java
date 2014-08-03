@@ -1,13 +1,11 @@
-package experiment;
+package tools;
 
 import org.apache.commons.math3.distribution.AbstractRealDistribution;
 import org.apache.commons.math3.distribution.NormalDistribution;
-import org.junit.Test;
 
-public class NormalDistributionTest {
+public class NormalDistributionStudy {
 
-    @Test
-    public void test() {
+    public static void main(final String... args) {
         final AbstractRealDistribution dist = new NormalDistribution();
         // System.out.println(Arrays.toString(dist.sample(10)));
         System.out.println(dist.probability(-1, +1));
