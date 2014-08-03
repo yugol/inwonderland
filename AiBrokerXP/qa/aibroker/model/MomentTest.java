@@ -41,6 +41,13 @@ public class MomentTest {
     }
 
     @Test
+    public void testGetDaysBetween() {
+        final Moment from = Moment.getBeginningOfToday();
+        final Moment to = Moment.getEndOfToday();
+        assertEquals(0, Moment.getDaysBetween(from, to));
+    }
+
+    @Test
     public void testTimePoint() {
         final Moment tp = new Moment();
         assertEquals(10, tp.toIsoDate().length());
