@@ -3,7 +3,6 @@ package tools;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import org.junit.Test;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.SequenceSelector;
@@ -13,8 +12,9 @@ import aibroker.util.convenience.Databases;
 
 public class LegacyQuotesMerger {
 
-    private static final File           source      = new File("/home/iulian/AiBrokerXP/quotes/archive/----");
-    private static final QuotesDatabase destination = Databases.SQL_DEFAULT.getInstance();
+    public static void main(final String... args) throws IOException, SQLException {
+        processQuotesLocation(source);
+    }
 
     private static String normalizeSymbol(final String symbol) {
         switch (symbol) {
@@ -27,12 +27,7 @@ public class LegacyQuotesMerger {
         }
     }
 
-    @Test
-    public void listTickFiles() throws IOException, SQLException {
-        processQuotesLocation(source);
-    }
-
-    private void processQuotesLocation(final File location) throws IOException, SQLException {
+    private static void processQuotesLocation(final File location) throws IOException, SQLException {
         for (final File file : location.listFiles()) {
             if (file.isDirectory()) {
                 System.out.println("In: " + file.getCanonicalPath());
@@ -58,5 +53,9 @@ public class LegacyQuotesMerger {
             }
         }
     }
+
+    private static final File           source      = new File("/home/iulian/AiBrokerXP/quotes/archive/----");
+
+    private static final QuotesDatabase destination = Databases.SQL_DEFAULT.getInstance();
 
 }

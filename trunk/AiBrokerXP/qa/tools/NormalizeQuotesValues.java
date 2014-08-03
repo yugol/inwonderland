@@ -1,7 +1,6 @@
 package tools;
 
 import java.sql.SQLException;
-import org.junit.Test;
 import aibroker.model.Ohlc;
 import aibroker.model.QuotesDatabase;
 import aibroker.model.Sequence;
@@ -13,8 +12,7 @@ import aibroker.util.convenience.Databases;
 
 public class NormalizeQuotesValues {
 
-    @Test
-    public void normalize() throws SQLException {
+    public static void main(final String... args) throws SQLException {
         final QuotesDatabase qdb = Databases.SQL_DEFAULT.getInstance();
         final SequenceSelector EURUSD = new SequenceSelector();
         EURUSD.setMarket(Market.FUTURES);
