@@ -23,10 +23,10 @@ import javax.swing.border.EmptyBorder;
 import aibroker.Context;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
+import aibroker.model.cloud.SequenceUpdateListener;
+import aibroker.model.cloud.SequenceUpdater;
 import aibroker.model.domains.Feed;
 import aibroker.model.drivers.sql.SqlSequence;
-import aibroker.model.update.SequenceUpdateListener;
-import aibroker.model.update.SequenceUpdater;
 import aibroker.util.Moment;
 
 @SuppressWarnings("serial")

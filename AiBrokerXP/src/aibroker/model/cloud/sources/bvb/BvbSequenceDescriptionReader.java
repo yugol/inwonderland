@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.bvb;
+package aibroker.model.cloud.sources.bvb;
 
 import java.io.IOException;
 import aibroker.model.SequenceDescriptor;

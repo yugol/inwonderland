@@ -11,9 +11,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.SequenceDescriptor;
+import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
 import aibroker.model.domains.Sampling;
 import aibroker.model.drivers.sql.SqlSequence;
-import aibroker.model.update.sources.bvb.BvbSequenceDescriptionReader;
 import aibroker.util.SamplingUtil;
 
 public class XlsxAnalysis {

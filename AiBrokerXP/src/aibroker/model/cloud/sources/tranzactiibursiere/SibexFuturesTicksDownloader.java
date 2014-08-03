@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.tranzactiibursiere;
+package aibroker.model.cloud.sources.tranzactiibursiere;
 
 import java.io.File;
 import java.net.URL;
@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.jumpmind.symmetric.csv.CsvReader;
 import aibroker.model.Ohlc;
+import aibroker.model.cloud.CloudDataSource;
 import aibroker.model.drivers.csv.CsvDatabase;
-import aibroker.model.update.CloudDataSource;
 import aibroker.util.Moment;
 
 public class SibexFuturesTicksDownloader extends CloudDataSource {

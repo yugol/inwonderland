@@ -2,9 +2,9 @@ package aibroker.model.drivers.csv;
 
 import org.junit.Test;
 import aibroker.model.Sequence;
+import aibroker.model.cloud.sources.bursanoastra.BursanoastraConfig;
 import aibroker.model.drivers.csv.CsvDatabase;
 import aibroker.model.drivers.metastock.MetastockDatabase;
-import aibroker.model.update.sources.bursanoastra.BursanoastraConfig;
 import aibroker.util.convenience.Databases;
 
 public class CsvWriterTest {

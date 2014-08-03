@@ -12,23 +12,6 @@ import org.joda.time.Days;
 @SuppressWarnings("serial")
 public class Moment extends GregorianCalendar {
 
-    private static final Map<Integer, String> shortName = new HashMap<Integer, String>();
-
-    static {
-        shortName.put(Calendar.JANUARY, "IAN");
-        shortName.put(Calendar.FEBRUARY, "FEB");
-        shortName.put(Calendar.MARCH, "MAR");
-        shortName.put(Calendar.APRIL, "APR");
-        shortName.put(Calendar.MAY, "MAI");
-        shortName.put(Calendar.JUNE, "IUN");
-        shortName.put(Calendar.JULY, "IUL");
-        shortName.put(Calendar.AUGUST, "AUG");
-        shortName.put(Calendar.SEPTEMBER, "SEP");
-        shortName.put(Calendar.OCTOBER, "OCT");
-        shortName.put(Calendar.NOVEMBER, "NOI");
-        shortName.put(Calendar.DECEMBER, "DEC");
-    }
-
     public static Moment fromCompactIso(final String str) {
         int year = 1, month = 0, dayOfMonth = 1, hourOfDay = 0, minute = 0, second = 0;
         switch (str.length()) {
@@ -65,6 +48,7 @@ public class Moment extends GregorianCalendar {
                 hourOfDay = Integer.parseInt(str.substring(0, 2));
                 minute = Integer.parseInt(str.substring(3, 5));
                 second = Integer.parseInt(str.substring(6, 8));
+                break;
             default:
                 throw new BrokerException("Unsupported format");
         }
@@ -169,6 +153,23 @@ public class Moment extends GregorianCalendar {
             return new Moment(model.getYear(), model.getMonth(), model.getDay());
         }
         throw new InvalidParameterException(value.getClass().getName());
+    }
+
+    private static final Map<Integer, String> shortName = new HashMap<Integer, String>();
+
+    static {
+        shortName.put(Calendar.JANUARY, "IAN");
+        shortName.put(Calendar.FEBRUARY, "FEB");
+        shortName.put(Calendar.MARCH, "MAR");
+        shortName.put(Calendar.APRIL, "APR");
+        shortName.put(Calendar.MAY, "MAI");
+        shortName.put(Calendar.JUNE, "IUN");
+        shortName.put(Calendar.JULY, "IUL");
+        shortName.put(Calendar.AUGUST, "AUG");
+        shortName.put(Calendar.SEPTEMBER, "SEP");
+        shortName.put(Calendar.OCTOBER, "OCT");
+        shortName.put(Calendar.NOVEMBER, "NOI");
+        shortName.put(Calendar.DECEMBER, "DEC");
     }
 
     public Moment() {
