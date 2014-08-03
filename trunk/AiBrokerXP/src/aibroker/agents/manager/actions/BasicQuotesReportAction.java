@@ -7,18 +7,18 @@ import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
+import aibroker.analysis.BasicQuotesReport;
 import aibroker.model.drivers.sql.SqlSequence;
-import aibroker.model.export.XlsxAnalysis;
 import aibroker.util.OsUtil;
 
 @SuppressWarnings("serial")
-public class ExportAction extends AbstractAction {
+public class BasicQuotesReportAction extends AbstractAction {
 
     private final QuotesManager view;
 
-    public ExportAction(final QuotesManager view) {
+    public BasicQuotesReportAction(final QuotesManager view) {
         this.view = view;
-        putValue(NAME, "Export...");
+        putValue(NAME, "Basic Quotes Report");
     }
 
     @Override
@@ -30,9 +30,10 @@ public class ExportAction extends AbstractAction {
         final int rVal = dbChooser.showSaveDialog(view.frmManager);
         if (rVal == JFileChooser.APPROVE_OPTION) {
             try {
-                final XlsxAnalysis exporter = new XlsxAnalysis(seq);
+                final BasicQuotesReport report = new BasicQuotesReport(view.getDatabase(), seq);
+                report.fill();
                 file = dbChooser.getSelectedFile();
-                exporter.save(file);
+                report.save(file);
                 OsUtil.openFile(file);
             } catch (final IOException e1) {
                 e1.printStackTrace();

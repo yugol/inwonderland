@@ -46,10 +46,10 @@ import javax.swing.tree.TreePath;
 import aibroker.Context;
 import aibroker.agents.manager.actions.AddSequenceAction;
 import aibroker.agents.manager.actions.BackupDatabaseAction;
+import aibroker.agents.manager.actions.BasicQuotesReportAction;
 import aibroker.agents.manager.actions.CloseApplicationAction;
 import aibroker.agents.manager.actions.DeleteQuotesAction;
 import aibroker.agents.manager.actions.DropDatabaseContentAction;
-import aibroker.agents.manager.actions.ExportAction;
 import aibroker.agents.manager.actions.ImportQuotesAction;
 import aibroker.agents.manager.actions.OpenDatabaseAction;
 import aibroker.agents.manager.actions.SaveSequenceAction;
@@ -116,10 +116,12 @@ public class QuotesManager implements TreeSelectionListener {
     public JFrame                     frmManager;
 
     // menu attributes
-    private JMenuItem                 mntmUpdateAll;
-    private JMenuItem                 mntmBackup;
-    private JMenuItem                 mntmDropContent;
+    private JMenu                     mnReports;
     private JMenu                     mnSequence;
+    private JMenuItem                 mntmBackup;
+    private JMenuItem                 mntmBasicQuotesReport;
+    private JMenuItem                 mntmDropContent;
+    private JMenuItem                 mntmUpdateAll;
 
     // symbols tree attributes
     public JTree                      quotesTree;
@@ -174,7 +176,7 @@ public class QuotesManager implements TreeSelectionListener {
     private final Action              saveSequenceAction;
     private final Action              updateAllQuotesAction;
     private final Action              updateSequenceAction;
-    private final Action              action;
+    private final Action              basicQuotesReportAction;
 
     /**
      * Create the application.
@@ -190,7 +192,7 @@ public class QuotesManager implements TreeSelectionListener {
         saveSequenceAction = new SaveSequenceAction(this);
         updateAllQuotesAction = new UpdateAllQuotesAction(this);
         updateSequenceAction = new UpdateSequenceAction(this);
-        action = new ExportAction(this);
+        basicQuotesReportAction = new BasicQuotesReportAction(this);
 
         initialize();
 
@@ -269,6 +271,8 @@ public class QuotesManager implements TreeSelectionListener {
         final boolean existingSequence = sqlSequence != null;
         final boolean derivativeSequence = ((Market) cbbMarket.getSelectedItem()).isDerivative();
         final boolean updatable = existingSequence && !Updater.NONE.equals(sqlSequence.getUpdater());
+
+        mnReports.setEnabled(dbOpened && existingSequence);
 
         lblMarket.setEnabled(dbOpened && real && editable);
         lblFeed.setEnabled(dbOpened && real && editable);
@@ -365,6 +369,13 @@ public class QuotesManager implements TreeSelectionListener {
         final JMenuItem mntmAddSequence = new JMenuItem();
         mntmAddSequence.setAction(addSequenceAction);
         mnSequence.add(mntmAddSequence);
+
+        mnReports = new JMenu("Reports");
+        menuBar.add(mnReports);
+
+        mntmBasicQuotesReport = new JMenuItem("");
+        mntmBasicQuotesReport.setAction(basicQuotesReportAction);
+        mnReports.add(mntmBasicQuotesReport);
 
         final JToolBar statusBar = new JToolBar();
         statusBar.setFloatable(false);
@@ -718,7 +729,6 @@ public class QuotesManager implements TreeSelectionListener {
         sequenceOperationsPanel.add(btnImport, gbc_btnImport);
 
         btnExport = new JButton("Export...");
-        btnExport.setAction(action);
         final GridBagConstraints gbc_btnExport = new GridBagConstraints();
         gbc_btnExport.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnExport.insets = new Insets(0, 0, 5, 0);
