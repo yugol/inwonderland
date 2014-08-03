@@ -33,10 +33,19 @@ public class SequenceUpdater implements Runnable {
     @Override
     public void run() {
         final Updater updater = sequence.getUpdater();
-        if (Updater.CACHED == updater) {
-            updateFromLocal();
-        } else {
-            updateFomCloud(updater);
+        switch (updater) {
+            case BVB_REG_DAILY_BASE:
+            case BVB_REG_DAILY_NORM:
+            case YAHOO_DAILY:
+                updateFomCloud(updater);
+                break;
+            case CACHED:
+                updateFromCached();
+                break;
+            case CACHED_SIBEX_FUT_TICK:
+                updateFromLogs();
+            default:
+                break;
         }
     }
 
@@ -112,7 +121,7 @@ public class SequenceUpdater implements Runnable {
         }
     }
 
-    private void updateFromLocal() {
+    private void updateFromCached() {
         final String symbol = sequence.getSymbol();
         final String settlement = sequence.getSettlementString();
         final Moment firstDate = new Moment();
@@ -128,7 +137,7 @@ public class SequenceUpdater implements Runnable {
                 selector.setJoinSettlements(true);
             }
             selector.setFeed(Feed.ORIG);
-            final SqlSequence origSequence = (SqlSequence) sqlDb.getSequence(selector);
+            final SqlSequence origSequence = sqlDb.getSequence(selector);
             final Quotes quotes = origSequence.getQuotes();
             sequence.deleteQuotes();
             sequence.addQuotes(quotes);
@@ -145,6 +154,18 @@ public class SequenceUpdater implements Runnable {
             for (final SequenceUpdateListener listener : listeners) {
                 listener.onEndDownloading(symbol, settlement);
             }
+        }
+    }
+
+    private void updateFromLogs() {
+        final String symbol = sequence.getSymbol();
+        final String settlement = sequence.getSettlementString();
+        final Moment firstDate = new Moment();
+        for (final SequenceUpdateListener listener : listeners) {
+            listener.onError(symbol, settlement, firstDate, new UnsupportedOperationException("CACHED_SIBEX_FUT_TICK is not yet implemented"));
+        }
+        for (final SequenceUpdateListener listener : listeners) {
+            listener.onEndDownloading(symbol, settlement);
         }
     }
 
