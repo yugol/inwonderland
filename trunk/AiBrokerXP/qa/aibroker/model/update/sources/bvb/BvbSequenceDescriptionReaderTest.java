@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import org.junit.Test;
 import aibroker.model.SequenceDescriptor;
+import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
 
 public class BvbSequenceDescriptionReaderTest {
 

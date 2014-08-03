@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.tranzactiibursiere;
+package aibroker.model.cloud.sources.tranzactiibursiere;
 
 import aibroker.util.Moment;
 

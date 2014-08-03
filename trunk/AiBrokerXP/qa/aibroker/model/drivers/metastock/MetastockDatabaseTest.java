@@ -5,8 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceSelector;
+import aibroker.model.cloud.sources.bursanoastra.BursanoastraConfig;
 import aibroker.model.domains.Sampling;
-import aibroker.model.update.sources.bursanoastra.BursanoastraConfig;
 
 public class MetastockDatabaseTest {
 

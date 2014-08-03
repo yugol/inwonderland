@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.bursanoastra;
+package aibroker.model.cloud.sources.bursanoastra;
 
 import java.io.File;
 import aibroker.Context;

@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 import org.junit.Test;
 import aibroker.model.Ohlc;
+import aibroker.model.cloud.CloudDataSource;
 import aibroker.model.domains.Updater;
-import aibroker.model.update.CloudDataSource;
 import aibroker.util.Moment;
 
 public class BvbRegsNormDownloaderTest {

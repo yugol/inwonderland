@@ -1,4 +1,4 @@
-package aibroker.model.update;
+package aibroker.model.cloud;
 
 import aibroker.util.Moment;
 

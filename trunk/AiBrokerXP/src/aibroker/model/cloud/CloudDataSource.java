@@ -1,4 +1,4 @@
-package aibroker.model.update;
+package aibroker.model.cloud;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,11 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
+import aibroker.model.cloud.sources.tranzactiibursiere.BvbRegsDailyNormDownloader;
+import aibroker.model.cloud.sources.tranzactiibursiere.BvbRegsDailyOrigDownloader;
+import aibroker.model.cloud.sources.tranzactiibursiere.SibexFuturesTicksDownloader;
+import aibroker.model.cloud.sources.yahoo.YahooDailyDownloader;
 import aibroker.model.domains.Updater;
-import aibroker.model.update.sources.tranzactiibursiere.BvbRegsDailyNormDownloader;
-import aibroker.model.update.sources.tranzactiibursiere.BvbRegsDailyOrigDownloader;
-import aibroker.model.update.sources.tranzactiibursiere.SibexFuturesTicksDownloader;
-import aibroker.model.update.sources.yahoo.YahooDailyDownloader;
 import aibroker.util.Moment;
 import static aibroker.util.StringUtil.isNullOrBlank;
 

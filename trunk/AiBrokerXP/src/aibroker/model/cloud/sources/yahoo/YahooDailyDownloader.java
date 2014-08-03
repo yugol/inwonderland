@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.tranzactiibursiere;
+package aibroker.model.cloud.sources.yahoo;
 
 import java.io.File;
 import java.net.URL;
@@ -7,21 +7,21 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 import org.jumpmind.symmetric.csv.CsvReader;
 import aibroker.model.Ohlc;
+import aibroker.model.cloud.CloudDataSource;
 import aibroker.model.drivers.csv.CsvDatabase;
-import aibroker.model.update.CloudDataSource;
 import aibroker.util.Moment;
 
-public class BvbRegsDailyOrigDownloader extends CloudDataSource {
+public class YahooDailyDownloader extends CloudDataSource {
 
-    private static final int                        CASH_SIZE = 150;
+    private static final int                  CASH_SIZE = 150;
 
-    private static final BvbRegsDailyOrigDownloader instance  = new BvbRegsDailyOrigDownloader();
+    private static final YahooDailyDownloader instance  = new YahooDailyDownloader();
 
-    public static BvbRegsDailyOrigDownloader getInstance() {
+    public static YahooDailyDownloader getInstance() {
         return instance;
     }
 
-    BvbRegsDailyOrigDownloader() {
+    private YahooDailyDownloader() {
     }
 
     @Override
@@ -32,7 +32,16 @@ public class BvbRegsDailyOrigDownloader extends CloudDataSource {
 
         File quotesFile = null;
         try {
-            final StringBuilder url = getDownloadUrl(symbol, firstDate, lastDate);
+            final StringBuilder url = new StringBuilder("http://ichart.finance.yahoo.com/table.csv?");
+            url.append("s=").append(symbol);
+            url.append("&c=").append(firstDate.get(Calendar.YEAR));
+            url.append("&a=").append(firstDate.get(Calendar.MONTH));
+            url.append("&b=").append(firstDate.get(Calendar.DAY_OF_MONTH));
+            url.append("&g=").append("d");
+            url.append("&f=").append(lastDate.get(Calendar.YEAR));
+            url.append("&d=").append(lastDate.get(Calendar.MONTH));
+            url.append("&e=").append(lastDate.get(Calendar.DAY_OF_MONTH));
+            url.append("&ignore=").append(".csv");
 
             quotesFile = File.createTempFile("$$$", UUID.randomUUID().toString());
             FileUtils.copyURLToFile(new URL(url.toString()), quotesFile);
@@ -40,12 +49,12 @@ public class BvbRegsDailyOrigDownloader extends CloudDataSource {
             reader.readHeaders();
 
             while (reader.readRecord()) {
-                final Moment moment = Moment.fromIso(reader.get("Data"));
-                final float open = Float.parseFloat(reader.get("Desch"));
-                final float high = Float.parseFloat(reader.get("Maxim"));
-                final float low = Float.parseFloat(reader.get("Minim"));
-                final float close = Float.parseFloat(reader.get("Inchid"));
-                final int volume = Integer.parseInt(reader.get("Volum"));
+                final Moment moment = Moment.fromIso(reader.get("Date"));
+                final float open = Float.parseFloat(reader.get("Open"));
+                final float high = Float.parseFloat(reader.get("High"));
+                final float low = Float.parseFloat(reader.get("Low"));
+                final float close = Float.parseFloat(reader.get("Close"));
+                final int volume = (int) (Long.parseLong(reader.get("Volume")) / 1000);
 
                 final Ohlc quote = new Ohlc(moment, open, high, low, close, volume);
                 addQuote(symbol, settlement, quote);
@@ -64,18 +73,6 @@ public class BvbRegsDailyOrigDownloader extends CloudDataSource {
             firstDate.add(Calendar.DAY_OF_YEAR, 1);
         }
         sortQuotes(symbol, settlement);
-    }
-
-    protected StringBuilder getDownloadUrl(final String symbol, final Moment firstDate, final Moment lastDate) {
-        final StringBuilder url = new StringBuilder();
-        url.append("http://www.tranzactiibursiere.ro/detalii/istoric_csv?lang=en&symbol=");
-        url.append(symbol);
-        url.append("&market=REGS&sdate=");
-        url.append(firstDate.toIsoDate());
-        url.append("&edate=");
-        url.append(lastDate.toIsoDate());
-        url.append("&type=original&x=%2C");
-        return url;
     }
 
 }
