@@ -38,7 +38,7 @@ public abstract class Report {
         this.sequence = sequence;
         descriptor = readDescriptor();
         blockMultiplier = calculateBlockMultiplier();
-        overallMultiplier = blockMultiplier * descriptor.getBlockSize();
+        overallMultiplier = blockMultiplier * descriptor.blockSize();
         transactionPrice = calculateTransactionPrice();
         transactionFee = calculateTransactionFee();
         overallPrice = transactionPrice + transactionFee;
@@ -46,7 +46,7 @@ public abstract class Report {
         profitIncrement = calculateProfitIncrement();
 
         dateStyle = createCellStyle("yyyy-MM-dd");
-        priceStyle = createCellStyle(descriptor.getLastPrice() > 1000 ? "0" : "0.0000");
+        priceStyle = createCellStyle(descriptor.lastPrice() > 1000 ? "0" : "0.0000");
         timeStyle = createCellStyle("HH:mm:ss");
         volumeStyle = createCellStyle("0");
     }
@@ -66,7 +66,7 @@ public abstract class Report {
     private double calculateBlockMultiplier() {
         if (sequence.isRegular()) {
             double bm = 0.0001;
-            final double blockPrice = descriptor.getLastPrice() * descriptor.getBlockSize();
+            final double blockPrice = descriptor.lastPrice() * descriptor.blockSize();
             while (blockPrice * bm < 1000) {
                 bm *= 10;
             }
@@ -98,7 +98,7 @@ public abstract class Report {
     }
 
     private double calculateTransactionPrice() {
-        if (sequence.isRegular()) { return descriptor.getLastPrice() * descriptor.getBlockSize() * blockMultiplier; }
+        if (sequence.isRegular()) { return descriptor.lastPrice() * descriptor.blockSize() * blockMultiplier; }
         return sequence.getMargin();
     }
 
@@ -139,13 +139,13 @@ public abstract class Report {
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Last price:");
         Cell cell = row.createCell(colIdx++);
-        cell.setCellValue(descriptor.getLastPrice());
+        cell.setCellValue(descriptor.lastPrice());
         cell.setCellStyle(priceStyle);
 
         row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Block size:");
-        row.createCell(colIdx++).setCellValue(descriptor.getBlockSize());
+        row.createCell(colIdx++).setCellValue(descriptor.blockSize());
 
         row = ensureRow(sheet, rownum++);
         colIdx = 0;

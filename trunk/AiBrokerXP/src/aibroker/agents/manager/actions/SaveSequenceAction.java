@@ -41,22 +41,22 @@ public class SaveSequenceAction extends AbstractAction {
                 settlement = SequenceDescriptor.calculateSettlement(month, year);
             }
 
-            final SequenceDescriptor builder = new SequenceDescriptor(symbol, settlement);
-            builder.name(view.txtName.getText());
-            builder.market(market);
-            builder.feed((Feed) view.cbbFeed.getSelectedItem());
-            builder.sampling(sampling);
-            builder.updater((Updater) view.cbbUpdater.getSelectedItem());
-            builder.grouping(sampling == Sampling.SECOND ? Grouping.TICK : Grouping.OHLC);
-            builder.favourite(view.ckbFavourite.isSelected());
-            builder.fee(Double.parseDouble(view.txtFee.getText()));
+            final SequenceDescriptor sDesc = new SequenceDescriptor(symbol, settlement);
+            sDesc.name(view.txtName.getText());
+            sDesc.market(market);
+            sDesc.feed((Feed) view.cbbFeed.getSelectedItem());
+            sDesc.sampling(sampling);
+            sDesc.updater((Updater) view.cbbUpdater.getSelectedItem());
+            sDesc.grouping(sampling == Sampling.SECOND ? Grouping.TICK : Grouping.OHLC);
+            sDesc.favourite(view.ckbFavourite.isSelected());
+            sDesc.fee(Double.parseDouble(view.txtFee.getText()));
             if (!Market.REGS.equals(market)) {
-                builder.margin(Double.parseDouble(view.txtMargin.getText()));
-                builder.multiplier(Double.parseDouble(view.txtMultiplier.getText()));
-                builder.support(view.txtSupport.getText());
+                sDesc.margin(Double.parseDouble(view.txtMargin.getText()));
+                sDesc.multiplier(Double.parseDouble(view.txtMultiplier.getText()));
+                sDesc.support(view.txtSupport.getText());
             }
 
-            final SqlSequence sequence = view.getDatabase().add(builder);
+            final SqlSequence sequence = view.getDatabase().add(sDesc);
             final TreePath sequencePath = QuotesTreeManager.addSequence(view.quotesTree, sequence);
             view.setSequence(sequence, sequencePath);
         } catch (final Exception ex) {

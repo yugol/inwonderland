@@ -16,12 +16,17 @@ public class BvbSequenceDescriptionReader {
         int beginIndex = html.indexOf("ctl00_central_wcTunel_lbBlockSize");
         beginIndex = html.indexOf(">", beginIndex) + 1;
         int endIndex = html.indexOf("<", beginIndex);
-        sDesc.setBlockSize(NumberUtil.parseInt(html.substring(beginIndex, endIndex)));
+        sDesc.blockSize(NumberUtil.parseInt(html.substring(beginIndex, endIndex)));
 
         beginIndex = html.indexOf("ctl00_central_lbPrice");
         beginIndex = html.indexOf(">", beginIndex) + 1;
         endIndex = html.indexOf("<", beginIndex);
-        sDesc.setLastPrice(NumberUtil.parseFloat(html.substring(beginIndex, endIndex)));
+        sDesc.lastPrice(NumberUtil.parseFloat(html.substring(beginIndex, endIndex)));
+
+        beginIndex = html.indexOf("ctl00_central_lbDeni");
+        beginIndex = html.indexOf(">", beginIndex) + 1;
+        endIndex = html.indexOf("<", beginIndex);
+        sDesc.name(html.substring(beginIndex, endIndex));
 
         return sDesc;
     }

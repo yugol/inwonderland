@@ -86,7 +86,6 @@ public class SequenceDescriptor {
     private Boolean            favourite            = false;
 
     private int                blockSize            = 1;
-
     private float              lastPrice;
 
     public SequenceDescriptor(final String name) {
@@ -109,6 +108,14 @@ public class SequenceDescriptor {
 
     public SequenceDescriptor(final String symbol, final String month, final int year) {
         this(symbol, calculateSettlement(Moment.monthNameToIndex(month), year));
+    }
+
+    public int blockSize() {
+        return blockSize;
+    }
+
+    public void blockSize(final int blockSize) {
+        this.blockSize = blockSize;
     }
 
     public Boolean favourite() {
@@ -155,14 +162,6 @@ public class SequenceDescriptor {
         return firstDayOfTransaction(Moment.fromIso(isoDate));
     }
 
-    public int getBlockSize() {
-        return blockSize;
-    }
-
-    public float getLastPrice() {
-        return lastPrice;
-    }
-
     public Grouping grouping() {
         return grouping;
     }
@@ -170,6 +169,14 @@ public class SequenceDescriptor {
     public SequenceDescriptor grouping(final Grouping grouping) {
         this.grouping = grouping;
         return this;
+    }
+
+    public float lastPrice() {
+        return lastPrice;
+    }
+
+    public void lastPrice(final float lastPrice) {
+        this.lastPrice = lastPrice;
     }
 
     public Double margin() {
@@ -215,14 +222,6 @@ public class SequenceDescriptor {
     public SequenceDescriptor sampling(final Sampling sampling) {
         this.sampling = sampling;
         return this;
-    }
-
-    public void setBlockSize(final int blockSize) {
-        this.blockSize = blockSize;
-    }
-
-    public void setLastPrice(final float lastPrice) {
-        this.lastPrice = lastPrice;
     }
 
     public Moment settlement() {
