@@ -247,6 +247,7 @@ public class QuotesManager implements TreeSelectionListener {
     public void setDatabase(final SqlDatabase database) {
         sqlDb = database;
         quotesTree.setModel(QuotesTreeManager.readSequences(database));
+        QuotesTreeManager.expandDefault(quotesTree);
         setDatabaseControlsEnabled();
         setSequence(null, null);
     }

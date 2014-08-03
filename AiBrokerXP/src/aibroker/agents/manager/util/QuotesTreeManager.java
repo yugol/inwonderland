@@ -6,6 +6,7 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import aibroker.model.Sequence;
 import aibroker.model.domains.Feed;
+import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
 import aibroker.model.drivers.sql.SqlDatabase;
 import aibroker.model.drivers.sql.SqlSequence;
@@ -24,6 +25,12 @@ public class QuotesTreeManager {
     public static TreeModel buildDefaultTreeModel() {
         final QuotesTreeNode root = new QuotesTreeNode("Quotes");
         return new DefaultTreeModel(root);
+    }
+
+    public static void expandDefault(final JTree tree) {
+        final TreeModel model = tree.getModel();
+        final QuotesTreeNode root = (QuotesTreeNode) model.getRoot();
+        expandDefault(tree, root);
     }
 
     public static TreeModel readSequences(final SqlDatabase qdb) {
@@ -128,6 +135,23 @@ public class QuotesTreeManager {
         }
 
         return name == null ? symbol : name;
+    }
+
+    private static void expandDefault(final JTree tree, final QuotesTreeNode node) {
+        if (!node.isLeaf()) {
+            final Object content = node.getUserObject();
+            if (content instanceof Market) {
+                if ((Market) content != Market.REGS) { return; }
+            }
+            if (content instanceof Sampling) {
+                if ((Sampling) content != Sampling.DAILY) { return; }
+            }
+            tree.expandPath(new TreePath(node.getPath()));
+            for (int i = 0; i < node.getChildCount(); ++i) {
+                final QuotesTreeNode child = (QuotesTreeNode) node.getChildAt(i);
+                expandDefault(tree, child);
+            }
+        }
     }
 
 }
