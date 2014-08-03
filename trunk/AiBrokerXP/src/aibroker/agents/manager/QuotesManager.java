@@ -211,8 +211,7 @@ public class QuotesManager implements TreeSelectionListener {
         cbbUpdater.addItem(Updater.BVB_REG_DAILY_BASE);
         cbbUpdater.addItem(Updater.BVB_REG_DAILY_NORM);
         cbbUpdater.addItem(Updater.YAHOO_DAILY);
-        cbbUpdater.addItem(Updater.SIBEX_FUT_TICK);
-        cbbUpdater.addItem(Updater.CACHED);
+        cbbUpdater.addItem(Updater.CACHED_SIBEX_FUT_TICK);
 
         cbbSettlementMonth.addItem(new SettlementMonth("January", Calendar.JANUARY));
         cbbSettlementMonth.addItem(new SettlementMonth("February", Calendar.FEBRUARY));

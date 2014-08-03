@@ -77,12 +77,20 @@ public class XlsxAnalysis {
         while (blockPrice * bm < 1000) {
             bm *= 10;
         }
+        if (blockPrice * bm > 2500) {
+            bm /= 10;
+        }
         return bm;
     }
 
     private double calculateProfitIncrement() {
-        return 0.01;
-        // return Math.pow(10, Math.round(Math.log10(profitPoint)));
+        int inc = 0;
+        double pp = profitPoint;
+        while (pp < 1) {
+            pp *= 10;
+            inc--;
+        }
+        return Math.pow(10, inc);
     }
 
     private double calculateProfitPoint() {
@@ -95,62 +103,70 @@ public class XlsxAnalysis {
         return cellStyle;
     }
 
+    private Row ensureRow(final Sheet sheet, final int rownum) {
+        Row row = sheet.getRow(rownum);
+        if (row == null) {
+            row = sheet.createRow(rownum);
+        }
+        return row;
+    }
+
     private void fillGeneralSheet(final Sheet sheet) throws IOException {
         int rownum = 0;
-        Row row = sheet.createRow(rownum++);
+        Row row = ensureRow(sheet, rownum++);
         int colIdx = 0;
         row.createCell(colIdx++).setCellValue("Symbol:");
         row.createCell(colIdx++).setCellValue(descriptor.symbol());
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Last price:");
         Cell cell = row.createCell(colIdx++);
         cell.setCellValue(descriptor.getLastPrice());
         cell.setCellStyle(priceStyle);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Block size:");
         row.createCell(colIdx++).setCellValue(descriptor.getBlockSize());
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Block multiplier:");
         row.createCell(colIdx++).setCellValue(blockMultiplier);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Overall multiplier:");
         row.createCell(colIdx++).setCellValue(overallMultiplier);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Transaction price:");
         cell = row.createCell(colIdx++);
         cell.setCellValue(transactionPrice);
         cell.setCellStyle(priceStyle);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Transaction fee:");
         cell = row.createCell(colIdx++);
         cell.setCellValue(transactionFee);
         cell.setCellStyle(priceStyle);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Overall price:");
         cell = row.createCell(colIdx++);
         cell.setCellValue(transactionPrice + transactionFee);
         cell.setCellStyle(priceStyle);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Profit point:");
         row.createCell(colIdx++).setCellValue(profitPoint);
 
-        row = sheet.createRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Profit increment:");
         row.createCell(colIdx++).setCellValue(profitIncrement);
@@ -164,7 +180,7 @@ public class XlsxAnalysis {
         Cell cell = null;
 
         int rownum = 0;
-        Row row = sheet.createRow(rownum++);
+        Row row = ensureRow(sheet, rownum++);
 
         int colIdx = 0;
         row.createCell(colIdx++).setCellValue("DATE"); // A
@@ -178,7 +194,7 @@ public class XlsxAnalysis {
         row.createCell(colIdx++).setCellValue("dC"); // I
 
         for (final Ohlc ohlc : quotes) {
-            row = sheet.createRow(rownum);
+            row = ensureRow(sheet, rownum);
             colIdx = 0;
 
             cell = row.createCell(colIdx++);
@@ -223,14 +239,14 @@ public class XlsxAnalysis {
         rownum = 0;
         final int summaryCol = colIdx + 2;
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue(""); // L
         row.createCell(colIdx++).setCellValue("CNT"); // M
         row.createCell(colIdx++).setCellValue("MAX"); // N
         row.createCell(colIdx++).setCellValue("AVG"); // O
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue("dH");
         row.createCell(colIdx++).setCellFormula("COUNTA(F2:F" + quotes.size() + 1 + ")");
@@ -241,7 +257,7 @@ public class XlsxAnalysis {
         cell.setCellFormula("AVERAGE(F2:F" + quotes.size() + 1 + ")");
         cell.setCellStyle(priceStyle);
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue("dL");
         row.createCell(colIdx++).setCellFormula("COUNTA(G2:G" + quotes.size() + 1 + ")");
@@ -252,7 +268,7 @@ public class XlsxAnalysis {
         cell.setCellFormula("AVERAGE(G2:G" + quotes.size() + 1 + ")");
         cell.setCellStyle(priceStyle);
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue("dA");
         row.createCell(colIdx++).setCellFormula("COUNTA(H2:H" + quotes.size() + 1 + ")");
@@ -267,7 +283,7 @@ public class XlsxAnalysis {
         rownum++;
         rownum++;
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue("PNT"); // L
         row.createCell(colIdx++).setCellValue("CNT"); // M
@@ -294,7 +310,7 @@ public class XlsxAnalysis {
                 }
             }
 
-            row = sheet.getRow(rownum++);
+            row = ensureRow(sheet, rownum++);
             colIdx = summaryCol;
 
             cell = row.createCell(colIdx++);
@@ -327,7 +343,7 @@ public class XlsxAnalysis {
         rownum++;
         rownum++;
 
-        row = sheet.getRow(rownum++);
+        row = ensureRow(sheet, rownum++);
         colIdx = summaryCol;
         row.createCell(colIdx++).setCellValue("PNT"); // L
         row.createCell(colIdx++).setCellValue("CNT"); // M
@@ -346,7 +362,7 @@ public class XlsxAnalysis {
                 }
             }
 
-            row = sheet.getRow(rownum++);
+            row = ensureRow(sheet, rownum++);
             colIdx = summaryCol;
 
             cell = row.createCell(colIdx++);
