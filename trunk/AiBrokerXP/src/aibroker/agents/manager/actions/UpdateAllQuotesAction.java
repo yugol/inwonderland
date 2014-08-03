@@ -19,6 +19,7 @@ public class UpdateAllQuotesAction extends AbstractAction {
     @Override
     public void actionPerformed(final ActionEvent e) {
         final EodQuotesUpdateDialog dialog = new EodQuotesUpdateDialog();
+        dialog.setLocationRelativeTo(view.frmManager);
         dialog.setVisible(true);
         dialog.update(view.getDatabase());
         view.setSequence(null, null);
