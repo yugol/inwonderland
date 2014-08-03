@@ -1,4 +1,4 @@
-package experiment;
+package aibroker.model.domains;
 
 import org.junit.Test;
 import aibroker.model.domains.Feed;

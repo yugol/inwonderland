@@ -9,12 +9,10 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.Enumeration;
-import org.junit.Test;
 
 public class EnvironmentLister {
 
-    @Test
-    public void describeDesktop() {
+    public static void describeDesktop() {
         System.out.println("\n----- DESKTOP DESCRIPTION -----\n");
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Overall");
@@ -37,22 +35,26 @@ public class EnvironmentLister {
         System.out.println(scnMax.top + " " + winSize.getWidth());
     }
 
-    @Test
-    public void listEnvironmentVariables() {
+    public static void listEnvironmentVariables() {
         System.out.println("\n----- ENVIRONMENT VARIABLES -----\n");
         for (final String key : System.getenv().keySet()) {
             System.out.println(key + " -> " + System.getenv(key));
         }
     }
 
-    @Test
-    public void listSystemProperties() {
+    public static void listSystemProperties() {
         System.out.println("\n----- SYSTEM PROPERTIES -----\n");
         final Enumeration<Object> it = System.getProperties().keys();
         while (it.hasMoreElements()) {
             final String key = (String) it.nextElement();
             System.out.println(key + " -> " + System.getProperty(key));
         }
+    }
+
+    public static void main(final String... args) {
+        describeDesktop();
+        listEnvironmentVariables();
+        listSystemProperties();
     }
 
 }

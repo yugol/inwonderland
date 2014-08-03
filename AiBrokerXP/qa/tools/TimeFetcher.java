@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Calendar;
 import java.util.List;
-import org.junit.Test;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.drivers.csv.CsvReader;
@@ -14,8 +13,7 @@ import aibroker.util.Moment;
 
 public class TimeFetcher {
 
-    @Test
-    public void test() throws FileNotFoundException {
+    public static void main(final String... args) throws FileNotFoundException {
         final File inFile = new File("/home/iulian/AiBrokerXP/quotes/archive/SIBEX.BVB 2009-04-01 ~ 2009-06-30 - notime/DESIF5-IUN09.T.csv");
         final File outFile = new File((String) null);
         final PrintStream out = new PrintStream(outFile);
@@ -46,4 +44,5 @@ public class TimeFetcher {
         }
         out.close();
     }
+
 }
