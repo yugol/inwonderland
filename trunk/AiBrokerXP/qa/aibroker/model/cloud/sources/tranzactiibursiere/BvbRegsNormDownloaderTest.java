@@ -1,4 +1,4 @@
-package aibroker.model.cloud.tranzactiibursiere;
+package aibroker.model.cloud.sources.tranzactiibursiere;
 
 import java.util.Calendar;
 import java.util.List;

@@ -1,4 +1,4 @@
-package aibroker.model.update.sources.bvb;
+package aibroker.model.cloud.sources.bvb;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
