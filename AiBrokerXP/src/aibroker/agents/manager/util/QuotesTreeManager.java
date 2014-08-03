@@ -143,6 +143,9 @@ public class QuotesTreeManager {
             if (content instanceof Market) {
                 if ((Market) content != Market.REGS) { return; }
             }
+            if (content instanceof Feed) {
+                if ((Feed) content != Feed.NORM) { return; }
+            }
             if (content instanceof Sampling) {
                 if ((Sampling) content != Sampling.DAILY) { return; }
             }

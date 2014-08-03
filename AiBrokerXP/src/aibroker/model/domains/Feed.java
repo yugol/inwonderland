@@ -3,8 +3,9 @@ package aibroker.model.domains;
 public enum Feed {
 
     CACHE ("Cached"),
+    LIVE ("Live"),
+    NORM ("Normalised"),
     ORIG ("Original"),
-    LIVE ("Live")
 
     ;
 

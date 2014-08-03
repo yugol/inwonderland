@@ -202,6 +202,7 @@ public class QuotesManager implements TreeSelectionListener {
         cbbMarket.addItem(Market.REGS);
         cbbMarket.addItem(Market.FUTURES);
 
+        cbbFeed.addItem(Feed.NORM);
         cbbFeed.addItem(Feed.ORIG);
         cbbFeed.addItem(Feed.CACHE);
         cbbFeed.addItem(Feed.LIVE);
