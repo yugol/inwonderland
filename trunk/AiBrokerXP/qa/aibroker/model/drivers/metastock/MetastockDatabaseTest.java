@@ -3,8 +3,8 @@ package aibroker.model.drivers.metastock;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 import aibroker.model.cloud.sources.bursanoastra.BursanoastraConfig;
 import aibroker.model.domains.Sampling;
 
@@ -18,7 +18,7 @@ public class MetastockDatabaseTest {
 
     @Test
     public void testGetQuotes() {
-        for (final Sequence sequence : msDb) {
+        for (final Seq sequence : msDb) {
             assertNotNull(sequence.getQuotes());
         }
     }
@@ -30,7 +30,7 @@ public class MetastockDatabaseTest {
 
     @Test
     public void testGetSequenceInt() {
-        final MetastockSequence sequence = (MetastockSequence) msDb.getSequence(SequenceSelector.fromName("AEM"));
+        final MetastockSequence sequence = (MetastockSequence) msDb.getSequence(SeqSel.fromName("AEM"));
         assertEquals("AEM", sequence.getName());
         assertEquals(Sampling.DAILY, sequence.getSampling());
         assertEquals(7, sequence.getFieldCount());

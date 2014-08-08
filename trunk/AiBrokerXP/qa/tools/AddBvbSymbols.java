@@ -1,7 +1,7 @@
 package tools;
 
 import aibroker.TestConfig;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
@@ -16,7 +16,7 @@ public class AddBvbSymbols {
         final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
         // sqlDb = Databases.DEFAULT();
         for (final String symbol : SYMBOLS) {
-            final SequenceDescriptor sDesc = BvbSequenceDescriptionReader.readDescription(symbol);
+            final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription(symbol);
             sDesc.market(Market.REGS);
             sDesc.grouping(Grouping.OHLC);
             sDesc.sampling(Sampling.DAILY);

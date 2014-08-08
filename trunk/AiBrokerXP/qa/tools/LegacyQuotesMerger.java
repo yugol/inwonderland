@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqSel;
 import aibroker.model.drivers.csv.CsvReader;
 import aibroker.model.drivers.sql.SqlSequence;
 import aibroker.util.convenience.Databases;
@@ -37,7 +37,7 @@ public class LegacyQuotesMerger {
                 if (fileName.endsWith(".T.csv") && fileName.indexOf("CFD") < 0) {
                     String name = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.lastIndexOf(".T.csv"));
                     // System.err.println(name);
-                    final SequenceSelector selector = SequenceSelector.fromName(name);
+                    final SeqSel selector = SeqSel.fromName(name);
                     selector.setSymbol(normalizeSymbol(selector.getSymbol()));
                     name = selector.getName();
                     final SqlSequence sequence = (SqlSequence) destination.getSequence(selector);

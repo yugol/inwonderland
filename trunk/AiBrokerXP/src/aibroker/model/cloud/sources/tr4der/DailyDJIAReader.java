@@ -10,9 +10,9 @@ import org.slf4j.Logger;
 import aibroker.Context;
 import aibroker.model.Ohlc;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Grouping;
 import aibroker.model.drivers.csv.CsvDatabase;
 import aibroker.util.Moment;
@@ -29,9 +29,9 @@ public class DailyDJIAReader {
             final CsvReader reader = new CsvReader(quotesFile.getAbsolutePath(), CsvDatabase.DELIMITER.charAt(0));
             reader.readHeaders();
 
-            Sequence sequence = qDb.getSequence(SequenceSelector.fromName(Stocks.DEDJIA_RON.supportSymbol));
+            Seq sequence = qDb.getSequence(SeqSel.fromName(Stocks.DEDJIA_RON.supportSymbol));
             if (sequence == null) {
-                sequence = qDb.add(new SequenceDescriptor(Stocks.DEDJIA_RON.supportSymbol).grouping(Grouping.OHLC));
+                sequence = qDb.add(new SeqDesc(Stocks.DEDJIA_RON.supportSymbol).grouping(Grouping.OHLC));
             }
             sequence.getQuotes().clear();
 

@@ -6,9 +6,9 @@ import java.util.List;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
@@ -21,7 +21,7 @@ public class MetastockDatabase extends QuotesDb {
     }
 
     @Override
-    public Sequence add(final SequenceDescriptor tBuilder) {
+    public Seq add(final SeqDesc tBuilder) {
         throw new UnsupportedOperationException();
     }
 
@@ -31,9 +31,9 @@ public class MetastockDatabase extends QuotesDb {
     }
 
     @Override
-    public List<Sequence> getSequences(final SequenceSelector selector) {
-        final List<Sequence> sequences = new ArrayList<Sequence>();
-        final Sequence sequence = getSequence(selector.getName());
+    public List<Seq> getSequences(final SeqSel selector) {
+        final List<Seq> sequences = new ArrayList<Seq>();
+        final Seq sequence = getSequence(selector.getName());
         sequences.add(sequence);
         return sequences;
     }
@@ -53,7 +53,7 @@ public class MetastockDatabase extends QuotesDb {
     }
 
     @Override
-    protected Quotes readQuotes(final Sequence t) {
+    protected Quotes readQuotes(final Seq t) {
         final MetastockSequence sequence = (MetastockSequence) t;
         final byte[] quotesData = FileUtil.readBytes(new File(dbLocation, sequence.getQuotesFileName()));
         final int quotesCount = quotesData.length / sequence.getByteCount() - 1;

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.StringUtil;
 
@@ -98,8 +98,8 @@ public class RecordReader {
                 if (!StringUtil.isNullOrBlank(line)) {
                     final String[] chunks = line.split(",");
                     final Record r1 = new Record();
-                    r1.setSymbol(SequenceDescriptor.getSymbol(chunks[0]));
-                    r1.setExpiryMonth(SequenceDescriptor.getSettlement(chunks[0]));
+                    r1.setSymbol(SeqDesc.getSymbol(chunks[0]));
+                    r1.setExpiryMonth(SeqDesc.getSettlement(chunks[0]));
                     r1.setLastPrice(NumberUtil.parseFloatRo(chunks[3]));
                     r1.setVolume(NumberUtil.parseInt(chunks[4]));
                     r1.setOpenInt(NumberUtil.parseInt(chunks[5]));

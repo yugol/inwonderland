@@ -5,7 +5,7 @@ import aibroker.model.domains.Updater;
 import aibroker.model.drivers.csv.CsvWriter;
 import aibroker.util.Moment;
 
-public abstract class Sequence {
+public abstract class Seq {
 
     protected final QuotesDb qDb;
     protected final String         symbol;
@@ -13,7 +13,7 @@ public abstract class Sequence {
     protected Updater              updater;
     protected Quotes               quotes;
 
-    protected Sequence(final QuotesDb qDb, final SequenceDescriptor sb) {
+    protected Seq(final QuotesDb qDb, final SeqDesc sb) {
         this.qDb = qDb;
         symbol = sb.symbol().trim().toUpperCase();
         settlement = sb.settlement();
@@ -39,7 +39,7 @@ public abstract class Sequence {
     @Override
     public boolean equals(final Object other) {
         if (other == null) { return false; }
-        if (other instanceof Sequence) { return ((Sequence) other).getName().equalsIgnoreCase(getName()); }
+        if (other instanceof Seq) { return ((Seq) other).getName().equalsIgnoreCase(getName()); }
         return false;
     }
 
@@ -53,7 +53,7 @@ public abstract class Sequence {
     }
 
     public String getName() {
-        return SequenceDescriptor.getName(symbol, settlement);
+        return SeqDesc.getName(symbol, settlement);
     }
 
     public Quotes getQuotes() {
@@ -68,7 +68,7 @@ public abstract class Sequence {
     }
 
     public String getSettlementString() {
-        if (settlement != null) { return SequenceDescriptor.toSettlementString(settlement); }
+        if (settlement != null) { return SeqDesc.toSettlementString(settlement); }
         return null;
     }
 

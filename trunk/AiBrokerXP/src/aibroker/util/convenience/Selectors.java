@@ -2,7 +2,7 @@ package aibroker.util.convenience;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -11,19 +11,19 @@ import aibroker.util.Moment;
 
 public class Selectors {
 
-    public static SequenceSelector valueOf(final String name) {
+    public static SeqSel valueOf(final String name) {
         return VALUES.get(name);
     }
 
-    public static SequenceSelector[] values() {
-        return VALUES.values().toArray(new SequenceSelector[0]);
+    public static SeqSel[] values() {
+        return VALUES.values().toArray(new SeqSel[0]);
     }
 
-    private static final Map<String, SequenceSelector> VALUES                 = new LinkedHashMap<String, SequenceSelector>();
+    private static final Map<String, SeqSel> VALUES                 = new LinkedHashMap<String, SeqSel>();
 
-    public static final SequenceSelector               DEAPL                  = new SequenceSelector();
-    public static final SequenceSelector               DEDJIA_RON_DEC13_DAILY = new SequenceSelector();
-    public static final SequenceSelector               TLV                    = new SequenceSelector();
+    public static final SeqSel               DEAPL                  = new SeqSel();
+    public static final SeqSel               DEDJIA_RON_DEC13_DAILY = new SeqSel();
+    public static final SeqSel               TLV                    = new SeqSel();
 
     static {
         DEAPL.setMarket(Market.FUTURES);

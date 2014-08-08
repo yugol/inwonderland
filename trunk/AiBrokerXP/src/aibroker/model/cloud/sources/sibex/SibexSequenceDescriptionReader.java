@@ -1,15 +1,15 @@
 package aibroker.model.cloud.sources.sibex;
 
 import java.io.IOException;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.WebUtil;
 
 public class SibexSequenceDescriptionReader {
 
-    public static SequenceDescriptor readDescription(final String name) throws IOException {
+    public static SeqDesc readDescription(final String name) throws IOException {
         int beginIndex, endIndex, foo, bar;
-        final SequenceDescriptor sDesc = new SequenceDescriptor(name);
+        final SeqDesc sDesc = new SeqDesc(name);
 
         final String symbolPageAddress = "http://www.sibex.ro/index.php?p=specfut&s=" + sDesc.symbol() + "&l=en";
         String html = WebUtil.getPageHtml(symbolPageAddress);

@@ -6,9 +6,9 @@ import java.util.UUID;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -18,7 +18,7 @@ import aibroker.util.MergeUtil;
 import aibroker.util.Moment;
 import static aibroker.util.StringUtil.isNullOrBlank;
 
-public class SqlSequence extends Sequence {
+public class SqlSequence extends Seq {
 
     public static String getNewQuotesTableName() {
         return "S_" + UUID.randomUUID().toString().replace("-", "").toUpperCase();
@@ -41,7 +41,7 @@ public class SqlSequence extends Sequence {
     protected Moment   firstDayOfTransaction;
     protected boolean  favourite;
 
-    SqlSequence(final QuotesDb qDb, final SequenceDescriptor sb) {
+    SqlSequence(final QuotesDb qDb, final SeqDesc sb) {
         super(qDb, sb);
 
         tableId = isNullOrBlank(sb.tableId()) ? getNewQuotesTableName() : sb.tableId();
@@ -86,7 +86,7 @@ public class SqlSequence extends Sequence {
     }
 
     public VirtualSqlSequence cloneVirtual() {
-        final SequenceDescriptor sb = new SequenceDescriptor(getSymbol(), getSettlement());
+        final SeqDesc sb = new SeqDesc(getSymbol(), getSettlement());
         sb.tableId("N/A");
         sb.favourite(isFavourite());
         sb.fee(getFee());
@@ -185,8 +185,8 @@ public class SqlSequence extends Sequence {
 
     }
 
-    public SequenceSelector toSelector() {
-        final SequenceSelector selector = new SequenceSelector();
+    public SeqSel toSelector() {
+        final SeqSel selector = new SeqSel();
         selector.setFeed(getFeed());
         selector.setGrouping(getGrouping());
         selector.setMarket(getMarket());

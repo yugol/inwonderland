@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.util.Locale;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.Sequence;
+import aibroker.model.Seq;
 
 public final class CsvWriter {
 
@@ -17,7 +17,7 @@ public final class CsvWriter {
         return "  Date         Time     | Open         | High         | Low          | Close        | Volume     | OpenInt.";
     }
 
-    public static void writeQuotes(final PrintStream out, final Sequence sequence) {
+    public static void writeQuotes(final PrintStream out, final Seq sequence) {
         final String symbol = sequence.getName();
         final Quotes quotes = sequence.getQuotes();
         writeQuotes(out, symbol, quotes);

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Calendar;
 import org.junit.Test;
 import aibroker.TestConfig;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -20,7 +20,7 @@ public class SqlDatabaseTest {
     public void testAddSequence() throws Exception {
         final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
 
-        SequenceDescriptor b = new SequenceDescriptor("sif5");
+        SeqDesc b = new SeqDesc("sif5");
         b.name("SIF5");
         b.market(Market.REGS);
         b.grouping(Grouping.OHLC);
@@ -29,7 +29,7 @@ public class SqlDatabaseTest {
         b.favourite(false);
         sqlDb.add(b);
 
-        b = new SequenceDescriptor("DESIF5", new Moment(2007, Calendar.JUNE, 30));
+        b = new SeqDesc("DESIF5", new Moment(2007, Calendar.JUNE, 30));
         b.name("DESIF5-IUN07");
         b.market(Market.FUTURES);
         b.grouping(Grouping.TICK);
@@ -46,7 +46,7 @@ public class SqlDatabaseTest {
     // @Test
     public void testJoin() throws Exception {
         final SqlDatabase sqlDb = (SqlDatabase) Databases.SQL_DEFAULT.getInstance();
-        final SequenceSelector sel = new SequenceSelector();
+        final SeqSel sel = new SeqSel();
         sel.setMarket(Market.FUTURES);
         sel.setSymbol("DEAPL");
         sel.setFeed(Feed.ORIG);
@@ -54,7 +54,7 @@ public class SqlDatabaseTest {
         sel.setGrouping(Grouping.TICK);
 
         sel.setJoinSettlements(true);
-        final Sequence deapl = sqlDb.getSequence(sel);
+        final Seq deapl = sqlDb.getSequence(sel);
         deapl.dumpCsv();
         sqlDb.close();
     }

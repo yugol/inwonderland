@@ -2,7 +2,7 @@ package aibroker.engines.markets.sibex;
 
 import aibroker.engines.Transaction;
 import aibroker.model.BidAsk;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.util.Moment;
 
 public class Record {
@@ -34,7 +34,7 @@ public class Record {
     }
 
     public String getId() {
-        return SequenceDescriptor.getName(symbol, expiryMonth);
+        return SeqDesc.getName(symbol, expiryMonth);
     }
 
     public float getLastPrice() {
@@ -46,7 +46,7 @@ public class Record {
     }
 
     public String getName() {
-        return SequenceDescriptor.getName(getSymbol(), getExpiryMonth());
+        return SeqDesc.getName(getSymbol(), getExpiryMonth());
     }
 
     public int getOpenInt() {

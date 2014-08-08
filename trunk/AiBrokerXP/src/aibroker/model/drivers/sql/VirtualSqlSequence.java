@@ -3,8 +3,8 @@ package aibroker.model.drivers.sql;
 import java.util.ArrayList;
 import java.util.List;
 import aibroker.model.QuotesDb;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.util.Moment;
 
 public class VirtualSqlSequence extends SqlSequence {
@@ -12,7 +12,7 @@ public class VirtualSqlSequence extends SqlSequence {
     private boolean           joinSettlements;
     private List<SqlSequence> baseSequences;
 
-    VirtualSqlSequence(final QuotesDb qDb, final SequenceDescriptor sb) {
+    VirtualSqlSequence(final QuotesDb qDb, final SeqDesc sb) {
         super(qDb, sb);
     }
 
@@ -52,8 +52,8 @@ public class VirtualSqlSequence extends SqlSequence {
     }
 
     @Override
-    public SequenceSelector toSelector() {
-        final SequenceSelector selector = new SequenceSelector();
+    public SeqSel toSelector() {
+        final SeqSel selector = new SeqSel();
         selector.setFeed(getFeed());
         selector.setGrouping(getGrouping());
         selector.setMarket(getMarket());

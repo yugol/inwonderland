@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqSel;
 import aibroker.util.Moment;
 
 public class ReadSettlements extends AbstractQuery {
@@ -15,7 +15,7 @@ public class ReadSettlements extends AbstractQuery {
         super(conn);
     }
 
-    public List<Moment> readSettlements(final SequenceSelector selector) throws SQLException {
+    public List<Moment> readSettlements(final SeqSel selector) throws SQLException {
         final List<Moment> settlements = new ArrayList<Moment>();
         final StringBuilder sql = new StringBuilder();
         sql.append("SELECT SETTLEMENT FROM M_SEQUENCES ");

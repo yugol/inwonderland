@@ -4,13 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import org.junit.Test;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 
 public class BvbSequenceDescriptionReaderTest {
 
     @Test
     public void testReadDescription_FP() throws IOException {
-        final SequenceDescriptor sDesc = BvbSequenceDescriptionReader.readDescription("FP");
+        final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription("FP");
         assertEquals("FP", sDesc.symbol());
         assertEquals("FONDUL PROPRIETATEA", sDesc.name());
         assertEquals(100, sDesc.blockSize());
@@ -19,7 +19,7 @@ public class BvbSequenceDescriptionReaderTest {
 
     @Test
     public void testReadDescription_TLV() throws IOException {
-        final SequenceDescriptor sDesc = BvbSequenceDescriptionReader.readDescription("TLV");
+        final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription("TLV");
         assertEquals("TLV", sDesc.symbol());
         assertEquals("BANCA TRANSILVANIA S.A.", sDesc.name());
         assertEquals(10, sDesc.blockSize());

@@ -11,8 +11,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.TestConfig;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 import aibroker.model.drivers.csv.CsvDatabase;
 import aibroker.model.drivers.csv.CsvWriter;
 
@@ -54,7 +54,7 @@ public class AmiDatabaseTest {
     @Test
     public void testSequence() {
         final CsvDatabase csvDb = new CsvDatabase(TestConfig.CSV_TEST_DATABASE_FOLDER);
-        final Sequence brk = csvDb.getSequence(SequenceSelector.fromName("brk"));
+        final Seq brk = csvDb.getSequence(SeqSel.fromName("brk"));
         amiDb.add(brk);
         AmibrokerSequence amiBrk = amiDb.getSequence("BRK");
         amiBrk.setMarket(255);

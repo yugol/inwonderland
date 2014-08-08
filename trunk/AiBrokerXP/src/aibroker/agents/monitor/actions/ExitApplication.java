@@ -5,7 +5,7 @@ import javax.swing.AbstractAction;
 import aibroker.Context;
 import aibroker.agents.ExitTrap;
 import aibroker.agents.monitor.Controller;
-import aibroker.model.Sequence;
+import aibroker.model.Seq;
 
 @SuppressWarnings("serial")
 public class ExitApplication extends AbstractAction {
@@ -24,7 +24,7 @@ public class ExitApplication extends AbstractAction {
         Context.setMonitorWindowBounds(controller.getMainFrame().getBounds());
         Context.setMonitorLastDatabase(controller.getDbId());
         if (controller.getDbId() != null) {
-            final Sequence sequence = controller.getSequence();
+            final Seq sequence = controller.getSequence();
             if (sequence != null) {
                 Context.setMonitorLastName(sequence.getName());
             } else {

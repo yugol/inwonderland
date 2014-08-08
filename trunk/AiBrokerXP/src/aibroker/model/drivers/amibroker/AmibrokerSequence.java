@@ -2,14 +2,14 @@ package aibroker.model.drivers.amibroker;
 
 import java.util.Arrays;
 import aibroker.model.Quotes;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
 import aibroker.util.ByteCodec;
 
-public class AmibrokerSequence extends Sequence {
+public class AmibrokerSequence extends Seq {
 
     static AmibrokerSequence fromRawData(final AmibrokerDatabase amiDb, final byte[] data, final int offset) {
-        final SequenceDescriptor sb = new SequenceDescriptor(ByteCodec.readString(data, MasterFile.SYMBOL_0, MasterFile.SYMBOL_LEN));
+        final SeqDesc sb = new SeqDesc(ByteCodec.readString(data, MasterFile.SYMBOL_0, MasterFile.SYMBOL_LEN));
         final AmibrokerSequence sequence = new AmibrokerSequence(amiDb, sb);
         System.arraycopy(data, offset, sequence.masterDescriptor, 0, MasterFile.RECORD_LEN);
         sequence.dirty = false;
@@ -21,7 +21,7 @@ public class AmibrokerSequence extends Sequence {
     private boolean      deleted          = false;
     private boolean      dirty            = true;
 
-    AmibrokerSequence(final AmibrokerDatabase amiDb, final SequenceDescriptor sb) {
+    AmibrokerSequence(final AmibrokerDatabase amiDb, final SeqDesc sb) {
         super(amiDb, sb);
     }
 

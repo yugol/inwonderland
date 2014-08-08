@@ -2,7 +2,7 @@ package tools;
 
 import java.util.Calendar;
 import aibroker.Context;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -13,7 +13,7 @@ import aibroker.util.Moment;
 
 public class SqlDefaultSequencesPopulator {
 
-    private static class SB2 extends SequenceDescriptor {
+    private static class SB2 extends SeqDesc {
 
         public SB2(final String name) {
             super(name);

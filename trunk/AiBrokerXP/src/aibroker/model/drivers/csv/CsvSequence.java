@@ -1,10 +1,10 @@
 package aibroker.model.drivers.csv;
 
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.Sequence;
+import aibroker.model.SeqDesc;
+import aibroker.model.Seq;
 import aibroker.model.domains.Grouping;
 
-public class CsvSequence extends Sequence {
+public class CsvSequence extends Seq {
 
     private static String normalizeName(final String name) {
         return name.replace("/", "");
@@ -12,7 +12,7 @@ public class CsvSequence extends Sequence {
 
     private final Grouping type;
 
-    CsvSequence(final CsvDatabase csvDb, final SequenceDescriptor sb) {
+    CsvSequence(final CsvDatabase csvDb, final SeqDesc sb) {
         super(csvDb, sb);
         type = sb.grouping();
     }
