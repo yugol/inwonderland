@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
+import aibroker.model.QuotesDatabase;
 import aibroker.util.BrokerException;
 import aibroker.util.Moment;
 
@@ -33,7 +34,7 @@ public class CsvReader {
                             Float.parseFloat(chunks[6].trim()), // close
                             Integer.parseInt(chunks[7].trim()), // volume
                             Integer.parseInt(chunks[8].trim()) // open interest
-                    );
+                            );
                 } else if (chunks.length == 8) {
                     // reading futures OHLC
                     ohlc = new Ohlc(
@@ -44,7 +45,7 @@ public class CsvReader {
                             Float.parseFloat(chunks[5].trim()), // close
                             Integer.parseInt(chunks[6].trim()), // volume
                             Integer.parseInt(chunks[7].trim()) // open interest
-                    );
+                            );
                 } else if (chunks.length == 7) {
                     // reading regular OHLC
                     ohlc = new Ohlc(
@@ -54,7 +55,7 @@ public class CsvReader {
                             Float.parseFloat(chunks[4].trim()), // low
                             Float.parseFloat(chunks[5].trim()), // close
                             Integer.parseInt(chunks[6].trim()) // volume
-                    );
+                            );
                 } else if (chunks.length == 6) {
                     // reading futures TICK
                     ohlc = new Ohlc(
@@ -62,14 +63,14 @@ public class CsvReader {
                             Float.parseFloat(chunks[3].trim()), // price
                             Integer.parseInt(chunks[4].trim()), // volume
                             Integer.parseInt(chunks[5].trim()) // open interest
-                    );
+                            );
                 } else if (chunks.length == 5) {
                     // reading futures TICK
                     ohlc = new Ohlc(
                             Moment.fromIso(chunks[1].trim() + " " + chunks[2].trim()), // date-time
                             Float.parseFloat(chunks[3].trim()), // price
                             Integer.parseInt(chunks[4].trim()) // volume
-                    );
+                            );
                 }
                 quotes.add(ohlc);
             }
@@ -85,6 +86,10 @@ public class CsvReader {
             }
         }
         return quotes;
+    }
+
+    public static void readSibexFuturesLog(final QuotesDatabase db, final File log) {
+
     }
 
 }
