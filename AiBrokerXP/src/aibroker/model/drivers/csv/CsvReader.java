@@ -22,7 +22,7 @@ public class CsvReader {
                 if (line.startsWith("Symbol,Date")) {
                     continue;
                 }
-                final String[] chunks = line.split(CsvDatabase.DELIMITER);
+                final String[] chunks = line.split(CsvDb.DELIMITER);
                 Ohlc ohlc = null;
                 if (chunks.length == 9) {
                     // reading full OHLC

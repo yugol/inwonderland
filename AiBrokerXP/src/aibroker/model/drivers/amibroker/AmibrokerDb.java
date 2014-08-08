@@ -13,7 +13,7 @@ import aibroker.model.SeqSel;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
 
-public class AmibrokerDatabase extends QuotesDb {
+public class AmibrokerDb extends QuotesDb {
 
     private static final String SUB_FOLDERS         = "_1234567890qwertyuiopasdfghjklzxcvbnm";
     private static final String LAYOUTS_FOLDER_NAME = "Layouts";
@@ -33,29 +33,29 @@ public class AmibrokerDatabase extends QuotesDb {
 
     private final byte[] descriptor = new byte[MasterFile.RECORD_0];
 
-    public AmibrokerDatabase(final File dbFolder) {
+    public AmibrokerDb(final File dbFolder) {
         super(dbFolder);
         readMaster();
     }
 
     @Override
-    public AmibrokerSequence add(final Seq sequence) {
-        final AmibrokerSequence aSequence = add(sequence.getName());
+    public AmibrokerSeq add(final Seq sequence) {
+        final AmibrokerSeq aSequence = add(sequence.getName());
         aSequence.setQuotes(sequence.getQuotes());
         return aSequence;
     }
 
     @Override
-    public AmibrokerSequence add(final SeqDesc tBuilder) {
-        final AmibrokerSequence aSequence = new AmibrokerSequence(this, tBuilder);
+    public AmibrokerSeq add(final SeqDesc tBuilder) {
+        final AmibrokerSeq aSequence = new AmibrokerSeq(this, tBuilder);
         aSequence.setName(aSequence.getName());
         aSequence.setPointValue(1f);
         aSequence.setContinuousQuotation(true);
         aSequence.setLocalDatabaseOnly(true);
-        return (AmibrokerSequence) super.add(aSequence);
+        return (AmibrokerSeq) super.add(aSequence);
     }
 
-    public AmibrokerSequence add(final String name) {
+    public AmibrokerSeq add(final String name) {
         return add(new SeqDesc(name));
     }
 
@@ -65,9 +65,9 @@ public class AmibrokerDatabase extends QuotesDb {
     }
 
     @Override
-    public List<AmibrokerSequence> getSequences(final SeqSel selector) {
-        final List<AmibrokerSequence> sequences = new ArrayList<AmibrokerSequence>();
-        final AmibrokerSequence sequence = getSequence(selector.getName());
+    public List<AmibrokerSeq> getSequences(final SeqSel selector) {
+        final List<AmibrokerSeq> sequences = new ArrayList<AmibrokerSeq>();
+        final AmibrokerSeq sequence = getSequence(selector.getName());
         sequences.add(sequence);
         return sequences;
     }
@@ -83,7 +83,7 @@ public class AmibrokerDatabase extends QuotesDb {
         }
         int sequenceCount = 0;
         for (final Seq sequence : this) {
-            final AmibrokerSequence tmp = (AmibrokerSequence) sequence;
+            final AmibrokerSeq tmp = (AmibrokerSeq) sequence;
             if (tmp.isDirty()) {
                 if (tmp.isDeleted()) {
                     deleteSequence(tmp);
@@ -96,7 +96,7 @@ public class AmibrokerDatabase extends QuotesDb {
         writeMaster(sequenceCount);
     }
 
-    private void deleteSequence(final AmibrokerSequence sequence) {
+    private void deleteSequence(final AmibrokerSeq sequence) {
         sequence.delete();
     }
 
@@ -133,7 +133,7 @@ public class AmibrokerDatabase extends QuotesDb {
         final int recordCount = getRecordCount();
         int offset = MasterFile.RECORD_0;
         for (int i = 0; i < recordCount; ++i) {
-            super.add(AmibrokerSequence.fromRawData(this, buffer, offset));
+            super.add(AmibrokerSeq.fromRawData(this, buffer, offset));
             offset += MasterFile.RECORD_LEN;
         }
     }
@@ -142,7 +142,7 @@ public class AmibrokerDatabase extends QuotesDb {
         final byte[] buffer = MasterFile.initBuffer(sequenceCount);
         int tNo = 0;
         for (final Seq sequence : this) {
-            final AmibrokerSequence amiSequence = (AmibrokerSequence) sequence;
+            final AmibrokerSeq amiSequence = (AmibrokerSeq) sequence;
             if (!amiSequence.isDeleted()) {
                 MasterFile.writeSequence(tNo++, amiSequence, buffer);
             }
@@ -150,7 +150,7 @@ public class AmibrokerDatabase extends QuotesDb {
         FileUtil.writeBytes(new File(dbLocation, MASTER_FILE_NAME), buffer);
     }
 
-    private void writeSequence(final AmibrokerSequence sequence) {
+    private void writeSequence(final AmibrokerSeq sequence) {
         final byte[] buffer = QuotesFile.initBuffer(sequence);
         final Quotes quotes = sequence.getQuotes();
         for (int qNo = 0; qNo < quotes.size(); ++qNo) {
@@ -160,8 +160,8 @@ public class AmibrokerDatabase extends QuotesDb {
     }
 
     @Override
-    protected AmibrokerSequence getSequence(final String symbol) {
-        return (AmibrokerSequence) super.getSequence(symbol);
+    protected AmibrokerSeq getSequence(final String symbol) {
+        return (AmibrokerSeq) super.getSequence(symbol);
     }
 
     @Override

@@ -1,16 +1,16 @@
 package aibroker.model.domains;
 
-import aibroker.model.drivers.amibroker.AmibrokerDatabase;
-import aibroker.model.drivers.csv.CsvDatabase;
-import aibroker.model.drivers.metastock.MetastockDatabase;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.amibroker.AmibrokerDb;
+import aibroker.model.drivers.csv.CsvDb;
+import aibroker.model.drivers.metastock.MetastockDb;
+import aibroker.model.drivers.sql.SqlDb;
 
 public enum DbEngine {
 
-    AMIBROKER (AmibrokerDatabase.class),
-    CSV (CsvDatabase.class),
-    METASTOCK (MetastockDatabase.class),
-    SQL (SqlDatabase.class),
+    AMIBROKER (AmibrokerDb.class),
+    CSV (CsvDb.class),
+    METASTOCK (MetastockDb.class),
+    SQL (SqlDb.class),
 
     ;
 

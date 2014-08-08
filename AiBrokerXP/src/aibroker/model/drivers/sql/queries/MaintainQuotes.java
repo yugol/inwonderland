@@ -10,7 +10,7 @@ import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.model.drivers.sql.queries.quotes.QuotesDerExtraOhlcMaintenance;
 import aibroker.model.drivers.sql.queries.quotes.QuotesDerExtraTickMaintenance;
 import aibroker.model.drivers.sql.queries.quotes.QuotesDerIntraOhlcMaintenance;
@@ -23,7 +23,7 @@ import aibroker.util.Moment;
 
 public abstract class MaintainQuotes extends AbstractQuery {
 
-    public static MaintainQuotes getInstance(final Connection conn, final SqlSequence sequence) {
+    public static MaintainQuotes getInstance(final Connection conn, final SqlSeq sequence) {
         if (Market.REGS.equals(sequence.getMarket())) {
             if (sequence.getSampling().isIntraday()) {
                 if (Grouping.TICK.equals(sequence.getGrouping())) {
@@ -55,9 +55,9 @@ public abstract class MaintainQuotes extends AbstractQuery {
         }
     }
 
-    protected final SqlSequence sequence;
+    protected final SqlSeq sequence;
 
-    protected MaintainQuotes(final Connection conn, final SqlSequence sequence) {
+    protected MaintainQuotes(final Connection conn, final SqlSeq sequence) {
         super(conn);
         this.sequence = sequence;
     }

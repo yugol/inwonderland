@@ -29,9 +29,9 @@ import aibroker.util.MergeUtil;
 import aibroker.util.Moment;
 import aibroker.util.SamplingUtil;
 
-public class SqlDatabase extends QuotesDb {
+public class SqlDb extends QuotesDb {
 
-    private static final Logger logger = LoggerFactory.getLogger(SqlDatabase.class);
+    private static final Logger logger = LoggerFactory.getLogger(SqlDb.class);
 
     static {
         try {
@@ -43,7 +43,7 @@ public class SqlDatabase extends QuotesDb {
 
     private final Connection    conn;
 
-    public SqlDatabase(final File dbFile) throws SQLException {
+    public SqlDb(final File dbFile) throws SQLException {
         super(dbFile);
         conn = DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath());
         new InitializeDatabase(conn).init();
@@ -51,10 +51,10 @@ public class SqlDatabase extends QuotesDb {
     }
 
     @Override
-    public SqlSequence add(final SeqDesc sb) {
+    public SqlSeq add(final SeqDesc sb) {
         logger.debug(sb.toString());
         try {
-            final SqlSequence sequence = new SqlSequence(this, sb);
+            final SqlSeq sequence = new SqlSeq(this, sb);
             final String tableId = new SaveSequence(conn).add(sequence);
             sequence.setTableId(tableId);
             sequences.put(sequence.getTableId(), sequence);
@@ -88,21 +88,21 @@ public class SqlDatabase extends QuotesDb {
     }
 
     @Override
-    public SqlSequence getSequence(final SeqSel selector) {
-        SqlSequence sequence = null;
+    public SqlSeq getSequence(final SeqSel selector) {
+        SqlSeq sequence = null;
         if (selector.isJoinSettlements()) {
-            final VirtualSqlSequence vSequence = new VirtualSqlSequence(this, selector.toBuilder());
+            final VirtualSqlSeq vSequence = new VirtualSqlSeq(this, selector.toBuilder());
             vSequence.setJoinSettlements(true);
             sequence = vSequence;
         } else {
             final List<? extends Seq> sqlSequences = getSequences(selector);
             if (!sqlSequences.isEmpty()) {
-                final SqlSequence sqlSequence = (SqlSequence) sqlSequences.get(0);
+                final SqlSeq sqlSequence = (SqlSeq) sqlSequences.get(0);
                 if (sqlSequence.getSampling() == selector.getSampling()) {
                     sequence = sqlSequence;
                 }
                 else {
-                    final VirtualSqlSequence vSequence = sqlSequence.cloneVirtual();
+                    final VirtualSqlSeq vSequence = sqlSequence.cloneVirtual();
                     vSequence.setSampling(selector.getSampling());
                     vSequence.add(sqlSequence);
                     sequence = vSequence;
@@ -114,7 +114,7 @@ public class SqlDatabase extends QuotesDb {
 
     private void readSequences() throws SQLException {
         for (final SeqDesc sb : new ReadSequences(conn).readSequences(new SeqSel())) {
-            final SqlSequence sequence = new SqlSequence(this, sb);
+            final SqlSeq sequence = new SqlSeq(this, sb);
             sequences.put(sequence.getTableId(), sequence);
         }
     }
@@ -132,7 +132,7 @@ public class SqlDatabase extends QuotesDb {
                 for (final Moment settlement : settlements) {
                     selectorClone.setSettlement(settlement);
                     final SeqDesc builder = sequenceReader.readSequences(selectorClone).get(0);
-                    final SqlSequence tempSequence = getSequence(builder.toSelector());
+                    final SqlSeq tempSequence = getSequence(builder.toSelector());
                     sequences.add(tempSequence);
                 }
             } else {
@@ -148,18 +148,18 @@ public class SqlDatabase extends QuotesDb {
                 });
                 if (selector.getSampling() == null) {
                     for (final SeqDesc sb : builders) {
-                        final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
+                        final SqlSeq sequence = (SqlSeq) getSequence(sb.tableId());
                         sequences.add(sequence);
                     }
                 } else {
                     for (final SeqDesc sb : builders) {
                         if (selector.getSampling() == sb.sampling()) {
-                            final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
+                            final SqlSeq sequence = (SqlSeq) getSequence(sb.tableId());
                             sequences.add(sequence);
                         }
                     }
                     if (sequences.size() == 0 && builders.size() > 0) {
-                        final SqlSequence sequence = (SqlSequence) getSequence(builders.get(0).tableId());
+                        final SqlSeq sequence = (SqlSeq) getSequence(builders.get(0).tableId());
                         sequences.add(sequence);
                     }
                 }
@@ -174,18 +174,18 @@ public class SqlDatabase extends QuotesDb {
     @Override
     protected Quotes readQuotes(final Seq sequence) {
         try {
-            if (sequence instanceof VirtualSqlSequence) {
-                final VirtualSqlSequence vSequence = (VirtualSqlSequence) sequence;
+            if (sequence instanceof VirtualSqlSeq) {
+                final VirtualSqlSeq vSequence = (VirtualSqlSeq) sequence;
                 if (vSequence.getBaseSequences() == null) {
                     final SeqSel selector = vSequence.toSelector();
-                    final List<SqlSequence> baseSequences = (List<SqlSequence>) getSequences(selector);
+                    final List<SqlSeq> baseSequences = (List<SqlSeq>) getSequences(selector);
                     vSequence.setBaseSequences(baseSequences);
                 }
                 Quotes vQuotes = new Quotes();
                 if (vSequence.getBaseSequences().size() > 0) {
                     if (vSequence.isJoinSettlements()) {
                         for (int i = 0; i < vSequence.getBaseSequences().size(); ++i) {
-                            final SqlSequence baseSequence = vSequence.getBaseSequences().get(i);
+                            final SqlSeq baseSequence = vSequence.getBaseSequences().get(i);
                             System.out.print("Joining " + baseSequence.getName() + " ... ");
                             final Quotes tempQuotes = MaintainQuotes.getInstance(getConnection(), baseSequence).readAllQuotes();
                             vQuotes = MergeUtil.mergeQuotes(vQuotes, tempQuotes);
@@ -199,33 +199,33 @@ public class SqlDatabase extends QuotesDb {
                 }
                 return vQuotes;
             } else {
-                return MaintainQuotes.getInstance(conn, (SqlSequence) sequence).readAllQuotes();
+                return MaintainQuotes.getInstance(conn, (SqlSeq) sequence).readAllQuotes();
             }
         } catch (final SQLException e) {
             throw new BrokerException(e);
         }
     }
 
-    void addQuotes(final SqlSequence sequence, final List<Ohlc> quotes) throws SQLException {
-        if (sequence instanceof VirtualSqlSequence) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
+    void addQuotes(final SqlSeq sequence, final List<Ohlc> quotes) throws SQLException {
+        if (sequence instanceof VirtualSqlSeq) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
         MaintainQuotes.getInstance(conn, sequence).insertAllQuotes(quotes);
         sequence.setQuotes(null);
     }
 
-    void deleteQuotesFor(final SqlSequence sequence) throws SQLException {
-        if (sequence instanceof VirtualSqlSequence) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
+    void deleteQuotesFor(final SqlSeq sequence) throws SQLException {
+        if (sequence instanceof VirtualSqlSeq) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
         MaintainQuotes.getInstance(conn, sequence).deleteAllQuotes();
         sequence.setQuotes(null);
     }
 
-    void deleteQuotesFor(final SqlSequence sequence, final Moment date) throws SQLException {
-        if (sequence instanceof VirtualSqlSequence) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
+    void deleteQuotesFor(final SqlSeq sequence, final Moment date) throws SQLException {
+        if (sequence instanceof VirtualSqlSeq) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
         MaintainQuotes.getInstance(conn, sequence).deleteQuotesFor(date);
         sequence.setQuotes(null);
     }
 
-    void updateQuotes(final SqlSequence sequence) throws SQLException {
-        if (sequence instanceof VirtualSqlSequence) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
+    void updateQuotes(final SqlSeq sequence) throws SQLException {
+        if (sequence instanceof VirtualSqlSeq) { throw new UnsupportedOperationException("quotes for virtual sequences are readonly"); }
         MaintainQuotes.getInstance(conn, sequence).deleteAllQuotes();
         MaintainQuotes.getInstance(conn, sequence).insertAllQuotes(sequence.getQuotes());
     }

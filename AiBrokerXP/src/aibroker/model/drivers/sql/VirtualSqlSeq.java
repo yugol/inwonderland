@@ -7,23 +7,23 @@ import aibroker.model.SeqDesc;
 import aibroker.model.SeqSel;
 import aibroker.util.Moment;
 
-public class VirtualSqlSequence extends SqlSequence {
+public class VirtualSqlSeq extends SqlSeq {
 
     private boolean           joinSettlements;
-    private List<SqlSequence> baseSequences;
+    private List<SqlSeq> baseSequences;
 
-    VirtualSqlSequence(final QuotesDb qDb, final SeqDesc sb) {
+    VirtualSqlSeq(final QuotesDb qDb, final SeqDesc sb) {
         super(qDb, sb);
     }
 
-    public void add(final SqlSequence sequence) {
+    public void add(final SqlSeq sequence) {
         if (baseSequences == null) {
-            baseSequences = new ArrayList<SqlSequence>();
+            baseSequences = new ArrayList<SqlSeq>();
         }
         baseSequences.add(sequence);
     }
 
-    public List<SqlSequence> getBaseSequences() {
+    public List<SqlSeq> getBaseSequences() {
         return baseSequences;
     }
 
@@ -31,7 +31,7 @@ public class VirtualSqlSequence extends SqlSequence {
         return joinSettlements;
     }
 
-    public void setBaseSequences(final List<SqlSequence> baseSequences) {
+    public void setBaseSequences(final List<SqlSeq> baseSequences) {
         this.baseSequences = baseSequences;
     }
 

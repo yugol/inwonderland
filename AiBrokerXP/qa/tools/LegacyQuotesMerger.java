@@ -7,7 +7,7 @@ import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
 import aibroker.model.SeqSel;
 import aibroker.model.drivers.csv.CsvReader;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.convenience.Databases;
 
 public class LegacyQuotesMerger {
@@ -40,7 +40,7 @@ public class LegacyQuotesMerger {
                     final SeqSel selector = SeqSel.fromName(name);
                     selector.setSymbol(normalizeSymbol(selector.getSymbol()));
                     name = selector.getName();
-                    final SqlSequence sequence = (SqlSequence) destination.getSequence(selector);
+                    final SqlSeq sequence = (SqlSeq) destination.getSequence(selector);
                     if (sequence != null) {
                         System.out.println("    Merging " + name + " <- " + fileName);
                         final Quotes fileQuotes = CsvReader.readQuotes(file);

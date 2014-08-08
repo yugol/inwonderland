@@ -18,7 +18,7 @@ public class SqlDatabaseTest {
 
     // @Test
     public void testAddSequence() throws Exception {
-        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
+        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
 
         SeqDesc b = new SeqDesc("sif5");
         b.name("SIF5");
@@ -45,7 +45,7 @@ public class SqlDatabaseTest {
 
     // @Test
     public void testJoin() throws Exception {
-        final SqlDatabase sqlDb = (SqlDatabase) Databases.SQL_DEFAULT.getInstance();
+        final SqlDb sqlDb = (SqlDb) Databases.SQL_DEFAULT.getInstance();
         final SeqSel sel = new SeqSel();
         sel.setMarket(Market.FUTURES);
         sel.setSymbol("DEAPL");
@@ -61,7 +61,7 @@ public class SqlDatabaseTest {
 
     @Test
     public void testSqlDatabase() throws Exception {
-        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
+        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
         assertNotNull(sqlDb);
         System.out.println(sqlDb.countRows());
         sqlDb.close();

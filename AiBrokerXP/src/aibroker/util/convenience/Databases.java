@@ -4,7 +4,7 @@ import java.io.File;
 import aibroker.Context;
 import aibroker.model.QuotesDb;
 import aibroker.model.domains.DbEngine;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.sql.SqlDb;
 
 public enum Databases {
 
@@ -14,8 +14,8 @@ public enum Databases {
 
     ;
 
-    public static SqlDatabase DEFAULT() {
-        return (SqlDatabase) SQL_DEFAULT.getInstance();
+    public static SqlDb DEFAULT() {
+        return (SqlDb) SQL_DEFAULT.getInstance();
     }
 
     public final DbEngine  type;

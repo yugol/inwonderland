@@ -89,7 +89,7 @@ class QuotesFile {
 
     static final int    END_MARKER_LEN         = 4;
 
-    static byte[] initBuffer(final AmibrokerSequence sequence) {
+    static byte[] initBuffer(final AmibrokerSeq sequence) {
         final byte[] buffer = new byte[QUOTE_0 + sequence.getQuotes().size() * QUOTE_LEN + END_MARKER_LEN];
         System.arraycopy(MARKER, 0, buffer, MARKER_0, MARKER_LEN);
         System.arraycopy(sequence.getQuotesDescriptor(), 0, buffer, DESCRIPTOR_0, DESCRIPTOR_LEN);

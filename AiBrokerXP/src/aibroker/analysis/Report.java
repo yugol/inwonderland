@@ -10,13 +10,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import aibroker.model.SeqDesc;
 import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
-import aibroker.model.drivers.sql.SqlDatabase;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlDb;
+import aibroker.model.drivers.sql.SqlSeq;
 
 public abstract class Report {
 
-    protected final SqlDatabase        database;
-    protected final SqlSequence        sequence;
+    protected final SqlDb        database;
+    protected final SqlSeq        sequence;
 
     protected final SeqDesc descriptor;
     protected final double             blockMultiplier;
@@ -33,7 +33,7 @@ public abstract class Report {
     protected final CellStyle          timeStyle;
     protected final CellStyle          volumeStyle;
 
-    public Report(final SqlDatabase database, final SqlSequence sequence) throws IOException {
+    public Report(final SqlDb database, final SqlSeq sequence) throws IOException {
         this.database = database;
         this.sequence = sequence;
         descriptor = readDescriptor();

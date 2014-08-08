@@ -8,13 +8,13 @@ import aibroker.model.Seq;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
-import aibroker.model.drivers.sql.SqlDatabase;
-import aibroker.model.drivers.sql.SqlSequence;
-import aibroker.model.drivers.sql.VirtualSqlSequence;
+import aibroker.model.drivers.sql.SqlDb;
+import aibroker.model.drivers.sql.SqlSeq;
+import aibroker.model.drivers.sql.VirtualSqlSeq;
 
 public class QuotesTreeManager {
 
-    public static TreePath addSequence(final JTree tree, final SqlSequence sequence) {
+    public static TreePath addSequence(final JTree tree, final SqlSeq sequence) {
         final TreeModel model = tree.getModel();
         final QuotesTreeNode sequenceNode = addSequence(model, sequence);
         tree.setModel(buildDefaultTreeModel());
@@ -33,16 +33,16 @@ public class QuotesTreeManager {
         expandDefault(tree, root);
     }
 
-    public static TreeModel readSequences(final SqlDatabase qdb) {
+    public static TreeModel readSequences(final SqlDb qdb) {
         final TreeModel model = buildDefaultTreeModel();
         if (qdb != null) {
             for (final Seq it : qdb) {
-                final SqlSequence sequence = (SqlSequence) it;
+                final SqlSeq sequence = (SqlSeq) it;
                 addSequence(model, sequence);
                 if (Feed.ORIG == sequence.getFeed()) {
                     for (final Sampling smp : Sampling.values()) {
                         if (sequence.getSampling().compareTo(smp) < 0) {
-                            final VirtualSqlSequence vSequence = sequence.cloneVirtual();
+                            final VirtualSqlSeq vSequence = sequence.cloneVirtual();
                             vSequence.setSampling(smp);
                             addSequence(model, vSequence);
                         }
@@ -58,7 +58,7 @@ public class QuotesTreeManager {
         tree.setSelectionPath(rootPath);
     }
 
-    private static QuotesTreeNode addSequence(final TreeModel model, final SqlSequence sequence) {
+    private static QuotesTreeNode addSequence(final TreeModel model, final SqlSeq sequence) {
         final QuotesTreeNode root = (QuotesTreeNode) model.getRoot();
 
         QuotesTreeNode market = null;
@@ -113,7 +113,7 @@ public class QuotesTreeManager {
         QuotesTreeNode name = null;
         if (!sequence.isRegular()) {
             if (Feed.ORIG == sequence.getFeed()) {
-                final VirtualSqlSequence virtualSequence = sequence.cloneVirtual();
+                final VirtualSqlSeq virtualSequence = sequence.cloneVirtual();
                 virtualSequence.setName(sequence.getSymbol());
                 virtualSequence.setSettlement(null);
                 virtualSequence.setFavourite(false);

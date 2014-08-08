@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import aibroker.model.SeqDesc;
 import aibroker.model.SeqSel;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.BrokerException;
 
 public class SaveSequence extends AbstractQuery {
@@ -15,7 +15,7 @@ public class SaveSequence extends AbstractQuery {
         super(conn);
     }
 
-    public String add(final SqlSequence sequence) throws SQLException {
+    public String add(final SqlSeq sequence) throws SQLException {
         final SeqSel selector = sequence.toSelector();
         final List<SeqDesc> builders = new ReadSequences(conn).readSequences(selector);
         if (builders.size() == 0) {
@@ -50,7 +50,7 @@ public class SaveSequence extends AbstractQuery {
         }
     }
 
-    private void addSequence(final SqlSequence sequence) throws SQLException {
+    private void addSequence(final SqlSeq sequence) throws SQLException {
         final String sql = "INSERT INTO M_SEQUENCES (ID, MARKET, SYMBOL, SETTLEMENT, NAME, FEED, SAMPLING, GROUPING, UPDATER, FAVOURITE) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = null;
         try {
@@ -73,7 +73,7 @@ public class SaveSequence extends AbstractQuery {
         MaintainQuotes.getInstance(conn, sequence).createQuotesTable();
     }
 
-    private void addSymbol(final SqlSequence sequence) throws SQLException {
+    private void addSymbol(final SqlSeq sequence) throws SQLException {
         final String sql = "INSERT INTO M_SYMBOLS (MARKET, SYMBOL, BASE, FEE, MULTIPLIER, MARGIN, FIRST_TRANSACTED) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement stmt = null;
         try {
@@ -92,7 +92,7 @@ public class SaveSequence extends AbstractQuery {
         }
     }
 
-    private void updateSequence(final String tableId, final SqlSequence sequence) throws SQLException {
+    private void updateSequence(final String tableId, final SqlSeq sequence) throws SQLException {
         final String sql = "UPDATE M_SEQUENCES SET UPDATER = ?, FAVOURITE = ? WHERE ID = ?";
         PreparedStatement stmt = null;
         try {
@@ -107,7 +107,7 @@ public class SaveSequence extends AbstractQuery {
         }
     }
 
-    private void updateSymbol(final SqlSequence sequence) throws SQLException {
+    private void updateSymbol(final SqlSeq sequence) throws SQLException {
         final String sql = "UPDATE M_SYMBOLS SET FEE = ?, MULTIPLIER = ?, MARGIN = ? WHERE MARKET = ? AND SYMBOL = ?";
         PreparedStatement stmt = null;
         try {
