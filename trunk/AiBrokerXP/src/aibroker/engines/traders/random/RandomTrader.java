@@ -15,13 +15,20 @@ public class RandomTrader extends Trader {
     private static final Logger logger = LoggerFactory.getLogger(RandomTrader.class);
     private static final Random rand   = new Random();
 
-    protected RandomTrader(final Market market, final Stocks stock) {
+    public RandomTrader(final Market market, final Stocks stock) {
         super(market, stock);
     }
 
     @Override
     public void onMarketClosed(final Moment moment) {
         logger.info(moment.toIsoDate() + " Cumulated gross profit: " + getGrossProfit());
+    }
+
+    @Override
+    public void onMarketOpened(final Moment moment) {
+        final Operation operation = rand.nextBoolean() ? Operation.BUY : Operation.SELL;
+        final int volume = rand.nextInt(9) + 1;
+        placeOrder(operation, volume);
     }
 
     @Override
@@ -32,13 +39,6 @@ public class RandomTrader extends Trader {
         } else if (openPositions < 0) {
             placeOrder(Operation.BUY, -openPositions);
         }
-    }
-
-    @Override
-    public void onMarketOpened(final Moment moment) {
-        final Operation operation = rand.nextBoolean() ? Operation.BUY : Operation.SELL;
-        final int volume = rand.nextInt(9) + 1;
-        placeOrder(operation, volume);
     }
 
     @Override

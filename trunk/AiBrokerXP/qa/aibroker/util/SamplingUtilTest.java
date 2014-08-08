@@ -17,7 +17,7 @@ public class SamplingUtilTest {
     public void testResample_1_Min() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_1);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:38:00", ohlc.moment.toIsoDatetime());
@@ -33,7 +33,7 @@ public class SamplingUtilTest {
     public void testResample_10_Min() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_10);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:30:00", ohlc.moment.toIsoDatetime());
@@ -49,7 +49,7 @@ public class SamplingUtilTest {
     public void testResample_15_Min() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_15);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:30:00", ohlc.moment.toIsoDatetime());
@@ -65,7 +65,7 @@ public class SamplingUtilTest {
     public void testResample_30_Min() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_30);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:30:00", ohlc.moment.toIsoDatetime());
@@ -81,7 +81,7 @@ public class SamplingUtilTest {
     public void testResample_5_Min() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_5);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:35:00", ohlc.moment.toIsoDatetime());
@@ -97,7 +97,7 @@ public class SamplingUtilTest {
     public void testResampleDaily() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.DAILY);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 00:00:00", ohlc.moment.toIsoDatetime());
@@ -169,7 +169,7 @@ public class SamplingUtilTest {
     public void testResampleHourly() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.HOURLY);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-25 16:00:00", ohlc.moment.toIsoDatetime());
@@ -185,7 +185,7 @@ public class SamplingUtilTest {
     public void testResampleMonthly() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MONTHLY);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-01 00:00:00", ohlc.moment.toIsoDatetime());
@@ -201,7 +201,7 @@ public class SamplingUtilTest {
     public void testResampleQuaterly() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.QUARTERLY);
-        System.out.println(derivedQuotes);
+        //  System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-07-01 00:00:00", ohlc.moment.toIsoDatetime());
@@ -217,7 +217,7 @@ public class SamplingUtilTest {
     public void testResampleWeekly() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.WEEKLY);
-        System.out.println(derivedQuotes);
+        //  System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-09-23 00:00:00", ohlc.moment.toIsoDatetime());
@@ -233,7 +233,7 @@ public class SamplingUtilTest {
     public void testResampleYearly() {
         final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.YEARLY);
-        System.out.println(derivedQuotes);
+        // System.out.println(derivedQuotes);
 
         final Ohlc ohlc = derivedQuotes.get(0);
         assertEquals("2013-01-01 00:00:00", ohlc.moment.toIsoDatetime());

@@ -1,23 +1,20 @@
-package aibroker.engines.markets.historic;
+package tools;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import aibroker.Context;
 import aibroker.engines.Transaction;
 import aibroker.engines.markets.Market;
 import aibroker.engines.markets.MarketListener;
+import aibroker.engines.markets.historic.HistoricMarket;
 import aibroker.model.BidAsk;
 import aibroker.model.QuotesDatabase;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 import aibroker.util.convenience.Stocks;
 
-public class HistoricMarketTest {
+public class HistoricMarketSimulation {
 
-    private static final Logger logger = Context.getLogger(HistoricMarketTest.class);
-
-    @Test
-    public void testMarket() {
+    public static void main(final String... args) {
         final QuotesDatabase testDb = Databases.AMI_DEFAULT.getInstance();
         final Market market = new HistoricMarket(testDb, Stocks.DEDJIA_RON); // Moment.fromIso("2013-01-01"),
         market.addMarketListener(new MarketListener() {
@@ -57,5 +54,7 @@ public class HistoricMarketTest {
         });
         market.start();
     }
+
+    private static final Logger logger = Context.getLogger(HistoricMarketSimulation.class);
 
 }
