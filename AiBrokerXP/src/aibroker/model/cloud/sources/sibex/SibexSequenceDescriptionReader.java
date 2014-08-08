@@ -34,7 +34,7 @@ public class SibexSequenceDescriptionReader {
         beginIndex = html.indexOf(">", beginIndex) + 1;
         endIndex = html.indexOf("</td>", beginIndex);
         hay = html.substring(beginIndex, endIndex);
-        sDesc.multiplier(NumberUtil.parseDouble(hay));
+        sDesc.multiplier(NumberUtil.parseDoubleRo(hay));
 
         beginIndex = html.indexOf("<td", beginIndex) + 1;
         beginIndex = html.indexOf("<td", beginIndex) + 1;
@@ -45,11 +45,11 @@ public class SibexSequenceDescriptionReader {
         if (foo > 0) {
             double fee = 0;
             String chunk = hay.substring(0, foo - 1);
-            fee += NumberUtil.parseDouble(chunk);
+            fee += NumberUtil.parseDoubleRo(chunk);
             foo = hay.indexOf("RON", foo + 1);
             if (foo > 0) {
                 chunk = hay.substring(hay.lastIndexOf(" ", foo - 2), foo);
-                fee += NumberUtil.parseDouble(chunk);
+                fee += NumberUtil.parseDoubleRo(chunk.replace(".", ","));
             }
             sDesc.fee(fee);
         }

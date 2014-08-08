@@ -7,7 +7,6 @@ import aibroker.util.Moment;
 
 public class Record {
 
-    private final String id;
     private final Moment moment;
     private String       symbol;
     private String       expiryMonth;
@@ -18,8 +17,7 @@ public class Record {
     private int          trades;
     private int          openInt;
 
-    public Record(final String id) {
-        this.id = id;
+    public Record() {
         moment = Moment.getNow();
     }
 
@@ -36,7 +34,7 @@ public class Record {
     }
 
     public String getId() {
-        return id;
+        return SequenceDescriptor.getName(symbol, expiryMonth);
     }
 
     public float getLastPrice() {
@@ -108,7 +106,7 @@ public class Record {
 
     @Override
     public String toString() {
-        return "Record [id=" + id + ", moment=" + moment + ", symbol=" + symbol + ", expiryMonth=" + expiryMonth + ", lastPrice=" + lastPrice + ", volume=" + volume + ", trades=" + trades + ", openInt=" + openInt + "]";
+        return "Record [id=" + getId() + ", moment=" + moment + ", symbol=" + symbol + ", expiryMonth=" + expiryMonth + ", lastPrice=" + lastPrice + ", volume=" + volume + ", trades=" + trades + ", openInt=" + openInt + "]";
     }
 
     public Transaction toTransaction() {

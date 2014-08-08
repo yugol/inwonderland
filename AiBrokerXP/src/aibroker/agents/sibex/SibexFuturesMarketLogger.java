@@ -1,5 +1,8 @@
 package aibroker.agents.sibex;
 
+import java.io.File;
+import java.io.IOException;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.Context;
@@ -17,12 +20,17 @@ public class SibexFuturesMarketLogger {
 
             @Override
             public void onBidAskChanged(final BidAsk context) {
-                consoleLogger.info(context.toString());
+                // consoleLogger.info(context.toString());
             }
 
             @Override
             public void onMarketClosed(final Moment moment) {
                 consoleLogger.info("Performing post close operations");
+                try {
+                    backupLogFile();
+                } catch (final IOException e) {
+                    consoleLogger.error("Error:", e);
+                }
             }
 
             @Override
@@ -35,7 +43,12 @@ public class SibexFuturesMarketLogger {
 
             @Override
             public void onMarketPrepareOpen(final Moment moment) {
-                csvLogger.info("Symbol,Date,Time,Price,Volume,OpenInt");
+                final File csvFile = new File(Context.getSibexLogFilePath());
+                if (csvFile.length() <= 0) {
+                    csvLogger.info("Symbol,Date,Time,Price,Volume,OpenInt");
+                } else {
+                    csvLogger.info(" ");
+                }
             }
 
             @Override
@@ -51,6 +64,12 @@ public class SibexFuturesMarketLogger {
         });
 
         market.start();
+    }
+
+    static void backupLogFile() throws IOException {
+        final File src = new File(Context.getSibexLogFilePath());
+        final File dst = new File(Context.getBackupFolder(), src.getName());
+        FileUtils.copyFile(src, dst);
     }
 
     private static final Logger csvLogger     = Context.getLogger(SibexFuturesMarketLogger.class);
