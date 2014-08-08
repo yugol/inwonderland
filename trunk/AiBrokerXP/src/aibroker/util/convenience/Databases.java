@@ -18,11 +18,11 @@ public enum Databases {
         return (SqlDb) SQL_DEFAULT.getInstance();
     }
 
-    public final DbEngine  type;
-    public final String    name;
-    public final File      url;
+    public final DbEngine type;
+    public final String   name;
+    public final File     url;
 
-    private QuotesDb instance;
+    private QuotesDb      instance;
 
     private Databases(final DbEngine type, final String name, final String url) {
         this.type = type;

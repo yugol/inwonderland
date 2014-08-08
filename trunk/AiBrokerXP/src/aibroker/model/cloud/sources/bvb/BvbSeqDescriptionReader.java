@@ -5,7 +5,7 @@ import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.WebUtil;
 
-public class BvbSequenceDescriptionReader {
+public class BvbSeqDescriptionReader {
 
     public static SeqDesc readDescription(final String name) throws IOException {
         final String pageAddress = "http://www.bvb.ro/ListedCompanies/SecurityDetail.aspx?s=" + name;

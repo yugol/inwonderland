@@ -6,11 +6,11 @@ import java.io.IOException;
 import org.junit.Test;
 import aibroker.model.SeqDesc;
 
-public class SibexSequenceDescriptionReaderTest {
+public class SibexSeqDescriptionReaderTest {
 
     @Test
     public void testReadDescription_DEDJIA_RON_SEP14() throws IOException {
-        final SeqDesc sDesc = SibexSequenceDescriptionReader.readDescription("DEDJIA_RON-SEP14");
+        final SeqDesc sDesc = SibexSeqDescriptionReader.readDescription("DEDJIA_RON-SEP14");
         // assertEquals(Market.FUTURES, sDesc.market());
         assertEquals("DEDJIA_RON", sDesc.symbol());
         assertEquals("DEDJIA_RON-SEP14", sDesc.name());

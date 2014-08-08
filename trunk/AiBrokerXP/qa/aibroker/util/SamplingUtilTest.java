@@ -4,18 +4,34 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import java.sql.SQLException;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.domains.Sampling;
+import aibroker.model.drivers.sql.SqlDb;
 import aibroker.util.convenience.Databases;
 import aibroker.util.convenience.Selectors;
 
 public class SamplingUtilTest {
 
+    @BeforeClass
+    public static void atTheBeginning() throws SQLException {
+        sqlDb = new SqlDb(Databases.SQL_DEFAULT.url);
+    }
+
+    @AfterClass
+    public static void atTheEnd() throws SQLException {
+        sqlDb.close();
+    }
+
+    private static SqlDb sqlDb;
+
     @Test
     public void testResample_1_Min() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_1);
         // System.out.println(derivedQuotes);
 
@@ -31,7 +47,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResample_10_Min() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_10);
         // System.out.println(derivedQuotes);
 
@@ -47,7 +63,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResample_15_Min() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_15);
         // System.out.println(derivedQuotes);
 
@@ -63,7 +79,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResample_30_Min() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_30);
         // System.out.println(derivedQuotes);
 
@@ -79,7 +95,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResample_5_Min() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MIN_5);
         // System.out.println(derivedQuotes);
 
@@ -95,7 +111,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleDaily() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.DAILY);
         // System.out.println(derivedQuotes);
 
@@ -167,7 +183,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleHourly() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.HOURLY);
         // System.out.println(derivedQuotes);
 
@@ -183,7 +199,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleMonthly() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.MONTHLY);
         // System.out.println(derivedQuotes);
 
@@ -199,7 +215,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleQuaterly() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.QUARTERLY);
         //  System.out.println(derivedQuotes);
 
@@ -215,7 +231,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleWeekly() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.WEEKLY);
         //  System.out.println(derivedQuotes);
 
@@ -231,7 +247,7 @@ public class SamplingUtilTest {
 
     @Test
     public void testResampleYearly() {
-        final Quotes baseQuotes = Databases.DEFAULT().getSequence(Selectors.DEAPL).getQuotes();
+        final Quotes baseQuotes = sqlDb.getSequence(Selectors.DEAPL).getQuotes();
         final Quotes derivedQuotes = SamplingUtil.resample(baseQuotes, Sampling.SECOND, Sampling.YEARLY);
         // System.out.println(derivedQuotes);
 

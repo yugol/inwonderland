@@ -6,11 +6,11 @@ import java.io.IOException;
 import org.junit.Test;
 import aibroker.model.SeqDesc;
 
-public class BvbSequenceDescriptionReaderTest {
+public class BvbSeqDescriptionReaderTest {
 
     @Test
     public void testReadDescription_FP() throws IOException {
-        final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription("FP");
+        final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription("FP");
         assertEquals("FP", sDesc.symbol());
         assertEquals("FONDUL PROPRIETATEA", sDesc.name());
         assertEquals(100, sDesc.blockSize());
@@ -19,7 +19,7 @@ public class BvbSequenceDescriptionReaderTest {
 
     @Test
     public void testReadDescription_TLV() throws IOException {
-        final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription("TLV");
+        final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription("TLV");
         assertEquals("TLV", sDesc.symbol());
         assertEquals("BANCA TRANSILVANIA S.A.", sDesc.name());
         assertEquals(10, sDesc.blockSize());

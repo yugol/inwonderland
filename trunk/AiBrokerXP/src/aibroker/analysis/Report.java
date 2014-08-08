@@ -9,7 +9,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import aibroker.model.SeqDesc;
-import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
+import aibroker.model.cloud.sources.bvb.BvbSeqDescriptionReader;
 import aibroker.model.drivers.sql.SqlDb;
 import aibroker.model.drivers.sql.SqlSeq;
 
@@ -109,7 +109,7 @@ public abstract class Report {
     }
 
     private SeqDesc readDescriptor() throws IOException {
-        if (sequence.isRegular()) { return BvbSequenceDescriptionReader.readDescription(sequence.getSymbol()); }
+        if (sequence.isRegular()) { return BvbSeqDescriptionReader.readDescription(sequence.getSymbol()); }
         return null;
     }
 
