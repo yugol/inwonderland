@@ -2,11 +2,11 @@ package aibroker.util;
 
 public class NumberUtil {
 
-    public static double parseDouble(final String str) {
+    public static double parseDoubleRo(final String str) {
         return Double.parseDouble(normalizeString(str));
     }
 
-    public static float parseFloat(final String str) {
+    public static float parseFloatRo(final String str) {
         return Float.parseFloat(normalizeString(str));
     }
 
@@ -22,7 +22,7 @@ public class NumberUtil {
         if (str == null) { return "0"; }
         str = str.trim();
         if (str.length() == 0) { return "0"; }
-        //str = str.replace(".", "");
+        str = str.replace(".", "");
         str = str.replace(",", ".");
         return str;
     }
