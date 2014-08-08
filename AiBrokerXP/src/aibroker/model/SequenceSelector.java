@@ -94,6 +94,11 @@ public class SequenceSelector implements Cloneable {
         this.market = market;
     }
 
+    public void setName(final String name) {
+        symbol = SequenceDescriptor.getSymbol(name);
+        settlement = SequenceDescriptor.parseSettlement(SequenceDescriptor.getSettlement(name));
+    }
+
     public void setSampling(final Sampling sampling) {
         this.sampling = sampling;
     }
