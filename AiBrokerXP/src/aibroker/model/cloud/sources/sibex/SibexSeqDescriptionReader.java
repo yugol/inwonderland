@@ -5,7 +5,7 @@ import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.WebUtil;
 
-public class SibexSequenceDescriptionReader {
+public class SibexSeqDescriptionReader {
 
     public static SeqDesc readDescription(final String name) throws IOException {
         int beginIndex, endIndex, foo, bar;

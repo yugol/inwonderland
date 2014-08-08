@@ -16,9 +16,9 @@ import aibroker.model.SeqSel;
 import aibroker.model.drivers.csv.CsvDb;
 import aibroker.model.drivers.csv.CsvWriter;
 
-public class AmiDatabaseTest {
+public class AmiDbTest {
 
-    private static final Logger      logger    = LoggerFactory.getLogger(AmiDatabaseTest.class);
+    private static final Logger      logger    = LoggerFactory.getLogger(AmiDbTest.class);
 
     public static final File         DB_FOLDER = new File("/home/iulian/temp/aibxpdb");
     private static final boolean     CLEANUP   = false;
@@ -53,7 +53,7 @@ public class AmiDatabaseTest {
 
     @Test
     public void testSequence() {
-        final CsvDb csvDb = new CsvDb(TestConfig.CSV_TEST_DATABASE_FOLDER);
+        final CsvDb csvDb = new CsvDb(TestConfig.TEST_CSV_DB_FOLDER);
         final Seq brk = csvDb.getSequence(SeqSel.fromName("brk"));
         amiDb.add(brk);
         AmibrokerSeq amiBrk = amiDb.getSequence("BRK");

@@ -12,7 +12,7 @@ public class QuotesTest {
 
     @Test
     public void testSlice() {
-        final File csv = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/BRK.EOD.csv");
+        final File csv = new File(TestConfig.TEST_CSV_DB_FOLDER + "/BRK.EOD.csv");
         final Quotes quotes = CsvReader.readQuotes(csv);
         assertEquals(62, quotes.size());
         assertEquals(62, quotes.slice(Moment.fromCompactIso("20110201"), Moment.fromCompactIso("20120501")).size());

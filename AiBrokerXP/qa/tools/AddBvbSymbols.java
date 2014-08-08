@@ -2,7 +2,7 @@ package tools;
 
 import aibroker.TestConfig;
 import aibroker.model.SeqDesc;
-import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
+import aibroker.model.cloud.sources.bvb.BvbSeqDescriptionReader;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -13,10 +13,10 @@ import aibroker.model.drivers.sql.SqlDb;
 public class AddBvbSymbols {
 
     public static void main(final String[] args) throws Exception {
-        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
+        final SqlDb sqlDb = new SqlDb(TestConfig.TEST_SQL_DB_FILE);
         // sqlDb = Databases.DEFAULT();
         for (final String symbol : SYMBOLS) {
-            final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription(symbol);
+            final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription(symbol);
             sDesc.market(Market.REGS);
             sDesc.grouping(Grouping.OHLC);
             sDesc.sampling(Sampling.DAILY);

@@ -15,36 +15,36 @@ public class CsvReaderTest {
 
     @Test
     public void testReadQuotes_sdohlcv() {
-        final File csv = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/BRK.EOD.csv");
+        final File csv = new File(TestConfig.TEST_CSV_DB_FOLDER + "/BRK.EOD.csv");
         final Quotes quotes = CsvReader.readQuotes(csv);
         assertEquals(62, quotes.size());
     }
 
     @Test
     public void testReadQuotes_sdohlcvi() {
-        final File csv = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/DEBRK-IUN12.EOD.csv");
+        final File csv = new File(TestConfig.TEST_CSV_DB_FOLDER + "/DEBRK-IUN12.EOD.csv");
         final Quotes quotes = CsvReader.readQuotes(csv);
         assertEquals(1, quotes.size());
     }
 
     @Test
     public void testReadQuotes_sdtcvi() {
-        final File csv = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/DEBRK-IUN12.T.csv");
+        final File csv = new File(TestConfig.TEST_CSV_DB_FOLDER + "/DEBRK-IUN12.T.csv");
         final Quotes quotes = CsvReader.readQuotes(csv);
         assertEquals(1, quotes.size());
     }
 
     @Test
     public void testReadQuotes_sdtohlcvi() {
-        final File csv = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/BRK.csv");
+        final File csv = new File(TestConfig.TEST_CSV_DB_FOLDER + "/BRK.csv");
         final Quotes quotes = CsvReader.readQuotes(csv);
         assertEquals(62, quotes.size());
     }
 
     @Test
     public void testReadSibexFuturesLog() throws Exception {
-        final File log = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/sibex-quotes-2014-07-21.csv");
-        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
+        final File log = new File(TestConfig.TEST_RES_FOLDER + "/sibex-quotes-2014-07-21.csv");
+        final SqlDb sqlDb = new SqlDb(TestConfig.TEST_SQL_DB_FILE);
         sqlDb.drop();
         CsvReader.readSibexFuturesLog(sqlDb, log);
         final SeqSel sSel = new SeqSel();

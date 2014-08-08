@@ -6,9 +6,9 @@ import aibroker.TestConfig;
 import aibroker.model.Seq;
 import aibroker.model.SeqSel;
 
-public class CsvDatabaseTest {
+public class CsvDbTest {
 
-    private final CsvDb csvDb = new CsvDb(TestConfig.CSV_TEST_DATABASE_FOLDER);
+    private final CsvDb csvDb = new CsvDb(TestConfig.TEST_CSV_DB_FOLDER);
 
     @Test
     public void testCsvDatabase() {
