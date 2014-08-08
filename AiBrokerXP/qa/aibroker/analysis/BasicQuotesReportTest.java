@@ -1,5 +1,6 @@
 package aibroker.analysis;
 
+import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
@@ -29,7 +30,9 @@ public class BasicQuotesReportTest {
         report.fill();
         final File file = new File(Context.getExportFolder(), "_" + report.getNameHint());
         report.save(file);
-        System.out.println("Saved in: " + file.getCanonicalPath());
+        // System.out.println("Saved in: " + file.getCanonicalPath());
+        assertTrue(file.exists());
+        file.deleteOnExit();
     }
 
 }
