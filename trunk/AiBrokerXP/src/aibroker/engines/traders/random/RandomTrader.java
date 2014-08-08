@@ -25,7 +25,7 @@ public class RandomTrader extends Trader {
     }
 
     @Override
-    public void onMarketClosing(final Moment moment) {
+    public void onMarketPrepareClose(final Moment moment) {
         final int openPositions = getOpenPositions();
         if (openPositions > 0) {
             placeOrder(Operation.SELL, openPositions);
@@ -39,6 +39,10 @@ public class RandomTrader extends Trader {
         final Operation operation = rand.nextBoolean() ? Operation.BUY : Operation.SELL;
         final int volume = rand.nextInt(9) + 1;
         placeOrder(operation, volume);
+    }
+
+    @Override
+    public void onMarketPrepareOpen(final Moment moment) {
     }
 
     @Override

@@ -116,7 +116,7 @@ public class HistoricMarket extends Market {
 
     private void endDay(final Ohlc lastOhlc) {
         if (lastOhlc.close > 0) {
-            callMarketClosing(lastOhlc.moment);
+            callMarketPrepareClose(lastOhlc.moment);
             updateOrders(lastOhlc);
         }
         callMarketClosed(lastOhlc.moment);

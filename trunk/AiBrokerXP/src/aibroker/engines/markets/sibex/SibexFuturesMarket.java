@@ -92,10 +92,32 @@ public class SibexFuturesMarket extends Market implements Runnable {
         return record;
     }
 
-    private static final Logger       logger            = LoggerFactory.getLogger(SibexFuturesMarket.class);
-    public static final String        SIBEX_FUTURES_URL = "http://www.sibex.ro/index.php?p=realMarket&s=1&l=en&sort=1";
+    private static final Logger       logger             = LoggerFactory.getLogger(SibexFuturesMarket.class);
+    public static final String        SIBEX_FUTURES_URL  = "http://www.sibex.ro/index.php?p=realMarket&s=1&l=en&sort=1";
+    private static final long         PREPARATION_TIME   = 1000 * 60 * 15;                                              // 5 minutes
 
-    private final Map<String, Record> status            = new HashMap<String, Record>();
+    private final long                preOpenTime;
+    private final long                openTime;
+    private final long                closeTime;
+    private final long                preCloseTime;
+
+    private boolean                   preOpenSignalSent  = false;
+    private boolean                   preCloseSignalSent = false;
+    private boolean                   opened             = false;
+
+    private final Map<String, Record> liveMarket         = new HashMap<String, Record>();
+
+    public SibexFuturesMarket() {
+        openTime = Moment.fromIso(Moment.getNow().toIsoDate() + " " + Context.getSibexOpenTime()).getTimeInMillis();
+        preOpenTime = openTime - PREPARATION_TIME;
+        closeTime = Moment.fromIso(Moment.getNow().toIsoDate() + " " + Context.getSibexCloseTime()).getTimeInMillis() + PREPARATION_TIME;
+        preCloseTime = closeTime - PREPARATION_TIME * 2;
+
+        logger.info(" Prepare Open Signal: " + new Moment(preOpenTime).toIsoDatetime());
+        logger.info("         Open Signal: " + new Moment(openTime).toIsoDatetime());
+        logger.info("Prepare Close Signal: " + new Moment(preCloseTime).toIsoDatetime());
+        logger.info("        Close Signal: " + new Moment(closeTime).toIsoDatetime());
+    }
 
     @Override
     public boolean isClosed() {
@@ -104,16 +126,36 @@ public class SibexFuturesMarket extends Market implements Runnable {
 
     @Override
     public boolean isOpened() {
-        final String time = Moment.getNow().toIsoTime();
-        return time.compareTo(Context.getSibexCloseTime()) < 0;
+        return opened;
     }
 
     @Override
     public void run() {
-        while (isOpened()) {
+        while (true) {
             try {
-                logger.info("Reading Sibex futures");
-                update();
+                final Moment now = Moment.getNow();
+                final long nowMillis = now.getTimeInMillis();
+                opened = openTime <= nowMillis && nowMillis < closeTime;
+                if (!preOpenSignalSent && preOpenTime < nowMillis) {
+                    logger.info("Prepare open Sibex futures");
+
+                    callMarketPrepareOpen(now);
+                    preOpenSignalSent = true;
+                }
+                if (!preCloseSignalSent && preCloseTime < nowMillis) {
+                    logger.info("Prepare close Sibex futures");
+                    callMarketPrepareClose(now);
+                    preCloseSignalSent = true;
+                }
+                if (preOpenSignalSent) {
+                    logger.info("Reading Sibex futures");
+                    update();
+                }
+                if (closeTime < nowMillis) {
+                    logger.info("Closing Sibex futures");
+                    callMarketClosed(now);
+                    break;
+                }
                 Thread.sleep(Context.getSibexPollInterval());
             } catch (final Exception e) {
                 logger.error("", e);
@@ -127,7 +169,7 @@ public class SibexFuturesMarket extends Market implements Runnable {
     }
 
     private void merge(final Record record) {
-        final Record prevRecord = status.get(record.getId());
+        final Record prevRecord = liveMarket.get(record.getId());
         if (prevRecord != null) {
             if (prevRecord.getBidPrice() != record.getBidPrice() || prevRecord.getAskPrice() != record.getAskPrice()) {
                 callBidAskChanged(record.toBidAsk());
@@ -138,7 +180,7 @@ public class SibexFuturesMarket extends Market implements Runnable {
         } else {
             // callNewTransaction(record.toTransaction());
         }
-        status.put(record.getId(), record);
+        liveMarket.put(record.getId(), record);
     }
 
     private void update() throws Exception {
