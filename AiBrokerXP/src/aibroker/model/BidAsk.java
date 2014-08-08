@@ -30,4 +30,9 @@ public class BidAsk {
         this.bid = bid;
     }
 
+    @Override
+    public String toString() {
+        return "BidAsk [symbol=" + symbol + ", ask=" + ask + ", bid=" + bid + "]";
+    }
+
 }

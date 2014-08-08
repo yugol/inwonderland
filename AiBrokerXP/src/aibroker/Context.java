@@ -20,6 +20,12 @@ import aibroker.util.convenience.Databases;
 @SuppressWarnings("serial")
 public final class Context extends Properties {
 
+    public static String getBackupFolder() {
+        final String exportFolder = get(FOLDER_BACKUP_KEY, System.getProperty("user.home") + "/AiBrokerXP/backup/");
+        new File(exportFolder).mkdirs();
+        return exportFolder;
+    }
+
     public static String getExportFolder() {
         final String exportFolder = get(FOLDER_EXPORT_KEY, System.getProperty("user.home") + "/AiBrokerXP/export/");
         new File(exportFolder).mkdirs();
@@ -78,6 +84,10 @@ public final class Context extends Properties {
 
     public static String getSibexCloseTime() {
         return get(SIBEX_CLOSE_TIME_KEY, "23:30:00");
+    }
+
+    public static String getSibexLogFilePath() {
+        return getLogFolder() + "/sibex-quotes-" + Moment.getNow().toIsoDate() + ".csv";
     }
 
     public static String getSibexOpenTime() {
@@ -160,12 +170,13 @@ public final class Context extends Properties {
     }
 
     public static final String   APPLICATION_NAME              = "AI-Broker XP";
-    private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
 
-    private static final String  FOLDER_EXPORT_KEY             = "exportFolder";
-    private static final String  FOLDER_LOG_KEY                = "logFolder";
-    private static final String  FOLDER_QUOTES_KEY             = "quotesFolder";
-    private static final String  FOLDER_WEKA_KEY               = "wekaFolder";
+    private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
+    private static final String  FOLDER_BACKUP_KEY             = "folder.backup";
+    private static final String  FOLDER_EXPORT_KEY             = "folder.export";
+    private static final String  FOLDER_LOG_KEY                = "folder.log";
+    private static final String  FOLDER_QUOTES_KEY             = "folder.quotes";
+    private static final String  FOLDER_WEKA_KEY               = "folder.weka";
     private static final String  MANAGER_WINDOW_BOUNDS_KEY     = "manager.window.bounds";
     private static final String  MONITOR_LAST_DATABASE_KEY     = "monitor.lastDatabase";
     private static final String  MONITOR_LAST_SEQUENCE_KEY     = "monitor.lastSequence";
@@ -176,9 +187,10 @@ public final class Context extends Properties {
 
     public static final int      FIRST_YEAR                    = 2000;
     public static final int      LAST_YEAR                     = 2015;
-    public static final int      FUTURES_MASS_UPDATE_LAST_YEAR = 2014;
 
+    public static final int      FUTURES_MASS_UPDATE_LAST_YEAR = 2014;
     private static final Logger  logger                        = LoggerFactory.getLogger(Context.class);
+
     private static final Context instance                      = new Context(PROPERTIES_FILE_NAME);
 
     static {
@@ -191,7 +203,7 @@ public final class Context extends Properties {
             System.out.println("Error: Cannot load configuration file ");
         }
         props.setProperty("log4j.appender.fileAppender.File", getLogFolder() + "/HistoricMarketTest.log");
-        props.setProperty("log4j.appender.quotesAppender.File", getLogFolder() + "/sibex-quotes-" + Moment.getNow().toIsoDate() + ".csv");
+        props.setProperty("log4j.appender.quotesAppender.File", getSibexLogFilePath());
         LogManager.resetConfiguration();
         PropertyConfigurator.configure(props);
     }

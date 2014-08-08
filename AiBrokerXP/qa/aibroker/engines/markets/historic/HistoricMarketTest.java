@@ -32,12 +32,16 @@ public class HistoricMarketTest {
             }
 
             @Override
-            public void onMarketClosing(final Moment moment) {
+            public void onMarketOpened(final Moment moment) {
+                logger.info(moment.toIsoDate() + " market opened");
             }
 
             @Override
-            public void onMarketOpened(final Moment moment) {
-                logger.info(moment.toIsoDate() + " market opened");
+            public void onMarketPrepareClose(final Moment moment) {
+            }
+
+            @Override
+            public void onMarketPrepareOpen(final Moment moment) {
             }
 
             @Override

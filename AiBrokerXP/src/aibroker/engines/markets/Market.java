@@ -52,15 +52,21 @@ public abstract class Market {
         }
     }
 
-    protected void callMarketClosing(final Moment moment) {
-        for (final MarketListener listener : listeners) {
-            listener.onMarketClosing(moment);
-        }
-    }
-
     protected void callMarketOpened(final Moment moment) {
         for (final MarketListener listener : listeners) {
             listener.onMarketOpened(moment);
+        }
+    }
+
+    protected void callMarketPrepareClose(final Moment moment) {
+        for (final MarketListener listener : listeners) {
+            listener.onMarketPrepareClose(moment);
+        }
+    }
+
+    protected void callMarketPrepareOpen(final Moment moment) {
+        for (final MarketListener listener : listeners) {
+            listener.onMarketPrepareOpen(moment);
         }
     }
 

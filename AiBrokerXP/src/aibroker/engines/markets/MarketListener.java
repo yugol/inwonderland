@@ -10,12 +10,14 @@ public interface MarketListener {
 
     void onMarketClosed(Moment moment);
 
-    void onMarketClosing(Moment moment);
+    void onMarketPrepareClose(Moment moment);
 
     void onMarketOpened(Moment moment);
 
-    void onSettlementChanged(Moment previous, Moment current);
+    void onMarketPrepareOpen(Moment moment);
 
     void onNewTransaction(Transaction transaction);
+
+    void onSettlementChanged(Moment previous, Moment current);
 
 }

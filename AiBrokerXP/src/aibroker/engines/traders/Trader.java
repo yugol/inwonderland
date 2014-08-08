@@ -75,7 +75,7 @@ public abstract class Trader implements MarketListener, OrderExecutionListener {
     }
 
     @Override
-    public void onMarketClosing(final Moment moment) {
+    public void onMarketPrepareClose(final Moment moment) {
         throw new UnsupportedOperationException("onMarketClosing");
     }
 
