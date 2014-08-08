@@ -2,13 +2,12 @@ package aibroker.util;
 
 public class NumberUtil {
 
-    public static float parseFloat(String str) {
-        if (str == null) { return 0; }
-        str = str.trim();
-        if (str.length() == 0) { return 0; }
-        str = str.replace(".", "");
-        str = str.replace(",", ".");
-        return Float.parseFloat(str);
+    public static double parseDouble(final String str) {
+        return Double.parseDouble(normalizeString(str));
+    }
+
+    public static float parseFloat(final String str) {
+        return Float.parseFloat(normalizeString(str));
     }
 
     public static int parseInt(String str) {
@@ -17,6 +16,15 @@ public class NumberUtil {
         if (str.length() == 0) { return 0; }
         str = str.replace(".", "");
         return Integer.parseInt(str);
+    }
+
+    private static String normalizeString(String str) {
+        if (str == null) { return "0"; }
+        str = str.trim();
+        if (str.length() == 0) { return "0"; }
+        //str = str.replace(".", "");
+        str = str.replace(",", ".");
+        return str;
     }
 
 }
