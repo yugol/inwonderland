@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -29,7 +29,7 @@ import aibroker.util.MergeUtil;
 import aibroker.util.Moment;
 import aibroker.util.SamplingUtil;
 
-public class SqlDatabase extends QuotesDatabase {
+public class SqlDatabase extends QuotesDb {
 
     private static final Logger logger = LoggerFactory.getLogger(SqlDatabase.class);
 

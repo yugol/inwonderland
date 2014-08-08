@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.SequenceSelector;
 import aibroker.model.drivers.csv.CsvReader;
 import aibroker.model.drivers.sql.SqlSequence;
@@ -56,6 +56,6 @@ public class LegacyQuotesMerger {
 
     private static final File           source      = new File("/home/iulian/AiBrokerXP/quotes/archive/----");
 
-    private static final QuotesDatabase destination = Databases.SQL_DEFAULT.getInstance();
+    private static final QuotesDb destination = Databases.SQL_DEFAULT.getInstance();
 
 }

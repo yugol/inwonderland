@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -17,7 +17,7 @@ import aibroker.model.domains.Grouping;
 import aibroker.util.BrokerException;
 import aibroker.util.FileUtil;
 
-public class CsvDatabase extends QuotesDatabase {
+public class CsvDatabase extends QuotesDb {
 
     private class QuotesFilter implements FilenameFilter {
 

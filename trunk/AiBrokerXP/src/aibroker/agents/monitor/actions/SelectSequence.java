@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import aibroker.agents.monitor.Controller;
 import aibroker.agents.monitor.SequenceSelectionDialog;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 
 @SuppressWarnings("serial")
@@ -22,7 +22,7 @@ public class SelectSequence extends AbstractAction {
 
     @Override
     public void actionPerformed(final ActionEvent e) {
-        final QuotesDatabase qDb = controller.getQDb();
+        final QuotesDb qDb = controller.getQDb();
         if (qDb == null) {
             JOptionPane.showMessageDialog(controller.getMainFrame(), "No quotes datadase was selected");
         } else {

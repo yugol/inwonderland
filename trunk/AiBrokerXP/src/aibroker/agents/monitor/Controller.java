@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceSelector;
 import aibroker.util.convenience.Databases;
@@ -19,7 +19,7 @@ public class Controller {
 
     private final TradingMonitor monitor;
     private Databases            dbId;
-    private QuotesDatabase       qDb;
+    private QuotesDb       qDb;
     private Sequence             sequence;
 
     public Controller(final TradingMonitor monitor) {
@@ -34,7 +34,7 @@ public class Controller {
         return monitor.frmAibrokerXp;
     }
 
-    public QuotesDatabase getQDb() {
+    public QuotesDb getQDb() {
         return qDb;
     }
 

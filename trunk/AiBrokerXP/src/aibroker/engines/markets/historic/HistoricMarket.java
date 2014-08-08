@@ -7,7 +7,7 @@ import aibroker.engines.Transaction;
 import aibroker.engines.markets.Market;
 import aibroker.engines.markets.MarketListener;
 import aibroker.model.Ohlc;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceSelector;
 import aibroker.util.Moment;
@@ -15,7 +15,7 @@ import aibroker.util.convenience.Stocks;
 
 public class HistoricMarket extends Market {
 
-    private final QuotesDatabase qDb;
+    private final QuotesDb qDb;
     private final Moment         first;
     private final Moment         last;
     private final Stocks         stocks;
@@ -23,7 +23,7 @@ public class HistoricMarket extends Market {
     private final Sequence       sequence;
     private boolean              opened = false;
 
-    public HistoricMarket(final QuotesDatabase qDb, final Moment first, final Moment last, final Stocks stocks) {
+    public HistoricMarket(final QuotesDb qDb, final Moment first, final Moment last, final Stocks stocks) {
         this.qDb = qDb;
         this.first = first == null ? Moment.getAbsloluteBeginning() : first;
         this.last = last == null ? Moment.getAbsoluteEnd() : last;
@@ -31,11 +31,11 @@ public class HistoricMarket extends Market {
         sequence = this.qDb.getSequence(SequenceSelector.fromName(this.stocks.symbol));
     }
 
-    public HistoricMarket(final QuotesDatabase qDb, final Moment first, final Stocks stocks) {
+    public HistoricMarket(final QuotesDb qDb, final Moment first, final Stocks stocks) {
         this(qDb, first, null, stocks);
     }
 
-    public HistoricMarket(final QuotesDatabase qDb, final Stocks stocks) {
+    public HistoricMarket(final QuotesDb qDb, final Stocks stocks) {
         this(qDb, null, null, stocks);
     }
 

@@ -7,7 +7,7 @@ import aibroker.engines.markets.Market;
 import aibroker.engines.markets.MarketListener;
 import aibroker.engines.markets.historic.HistoricMarket;
 import aibroker.model.BidAsk;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 import aibroker.util.convenience.Stocks;
@@ -15,7 +15,7 @@ import aibroker.util.convenience.Stocks;
 public class HistoricMarketSimulation {
 
     public static void main(final String... args) {
-        final QuotesDatabase testDb = Databases.AMI_DEFAULT.getInstance();
+        final QuotesDb testDb = Databases.AMI_DEFAULT.getInstance();
         final Market market = new HistoricMarket(testDb, Stocks.DEDJIA_RON); // Moment.fromIso("2013-01-01"),
         market.addMarketListener(new MarketListener() {
 

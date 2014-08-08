@@ -7,13 +7,13 @@ import aibroker.util.Moment;
 
 public abstract class Sequence {
 
-    protected final QuotesDatabase qDb;
+    protected final QuotesDb qDb;
     protected final String         symbol;
     protected Moment               settlement;
     protected Updater              updater;
     protected Quotes               quotes;
 
-    protected Sequence(final QuotesDatabase qDb, final SequenceDescriptor sb) {
+    protected Sequence(final QuotesDb qDb, final SequenceDescriptor sb) {
         this.qDb = qDb;
         symbol = sb.symbol().trim().toUpperCase();
         settlement = sb.settlement();
@@ -43,7 +43,7 @@ public abstract class Sequence {
         return false;
     }
 
-    public QuotesDatabase getDatabase() {
+    public QuotesDb getDatabase() {
         return qDb;
     }
 

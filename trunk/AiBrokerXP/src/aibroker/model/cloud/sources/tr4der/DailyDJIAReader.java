@@ -9,7 +9,7 @@ import org.jumpmind.symmetric.csv.CsvReader;
 import org.slf4j.Logger;
 import aibroker.Context;
 import aibroker.model.Ohlc;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -20,7 +20,7 @@ import aibroker.util.convenience.Stocks;
 
 public class DailyDJIAReader {
 
-    public static void getQuotes(final QuotesDatabase qDb) {
+    public static void getQuotes(final QuotesDb qDb) {
         logger.debug("Downloading daily quotes for DJI ...");
         File quotesFile = null;
         try {
