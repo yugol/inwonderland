@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -13,7 +13,7 @@ import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
 
-public class MetastockDatabase extends QuotesDatabase {
+public class MetastockDatabase extends QuotesDb {
 
     public MetastockDatabase(final File dbFolder) throws BrokerException {
         super(dbFolder);

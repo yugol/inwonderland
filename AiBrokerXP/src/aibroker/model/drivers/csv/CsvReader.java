@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.util.BrokerException;
 import aibroker.util.Moment;
 
@@ -88,7 +88,7 @@ public class CsvReader {
         return quotes;
     }
 
-    public static void readSibexFuturesLog(final QuotesDatabase db, final File log) {
+    public static void readSibexFuturesLog(final QuotesDb db, final File log) {
 
     }
 

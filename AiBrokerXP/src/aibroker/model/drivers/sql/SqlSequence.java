@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
@@ -41,7 +41,7 @@ public class SqlSequence extends Sequence {
     protected Moment   firstDayOfTransaction;
     protected boolean  favourite;
 
-    SqlSequence(final QuotesDatabase qDb, final SequenceDescriptor sb) {
+    SqlSequence(final QuotesDb qDb, final SequenceDescriptor sb) {
         super(qDb, sb);
 
         tableId = isNullOrBlank(sb.tableId()) ? getNewQuotesTableName() : sb.tableId();

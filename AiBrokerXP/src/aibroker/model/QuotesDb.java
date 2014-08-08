@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 import aibroker.util.BrokerException;
 
-public abstract class QuotesDatabase implements Iterable<Sequence> {
+public abstract class QuotesDb implements Iterable<Sequence> {
 
     protected final File                  dbLocation;
     protected final Map<String, Sequence> sequences = new LinkedHashMap<String, Sequence>();
 
-    protected QuotesDatabase(final File dbLocation) {
+    protected QuotesDb(final File dbLocation) {
         this.dbLocation = dbLocation;
     }
 

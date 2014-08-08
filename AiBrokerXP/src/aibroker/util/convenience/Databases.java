@@ -2,7 +2,7 @@ package aibroker.util.convenience;
 
 import java.io.File;
 import aibroker.Context;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.domains.DbEngine;
 import aibroker.model.drivers.sql.SqlDatabase;
 
@@ -22,7 +22,7 @@ public enum Databases {
     public final String    name;
     public final File      url;
 
-    private QuotesDatabase instance;
+    private QuotesDb instance;
 
     private Databases(final DbEngine type, final String name, final String url) {
         this.type = type;
@@ -30,10 +30,10 @@ public enum Databases {
         this.url = new File(Context.getQuotesFolder(), url);
     }
 
-    public QuotesDatabase getInstance() {
+    public QuotesDb getInstance() {
         if (instance == null) {
             try {
-                instance = (QuotesDatabase) type.clazz.getDeclaredConstructor(File.class).newInstance(url);
+                instance = (QuotesDb) type.clazz.getDeclaredConstructor(File.class).newInstance(url);
             } catch (final Exception e) {
                 e.printStackTrace();
             }

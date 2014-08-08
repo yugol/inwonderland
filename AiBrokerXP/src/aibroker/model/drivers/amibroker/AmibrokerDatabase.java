@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import aibroker.model.Quotes;
-import aibroker.model.QuotesDatabase;
+import aibroker.model.QuotesDb;
 import aibroker.model.Sequence;
 import aibroker.model.SequenceDescriptor;
 import aibroker.model.SequenceSelector;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
 
-public class AmibrokerDatabase extends QuotesDatabase {
+public class AmibrokerDatabase extends QuotesDb {
 
     private static final String SUB_FOLDERS         = "_1234567890qwertyuiopasdfghjklzxcvbnm";
     private static final String LAYOUTS_FOLDER_NAME = "Layouts";
