@@ -17,15 +17,15 @@ public class AddBvbSymbols {
         // sqlDb = Databases.DEFAULT();
         for (final String symbol : SYMBOLS) {
             final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription(symbol);
-            sDesc.market(Market.REGS);
-            sDesc.grouping(Grouping.OHLC);
-            sDesc.sampling(Sampling.DAILY);
-            sDesc.feed(Feed.ORIG);
-            sDesc.updater(Updater.BVB_REG_DAILY_BASE);
+            sDesc.setMarket(Market.REGS);
+            sDesc.setGrouping(Grouping.OHLC);
+            sDesc.setSampling(Sampling.DAILY);
+            sDesc.setFeed(Feed.ORIG);
+            sDesc.setUpdater(Updater.BVB_REG_DAILY_BASE);
             System.out.println("Adding " + symbol);
             sqlDb.add(sDesc);
-            sDesc.feed(Feed.NORM);
-            sDesc.updater(Updater.BVB_REG_DAILY_NORM);
+            sDesc.setFeed(Feed.NORM);
+            sDesc.setUpdater(Updater.BVB_REG_DAILY_NORM);
             sqlDb.add(sDesc);
         }
     }

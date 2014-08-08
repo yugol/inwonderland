@@ -31,7 +31,7 @@ public class DailyDJIAReader {
 
             Seq sequence = qDb.getSequence(SeqSel.fromName(Stocks.DEDJIA_RON.supportSymbol));
             if (sequence == null) {
-                sequence = qDb.add(new SeqDesc(Stocks.DEDJIA_RON.supportSymbol).grouping(Grouping.OHLC));
+                sequence = qDb.add(new SeqDesc(Stocks.DEDJIA_RON.supportSymbol).setGrouping(Grouping.OHLC));
             }
             sequence.getQuotes().clear();
 

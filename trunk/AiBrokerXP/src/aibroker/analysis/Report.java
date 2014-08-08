@@ -38,7 +38,7 @@ public abstract class Report {
         this.sequence = sequence;
         descriptor = readDescriptor();
         blockMultiplier = calculateBlockMultiplier();
-        overallMultiplier = blockMultiplier * descriptor.blockSize();
+        overallMultiplier = blockMultiplier * descriptor.getBlockSize();
         transactionPrice = calculateTransactionPrice();
         transactionFee = calculateTransactionFee();
         overallPrice = transactionPrice + transactionFee;
@@ -46,7 +46,7 @@ public abstract class Report {
         profitIncrement = calculateProfitIncrement();
 
         dateStyle = createCellStyle("yyyy-MM-dd");
-        priceStyle = createCellStyle(descriptor.lastPrice() > 1000 ? "0" : "0.0000");
+        priceStyle = createCellStyle(descriptor.getLastPrice() > 1000 ? "0" : "0.0000");
         timeStyle = createCellStyle("HH:mm:ss");
         volumeStyle = createCellStyle("0");
     }
@@ -66,7 +66,7 @@ public abstract class Report {
     private double calculateBlockMultiplier() {
         if (sequence.isRegular()) {
             double bm = 0.0001;
-            final double blockPrice = descriptor.lastPrice() * descriptor.blockSize();
+            final double blockPrice = descriptor.getLastPrice() * descriptor.getBlockSize();
             while (blockPrice * bm < 1000) {
                 bm *= 10;
             }
@@ -98,7 +98,7 @@ public abstract class Report {
     }
 
     private double calculateTransactionPrice() {
-        if (sequence.isRegular()) { return descriptor.lastPrice() * descriptor.blockSize() * blockMultiplier; }
+        if (sequence.isRegular()) { return descriptor.getLastPrice() * descriptor.getBlockSize() * blockMultiplier; }
         return sequence.getMargin();
     }
 
@@ -128,13 +128,13 @@ public abstract class Report {
         Row row = ensureRow(sheet, rownum++);
         int colIdx = 0;
         row.createCell(colIdx++).setCellValue("Symbol:");
-        row.createCell(colIdx++).setCellValue(descriptor.symbol());
+        row.createCell(colIdx++).setCellValue(descriptor.getSymbol());
 
         if (sequence.isRegular()) {
             row = ensureRow(sheet, rownum++);
             colIdx = 0;
             row.createCell(colIdx++).setCellValue("Company:");
-            row.createCell(colIdx++).setCellValue(descriptor.name());
+            row.createCell(colIdx++).setCellValue(descriptor.getName());
         }
 
         row = ensureRow(sheet, rownum++);
@@ -146,13 +146,13 @@ public abstract class Report {
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Last price:");
         Cell cell = row.createCell(colIdx++);
-        cell.setCellValue(descriptor.lastPrice());
+        cell.setCellValue(descriptor.getLastPrice());
         cell.setCellStyle(priceStyle);
 
         row = ensureRow(sheet, rownum++);
         colIdx = 0;
         row.createCell(colIdx++).setCellValue("Block size:");
-        row.createCell(colIdx++).setCellValue(descriptor.blockSize());
+        row.createCell(colIdx++).setCellValue(descriptor.getBlockSize());
 
         row = ensureRow(sheet, rownum++);
         colIdx = 0;

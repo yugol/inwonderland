@@ -74,19 +74,19 @@ public class ReadSequences extends AbstractQuery {
             final ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 final SeqDesc builder = new SeqDesc(rs.getString("SYMBOL"), rs.getString("SETTLEMENT"));
-                builder.tableId(rs.getString("ID"));
-                builder.market(Market.valueOf(rs.getString("MARKET")));
-                builder.feed(Feed.valueOf(rs.getString("FEED")));
-                builder.sampling(Sampling.valueOf(rs.getString("SAMPLING")));
-                builder.grouping(Grouping.valueOf(rs.getString("GROUPING")));
-                builder.updater(Updater.valueOf(rs.getString("UPDATER")));
-                builder.support(rs.getString("BASE"));
-                builder.name(rs.getString("NAME"));
-                builder.fee(rs.getDouble("FEE"));
-                builder.multiplier(rs.getDouble("MULTIPLIER"));
-                builder.margin(rs.getDouble("MARGIN"));
-                builder.favourite(rs.getBoolean("FAVOURITE"));
-                builder.firstDayOfTransaction(rs.getString("FIRST_TRANSACTED"));
+                builder.setTableId(rs.getString("ID"));
+                builder.setMarket(Market.valueOf(rs.getString("MARKET")));
+                builder.setFeed(Feed.valueOf(rs.getString("FEED")));
+                builder.setSampling(Sampling.valueOf(rs.getString("SAMPLING")));
+                builder.setGrouping(Grouping.valueOf(rs.getString("GROUPING")));
+                builder.setUpdater(Updater.valueOf(rs.getString("UPDATER")));
+                builder.setSupport(rs.getString("BASE"));
+                builder.setName(rs.getString("NAME"));
+                builder.setFee(rs.getDouble("FEE"));
+                builder.setMultiplier(rs.getDouble("MULTIPLIER"));
+                builder.setMargin(rs.getDouble("MARGIN"));
+                builder.setFavourite(rs.getBoolean("FAVOURITE"));
+                builder.setFirstDayOfTransaction(rs.getString("FIRST_TRANSACTED"));
                 builders.add(builder);
             }
             rs.close();

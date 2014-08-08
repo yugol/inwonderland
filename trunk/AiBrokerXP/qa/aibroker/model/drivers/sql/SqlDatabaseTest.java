@@ -21,24 +21,24 @@ public class SqlDatabaseTest {
         final SqlDb sqlDb = new SqlDb(Databases.SQL_DEFAULT.url);
 
         SeqDesc b = new SeqDesc("sif5");
-        b.name("SIF5");
-        b.market(Market.REGS);
-        b.grouping(Grouping.OHLC);
-        b.sampling(Sampling.DAILY);
-        b.feed(Feed.ORIG);
-        b.favourite(false);
+        b.setName("SIF5");
+        b.setMarket(Market.REGS);
+        b.setGrouping(Grouping.OHLC);
+        b.setSampling(Sampling.DAILY);
+        b.setFeed(Feed.ORIG);
+        b.setFavourite(false);
         sqlDb.add(b);
 
         b = new SeqDesc("DESIF5", new Moment(2007, Calendar.JUNE, 30));
-        b.name("DESIF5-IUN07");
-        b.market(Market.FUTURES);
-        b.grouping(Grouping.TICK);
-        b.sampling(Sampling.SECOND);
-        b.feed(Feed.ORIG);
-        b.multiplier(1000D);
-        b.margin(500D);
-        b.favourite(true);
-        b.support("ABC");
+        b.setName("DESIF5-IUN07");
+        b.setMarket(Market.FUTURES);
+        b.setGrouping(Grouping.TICK);
+        b.setSampling(Sampling.SECOND);
+        b.setFeed(Feed.ORIG);
+        b.setMultiplier(1000D);
+        b.setMargin(500D);
+        b.setFavourite(true);
+        b.setSupport("ABC");
         sqlDb.add(b);
 
         sqlDb.close();

@@ -118,9 +118,9 @@ public class CsvDb extends QuotesDb {
             final SeqDesc tBuilder = new SeqDesc(sequenceName);
 
             if (fileName.endsWith(TICK_EXT.toUpperCase())) {
-                tBuilder.grouping(Grouping.TICK);
+                tBuilder.setGrouping(Grouping.TICK);
             } else if (fileName.endsWith(OHLC_EXT.toUpperCase())) {
-                tBuilder.grouping(Grouping.OHLC);
+                tBuilder.setGrouping(Grouping.OHLC);
             }
 
             add(tBuilder);

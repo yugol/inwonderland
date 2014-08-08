@@ -11,7 +11,7 @@ public class SibexSeqDescriptionReader {
         int beginIndex, endIndex, foo, bar;
         final SeqDesc sDesc = new SeqDesc(name);
 
-        final String symbolPageAddress = "http://www.sibex.ro/index.php?p=specfut&s=" + sDesc.symbol() + "&l=en";
+        final String symbolPageAddress = "http://www.sibex.ro/index.php?p=specfut&s=" + sDesc.getSymbol() + "&l=en";
         String html = WebUtil.getPageHtml(symbolPageAddress);
 
         beginIndex = html.indexOf("Underlying asset");
@@ -23,18 +23,18 @@ public class SibexSeqDescriptionReader {
         if (foo > 0) {
             foo = hay.indexOf(" ", foo + 1) + 1;
             bar = hay.indexOf(")", foo);
-            sDesc.support(hay.substring(foo, bar));
+            sDesc.setSupport(hay.substring(foo, bar));
         }
 
         final String tablePageAddress = "http://www.sibex.ro/index.php?p=specAllFut&l=en";
         html = WebUtil.getPageHtml(tablePageAddress);
 
-        beginIndex = html.lastIndexOf(">" + sDesc.symbol() + "<");
+        beginIndex = html.lastIndexOf(">" + sDesc.getSymbol() + "<");
         beginIndex = html.indexOf("<td", beginIndex) + 1;
         beginIndex = html.indexOf(">", beginIndex) + 1;
         endIndex = html.indexOf("</td>", beginIndex);
         hay = html.substring(beginIndex, endIndex);
-        sDesc.multiplier(NumberUtil.parseDoubleRo(hay));
+        sDesc.setMultiplier(NumberUtil.parseDoubleRo(hay));
 
         beginIndex = html.indexOf("<td", beginIndex) + 1;
         beginIndex = html.indexOf("<td", beginIndex) + 1;
@@ -51,7 +51,7 @@ public class SibexSeqDescriptionReader {
                 chunk = hay.substring(hay.lastIndexOf(" ", foo - 2), foo);
                 fee += NumberUtil.parseDoubleRo(chunk.replace(".", ","));
             }
-            sDesc.fee(fee);
+            sDesc.setFee(fee);
         }
 
         return sDesc;
