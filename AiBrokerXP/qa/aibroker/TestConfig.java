@@ -9,7 +9,7 @@ public class TestConfig {
 
     public static final Logger logger                   = LoggerFactory.getLogger(TestConfig.class);
     public static final File   CSV_DB_PATH              = new File("/home/iulian/temp/aibxpdb.csv");
-    public static final File   CSV_TEST_DATABASE_FOLDER = new File("test/res/csvdb");
+    public static final File   CSV_TEST_DATABASE_FOLDER = new File("qa/res/csvdb");
     public final static File   SQL_DB_FILE              = new File(Context.getQuotesFolder(), "test." + FileUtil.QDB_EXTENSION);
 
 }
