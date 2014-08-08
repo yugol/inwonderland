@@ -34,7 +34,7 @@ public class SaveSequence extends AbstractQuery {
             }
             return sequence.getTableId();
         } else if (builders.size() == 1) {
-            final String tableId = builders.get(0).tableId();
+            final String tableId = builders.get(0).getTableId();
             try {
                 beginTransaction();
                 updateSymbol(sequence);

@@ -110,164 +110,164 @@ public class SeqDesc {
         this(symbol, calculateSettlement(Moment.monthNameToIndex(month), year));
     }
 
-    public int blockSize() {
+    public int getBlockSize() {
         return blockSize;
     }
 
-    public void blockSize(final int blockSize) {
-        this.blockSize = blockSize;
+    public Double getFee() {
+        return fee;
     }
 
-    public Boolean favourite() {
+    public Feed getFeed() {
+        return feed;
+    }
+
+    public Moment getFirstDayOfTransaction() {
+        return firstDayOfTransaction;
+    }
+
+    public Grouping getGrouping() {
+        return grouping;
+    }
+
+    public float getLastPrice() {
+        return lastPrice;
+    }
+
+    public void getLastPrice(final float lastPrice) {
+        this.lastPrice = lastPrice;
+    }
+
+    public Double getMargin() {
+        return margin;
+    }
+
+    public Market getMarket() {
+        return market;
+    }
+
+    public Double getMultiplier() {
+        return multiplier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Sampling getSampling() {
+        return sampling;
+    }
+
+    public Moment getSettlement() {
+        return settlement;
+    }
+
+    public String getSupport() {
+        return support;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getTableId() {
+        return tableId;
+    }
+
+    public Updater getUpdater() {
+        return updater;
+    }
+
+    public Boolean isFavourite() {
         return favourite;
     }
 
-    public SeqDesc favourite(final Boolean favourite) {
+    public void setBlockSize(final int blockSize) {
+        this.blockSize = blockSize;
+    }
+
+    public SeqDesc setFavourite(final Boolean favourite) {
         this.favourite = favourite;
         return this;
     }
 
-    public Double fee() {
-        return fee;
-    }
-
-    public SeqDesc fee(final double fee) {
+    public SeqDesc setFee(final double fee) {
         this.fee = fee;
         return this;
     }
 
-    public Feed feed() {
-        return feed;
-    }
-
-    public SeqDesc feed(final Feed feed) {
+    public SeqDesc setFeed(final Feed feed) {
         this.feed = feed;
         return this;
     }
 
-    public Moment firstDayOfTransaction() {
-        return firstDayOfTransaction;
-    }
-
-    public SeqDesc firstDayOfTransaction(final Moment firstDayOfTransaction) {
+    public SeqDesc setFirstDayOfTransaction(final Moment firstDayOfTransaction) {
         this.firstDayOfTransaction = firstDayOfTransaction;
         return this;
     }
 
-    public SeqDesc firstDayOfTransaction(final String isoDate) {
+    public SeqDesc setFirstDayOfTransaction(final String isoDate) {
         if (isNullOrBlank(isoDate)) {
             firstDayOfTransaction = null;
             return this;
         }
-        return firstDayOfTransaction(Moment.fromIso(isoDate));
+        return setFirstDayOfTransaction(Moment.fromIso(isoDate));
     }
 
-    public Grouping grouping() {
-        return grouping;
-    }
-
-    public SeqDesc grouping(final Grouping grouping) {
+    public SeqDesc setGrouping(final Grouping grouping) {
         this.grouping = grouping;
         return this;
     }
 
-    public float lastPrice() {
-        return lastPrice;
-    }
-
-    public void lastPrice(final float lastPrice) {
-        this.lastPrice = lastPrice;
-    }
-
-    public Double margin() {
-        return margin;
-    }
-
-    public SeqDesc margin(final Double margin) {
+    public SeqDesc setMargin(final Double margin) {
         this.margin = margin;
         return this;
     }
 
-    public Market market() {
-        return market;
-    }
-
-    public SeqDesc market(final Market market) {
+    public SeqDesc setMarket(final Market market) {
         this.market = market;
         return this;
     }
 
-    public Double multiplier() {
-        return multiplier;
-    }
-
-    public SeqDesc multiplier(final Double multiplier) {
+    public SeqDesc setMultiplier(final Double multiplier) {
         this.multiplier = multiplier;
         return this;
     }
 
-    public String name() {
-        return name;
-    }
-
-    public SeqDesc name(final String name) {
+    public SeqDesc setName(final String name) {
         this.name = name;
         return this;
     }
 
-    public Sampling sampling() {
-        return sampling;
-    }
-
-    public SeqDesc sampling(final Sampling sampling) {
+    public SeqDesc setSampling(final Sampling sampling) {
         this.sampling = sampling;
         return this;
     }
 
-    public Moment settlement() {
-        return settlement;
-    }
-
-    public String support() {
-        return support;
-    }
-
-    public SeqDesc support(final String support) {
+    public SeqDesc setSupport(final String support) {
         this.support = support;
         return this;
     }
 
-    public String symbol() {
-        return symbol;
-    }
-
-    public String tableId() {
-        return tableId;
-    }
-
-    public SeqDesc tableId(final String tableId) {
+    public SeqDesc setTableId(final String tableId) {
         this.tableId = tableId;
+        return this;
+    }
+
+    public SeqDesc setUpdater(final Updater updater) {
+        this.updater = updater;
         return this;
     }
 
     public SeqSel toSelector() {
         final SeqSel selector = new SeqSel();
-        selector.setMarket(market());
-        selector.setSymbol(symbol());
-        selector.setSettlement(settlement());
-        selector.setFeed(feed());
-        selector.setSampling(sampling());
-        selector.setGrouping(grouping());
+        selector.setMarket(getMarket());
+        selector.setSymbol(getSymbol());
+        selector.setSettlement(getSettlement());
+        selector.setFeed(getFeed());
+        selector.setSampling(getSampling());
+        selector.setGrouping(getGrouping());
         return selector;
-    }
-
-    public Updater updater() {
-        return updater;
-    }
-
-    public SeqDesc updater(final Updater updater) {
-        this.updater = updater;
-        return this;
     }
 
 }

@@ -59,12 +59,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEAPL(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEAPL").support("AAPL");
-        builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEAPL").setSupport("AAPL");
+        builder.setMarket(Market.FUTURES).setFee(2.6).setMultiplier(10.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         builder.settlement("DEC", 2013);
         qdb.add(builder);
@@ -78,12 +78,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEDJIA_RON(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEDJIA_RON").support("DJIA");
-        builder.market(Market.FUTURES).fee(1.2).multiplier(1.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEDJIA_RON").setSupport("DJIA");
+        builder.setMarket(Market.FUTURES).setFee(1.2).setMultiplier(1.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int year = 2010; year <= Context.LAST_YEAR; ++year) {
             for (int month = Calendar.MARCH; month <= Calendar.DECEMBER; month += 3) {
@@ -94,12 +94,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEFCB(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEFCB").support("FB");
-        builder.market(Market.FUTURES).fee(2.6).multiplier(100.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEFCB").setSupport("FB");
+        builder.setMarket(Market.FUTURES).setFee(2.6).setMultiplier(100.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         builder.settlement("DEC", 2013);
         qdb.add(builder);
@@ -113,12 +113,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEGGL(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEGGL").support("GOOG");
-        builder.market(Market.FUTURES).fee(2.6).multiplier(1.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEGGL").setSupport("GOOG");
+        builder.setMarket(Market.FUTURES).setFee(2.6).setMultiplier(1.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         builder.settlement("DEC", 2013);
         qdb.add(builder);
@@ -132,12 +132,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEMCD(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEMCD").support("MCD");
-        builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEMCD").setSupport("MCD");
+        builder.setMarket(Market.FUTURES).setFee(2.6).setMultiplier(10.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         builder.settlement("DEC", 2013);
         qdb.add(builder);
@@ -151,12 +151,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEOIL_LSC(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEOIL_LSC").support("OIL_LSC");
-        builder.market(Market.FUTURES).fee(1.2).multiplier(100.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEOIL_LSC").setSupport("OIL_LSC");
+        builder.setMarket(Market.FUTURES).setFee(1.2).setMultiplier(100.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.MAY; month <= Calendar.DECEMBER; ++month) {
             builder.settlement(month, 2011);
@@ -172,12 +172,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DESIF3(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DESIF3").support("SIF3");
-        builder.market(Market.FUTURES).fee(0.7).multiplier(1000.0).margin(250.0);
+        final SB2 builder = (SB2) new SB2("DESIF3").setSupport("SIF3");
+        builder.setMarket(Market.FUTURES).setFee(0.7).setMultiplier(1000.0).setMargin(250.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.JUNE; month <= Calendar.DECEMBER; month += 3) {
             builder.settlement(month, 2007);
@@ -193,12 +193,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DESIF5(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DESIF5").support("SIF5");
-        builder.market(Market.FUTURES).fee(0.6).multiplier(1000.0).margin(250.0);
+        final SB2 builder = (SB2) new SB2("DESIF5").setSupport("SIF5");
+        builder.setMarket(Market.FUTURES).setFee(0.6).setMultiplier(1000.0).setMargin(250.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.JUNE; month <= Calendar.DECEMBER; month += 3) {
             builder.settlement(month, 2007);
@@ -214,12 +214,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_DEVSA(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DEVSA").support("V");
-        builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("DEVSA").setSupport("V");
+        builder.setMarket(Market.FUTURES).setFee(2.6).setMultiplier(10.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         builder.settlement("DEC", 2013);
         qdb.add(builder);
@@ -233,12 +233,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_EURUSD_RON(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("EUR/USD_RON").support("EUR/USD");
-        builder.market(Market.FUTURES).fee(1.2).multiplier(10000.0).margin(300.0);
+        final SB2 builder = (SB2) new SB2("EUR/USD_RON").setSupport("EUR/USD");
+        builder.setMarket(Market.FUTURES).setFee(1.2).setMultiplier(10000.0).setMargin(300.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.JUNE; month <= Calendar.DECEMBER; month += 3) {
             builder.settlement(month, 2011);
@@ -254,12 +254,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_SIBGOLD(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("SIBGOLD").support("GOLD");
-        builder.market(Market.FUTURES).fee(0.6).multiplier(10.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("SIBGOLD").setSupport("GOLD");
+        builder.setMarket(Market.FUTURES).setFee(0.6).setMultiplier(10.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.JUNE; month <= Calendar.DECEMBER; month += 3) {
             builder.settlement(month, 2007);
@@ -293,12 +293,12 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void add_SIBGOLD_RON(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("SIBGOLD_RON").support("GOLD");
-        builder.market(Market.FUTURES).fee(1.2).multiplier(1.0).margin(500.0);
+        final SB2 builder = (SB2) new SB2("SIBGOLD_RON").setSupport("GOLD");
+        builder.setMarket(Market.FUTURES).setFee(1.2).setMultiplier(1.0).setMargin(500.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int year = 2011; year <= Context.LAST_YEAR; ++year) {
             for (int month = Calendar.FEBRUARY; month <= Calendar.DECEMBER; month += 2) {
@@ -309,31 +309,31 @@ public class SqlDefaultSequencesPopulator {
     }
 
     private static void addBvbRegular(final String symbol, final String firstTransaction, final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2(symbol).name(symbol).support(symbol);
-        builder.market(Market.REGS).sampling(Sampling.DAILY).grouping(Grouping.OHLC);
-        builder.firstDayOfTransaction(firstTransaction);
+        final SB2 builder = (SB2) new SB2(symbol).setName(symbol).setSupport(symbol);
+        builder.setMarket(Market.REGS).setSampling(Sampling.DAILY).setGrouping(Grouping.OHLC);
+        builder.setFirstDayOfTransaction(firstTransaction);
 
-        builder.feed(Feed.ORIG);
-        builder.updater(Updater.BVB_REG_DAILY_BASE);
+        builder.setFeed(Feed.ORIG);
+        builder.setUpdater(Updater.BVB_REG_DAILY_BASE);
         qdb.add(builder);
     }
 
     private static void addYahooRegular(final String symbol, final String firstTransaction, final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2(symbol).name(symbol).support(symbol);
-        builder.market(Market.REGS).sampling(Sampling.DAILY).grouping(Grouping.OHLC);
-        builder.feed(Feed.ORIG);
-        builder.updater(Updater.YAHOO_DAILY);
-        builder.firstDayOfTransaction(firstTransaction);
+        final SB2 builder = (SB2) new SB2(symbol).setName(symbol).setSupport(symbol);
+        builder.setMarket(Market.REGS).setSampling(Sampling.DAILY).setGrouping(Grouping.OHLC);
+        builder.setFeed(Feed.ORIG);
+        builder.setUpdater(Updater.YAHOO_DAILY);
+        builder.setFirstDayOfTransaction(firstTransaction);
         qdb.add(builder);
     }
 
     static void add_DESIF4(final SqlDb qdb) {
-        final SB2 builder = (SB2) new SB2("DESIF4").support("SIF4");
-        builder.market(Market.FUTURES).fee(0.7).multiplier(1000.0).margin(250.0);
+        final SB2 builder = (SB2) new SB2("DESIF4").setSupport("SIF4");
+        builder.setMarket(Market.FUTURES).setFee(0.7).setMultiplier(1000.0).setMargin(250.0);
 
-        builder.sampling(Sampling.SECOND).grouping(Grouping.TICK);
-        builder.updater(Updater.SIBEX_FUT_TICK);
-        builder.feed(Feed.ORIG);
+        builder.setSampling(Sampling.SECOND).setGrouping(Grouping.TICK);
+        builder.setUpdater(Updater.SIBEX_FUT_TICK);
+        builder.setFeed(Feed.ORIG);
 
         for (int month = Calendar.JUNE; month <= Calendar.DECEMBER; month += 3) {
             builder.settlement(month, 2007);

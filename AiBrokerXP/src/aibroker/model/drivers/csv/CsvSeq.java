@@ -14,7 +14,7 @@ public class CsvSeq extends Seq {
 
     CsvSeq(final CsvDb csvDb, final SeqDesc sb) {
         super(csvDb, sb);
-        type = sb.grouping();
+        type = sb.getGrouping();
     }
 
     @Override

@@ -111,12 +111,12 @@ public class SeqSel implements Cloneable {
         this.symbol = symbol;
     }
 
-    public SeqDesc toBuilder() {
+    public SeqDesc toDescriptor() {
         final SeqDesc sb = new SeqDesc(getSymbol(), getSettlement());
-        sb.feed(getFeed());
-        sb.grouping(getGrouping());
-        sb.market(getMarket());
-        sb.sampling(getSampling());
+        sb.setFeed(getFeed());
+        sb.setGrouping(getGrouping());
+        sb.setMarket(getMarket());
+        sb.setSampling(getSampling());
         return sb;
     }
 

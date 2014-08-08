@@ -44,40 +44,40 @@ public class SqlSeq extends Seq {
     SqlSeq(final QuotesDb qDb, final SeqDesc sb) {
         super(qDb, sb);
 
-        tableId = isNullOrBlank(sb.tableId()) ? getNewQuotesTableName() : sb.tableId();
+        tableId = isNullOrBlank(sb.getTableId()) ? getNewQuotesTableName() : sb.getTableId();
 
-        if (sb.market() == null) { throw new BrokerException("Market cannot be empty"); }
-        market = sb.market();
+        if (sb.getMarket() == null) { throw new BrokerException("Market cannot be empty"); }
+        market = sb.getMarket();
 
-        if (sb.feed() == null) { throw new BrokerException("Feed cannot be empty"); }
-        feed = sb.feed();
+        if (sb.getFeed() == null) { throw new BrokerException("Feed cannot be empty"); }
+        feed = sb.getFeed();
 
-        if (sb.grouping() == null) { throw new BrokerException("Grouping cannot be empty"); }
-        grouping = sb.grouping();
+        if (sb.getGrouping() == null) { throw new BrokerException("Grouping cannot be empty"); }
+        grouping = sb.getGrouping();
 
-        if (sb.sampling() == null) { throw new BrokerException("Sampling cannot be empty"); }
-        sampling = sb.sampling();
+        if (sb.getSampling() == null) { throw new BrokerException("Sampling cannot be empty"); }
+        sampling = sb.getSampling();
 
-        favourite = sb.favourite();
+        favourite = sb.isFavourite();
 
-        fee = sb.fee();
+        fee = sb.getFee();
 
-        firstDayOfTransaction = sb.firstDayOfTransaction();
+        firstDayOfTransaction = sb.getFirstDayOfTransaction();
 
         if (isRegular()) {
             support = getSymbol();
         } else {
-            if (isNullOrBlank(sb.support())) { throw new BrokerException("Base Symbol cannot be empty"); }
-            support = sb.support().trim().toUpperCase();
+            if (isNullOrBlank(sb.getSupport())) { throw new BrokerException("Base Symbol cannot be empty"); }
+            support = sb.getSupport().trim().toUpperCase();
 
             if (getSettlement() == null) { throw new BrokerException("Settlement cannot be empty"); }
 
-            margin = sb.margin();
+            margin = sb.getMargin();
 
-            multiplier = sb.multiplier();
+            multiplier = sb.getMultiplier();
         }
 
-        name = isNullOrBlank(sb.name()) ? super.getName() : sb.name();
+        name = isNullOrBlank(sb.getName()) ? super.getName() : sb.getName();
     }
 
     @Override
@@ -87,18 +87,18 @@ public class SqlSeq extends Seq {
 
     public VirtualSqlSeq cloneVirtual() {
         final SeqDesc sb = new SeqDesc(getSymbol(), getSettlement());
-        sb.tableId("N/A");
-        sb.favourite(isFavourite());
-        sb.fee(getFee());
-        sb.feed(getFeed());
-        sb.firstDayOfTransaction(getFirstDayOfTransaction());
-        sb.grouping(getGrouping());
-        sb.margin(getMargin());
-        sb.market(getMarket());
-        sb.multiplier(getMultiplier());
-        sb.name(getName());
-        sb.sampling(getSampling());
-        sb.support(getSupport());
+        sb.setTableId("N/A");
+        sb.setFavourite(isFavourite());
+        sb.setFee(getFee());
+        sb.setFeed(getFeed());
+        sb.setFirstDayOfTransaction(getFirstDayOfTransaction());
+        sb.setGrouping(getGrouping());
+        sb.setMargin(getMargin());
+        sb.setMarket(getMarket());
+        sb.setMultiplier(getMultiplier());
+        sb.setName(getName());
+        sb.setSampling(getSampling());
+        sb.setSupport(getSupport());
         return new VirtualSqlSeq(qDb, sb);
     }
 

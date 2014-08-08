@@ -15,9 +15,9 @@ public abstract class Seq {
 
     protected Seq(final QuotesDb qDb, final SeqDesc sb) {
         this.qDb = qDb;
-        symbol = sb.symbol().trim().toUpperCase();
-        settlement = sb.settlement();
-        updater = sb.updater();
+        symbol = sb.getSymbol().trim().toUpperCase();
+        settlement = sb.getSettlement();
+        updater = sb.getUpdater();
     }
 
     public void addQuotes(final List<Ohlc> quotes) throws Exception {

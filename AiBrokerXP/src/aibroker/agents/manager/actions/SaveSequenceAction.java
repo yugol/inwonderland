@@ -42,18 +42,18 @@ public class SaveSequenceAction extends AbstractAction {
             }
 
             final SeqDesc sDesc = new SeqDesc(symbol, settlement);
-            sDesc.name(view.txtName.getText());
-            sDesc.market(market);
-            sDesc.feed((Feed) view.cbbFeed.getSelectedItem());
-            sDesc.sampling(sampling);
-            sDesc.updater((Updater) view.cbbUpdater.getSelectedItem());
-            sDesc.grouping(sampling == Sampling.SECOND ? Grouping.TICK : Grouping.OHLC);
-            sDesc.favourite(view.ckbFavourite.isSelected());
-            sDesc.fee(Double.parseDouble(view.txtFee.getText()));
+            sDesc.setName(view.txtName.getText());
+            sDesc.setMarket(market);
+            sDesc.setFeed((Feed) view.cbbFeed.getSelectedItem());
+            sDesc.setSampling(sampling);
+            sDesc.setUpdater((Updater) view.cbbUpdater.getSelectedItem());
+            sDesc.setGrouping(sampling == Sampling.SECOND ? Grouping.TICK : Grouping.OHLC);
+            sDesc.setFavourite(view.ckbFavourite.isSelected());
+            sDesc.setFee(Double.parseDouble(view.txtFee.getText()));
             if (!Market.REGS.equals(market)) {
-                sDesc.margin(Double.parseDouble(view.txtMargin.getText()));
-                sDesc.multiplier(Double.parseDouble(view.txtMultiplier.getText()));
-                sDesc.support(view.txtSupport.getText());
+                sDesc.setMargin(Double.parseDouble(view.txtMargin.getText()));
+                sDesc.setMultiplier(Double.parseDouble(view.txtMultiplier.getText()));
+                sDesc.setSupport(view.txtSupport.getText());
             }
 
             final SqlSeq sequence = view.getDatabase().add(sDesc);

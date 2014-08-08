@@ -91,7 +91,7 @@ public class SqlDb extends QuotesDb {
     public SqlSeq getSequence(final SeqSel selector) {
         SqlSeq sequence = null;
         if (selector.isJoinSettlements()) {
-            final VirtualSqlSeq vSequence = new VirtualSqlSeq(this, selector.toBuilder());
+            final VirtualSqlSeq vSequence = new VirtualSqlSeq(this, selector.toDescriptor());
             vSequence.setJoinSettlements(true);
             sequence = vSequence;
         } else {
@@ -142,24 +142,24 @@ public class SqlDb extends QuotesDb {
 
                     @Override
                     public int compare(final SeqDesc o1, final SeqDesc o2) {
-                        return o1.sampling().compareTo(o2.sampling());
+                        return o1.getSampling().compareTo(o2.getSampling());
                     }
 
                 });
                 if (selector.getSampling() == null) {
                     for (final SeqDesc sb : builders) {
-                        final SqlSeq sequence = (SqlSeq) getSequence(sb.tableId());
+                        final SqlSeq sequence = (SqlSeq) getSequence(sb.getTableId());
                         sequences.add(sequence);
                     }
                 } else {
                     for (final SeqDesc sb : builders) {
-                        if (selector.getSampling() == sb.sampling()) {
-                            final SqlSeq sequence = (SqlSeq) getSequence(sb.tableId());
+                        if (selector.getSampling() == sb.getSampling()) {
+                            final SqlSeq sequence = (SqlSeq) getSequence(sb.getTableId());
                             sequences.add(sequence);
                         }
                     }
                     if (sequences.size() == 0 && builders.size() > 0) {
-                        final SqlSeq sequence = (SqlSeq) getSequence(builders.get(0).tableId());
+                        final SqlSeq sequence = (SqlSeq) getSequence(builders.get(0).getTableId());
                         sequences.add(sequence);
                     }
                 }

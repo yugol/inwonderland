@@ -11,19 +11,19 @@ public class BvbSeqDescriptionReaderTest {
     @Test
     public void testReadDescription_FP() throws IOException {
         final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription("FP");
-        assertEquals("FP", sDesc.symbol());
-        assertEquals("FONDUL PROPRIETATEA", sDesc.name());
-        assertEquals(100, sDesc.blockSize());
-        assertTrue(sDesc.lastPrice() < 1f);
+        assertEquals("FP", sDesc.getSymbol());
+        assertEquals("FONDUL PROPRIETATEA", sDesc.getName());
+        assertEquals(100, sDesc.getBlockSize());
+        assertTrue(sDesc.getLastPrice() < 1f);
     }
 
     @Test
     public void testReadDescription_TLV() throws IOException {
         final SeqDesc sDesc = BvbSeqDescriptionReader.readDescription("TLV");
-        assertEquals("TLV", sDesc.symbol());
-        assertEquals("BANCA TRANSILVANIA S.A.", sDesc.name());
-        assertEquals(10, sDesc.blockSize());
-        assertTrue(sDesc.lastPrice() > 1f);
+        assertEquals("TLV", sDesc.getSymbol());
+        assertEquals("BANCA TRANSILVANIA S.A.", sDesc.getName());
+        assertEquals(10, sDesc.getBlockSize());
+        assertTrue(sDesc.getLastPrice() > 1f);
     }
 
 }
