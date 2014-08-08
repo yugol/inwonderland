@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import aibroker.TestConfig;
 import aibroker.model.Seq;
 import aibroker.model.SeqSel;
-import aibroker.model.drivers.csv.CsvDatabase;
+import aibroker.model.drivers.csv.CsvDb;
 import aibroker.model.drivers.csv.CsvWriter;
 
 public class AmiDatabaseTest {
@@ -22,12 +22,12 @@ public class AmiDatabaseTest {
 
     public static final File         DB_FOLDER = new File("/home/iulian/temp/aibxpdb");
     private static final boolean     CLEANUP   = false;
-    private static AmibrokerDatabase amiDb;
+    private static AmibrokerDb amiDb;
 
     @BeforeClass
     public static void setUpClass() throws IOException, InterruptedException {
         deleteTestDb();
-        amiDb = new AmibrokerDatabase(DB_FOLDER);
+        amiDb = new AmibrokerDb(DB_FOLDER);
         logger.debug("{} database created", DB_FOLDER.getAbsolutePath());
     }
 
@@ -53,13 +53,13 @@ public class AmiDatabaseTest {
 
     @Test
     public void testSequence() {
-        final CsvDatabase csvDb = new CsvDatabase(TestConfig.CSV_TEST_DATABASE_FOLDER);
+        final CsvDb csvDb = new CsvDb(TestConfig.CSV_TEST_DATABASE_FOLDER);
         final Seq brk = csvDb.getSequence(SeqSel.fromName("brk"));
         amiDb.add(brk);
-        AmibrokerSequence amiBrk = amiDb.getSequence("BRK");
+        AmibrokerSeq amiBrk = amiDb.getSequence("BRK");
         amiBrk.setMarket(255);
         amiDb.save();
-        final AmibrokerDatabase amiDb2 = new AmibrokerDatabase(DB_FOLDER);
+        final AmibrokerDb amiDb2 = new AmibrokerDb(DB_FOLDER);
         amiBrk = amiDb2.getSequence("BRK");
         assertNotNull(amiBrk);
         assertEquals(255, amiBrk.getMarket());

@@ -13,9 +13,9 @@ import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
 import aibroker.util.FileUtil;
 
-public class MetastockDatabase extends QuotesDb {
+public class MetastockDb extends QuotesDb {
 
-    public MetastockDatabase(final File dbFolder) throws BrokerException {
+    public MetastockDb(final File dbFolder) throws BrokerException {
         super(dbFolder);
         readMaster();
     }
@@ -47,14 +47,14 @@ public class MetastockDatabase extends QuotesDb {
         final byte[] masterData = FileUtil.readBytes(new File(dbLocation, FormatDescriptor.MASTER_FILE_NAME));
         final int recCount = ByteCodec.readUnsignedByte(masterData, 0);
         for (int recNo = 0; recNo < recCount; ++recNo) {
-            final MetastockSequence sequence = MetastockSequence.fromRawData(this, masterData, (recNo + 1) * FormatDescriptor.MASTER_RECORD_LENGTH);
+            final MetastockSeq sequence = MetastockSeq.fromRawData(this, masterData, (recNo + 1) * FormatDescriptor.MASTER_RECORD_LENGTH);
             add(sequence);
         }
     }
 
     @Override
     protected Quotes readQuotes(final Seq t) {
-        final MetastockSequence sequence = (MetastockSequence) t;
+        final MetastockSeq sequence = (MetastockSeq) t;
         final byte[] quotesData = FileUtil.readBytes(new File(dbLocation, sequence.getQuotesFileName()));
         final int quotesCount = quotesData.length / sequence.getByteCount() - 1;
         final Quotes quotes = new Quotes(quotesCount);

@@ -29,16 +29,16 @@ public final class CsvWriter {
             final Ohlc ohlc = quotes.get(qNo);
             if (symbol != null) {
                 sb.append(symbol);
-                sb.append(CsvDatabase.DELIMITER);
+                sb.append(CsvDb.DELIMITER);
             }
             sb.append(ohlc.moment.toIsoDate());
-            sb.append(CsvDatabase.DELIMITER).append(ohlc.moment.toIsoTime());
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.open));
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.high));
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.low));
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.close));
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%10d", ohlc.volume));
-            sb.append(CsvDatabase.DELIMITER).append(String.format(Locale.ENGLISH, "%8d", ohlc.openInt));
+            sb.append(CsvDb.DELIMITER).append(ohlc.moment.toIsoTime());
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.open));
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.high));
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.low));
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%8.4f", ohlc.close));
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%10d", ohlc.volume));
+            sb.append(CsvDb.DELIMITER).append(String.format(Locale.ENGLISH, "%8d", ohlc.openInt));
             sb.append("\n");
         }
         out.print(sb);

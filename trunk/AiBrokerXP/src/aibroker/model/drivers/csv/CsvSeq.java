@@ -4,7 +4,7 @@ import aibroker.model.SeqDesc;
 import aibroker.model.Seq;
 import aibroker.model.domains.Grouping;
 
-public class CsvSequence extends Seq {
+public class CsvSeq extends Seq {
 
     private static String normalizeName(final String name) {
         return name.replace("/", "");
@@ -12,7 +12,7 @@ public class CsvSequence extends Seq {
 
     private final Grouping type;
 
-    CsvSequence(final CsvDatabase csvDb, final SeqDesc sb) {
+    CsvSeq(final CsvDb csvDb, final SeqDesc sb) {
         super(csvDb, sb);
         type = sb.grouping();
     }

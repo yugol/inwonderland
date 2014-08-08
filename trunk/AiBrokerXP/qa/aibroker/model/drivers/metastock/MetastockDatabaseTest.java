@@ -10,10 +10,10 @@ import aibroker.model.domains.Sampling;
 
 public class MetastockDatabaseTest {
 
-    private final MetastockDatabase msDb;
+    private final MetastockDb msDb;
 
     public MetastockDatabaseTest() {
-        msDb = new MetastockDatabase(BursanoastraConfig.METASTOCK_DATABASE_FOLDER);
+        msDb = new MetastockDb(BursanoastraConfig.METASTOCK_DATABASE_FOLDER);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class MetastockDatabaseTest {
 
     @Test
     public void testGetSequenceInt() {
-        final MetastockSequence sequence = (MetastockSequence) msDb.getSequence(SeqSel.fromName("AEM"));
+        final MetastockSeq sequence = (MetastockSeq) msDb.getSequence(SeqSel.fromName("AEM"));
         assertEquals("AEM", sequence.getName());
         assertEquals(Sampling.DAILY, sequence.getSampling());
         assertEquals(7, sequence.getFieldCount());

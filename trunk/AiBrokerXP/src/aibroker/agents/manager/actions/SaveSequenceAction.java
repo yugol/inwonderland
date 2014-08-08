@@ -12,7 +12,7 @@ import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
 import aibroker.model.domains.Updater;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.BrokerException;
 import aibroker.util.Moment;
 
@@ -56,7 +56,7 @@ public class SaveSequenceAction extends AbstractAction {
                 sDesc.support(view.txtSupport.getText());
             }
 
-            final SqlSequence sequence = view.getDatabase().add(sDesc);
+            final SqlSeq sequence = view.getDatabase().add(sDesc);
             final TreePath sequencePath = QuotesTreeManager.addSequence(view.quotesTree, sequence);
             view.setSequence(sequence, sequencePath);
         } catch (final Exception ex) {

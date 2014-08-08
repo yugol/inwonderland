@@ -7,13 +7,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.domains.Sampling;
-import aibroker.model.drivers.sql.SqlDatabase;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlDb;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.SamplingUtil;
 
 public class BasicQuotesReport extends Report {
 
-    public BasicQuotesReport(final SqlDatabase database, final SqlSequence sequence) throws IOException {
+    public BasicQuotesReport(final SqlDb database, final SqlSeq sequence) throws IOException {
         super(database, sequence);
     }
 

@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.BrokerException;
 
 @SuppressWarnings("serial")
@@ -22,7 +22,7 @@ public class DeleteQuotesAction extends AbstractAction {
 
     @Override
     public void actionPerformed(final ActionEvent e) {
-        final SqlSequence sequence = view.getSequence();
+        final SqlSeq sequence = view.getSequence();
         if (JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(view.frmManager,
                 "Are you sure you want to delete quotes for " + sequence.getName(),
                 Context.APPLICATION_NAME + " - Confirn Delete Quotes",

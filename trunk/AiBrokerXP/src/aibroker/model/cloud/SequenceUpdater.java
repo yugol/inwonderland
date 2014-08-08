@@ -10,8 +10,8 @@ import aibroker.model.Seq;
 import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Updater;
-import aibroker.model.drivers.sql.SqlDatabase;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlDb;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.Moment;
 
 public class SequenceUpdater implements Runnable {
@@ -58,8 +58,8 @@ public class SequenceUpdater implements Runnable {
             firstDate = lastQuote.moment;
         }
         if (firstDate == null) {
-            if (sequence instanceof SqlSequence) {
-                firstDate = ((SqlSequence) sequence).getFirstDayOfTransaction();
+            if (sequence instanceof SqlSeq) {
+                firstDate = ((SqlSeq) sequence).getFirstDayOfTransaction();
             }
         }
         if (firstDate == null) {
@@ -129,15 +129,15 @@ public class SequenceUpdater implements Runnable {
             for (final SequenceUpdateListener listener : listeners) {
                 listener.onDownloading(symbol, settlement, firstDate);
             }
-            final SqlSequence sequence = (SqlSequence) this.sequence;
-            final SqlDatabase sqlDb = sequence.getDatabase();
+            final SqlSeq sequence = (SqlSeq) this.sequence;
+            final SqlDb sqlDb = sequence.getDatabase();
             final SeqSel selector = sequence.toSelector();
             if (selector.getSettlement() == null || selector.getSettlement().getYear() == 2000) {
                 selector.setSettlement(null);
                 selector.setJoinSettlements(true);
             }
             selector.setFeed(Feed.ORIG);
-            final SqlSequence origSequence = sqlDb.getSequence(selector);
+            final SqlSeq origSequence = sqlDb.getSequence(selector);
             final Quotes quotes = origSequence.getQuotes();
             sequence.deleteQuotes();
             sequence.addQuotes(quotes);

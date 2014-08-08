@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.jumpmind.symmetric.csv.CsvReader;
 import aibroker.model.Ohlc;
 import aibroker.model.cloud.CloudDataSource;
-import aibroker.model.drivers.csv.CsvDatabase;
+import aibroker.model.drivers.csv.CsvDb;
 import aibroker.util.Moment;
 
 public class YahooDailyDownloader extends CloudDataSource {
@@ -45,7 +45,7 @@ public class YahooDailyDownloader extends CloudDataSource {
 
             quotesFile = File.createTempFile("$$$", UUID.randomUUID().toString());
             FileUtils.copyURLToFile(new URL(url.toString()), quotesFile);
-            final CsvReader reader = new CsvReader(quotesFile.getAbsolutePath(), CsvDatabase.DELIMITER.charAt(0));
+            final CsvReader reader = new CsvReader(quotesFile.getAbsolutePath(), CsvDb.DELIMITER.charAt(0));
             reader.readHeaders();
 
             while (reader.readRecord()) {

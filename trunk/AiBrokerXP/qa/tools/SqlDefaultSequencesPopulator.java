@@ -8,7 +8,7 @@ import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
 import aibroker.model.domains.Updater;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.sql.SqlDb;
 import aibroker.util.Moment;
 
 public class SqlDefaultSequencesPopulator {
@@ -29,7 +29,7 @@ public class SqlDefaultSequencesPopulator {
 
     }
 
-    public static void addDefaultSequences(final SqlDatabase qdb) {
+    public static void addDefaultSequences(final SqlDb qdb) {
         addYahooRegular("DJIA", "1985-01-29", qdb);
 
         addYahooRegular("AAPL", "1984-09-07", qdb);
@@ -58,7 +58,7 @@ public class SqlDefaultSequencesPopulator {
         add_DEVSA(qdb);
     }
 
-    private static void add_DEAPL(final SqlDatabase qdb) {
+    private static void add_DEAPL(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEAPL").support("AAPL");
         builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
 
@@ -77,7 +77,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEDJIA_RON(final SqlDatabase qdb) {
+    private static void add_DEDJIA_RON(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEDJIA_RON").support("DJIA");
         builder.market(Market.FUTURES).fee(1.2).multiplier(1.0).margin(500.0);
 
@@ -93,7 +93,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEFCB(final SqlDatabase qdb) {
+    private static void add_DEFCB(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEFCB").support("FB");
         builder.market(Market.FUTURES).fee(2.6).multiplier(100.0).margin(500.0);
 
@@ -112,7 +112,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEGGL(final SqlDatabase qdb) {
+    private static void add_DEGGL(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEGGL").support("GOOG");
         builder.market(Market.FUTURES).fee(2.6).multiplier(1.0).margin(500.0);
 
@@ -131,7 +131,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEMCD(final SqlDatabase qdb) {
+    private static void add_DEMCD(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEMCD").support("MCD");
         builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
 
@@ -150,7 +150,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEOIL_LSC(final SqlDatabase qdb) {
+    private static void add_DEOIL_LSC(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEOIL_LSC").support("OIL_LSC");
         builder.market(Market.FUTURES).fee(1.2).multiplier(100.0).margin(500.0);
 
@@ -171,7 +171,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DESIF3(final SqlDatabase qdb) {
+    private static void add_DESIF3(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DESIF3").support("SIF3");
         builder.market(Market.FUTURES).fee(0.7).multiplier(1000.0).margin(250.0);
 
@@ -192,7 +192,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DESIF5(final SqlDatabase qdb) {
+    private static void add_DESIF5(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DESIF5").support("SIF5");
         builder.market(Market.FUTURES).fee(0.6).multiplier(1000.0).margin(250.0);
 
@@ -213,7 +213,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_DEVSA(final SqlDatabase qdb) {
+    private static void add_DEVSA(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DEVSA").support("V");
         builder.market(Market.FUTURES).fee(2.6).multiplier(10.0).margin(500.0);
 
@@ -232,7 +232,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_EURUSD_RON(final SqlDatabase qdb) {
+    private static void add_EURUSD_RON(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("EUR/USD_RON").support("EUR/USD");
         builder.market(Market.FUTURES).fee(1.2).multiplier(10000.0).margin(300.0);
 
@@ -253,7 +253,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_SIBGOLD(final SqlDatabase qdb) {
+    private static void add_SIBGOLD(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("SIBGOLD").support("GOLD");
         builder.market(Market.FUTURES).fee(0.6).multiplier(10.0).margin(500.0);
 
@@ -292,7 +292,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void add_SIBGOLD_RON(final SqlDatabase qdb) {
+    private static void add_SIBGOLD_RON(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("SIBGOLD_RON").support("GOLD");
         builder.market(Market.FUTURES).fee(1.2).multiplier(1.0).margin(500.0);
 
@@ -308,7 +308,7 @@ public class SqlDefaultSequencesPopulator {
         }
     }
 
-    private static void addBvbRegular(final String symbol, final String firstTransaction, final SqlDatabase qdb) {
+    private static void addBvbRegular(final String symbol, final String firstTransaction, final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2(symbol).name(symbol).support(symbol);
         builder.market(Market.REGS).sampling(Sampling.DAILY).grouping(Grouping.OHLC);
         builder.firstDayOfTransaction(firstTransaction);
@@ -318,7 +318,7 @@ public class SqlDefaultSequencesPopulator {
         qdb.add(builder);
     }
 
-    private static void addYahooRegular(final String symbol, final String firstTransaction, final SqlDatabase qdb) {
+    private static void addYahooRegular(final String symbol, final String firstTransaction, final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2(symbol).name(symbol).support(symbol);
         builder.market(Market.REGS).sampling(Sampling.DAILY).grouping(Grouping.OHLC);
         builder.feed(Feed.ORIG);
@@ -327,7 +327,7 @@ public class SqlDefaultSequencesPopulator {
         qdb.add(builder);
     }
 
-    static void add_DESIF4(final SqlDatabase qdb) {
+    static void add_DESIF4(final SqlDb qdb) {
         final SB2 builder = (SB2) new SB2("DESIF4").support("SIF4");
         builder.market(Market.FUTURES).fee(0.7).multiplier(1000.0).margin(250.0);
 

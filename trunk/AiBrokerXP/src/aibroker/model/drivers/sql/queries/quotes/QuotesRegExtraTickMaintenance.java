@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.model.drivers.sql.queries.MaintainQuotes;
 
 public class QuotesRegExtraTickMaintenance extends MaintainQuotes {
 
-    public QuotesRegExtraTickMaintenance(final Connection conn, final SqlSequence sequence) {
+    public QuotesRegExtraTickMaintenance(final Connection conn, final SqlSeq sequence) {
         super(conn, sequence);
     }
 

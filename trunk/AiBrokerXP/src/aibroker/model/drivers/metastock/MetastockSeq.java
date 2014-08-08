@@ -7,11 +7,11 @@ import aibroker.util.BrokerException;
 import aibroker.util.ByteCodec;
 import aibroker.util.Moment;
 
-public class MetastockSequence extends Seq {
+public class MetastockSeq extends Seq {
 
-    public static MetastockSequence fromRawData(final MetastockDatabase msq, final byte[] data, final int offset) {
+    public static MetastockSeq fromRawData(final MetastockDb msq, final byte[] data, final int offset) {
         final SeqDesc sb = new SeqDesc(ByteCodec.readString(data, offset + FormatDescriptor.SYMBOL_0, FormatDescriptor.SYMBOL_LEN));
-        final MetastockSequence sequence = new MetastockSequence(msq, sb);
+        final MetastockSeq sequence = new MetastockSeq(msq, sb);
         switch (MetastockDecoder.readByteAsChar(data, offset + FormatDescriptor.TIME_FRAME)) {
             case 'Y':
                 sequence.sampling = Sampling.YEARLY;
@@ -59,7 +59,7 @@ public class MetastockSequence extends Seq {
     private Moment   lastDate;
     private boolean  autorun;
 
-    MetastockSequence(final MetastockDatabase msDb, final SeqDesc sb) {
+    MetastockSeq(final MetastockDb msDb, final SeqDesc sb) {
         super(msDb, sb);
     }
 

@@ -2,12 +2,12 @@ package aibroker.agents.manager.util;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import aibroker.model.SeqSel;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 
 @SuppressWarnings("serial")
 public class QuotesTreeNode extends DefaultMutableTreeNode {
 
-    private SqlSequence      sequence;
+    private SqlSeq      sequence;
     private SeqSel selector;
 
     public QuotesTreeNode() {
@@ -26,7 +26,7 @@ public class QuotesTreeNode extends DefaultMutableTreeNode {
         return selector;
     }
 
-    public SqlSequence getSequence() {
+    public SqlSeq getSequence() {
         return sequence;
     }
 
@@ -34,7 +34,7 @@ public class QuotesTreeNode extends DefaultMutableTreeNode {
         this.selector = selector;
     }
 
-    public void setSequence(final SqlSequence sequence) {
+    public void setSequence(final SqlSeq sequence) {
         this.sequence = sequence;
     }
 

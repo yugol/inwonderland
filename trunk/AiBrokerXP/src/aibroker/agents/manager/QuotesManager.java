@@ -63,16 +63,16 @@ import aibroker.model.domains.Feed;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
 import aibroker.model.domains.Updater;
-import aibroker.model.drivers.sql.SqlDatabase;
-import aibroker.model.drivers.sql.SqlSequence;
-import aibroker.model.drivers.sql.VirtualSqlSequence;
+import aibroker.model.drivers.sql.SqlDb;
+import aibroker.model.drivers.sql.SqlSeq;
+import aibroker.model.drivers.sql.VirtualSqlSeq;
 import aibroker.util.BrokerException;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 
 public class QuotesManager implements TreeSelectionListener {
 
-    public static void launch(final SqlDatabase sqlDb) {
+    public static void launch(final SqlDb sqlDb) {
         try {
             for (final LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if (info.getName().toLowerCase().indexOf("nimbus") >= 0) {
@@ -109,8 +109,8 @@ public class QuotesManager implements TreeSelectionListener {
     }
 
     // model attributes
-    private SqlDatabase               sqlDb;
-    private SqlSequence               sqlSequence;
+    private SqlDb               sqlDb;
+    private SqlSeq               sqlSequence;
 
     // frame attributes
     public JFrame                     frmManager;
@@ -237,15 +237,15 @@ public class QuotesManager implements TreeSelectionListener {
         quotesTree.addTreeSelectionListener(this);
     }
 
-    public SqlDatabase getDatabase() {
+    public SqlDb getDatabase() {
         return sqlDb;
     }
 
-    public SqlSequence getSequence() {
+    public SqlSeq getSequence() {
         return sqlSequence;
     }
 
-    public void setDatabase(final SqlDatabase database) {
+    public void setDatabase(final SqlDb database) {
         sqlDb = database;
         quotesTree.setModel(QuotesTreeManager.readSequences(database));
         QuotesTreeManager.expandDefault(quotesTree);
@@ -253,7 +253,7 @@ public class QuotesManager implements TreeSelectionListener {
         setSequence(null, null);
     }
 
-    public void setSequence(final SqlSequence sequence, final TreePath sequencePath) {
+    public void setSequence(final SqlSeq sequence, final TreePath sequencePath) {
         sqlSequence = sequence;
         if (sqlSequence != null) {
             quotesTree.setSelectionPath(sequencePath);
@@ -269,7 +269,7 @@ public class QuotesManager implements TreeSelectionListener {
 
     public void setSequenceControlsEnabled(final boolean editable) {
         final boolean dbOpened = sqlDb != null;
-        final boolean real = !(sqlSequence instanceof VirtualSqlSequence);
+        final boolean real = !(sqlSequence instanceof VirtualSqlSeq);
         final boolean existingSequence = sqlSequence != null;
         final boolean derivativeSequence = ((Market) cbbMarket.getSelectedItem()).isDerivative();
         final boolean updatable = existingSequence && !Updater.NONE.equals(sqlSequence.getUpdater());
@@ -318,7 +318,7 @@ public class QuotesManager implements TreeSelectionListener {
     public void valueChanged(final TreeSelectionEvent e) {
         final TreePath treePath = e.getPath();
         final QuotesTreeNode leaf = (QuotesTreeNode) treePath.getLastPathComponent();
-        final SqlSequence sequence = leaf.getSequence();
+        final SqlSeq sequence = leaf.getSequence();
         setSequence(sequence, treePath);
     }
 

@@ -9,7 +9,7 @@ import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.convenience.Databases;
 
 public class BasicQuotesReportTest {
@@ -25,7 +25,7 @@ public class BasicQuotesReportTest {
 
     @Test
     public void testFill() throws IOException {
-        final SqlSequence seq = Databases.DEFAULT().getSequence(SS);
+        final SqlSeq seq = Databases.DEFAULT().getSequence(SS);
         final BasicQuotesReport report = new BasicQuotesReport(Databases.DEFAULT(), seq);
         report.fill();
         final File file = new File(Context.getExportFolder(), "_" + report.getNameHint());

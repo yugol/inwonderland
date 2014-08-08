@@ -77,7 +77,7 @@ class MasterFile {
         return buffer;
     }
 
-    static void writeSequence(final int tNo, final AmibrokerSequence sequence, final byte[] buffer) {
+    static void writeSequence(final int tNo, final AmibrokerSeq sequence, final byte[] buffer) {
         final int recordStartIndex = RECORD_0 + tNo * RECORD_LEN;
         System.arraycopy(sequence.getMasterDescriptor(), 0, buffer, recordStartIndex, RECORD_LEN);
     }

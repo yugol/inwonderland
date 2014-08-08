@@ -6,7 +6,7 @@ import aibroker.model.QuotesDb;
 import aibroker.model.Seq;
 import aibroker.model.SeqSel;
 import aibroker.model.domains.Market;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 
@@ -35,7 +35,7 @@ public class NormalizeQuotesValues {
             }
         }
         // CsvWriter.writeQuotes(System.out, seq);
-        ((SqlSequence) seq).updateQuotes();
+        ((SqlSeq) seq).updateQuotes();
         System.out.println("Done.");
     }
 

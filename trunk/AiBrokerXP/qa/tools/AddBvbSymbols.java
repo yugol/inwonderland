@@ -8,12 +8,12 @@ import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
 import aibroker.model.domains.Updater;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.sql.SqlDb;
 
 public class AddBvbSymbols {
 
     public static void main(final String[] args) throws Exception {
-        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
+        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
         // sqlDb = Databases.DEFAULT();
         for (final String symbol : SYMBOLS) {
             final SeqDesc sDesc = BvbSequenceDescriptionReader.readDescription(symbol);

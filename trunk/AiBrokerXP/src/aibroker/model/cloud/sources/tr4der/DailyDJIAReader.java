@@ -14,7 +14,7 @@ import aibroker.model.Seq;
 import aibroker.model.SeqDesc;
 import aibroker.model.SeqSel;
 import aibroker.model.domains.Grouping;
-import aibroker.model.drivers.csv.CsvDatabase;
+import aibroker.model.drivers.csv.CsvDb;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Stocks;
 
@@ -26,7 +26,7 @@ public class DailyDJIAReader {
         try {
             quotesFile = File.createTempFile("$$$", UUID.randomUUID().toString());
             FileUtils.copyURLToFile(new URL("http://www.tr4der.com/download/historical-prices/%5EDJI/"), quotesFile);
-            final CsvReader reader = new CsvReader(quotesFile.getAbsolutePath(), CsvDatabase.DELIMITER.charAt(0));
+            final CsvReader reader = new CsvReader(quotesFile.getAbsolutePath(), CsvDb.DELIMITER.charAt(0));
             reader.readHeaders();
 
             Seq sequence = qDb.getSequence(SeqSel.fromName(Stocks.DEDJIA_RON.supportSymbol));

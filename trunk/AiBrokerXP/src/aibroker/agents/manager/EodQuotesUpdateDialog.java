@@ -26,7 +26,7 @@ import aibroker.model.SeqDesc;
 import aibroker.model.cloud.SequenceUpdateListener;
 import aibroker.model.cloud.SequenceUpdater;
 import aibroker.model.domains.Feed;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.Moment;
 
 @SuppressWarnings("serial")
@@ -201,7 +201,7 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
         int updateCount = 0;
         final Iterator<Seq> it = sequences.iterator();
         while (it.hasNext()) {
-            if (canUpdate((SqlSequence) it.next()) != null) {
+            if (canUpdate((SqlSeq) it.next()) != null) {
                 ++updateCount;
             }
         }
@@ -217,7 +217,7 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
                 public void run() {
                     final Iterator<Seq> it = sequences.iterator();
                     while (it.hasNext()) {
-                        final SqlSequence sequence = canUpdate((SqlSequence) it.next());
+                        final SqlSeq sequence = canUpdate((SqlSeq) it.next());
                         if (sequence != null) {
                             final SequenceUpdater updater = new SequenceUpdater(sequence);
                             updater.addUpdateListener(EodQuotesUpdateDialog.this);
@@ -245,10 +245,10 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
         message.append(SeqDesc.getName(symbol, settlement));
     }
 
-    private SqlSequence canUpdate(final SqlSequence sequence) {
+    private SqlSeq canUpdate(final SqlSeq sequence) {
         if (Feed.CACHE == sequence.getFeed()) { return sequence; }
-        if (sequence instanceof SqlSequence) {
-            final SqlSequence sqlSequence = sequence;
+        if (sequence instanceof SqlSeq) {
+            final SqlSeq sqlSequence = sequence;
             if (sqlSequence.getUpdater() != null) {
                 if (!sequence.isRegular()) {
                     final Moment settlement = sequence.getSettlement();

@@ -8,7 +8,7 @@ import aibroker.model.SeqSel;
 
 public class CsvDatabaseTest {
 
-    private final CsvDatabase csvDb = new CsvDatabase(TestConfig.CSV_TEST_DATABASE_FOLDER);
+    private final CsvDb csvDb = new CsvDb(TestConfig.CSV_TEST_DATABASE_FOLDER);
 
     @Test
     public void testCsvDatabase() {

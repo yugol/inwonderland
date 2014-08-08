@@ -9,7 +9,7 @@ import aibroker.model.Quotes;
 import aibroker.model.Seq;
 import aibroker.model.SeqSel;
 import aibroker.model.domains.Market;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.sql.SqlDb;
 
 public class CsvReaderTest {
 
@@ -44,7 +44,7 @@ public class CsvReaderTest {
     @Test
     public void testReadSibexFuturesLog() throws Exception {
         final File log = new File(TestConfig.CSV_TEST_DATABASE_FOLDER + "/sibex-quotes-2014-07-21.csv");
-        final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
+        final SqlDb sqlDb = new SqlDb(TestConfig.SQL_DB_FILE);
         sqlDb.drop();
         CsvReader.readSibexFuturesLog(sqlDb, log);
         final SeqSel sSel = new SeqSel();

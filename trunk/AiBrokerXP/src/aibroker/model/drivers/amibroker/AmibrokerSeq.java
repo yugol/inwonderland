@@ -6,11 +6,11 @@ import aibroker.model.Seq;
 import aibroker.model.SeqDesc;
 import aibroker.util.ByteCodec;
 
-public class AmibrokerSequence extends Seq {
+public class AmibrokerSeq extends Seq {
 
-    static AmibrokerSequence fromRawData(final AmibrokerDatabase amiDb, final byte[] data, final int offset) {
+    static AmibrokerSeq fromRawData(final AmibrokerDb amiDb, final byte[] data, final int offset) {
         final SeqDesc sb = new SeqDesc(ByteCodec.readString(data, MasterFile.SYMBOL_0, MasterFile.SYMBOL_LEN));
-        final AmibrokerSequence sequence = new AmibrokerSequence(amiDb, sb);
+        final AmibrokerSeq sequence = new AmibrokerSeq(amiDb, sb);
         System.arraycopy(data, offset, sequence.masterDescriptor, 0, MasterFile.RECORD_LEN);
         sequence.dirty = false;
         return sequence;
@@ -21,7 +21,7 @@ public class AmibrokerSequence extends Seq {
     private boolean      deleted          = false;
     private boolean      dirty            = true;
 
-    AmibrokerSequence(final AmibrokerDatabase amiDb, final SeqDesc sb) {
+    AmibrokerSeq(final AmibrokerDb amiDb, final SeqDesc sb) {
         super(amiDb, sb);
     }
 

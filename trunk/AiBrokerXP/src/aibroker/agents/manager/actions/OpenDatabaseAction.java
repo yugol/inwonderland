@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
 import aibroker.agents.manager.util.QuotesDatabaseFileFilter;
-import aibroker.model.drivers.sql.SqlDatabase;
+import aibroker.model.drivers.sql.SqlDb;
 import aibroker.util.BrokerException;
 import aibroker.util.FileUtil;
 
@@ -33,7 +33,7 @@ public class OpenDatabaseAction extends AbstractAction {
             final File dbFile = dbChooser.getSelectedFile();
             if (fileFilter.accept(dbFile)) {
                 try {
-                    final SqlDatabase qdb = new SqlDatabase(dbFile);
+                    final SqlDb qdb = new SqlDb(dbFile);
                     view.setDatabase(qdb);
                 } catch (final SQLException e1) {
                     BrokerException.reportUi(e1);

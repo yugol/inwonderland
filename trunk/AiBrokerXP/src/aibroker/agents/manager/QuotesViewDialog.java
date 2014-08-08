@@ -11,7 +11,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import aibroker.Context;
 import aibroker.model.Quotes;
-import aibroker.model.drivers.sql.SqlSequence;
+import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.BrokerException;
 
 @SuppressWarnings("serial")
@@ -28,7 +28,7 @@ public class QuotesViewDialog extends JDialog {
     }
 
     private QuotesViewPanel quotesView;
-    private SqlSequence     sequence;
+    private SqlSeq     sequence;
     private Quotes          quotes;
 
     public QuotesViewDialog() {
@@ -69,7 +69,7 @@ public class QuotesViewDialog extends JDialog {
         quotesView.setQuotes(quotes);
     }
 
-    public void setSequence(final SqlSequence sequence) {
+    public void setSequence(final SqlSeq sequence) {
         this.sequence = sequence;
     }
 

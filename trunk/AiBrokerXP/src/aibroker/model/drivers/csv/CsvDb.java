@@ -17,7 +17,7 @@ import aibroker.model.domains.Grouping;
 import aibroker.util.BrokerException;
 import aibroker.util.FileUtil;
 
-public class CsvDatabase extends QuotesDb {
+public class CsvDb extends QuotesDb {
 
     private class QuotesFilter implements FilenameFilter {
 
@@ -38,7 +38,7 @@ public class CsvDatabase extends QuotesDb {
     private final static String OHLC_EXT    = ".EOD." + FileUtil.CSV_EXTENSION;
     private final static String TICK_EXT    = ".T." + FileUtil.CSV_EXTENSION;
 
-    public CsvDatabase(final File dbFolder) {
+    public CsvDb(final File dbFolder) {
         super(dbFolder);
         readMaster();
     }
@@ -50,7 +50,7 @@ public class CsvDatabase extends QuotesDb {
 
     @Override
     public Seq add(final SeqDesc tBuilder) {
-        return add(new CsvSequence(this, tBuilder));
+        return add(new CsvSeq(this, tBuilder));
     }
 
     @Override
@@ -73,8 +73,8 @@ public class CsvDatabase extends QuotesDb {
         }
         for (final Seq sequence : this) {
             String fileName = null;
-            if (sequence instanceof CsvSequence) {
-                final CsvSequence csvSequence = (CsvSequence) sequence;
+            if (sequence instanceof CsvSeq) {
+                final CsvSeq csvSequence = (CsvSeq) sequence;
                 switch (csvSequence.getType()) {
                     case OHLC:
                         fileName = sequence.getName() + OHLC_EXT;
@@ -131,8 +131,8 @@ public class CsvDatabase extends QuotesDb {
     @Override
     protected Quotes readQuotes(final Seq sequence) {
         File csv = null;
-        if (sequence instanceof CsvSequence) {
-            final CsvSequence csvSequence = (CsvSequence) sequence;
+        if (sequence instanceof CsvSeq) {
+            final CsvSeq csvSequence = (CsvSeq) sequence;
             switch (csvSequence.getType()) {
                 case OHLC:
                     csv = new File(dbLocation, sequence.getName() + OHLC_EXT);

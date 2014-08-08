@@ -18,7 +18,7 @@ import aibroker.util.MergeUtil;
 import aibroker.util.Moment;
 import static aibroker.util.StringUtil.isNullOrBlank;
 
-public class SqlSequence extends Seq {
+public class SqlSeq extends Seq {
 
     public static String getNewQuotesTableName() {
         return "S_" + UUID.randomUUID().toString().replace("-", "").toUpperCase();
@@ -41,7 +41,7 @@ public class SqlSequence extends Seq {
     protected Moment   firstDayOfTransaction;
     protected boolean  favourite;
 
-    SqlSequence(final QuotesDb qDb, final SeqDesc sb) {
+    SqlSeq(final QuotesDb qDb, final SeqDesc sb) {
         super(qDb, sb);
 
         tableId = isNullOrBlank(sb.tableId()) ? getNewQuotesTableName() : sb.tableId();
@@ -82,10 +82,10 @@ public class SqlSequence extends Seq {
 
     @Override
     public void addQuotes(final List<Ohlc> quotes) throws SQLException {
-        ((SqlDatabase) qDb).addQuotes(this, quotes);
+        ((SqlDb) qDb).addQuotes(this, quotes);
     }
 
-    public VirtualSqlSequence cloneVirtual() {
+    public VirtualSqlSeq cloneVirtual() {
         final SeqDesc sb = new SeqDesc(getSymbol(), getSettlement());
         sb.tableId("N/A");
         sb.favourite(isFavourite());
@@ -99,21 +99,21 @@ public class SqlSequence extends Seq {
         sb.name(getName());
         sb.sampling(getSampling());
         sb.support(getSupport());
-        return new VirtualSqlSequence(qDb, sb);
+        return new VirtualSqlSeq(qDb, sb);
     }
 
     public void deleteQuotes() throws SQLException {
-        ((SqlDatabase) qDb).deleteQuotesFor(this);
+        ((SqlDb) qDb).deleteQuotesFor(this);
     }
 
     @Override
     public void deleteQuotes(final Moment date) throws SQLException {
-        ((SqlDatabase) qDb).deleteQuotesFor(this, date);
+        ((SqlDb) qDb).deleteQuotesFor(this, date);
     }
 
     @Override
-    public SqlDatabase getDatabase() {
-        return (SqlDatabase) super.getDatabase();
+    public SqlDb getDatabase() {
+        return (SqlDb) super.getDatabase();
     }
 
     public Double getFee() {
@@ -197,7 +197,7 @@ public class SqlSequence extends Seq {
     }
 
     public void updateQuotes() throws SQLException {
-        ((SqlDatabase) qDb).updateQuotes(this);
+        ((SqlDb) qDb).updateQuotes(this);
     }
 
     void setTableId(final String tableId) {
