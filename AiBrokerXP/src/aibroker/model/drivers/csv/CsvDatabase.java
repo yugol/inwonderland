@@ -10,9 +10,9 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Grouping;
 import aibroker.util.BrokerException;
 import aibroker.util.FileUtil;
@@ -44,12 +44,12 @@ public class CsvDatabase extends QuotesDb {
     }
 
     @Override
-    public Sequence add(final Sequence sequence) {
+    public Seq add(final Seq sequence) {
         return super.add(sequence);
     }
 
     @Override
-    public Sequence add(final SequenceDescriptor tBuilder) {
+    public Seq add(final SeqDesc tBuilder) {
         return add(new CsvSequence(this, tBuilder));
     }
 
@@ -59,9 +59,9 @@ public class CsvDatabase extends QuotesDb {
     }
 
     @Override
-    public List<Sequence> getSequences(final SequenceSelector selector) {
-        final List<Sequence> sequences = new ArrayList<Sequence>();
-        final Sequence sequence = getSequence(selector.getName());
+    public List<Seq> getSequences(final SeqSel selector) {
+        final List<Seq> sequences = new ArrayList<Seq>();
+        final Seq sequence = getSequence(selector.getName());
         sequences.add(sequence);
         return sequences;
     }
@@ -71,7 +71,7 @@ public class CsvDatabase extends QuotesDb {
         if (!dbLocation.exists()) {
             dbLocation.mkdirs();
         }
-        for (final Sequence sequence : this) {
+        for (final Seq sequence : this) {
             String fileName = null;
             if (sequence instanceof CsvSequence) {
                 final CsvSequence csvSequence = (CsvSequence) sequence;
@@ -115,7 +115,7 @@ public class CsvDatabase extends QuotesDb {
             if (sequenceName.startsWith(PREFIX)) {
                 sequenceName = sequenceName.substring(1);
             }
-            final SequenceDescriptor tBuilder = new SequenceDescriptor(sequenceName);
+            final SeqDesc tBuilder = new SeqDesc(sequenceName);
 
             if (fileName.endsWith(TICK_EXT.toUpperCase())) {
                 tBuilder.grouping(Grouping.TICK);
@@ -129,7 +129,7 @@ public class CsvDatabase extends QuotesDb {
     }
 
     @Override
-    protected Quotes readQuotes(final Sequence sequence) {
+    protected Quotes readQuotes(final Seq sequence) {
         File csv = null;
         if (sequence instanceof CsvSequence) {
             final CsvSequence csvSequence = (CsvSequence) sequence;

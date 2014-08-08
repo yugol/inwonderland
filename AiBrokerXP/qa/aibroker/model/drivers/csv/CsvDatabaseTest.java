@@ -3,8 +3,8 @@ package aibroker.model.drivers.csv;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import aibroker.TestConfig;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 
 public class CsvDatabaseTest {
 
@@ -17,7 +17,7 @@ public class CsvDatabaseTest {
 
     @Test
     public void testIO() {
-        final Sequence sequence = csvDb.getSequence(SequenceSelector.fromName("BRK"));
+        final Seq sequence = csvDb.getSequence(SeqSel.fromName("BRK"));
         assertEquals(62, sequence.getQuotes().size());
     }
 

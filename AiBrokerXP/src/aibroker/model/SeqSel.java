@@ -7,16 +7,16 @@ import aibroker.model.domains.Sampling;
 import aibroker.util.Moment;
 import aibroker.util.StringUtil;
 
-public class SequenceSelector implements Cloneable {
+public class SeqSel implements Cloneable {
 
-    public static SequenceSelector fromName(String name) {
-        final SequenceSelector selector = new SequenceSelector();
+    public static SeqSel fromName(String name) {
+        final SeqSel selector = new SeqSel();
         if (!StringUtil.isNullOrBlank(name)) {
             name = name.trim();
-            selector.setSymbol(SequenceDescriptor.getSymbol(name));
-            final String settlement = SequenceDescriptor.getSettlement(name);
+            selector.setSymbol(SeqDesc.getSymbol(name));
+            final String settlement = SeqDesc.getSettlement(name);
             if (!StringUtil.isNullOrBlank(settlement)) {
-                selector.setSettlement(SequenceDescriptor.parseSettlement(settlement));
+                selector.setSettlement(SeqDesc.parseSettlement(settlement));
             }
         }
         return selector;
@@ -30,12 +30,12 @@ public class SequenceSelector implements Cloneable {
     private String   symbol;
     private boolean  joinSettlements = false;
 
-    public SequenceSelector() {
+    public SeqSel() {
     }
 
     @Override
-    public SequenceSelector clone() throws CloneNotSupportedException {
-        final SequenceSelector dolly = new SequenceSelector();
+    public SeqSel clone() throws CloneNotSupportedException {
+        final SeqSel dolly = new SeqSel();
         dolly.feed = feed;
         dolly.grouping = grouping;
         dolly.market = market;
@@ -59,7 +59,7 @@ public class SequenceSelector implements Cloneable {
     }
 
     public String getName() {
-        return SequenceDescriptor.getName(symbol, settlement);
+        return SeqDesc.getName(symbol, settlement);
     }
 
     public Sampling getSampling() {
@@ -95,8 +95,8 @@ public class SequenceSelector implements Cloneable {
     }
 
     public void setName(final String name) {
-        symbol = SequenceDescriptor.getSymbol(name);
-        settlement = SequenceDescriptor.parseSettlement(SequenceDescriptor.getSettlement(name));
+        symbol = SeqDesc.getSymbol(name);
+        settlement = SeqDesc.parseSettlement(SeqDesc.getSettlement(name));
     }
 
     public void setSampling(final Sampling sampling) {
@@ -111,8 +111,8 @@ public class SequenceSelector implements Cloneable {
         this.symbol = symbol;
     }
 
-    public SequenceDescriptor toBuilder() {
-        final SequenceDescriptor sb = new SequenceDescriptor(getSymbol(), getSettlement());
+    public SeqDesc toBuilder() {
+        final SeqDesc sb = new SeqDesc(getSymbol(), getSettlement());
         sb.feed(getFeed());
         sb.grouping(getGrouping());
         sb.market(getMarket());

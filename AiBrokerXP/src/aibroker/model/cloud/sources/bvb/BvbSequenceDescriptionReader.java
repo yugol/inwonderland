@@ -1,17 +1,17 @@
 package aibroker.model.cloud.sources.bvb;
 
 import java.io.IOException;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.WebUtil;
 
 public class BvbSequenceDescriptionReader {
 
-    public static SequenceDescriptor readDescription(final String name) throws IOException {
+    public static SeqDesc readDescription(final String name) throws IOException {
         final String pageAddress = "http://www.bvb.ro/ListedCompanies/SecurityDetail.aspx?s=" + name;
         final String html = WebUtil.getPageHtml(pageAddress);
         // System.out.println(html);
-        final SequenceDescriptor sDesc = new SequenceDescriptor(name);
+        final SeqDesc sDesc = new SeqDesc(name);
 
         int beginIndex = html.indexOf("ctl00_central_wcTunel_lbBlockSize");
         beginIndex = html.indexOf(">", beginIndex) + 1;

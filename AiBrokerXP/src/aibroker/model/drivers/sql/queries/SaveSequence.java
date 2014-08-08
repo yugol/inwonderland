@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.drivers.sql.SqlSequence;
 import aibroker.util.BrokerException;
 
@@ -16,8 +16,8 @@ public class SaveSequence extends AbstractQuery {
     }
 
     public String add(final SqlSequence sequence) throws SQLException {
-        final SequenceSelector selector = sequence.toSelector();
-        final List<SequenceDescriptor> builders = new ReadSequences(conn).readSequences(selector);
+        final SeqSel selector = sequence.toSelector();
+        final List<SeqDesc> builders = new ReadSequences(conn).readSequences(selector);
         if (builders.size() == 0) {
             try {
                 beginTransaction();

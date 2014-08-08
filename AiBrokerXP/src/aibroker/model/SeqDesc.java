@@ -10,7 +10,7 @@ import aibroker.model.domains.Updater;
 import aibroker.util.Moment;
 import aibroker.util.StringUtil;
 
-public class SequenceDescriptor {
+public class SeqDesc {
 
     public static Moment calculateSettlement(final int month, int year) {
         if (year < 1000) {
@@ -88,25 +88,25 @@ public class SequenceDescriptor {
     private int                blockSize            = 1;
     private float              lastPrice;
 
-    public SequenceDescriptor(final String name) {
+    public SeqDesc(final String name) {
         this(getSymbol(name), getSettlement(name));
         this.name = name;
     }
 
-    public SequenceDescriptor(final String symbol, final int month, final int year) {
+    public SeqDesc(final String symbol, final int month, final int year) {
         this(symbol, calculateSettlement(month, year));
     }
 
-    public SequenceDescriptor(final String symbol, final Moment settlement) {
+    public SeqDesc(final String symbol, final Moment settlement) {
         this.symbol = symbol;
         this.settlement = settlement;
     }
 
-    public SequenceDescriptor(final String symbol, final String settlement) {
+    public SeqDesc(final String symbol, final String settlement) {
         this(symbol, parseSettlement(settlement));
     }
 
-    public SequenceDescriptor(final String symbol, final String month, final int year) {
+    public SeqDesc(final String symbol, final String month, final int year) {
         this(symbol, calculateSettlement(Moment.monthNameToIndex(month), year));
     }
 
@@ -122,7 +122,7 @@ public class SequenceDescriptor {
         return favourite;
     }
 
-    public SequenceDescriptor favourite(final Boolean favourite) {
+    public SeqDesc favourite(final Boolean favourite) {
         this.favourite = favourite;
         return this;
     }
@@ -131,7 +131,7 @@ public class SequenceDescriptor {
         return fee;
     }
 
-    public SequenceDescriptor fee(final double fee) {
+    public SeqDesc fee(final double fee) {
         this.fee = fee;
         return this;
     }
@@ -140,7 +140,7 @@ public class SequenceDescriptor {
         return feed;
     }
 
-    public SequenceDescriptor feed(final Feed feed) {
+    public SeqDesc feed(final Feed feed) {
         this.feed = feed;
         return this;
     }
@@ -149,12 +149,12 @@ public class SequenceDescriptor {
         return firstDayOfTransaction;
     }
 
-    public SequenceDescriptor firstDayOfTransaction(final Moment firstDayOfTransaction) {
+    public SeqDesc firstDayOfTransaction(final Moment firstDayOfTransaction) {
         this.firstDayOfTransaction = firstDayOfTransaction;
         return this;
     }
 
-    public SequenceDescriptor firstDayOfTransaction(final String isoDate) {
+    public SeqDesc firstDayOfTransaction(final String isoDate) {
         if (isNullOrBlank(isoDate)) {
             firstDayOfTransaction = null;
             return this;
@@ -166,7 +166,7 @@ public class SequenceDescriptor {
         return grouping;
     }
 
-    public SequenceDescriptor grouping(final Grouping grouping) {
+    public SeqDesc grouping(final Grouping grouping) {
         this.grouping = grouping;
         return this;
     }
@@ -183,7 +183,7 @@ public class SequenceDescriptor {
         return margin;
     }
 
-    public SequenceDescriptor margin(final Double margin) {
+    public SeqDesc margin(final Double margin) {
         this.margin = margin;
         return this;
     }
@@ -192,7 +192,7 @@ public class SequenceDescriptor {
         return market;
     }
 
-    public SequenceDescriptor market(final Market market) {
+    public SeqDesc market(final Market market) {
         this.market = market;
         return this;
     }
@@ -201,7 +201,7 @@ public class SequenceDescriptor {
         return multiplier;
     }
 
-    public SequenceDescriptor multiplier(final Double multiplier) {
+    public SeqDesc multiplier(final Double multiplier) {
         this.multiplier = multiplier;
         return this;
     }
@@ -210,7 +210,7 @@ public class SequenceDescriptor {
         return name;
     }
 
-    public SequenceDescriptor name(final String name) {
+    public SeqDesc name(final String name) {
         this.name = name;
         return this;
     }
@@ -219,7 +219,7 @@ public class SequenceDescriptor {
         return sampling;
     }
 
-    public SequenceDescriptor sampling(final Sampling sampling) {
+    public SeqDesc sampling(final Sampling sampling) {
         this.sampling = sampling;
         return this;
     }
@@ -232,7 +232,7 @@ public class SequenceDescriptor {
         return support;
     }
 
-    public SequenceDescriptor support(final String support) {
+    public SeqDesc support(final String support) {
         this.support = support;
         return this;
     }
@@ -245,13 +245,13 @@ public class SequenceDescriptor {
         return tableId;
     }
 
-    public SequenceDescriptor tableId(final String tableId) {
+    public SeqDesc tableId(final String tableId) {
         this.tableId = tableId;
         return this;
     }
 
-    public SequenceSelector toSelector() {
-        final SequenceSelector selector = new SequenceSelector();
+    public SeqSel toSelector() {
+        final SeqSel selector = new SeqSel();
         selector.setMarket(market());
         selector.setSymbol(symbol());
         selector.setSettlement(settlement());
@@ -265,7 +265,7 @@ public class SequenceDescriptor {
         return updater;
     }
 
-    public SequenceDescriptor updater(final Updater updater) {
+    public SeqDesc updater(final Updater updater) {
         this.updater = updater;
         return this;
     }

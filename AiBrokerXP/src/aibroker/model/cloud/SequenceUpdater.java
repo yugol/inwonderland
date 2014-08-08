@@ -6,8 +6,8 @@ import java.util.Calendar;
 import java.util.List;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Updater;
 import aibroker.model.drivers.sql.SqlDatabase;
@@ -18,9 +18,9 @@ public class SequenceUpdater implements Runnable {
 
     private boolean                            cancel    = false;
     private final List<SequenceUpdateListener> listeners = new ArrayList<SequenceUpdateListener>();
-    private final Sequence                     sequence;
+    private final Seq                     sequence;
 
-    public SequenceUpdater(final Sequence sequence) {
+    public SequenceUpdater(final Seq sequence) {
         this.sequence = sequence;
     }
 
@@ -131,7 +131,7 @@ public class SequenceUpdater implements Runnable {
             }
             final SqlSequence sequence = (SqlSequence) this.sequence;
             final SqlDatabase sqlDb = sequence.getDatabase();
-            final SequenceSelector selector = sequence.toSelector();
+            final SeqSel selector = sequence.toSelector();
             if (selector.getSettlement() == null || selector.getSettlement().getYear() == 2000) {
                 selector.setSettlement(null);
                 selector.setJoinSettlements(true);

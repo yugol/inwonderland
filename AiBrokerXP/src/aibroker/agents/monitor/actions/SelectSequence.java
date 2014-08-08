@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import aibroker.agents.monitor.Controller;
 import aibroker.agents.monitor.SequenceSelectionDialog;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
+import aibroker.model.Seq;
 
 @SuppressWarnings("serial")
 public class SelectSequence extends AbstractAction {
@@ -28,7 +28,7 @@ public class SelectSequence extends AbstractAction {
         } else {
             int i = 0;
             final String[] sequences = new String[qDb.getSequenceCount()];
-            for (final Sequence sequence : qDb) {
+            for (final Seq sequence : qDb) {
                 sequences[i++] = sequence.getName();
             }
             Arrays.sort(sequences);

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import org.junit.Test;
 import aibroker.Context;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
@@ -14,7 +14,7 @@ import aibroker.util.convenience.Databases;
 
 public class BasicQuotesReportTest {
 
-    private static final SequenceSelector SS = new SequenceSelector();
+    private static final SeqSel SS = new SeqSel();
 
     static {
         SS.setSymbol("TLV");

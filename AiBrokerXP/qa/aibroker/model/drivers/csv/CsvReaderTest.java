@@ -6,8 +6,8 @@ import java.io.File;
 import org.junit.Test;
 import aibroker.TestConfig;
 import aibroker.model.Quotes;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Market;
 import aibroker.model.drivers.sql.SqlDatabase;
 
@@ -47,10 +47,10 @@ public class CsvReaderTest {
         final SqlDatabase sqlDb = new SqlDatabase(TestConfig.SQL_DB_FILE);
         sqlDb.drop();
         CsvReader.readSibexFuturesLog(sqlDb, log);
-        final SequenceSelector sSel = new SequenceSelector();
+        final SeqSel sSel = new SeqSel();
         sSel.setMarket(Market.FUTURES);
         sSel.setName("DEDJIA_RON-SEP14");
-        final Sequence seq = sqlDb.getSequence(sSel);
+        final Seq seq = sqlDb.getSequence(sSel);
         assertNotNull(seq);
     }
 

@@ -21,8 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import aibroker.Context;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
 import aibroker.model.cloud.SequenceUpdateListener;
 import aibroker.model.cloud.SequenceUpdater;
 import aibroker.model.domains.Feed;
@@ -197,9 +197,9 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
         log(message.toString());
     }
 
-    public void update(final Iterable<Sequence> sequences) {
+    public void update(final Iterable<Seq> sequences) {
         int updateCount = 0;
-        final Iterator<Sequence> it = sequences.iterator();
+        final Iterator<Seq> it = sequences.iterator();
         while (it.hasNext()) {
             if (canUpdate((SqlSequence) it.next()) != null) {
                 ++updateCount;
@@ -215,7 +215,7 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
 
                 @Override
                 public void run() {
-                    final Iterator<Sequence> it = sequences.iterator();
+                    final Iterator<Seq> it = sequences.iterator();
                     while (it.hasNext()) {
                         final SqlSequence sequence = canUpdate((SqlSequence) it.next());
                         if (sequence != null) {
@@ -235,14 +235,14 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
         }
     }
 
-    public void update(final Sequence sequence) {
-        final Collection<Sequence> sequences = new ArrayList<Sequence>();
+    public void update(final Seq sequence) {
+        final Collection<Seq> sequences = new ArrayList<Seq>();
         sequences.add(sequence);
         update(sequences);
     }
 
     private void appendName(final StringBuilder message, final String symbol, final String settlement) {
-        message.append(SequenceDescriptor.getName(symbol, settlement));
+        message.append(SeqDesc.getName(symbol, settlement));
     }
 
     private SqlSequence canUpdate(final SqlSequence sequence) {

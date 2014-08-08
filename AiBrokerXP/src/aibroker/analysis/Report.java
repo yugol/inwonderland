@@ -8,7 +8,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import aibroker.model.SequenceDescriptor;
+import aibroker.model.SeqDesc;
 import aibroker.model.cloud.sources.bvb.BvbSequenceDescriptionReader;
 import aibroker.model.drivers.sql.SqlDatabase;
 import aibroker.model.drivers.sql.SqlSequence;
@@ -18,7 +18,7 @@ public abstract class Report {
     protected final SqlDatabase        database;
     protected final SqlSequence        sequence;
 
-    protected final SequenceDescriptor descriptor;
+    protected final SeqDesc descriptor;
     protected final double             blockMultiplier;
     protected final double             overallMultiplier;
     protected final double             transactionPrice;
@@ -108,7 +108,7 @@ public abstract class Report {
         return cellStyle;
     }
 
-    private SequenceDescriptor readDescriptor() throws IOException {
+    private SeqDesc readDescriptor() throws IOException {
         if (sequence.isRegular()) { return BvbSequenceDescriptionReader.readDescription(sequence.getSymbol()); }
         return null;
     }

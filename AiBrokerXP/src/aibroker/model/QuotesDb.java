@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.Map;
 import aibroker.util.BrokerException;
 
-public abstract class QuotesDb implements Iterable<Sequence> {
+public abstract class QuotesDb implements Iterable<Seq> {
 
     protected final File                  dbLocation;
-    protected final Map<String, Sequence> sequences = new LinkedHashMap<String, Sequence>();
+    protected final Map<String, Seq> sequences = new LinkedHashMap<String, Seq>();
 
     protected QuotesDb(final File dbLocation) {
         this.dbLocation = dbLocation;
     }
 
-    public abstract Sequence add(SequenceDescriptor tBuilder);
+    public abstract Seq add(SeqDesc tBuilder);
 
     public abstract void drop() throws Exception;
 
-    public Sequence getSequence(final SequenceSelector selector) {
-        final List<? extends Sequence> sequences = getSequences(selector);
+    public Seq getSequence(final SeqSel selector) {
+        final List<? extends Seq> sequences = getSequences(selector);
         switch (sequences.size()) {
             case 0:
                 return null;
@@ -37,24 +37,24 @@ public abstract class QuotesDb implements Iterable<Sequence> {
     }
 
     @Override
-    public Iterator<Sequence> iterator() {
+    public Iterator<Seq> iterator() {
         return sequences.values().iterator();
     }
 
     public void save() {
     }
 
-    protected Sequence add(final Sequence sequence) {
+    protected Seq add(final Seq sequence) {
         sequences.put(sequence.getName().toUpperCase(), sequence);
         return sequence;
     }
 
-    protected Sequence getSequence(final String symbol) {
+    protected Seq getSequence(final String symbol) {
         return sequences.get(symbol);
     }
 
-    protected abstract List<? extends Sequence> getSequences(SequenceSelector selector);
+    protected abstract List<? extends Seq> getSequences(SeqSel selector);
 
-    protected abstract Quotes readQuotes(Sequence sequence);
+    protected abstract Quotes readQuotes(Seq sequence);
 
 }

@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqSel;
 import aibroker.util.convenience.Databases;
 
 public class Controller {
@@ -20,7 +20,7 @@ public class Controller {
     private final TradingMonitor monitor;
     private Databases            dbId;
     private QuotesDb       qDb;
-    private Sequence             sequence;
+    private Seq             sequence;
 
     public Controller(final TradingMonitor monitor) {
         this.monitor = monitor;
@@ -38,7 +38,7 @@ public class Controller {
         return qDb;
     }
 
-    public Sequence getSequence() {
+    public Seq getSequence() {
         return sequence;
     }
 
@@ -79,7 +79,7 @@ public class Controller {
             monitor.mainTabs.setEnabled(false);
             monitor.removeChartHistory();
         } else {
-            sequence = qDb.getSequence(SequenceSelector.fromName(name));
+            sequence = qDb.getSequence(SeqSel.fromName(name));
             monitor.tbtnSequence.setIcon(new ImageIcon(TradingMonitor.class.getResource("/com/famfamfam/silk/chart_curve.png")));
             monitor.tbtnSequence.setText(sequence.getName());
             monitor.mainTabs.setEnabled(true);

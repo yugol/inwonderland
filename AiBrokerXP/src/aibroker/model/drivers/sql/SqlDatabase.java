@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 import aibroker.model.Ohlc;
 import aibroker.model.Quotes;
 import aibroker.model.QuotesDb;
-import aibroker.model.Sequence;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.Seq;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Sampling;
 import aibroker.model.drivers.sql.queries.CountRowsQuery;
 import aibroker.model.drivers.sql.queries.DropDatabaseContent;
@@ -51,7 +51,7 @@ public class SqlDatabase extends QuotesDb {
     }
 
     @Override
-    public SqlSequence add(final SequenceDescriptor sb) {
+    public SqlSequence add(final SeqDesc sb) {
         logger.debug(sb.toString());
         try {
             final SqlSequence sequence = new SqlSequence(this, sb);
@@ -88,14 +88,14 @@ public class SqlDatabase extends QuotesDb {
     }
 
     @Override
-    public SqlSequence getSequence(final SequenceSelector selector) {
+    public SqlSequence getSequence(final SeqSel selector) {
         SqlSequence sequence = null;
         if (selector.isJoinSettlements()) {
             final VirtualSqlSequence vSequence = new VirtualSqlSequence(this, selector.toBuilder());
             vSequence.setJoinSettlements(true);
             sequence = vSequence;
         } else {
-            final List<? extends Sequence> sqlSequences = getSequences(selector);
+            final List<? extends Seq> sqlSequences = getSequences(selector);
             if (!sqlSequences.isEmpty()) {
                 final SqlSequence sqlSequence = (SqlSequence) sqlSequences.get(0);
                 if (sqlSequence.getSampling() == selector.getSampling()) {
@@ -113,17 +113,17 @@ public class SqlDatabase extends QuotesDb {
     }
 
     private void readSequences() throws SQLException {
-        for (final SequenceDescriptor sb : new ReadSequences(conn).readSequences(new SequenceSelector())) {
+        for (final SeqDesc sb : new ReadSequences(conn).readSequences(new SeqSel())) {
             final SqlSequence sequence = new SqlSequence(this, sb);
             sequences.put(sequence.getTableId(), sequence);
         }
     }
 
     @Override
-    protected List<? extends Sequence> getSequences(final SequenceSelector selector) {
-        final List<Sequence> sequences = new ArrayList<Sequence>();
+    protected List<? extends Seq> getSequences(final SeqSel selector) {
+        final List<Seq> sequences = new ArrayList<Seq>();
         try {
-            final SequenceSelector selectorClone = selector.clone();
+            final SeqSel selectorClone = selector.clone();
             if (selector.isJoinSettlements()) {
                 selectorClone.setSampling(Sampling.SECOND);
                 final List<Moment> settlements = new ReadSettlements(getConnection()).readSettlements(selectorClone);
@@ -131,28 +131,28 @@ public class SqlDatabase extends QuotesDb {
                 final ReadSequences sequenceReader = new ReadSequences(getConnection());
                 for (final Moment settlement : settlements) {
                     selectorClone.setSettlement(settlement);
-                    final SequenceDescriptor builder = sequenceReader.readSequences(selectorClone).get(0);
+                    final SeqDesc builder = sequenceReader.readSequences(selectorClone).get(0);
                     final SqlSequence tempSequence = getSequence(builder.toSelector());
                     sequences.add(tempSequence);
                 }
             } else {
                 selectorClone.setSampling(null);
-                final List<SequenceDescriptor> builders = new ReadSequences(conn).readSequences(selectorClone);
-                Collections.sort(builders, new Comparator<SequenceDescriptor>() {
+                final List<SeqDesc> builders = new ReadSequences(conn).readSequences(selectorClone);
+                Collections.sort(builders, new Comparator<SeqDesc>() {
 
                     @Override
-                    public int compare(final SequenceDescriptor o1, final SequenceDescriptor o2) {
+                    public int compare(final SeqDesc o1, final SeqDesc o2) {
                         return o1.sampling().compareTo(o2.sampling());
                     }
 
                 });
                 if (selector.getSampling() == null) {
-                    for (final SequenceDescriptor sb : builders) {
+                    for (final SeqDesc sb : builders) {
                         final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                         sequences.add(sequence);
                     }
                 } else {
-                    for (final SequenceDescriptor sb : builders) {
+                    for (final SeqDesc sb : builders) {
                         if (selector.getSampling() == sb.sampling()) {
                             final SqlSequence sequence = (SqlSequence) getSequence(sb.tableId());
                             sequences.add(sequence);
@@ -172,12 +172,12 @@ public class SqlDatabase extends QuotesDb {
 
     @SuppressWarnings("unchecked")
     @Override
-    protected Quotes readQuotes(final Sequence sequence) {
+    protected Quotes readQuotes(final Seq sequence) {
         try {
             if (sequence instanceof VirtualSqlSequence) {
                 final VirtualSqlSequence vSequence = (VirtualSqlSequence) sequence;
                 if (vSequence.getBaseSequences() == null) {
-                    final SequenceSelector selector = vSequence.toSelector();
+                    final SeqSel selector = vSequence.toSelector();
                     final List<SqlSequence> baseSequences = (List<SqlSequence>) getSequences(selector);
                     vSequence.setBaseSequences(baseSequences);
                 }

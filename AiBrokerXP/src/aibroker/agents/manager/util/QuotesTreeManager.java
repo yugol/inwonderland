@@ -4,7 +4,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-import aibroker.model.Sequence;
+import aibroker.model.Seq;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Market;
 import aibroker.model.domains.Sampling;
@@ -36,7 +36,7 @@ public class QuotesTreeManager {
     public static TreeModel readSequences(final SqlDatabase qdb) {
         final TreeModel model = buildDefaultTreeModel();
         if (qdb != null) {
-            for (final Sequence it : qdb) {
+            for (final Seq it : qdb) {
                 final SqlSequence sequence = (SqlSequence) it;
                 addSequence(model, sequence);
                 if (Feed.ORIG == sequence.getFeed()) {

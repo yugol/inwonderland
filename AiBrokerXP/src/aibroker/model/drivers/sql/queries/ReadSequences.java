@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import aibroker.model.SequenceDescriptor;
-import aibroker.model.SequenceSelector;
+import aibroker.model.SeqDesc;
+import aibroker.model.SeqSel;
 import aibroker.model.domains.Feed;
 import aibroker.model.domains.Grouping;
 import aibroker.model.domains.Market;
@@ -21,8 +21,8 @@ public class ReadSequences extends AbstractQuery {
         super(conn);
     }
 
-    public List<SequenceDescriptor> readSequences(final SequenceSelector selector) throws SQLException {
-        final List<SequenceDescriptor> builders = new ArrayList<SequenceDescriptor>();
+    public List<SeqDesc> readSequences(final SeqSel selector) throws SQLException {
+        final List<SeqDesc> builders = new ArrayList<SeqDesc>();
 
         final StringBuilder sql = new StringBuilder();
         sql.append("SELECT\n");
@@ -73,7 +73,7 @@ public class ReadSequences extends AbstractQuery {
 
             final ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                final SequenceDescriptor builder = new SequenceDescriptor(rs.getString("SYMBOL"), rs.getString("SETTLEMENT"));
+                final SeqDesc builder = new SeqDesc(rs.getString("SYMBOL"), rs.getString("SETTLEMENT"));
                 builder.tableId(rs.getString("ID"));
                 builder.market(Market.valueOf(rs.getString("MARKET")));
                 builder.feed(Feed.valueOf(rs.getString("FEED")));
