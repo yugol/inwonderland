@@ -68,8 +68,7 @@ public class SibexFuturesMarketLogger {
 
     static void backupLogFile() throws IOException {
         final File src = new File(Context.getSibexLogFilePath());
-        final File dstFolder = new File(Context.getBackupFolder(), "logs");
-        final File dst = new File(dstFolder, src.getName());
+        final File dst = new File(Context.getBackupFolder_logs(), src.getName());
         FileUtils.copyFile(src, dst);
     }
 

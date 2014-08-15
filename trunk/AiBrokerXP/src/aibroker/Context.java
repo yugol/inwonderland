@@ -20,19 +20,23 @@ import aibroker.util.convenience.Databases;
 @SuppressWarnings("serial")
 public final class Context extends Properties {
 
-    public static String getBackupFolder() {
+    public static File getBackupFolder_logs() {
+        return new File(getBackupFolderPath(), "logs");
+    }
+
+    public static String getBackupFolderPath() {
         final String exportFolder = get(FOLDER_BACKUP_KEY, System.getProperty("user.home") + "/AiBrokerXP/backup/");
         new File(exportFolder).mkdirs();
         return exportFolder;
     }
 
-    public static String getExportFolder() {
+    public static String getExportFolderPath() {
         final String exportFolder = get(FOLDER_EXPORT_KEY, System.getProperty("user.home") + "/AiBrokerXP/export/");
         new File(exportFolder).mkdirs();
         return exportFolder;
     }
 
-    public static String getLogFolder() {
+    public static String getLogFolderPath() {
         final String logFolder = get(FOLDER_LOG_KEY, System.getProperty("user.home") + "/AiBrokerXP/logfiles/");
         new File(logFolder).mkdirs();
         return logFolder;
@@ -87,7 +91,7 @@ public final class Context extends Properties {
     }
 
     public static String getSibexLogFilePath() {
-        return getLogFolder() + "/sibex-quotes-" + Moment.getNow().toIsoDate() + ".csv";
+        return getLogFolderPath() + "/sibex-quotes-" + Moment.getNow().toIsoDate() + ".csv";
     }
 
     public static String getSibexOpenTime() {
@@ -159,7 +163,7 @@ public final class Context extends Properties {
     private static String get(final String key, final Object defaultValue) {
         String value = (String) instance.get(key);
         if (isNullOrBlank(value)) {
-            value = String.valueOf(defaultValue);
+            value = defaultValue == null ? null : String.valueOf(defaultValue);
             if (defaultValue != null) {
                 logger.warn(key + " is not specified! Using: " + value);
                 instance.put(key, value);
@@ -169,7 +173,7 @@ public final class Context extends Properties {
         return value;
     }
 
-    public static final String   APPLICATION_NAME              = "AI-Broker XP";
+    public static final String   APPLICATION_NAME              = "AiBrokerXP";
 
     private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
     private static final String  FOLDER_BACKUP_KEY             = "folder.backup";
@@ -202,7 +206,7 @@ public final class Context extends Properties {
         } catch (final IOException e) {
             System.out.println("Error: Cannot load configuration file ");
         }
-        props.setProperty("log4j.appender.fileAppender.File", getLogFolder() + "/HistoricMarketTest.log");
+        props.setProperty("log4j.appender.fileAppender.File", getLogFolderPath() + "/HistoricMarketTest.log");
         props.setProperty("log4j.appender.quotesAppender.File", getSibexLogFilePath());
         LogManager.resetConfiguration();
         PropertyConfigurator.configure(props);

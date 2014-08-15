@@ -12,7 +12,7 @@ public class SibexFuturesMarketLoggerTest {
     @Test
     public void testBackupLogFile() throws IOException {
         final File src = new File(Context.getSibexLogFilePath());
-        final File dst = new File(Context.getBackupFolder(), src.getName());
+        final File dst = new File(Context.getBackupFolder_logs(), src.getName());
         assertFalse(dst.exists());
         try {
             SibexFuturesMarketLogger.backupLogFile();
