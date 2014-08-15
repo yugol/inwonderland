@@ -24,8 +24,8 @@ public class BasicQuotesReportAction extends AbstractAction {
     public void actionPerformed(final ActionEvent e) {
         try {
             final BasicQuotesReport report = new BasicQuotesReport(view.getDatabase(), view.getSequence());
-            File file = new File(Context.getExportFolder(), report.getNameHint());
-            final JFileChooser dbChooser = new JFileChooser(Context.getExportFolder());
+            File file = new File(Context.getExportFolderPath(), report.getNameHint());
+            final JFileChooser dbChooser = new JFileChooser(Context.getExportFolderPath());
             dbChooser.setSelectedFile(file);
             if (dbChooser.showSaveDialog(view.frmManager) == JFileChooser.APPROVE_OPTION) {
                 report.fill();

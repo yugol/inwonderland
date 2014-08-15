@@ -40,7 +40,7 @@ public class BasicQuotesReportTest {
         final SqlSeq seq = sqlDb.getSequence(SS);
         final BasicQuotesReport report = new BasicQuotesReport(sqlDb, seq);
         report.fill();
-        final File file = new File(Context.getExportFolder(), "_" + report.getNameHint());
+        final File file = new File(Context.getExportFolderPath(), "_" + report.getNameHint());
         report.save(file);
         // System.out.println("Saved in: " + file.getCanonicalPath());
         assertTrue(file.exists());
