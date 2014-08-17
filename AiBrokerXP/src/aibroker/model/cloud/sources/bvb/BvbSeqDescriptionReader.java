@@ -5,6 +5,8 @@ import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
 import aibroker.util.WebUtil;
 
+// EOD http://www.bvb.ro/TradingAndStatistics/TranzactPreced.aspx
+
 public class BvbSeqDescriptionReader {
 
     public static void fillDescription(final SeqDesc sDesc) throws IOException {
