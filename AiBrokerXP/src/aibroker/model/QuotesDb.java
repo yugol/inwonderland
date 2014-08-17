@@ -9,14 +9,14 @@ import aibroker.util.BrokerException;
 
 public abstract class QuotesDb implements Iterable<Seq> {
 
-    protected final File                  dbLocation;
+    protected final File             dbLocation;
     protected final Map<String, Seq> sequences = new LinkedHashMap<String, Seq>();
 
     protected QuotesDb(final File dbLocation) {
         this.dbLocation = dbLocation;
     }
 
-    public abstract Seq add(SeqDesc tBuilder);
+    public abstract Seq add(SeqDesc sDesc);
 
     public abstract void drop() throws Exception;
 
@@ -36,6 +36,8 @@ public abstract class QuotesDb implements Iterable<Seq> {
         return sequences.size();
     }
 
+    public abstract List<? extends Seq> getSequences(SeqSel selector);
+
     @Override
     public Iterator<Seq> iterator() {
         return sequences.values().iterator();
@@ -52,8 +54,6 @@ public abstract class QuotesDb implements Iterable<Seq> {
     protected Seq getSequence(final String symbol) {
         return sequences.get(symbol);
     }
-
-    protected abstract List<? extends Seq> getSequences(SeqSel selector);
 
     protected abstract Quotes readQuotes(Seq sequence);
 

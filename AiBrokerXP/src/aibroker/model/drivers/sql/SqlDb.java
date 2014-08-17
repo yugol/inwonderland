@@ -51,16 +51,16 @@ public class SqlDb extends QuotesDb {
     }
 
     @Override
-    public SqlSeq add(final SeqDesc sb) {
-        logger.debug(sb.toString());
+    public SqlSeq add(final SeqDesc sDesc) {
+        logger.debug(sDesc.toString());
         try {
-            final SqlSeq sequence = new SqlSeq(this, sb);
+            final SqlSeq sequence = new SqlSeq(this, sDesc);
             final String tableId = new SaveSequence(conn).add(sequence);
             sequence.setTableId(tableId);
             sequences.put(sequence.getTableId(), sequence);
             return sequence;
         } catch (final SQLException e) {
-            throw new BrokerException(sb.toString(), e);
+            throw new BrokerException(sDesc.toString(), e);
         }
     }
 
@@ -112,16 +112,9 @@ public class SqlDb extends QuotesDb {
         return sequence;
     }
 
-    private void readSequences() throws SQLException {
-        for (final SeqDesc sb : new ReadSequences(conn).readSequences(new SeqSel())) {
-            final SqlSeq sequence = new SqlSeq(this, sb);
-            sequences.put(sequence.getTableId(), sequence);
-        }
-    }
-
     @Override
-    protected List<? extends Seq> getSequences(final SeqSel selector) {
-        final List<Seq> sequences = new ArrayList<Seq>();
+    public List<SqlSeq> getSequences(final SeqSel selector) {
+        final List<SqlSeq> sequences = new ArrayList<SqlSeq>();
         try {
             final SeqSel selectorClone = selector.clone();
             if (selector.isJoinSettlements()) {
@@ -170,7 +163,13 @@ public class SqlDb extends QuotesDb {
         return sequences;
     }
 
-    @SuppressWarnings("unchecked")
+    private void readSequences() throws SQLException {
+        for (final SeqDesc sb : new ReadSequences(conn).readSequences(new SeqSel())) {
+            final SqlSeq sequence = new SqlSeq(this, sb);
+            sequences.put(sequence.getTableId(), sequence);
+        }
+    }
+
     @Override
     protected Quotes readQuotes(final Seq sequence) {
         try {
@@ -178,7 +177,7 @@ public class SqlDb extends QuotesDb {
                 final VirtualSqlSeq vSequence = (VirtualSqlSeq) sequence;
                 if (vSequence.getBaseSequences() == null) {
                     final SeqSel selector = vSequence.toSelector();
-                    final List<SqlSeq> baseSequences = (List<SqlSeq>) getSequences(selector);
+                    final List<SqlSeq> baseSequences = getSequences(selector);
                     vSequence.setBaseSequences(baseSequences);
                 }
                 Quotes vQuotes = new Quotes();

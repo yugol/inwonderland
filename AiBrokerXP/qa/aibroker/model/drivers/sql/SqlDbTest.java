@@ -1,5 +1,6 @@
 package aibroker.model.drivers.sql;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import java.util.Calendar;
 import org.junit.Test;
@@ -14,11 +15,13 @@ import aibroker.model.domains.Sampling;
 import aibroker.util.Moment;
 import aibroker.util.convenience.Databases;
 
-public class SqlDatabaseTest {
+public class SqlDbTest {
 
     @Test
     public void testAddSequence() throws Exception {
-        final SqlDb sqlDb = new SqlDb(Databases.SQL_DEFAULT.url);
+        final SqlDb sqlDb = new SqlDb(TestConfig.TEST_SQL_DB_FILE);
+        sqlDb.drop();
+        assertEquals(0, sqlDb.getSequenceCount());
 
         SeqDesc b = new SeqDesc("sif5");
         b.setName("SIF5");
@@ -28,6 +31,7 @@ public class SqlDatabaseTest {
         b.setFeed(Feed.ORIG);
         b.setFavourite(false);
         sqlDb.add(b);
+        assertEquals(1, sqlDb.getSequenceCount());
 
         b = new SeqDesc("DESIF5", new Moment(2007, Calendar.JUNE, 30));
         b.setName("DESIF5-IUN07");
@@ -40,6 +44,7 @@ public class SqlDatabaseTest {
         b.setFavourite(true);
         b.setSupport("ABC");
         sqlDb.add(b);
+        assertEquals(2, sqlDb.getSequenceCount());
 
         sqlDb.close();
     }
@@ -56,7 +61,8 @@ public class SqlDatabaseTest {
 
         sel.setJoinSettlements(true);
         final Seq deapl = sqlDb.getSequence(sel);
-        deapl.dumpCsv();
+        // deapl.dumpCsv();
+        assertEquals(106, deapl.getQuotes().size());
         sqlDb.close();
     }
 
