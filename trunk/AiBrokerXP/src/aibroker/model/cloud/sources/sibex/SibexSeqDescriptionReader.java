@@ -1,16 +1,17 @@
 package aibroker.model.cloud.sources.sibex;
 
 import java.io.IOException;
+import org.slf4j.Logger;
+import aibroker.Context;
 import aibroker.model.SeqDesc;
 import aibroker.util.NumberUtil;
+import aibroker.util.StringUtil;
 import aibroker.util.WebUtil;
 
 public class SibexSeqDescriptionReader {
 
-    public static SeqDesc readDescription(final String name) throws IOException {
+    public static SeqDesc fillDescription(final SeqDesc sDesc) throws IOException {
         int beginIndex, endIndex, foo, bar;
-        final SeqDesc sDesc = new SeqDesc(name);
-
         final String symbolPageAddress = "http://www.sibex.ro/index.php?p=specfut&s=" + sDesc.getSymbol() + "&l=en";
         String html = WebUtil.getPageHtml(symbolPageAddress);
 
@@ -24,6 +25,24 @@ public class SibexSeqDescriptionReader {
             foo = hay.indexOf(" ", foo + 1) + 1;
             bar = hay.indexOf(")", foo);
             sDesc.setSupport(hay.substring(foo, bar));
+        }
+        if (StringUtil.isNullOrBlank(sDesc.getSupport())) {
+            String support = sDesc.getSymbol();
+            if (support.startsWith("DE")) {
+                support = support.substring(2);
+            }
+            switch (support) {
+                case "ADD":
+                    support = "ADDYY";
+                    break;
+                case "APL":
+                    support = "AAPL";
+                    break;
+                default:
+                    logger.warn("Could not find support for " + sDesc.getName() + " - using " + support);
+                    break;
+            }
+            sDesc.setSupport(support);
         }
 
         final String tablePageAddress = "http://www.sibex.ro/index.php?p=specAllFut&l=en";
@@ -56,5 +75,13 @@ public class SibexSeqDescriptionReader {
 
         return sDesc;
     }
+
+    public static SeqDesc readDescription(final String name) throws IOException {
+        final SeqDesc sDesc = new SeqDesc(name);
+        fillDescription(sDesc);
+        return sDesc;
+    }
+
+    private static final Logger logger = Context.getLogger(SibexSeqDescriptionReader.class);
 
 }

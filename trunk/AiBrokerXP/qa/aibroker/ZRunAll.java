@@ -11,6 +11,6 @@ import org.junit.runners.Suite.SuiteClasses;
     aibroker.model.ZSuite.class,
     aibroker.util.ZSuite.class
 })
-public class ZSuite {
+public class ZRunAll {
 
 }

@@ -8,10 +8,10 @@ import aibroker.util.Moment;
 public abstract class Seq {
 
     protected final QuotesDb qDb;
-    protected final String         symbol;
-    protected Moment               settlement;
-    protected Updater              updater;
-    protected Quotes               quotes;
+    protected final String   symbol;
+    protected Moment         settlement;
+    protected Updater        updater;
+    protected Quotes         quotes;
 
     protected Seq(final QuotesDb qDb, final SeqDesc sb) {
         this.qDb = qDb;
@@ -22,6 +22,12 @@ public abstract class Seq {
 
     public void addQuotes(final List<Ohlc> quotes) throws Exception {
         throw new UnsupportedOperationException();
+    }
+
+    public void addQuotes(final Ohlc ohlc) throws Exception {
+        final Quotes quotes = new Quotes(1);
+        quotes.add(ohlc);
+        addQuotes(quotes);
     }
 
     public void clearQuotes() {
