@@ -3,7 +3,6 @@ package aibroker.agents.manager.actions;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
@@ -11,12 +10,10 @@ import aibroker.analysis.BasicQuotesReport;
 import aibroker.util.OsUtil;
 
 @SuppressWarnings("serial")
-public class BasicQuotesReportAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class BasicQuotesReportAction extends BasicAction {
 
     public BasicQuotesReportAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Basic Quotes Report");
     }
 

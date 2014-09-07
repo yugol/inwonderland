@@ -1,17 +1,14 @@
 package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import aibroker.agents.manager.EodQuotesUpdateDialog;
 import aibroker.agents.manager.QuotesManager;
 
 @SuppressWarnings("serial")
-public class UpdateAllQuotesAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class UpdateAllQuotesAction extends BasicAction {
 
     public UpdateAllQuotesAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Update All Sequences...");
         putValue(SHORT_DESCRIPTION, "Download all new quotes");
     }

@@ -1,17 +1,14 @@
 package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
 
 @SuppressWarnings("serial")
-public class CloseApplicationAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class CloseApplicationAction extends BasicAction {
 
     public CloseApplicationAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Close");
         putValue(SHORT_DESCRIPTION, "Close application window");
     }

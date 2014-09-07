@@ -17,6 +17,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Calendar;
 import javax.swing.Action;
 import javax.swing.Box;
@@ -102,15 +105,29 @@ public class QuotesManager implements TreeSelectionListener {
 
     /**
      * Launch the application.
+     *
+     * @throws SQLException
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException {
         Context.setupContext("Quotes Manager");
-        launch(Databases.DEFAULT());
+        SqlDb sqlDb = null;
+        if (args.length > 0) {
+            if (!args[0].startsWith("-")) {
+                sqlDb = new SqlDb(new File(args[0]));
+            }
+        }
+        if (sqlDb == null) {
+            sqlDb = Databases.DEFAULT();
+        }
+        if (Arrays.asList(args).contains("-eodupdate")) {
+
+        }
+        launch(sqlDb);
     }
 
     // model attributes
-    private SqlDb               sqlDb;
-    private SqlSeq               sqlSequence;
+    private SqlDb                     sqlDb;
+    private SqlSeq                    sqlSequence;
 
     // frame attributes
     public JFrame                     frmManager;

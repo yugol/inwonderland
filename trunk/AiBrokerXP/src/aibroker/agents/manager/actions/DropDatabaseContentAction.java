@@ -1,19 +1,16 @@
 package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
 import aibroker.util.BrokerException;
 
 @SuppressWarnings("serial")
-public class DropDatabaseContentAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class DropDatabaseContentAction extends BasicAction {
 
     public DropDatabaseContentAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Drop Content");
         putValue(SHORT_DESCRIPTION, "Deletes all tables in the database");
     }

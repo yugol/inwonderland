@@ -2,7 +2,6 @@ package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
-import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
@@ -10,12 +9,10 @@ import aibroker.model.drivers.sql.SqlSeq;
 import aibroker.util.BrokerException;
 
 @SuppressWarnings("serial")
-public class DeleteQuotesAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class DeleteQuotesAction extends BasicAction {
 
     public DeleteQuotesAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Delete");
         putValue(SHORT_DESCRIPTION, "Delete all quotes from sequence");
     }
