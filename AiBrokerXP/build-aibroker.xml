@@ -9,6 +9,7 @@
 
 	<target name="build-context">
 		<!--copy file="${soldir}/aibroker.properties" todir="${pkgdir}" overwrite="true" /-->
+		<copy file="${soldir}/aibroker.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-eod-update.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-poll-sibex.bat" todir="${pkgdir}" overwrite="true" />
 	</target>
