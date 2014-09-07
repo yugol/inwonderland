@@ -2,7 +2,6 @@ package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
-import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
@@ -11,12 +10,10 @@ import aibroker.model.drivers.csv.CsvReader;
 import aibroker.util.FileUtil;
 
 @SuppressWarnings("serial")
-public class ImportQuotesAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class ImportQuotesAction extends BasicAction {
 
     public ImportQuotesAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Import...");
         putValue(SHORT_DESCRIPTION, "Import quotes from CSV file");
     }

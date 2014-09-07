@@ -3,7 +3,6 @@ package aibroker.agents.manager.actions;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.sql.SQLException;
-import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import aibroker.Context;
 import aibroker.agents.manager.QuotesManager;
@@ -13,12 +12,10 @@ import aibroker.util.BrokerException;
 import aibroker.util.FileUtil;
 
 @SuppressWarnings("serial")
-public class OpenDatabaseAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class OpenDatabaseAction extends BasicAction {
 
     public OpenDatabaseAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Open...");
         putValue(SHORT_DESCRIPTION, "Open a " + Context.APPLICATION_NAME + " quotes database");
     }

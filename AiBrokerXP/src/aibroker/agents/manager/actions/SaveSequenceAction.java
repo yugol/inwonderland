@@ -1,7 +1,6 @@
 package aibroker.agents.manager.actions;
 
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
 import javax.swing.tree.TreePath;
 import aibroker.agents.manager.QuotesManager;
 import aibroker.agents.manager.util.QuotesTreeManager;
@@ -17,12 +16,10 @@ import aibroker.util.BrokerException;
 import aibroker.util.Moment;
 
 @SuppressWarnings("serial")
-public class SaveSequenceAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class SaveSequenceAction extends BasicAction {
 
     public SaveSequenceAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Save");
         putValue(SHORT_DESCRIPTION, "Some short description");
     }

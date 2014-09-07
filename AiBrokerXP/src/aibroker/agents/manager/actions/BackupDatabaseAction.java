@@ -3,7 +3,6 @@ package aibroker.agents.manager.actions;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import aibroker.agents.manager.QuotesManager;
 import aibroker.agents.manager.util.BackupFileFilter;
@@ -12,12 +11,10 @@ import aibroker.util.FileUtil;
 import aibroker.util.Moment;
 
 @SuppressWarnings("serial")
-public class BackupDatabaseAction extends AbstractAction {
-
-    private final QuotesManager view;
+public class BackupDatabaseAction extends BasicAction {
 
     public BackupDatabaseAction(final QuotesManager view) {
-        this.view = view;
+        super(view);
         putValue(NAME, "Backup...");
         putValue(SHORT_DESCRIPTION, "Backup database in a zip file with current timestamp");
     }
