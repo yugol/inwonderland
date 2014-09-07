@@ -53,6 +53,7 @@ import aibroker.agents.manager.actions.BasicQuotesReportAction;
 import aibroker.agents.manager.actions.CloseApplicationAction;
 import aibroker.agents.manager.actions.DeleteQuotesAction;
 import aibroker.agents.manager.actions.DropDatabaseContentAction;
+import aibroker.agents.manager.actions.EodUpdateAction;
 import aibroker.agents.manager.actions.ImportQuotesAction;
 import aibroker.agents.manager.actions.OpenDatabaseAction;
 import aibroker.agents.manager.actions.SaveSequenceAction;
@@ -95,6 +96,10 @@ public class QuotesManager implements TreeSelectionListener {
                     window.frmManager.setBounds(Context.getManagerWindowBounds());
                     window.frmManager.setVisible(true);
                     window.setDatabase(sqlDb);
+                    if (runEodUpdate) {
+                        final EodUpdateAction updateAction = new EodUpdateAction(window);
+                        updateAction.actionPerformed(null);
+                    }
                 } catch (final Exception e) {
                     BrokerException.reportUi(e);
                 }
@@ -119,11 +124,11 @@ public class QuotesManager implements TreeSelectionListener {
         if (sqlDb == null) {
             sqlDb = Databases.DEFAULT();
         }
-        if (Arrays.asList(args).contains("-eodupdate")) {
-
-        }
+        runEodUpdate = Arrays.asList(args).contains("-eodupdate");
         launch(sqlDb);
     }
+
+    private static boolean            runEodUpdate = false;
 
     // model attributes
     private SqlDb                     sqlDb;

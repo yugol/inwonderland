@@ -37,7 +37,7 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
      */
     public static void main(final String[] args) {
         try {
-            final EodQuotesUpdateDialog dialog = new EodQuotesUpdateDialog();
+            final EodQuotesUpdateDialog dialog = new EodQuotesUpdateDialog(null);
             dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             dialog.setVisible(true);
         } catch (final Exception e) {
@@ -45,21 +45,30 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
         }
     }
 
-    private final JPanel contentPanel = new JPanel();
-    private JLabel       lblSequenceCount;
-    private JProgressBar pbGlobal;
-    private JLabel       lblSequence;
-    private JProgressBar pbSequence;
-    private JTextArea    txtLog;
-    private JButton      cancelButton;
-    private JScrollPane  scrollPane;
-    private boolean      cancel       = false;
-    private boolean      done         = false;
+    public static interface EodQuotesUpdateListener {
+
+        void onUpdateCompleted();
+
+    }
+
+    private final EodQuotesUpdateListener listener;
+    private boolean                       cancel       = false;
+    private boolean                       done         = false;
+
+    private final JPanel                  contentPanel = new JPanel();
+    private JLabel                        lblSequenceCount;
+    private JProgressBar                  pbGlobal;
+    private JLabel                        lblSequence;
+    private JProgressBar                  pbSequence;
+    private JTextArea                     txtLog;
+    private JButton                       cancelButton;
+    private JScrollPane                   scrollPane;
 
     /**
      * Create the dialog.
      */
-    public EodQuotesUpdateDialog() {
+    public EodQuotesUpdateDialog(final EodQuotesUpdateListener listener) {
+        this.listener = listener;
         setType(Type.UTILITY);
         setResizable(false);
         setTitle(Context.APPLICATION_NAME + " - EOD Quotes Update Progress");
@@ -229,6 +238,9 @@ public class EodQuotesUpdateDialog extends JDialog implements SequenceUpdateList
                     }
                     done = true;
                     cancelButton.setText("Done");
+                    if (listener != null) {
+                        listener.onUpdateCompleted();
+                    }
                 }
 
             }.start();
