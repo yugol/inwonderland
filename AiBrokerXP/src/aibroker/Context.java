@@ -30,6 +30,14 @@ public final class Context extends Properties {
         return exportFolder;
     }
 
+    public static String getEssPassword() {
+        return get(ESS_PASSWORD_KEY, null);
+    }
+
+    public static String getEssUser() {
+        return get(ESS_USER_KEY, null);
+    }
+
     public static String getExportFolderPath() {
         final String exportFolder = get(FOLDER_EXPORT_KEY, System.getProperty("user.home") + "/AiBrokerXP/export/");
         new File(exportFolder).mkdirs();
@@ -189,13 +197,16 @@ public final class Context extends Properties {
     private static final String  SIBEX_OPEN_TIME_KEY           = "sibex.open.time";
     private static final String  SIBEX_POLL_INTERVAL_KEY       = "sibex.poll.interval";
 
+    private static final String  ESS_USER_KEY                  = "ess.user";
+    private static final String  ESS_PASSWORD_KEY              = "ess.password";
+
     public static final int      FIRST_YEAR                    = 2000;
     public static final int      LAST_YEAR                     = 2015;
 
     public static final int      FUTURES_MASS_UPDATE_LAST_YEAR = 2014;
     private static final Logger  logger                        = LoggerFactory.getLogger(Context.class);
 
-    private static final Context instance                      = new Context(PROPERTIES_FILE_NAME);
+    private static final Context instance                      = new Context("/Workspace/" + PROPERTIES_FILE_NAME);
 
     static {
         final Properties props = new Properties();
