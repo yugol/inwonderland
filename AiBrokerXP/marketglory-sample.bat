@@ -1,6 +1,6 @@
 rem in TaskScheduler set
 rem Program/script: cmd
-rem Add arguments: /K  F:\AiBrokerXP\marketglory-sample.bat
+rem Add arguments: /C  F:\AiBrokerXP\marketglory-sample.bat
 rem Start in: F:\AiBrokerXP
 
 rem @echo off

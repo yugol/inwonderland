@@ -9,7 +9,7 @@ public class ExchangeResult {
     private final Price ron;
 
     public ExchangeResult(final double euroAmount, final double goldAmount, final double ronAmount) {
-        euro = Price.euro(goldAmount);
+        euro = Price.euro(euroAmount);
         gold = Price.gold(goldAmount);
         ron = Price.ron(ronAmount);
     }

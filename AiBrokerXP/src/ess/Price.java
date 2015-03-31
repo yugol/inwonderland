@@ -1,5 +1,9 @@
 package ess;
 
+/**
+ * @author Iulian
+ *
+ */
 public class Price {
 
     public static Price euro(final double amount) {
@@ -38,6 +42,11 @@ public class Price {
 
     public Price multiply(final double multiplicand) {
         return new Price(amount * multiplicand, currency);
+    }
+
+    @Override
+    public String toString() {
+        return amount + " " + currency;
     }
 
 }
