@@ -19,7 +19,7 @@ public class MG {
     public static final double  DIGIPASS_BONUS             = 1.25;
     public static final Price   FIGHT_BONUS                = Price.ron(7);
     public static final Price   WORK_BONUS                 = Price.ron(350);
-    public static final Moment  FIRST_WORK_DAY             = Moment.fromIso("2015-03-23");
+    public static final Moment  FIRST_WORK_DAY             = Moment.fromIso("2015-03-31");
 
     // seldom updated
     public static final double  MIN_ENERGY                 = 1.0;

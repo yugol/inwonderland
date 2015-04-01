@@ -19,7 +19,7 @@ public class MGWebReader implements ActionListener {
     }
 
     private static final long SLEEP_TIME = 10;
-    private static final int  EXIT_TIME  = 1000 * 60 * 2;
+    private static final int  EXIT_TIME  = 1000 * 60 * 5;
 
     private final WebDriver   driver     = new FirefoxDriver();
 
