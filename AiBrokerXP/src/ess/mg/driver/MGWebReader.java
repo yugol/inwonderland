@@ -1,63 +1,39 @@
 package ess.mg.driver;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.Timer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import aibroker.Context;
 
-public class MGWebReader {
+public class MGWebReader implements ActionListener {
 
     public static void main(final String[] args) {
         final MGWebReader reader = new MGWebReader();
-
         final MGWebRecordLogger record = new MGWebRecordLogger();
         reader.fetch(record);
-
-        // Create a new instance of the Firefox driver
-        // Notice that the remainder of the code relies on the interface,
-        // not the implementation.
-
-//        // And now use this to visit Google
-//        driver.get("http://www.google.com");
-//        // Alternatively the same thing can be done like this
-//        // driver.navigate().to("http://www.google.com");
-//
-//        // Find the text input element by its name
-//        final WebElement element = driver.findElement(By.name("q"));
-//
-//        // Enter something to search for
-//        element.sendKeys("Cheese!");
-//
-//        // Now submit the form. WebDriver will find the form for us from the element
-//        element.submit();
-//
-//        // Check the title of the page
-//        System.out.println("Page title is: " + driver.getTitle());
-//
-//        // Google's search is rendered dynamically with JavaScript.
-//        // Wait for the page to load, timeout after 10 seconds
-//        new WebDriverWait(driver, 10).until(new ExpectedCondition<Boolean>() {
-//
-//            @Override
-//            public Boolean apply(final WebDriver d) {
-//                return d.getTitle().toLowerCase().startsWith("cheese!");
-//            }
-//        });
-//
-//        // Should see: "cheese! - Google Search"
-//        System.out.println("Page title is: " + driver.getTitle());
-//
-//        //Close the browser
-//        driver.quit();
     }
 
     private static final long SLEEP_TIME = 10;
+    private static final int  EXIT_TIME  = 1000 * 60 * 2;
 
     private final WebDriver   driver     = new FirefoxDriver();
 
+    @Override
+    public void actionPerformed(final ActionEvent e) {
+        driver.quit();
+        System.exit(1);
+    }
+
     public void fetch(final MGWebReaderListener listener) {
+        final Timer timer = new Timer(EXIT_TIME, this);
+        timer.setRepeats(false);
+        timer.start();
+
         try {
             driver.navigate().to("http://www.marketglory.com/");
             Thread.sleep(SLEEP_TIME);
