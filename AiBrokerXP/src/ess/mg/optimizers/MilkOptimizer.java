@@ -1,8 +1,9 @@
 package ess.mg.optimizers;
 
-import ess.Currency;
 import ess.Price;
 import ess.mg.driver.MgWebReader;
+import ess.mg.goods.food.Dairy;
+import ess.mg.markets.MgMarket;
 import ess.mg.markets.financial.FinancialMarket;
 
 public class MilkOptimizer {
@@ -10,10 +11,12 @@ public class MilkOptimizer {
     public static void main(final String... args) {
         final MgWebReader reader = new MgWebReader();
         reader.login();
+        final Double globalPrice = reader.fetchPrice(new Dairy(3), MgMarket.GLOBAL);
+        final Double localPrice = reader.fetchPrice(new Dairy(3), MgMarket.LOCAL);
         final Double xChangeRate = reader.fetchGoldRonExchangeRate();
         reader.close();
-        final MilkOptimizer opt = new MilkOptimizer(0.92, 0.09, xChangeRate);
-        System.out.println(opt.optimiseNow());
+        final MilkOptimizer opt = new MilkOptimizer(localPrice, globalPrice, xChangeRate);
+        opt.optimiseNow();
     }
 
     private final Price  ron;
@@ -26,13 +29,15 @@ public class MilkOptimizer {
         this.goldRonExchangeRate = goldRonExchangeRate;
     }
 
-    public Currency optimiseNow() {
+    public MgMarket optimiseNow() {
         final Price goldRon = FinancialMarket.estimateGoldToRon(gold.getAmount(), goldRonExchangeRate).getRon();
+        final MgMarket market = ron.getAmount() <= goldRon.getAmount() ? MgMarket.LOCAL : MgMarket.GLOBAL;
         System.out.println("    X-RATE = " + goldRonExchangeRate);
         System.out.println("GOLD Price = " + gold);
         System.out.println(" RON Price = " + ron);
         System.out.println("GOLD Price = " + goldRon);
-        return ron.getAmount() <= goldRon.getAmount() ? Currency.RON : Currency.EURO;
+        System.out.println("ADVICE: " + market);
+        return market;
     }
 
 }

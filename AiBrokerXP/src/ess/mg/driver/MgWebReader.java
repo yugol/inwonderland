@@ -41,7 +41,7 @@ public class MgWebReader {
     public static void main(final String[] args) {
         final MgWebReader reader = new MgWebReader();
         reader.login();
-        reader.fetchPrice(new Dairy(3), MgMarket.GLOBAL);
+        System.out.println(reader.fetchPrice(new Dairy(3), MgMarket.GLOBAL));
         // reader.close();
     }
 
@@ -71,10 +71,11 @@ public class MgWebReader {
         }
     }
 
-    public static final String          BASE_URL   = "http://www.marketglory.com";
-    private static final long           SLEEP_TIME = 10;
+    public static final String          BASE_URL         = "http://www.marketglory.com";
+    public static final String          BASE_URL_ACCOUNT = BASE_URL + "/account";
+    private static final long           SLEEP_TIME       = 10;
 
-    private final WebDriver             driver     = new FirefoxDriver();
+    private final WebDriver             driver           = new FirefoxDriver();
     private final MgWebReaderListener[] listeners;
 
     public MgWebReader(final MgWebReaderListener... listeners) {
@@ -86,7 +87,7 @@ public class MgWebReader {
     }
 
     public Double fetchEuroGoldExchangeRate() {
-        driver.navigate().to(BASE_URL + "/account/financial_market/");
+        driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk);
         pause();
 
         final WebElement mt13 = driver.findElement(By.className("mt13"));
@@ -99,7 +100,7 @@ public class MgWebReader {
     }
 
     public Double fetchGoldRonExchangeRate() {
-        driver.navigate().to(BASE_URL + "/account/financial_market/moneda_gold");
+        driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk + "/moneda_gold");
         pause();
 
         final WebElement mt13 = driver.findElement(By.className("mt13"));
@@ -113,12 +114,20 @@ public class MgWebReader {
 
     public Double fetchPrice(final Goods goods, final MgMarket market) {
         final StringBuilder url = new StringBuilder(BASE_URL);
+        url.append("/account/").append(market.urlChunk);
+        url.append("/").append(goods.getCategory());
+        url.append("/").append(goods.getName());
+        url.append("/q").append(goods.getStars());
+        driver.navigate().to(url.toString());
+        pause();
 
-        return null;
+        final WebElement nd_mkt_table_price_nr = driver.findElement(By.className("nd_mkt_table_price_nr"));
+        final String price = nd_mkt_table_price_nr.getText();
+        return parseDouble(price);
     }
 
     public Shares fetchShares() {
-        driver.navigate().to(BASE_URL + "/account/partners/sharesmarket");
+        driver.navigate().to(BASE_URL_ACCOUNT + "/partners/sharesmarket");
         pause();
 
         final List<WebElement> nd_part_amount_big = driver.findElements(By.className("nd_part_amount_big"));
@@ -142,7 +151,7 @@ public class MgWebReader {
     }
 
     public Double fetchWage() {
-        driver.navigate().to(BASE_URL + "/account/work");
+        driver.navigate().to(BASE_URL_ACCOUNT + "/work");
         pause();
 
         final WebElement nd_work_wage = driver.findElement(By.className("nd_work_wage"));
