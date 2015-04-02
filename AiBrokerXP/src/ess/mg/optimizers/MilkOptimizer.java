@@ -36,7 +36,7 @@ public class MilkOptimizer {
         System.out.println("GOLD Price = " + gold);
         System.out.println(" RON Price = " + ron);
         System.out.println("GOLD Price = " + goldRon);
-        System.out.println("ADVICE: " + market);
+        System.out.println("ADVICE: Buy " + market);
         return market;
     }
 
