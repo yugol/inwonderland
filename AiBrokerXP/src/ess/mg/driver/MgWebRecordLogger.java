@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import aibroker.Context;
 import aibroker.util.Moment;
 
-public class MGWebRecordLogger implements MGWebReaderListener {
+public class MgWebRecordLogger implements MgWebReaderListener {
 
-    private static final Logger logger       = Context.getLogger(MGWebRecordLogger.class);
+    private static final Logger logger       = Context.getLogger(MgWebRecordLogger.class);
 
     public static final String  ACTIVE_USERS = "MG_USERS";
     public static final String  WORK_WAGE    = "MG_WORK_WAGE";

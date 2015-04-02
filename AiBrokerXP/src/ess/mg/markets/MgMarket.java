@@ -1,6 +1,6 @@
 package ess.mg.markets;
 
-public enum Market {
+public enum MgMarket {
 
     LOCAL, GLOBAL, FINANCIAL, REFERRAL, COMPANY;
 
