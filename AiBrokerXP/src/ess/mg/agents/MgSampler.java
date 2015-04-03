@@ -1,4 +1,4 @@
-package ess.mg;
+package ess.mg.agents;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ public class MgSampler {
     public static void main(final String... args) {
         final MgWebReader reader = new MgWebReader(new MgWebRecordLogger());
 
-        final Timer timer = new Timer(EXIT_TIME, new ActionListener() {
+        final Timer timer = new Timer(TIMEOUT, new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -31,6 +31,6 @@ public class MgSampler {
         reader.close();
     }
 
-    private static final int EXIT_TIME = 1000 * 60 * 3;
+    private static final int TIMEOUT = 1000 * 60 * 3;
 
 }

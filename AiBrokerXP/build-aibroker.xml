@@ -12,7 +12,8 @@
 		<copy file="${soldir}/aibroker.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-eod-update.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-poll-sibex.bat" todir="${pkgdir}" overwrite="true" />
-		<copy file="${soldir}/marketglory-sample.bat" todir="${pkgdir}" overwrite="true" />
+        <copy file="${soldir}/mg-news-report.bat" todir="${pkgdir}" overwrite="true" />
+		<copy file="${soldir}/mg-sample.bat" todir="${pkgdir}" overwrite="true" />
 	</target>
 
 	<target name="build-jar" depends="build-context">

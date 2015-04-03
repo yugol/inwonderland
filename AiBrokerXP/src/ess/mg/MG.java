@@ -5,6 +5,11 @@ import ess.Price;
 
 public class MG {
 
+    public static Price actualFightBonus() {
+        if (DIGIPASS) { return FIGHT_BONUS.multiply(DIGIPASS_BONUS); }
+        return FIGHT_BONUS;
+    }
+
     public static Price actualWage(final Price wage) {
         final int delta = Moment.getDaysBetween(FIRST_WORK_DAY, Moment.getNow());
         if (delta % 3 == 2) {
@@ -14,10 +19,14 @@ public class MG {
         return wage;
     }
 
+    public static Price netReturn(final Price grossReturn) {
+        return grossReturn.multiply(1 - WORK_INCOME_TAX);
+    }
+
     // occasionally updated
-    public static final boolean DIGIPASS                   = true;
+    public static final boolean DIGIPASS                   = false;
     public static final double  DIGIPASS_BONUS             = 1.25;
-    public static final Price   FIGHT_BONUS                = Price.ron(7);
+    public static final Price   FIGHT_BONUS                = Price.ron(8);
     public static final Price   WORK_BONUS                 = Price.ron(350);
     public static final Moment  FIRST_WORK_DAY             = Moment.fromIso("2015-03-31");
 
@@ -29,7 +38,7 @@ public class MG {
     public static final double  MIN_KNOWKEDGE              = 1.0;
     public static final double  MAX_KNOWKEDGE              = 1000.0;
 
-    public static final double  MAX_FIGHTS_PER_DAY         = 10;
+    public static final int     MAX_FIGHTS_PER_DAY         = 10;
     public static final double  ENERGY_HOURLY_PENALTY      = 0.05;
     public static final double  ENERGY_FIGHT_PENALTY       = 0.1;
     public static final double  ENERGY_WORK_PENALTY        = 0.5;

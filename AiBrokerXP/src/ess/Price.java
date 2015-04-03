@@ -32,6 +32,10 @@ public class Price {
         throw new IllegalArgumentException("incompatible currencies " + currency + " and " + augend.currency);
     }
 
+    public Price create(final double amount) {
+        return new Price(amount, currency);
+    }
+
     public double getAmount() {
         return amount;
     }
