@@ -2,9 +2,13 @@ package ess.mg.driver;
 
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import aibroker.util.Moment;
 import ess.Price;
+import ess.mg.MG;
 import ess.mg.goods.Goods;
+import ess.mg.goods.Quality;
 import ess.mg.goods.food.Wine;
 import ess.mg.markets.MgMarket;
 
@@ -124,6 +128,36 @@ public abstract class MgWebReader extends MgWebBase {
         return parseDouble(euroGoldExchangeRate);
     }
 
+    public void fetchFightCount(final MG global) {
+        driver.navigate().to(BASE_URL_ACCOUNT + "/fight");
+        pauseForRead();
+        final WebElement nd_mess_info = driver.findElement(By.className("nd_mess_info"));
+        final String message = nd_mess_info.getText();
+        final String[] chunks = message.split(" ");
+        global.setFightCount(Integer.parseInt(chunks[3]));
+    }
+
+    public void fetchGlobalContext(final MG global) {
+        final WebElement _mr_bonus_fight = driver.findElement(By.className("_mr_bonus_fight"));
+        WebElement p = _mr_bonus_fight.findElement(By.tagName("p"));
+        final String fightBonus = p.getText();
+        global.setFightBonus(Price.ron(parseDouble(fightBonus.split(" ")[0])));
+
+        final WebElement _mr_bonus_work = driver.findElement(By.className("_mr_bonus_work"));
+        p = _mr_bonus_work.findElement(By.tagName("p"));
+        final String workBonus = p.getText();
+        global.setWorkBonus(Price.ron(parseDouble(workBonus.split(" ")[0])));
+
+        final WebElement ms_stats = driver.findElement(By.className("ms_stats"));
+        final List<WebElement> highlighted1 = ms_stats.findElements(By.className("highlighted1"));
+        global.setEnergy(parseDouble(highlighted1.get(0).findElement(By.tagName("b")).getText()));
+        global.setExperience(parseDouble(highlighted1.get(1).findElement(By.tagName("b")).getText()));
+        global.setKnowledge(parseDouble(highlighted1.get(2).findElement(By.tagName("b")).getText()));
+
+        final WebElement site_timer = driver.findElement(By.id("site_timer"));
+        global.setServerTime(Moment.fromIso(site_timer.getText()));
+    }
+
     public Double fetchGoldRonExchangeRate() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk + "/moneda_gold");
         pauseForRead();
@@ -135,6 +169,19 @@ public abstract class MgWebReader extends MgWebBase {
             listener.onFetchGoldRonExchangeRate(goldRonExchangeRate);
         }
         return parseDouble(goldRonExchangeRate);
+    }
+
+    public void fetchInventory(final MG global) {
+        driver.navigate().to(BASE_URL_ACCOUNT + "/inventory");
+        pauseForRead();
+        final List<WebElement> nd_in_qty = driver.findElements(By.className("nd_in_qty"));
+        global.setCuisine(Quality.LOW, parseInt(nd_in_qty.get(0).getText()));
+        global.setCuisine(Quality.NORMAL, parseInt(nd_in_qty.get(1).getText()));
+        global.setCuisine(Quality.HIGH, parseInt(nd_in_qty.get(2).getText()));
+        global.setCoffe(Quality.LOW, parseInt(nd_in_qty.get(3).getText()));
+        global.setCoffe(Quality.NORMAL, parseInt(nd_in_qty.get(4).getText()));
+        global.setCoffe(Quality.HIGH, parseInt(nd_in_qty.get(5).getText()));
+        global.setCheese(parseInt(nd_in_qty.get(6).getText()));
     }
 
     public Newspaper fetchNewspaper(final int index) {
@@ -197,7 +244,6 @@ public abstract class MgWebReader extends MgWebBase {
     public Double fetchWage() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/work");
         pauseForRead();
-
         final WebElement nd_work_wage = driver.findElement(By.className("nd_work_wage"));
         final WebElement workWageElement = nd_work_wage.findElement(By.tagName("span"));
         final String workWage = workWageElement.getText();
@@ -205,6 +251,17 @@ public abstract class MgWebReader extends MgWebBase {
             listener.onFetchWorkWage(workWage);
         }
         return parseDouble(workWage);
+    }
+
+    public void fetchWorkCount(final MG global) {
+        driver.navigate().to(BASE_URL_ACCOUNT + "/work");
+        pauseForRead();
+        try {
+            driver.findElement(By.className("nd_mess_error"));
+            global.setWorkCount(1);
+        } catch (final NoSuchElementException e) {
+            global.setWorkCount(0);
+        }
     }
 
     protected Price readGoodsPrice(final Goods goods, final MgMarket market) {
