@@ -1,6 +1,7 @@
 package ess.mg.optimizers;
 
 import ess.Price;
+import ess.mg.driver.MgWebDriver;
 import ess.mg.driver.MgWebReader;
 import ess.mg.goods.food.Dairy;
 import ess.mg.markets.MgMarket;
@@ -9,7 +10,7 @@ import ess.mg.markets.financial.FinancialMarket;
 public class MilkOptimizer {
 
     public static void main(final String... args) {
-        final MgWebReader reader = new MgWebReader();
+        final MgWebReader reader = new MgWebDriver();
         reader.login();
         final Double globalPrice = reader.fetchPrice(new Dairy(3), MgMarket.GLOBAL);
         final Double localPrice = reader.fetchPrice(new Dairy(3), MgMarket.LOCAL);

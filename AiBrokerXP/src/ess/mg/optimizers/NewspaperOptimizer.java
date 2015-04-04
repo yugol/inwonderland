@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.Timer;
+import ess.mg.driver.MgWebDriver;
 import ess.mg.driver.MgWebReader;
 import ess.mg.driver.MgWebReader.Newspaper;
 
@@ -31,7 +32,7 @@ public class NewspaperOptimizer {
     }
 
     public List<Newspaper> createReport() {
-        final MgWebReader reader = new MgWebReader();
+        final MgWebReader reader = new MgWebDriver();
 
         if (timeout > 0) {
             final Timer timer = new Timer(timeout, new ActionListener() {
