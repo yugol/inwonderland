@@ -6,8 +6,18 @@ import ess.mg.driver.MgWebDriver;
 
 public abstract class Agent implements Runnable {
 
+    public static long getWaitTime() {
+        return waitTime;
+    }
+
+    public static void setWaitTime(final long waitTime) {
+        Agent.waitTime = waitTime;
+    }
+
+    private static long waitTime = 1;
+
     private MgWebDriver driver;
-    private final MG    global = new MG();
+    private final MG    global   = new MG();
 
     public Agent() {
         reset();

@@ -25,8 +25,8 @@ public abstract class MgWebShopper extends MgWebWorker {
         final WebElement cant = driver.findElement(By.className("cant"));
         cant.sendKeys("\b1");
         final WebElement nd_submit_inv = driver.findElement(By.className("nd_submit_inv"));
-        System.out.println(nd_submit_inv.getAttribute("value"));
-        // nd_submit_inv.click();
+        // System.out.println(nd_submit_inv.getAttribute("value"));
+        nd_submit_inv.click();
         pauseForSubmit();
 
         if (goods instanceof Dairy || goods instanceof Wine) {

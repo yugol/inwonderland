@@ -131,10 +131,14 @@ public abstract class MgWebReader extends MgWebBase {
     public void fetchFightCount(final MG global) {
         driver.navigate().to(BASE_URL_ACCOUNT + "/fight");
         pauseForRead();
-        final WebElement nd_mess_info = driver.findElement(By.className("nd_mess_info"));
-        final String message = nd_mess_info.getText();
-        final String[] chunks = message.split(" ");
-        global.setFightCount(Integer.parseInt(chunks[3]));
+        try {
+            final WebElement nd_mess_info = driver.findElement(By.className("nd_mess_info"));
+            final String message = nd_mess_info.getText();
+            final String[] chunks = message.split(" ");
+            global.setFightCount(Integer.parseInt(chunks[3]));
+        } catch (final NoSuchElementException e) {
+            global.setFightCount(MG.MAX_FIGHTS_PER_DAY);
+        }
     }
 
     public void fetchGlobalContext(final MG global) {

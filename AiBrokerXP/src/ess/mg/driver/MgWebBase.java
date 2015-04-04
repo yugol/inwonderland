@@ -3,6 +3,7 @@ package ess.mg.driver;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -52,6 +53,11 @@ public abstract class MgWebBase {
 
     protected final WebDriver                 driver           = new FirefoxDriver();
     protected final List<MgWebReaderListener> readListeners    = new ArrayList<MgWebReaderListener>();
+
+    public MgWebBase() {
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new org.openqa.selenium.Dimension(1100, 1000));
+    }
 
     public void addRecordLogger(final MgWebRecordLogger logger) {
         readListeners.add(logger);

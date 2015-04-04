@@ -6,8 +6,8 @@ import ess.mg.agents.Agent;
 
 public class Fight extends Action<ActionResult> {
 
-    public Fight(final Agent performer) {
-        super(performer);
+    public Fight(final Agent performer, final int timeout) {
+        super(performer, timeout);
     }
 
     @Override

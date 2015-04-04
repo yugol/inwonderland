@@ -18,8 +18,8 @@ public abstract class MgWebFighter extends MgWebReader {
         pauseForRead();
 
         final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
-        System.out.println(nd_submit_big.getAttribute("value"));
-        // nd_submit_big.click();
+        //System.out.println(nd_submit_big.getAttribute("value"));
+        nd_submit_big.click();
         pauseForSubmit();
 
         final ActionResult result = new ActionResult();
