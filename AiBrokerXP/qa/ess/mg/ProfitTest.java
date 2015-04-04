@@ -1,6 +1,7 @@
 package ess.mg;
 
 import org.junit.Test;
+import ess.mg.actions.ActivityResult;
 
 public class ProfitTest {
 

@@ -2,14 +2,18 @@ package ess.mg.goods;
 
 public abstract class Goods {
 
-    private final String category;
-    private final String name;
-    private final int    stars;
+    private final String    category;
+    private final String    name;
+    protected final Quality quality;
 
-    public Goods(final String category, final String name, final int stars) {
+    protected Goods(final String category, final String name) {
+        this(category, name, null);
+    }
+
+    protected Goods(final String category, final String name, final Quality quality) {
         this.category = category;
         this.name = name;
-        this.stars = stars;
+        this.quality = quality;
     }
 
     public String getCategory() {
@@ -18,10 +22,6 @@ public abstract class Goods {
 
     public String getName() {
         return name;
-    }
-
-    public int getStars() {
-        return stars;
     }
 
 }

@@ -3,7 +3,9 @@ package ess.mg.driver;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ess.Price;
 import ess.mg.goods.Goods;
+import ess.mg.goods.food.Wine;
 import ess.mg.markets.MgMarket;
 
 public abstract class MgWebReader extends MgWebBase {
@@ -111,7 +113,7 @@ public abstract class MgWebReader extends MgWebBase {
 
     public Double fetchEuroGoldExchangeRate() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk);
-        pause();
+        pauseForRead();
 
         final WebElement mt13 = driver.findElement(By.className("mt13"));
         final List<WebElement> td = mt13.findElements(By.tagName("td"));
@@ -124,7 +126,7 @@ public abstract class MgWebReader extends MgWebBase {
 
     public Double fetchGoldRonExchangeRate() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk + "/moneda_gold");
-        pause();
+        pauseForRead();
 
         final WebElement mt13 = driver.findElement(By.className("mt13"));
         final List<WebElement> td = mt13.findElements(By.tagName("td"));
@@ -140,7 +142,7 @@ public abstract class MgWebReader extends MgWebBase {
 
         final StringBuilder url = new StringBuilder(BASE_URL_ACCOUNT + "/special/local/latest/" + index);
         driver.navigate().to(url.toString());
-        pause();
+        pauseForRead();
 
         final WebElement _mr_article_big = driver.findElement(By.className("_mr_article_big"));
         newspaper.setTitle(_mr_article_big.findElement(By.tagName("h2")).getText());
@@ -162,23 +164,15 @@ public abstract class MgWebReader extends MgWebBase {
         return newspaper;
     }
 
-    public Double fetchPrice(final Goods goods, final MgMarket market) {
-        final StringBuilder url = new StringBuilder(BASE_URL_ACCOUNT);
-        url.append("/").append(market.urlChunk);
-        url.append("/").append(goods.getCategory());
-        url.append("/").append(goods.getName());
-        url.append("/q").append(goods.getStars());
-        driver.navigate().to(url.toString());
-        pause();
-
-        final WebElement nd_mkt_table_price_nr = driver.findElement(By.className("nd_mkt_table_price_nr"));
-        final String price = nd_mkt_table_price_nr.getText();
-        return parseDouble(price);
+    public Price fetchPrice(final Goods goods, final MgMarket market) {
+        driver.navigate().to(buildGoodsUrl(goods, market));
+        pauseForRead();
+        return readGoodsPrice(goods, market);
     }
 
     public Shares fetchShares() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/partners/sharesmarket");
-        pause();
+        pauseForRead();
 
         final List<WebElement> nd_part_amount_big = driver.findElements(By.className("nd_part_amount_big"));
         final List<WebElement> nd_part_amount_small = driver.findElements(By.className("nd_part_amount_small"));
@@ -202,7 +196,7 @@ public abstract class MgWebReader extends MgWebBase {
 
     public Double fetchWage() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/work");
-        pause();
+        pauseForRead();
 
         final WebElement nd_work_wage = driver.findElement(By.className("nd_work_wage"));
         final WebElement workWageElement = nd_work_wage.findElement(By.tagName("span"));
@@ -213,4 +207,17 @@ public abstract class MgWebReader extends MgWebBase {
         return parseDouble(workWage);
     }
 
+    protected Price readGoodsPrice(final Goods goods, final MgMarket market) {
+        String price = null;
+        final WebElement nd_mkt_table_price = driver.findElement(By.className("nd_mkt_table_price"));
+        if (goods instanceof Wine) {
+            final WebElement span = nd_mkt_table_price.findElement(By.tagName("span"));
+            price = span.getText();
+        } else {
+            final WebElement nd_mkt_table_price_nr = nd_mkt_table_price.findElement(By.className("nd_mkt_table_price_nr"));
+            price = nd_mkt_table_price_nr.getText();
+        }
+        final Double amount = parseDouble(price);
+        return market == MgMarket.LOCAL ? Price.ron(amount) : Price.gold(amount);
+    }
 }

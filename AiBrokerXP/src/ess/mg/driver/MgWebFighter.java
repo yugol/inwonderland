@@ -2,33 +2,29 @@ package ess.mg.driver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ess.mg.actions.ActionResult;
 
 public abstract class MgWebFighter extends MgWebReader {
 
-    public static void main(final String... args) {
-        final MgWebFighter fighter = new MgWebDriver();
-        fighter.login();
-        fighter.referralFightTrainer();
-        fighter.close();
-    }
-
-    private static final long SAFE_SLEEP = 1000 * 3;
-
-    public void referralFightTrainer() {
+    public ActionResult referralFightTrainer() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/fight");
-        pause();
+        pauseForRead();
 
         final WebElement buttonFight = driver.findElement(By.className("buttonFight"));
         buttonFight.click();
-        pause(SAFE_SLEEP);
+        pauseForSubmit();
 
         driver.navigate().to(BASE_URL_ACCOUNT + "/fight/view_user/498");
-        pause();
+        pauseForRead();
 
         final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
-        nd_submit_big.click();
+        System.out.println(nd_submit_big.getAttribute("value"));
+        // nd_submit_big.click();
+        pauseForSubmit();
 
-        pause(SAFE_SLEEP);
+        final ActionResult result = new ActionResult();
+        result.setSuccessful(true);
+        return result;
     }
 
 }

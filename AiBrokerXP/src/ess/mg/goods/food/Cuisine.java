@@ -3,10 +3,10 @@ package ess.mg.goods.food;
 import ess.mg.goods.Gradable;
 import ess.mg.goods.Quality;
 
-public class Dairy extends Food implements Gradable {
+public class Cuisine extends Food implements Gradable {
 
-    public Dairy(final Quality quality) {
-        super("dairy", quality);
+    public Cuisine(final Quality quality) {
+        super("cuisine", quality);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ess.mg;
 
 import ess.Price;
+import ess.mg.actions.ActivityResult;
 
 public class Profit {
 
