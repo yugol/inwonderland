@@ -109,7 +109,7 @@ public class MgWebReader extends MgWebDriver {
 
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         final MgWebReader reader = new MgWebReader();
         reader.login();
         final Newspaper paper = reader.fetchNewspaper(15);

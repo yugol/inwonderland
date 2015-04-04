@@ -3,7 +3,7 @@ package ess.mg.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class MgFighter extends MgWebDriver {
+public class MgFighter extends MgWebReader {
 
     public static void main(final String... args) {
         final MgFighter fighter = new MgFighter();

@@ -15,6 +15,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import aibroker.util.Moment;
+import aibroker.util.StringUtil;
 import aibroker.util.convenience.Databases;
 
 @SuppressWarnings("serial")
@@ -28,6 +29,10 @@ public final class Context extends Properties {
         final String exportFolder = get(FOLDER_BACKUP_KEY, System.getProperty("user.home") + "/AiBrokerXP/backup/");
         new File(exportFolder).mkdirs();
         return exportFolder;
+    }
+
+    public static String getEssLogFolderPath() {
+        return get(ESS_MG_LOG_FOLDER_KEY, getLogFolderPath() + "/mg");
     }
 
     public static String getEssPassword() {
@@ -173,7 +178,7 @@ public final class Context extends Properties {
         if (isNullOrBlank(value)) {
             value = defaultValue == null ? null : String.valueOf(defaultValue);
             if (defaultValue != null) {
-                logger.warn(key + " is not specified! Using: " + value);
+                System.err.println(key + " is not specified! Using: " + value);
                 instance.put(key, value);
                 instance.store();
             }
@@ -184,6 +189,10 @@ public final class Context extends Properties {
     public static final String   APPLICATION_NAME              = "AiBrokerXP";
 
     private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
+    private static final String  ESS_MG_LOG_FILE_NAME          = "mg.log";
+
+    private static final String  PROPERTIES_FILE_PATH_KEY      = "properties.file.path";
+
     private static final String  FOLDER_BACKUP_KEY             = "folder.backup";
     private static final String  FOLDER_EXPORT_KEY             = "folder.export";
     private static final String  FOLDER_LOG_KEY                = "folder.log";
@@ -199,16 +208,28 @@ public final class Context extends Properties {
 
     private static final String  ESS_USER_KEY                  = "ess.user";
     private static final String  ESS_PASSWORD_KEY              = "ess.password";
+    private static final String  ESS_MG_LOG_FOLDER_KEY         = "ess.mg.log.folder";
 
     public static final int      FIRST_YEAR                    = 2000;
-    public static final int      LAST_YEAR                     = 2015;
-
+    public static final int      LAST_YEAR                     = 2016;
     public static final int      FUTURES_MASS_UPDATE_LAST_YEAR = 2014;
-    private static final Logger  logger                        = LoggerFactory.getLogger(Context.class);
 
-    private static final Context instance                      = new Context("/Workspace/" + PROPERTIES_FILE_NAME);
+    private static final Context instance;
 
     static {
+        Context initial = new Context(PROPERTIES_FILE_NAME);
+        String propertiesFilePath = initial.getProperty(PROPERTIES_FILE_PATH_KEY, null);
+        if (StringUtil.isNullOrBlank(propertiesFilePath)) {
+            final String os = System.getenv("OS").toUpperCase();
+            if (os.startsWith("WINDOWS")) {
+                propertiesFilePath = initial.getProperty(PROPERTIES_FILE_PATH_KEY + ".WINDOWS", null);
+            }
+        }
+        if (!StringUtil.isNullOrBlank(propertiesFilePath)) {
+            initial = new Context(propertiesFilePath);
+        }
+        instance = initial;
+
         final Properties props = new Properties();
         try {
             final InputStream configStream = Context.class.getResourceAsStream("/log4j.properties");
@@ -219,6 +240,7 @@ public final class Context extends Properties {
         }
         props.setProperty("log4j.appender.fileAppender.File", getLogFolderPath() + "/HistoricMarketTest.log");
         props.setProperty("log4j.appender.quotesAppender.File", getSibexLogFilePath());
+        props.setProperty("log4j.appender.essFileAppender.File", getEssLogFolderPath() + "/" + ESS_MG_LOG_FILE_NAME);
         LogManager.resetConfiguration();
         PropertyConfigurator.configure(props);
     }
@@ -227,7 +249,7 @@ public final class Context extends Properties {
 
     private Context(final String fileName) {
         file = new File(fileName);
-        logger.info("Using properties file " + file.getAbsolutePath());
+        System.out.println("Using properties file " + file.getAbsolutePath());
         try {
             if (file.exists()) {
                 final Reader reader = new FileReader(file);
