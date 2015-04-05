@@ -1,29 +1,38 @@
 package ess.mg.driver;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import ess.mg.actions.ActionResult;
 
 public abstract class MgWebFighter extends MgWebReader {
 
-    public ActionResult referralFightTrainer() {
+    public ActionResult referralFight() {
+        final ActionResult result = new ActionResult();
         driver.navigate().to(BASE_URL_ACCOUNT + "/fight");
         pauseForRead();
 
         final WebElement buttonFight = driver.findElement(By.className("buttonFight"));
+        final String opponentUrl = buttonFight.getAttribute("href");
         buttonFight.click();
         pauseForSubmit();
 
-        driver.navigate().to(BASE_URL_ACCOUNT + "/fight/view_user/498");
+        System.out.println("Fighting: " + opponentUrl);
+        driver.navigate().to(opponentUrl);
         pauseForRead();
 
-        final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
-        //System.out.println(nd_submit_big.getAttribute("value"));
-        nd_submit_big.click();
-        pauseForSubmit();
+        try {
+            final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
+            System.out.println(nd_submit_big.getAttribute("value"));
+            // nd_submit_big.click();
+            pauseForSubmit();
 
-        final ActionResult result = new ActionResult();
-        result.setSuccessful(true);
+            driver.findElement(By.className("nd_submit_big"));
+            result.setSuccessful(true);
+        } catch (final NoSuchElementException e) {
+            return referralFight();
+        }
+
         return result;
     }
 

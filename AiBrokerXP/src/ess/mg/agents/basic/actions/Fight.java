@@ -12,7 +12,7 @@ public class Fight extends Action<ActionResult> {
 
     @Override
     protected ActionResult execute() {
-        return getAgent().getDriver().referralFightTrainer();
+        return getAgent().getDriver().referralFight();
     }
 
 }

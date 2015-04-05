@@ -55,7 +55,7 @@ public class BasicPlayer extends Agent {
         }
         if (getGlobal().getEnergy() >= ENERGY_TRESHOLD || FIGHT_TIME.compareTo(getGlobal().getServerTime()) <= 0) {
             if (getGlobal().getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
-                final ActionResult result = new Fight(this, 1000 * 30).perform();
+                final ActionResult result = new Fight(this, 1000 * 100).perform();
                 if (result.isSuccessful()) {
                     setWaitTime(1000 * 60 * 10 + 10);
                     return;
