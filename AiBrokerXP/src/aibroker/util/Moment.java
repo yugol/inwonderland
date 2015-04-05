@@ -222,6 +222,12 @@ public class Moment extends GregorianCalendar {
         }
     }
 
+    public Moment newAdd(final int field, final int amount) {
+        final Moment clone = new Moment(getTimeInMillis());
+        clone.add(field, amount);
+        return clone;
+    }
+
     public String toCompactIsoDate() {
         return String.format("%04d%02d%02d", get(Calendar.YEAR), get(Calendar.MONTH) + 1, get(Calendar.DAY_OF_MONTH));
     }

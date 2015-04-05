@@ -10,17 +10,16 @@ public abstract class Agent implements Runnable {
         return waitTime;
     }
 
-    public static void setWaitTime(final long waitTime) {
+    public static void setRepeatAfter(final long waitTime) {
         Agent.waitTime = waitTime;
     }
 
-    private static long waitTime = 1;
+    private static long waitTime = 0;
 
     private MgWebDriver driver;
     private final MG    global   = new MG();
 
     public Agent() {
-        reset();
     }
 
     public MgWebDriver getDriver() {
@@ -32,15 +31,25 @@ public abstract class Agent implements Runnable {
     }
 
     public void onActionTimeout(final Action<?> action) {
-        reset();
+        waitTime = 0;
+        close();
+    }
+
+    public void start() {
+        initDriver();
         run();
     }
 
-    protected void reset() {
+    private void initDriver() {
+        close();
+        driver = new MgWebDriver();
+    }
+
+    protected void close() {
         if (driver != null) {
             driver.close();
         }
-        driver = new MgWebDriver();
+        driver = null;
     }
 
 }

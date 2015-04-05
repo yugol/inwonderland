@@ -7,113 +7,16 @@ import org.openqa.selenium.WebElement;
 import aibroker.util.Moment;
 import ess.Price;
 import ess.mg.MG;
+import ess.mg.driver.model.Newspaper;
+import ess.mg.driver.model.Shares;
+import ess.mg.driver.model.Transaction;
+import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Goods;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Wine;
 import ess.mg.markets.MgMarket;
 
 public abstract class MgWebReader extends MgWebBase {
-
-    public static class Newspaper {
-
-        private final int index;
-        private String    title;
-        private Integer   sold;
-        private Integer   votes;
-        private Double    price;
-
-        public Newspaper(final int index) {
-            this.index = index;
-        }
-
-        @Override
-        public boolean equals(final Object obj) {
-            if (this == obj) { return true; }
-            if (obj == null) { return false; }
-            if (getClass() != obj.getClass()) { return false; }
-            final Newspaper other = (Newspaper) obj;
-            if (title == null) {
-                if (other.title != null) { return false; }
-            } else if (!title.equals(other.title)) { return false; }
-            return true;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public Integer getSold() {
-            return sold;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public Integer getVotes() {
-            return votes;
-        }
-
-        @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + (title == null ? 0 : title.hashCode());
-            return result;
-        }
-
-        public void setPrice(final Double price) {
-            this.price = price;
-        }
-
-        public void setSold(final Integer sold) {
-            this.sold = sold;
-        }
-
-        public void setTitle(final String title) {
-            this.title = title;
-        }
-
-        public void setVotes(final Integer votes) {
-            this.votes = votes;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%2d %3.2f %3d %3d %s", index, price, sold, votes, title);
-        }
-
-    }
-
-    public static class Shares {
-
-        private final Double eurAmount;
-        private final Double goldAmount;
-        private final Double sharePrice;
-
-        public Shares(final Double eurAmount, final Double goldAmount, final Double sharePrice) {
-            this.eurAmount = eurAmount;
-            this.goldAmount = goldAmount;
-            this.sharePrice = sharePrice;
-        }
-
-        public Double getEurAmount() {
-            return eurAmount;
-        }
-
-        public Double getGoldAmount() {
-            return goldAmount;
-        }
-
-        public Double getSharePrice() {
-            return sharePrice;
-        }
-
-    }
 
     public Double fetchEuroGoldExchangeRate() {
         driver.navigate().to(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk);
@@ -134,8 +37,8 @@ public abstract class MgWebReader extends MgWebBase {
         try {
             final WebElement nd_mess_info = driver.findElement(By.className("nd_mess_info"));
             final String message = nd_mess_info.getText();
-            final String[] chunks = message.split(" ");
-            global.setFightCount(Integer.parseInt(chunks[3]));
+            final String[] chunks = message.trim().split(" ");
+            global.setFightCount(Integer.parseInt(chunks[2]));
         } catch (final NoSuchElementException e) {
             global.setFightCount(MG.MAX_FIGHTS_PER_DAY);
         }
@@ -243,6 +146,29 @@ public abstract class MgWebReader extends MgWebBase {
 
         final Shares shares = new Shares(parseDouble(eurAmount), parseDouble(goldAmount), parseDouble(sharePrice));
         return shares;
+    }
+
+    public Transactions fetchTransactions(final int from) {
+        final Transactions ts = new Transactions();
+        driver.navigate().to(BASE_URL_ACCOUNT + "/accountancy/transactions/" + from);
+        pauseForRead();
+        final List<WebElement> not_read = driver.findElements(By.className("not_read"));
+        for (final WebElement tElement : not_read) {
+            final List<WebElement> td = tElement.findElements(By.tagName("td"));
+            boolean income = true;
+            try {
+                td.get(0).findElement(By.className("ndti_red_arr"));
+                income = false;
+            } catch (final NoSuchElementException ex) {
+            }
+            final String time = td.get(1).getAttribute("title");
+            final String description = td.get(2).getText();
+            final Transaction t = Transaction.newInstance(income, time, description);
+            if (t != null) {
+                ts.add(t);
+            }
+        }
+        return ts;
     }
 
     public Double fetchWage() {

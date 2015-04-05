@@ -1,14 +1,14 @@
 package ess.mg.driver;
 
-import ess.mg.driver.MgWebReader.Newspaper;
+import ess.mg.driver.model.Transactions;
 
 public class MgWebReaderTest {
 
     public static void main(final String... args) {
         final MgWebReader reader = new MgWebDriver();
         reader.login();
-        final Newspaper paper = reader.fetchNewspaper(15);
-        System.out.println(paper);
-        // reader.close();
+        final Transactions ts = reader.fetchTransactions(40);
+        System.out.println(ts.size());
     }
+
 }

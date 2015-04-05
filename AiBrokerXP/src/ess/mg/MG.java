@@ -2,6 +2,7 @@ package ess.mg;
 
 import aibroker.util.Moment;
 import ess.Price;
+import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 
 public class MG {
@@ -31,6 +32,8 @@ public class MG {
     public static final double WORK_INCOME_TAX            = 0.35;
     public static final double EXCHANGE_FEE               = 0.03;
 
+    public static final int    MAX_NEWSPAPRES_PER_DAY     = 10;
+
     private Moment             serverTime;
     private int                fightCount                 = 0;
     private int                workCount                  = 0;
@@ -42,6 +45,7 @@ public class MG {
     private final int[]        cuisine                    = { 0, 0, 0 };
     private final int[]        coffe                      = { 0, 0, 0 };
     private int                cheese                     = 0;
+    private final Transactions transactions               = new Transactions();
 
     public Price actualWage(final Price wage) {
         final int delta = Moment.getDaysBetween(FIRST_WORK_DAY, Moment.getNow());
@@ -87,6 +91,10 @@ public class MG {
 
     public Moment getServerTime() {
         return serverTime;
+    }
+
+    public Transactions getTransactions() {
+        return transactions;
     }
 
     public Price getWorkBonus() {
