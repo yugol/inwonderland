@@ -11,6 +11,7 @@ import ess.mg.agents.basic.actions.BuyNewspapers;
 import ess.mg.agents.basic.actions.Fight;
 import ess.mg.agents.basic.actions.Initialize;
 import ess.mg.agents.basic.actions.Work;
+import ess.mg.driver.MgWebFighter;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
@@ -43,7 +44,9 @@ public class BasicPlayer extends Agent {
 
     @Override
     public void run() {
-        new Initialize(Moment.fromIso(Moment.getNow().toIsoDate(), REFERENCE_TIME.toIsoTime()), this, 60 * 1000).perform();
+        setRepeatAfter(3 * 60 * 1000);
+
+        new Initialize(Moment.fromIso(Moment.getNow().toIsoDate(), REFERENCE_TIME.toIsoTime()), this, 150 * 1000).perform();
 
         final Moment serverTime = getGlobal().getServerTime();
         final double serverEnergy = getGlobal().getEnergy();
@@ -51,19 +54,28 @@ public class BasicPlayer extends Agent {
 
         if (CUISINE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(CUISINE_STOP) <= 0) {
             if (transactions.getFoodCount() <= 0) {
-                new BuyGoods(new Cuisine(Quality.HIGH), this, 20 * 1000).perform();
+                new BuyGoods(new Cuisine(Quality.HIGH), this, 30 * 1000).perform();
                 setRepeatAfter(0);
                 return;
+            } else {
+                final int nowMin = serverTime.get(Calendar.MINUTE);
+                final int nextMin = BEVERAGES_START.get(Calendar.MINUTE);
+                int wait = (nextMin - nowMin + 1) * 60 * 1000;
+                if (wait < 0) {
+                    wait = 0;
+                }
+                setRepeatAfter(wait);
             }
         }
 
         if (BEVERAGES_START.compareTo(serverTime) <= 0 && serverTime.compareTo(BEVERAGES_STOP) <= 0) {
             if (transactions.getMilkCount() <= 0) {
-                new BuyGoods(new Dairy(Quality.HIGH), this, 20 * 1000).perform();
+                final ActionResult buyMilk = new BuyGoods(new Dairy(Quality.HIGH), this, 30 * 1000).perform();
                 setRepeatAfter(0);
+                if (!buyMilk.isSuccessful()) { return; }
             }
             if (transactions.getWineCount() <= 0) {
-                new BuyGoods(new Wine(), this, 20 * 1000).perform();
+                new BuyGoods(new Wine(), this, 30 * 1000).perform();
                 setRepeatAfter(0);
             }
             if (transactions.getNewspaperCount() < MG.MAX_NEWSPAPRES_PER_DAY) {
@@ -75,20 +87,24 @@ public class BasicPlayer extends Agent {
 
         if (serverEnergy >= EARN_ENERGY_TRESHOLD || serverTime.compareTo(EARN_TIME_TRESHOLD) >= 0) {
             if (transactions.getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
-                final ActionResult result = new Fight(this, 100 * 1000).perform();
+                final ActionResult result = new Fight(this, 60 * 1000).perform();
                 if (result.isSuccessful()) {
-                    setRepeatAfter(10 + 10 * 60 * 1000);
+                    setRepeatAfter(10 * 60 * 1000);
                     return;
+                } else if (MgWebFighter.FIGHTING.equals(result.getMessage())) {
+                    setRepeatAfter(3 * 60 * 1000);
                 } else {
                     setRepeatAfter(0);
                     return;
                 }
-            } else if (transactions.getFightCount() < MG.MAX_WORK_PER_DAY) {
-                final WorkResult result = new Work(this, 20 * 1000).perform();
+            } else if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
+                final WorkResult result = new Work(this, 30 * 1000).perform();
                 if (!result.isSuccessful()) {
                     setRepeatAfter(60 * 1000);
                     return;
                 }
+            } else {
+                setRepeatAfter(-1);
             }
         }
     }

@@ -18,7 +18,7 @@ public class BuyNewspapers extends Action<ActionResult> {
     @Override
     protected ActionResult execute() {
         final ActionResult result = new ActionResult();
-        Price maxPrice = Price.ron(0.011);
+        Price maxPrice = Price.ron(0.051);
         while (count > 0) {
             for (int index = 1; index <= 30; ++index) {
                 final PurchaseResult purchaseResult = getAgent().getDriver().buyNewspaper(index, maxPrice);
