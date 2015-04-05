@@ -31,6 +31,18 @@ public final class Context extends Properties {
         return exportFolder;
     }
 
+    public static Rectangle getBrowserWindowBounds() {
+        final String bounds = get(BROWSER_WINDOW_BOUNDS_KEY, null);
+        if (isNullOrBlank(bounds)) {
+            return new Rectangle(0, 0, 1100, 800);
+        } else {
+            final String[] values = bounds.split(",");
+            return new Rectangle(Integer.parseInt(values[0]),
+                    Integer.parseInt(values[1]), Integer.parseInt(values[2]),
+                    Integer.parseInt(values[3]));
+        }
+    }
+
     public static String getEssLogFolderPath() {
         return get(ESS_MG_LOG_FOLDER_KEY, getLogFolderPath() + "/mg");
     }
@@ -206,6 +218,7 @@ public final class Context extends Properties {
     private static final String  SIBEX_OPEN_TIME_KEY           = "sibex.open.time";
     private static final String  SIBEX_POLL_INTERVAL_KEY       = "sibex.poll.interval";
 
+    private static final String  BROWSER_WINDOW_BOUNDS_KEY     = "browser.window.bounds";
     private static final String  ESS_USER_KEY                  = "ess.user";
     private static final String  ESS_PASSWORD_KEY              = "ess.password";
     private static final String  ESS_MG_LOG_FOLDER_KEY         = "ess.mg.log.folder";

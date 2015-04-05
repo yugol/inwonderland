@@ -1,5 +1,6 @@
 package ess.mg.driver;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -55,8 +56,11 @@ public abstract class MgWebBase {
     protected final List<MgWebReaderListener> readListeners    = new ArrayList<MgWebReaderListener>();
 
     public MgWebBase() {
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new org.openqa.selenium.Dimension(1100, 1000));
+        final Rectangle bounds = Context.getBrowserWindowBounds();
+        if (bounds != null) {
+            driver.manage().window().setPosition(new Point(bounds.x, bounds.y));
+            driver.manage().window().setSize(new org.openqa.selenium.Dimension(bounds.width, bounds.height));
+        }
     }
 
     public void addRecordLogger(final MgWebRecordLogger logger) {

@@ -21,6 +21,7 @@ public class MG {
     public static final double MIN_KNOWKEDGE              = 1.0;
     public static final double MAX_KNOWKEDGE              = 1000.0;
     public static final int    MAX_FIGHTS_PER_DAY         = 10;
+    public static final int    MAX_WORK_PER_DAY           = 1;
 
     public static final double ENERGY_HOURLY_PENALTY      = 0.05;
     public static final double ENERGY_FIGHT_PENALTY       = 0.1;

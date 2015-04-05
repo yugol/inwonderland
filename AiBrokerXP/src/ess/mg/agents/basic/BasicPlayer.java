@@ -4,10 +4,12 @@ import aibroker.util.Moment;
 import ess.mg.MG;
 import ess.mg.actions.ActionResult;
 import ess.mg.actions.PurchaseResult;
+import ess.mg.actions.WorkResult;
 import ess.mg.agents.Agent;
 import ess.mg.agents.basic.actions.BuyGoods;
 import ess.mg.agents.basic.actions.Fight;
 import ess.mg.agents.basic.actions.Initialize;
+import ess.mg.agents.basic.actions.Work;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
 import ess.mg.goods.food.Dairy;
@@ -30,7 +32,7 @@ public class BasicPlayer extends Agent {
     private static final Moment CUISINE_STOP    = Moment.fromIso("21:12:00");
     private static final Moment BEVERAGES_START = Moment.fromIso("21:16:00");
     private static final Moment BEVERAGES_STOP  = Moment.fromIso("21:29:00");
-    private static final Moment FIGHT_TIME      = Moment.fromIso("21:30:00");
+    private static final Moment EARN_TIME       = Moment.fromIso("21:30:00");
     private static final double ENERGY_TRESHOLD = 38;
 
     @Override
@@ -53,7 +55,7 @@ public class BasicPlayer extends Agent {
                 return;
             }
         }
-        if (getGlobal().getEnergy() >= ENERGY_TRESHOLD || FIGHT_TIME.compareTo(getGlobal().getServerTime()) <= 0) {
+        if (getGlobal().getEnergy() >= ENERGY_TRESHOLD || EARN_TIME.compareTo(getGlobal().getServerTime()) <= 0) {
             if (getGlobal().getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
                 final ActionResult result = new Fight(this, 1000 * 100).perform();
                 if (result.isSuccessful()) {
@@ -61,6 +63,12 @@ public class BasicPlayer extends Agent {
                     return;
                 } else {
                     setWaitTime(10);
+                    return;
+                }
+            } else {
+                final WorkResult result = new Work(this, 20 * 1000).perform();
+                if (!result.isSuccessful()) {
+                    setWaitTime(60 * 1000);
                     return;
                 }
             }
