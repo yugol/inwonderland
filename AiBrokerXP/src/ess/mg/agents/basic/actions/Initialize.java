@@ -39,8 +39,8 @@ public class Initialize extends Action<ActionResult> {
     protected ActionResult execute() {
         final ActionResult result = new ActionResult();
         getAgent().getDriver().login();
-        getAgent().getDriver().fetchGlobalContext(getAgent().getGlobal());
         readTransactions();
+        getAgent().getDriver().fetchGlobalContext(getAgent().getGlobal());
         result.setSuccessful(true);
         return result;
     }

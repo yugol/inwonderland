@@ -33,6 +33,6 @@ public class MgSampler {
         reader.close();
     }
 
-    private static final int TIMEOUT = 1000 * 60 * 3;
+    private static final int TIMEOUT = 5 * 60 * 1000;
 
 }

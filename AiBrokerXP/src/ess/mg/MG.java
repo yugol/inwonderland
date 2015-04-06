@@ -35,6 +35,7 @@ public class MG {
     public static final int    MAX_NEWSPAPRES_PER_DAY     = 10;
 
     private Moment             serverTime;
+    private int                fightRemainingMinutes      = 0;
     private int                fightCount                 = 0;
     private int                workCount                  = 0;
     private Price              fightBonus                 = Price.ron(6);
@@ -79,6 +80,10 @@ public class MG {
 
     public int getFightCount() {
         return fightCount;
+    }
+
+    public int getFightRemainingMinutes() {
+        return fightRemainingMinutes;
     }
 
     public double getKnowledge() {
@@ -143,6 +148,10 @@ public class MG {
 
     public void setFightCount(final int fightCount) {
         this.fightCount = fightCount;
+    }
+
+    public void setFightRemainingMinutes(final int minutes) {
+        fightRemainingMinutes = minutes;
     }
 
     public void setKnowledge(final double knowledge) {
