@@ -25,7 +25,7 @@ public class BasicPlayer extends Agent {
     private static final Moment ENERGISE_STOP        = ENERGISE_START.newAdd(Calendar.MINUTE, 20);
     private static final double EARN_ENERGY_TRESHOLD = 40;
     private static final Moment ACTIVITY_START       = REFERENCE_TIME.newAdd(Calendar.MINUTE, 30);
-    private static final Moment ACTIVITY_STOP        = REFERENCE_TIME.newAdd(Calendar.MINUTE, 120);
+    private static final Moment ACTIVITY_STOP        = REFERENCE_TIME.newAdd(Calendar.MINUTE, 180);
 
     @Override
     public void run() {
@@ -57,7 +57,7 @@ public class BasicPlayer extends Agent {
         if (ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ENERGISE_STOP) <= 0) {
             if (transactions.getMilkCount() <= 0) {
                 final ActionResult buyMilk = new ABuyGoods(new Dairy(Quality.HIGH), this, 60 * 1000).perform();
-                setRepeatAfter(0);
+                setRepeatAfter(30 * 1000);
                 if (!buyMilk.isSuccessful()) { return; }
             }
             if (transactions.getWineCount() <= 0) {
@@ -90,6 +90,8 @@ public class BasicPlayer extends Agent {
                 if (!result.isSuccessful()) {
                     setRepeatAfter(30 * 1000);
                     return;
+                } else {
+                    setRepeatAfter(-1);
                 }
             } else {
                 setRepeatAfter(-1);
