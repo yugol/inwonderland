@@ -1,4 +1,4 @@
-package ess.mg.actions;
+package ess.mg.agents.actions;
 
 public class ActionResult {
 

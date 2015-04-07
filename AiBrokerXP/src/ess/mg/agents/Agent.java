@@ -1,23 +1,14 @@
 package ess.mg.agents;
 
 import ess.mg.MG;
-import ess.mg.actions.Action;
+import ess.mg.agents.actions.Action;
 import ess.mg.driver.MgWebDriver;
 
 public abstract class Agent implements Runnable {
 
-    public static long getWaitTime() {
-        return waitTime;
-    }
-
-    public static void setRepeatAfter(final long waitTime) {
-        Agent.waitTime = waitTime;
-    }
-
-    private static long waitTime = 0;
-
     private MgWebDriver driver;
     private final MG    global   = new MG();
+    private long        waitTime = 0;
 
     public Agent() {
     }
@@ -30,26 +21,43 @@ public abstract class Agent implements Runnable {
         return global;
     }
 
+    public long getWaitTime() {
+        return waitTime;
+    }
+
     public void onActionTimeout(final Action<?> action) {
         waitTime = 0;
         close();
     }
 
+    public void setRepeatAfter(final long waitTime) {
+        this.waitTime = waitTime;
+    }
+
     public void start() {
-        initDriver();
-        run();
-    }
-
-    private void initDriver() {
+        do {
+            try {
+                Thread.sleep(getWaitTime());
+                setRepeatAfter(-1);
+                initDriver();
+                run();
+            } catch (final Exception ex) {
+                ex.printStackTrace();
+            }
+        } while (getWaitTime() >= 0);
         close();
-        driver = new MgWebDriver();
     }
 
-    protected void close() {
+    private void close() {
         if (driver != null) {
             driver.close();
         }
         driver = null;
+    }
+
+    protected void initDriver() {
+        close();
+        driver = new MgWebDriver();
     }
 
 }

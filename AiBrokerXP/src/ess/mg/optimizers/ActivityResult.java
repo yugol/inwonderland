@@ -1,9 +1,9 @@
-package ess.mg.actions;
+package ess.mg.optimizers;
 
 import ess.Price;
 import ess.mg.MG;
 
-public class ActivityResult extends ActionResult {
+public class ActivityResult {
 
     private final Price  grossReturn;
     private final double energy;

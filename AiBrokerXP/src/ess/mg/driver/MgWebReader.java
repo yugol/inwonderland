@@ -25,7 +25,7 @@ public abstract class MgWebReader extends MgWebBase {
         final WebElement mt13 = driver.findElement(By.className("mt13"));
         final List<WebElement> td = mt13.findElements(By.tagName("td"));
         final String euroGoldExchangeRate = td.get(1).getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchEuroGoldExchangeRate(euroGoldExchangeRate);
         }
         return parseDouble(euroGoldExchangeRate);
@@ -79,7 +79,7 @@ public abstract class MgWebReader extends MgWebBase {
         final WebElement mt13 = driver.findElement(By.className("mt13"));
         final List<WebElement> td = mt13.findElements(By.tagName("td"));
         final String goldRonExchangeRate = td.get(1).getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchGoldRonExchangeRate(goldRonExchangeRate);
         }
         return parseDouble(goldRonExchangeRate);
@@ -138,16 +138,16 @@ public abstract class MgWebReader extends MgWebBase {
         final List<WebElement> nd_part_amount_big = driver.findElements(By.className("nd_part_amount_big"));
         final List<WebElement> nd_part_amount_small = driver.findElements(By.className("nd_part_amount_small"));
         final String eurAmount = nd_part_amount_big.get(0).getText() + nd_part_amount_small.get(0).getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchEurAmount(eurAmount);
         }
         final String goldAmount = nd_part_amount_big.get(1).getText() + nd_part_amount_small.get(2).getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchGoldAmount(goldAmount);
         }
         final List<WebElement> nd_part_td = driver.findElement(By.className("nd_part_table")).findElements(By.className("nd_part_td"));
         final String sharePrice = nd_part_td.get(2).findElement(By.tagName("span")).getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchSharePrice(sharePrice);
         }
 
@@ -184,7 +184,7 @@ public abstract class MgWebReader extends MgWebBase {
         final WebElement nd_work_wage = driver.findElement(By.className("nd_work_wage"));
         final WebElement workWageElement = nd_work_wage.findElement(By.tagName("span"));
         final String workWage = workWageElement.getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchWorkWage(workWage);
         }
         return parseDouble(workWage);

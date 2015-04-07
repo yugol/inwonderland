@@ -1,4 +1,4 @@
-package ess.mg.actions;
+package ess.mg.agents.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

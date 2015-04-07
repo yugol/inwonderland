@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import ess.Price;
-import ess.mg.actions.WorkResult;
+import ess.mg.agents.actions.WorkResult;
 
 public abstract class MgWebWorker extends MgWebFighter {
 

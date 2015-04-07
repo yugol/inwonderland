@@ -1,6 +1,6 @@
 package ess.mg.driver;
 
-public interface MgWebReaderListener {
+public interface MgWebDriverListener {
 
     void onFetchActiveUsers(String activeUsers);
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import aibroker.Context;
+import ess.mg.agents.sampler.RecordLogger;
 import ess.mg.goods.Goods;
 import ess.mg.goods.Gradable;
 import ess.mg.markets.MgMarket;
@@ -53,7 +54,7 @@ public abstract class MgWebBase {
     public static final String                BASE_URL_ACCOUNT = BASE_URL + "/account";
 
     protected final WebDriver                 driver           = new FirefoxDriver();
-    protected final List<MgWebReaderListener> readListeners    = new ArrayList<MgWebReaderListener>();
+    protected final List<MgWebDriverListener> listeners    = new ArrayList<MgWebDriverListener>();
 
     public MgWebBase() {
         final Rectangle bounds = Context.getBrowserWindowBounds();
@@ -63,8 +64,8 @@ public abstract class MgWebBase {
         }
     }
 
-    public void addRecordLogger(final MgWebRecordLogger logger) {
-        readListeners.add(logger);
+    public void addRecordLogger(final RecordLogger logger) {
+        listeners.add(logger);
     }
 
     public void close() {
@@ -77,7 +78,7 @@ public abstract class MgWebBase {
 
         final WebElement last_12h_login = driver.findElement(By.className("last_24h_login"));
         final String activeUsers = last_12h_login.getText();
-        for (final MgWebReaderListener listener : readListeners) {
+        for (final MgWebDriverListener listener : listeners) {
             listener.onFetchActiveUsers(activeUsers);
         }
 

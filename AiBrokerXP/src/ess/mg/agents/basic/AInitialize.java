@@ -1,22 +1,22 @@
-package ess.mg.agents.basic.actions;
+package ess.mg.agents.basic;
 
 import aibroker.util.Moment;
-import ess.mg.actions.Action;
-import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
+import ess.mg.agents.actions.Action;
+import ess.mg.agents.actions.ActionResult;
 import ess.mg.driver.model.Transaction;
 import ess.mg.driver.model.Transactions;
 
-public class Initialize extends Action<ActionResult> {
+public class AInitialize extends Action<ActionResult> {
 
     private final Moment history;
 
-    public Initialize(final Moment history, final Agent performer) {
+    public AInitialize(final Moment history, final Agent performer) {
         super(performer);
         this.history = history;
     }
 
-    public Initialize(final Moment history, final Agent performer, final int timeout) {
+    public AInitialize(final Moment history, final Agent performer, final int timeout) {
         super(performer, timeout);
         this.history = history;
     }
