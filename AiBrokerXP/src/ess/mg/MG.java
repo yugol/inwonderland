@@ -48,6 +48,10 @@ public class MG {
     private int                cheese                     = 0;
     private final Transactions transactions               = new Transactions();
 
+    private double             euroAmount                 = 0;
+    private double             goldAmount                 = 0;
+    private double             ronAmount                  = 0;
+
     public Price actualWage(final Price wage) {
         final int delta = Moment.getDaysBetween(FIRST_WORK_DAY, Moment.getNow());
         if (delta % 3 == 2) { return wage.add(workBonus); }
@@ -70,6 +74,10 @@ public class MG {
         return energy;
     }
 
+    public double getEuroAmount() {
+        return euroAmount;
+    }
+
     public double getExperience() {
         return experience;
     }
@@ -86,12 +94,20 @@ public class MG {
         return fightRemainingMinutes;
     }
 
+    public double getGoldAmount() {
+        return goldAmount;
+    }
+
     public double getKnowledge() {
         return knowledge;
     }
 
     public double getProductivity() {
         return (getEnergy() + getExperience() + getKnowledge()) / 3;
+    }
+
+    public double getRonAmount() {
+        return ronAmount;
     }
 
     public Moment getServerTime() {
@@ -132,6 +148,10 @@ public class MG {
         }
     }
 
+    public void setEuroAmount(final double euroAmount) {
+        this.euroAmount = euroAmount;
+    }
+
     public void setExperience(final double experience) {
         this.experience = experience;
         if (this.experience < MG.MIN_EXPERIENCE) {
@@ -154,6 +174,10 @@ public class MG {
         fightRemainingMinutes = minutes;
     }
 
+    public void setGoldAmount(final double goldAmount) {
+        this.goldAmount = goldAmount;
+    }
+
     public void setKnowledge(final double knowledge) {
         this.knowledge = knowledge;
         if (this.knowledge < MG.MIN_KNOWKEDGE) {
@@ -162,6 +186,10 @@ public class MG {
         if (this.knowledge > MG.MAX_KNOWKEDGE) {
             this.knowledge = MG.MAX_KNOWKEDGE;
         }
+    }
+
+    public void setRonAmount(final double ronAmount) {
+        this.ronAmount = ronAmount;
     }
 
     public void setServerTime(final Moment time) {

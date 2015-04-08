@@ -3,7 +3,7 @@ package ess.mg.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import ess.mg.agents.actions.ActionResult;
+import ess.mg.agents.ActionResult;
 
 public abstract class MgWebFighter extends MgWebReader {
 

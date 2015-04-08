@@ -1,9 +1,9 @@
 package ess.mg.agents.basic;
 
 import aibroker.util.Moment;
+import ess.mg.agents.Action;
+import ess.mg.agents.ActionResult;
 import ess.mg.agents.Agent;
-import ess.mg.agents.actions.Action;
-import ess.mg.agents.actions.ActionResult;
 import ess.mg.driver.model.Transaction;
 import ess.mg.driver.model.Transactions;
 

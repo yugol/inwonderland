@@ -1,8 +1,7 @@
 package ess.mg.agents.basic;
 
+import ess.mg.agents.Action;
 import ess.mg.agents.Agent;
-import ess.mg.agents.actions.Action;
-import ess.mg.agents.actions.PurchaseResult;
 import ess.mg.goods.Goods;
 import ess.mg.markets.MgMarket;
 

@@ -1,12 +1,16 @@
-package ess.mg.agents.sampler;
+package ess.mg.agents.grtrader;
 
 import ess.mg.agents.Action;
 import ess.mg.agents.ActionResult;
 import ess.mg.agents.Agent;
 
-public class ASample extends Action<ActionResult> {
+public class ALogin extends Action<ActionResult> {
 
-    public ASample(final Agent performer, final int timeout) {
+    public ALogin(final Agent performer) {
+        super(performer);
+    }
+
+    public ALogin(final Agent performer, final int timeout) {
         super(performer, timeout);
     }
 
@@ -14,11 +18,8 @@ public class ASample extends Action<ActionResult> {
     protected ActionResult execute() {
         final ActionResult result = new ActionResult();
         getAgent().getDriver().login();
-        getAgent().getDriver().fetchWage();
-        getAgent().getDriver().fetchShares();
-        getAgent().getDriver().fetchEuroGoldExchangeRate();
-        getAgent().getDriver().fetchGoldRonExchangeRate();
         result.setSuccessful(true);
         return result;
     }
+
 }

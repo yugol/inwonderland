@@ -1,9 +1,8 @@
-package ess.mg.agents.actions;
+package ess.mg.agents;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import ess.mg.agents.Agent;
 
 public abstract class Action<RESULT> {
 

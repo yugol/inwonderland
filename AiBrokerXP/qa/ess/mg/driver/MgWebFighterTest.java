@@ -1,6 +1,6 @@
 package ess.mg.driver;
 
-import ess.mg.agents.actions.ActionResult;
+import ess.mg.agents.ActionResult;
 
 public class MgWebFighterTest {
 

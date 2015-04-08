@@ -64,6 +64,15 @@ public abstract class MgWebReader extends MgWebBase {
         final WebElement site_timer = driver.findElement(By.id("site_timer"));
         global.setServerTime(Moment.fromIso(site_timer.getText()));
 
+        final WebElement ms_eur = driver.findElement(By.className("ms_eur"));
+        global.setEuroAmount(parseDouble(ms_eur.findElements(By.tagName("b")).get(1).getText()));
+
+        final WebElement ms_gold = driver.findElement(By.className("ms_gold"));
+        global.setGoldAmount(parseDouble(ms_gold.findElements(By.tagName("b")).get(1).getText()));
+
+        final WebElement ms_x = driver.findElement(By.className("ms_x"));
+        global.setRonAmount(parseDouble(ms_x.findElements(By.tagName("b")).get(1).getText()));
+
         try {
             final WebElement timerMin_fight = driver.findElement(By.id("timerMin_fight"));
             global.setFightRemainingMinutes(parseInt(timerMin_fight.getText()));

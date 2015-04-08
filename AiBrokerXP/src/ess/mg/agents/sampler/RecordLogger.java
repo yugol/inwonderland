@@ -1,9 +1,9 @@
 package ess.mg.agents.sampler;
 
 import org.slf4j.Logger;
-import ess.mg.driver.MgWebDriverListener;
 import aibroker.Context;
 import aibroker.util.Moment;
+import ess.mg.driver.MgWebDriverListener;
 
 public class RecordLogger implements MgWebDriverListener {
 
