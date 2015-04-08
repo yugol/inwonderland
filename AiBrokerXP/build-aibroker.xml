@@ -12,7 +12,7 @@
 		<copy file="${soldir}/aibroker.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-eod-update.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/aibroker-poll-sibex.bat" todir="${pkgdir}" overwrite="true" />
-        <copy file="${soldir}/mg-news-report.bat" todir="${pkgdir}" overwrite="true" />
+        <copy file="${soldir}/mg-basic-player.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/mg-sample.bat" todir="${pkgdir}" overwrite="true" />
 	</target>
 

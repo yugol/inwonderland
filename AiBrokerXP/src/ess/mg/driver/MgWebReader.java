@@ -159,8 +159,9 @@ public abstract class MgWebReader extends MgWebBase {
         final Transactions ts = new Transactions();
         driver.navigate().to(BASE_URL_ACCOUNT + "/accountancy/transactions/" + from);
         pauseForRead();
-        final List<WebElement> not_read = driver.findElements(By.className("not_read"));
-        for (final WebElement tElement : not_read) {
+        final WebElement nd_ref_mkt_table = driver.findElement(By.className("nd_ref_mkt_table")).findElement(By.tagName("tbody"));
+        final List<WebElement> tr = nd_ref_mkt_table.findElements(By.tagName("tr"));
+        for (final WebElement tElement : tr) {
             final List<WebElement> td = tElement.findElements(By.tagName("td"));
             boolean income = true;
             try {

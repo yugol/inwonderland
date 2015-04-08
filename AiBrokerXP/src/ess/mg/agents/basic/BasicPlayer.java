@@ -19,10 +19,10 @@ public class BasicPlayer extends Agent {
     }
 
     private static final Moment REFERENCE_TIME       = Moment.fromIso("21:00:00");
-    private static final Moment PRE_ENERGY_START     = REFERENCE_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment PRE_ENERGY_STOP      = PRE_ENERGY_START.newAdd(Calendar.MINUTE, 12);
-    private static final Moment ENERGISE_START       = REFERENCE_TIME.newAdd(Calendar.MINUTE, 17);
-    private static final Moment ENERGISE_STOP        = ENERGISE_START.newAdd(Calendar.MINUTE, 20);
+    private static final Moment PRE_ACTIVATE_START   = REFERENCE_TIME.newAdd(Calendar.MINUTE, 1);
+    private static final Moment PRE_ACTIVATE_STOP    = PRE_ACTIVATE_START.newAdd(Calendar.MINUTE, 12);
+    private static final Moment ACTIVATION_START     = REFERENCE_TIME.newAdd(Calendar.MINUTE, 17);
+    private static final Moment ACTIVATION_STOP      = ACTIVATION_START.newAdd(Calendar.MINUTE, 20);
     private static final double EARN_ENERGY_TRESHOLD = 40;
     private static final Moment ACTIVITY_START       = REFERENCE_TIME.newAdd(Calendar.MINUTE, 30);
     private static final Moment ACTIVITY_STOP        = REFERENCE_TIME.newAdd(Calendar.MINUTE, 180);
@@ -31,30 +31,40 @@ public class BasicPlayer extends Agent {
     public void run() {
         setRepeatAfter(1 * 60 * 1000);
 
-        new AInitialize(Moment.fromIso(Moment.getNow().toIsoDate(), REFERENCE_TIME.toIsoTime()), this, 200 * 1000).perform();
+        new AInitialize(Moment.fromIso(Moment.getNow().toIsoDate(), REFERENCE_TIME.toIsoTime()), this, 180 * 1000).perform();
 
         final Moment serverTime = getGlobal().getServerTime();
         final int fightRemainingMinutes = getGlobal().getFightRemainingMinutes();
         final double serverEnergy = getGlobal().getEnergy();
         final Transactions transactions = getGlobal().getTransactions();
 
-        if (PRE_ENERGY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(PRE_ENERGY_STOP) <= 0) {
+        if (serverTime.compareTo(PRE_ACTIVATE_START) < 0) {
+            final long nowMin = serverTime.getTimeInMillis();
+            final long nextMin = PRE_ACTIVATE_START.getTimeInMillis();
+            long wait = (nextMin - nowMin) / 1000 / 60 - 1;
+            if (wait < 0) {
+                wait = 0;
+            }
+            setRepeatAfter(wait * 60 * 1000);
+        }
+
+        if (PRE_ACTIVATE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(PRE_ACTIVATE_STOP) <= 0) {
             if (transactions.getFoodCount() <= 0) {
                 new ABuyGoods(new Cuisine(Quality.HIGH), this, 60 * 1000).perform();
                 setRepeatAfter(0);
                 return;
             } else {
                 final int nowMin = serverTime.get(Calendar.MINUTE);
-                final int nextMin = ENERGISE_START.get(Calendar.MINUTE);
-                int wait = (nextMin - nowMin - 1) * 60 * 1000;
+                final int nextMin = ACTIVATION_START.get(Calendar.MINUTE);
+                int wait = nextMin - nowMin - 1;
                 if (wait < 0) {
                     wait = 0;
                 }
-                setRepeatAfter(wait);
+                setRepeatAfter(wait * 60 * 1000);
             }
         }
 
-        if (ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ENERGISE_STOP) <= 0) {
+        if (ACTIVATION_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVATION_STOP) <= 0) {
             if (transactions.getMilkCount() <= 0) {
                 final ActionResult buyMilk = new ABuyGoods(new Dairy(Quality.HIGH), this, 60 * 1000).perform();
                 setRepeatAfter(30 * 1000);
@@ -79,11 +89,11 @@ public class BasicPlayer extends Agent {
                     setRepeatAfter(10 * 60 * 1000 - 10);
                     return;
                 } else {
-                    int wait = (fightRemainingMinutes - 1) * 60 * 1000;
+                    int wait = fightRemainingMinutes - 1;
                     if (wait < 0) {
                         wait = 0;
                     }
-                    setRepeatAfter(wait);
+                    setRepeatAfter(wait * 60 * 1000);
                 }
             } else if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
                 final WorkResult result = new AWork(this, 60 * 1000).perform();
