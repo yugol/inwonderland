@@ -1,5 +1,6 @@
 package ess.mg.agents.grtrader;
 
+import ess.mg.actions.TradeResult;
 import ess.mg.agents.Agent;
 import ess.mg.agents.sampler.RecordLogger;
 

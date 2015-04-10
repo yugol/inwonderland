@@ -1,8 +1,9 @@
 package ess.mg.agents.basic;
 
 import ess.Price;
-import ess.mg.agents.Action;
-import ess.mg.agents.ActionResult;
+import ess.mg.actions.Action;
+import ess.mg.actions.ActionResult;
+import ess.mg.actions.PurchaseResult;
 import ess.mg.agents.Agent;
 
 public class ABuyNewspapers extends Action<ActionResult> {

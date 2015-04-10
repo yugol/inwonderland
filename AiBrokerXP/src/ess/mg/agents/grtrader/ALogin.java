@@ -1,7 +1,7 @@
 package ess.mg.agents.grtrader;
 
-import ess.mg.agents.Action;
-import ess.mg.agents.ActionResult;
+import ess.mg.actions.Action;
+import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
 
 public class ALogin extends Action<ActionResult> {

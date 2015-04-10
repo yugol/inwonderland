@@ -1,7 +1,7 @@
 package ess.mg.agents.sampler;
 
-import ess.mg.agents.Action;
-import ess.mg.agents.ActionResult;
+import ess.mg.actions.Action;
+import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
 
 public class ASample extends Action<ActionResult> {

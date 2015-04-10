@@ -1,6 +1,7 @@
 package ess.mg.agents.grtrader;
 
-import ess.mg.agents.Action;
+import ess.mg.actions.Action;
+import ess.mg.actions.TradeResult;
 import ess.mg.agents.Agent;
 
 public class ATrade extends Action<TradeResult> {

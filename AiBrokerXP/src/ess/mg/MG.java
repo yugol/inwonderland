@@ -2,6 +2,7 @@ package ess.mg;
 
 import aibroker.util.Moment;
 import ess.Price;
+import ess.mg.driver.model.Shares;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 
@@ -34,23 +35,33 @@ public class MG {
 
     public static final int    MAX_NEWSPAPRES_PER_DAY     = 10;
 
-    private Moment             serverTime;
-    private int                fightRemainingMinutes      = 0;
-    private int                fightCount                 = 0;
-    private int                workCount                  = 0;
+    // government data
     private Price              fightBonus                 = Price.ron(6);
     private Price              workBonus                  = Price.ron(300);
+    // player data
     private double             energy                     = MIN_ENERGY;
     private double             experience                 = MIN_EXPERIENCE;
     private double             knowledge                  = MIN_KNOWKEDGE;
-    private final int[]        cuisine                    = { 0, 0, 0 };
-    private final int[]        coffe                      = { 0, 0, 0 };
-    private int                cheese                     = 0;
-    private final Transactions transactions               = new Transactions();
-
     private double             euroAmount                 = 0;
     private double             goldAmount                 = 0;
     private double             ronAmount                  = 0;
+    // market data
+    private Double             wage;
+    private Double             euroGoldExchangeRate;
+    private Double             goldRonExchangeRate;
+    private Shares             shares;
+    // player history
+    private final Transactions transactions               = new Transactions();
+    // server time
+    private Moment             serverTime;
+    // activity data
+    private int                fightCount                 = 0;
+    private int                workCount                  = 0;
+    private int                fightRemainingMinutes      = 0;
+    // inventory
+    private final int[]        cuisine                    = { 0, 0, 0 };
+    private final int[]        coffe                      = { 0, 0, 0 };
+    private int                cheese                     = 0;
 
     public Price actualWage(final Price wage) {
         final int delta = Moment.getDaysBetween(FIRST_WORK_DAY, Moment.getNow());
@@ -78,6 +89,10 @@ public class MG {
         return euroAmount;
     }
 
+    public Double getEuroGoldExchangeRate() {
+        return euroGoldExchangeRate;
+    }
+
     public double getExperience() {
         return experience;
     }
@@ -98,6 +113,10 @@ public class MG {
         return goldAmount;
     }
 
+    public Double getGoldRonExchangeRate() {
+        return goldRonExchangeRate;
+    }
+
     public double getKnowledge() {
         return knowledge;
     }
@@ -114,8 +133,16 @@ public class MG {
         return serverTime;
     }
 
+    public Shares getShares() {
+        return shares;
+    }
+
     public Transactions getTransactions() {
         return transactions;
+    }
+
+    public Double getWage() {
+        return wage;
     }
 
     public Price getWorkBonus() {
@@ -152,6 +179,10 @@ public class MG {
         this.euroAmount = euroAmount;
     }
 
+    public void setEuroGoldExchangeRate(final Double euroGoldExchangeRate) {
+        this.euroGoldExchangeRate = euroGoldExchangeRate;
+    }
+
     public void setExperience(final double experience) {
         this.experience = experience;
         if (this.experience < MG.MIN_EXPERIENCE) {
@@ -178,6 +209,10 @@ public class MG {
         this.goldAmount = goldAmount;
     }
 
+    public void setGoldRonExchangeRate(final Double goldRonExchangeRate) {
+        this.goldRonExchangeRate = goldRonExchangeRate;
+    }
+
     public void setKnowledge(final double knowledge) {
         this.knowledge = knowledge;
         if (this.knowledge < MG.MIN_KNOWKEDGE) {
@@ -194,6 +229,14 @@ public class MG {
 
     public void setServerTime(final Moment time) {
         serverTime = time;
+    }
+
+    public void setShares(final Shares shares) {
+        this.shares = shares;
+    }
+
+    public void setWage(final Double wage) {
+        this.wage = wage;
     }
 
     public void setWorkBonus(final Price workBonus) {

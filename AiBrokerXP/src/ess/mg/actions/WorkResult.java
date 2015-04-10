@@ -1,7 +1,6 @@
-package ess.mg.agents.basic;
+package ess.mg.actions;
 
 import ess.Price;
-import ess.mg.agents.ActionResult;
 
 public class WorkResult extends ActionResult {
 

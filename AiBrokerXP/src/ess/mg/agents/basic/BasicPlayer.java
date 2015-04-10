@@ -3,12 +3,11 @@ package ess.mg.agents.basic;
 import java.util.Calendar;
 import aibroker.util.Moment;
 import ess.mg.MG;
-import ess.mg.agents.ActionResult;
+import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
-import ess.mg.goods.food.Dairy;
 import ess.mg.goods.food.Wine;
 
 public class BasicPlayer extends Agent {
@@ -19,7 +18,7 @@ public class BasicPlayer extends Agent {
 
     private static final Moment REFERENCE_TIME       = Moment.fromIso("21:00:00");
     private static final Moment PRE_ACTIVATE_START   = REFERENCE_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment PRE_ACTIVATE_STOP    = PRE_ACTIVATE_START.newAdd(Calendar.MINUTE, 12);
+    private static final Moment PRE_ACTIVATE_STOP    = PRE_ACTIVATE_START.newAdd(Calendar.MINUTE, 13);
     private static final Moment ACTIVATION_START     = REFERENCE_TIME.newAdd(Calendar.MINUTE, 17);
     private static final Moment ACTIVATION_STOP      = ACTIVATION_START.newAdd(Calendar.MINUTE, 20);
     private static final double EARN_ENERGY_TRESHOLD = 40;
@@ -64,11 +63,11 @@ public class BasicPlayer extends Agent {
         }
 
         if (ACTIVATION_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVATION_STOP) <= 0) {
-            if (transactions.getMilkCount() <= 0) {
-                final ActionResult buyMilk = new ABuyGoods(new Dairy(Quality.HIGH), this, 60 * 1000).perform();
-                setRepeatAfter(30 * 1000);
-                if (!buyMilk.isSuccessful()) { return; }
-            }
+//            if (transactions.getMilkCount() <= 0) {
+//                final ActionResult buyMilk = new ABuyGoods(new Dairy(Quality.HIGH), this, 60 * 1000).perform();
+//                setRepeatAfter(30 * 1000);
+//                if (!buyMilk.isSuccessful()) { return; }
+//            }
             if (transactions.getWineCount() <= 0) {
                 new ABuyGoods(new Wine(), this, 60 * 1000).perform();
                 setRepeatAfter(0);
@@ -88,20 +87,20 @@ public class BasicPlayer extends Agent {
                     setRepeatAfter(10 * 60 * 1000 - 10);
                     return;
                 } else {
-                    int wait = fightRemainingMinutes - 1;
+                    int wait = fightRemainingMinutes;
                     if (wait < 0) {
                         wait = 0;
                     }
                     setRepeatAfter(wait * 60 * 1000);
                 }
-            } else if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
-                final WorkResult result = new AWork(this, 60 * 1000).perform();
-                if (!result.isSuccessful()) {
-                    setRepeatAfter(30 * 1000);
-                    return;
-                } else {
-                    setRepeatAfter(-1);
-                }
+//            } else if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
+//                final WorkResult result = new AWork(this, 60 * 1000).perform();
+//                if (!result.isSuccessful()) {
+//                    setRepeatAfter(30 * 1000);
+//                    return;
+//                } else {
+//                    setRepeatAfter(-1);
+//                }
             } else {
                 setRepeatAfter(-1);
             }

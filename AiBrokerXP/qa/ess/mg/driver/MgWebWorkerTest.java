@@ -2,7 +2,7 @@ package ess.mg.driver;
 
 import org.junit.Test;
 import ess.Price;
-import ess.mg.agents.basic.WorkResult;
+import ess.mg.actions.WorkResult;
 
 public class MgWebWorkerTest {
 

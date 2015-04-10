@@ -11,7 +11,7 @@ public class MgWebTrader extends MgWebShopper {
         final WebElement amount_buy = driver.findElement(By.name("amount_buy"));
         amount_buy.sendKeys(String.valueOf(goldAmount));
         final List<WebElement> nd_submit_inv = driver.findElements(By.className("nd_submit_inv"));
-        // nd_submit_inv.get(0).click();
+        nd_submit_inv.get(0).click();
         pauseForSubmit();
         try {
             driver.findElement(By.className("nd_mess_error"));

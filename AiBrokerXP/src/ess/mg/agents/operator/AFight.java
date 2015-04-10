@@ -1,4 +1,4 @@
-package ess.mg.agents.basic;
+package ess.mg.agents.operator;
 
 import ess.mg.actions.Action;
 import ess.mg.actions.ActionResult;
@@ -6,8 +6,8 @@ import ess.mg.agents.Agent;
 
 public class AFight extends Action<ActionResult> {
 
-    public AFight(final Agent performer, final int timeout) {
-        super(performer, timeout);
+    public AFight(final Agent performer) {
+        super(performer);
     }
 
     @Override

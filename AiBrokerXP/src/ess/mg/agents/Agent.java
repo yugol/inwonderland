@@ -1,6 +1,7 @@
 package ess.mg.agents;
 
 import ess.mg.MG;
+import ess.mg.actions.Action;
 import ess.mg.driver.MgWebDriver;
 
 public abstract class Agent implements Runnable {
