@@ -37,7 +37,7 @@ public class Operator extends Agent {
     private static final double MAX_GOLD_PRICE      = 10.3500;
     private static final double MIN_RON_AMOUNT      = 10;
 
-    private static final Moment ACTIVITY_TIME       = Moment.fromIso("21:00:00");
+    private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
     private static final Moment PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
     private static final Moment PRE_ENERGISE_STOP   = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
     private static final Moment POST_ENERGISE_START = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
@@ -50,14 +50,14 @@ public class Operator extends Agent {
         final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
 
         final AFetchContext fetchContext = new AFetchContext(this);
-        fetchContext.setEpoch(ACTIVITY_TIME);
+        fetchContext.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), ACTIVITY_TIME.toIsoTime()));
         fetchContext.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
         fetchContext.perform();
 
         final ABuyGold buyGold = new ABuyGold(this);
         buyGold.setMaximumPrice(MAX_GOLD_PRICE);
         buyGold.setMinumumRonAmount(MIN_RON_AMOUNT);
-        buyGold.setEnabled(false);
+        buyGold.setEnabled(true);
         buyGold.perform();
 
         final Moment serverTime = getGlobal().getServerTime();
@@ -77,7 +77,7 @@ public class Operator extends Agent {
                 buyMilk.setGoods(new Dairy(Quality.HIGH));
                 final PurchaseResult purchaseResult = buyMilk.perform();
                 if (!purchaseResult.isSuccessful()) {
-                    setRepeatAfter(0);
+                    setRepeatAfter(10 * 1000);
                 }
             }
             if (transactions.getWineCount() <= 0) {

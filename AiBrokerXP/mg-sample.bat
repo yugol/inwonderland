@@ -8,4 +8,4 @@ echo Updating EOD REGS
 set AIBROKERXP_HOME=%~dp0
 set JAVA="java.exe"
 cd "%AIBROKERXP_HOME%"
-%JAVA% -cp aibroker.jar ess.mg.agents.sampler.Sampler
+%JAVA% -cp aibroker.jar ess.mg.agents.operator.Operator
