@@ -13,7 +13,7 @@ public class MG {
     }
 
     // occasionally updated
-    public static final Moment FIRST_WORK_DAY             = Moment.fromIso("2015-03-31");
+    public static final Moment FIRST_WORK_DAY             = Moment.fromIso("2015-04-11");
 
     // seldom updated
     public static final double MIN_ENERGY                 = 1.0;

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import javax.swing.Timer;
 import aibroker.util.Moment;
 import ess.mg.MG;
+import ess.mg.actions.FightResult;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.actions.WorkResult;
 import ess.mg.agents.Agent;
@@ -34,7 +35,7 @@ public class Operator extends Agent {
 
     private static final int    LIFE_TIME           = 12 * 60 * 1000;
 
-    private static final double MAX_GOLD_PRICE      = 10.3500;
+    private static final double MAX_GOLD_PRICE      = 10.2500;
     private static final double MIN_RON_AMOUNT      = 10;
 
     private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
@@ -95,8 +96,10 @@ public class Operator extends Agent {
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
             if (transactions.getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
                 final AFight fight = new AFight(this);
-                fight.perform();
-            } else if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
+                final FightResult result = fight.perform();
+                if (!result.isMaxFightCountReached()) { return; }
+            }
+            if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
                 final AWork work = new AWork(this);
                 final WorkResult workResult = work.perform();
                 if (!workResult.isSuccessful()) {
