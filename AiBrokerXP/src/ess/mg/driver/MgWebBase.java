@@ -9,10 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import aibroker.Context;
-import ess.mg.agents.sampler.RecordLogger;
+import ess.mg.MgLogger;
+import ess.mg.MgMarket;
 import ess.mg.goods.Goods;
 import ess.mg.goods.Gradable;
-import ess.mg.markets.MgMarket;
 
 public abstract class MgWebBase {
 
@@ -51,10 +51,11 @@ public abstract class MgWebBase {
     }
 
     public static final String                BASE_URL         = "http://www.marketglory.com";
-    public static final String                BASE_URL_ACCOUNT = BASE_URL + "/account";
 
+    public static final String                BASE_URL_ACCOUNT = BASE_URL + "/account";
     protected final WebDriver                 driver           = new FirefoxDriver();
-    protected final List<MgWebDriverListener> listeners    = new ArrayList<MgWebDriverListener>();
+
+    protected final List<MgWebDriverListener> listeners        = new ArrayList<MgWebDriverListener>();
 
     public MgWebBase() {
         final Rectangle bounds = Context.getBrowserWindowBounds();
@@ -64,7 +65,7 @@ public abstract class MgWebBase {
         }
     }
 
-    public void addRecordLogger(final RecordLogger logger) {
+    public void addRecordLogger(final MgLogger logger) {
         listeners.add(logger);
     }
 
@@ -73,8 +74,7 @@ public abstract class MgWebBase {
     }
 
     public Integer login() {
-        driver.navigate().to(BASE_URL);
-        pauseForRead();
+        navigateTo(BASE_URL);
 
         final WebElement last_12h_login = driver.findElement(By.className("last_24h_login"));
         final String activeUsers = last_12h_login.getText();
@@ -100,6 +100,12 @@ public abstract class MgWebBase {
             url.append("/q").append(((Gradable) goods).getQuality().stars);
         }
         return url.toString();
+    }
+
+    protected void navigateTo(final String url) {
+        System.out.println("Navigating to: " + url);
+        driver.navigate().to(url);
+        pauseForRead();
     }
 
 }

@@ -1,7 +1,7 @@
 package ess.mg.agents.operator;
 
 import aibroker.util.Moment;
-import ess.mg.MG;
+import ess.mg.MgContext;
 import ess.mg.actions.Action;
 import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
@@ -50,7 +50,7 @@ public class AFetchContext extends Action<ActionResult> {
     @Override
     protected ActionResult execute() {
         final ActionResult result = new ActionResult();
-        final MG state = getAgent().getGlobal();
+        final MgContext state = getAgent().getGlobal();
 
         getAgent().getDriver().login();
         if (readTransactions) {

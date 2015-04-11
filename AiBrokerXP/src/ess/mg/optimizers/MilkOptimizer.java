@@ -1,12 +1,11 @@
 package ess.mg.optimizers;
 
 import ess.Price;
+import ess.mg.MgMarket;
 import ess.mg.driver.MgWebDriver;
 import ess.mg.driver.MgWebReader;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Dairy;
-import ess.mg.markets.MgMarket;
-import ess.mg.markets.financial.FinancialMarket;
 
 public class MilkOptimizer {
 

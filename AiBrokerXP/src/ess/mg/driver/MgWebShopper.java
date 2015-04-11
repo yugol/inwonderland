@@ -4,12 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import ess.Price;
+import ess.mg.MgMarket;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.driver.model.Newspaper;
 import ess.mg.goods.Goods;
 import ess.mg.goods.food.Dairy;
 import ess.mg.goods.food.Wine;
-import ess.mg.markets.MgMarket;
 
 public abstract class MgWebShopper extends MgWebWorker {
 
@@ -18,9 +18,7 @@ public abstract class MgWebShopper extends MgWebWorker {
             market = MgMarket.LOCAL;
         }
         final PurchaseResult result = new PurchaseResult();
-
-        driver.navigate().to(buildGoodsUrl(goods, market));
-        pauseForRead();
+        navigateTo(buildGoodsUrl(goods, market));
 
         result.setPrice(readGoodsPrice(goods, market));
 

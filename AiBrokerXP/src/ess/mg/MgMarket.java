@@ -1,4 +1,4 @@
-package ess.mg.markets;
+package ess.mg;
 
 public enum MgMarket {
 

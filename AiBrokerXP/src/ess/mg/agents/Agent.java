@@ -1,13 +1,13 @@
 package ess.mg.agents;
 
-import ess.mg.MG;
+import ess.mg.MgContext;
 import ess.mg.actions.Action;
 import ess.mg.driver.MgWebDriver;
 
 public abstract class Agent implements Runnable {
 
     private MgWebDriver driver;
-    private final MG    global   = new MG();
+    private final MgContext    global   = new MgContext();
     private long        waitTime = 0;
 
     public Agent() {
@@ -17,7 +17,7 @@ public abstract class Agent implements Runnable {
         return driver;
     }
 
-    public MG getGlobal() {
+    public MgContext getGlobal() {
         return global;
     }
 

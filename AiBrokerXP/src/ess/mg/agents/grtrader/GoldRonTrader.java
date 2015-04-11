@@ -1,8 +1,8 @@
 package ess.mg.agents.grtrader;
 
+import ess.mg.MgLogger;
 import ess.mg.actions.TradeResult;
 import ess.mg.agents.Agent;
-import ess.mg.agents.sampler.RecordLogger;
 
 public class GoldRonTrader extends Agent {
 
@@ -19,7 +19,7 @@ public class GoldRonTrader extends Agent {
         final ATrade tradeAction = new ATrade(this, 30 * 1000);
         while (true) {
             final TradeResult result = tradeAction.perform();
-            new RecordLogger().onFetchEuroGoldExchangeRate(String.valueOf(result.getExchangeRate()));
+            new MgLogger().onFetchEuroGoldExchangeRate(String.valueOf(result.getExchangeRate()));
             try {
                 Thread.sleep(FREQUENCY);
             } catch (final InterruptedException e) {

@@ -1,10 +1,10 @@
 package ess.mg.agents.basic;
 
+import ess.mg.MgMarket;
 import ess.mg.actions.Action;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.agents.Agent;
 import ess.mg.goods.Goods;
-import ess.mg.markets.MgMarket;
 
 public class ABuyGoods extends Action<PurchaseResult> {
 

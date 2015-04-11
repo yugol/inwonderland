@@ -5,12 +5,12 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import javax.swing.Timer;
 import aibroker.util.Moment;
-import ess.mg.MG;
+import ess.mg.MgContext;
+import ess.mg.MgLogger;
 import ess.mg.actions.FightResult;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.actions.WorkResult;
 import ess.mg.agents.Agent;
-import ess.mg.agents.sampler.RecordLogger;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
@@ -40,7 +40,7 @@ public class Operator extends Agent {
     private static final double MIN_RON_AMOUNT      = 10;
     private static final double MIN_GOLD_AMOUNT     = 1;
 
-    private static final double MAX_HOURLY_WAGE     = 3;
+    // private static final double MAX_HOURLY_WAGE     = 3;
 
     private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
     private static final Moment PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
@@ -92,25 +92,25 @@ public class Operator extends Agent {
                 buyWine.setGoods(new Wine());
                 buyWine.perform();
             }
-            if (transactions.getNewspaperCount() < MG.MAX_NEWSPAPRES_PER_DAY) {
+            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
                 final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
-                buyNewspapers.setPapersLeftToBuy(MG.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
+                buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
                 buyNewspapers.perform();
             }
         }
 
-        final AManageCompany manageCompany = new AManageCompany(this);
-        manageCompany.setCompanyUrl("Vacca-Villa");
-        manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
-        manageCompany.perform();
+        // final AManageCompany manageCompany = new AManageCompany(this);
+        // manageCompany.setCompanyUrl("Vacca-Villa");
+        // manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
+        // manageCompany.perform();
 
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
-            if (transactions.getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
+            if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {
                 final AFight fight = new AFight(this);
                 final FightResult result = fight.perform();
                 if (!result.isMaxFightCountReached()) { return; }
             }
-            if (transactions.getWorkCount() < MG.MAX_WORK_PER_DAY) {
+            if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
                 final AWork work = new AWork(this);
                 final WorkResult workResult = work.perform();
                 if (!workResult.isSuccessful()) {
@@ -124,7 +124,7 @@ public class Operator extends Agent {
     @Override
     protected void initDriver() {
         super.initDriver();
-        getDriver().addRecordLogger(new RecordLogger());
+        getDriver().addRecordLogger(new MgLogger());
     }
 
 }

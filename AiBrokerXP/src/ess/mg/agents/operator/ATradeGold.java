@@ -1,6 +1,6 @@
 package ess.mg.agents.operator;
 
-import ess.mg.MG;
+import ess.mg.MgContext;
 import ess.mg.actions.Action;
 import ess.mg.actions.TradeResult;
 import ess.mg.agents.Agent;
@@ -60,7 +60,7 @@ public class ATradeGold extends Action<TradeResult> {
     @Override
     protected TradeResult execute() {
         final TradeResult result = new TradeResult();
-        final MG state = getAgent().getGlobal();
+        final MgContext state = getAgent().getGlobal();
 
         final Double goldPrice = getAgent().getDriver().fetchGoldRonExchangeRate();
         state.setGoldRonExchangeRate(goldPrice);

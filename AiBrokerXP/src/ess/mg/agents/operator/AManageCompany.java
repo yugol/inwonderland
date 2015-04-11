@@ -33,7 +33,7 @@ public class AManageCompany extends Action<ActionResult> {
     protected ActionResult execute() {
         final ActionResult result = new ActionResult();
         double hourlyWage = getAgent().getGlobal().getWage() / 80;
-        hourlyWage += 0.01;
+        // hourlyWage += 0.01;
         if (hourlyWage > maxHourlyWage) {
             hourlyWage = maxHourlyWage;
         }

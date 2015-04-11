@@ -1,7 +1,7 @@
 package ess.mg.optimizers;
 
 import ess.Price;
-import ess.mg.MG;
+import ess.mg.MgContext;
 
 public class ActivityResult {
 
@@ -22,7 +22,7 @@ public class ActivityResult {
     }
 
     public Price getNetReturn() {
-        return MG.netReturn(grossReturn);
+        return MgContext.netReturn(grossReturn);
     }
 
     @Override

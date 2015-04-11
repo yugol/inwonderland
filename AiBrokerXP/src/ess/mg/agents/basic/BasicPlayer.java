@@ -2,7 +2,7 @@ package ess.mg.agents.basic;
 
 import java.util.Calendar;
 import aibroker.util.Moment;
-import ess.mg.MG;
+import ess.mg.MgContext;
 import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
 import ess.mg.driver.model.Transactions;
@@ -72,8 +72,8 @@ public class BasicPlayer extends Agent {
                 new ABuyGoods(new Wine(), this, 60 * 1000).perform();
                 setRepeatAfter(0);
             }
-            if (transactions.getNewspaperCount() < MG.MAX_NEWSPAPRES_PER_DAY) {
-                new ABuyNewspapers(MG.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount(), this, 300 * 1000).perform();
+            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
+                new ABuyNewspapers(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount(), this, 300 * 1000).perform();
                 setRepeatAfter(0);
                 return;
             }
@@ -81,7 +81,7 @@ public class BasicPlayer extends Agent {
 
         if (serverEnergy >= EARN_ENERGY_TRESHOLD ||
                 ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) <= 0) {
-            if (transactions.getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
+            if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {
                 final ActionResult result = new AFight(this, 60 * 1000).perform();
                 if (result.isSuccessful()) {
                     setRepeatAfter(10 * 60 * 1000 - 10);

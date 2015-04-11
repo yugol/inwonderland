@@ -2,6 +2,8 @@ package ess.mg.markets.financial;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import ess.mg.optimizers.ExchangeResult;
+import ess.mg.optimizers.FinancialMarket;
 
 public class FinancialMarketTest {
 

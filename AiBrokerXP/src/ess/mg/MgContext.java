@@ -6,7 +6,7 @@ import ess.mg.driver.model.Shares;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 
-public class MG {
+public class MgContext {
 
     public static Price netReturn(final Price grossReturn) {
         return grossReturn.multiply(1 - WORK_INCOME_TAX);
@@ -167,11 +167,11 @@ public class MG {
 
     public void setEnergy(final double energy) {
         this.energy = energy;
-        if (this.energy < MG.MIN_ENERGY) {
-            this.energy = MG.MIN_ENERGY;
+        if (this.energy < MgContext.MIN_ENERGY) {
+            this.energy = MgContext.MIN_ENERGY;
         }
-        if (this.energy > MG.MAX_ENERGY) {
-            this.energy = MG.MAX_ENERGY;
+        if (this.energy > MgContext.MAX_ENERGY) {
+            this.energy = MgContext.MAX_ENERGY;
         }
     }
 
@@ -185,11 +185,11 @@ public class MG {
 
     public void setExperience(final double experience) {
         this.experience = experience;
-        if (this.experience < MG.MIN_EXPERIENCE) {
-            this.experience = MG.MIN_EXPERIENCE;
+        if (this.experience < MgContext.MIN_EXPERIENCE) {
+            this.experience = MgContext.MIN_EXPERIENCE;
         }
-        if (this.experience > MG.MAX_EXPERIENCE) {
-            this.experience = MG.MAX_EXPERIENCE;
+        if (this.experience > MgContext.MAX_EXPERIENCE) {
+            this.experience = MgContext.MAX_EXPERIENCE;
         }
     }
 
@@ -215,11 +215,11 @@ public class MG {
 
     public void setKnowledge(final double knowledge) {
         this.knowledge = knowledge;
-        if (this.knowledge < MG.MIN_KNOWKEDGE) {
-            this.knowledge = MG.MIN_KNOWKEDGE;
+        if (this.knowledge < MgContext.MIN_KNOWKEDGE) {
+            this.knowledge = MgContext.MIN_KNOWKEDGE;
         }
-        if (this.knowledge > MG.MAX_KNOWKEDGE) {
-            this.knowledge = MG.MAX_KNOWKEDGE;
+        if (this.knowledge > MgContext.MAX_KNOWKEDGE) {
+            this.knowledge = MgContext.MAX_KNOWKEDGE;
         }
     }
 

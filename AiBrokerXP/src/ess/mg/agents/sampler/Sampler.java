@@ -1,5 +1,6 @@
 package ess.mg.agents.sampler;
 
+import ess.mg.MgLogger;
 import ess.mg.agents.Agent;
 
 public class Sampler extends Agent {
@@ -18,7 +19,7 @@ public class Sampler extends Agent {
     @Override
     protected void initDriver() {
         super.initDriver();
-        getDriver().addRecordLogger(new RecordLogger());
+        getDriver().addRecordLogger(new MgLogger());
     }
 
 }

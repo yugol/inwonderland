@@ -1,4 +1,4 @@
-package ess.mg.markets.financial;
+package ess.mg.optimizers;
 
 import ess.Price;
 

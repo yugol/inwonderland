@@ -7,11 +7,9 @@ import org.openqa.selenium.WebElement;
 public class MgWebManager extends MgWebTrader {
 
     public boolean activateJob(final String companyUrl, final int index, final double hourlyWage) {
+        navigateTo(BASE_URL_ACCOUNT + "/managecompany/" + companyUrl + "/jobs");
+
         boolean activated = false;
-
-        driver.navigate().to(BASE_URL_ACCOUNT + "/managecompany/" + companyUrl + "/jobs");
-        pauseForRead();
-
         final List<WebElement> inputText = driver.findElements(By.cssSelector("input[type=\"text\"]"));
         final WebElement salary = inputText.get(3 + index);
         salary.sendKeys("\b\b\b\b\b\b\b\b\b\b");

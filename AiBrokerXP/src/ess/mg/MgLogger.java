@@ -1,13 +1,13 @@
-package ess.mg.agents.sampler;
+package ess.mg;
 
 import org.slf4j.Logger;
 import aibroker.Context;
 import aibroker.util.Moment;
 import ess.mg.driver.MgWebDriverListener;
 
-public class RecordLogger implements MgWebDriverListener {
+public class MgLogger implements MgWebDriverListener {
 
-    private static final Logger logger       = Context.getLogger(RecordLogger.class);
+    private static final Logger logger       = Context.getLogger(MgLogger.class);
 
     public static final String  ACTIVE_USERS = "MG_USERS";
     public static final String  WORK_WAGE    = "MG_WORK_WAGE";
