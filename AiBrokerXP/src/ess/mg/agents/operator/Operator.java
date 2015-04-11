@@ -40,6 +40,8 @@ public class Operator extends Agent {
     private static final double MIN_RON_AMOUNT      = 10;
     private static final double MIN_GOLD_AMOUNT     = 1;
 
+    private static final double MAX_HOURLY_WAGE     = 3;
+
     private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
     private static final Moment PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
     private static final Moment PRE_ENERGISE_STOP   = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
@@ -99,6 +101,7 @@ public class Operator extends Agent {
 
         final AManageCompany manageCompany = new AManageCompany(this);
         manageCompany.setCompanyUrl("Vacca-Villa");
+        manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
         manageCompany.perform();
 
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
