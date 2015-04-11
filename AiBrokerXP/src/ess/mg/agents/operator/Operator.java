@@ -97,6 +97,10 @@ public class Operator extends Agent {
             }
         }
 
+        final AManageCompany manageCompany = new AManageCompany(this);
+        manageCompany.setCompanyUrl("Vacca-Villa");
+        manageCompany.perform();
+
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
             if (transactions.getFightCount() < MG.MAX_FIGHTS_PER_DAY) {
                 final AFight fight = new AFight(this);
