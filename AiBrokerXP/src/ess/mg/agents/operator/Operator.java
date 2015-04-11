@@ -35,8 +35,10 @@ public class Operator extends Agent {
 
     private static final int    LIFE_TIME           = 12 * 60 * 1000;
 
-    private static final double MAX_GOLD_PRICE      = 10.2500;
+    private static final double BUY_GOLD_PRICE      = 10.1000;
+    private static final double SELL_GOLD_PRICE     = 11.1000;
     private static final double MIN_RON_AMOUNT      = 10;
+    private static final double MIN_GOLD_AMOUNT     = 1;
 
     private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
     private static final Moment PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
@@ -55,11 +57,13 @@ public class Operator extends Agent {
         fetchContext.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
         fetchContext.perform();
 
-        final ABuyGold buyGold = new ABuyGold(this);
-        buyGold.setMaximumPrice(MAX_GOLD_PRICE);
-        buyGold.setMinumumRonAmount(MIN_RON_AMOUNT);
-        buyGold.setEnabled(true);
-        buyGold.perform();
+        final ATradeGold tradeGold = new ATradeGold(this);
+        tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
+        tradeGold.setSellGoldPrice(SELL_GOLD_PRICE);
+        tradeGold.setMinumumRonAmount(MIN_RON_AMOUNT);
+        tradeGold.setMinumumGoldAmount(MIN_GOLD_AMOUNT);
+        tradeGold.setEnabled(true);
+        tradeGold.perform();
 
         final Moment serverTime = getGlobal().getServerTime();
         final Transactions transactions = getGlobal().getTransactions();
