@@ -63,6 +63,8 @@ public abstract class EssDriverBase {
         }
     }
 
+    public abstract Boolean buyGoldFromRon(final int goldAmount);
+
     public void close() {
         driver.quit();
     }
@@ -74,6 +76,8 @@ public abstract class EssDriverBase {
     public abstract void fetchShares(final EssContext context);
 
     public abstract EssContext login();
+
+    public abstract Boolean sellGoldToRon(final int goldAmount);
 
     protected void navigateTo(final String url) {
         System.out.println("Navigating to: " + url);

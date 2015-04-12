@@ -7,7 +7,8 @@ import org.openqa.selenium.WebElement;
 
 public abstract class MgWebTrader extends MgWebShopper {
 
-    public boolean buyGoldFromRon(final int goldAmount) {
+    @Override
+    public Boolean buyGoldFromRon(final int goldAmount) {
         final WebElement amount_buy = driver.findElement(By.name("amount_buy"));
         amount_buy.sendKeys(String.valueOf(goldAmount));
         final List<WebElement> nd_submit_inv = driver.findElements(By.className("nd_submit_inv"));
@@ -21,7 +22,8 @@ public abstract class MgWebTrader extends MgWebShopper {
         }
     }
 
-    public boolean sellGoldToRon(final int goldAmount) {
+    @Override
+    public Boolean sellGoldToRon(final int goldAmount) {
         final WebElement amount_buy = driver.findElement(By.name("amount_sell"));
         amount_buy.sendKeys(String.valueOf(goldAmount));
         final List<WebElement> nd_submit_inv = driver.findElements(By.className("nd_submit_inv"));

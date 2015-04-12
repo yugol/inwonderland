@@ -76,7 +76,7 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
             }
         }
         if (goldPrice > getSellGoldPrice()) {
-            int goldAmount = (int) (context.getGoldAmount() - getMinumumRonAmount());
+            int goldAmount = (int) (context.getGoldAmount() - getMinumumGoldAmount());
             if (goldAmount > 0) {
                 if (!isEnabled()) {
                     goldAmount *= 10;

@@ -32,6 +32,11 @@ public class GtWebPager extends GtWebReader {
 
     }
 
+    @Override
+    public Boolean buyGoldFromRon(final int goldAmount) {
+        return null;
+    }
+
     public DataPoint readGoldRonRates(final int index) {
         navigateTo(BASE_URL_ACCOUNT + "/financial/gold2local/" + index);
 
@@ -43,5 +48,10 @@ public class GtWebPager extends GtWebReader {
                 Moment.fromIso(moment),
                 parseDouble(normalizeNumberString(price)));
         return point;
+    }
+
+    @Override
+    public Boolean sellGoldToRon(final int goldAmount) {
+        return null;
     }
 }
