@@ -3,7 +3,7 @@ package ess.mg.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import ess.Price;
+import ess.common.Price;
 import ess.mg.actions.WorkResult;
 
 public abstract class MgWebWorker extends MgWebFighter {

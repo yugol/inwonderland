@@ -1,6 +1,6 @@
 package ess.mg.optimizers;
 
-import ess.Price;
+import ess.common.Price;
 import ess.mg.MgContext;
 
 public class ActivityResult {

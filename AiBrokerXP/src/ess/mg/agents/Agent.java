@@ -7,18 +7,18 @@ import ess.mg.driver.MgWebDriver;
 public abstract class Agent implements Runnable {
 
     private MgWebDriver driver;
-    private final MgContext    global   = new MgContext();
+    private MgContext   context;
     private long        waitTime = 0;
 
     public Agent() {
     }
 
-    public MgWebDriver getDriver() {
-        return driver;
+    public MgContext getContext() {
+        return context;
     }
 
-    public MgContext getGlobal() {
-        return global;
+    public MgWebDriver getDriver() {
+        return driver;
     }
 
     public long getWaitTime() {
@@ -28,6 +28,10 @@ public abstract class Agent implements Runnable {
     public void onActionTimeout(final Action<?> action) {
         waitTime = 0;
         close();
+    }
+
+    public void setContext(final MgContext context) {
+        this.context = context;
     }
 
     public void setRepeatAfter(final long waitTime) {

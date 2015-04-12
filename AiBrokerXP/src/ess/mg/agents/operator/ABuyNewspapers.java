@@ -1,6 +1,6 @@
 package ess.mg.agents.operator;
 
-import ess.Price;
+import ess.common.Price;
 import ess.mg.actions.Action;
 import ess.mg.actions.ActionResult;
 import ess.mg.actions.PurchaseResult;

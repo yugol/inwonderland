@@ -33,31 +33,32 @@ public class Operator extends Agent {
         new Operator().start();
     }
 
-    private static final int    LIFE_TIME           = 12 * 60 * 1000;
+    private static final int     LIFE_TIME           = 12 * 60 * 1000;
 
-    private static final double BUY_GOLD_PRICE      = 10.1000;
-    private static final double SELL_GOLD_PRICE     = 11.1000;
-    private static final double MIN_RON_AMOUNT      = 10;
-    private static final double MIN_GOLD_AMOUNT     = 1;
+    private static final double  BUY_GOLD_PRICE      = 10.1000;
+    private static final double  SELL_GOLD_PRICE     = 11.1000;
+    private static final double  MIN_RON_AMOUNT      = 10;
+    private static final double  MIN_GOLD_AMOUNT     = 1;
 
-    // private static final double MAX_HOURLY_WAGE     = 3;
+    private static final boolean MANAGE_COMPANIES              = false;
+    private static final double  MAX_HOURLY_WAGE     = 3;
 
-    private static final Moment ACTIVITY_TIME       = Moment.fromIso("03:00:00");
-    private static final Moment PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment PRE_ENERGISE_STOP   = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
-    private static final Moment POST_ENERGISE_START = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
-    private static final Moment POST_ENERGISE_STOP  = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
-    private static final Moment ACTIVITY_START      = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
-    private static final Moment ACTIVITY_STOP       = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
+    private static final Moment  ACTIVITY_TIME       = Moment.fromIso("03:00:00");
+    private static final Moment  PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
+    private static final Moment  PRE_ENERGISE_STOP   = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
+    private static final Moment  POST_ENERGISE_START = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
+    private static final Moment  POST_ENERGISE_STOP  = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
+    private static final Moment  ACTIVITY_START      = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
+    private static final Moment  ACTIVITY_STOP       = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
 
     @Override
     public void run() {
         final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
 
-        final AFetchContext fetchContext = new AFetchContext(this);
-        fetchContext.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), ACTIVITY_TIME.toIsoTime()));
-        fetchContext.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
-        fetchContext.perform();
+        final ALogin login = new ALogin(this);
+        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), ACTIVITY_TIME.toIsoTime()));
+        login.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
+        login.perform();
 
         final ATradeGold tradeGold = new ATradeGold(this);
         tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
@@ -67,8 +68,8 @@ public class Operator extends Agent {
         tradeGold.setEnabled(true);
         tradeGold.perform();
 
-        final Moment serverTime = getGlobal().getServerTime();
-        final Transactions transactions = getGlobal().getTransactions();
+        final Moment serverTime = getContext().getServerTime();
+        final Transactions transactions = getContext().getTransactions();
 
         if (PRE_ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(PRE_ENERGISE_STOP) < 0) {
             if (transactions.getFoodCount() <= 0) {
@@ -99,10 +100,12 @@ public class Operator extends Agent {
             }
         }
 
-        // final AManageCompany manageCompany = new AManageCompany(this);
-        // manageCompany.setCompanyUrl("Vacca-Villa");
-        // manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
-        // manageCompany.perform();
+        if (MANAGE_COMPANIES) {
+            final AManageCompany manageCompany = new AManageCompany(this);
+            manageCompany.setCompanyUrl("Vacca-Villa");
+            manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
+            manageCompany.perform();
+        }
 
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
             if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {

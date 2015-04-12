@@ -1,7 +1,7 @@
 package ess.mg.driver.model;
 
 import aibroker.util.Moment;
-import ess.Price;
+import ess.common.Price;
 
 public class TFight extends Transaction {
 

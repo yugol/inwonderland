@@ -3,7 +3,7 @@ package ess.mg.driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import ess.Price;
+import ess.common.Price;
 import ess.mg.MgMarket;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.driver.model.Newspaper;

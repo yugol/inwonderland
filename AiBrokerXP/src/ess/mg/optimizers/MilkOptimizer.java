@@ -1,6 +1,6 @@
 package ess.mg.optimizers;
 
-import ess.Price;
+import ess.common.Price;
 import ess.mg.MgMarket;
 import ess.mg.driver.MgWebDriver;
 import ess.mg.driver.MgWebReader;

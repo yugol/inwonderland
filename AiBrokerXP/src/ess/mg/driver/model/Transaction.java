@@ -1,8 +1,8 @@
 package ess.mg.driver.model;
 
 import aibroker.util.Moment;
-import ess.Currency;
-import ess.Price;
+import ess.common.Currency;
+import ess.common.Price;
 
 public abstract class Transaction {
 

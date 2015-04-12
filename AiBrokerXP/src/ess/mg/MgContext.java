@@ -1,12 +1,13 @@
 package ess.mg;
 
 import aibroker.util.Moment;
-import ess.Price;
+import ess.common.EssContext;
+import ess.common.Price;
 import ess.mg.driver.model.Shares;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 
-public class MgContext {
+public class MgContext extends EssContext {
 
     public static Price netReturn(final Price grossReturn) {
         return grossReturn.multiply(1 - WORK_INCOME_TAX);

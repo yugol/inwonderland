@@ -8,12 +8,12 @@ import ess.mg.agents.Agent;
 import ess.mg.driver.model.Transaction;
 import ess.mg.driver.model.Transactions;
 
-public class AFetchContext extends Action<ActionResult> {
+public class ALogin extends Action<ActionResult> {
 
     private Moment  epoch;
     private boolean readTransactions;
 
-    public AFetchContext(final Agent performer) {
+    public ALogin(final Agent performer) {
         super(performer);
     }
 
@@ -34,12 +34,12 @@ public class AFetchContext extends Action<ActionResult> {
     }
 
     private void readTransactions() {
-        getAgent().getGlobal().getTransactions().clear();
+        getAgent().getContext().getTransactions().clear();
         outer: for (int point = 0; point < 100; point += 20) {
             final Transactions foo = getAgent().getDriver().fetchTransactions(point);
             for (final Transaction bar : foo) {
                 if (epoch.compareTo(bar.getMoment()) <= 0) {
-                    getAgent().getGlobal().getTransactions().add(bar);
+                    getAgent().getContext().getTransactions().add(bar);
                 } else {
                     break outer;
                 }
@@ -49,10 +49,8 @@ public class AFetchContext extends Action<ActionResult> {
 
     @Override
     protected ActionResult execute() {
-        final ActionResult result = new ActionResult();
-        final MgContext state = getAgent().getGlobal();
-
-        getAgent().getDriver().login();
+        final MgContext state = getAgent().getDriver().login();
+        getAgent().setContext(state);
         if (readTransactions) {
             readTransactions();
         }
@@ -61,6 +59,7 @@ public class AFetchContext extends Action<ActionResult> {
         state.setEuroGoldExchangeRate(getAgent().getDriver().fetchEuroGoldExchangeRate());
         getAgent().getDriver().fetchGlobalContext(state);
 
+        final ActionResult result = new ActionResult();
         result.setSuccessful(true);
         return result;
     }

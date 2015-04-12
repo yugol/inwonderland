@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import aibroker.util.Moment;
-import ess.Price;
+import ess.common.Price;
 import ess.mg.MgContext;
 import ess.mg.MgMarket;
 import ess.mg.driver.model.Newspaper;

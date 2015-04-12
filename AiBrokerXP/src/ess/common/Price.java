@@ -1,4 +1,5 @@
-package ess;
+package ess.common;
+
 
 /**
  * @author Iulian

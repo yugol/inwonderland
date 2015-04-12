@@ -60,7 +60,7 @@ public class ATradeGold extends Action<TradeResult> {
     @Override
     protected TradeResult execute() {
         final TradeResult result = new TradeResult();
-        final MgContext state = getAgent().getGlobal();
+        final MgContext state = getAgent().getContext();
 
         final Double goldPrice = getAgent().getDriver().fetchGoldRonExchangeRate();
         state.setGoldRonExchangeRate(goldPrice);

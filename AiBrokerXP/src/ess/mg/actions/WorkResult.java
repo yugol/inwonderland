@@ -1,6 +1,6 @@
 package ess.mg.actions;
 
-import ess.Price;
+import ess.common.Price;
 
 public class WorkResult extends ActionResult {
 

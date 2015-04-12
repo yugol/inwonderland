@@ -5,55 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import aibroker.Context;
+import ess.common.driver.EssDriverBase;
+import ess.mg.MgContext;
 import ess.mg.MgLogger;
 import ess.mg.MgMarket;
 import ess.mg.goods.Goods;
 import ess.mg.goods.Gradable;
 
-public abstract class MgWebBase {
-
-    private static void pause(final long sleepTime) {
-        try {
-            Thread.sleep(sleepTime);
-        } catch (final InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected static Double parseDouble(final String doubleValue) {
-        try {
-            return Double.parseDouble(doubleValue);
-        } catch (final Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    protected static Integer parseInt(final String intValue) {
-        try {
-            return Integer.parseInt(intValue);
-        } catch (final Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    protected static void pauseForRead() {
-        pause(10);
-    }
-
-    protected static void pauseForSubmit() {
-        pause(2500);
-    }
+public abstract class MgWebBase extends EssDriverBase {
 
     public static final String                BASE_URL         = "http://www.marketglory.com";
-
     public static final String                BASE_URL_ACCOUNT = BASE_URL + "/account";
-    protected final WebDriver                 driver           = new FirefoxDriver();
 
     protected final List<MgWebDriverListener> listeners        = new ArrayList<MgWebDriverListener>();
 
@@ -69,11 +33,8 @@ public abstract class MgWebBase {
         listeners.add(logger);
     }
 
-    public void close() {
-        driver.quit();
-    }
-
-    public Integer login() {
+    @Override
+    public MgContext login() {
         navigateTo(BASE_URL);
 
         final WebElement last_12h_login = driver.findElement(By.className("last_24h_login"));
@@ -88,7 +49,9 @@ public abstract class MgWebBase {
         character_password.sendKeys(Context.getEssPassword());
         character_name.submit();
 
-        return parseInt(activeUsers);
+        final MgContext context = new MgContext();
+        context.setLoginCount(parseInt(activeUsers));
+        return context;
     }
 
     protected String buildGoodsUrl(final Goods goods, final MgMarket market) {
