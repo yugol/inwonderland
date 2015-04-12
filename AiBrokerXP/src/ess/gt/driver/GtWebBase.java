@@ -6,7 +6,7 @@ import aibroker.Context;
 import ess.common.driver.EssDriverBase;
 import ess.gt.GtContext;
 
-public class GtWebBase extends EssDriverBase {
+public abstract class GtWebBase extends EssDriverBase {
 
     protected static final String BASE_URL         = "http://www.goaltycoon.com/";
 

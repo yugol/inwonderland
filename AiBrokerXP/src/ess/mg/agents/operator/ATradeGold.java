@@ -60,13 +60,14 @@ public class ATradeGold extends Action<TradeResult> {
     @Override
     protected TradeResult execute() {
         final TradeResult result = new TradeResult();
-        final MgContext state = getAgent().getContext();
+        final MgContext context = getAgent().getContext();
 
-        final Double goldPrice = getAgent().getDriver().fetchGoldRonExchangeRate();
-        state.setGoldRonExchangeRate(goldPrice);
+        getAgent().getDriver().fetchGoldRonExchangeRate(context);
+        getAgent().getLogger().logGoldRonRate(context.getGoldRonExchangeRate());
 
+        final Double goldPrice = context.getGoldRonExchangeRate();
         if (goldPrice < getBuyGoldPrice()) {
-            int goldAmount = (int) ((state.getRonAmount() - getMinumumRonAmount()) / goldPrice);
+            int goldAmount = (int) ((context.getRonAmount() - getMinumumRonAmount()) / goldPrice);
             if (goldAmount > 0) {
                 if (!isEnabled()) {
                     goldAmount *= 10;
@@ -74,9 +75,8 @@ public class ATradeGold extends Action<TradeResult> {
                 result.setSuccessful(getAgent().getDriver().buyGoldFromRon(goldAmount));
             }
         }
-
         if (goldPrice > getSellGoldPrice()) {
-            int goldAmount = (int) (state.getGoldAmount() - getMinumumRonAmount());
+            int goldAmount = (int) (context.getGoldAmount() - getMinumumRonAmount());
             if (goldAmount > 0) {
                 if (!isEnabled()) {
                     goldAmount *= 10;

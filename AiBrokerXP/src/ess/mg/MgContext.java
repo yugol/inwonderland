@@ -43,7 +43,7 @@ public class MgContext extends EssContext {
     private double             experience                 = MIN_EXPERIENCE;
     private double             knowledge                  = MIN_KNOWKEDGE;
     // market data
-    private Double             wage;
+    private Double             workWage;
     // player history
     private final Transactions transactions               = new Transactions();
     // server time
@@ -111,16 +111,16 @@ public class MgContext extends EssContext {
         return transactions;
     }
 
-    public Double getWage() {
-        return wage;
-    }
-
     public Price getWorkBonus() {
         return workBonus;
     }
 
     public int getWorkCount() {
         return workCount;
+    }
+
+    public Double getWorkWage() {
+        return workWage;
     }
 
     public void setCheese(final int cheese) {
@@ -181,16 +181,16 @@ public class MgContext extends EssContext {
         serverTime = time;
     }
 
-    public void setWage(final Double wage) {
-        this.wage = wage;
-    }
-
     public void setWorkBonus(final Price workBonus) {
         this.workBonus = workBonus;
     }
 
     public void setWorkCount(final int workCount) {
         this.workCount = workCount;
+    }
+
+    public void setWorkWage(final Double workWage) {
+        this.workWage = workWage;
     }
 
 }

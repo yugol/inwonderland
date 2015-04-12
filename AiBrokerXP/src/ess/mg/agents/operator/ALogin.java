@@ -49,15 +49,24 @@ public class ALogin extends Action<ActionResult> {
 
     @Override
     protected ActionResult execute() {
-        final MgContext state = getAgent().getDriver().login();
-        getAgent().setContext(state);
+        final MgContext context = getAgent().getDriver().login();
+        getAgent().setContext(context);
+        getAgent().getLogger().logActiveUsersCount(context.getActiveUsersCount());
+
         if (readTransactions) {
             readTransactions();
         }
-        state.setWage(getAgent().getDriver().fetchWage());
-        state.setShares(getAgent().getDriver().fetchShares());
-        state.setEuroGoldExchangeRate(getAgent().getDriver().fetchEuroGoldExchangeRate());
-        getAgent().getDriver().fetchGlobalContext(state);
+
+        getAgent().getDriver().fetchWage(context);
+        getAgent().getLogger().logWorkWage(context.getWorkWage());
+
+        getAgent().getDriver().fetchShares(context);
+        getAgent().getLogger().logShares(context.getShares());
+
+        getAgent().getDriver().fetchEuroGoldExchangeRate(context);
+        getAgent().getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
+
+        getAgent().getDriver().fetchPlayerContext(context);
 
         final ActionResult result = new ActionResult();
         result.setSuccessful(true);

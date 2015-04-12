@@ -10,18 +10,18 @@ public class MgWebManager extends MgWebTrader {
         navigateTo(BASE_URL_ACCOUNT + "/managecompany/" + companyUrl + "/jobs");
 
         boolean activated = false;
-        final List<WebElement> inputText = driver.findElements(By.cssSelector("input[type=\"text\"]"));
+        final List<WebElement> inputText = driver.findElements(By.cssSelector("input[type='text']"));
         final WebElement salary = inputText.get(3 + index);
         salary.sendKeys("\b\b\b\b\b\b\b\b\b\b");
         salary.sendKeys(String.valueOf(hourlyWage));
 
-        List<WebElement> inputSubmit = driver.findElements(By.cssSelector("input[type=\"submit\"]"));
+        List<WebElement> inputSubmit = driver.findElements(By.cssSelector("input[type='submit']"));
         final WebElement btnSave = inputSubmit.get(2);
         // System.out.println(btnSave.getAttribute("value"));
         btnSave.click();
         pauseForSubmit();
 
-        inputSubmit = driver.findElements(By.cssSelector("input[type=\"submit\"]"));
+        inputSubmit = driver.findElements(By.cssSelector("input[type='submit']"));
         final WebElement btnActivate = inputSubmit.get(3);
         final String value = btnActivate.getAttribute("value");
         if (value.contains("A")) {

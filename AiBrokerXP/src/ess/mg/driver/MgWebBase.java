@@ -1,46 +1,35 @@
 package ess.mg.driver;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import aibroker.Context;
 import ess.common.driver.EssDriverBase;
 import ess.mg.MgContext;
-import ess.mg.MgLogger;
 import ess.mg.MgMarket;
 import ess.mg.goods.Goods;
 import ess.mg.goods.Gradable;
 
 public abstract class MgWebBase extends EssDriverBase {
 
-    protected static final String             BASE_URL         = "http://www.marketglory.com";
-    protected static final String             BASE_URL_ACCOUNT = BASE_URL + "/account";
-
-    protected final List<MgWebDriverListener> listeners        = new ArrayList<MgWebDriverListener>();
-
-    public void addRecordLogger(final MgLogger logger) {
-        listeners.add(logger);
-    }
+    protected static final String BASE_URL         = "http://www.marketglory.com";
+    protected static final String BASE_URL_ACCOUNT = BASE_URL + "/account";
 
     @Override
     public MgContext login() {
+        final MgContext context = new MgContext();
         navigateTo(BASE_URL);
 
-        final WebElement last_12h_login = driver.findElement(By.className("last_24h_login"));
+        final WebElement last_12h_login = driver.findElement(By.cssSelector("div[class='last_24h_login']"));
         final String activeUsers = last_12h_login.getText();
-        for (final MgWebDriverListener listener : listeners) {
-            listener.onFetchActiveUsers(activeUsers);
-        }
+        context.setActiveUsersCount(parseInt(normalizeNumberString(activeUsers)));
 
         final WebElement character_name = driver.findElement(By.name("character_name"));
         character_name.sendKeys(Context.getEssUser());
         final WebElement character_password = driver.findElement(By.name("character_password"));
         character_password.sendKeys(Context.getEssPassword());
         character_name.submit();
+        pauseForSubmit();
 
-        final MgContext context = new MgContext();
-        context.setActiveUsersCount(parseInt(activeUsers));
         return context;
     }
 

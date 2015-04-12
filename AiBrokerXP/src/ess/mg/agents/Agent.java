@@ -1,6 +1,7 @@
 package ess.mg.agents;
 
 import ess.mg.MgContext;
+import ess.mg.MgLogger;
 import ess.mg.actions.Action;
 import ess.mg.driver.MgWebDriver;
 
@@ -8,6 +9,7 @@ public abstract class Agent implements Runnable {
 
     private MgWebDriver driver;
     private MgContext   context;
+    private MgLogger    logger;
     private long        waitTime = 0;
 
     public Agent() {
@@ -19,6 +21,10 @@ public abstract class Agent implements Runnable {
 
     public MgWebDriver getDriver() {
         return driver;
+    }
+
+    public MgLogger getLogger() {
+        return logger;
     }
 
     public long getWaitTime() {
@@ -59,9 +65,10 @@ public abstract class Agent implements Runnable {
         driver = null;
     }
 
-    protected void initDriver() {
+    private void initDriver() {
         close();
         driver = new MgWebDriver();
+        logger = new MgLogger();
     }
 
 }

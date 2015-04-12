@@ -12,7 +12,7 @@ public class AWork extends Action<WorkResult> {
 
     @Override
     protected WorkResult execute() {
-        return getAgent().getDriver().work(null);
+        return getAgent().getDriver().work(getAgent().getContext(), null);
     }
 
 }

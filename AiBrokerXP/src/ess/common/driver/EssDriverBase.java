@@ -67,6 +67,12 @@ public abstract class EssDriverBase {
         driver.quit();
     }
 
+    public abstract void fetchEuroGoldExchangeRate(final EssContext context);
+
+    public abstract void fetchGoldRonExchangeRate(final EssContext context);
+
+    public abstract void fetchShares(final EssContext context);
+
     public abstract EssContext login();
 
     protected void navigateTo(final String url) {

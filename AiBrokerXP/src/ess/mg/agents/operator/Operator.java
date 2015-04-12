@@ -6,7 +6,6 @@ import java.util.Calendar;
 import javax.swing.Timer;
 import aibroker.util.Moment;
 import ess.mg.MgContext;
-import ess.mg.MgLogger;
 import ess.mg.actions.FightResult;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.actions.WorkResult;
@@ -121,13 +120,6 @@ public class Operator extends Agent {
                 }
             }
         }
-
-    }
-
-    @Override
-    protected void initDriver() {
-        super.initDriver();
-        getDriver().addRecordLogger(new MgLogger());
     }
 
 }
