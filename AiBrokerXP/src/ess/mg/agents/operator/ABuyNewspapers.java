@@ -1,17 +1,17 @@
 package ess.mg.agents.operator;
 
 import ess.common.Price;
+import ess.common.actions.Action;
 import ess.common.actions.ActionResult;
-import ess.mg.actions.Action;
 import ess.mg.actions.PurchaseResult;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 
-public class ABuyNewspapers extends Action<ActionResult> {
+public class ABuyNewspapers extends Action<MgAgent, ActionResult> {
 
     private int    papersLeftToBuy       = 0;
     private double referenceMaximumPrice = 0.051;
 
-    public ABuyNewspapers(final Agent agent) {
+    public ABuyNewspapers(final MgAgent agent) {
         super(agent);
     }
 

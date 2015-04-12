@@ -9,27 +9,29 @@ import ess.mg.MgContext;
 import ess.mg.actions.FightResult;
 import ess.mg.actions.PurchaseResult;
 import ess.mg.actions.WorkResult;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
 import ess.mg.goods.food.Dairy;
 import ess.mg.goods.food.Wine;
 
-public class Operator extends Agent {
+public class Operator extends MgAgent {
 
     public static void main(final String... args) {
+        final Operator operator = new Operator();
         final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
             @Override
             public void actionPerformed(final ActionEvent e) {
+                operator.stop();
                 System.exit(1);
             }
 
         });
         timer.setRepeats(false);
         timer.start();
-        new Operator().start();
+        operator.start();
     }
 
     private static final int     LIFE_TIME           = 12 * 60 * 1000;

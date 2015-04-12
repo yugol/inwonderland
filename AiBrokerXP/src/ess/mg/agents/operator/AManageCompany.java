@@ -1,15 +1,15 @@
 package ess.mg.agents.operator;
 
+import ess.common.actions.Action;
 import ess.common.actions.ActionResult;
-import ess.mg.actions.Action;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 
-public class AManageCompany extends Action<ActionResult> {
+public class AManageCompany extends Action<MgAgent, ActionResult> {
 
     private String companyUrl;
     private double maxHourlyWage;
 
-    public AManageCompany(final Agent performer) {
+    public AManageCompany(final MgAgent performer) {
         super(performer);
     }
 

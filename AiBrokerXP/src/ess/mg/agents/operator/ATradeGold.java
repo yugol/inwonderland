@@ -1,11 +1,11 @@
 package ess.mg.agents.operator;
 
+import ess.common.actions.Action;
 import ess.common.actions.TradeResult;
 import ess.mg.MgContext;
-import ess.mg.actions.Action;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 
-public class ATradeGold extends Action<TradeResult> {
+public class ATradeGold extends Action<MgAgent, TradeResult> {
 
     private double  buyGoldPrice      = 0;
     private double  sellGoldPrice     = Double.MAX_VALUE;
@@ -13,7 +13,7 @@ public class ATradeGold extends Action<TradeResult> {
     private double  minumumGoldAmount = 0;
     private boolean enabled           = false;
 
-    public ATradeGold(final Agent performer) {
+    public ATradeGold(final MgAgent performer) {
         super(performer);
     }
 

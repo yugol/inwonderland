@@ -1,19 +1,19 @@
 package ess.mg.agents.operator;
 
 import aibroker.util.Moment;
+import ess.common.actions.Action;
 import ess.common.actions.ActionResult;
 import ess.mg.MgContext;
-import ess.mg.actions.Action;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 import ess.mg.driver.model.Transaction;
 import ess.mg.driver.model.Transactions;
 
-public class ALogin extends Action<ActionResult> {
+public class ALogin extends Action<MgAgent, ActionResult> {
 
     private Moment  epoch;
     private boolean readTransactions;
 
-    public ALogin(final Agent performer) {
+    public ALogin(final MgAgent performer) {
         super(performer);
     }
 

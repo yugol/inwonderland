@@ -1,12 +1,12 @@
 package ess.mg.agents.operator;
 
-import ess.mg.actions.Action;
+import ess.common.actions.Action;
 import ess.mg.actions.FightResult;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 
-public class AFight extends Action<FightResult> {
+public class AFight extends Action<MgAgent, FightResult> {
 
-    public AFight(final Agent performer) {
+    public AFight(final MgAgent performer) {
         super(performer);
     }
 

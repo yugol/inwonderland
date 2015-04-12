@@ -1,26 +1,26 @@
-package ess.mg.actions;
+package ess.common.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import ess.mg.agents.Agent;
+import ess.common.agents.EssAgent;
 
-public abstract class Action<RESULT> {
+public abstract class Action<AGENT extends EssAgent, RESULT extends ActionResult> {
 
-    private final Agent agent;
-    private final int   timeout;
+    private final AGENT agent;
     private RESULT      result;
+    private final int   timeout;
 
-    public Action(final Agent performer) {
-        this(performer, 0);
+    public Action(final AGENT agent) {
+        this(agent, 0);
     }
 
-    public Action(final Agent performer, final int timeout) {
-        this.agent = performer;
+    public Action(final AGENT agent, final int timeout) {
+        this.agent = agent;
         this.timeout = timeout;
     }
 
-    public Agent getAgent() {
+    public AGENT getAgent() {
         return agent;
     }
 

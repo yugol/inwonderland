@@ -1,12 +1,12 @@
 package ess.mg.agents.operator;
 
-import ess.mg.actions.Action;
+import ess.common.actions.Action;
 import ess.mg.actions.WorkResult;
-import ess.mg.agents.Agent;
+import ess.mg.agents.MgAgent;
 
-public class AWork extends Action<WorkResult> {
+public class AWork extends Action<MgAgent, WorkResult> {
 
-    public AWork(final Agent performer) {
+    public AWork(final MgAgent performer) {
         super(performer);
     }
 

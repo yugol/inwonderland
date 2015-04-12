@@ -1,29 +1,26 @@
-package ess.mg.agents;
+package ess.common.agents;
 
-import ess.mg.MgContext;
-import ess.mg.MgLogger;
-import ess.mg.actions.Action;
-import ess.mg.driver.MgWebDriver;
+import ess.common.EssContext;
+import ess.common.EssLogger;
+import ess.common.actions.Action;
+import ess.common.driver.EssDriverBase;
 
-public abstract class Agent implements Runnable {
+public abstract class EssAgent implements Runnable {
 
-    private MgWebDriver driver;
-    private MgContext   context;
-    private MgLogger    logger;
-    private long        waitTime = 0;
+    private EssDriverBase driver;
+    private EssContext    context;
+    private EssLogger     logger;
+    private long          waitTime = 0;
 
-    public Agent() {
-    }
-
-    public MgContext getContext() {
+    public EssContext getContext() {
         return context;
     }
 
-    public MgWebDriver getDriver() {
+    public EssDriverBase getDriver() {
         return driver;
     }
 
-    public MgLogger getLogger() {
+    public EssLogger getLogger() {
         return logger;
     }
 
@@ -31,12 +28,12 @@ public abstract class Agent implements Runnable {
         return waitTime;
     }
 
-    public void onActionTimeout(final Action<?> action) {
+    public void onActionTimeout(final Action<?, ?> action) {
         waitTime = 0;
         close();
     }
 
-    public void setContext(final MgContext context) {
+    public void setContext(final EssContext context) {
         this.context = context;
     }
 
@@ -58,6 +55,10 @@ public abstract class Agent implements Runnable {
         close();
     }
 
+    public void stop() {
+        close();
+    }
+
     private void close() {
         if (driver != null) {
             driver.close();
@@ -67,8 +68,12 @@ public abstract class Agent implements Runnable {
 
     private void initDriver() {
         close();
-        driver = new MgWebDriver();
-        logger = new MgLogger();
+        driver = newDriver();
+        logger = newLogger();
     }
+
+    protected abstract EssDriverBase newDriver();
+
+    protected abstract EssLogger newLogger();
 
 }
