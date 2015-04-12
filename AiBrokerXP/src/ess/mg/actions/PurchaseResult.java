@@ -1,6 +1,7 @@
 package ess.mg.actions;
 
 import ess.common.Price;
+import ess.common.actions.ActionResult;
 
 public class PurchaseResult extends ActionResult {
 

@@ -1,7 +1,7 @@
 package ess.mg.agents.operator;
 
+import ess.common.actions.ActionResult;
 import ess.mg.actions.Action;
-import ess.mg.actions.ActionResult;
 import ess.mg.agents.Agent;
 
 public class AManageCompany extends Action<ActionResult> {

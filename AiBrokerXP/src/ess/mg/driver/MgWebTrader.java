@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-public class MgWebTrader extends MgWebShopper {
+public abstract class MgWebTrader extends MgWebShopper {
 
     public boolean buyGoldFromRon(final int goldAmount) {
         final WebElement amount_buy = driver.findElement(By.name("amount_buy"));

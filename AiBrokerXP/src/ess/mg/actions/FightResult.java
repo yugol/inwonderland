@@ -1,5 +1,7 @@
 package ess.mg.actions;
 
+import ess.common.actions.ActionResult;
+
 public class FightResult extends ActionResult {
 
     private boolean maxFightCountReached = false;

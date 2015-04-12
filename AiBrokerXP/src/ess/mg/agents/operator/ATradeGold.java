@@ -1,8 +1,8 @@
 package ess.mg.agents.operator;
 
+import ess.common.actions.TradeResult;
 import ess.mg.MgContext;
 import ess.mg.actions.Action;
-import ess.mg.actions.TradeResult;
 import ess.mg.agents.Agent;
 
 public class ATradeGold extends Action<TradeResult> {

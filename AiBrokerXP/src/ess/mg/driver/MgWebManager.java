@@ -4,7 +4,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class MgWebManager extends MgWebTrader {
+public abstract class MgWebManager extends MgWebTrader {
 
     public boolean activateJob(final String companyUrl, final int index, final double hourlyWage) {
         navigateTo(BASE_URL_ACCOUNT + "/managecompany/" + companyUrl + "/jobs");

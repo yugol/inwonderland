@@ -1,5 +1,4 @@
-package ess.mg.actions;
-
+package ess.common.actions;
 
 public class TradeResult extends ActionResult {
 
