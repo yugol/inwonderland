@@ -34,11 +34,11 @@ public class Operator extends GtAgent {
         getDriver().fetchShares(context);
         getLogger().logShares(context.getShares());
 
-        getDriver().fetchGoldRonExchangeRate(context);
-        getLogger().logGoldRonRate(context.getGoldRonExchangeRate());
-
         getDriver().fetchEuroGoldExchangeRate(context);
         getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
+
+        getDriver().fetchGoldRonExchangeRate(context);
+        getLogger().logGoldRonRate(context.getGoldRonExchangeRate());
     }
 
 }

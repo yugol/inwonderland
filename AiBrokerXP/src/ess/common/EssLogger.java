@@ -6,17 +6,17 @@ import ess.common.driver.model.Shares;
 
 public abstract class EssLogger {
 
-    private static final String SEPARATOR = ";";
+    public static final String SEPARATOR = ";";
 
-    private final Logger        logger;
-    private final Moment        moment    = Moment.getNow();
+    private final Logger       logger;
+    private final Moment       moment    = Moment.getNow();
 
     protected EssLogger(final Logger logger) {
         this.logger = logger;
     }
 
     public void log(final String message) {
-        logger.info(moment.toIsoDatetime() + SEPARATOR + message);
+        logger.info(message);
     }
 
     public abstract void logActiveUsersCount(final Integer value);
@@ -38,7 +38,7 @@ public abstract class EssLogger {
     }
 
     protected void log(final String series, final Object message) {
-        log(series + SEPARATOR + String.valueOf(message));
+        log(moment.toIsoDatetime() + SEPARATOR + series + SEPARATOR + String.valueOf(message));
     }
 
 }

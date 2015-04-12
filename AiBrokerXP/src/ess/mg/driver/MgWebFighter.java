@@ -41,11 +41,13 @@ public abstract class MgWebFighter extends MgWebReader {
 
         final FightResult result = checkFightCount(new FightResult());
         if (!result.isMaxFightCountReached()) {
-            final List<WebElement> navigation = driver.findElement(By.className("nd_pagination")).findElements(By.tagName("a"));
-            final WebElement last = navigation.get(navigation.size() - 1);
-            last.click();
-            pauseForRead();
-
+            try {
+                final List<WebElement> navigation = driver.findElement(By.className("nd_pagination")).findElements(By.tagName("a"));
+                final WebElement last = navigation.get(navigation.size() - 1);
+                last.click();
+                pauseForRead();
+            } catch (final NoSuchElementException ex) {
+            }
             try {
                 final List<WebElement> buttonsFight = driver.findElements(By.className("buttonFight"));
                 final WebElement buttonFight = buttonsFight.get(buttonsFight.size() - 1);
@@ -70,7 +72,7 @@ public abstract class MgWebFighter extends MgWebReader {
 
     private void attackReferral(final FightResult result) {
         final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
-        //System.out.println(nd_submit_big.getAttribute("value"));
+        // System.out.println(nd_submit_big.getAttribute("value"));
         nd_submit_big.click();
         pauseForSubmit();
 
