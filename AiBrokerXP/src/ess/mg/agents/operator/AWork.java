@@ -1,8 +1,8 @@
 package ess.mg.agents.operator;
 
 import ess.common.actions.Action;
-import ess.mg.actions.WorkResult;
 import ess.mg.agents.MgAgent;
+import ess.mg.agents.dto.WorkResult;
 
 public class AWork extends Action<MgAgent, WorkResult> {
 

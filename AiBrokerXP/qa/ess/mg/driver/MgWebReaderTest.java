@@ -1,6 +1,6 @@
 package ess.mg.driver;
 
-import ess.mg.driver.model.Transactions;
+import ess.mg.driver.dto.Transactions;
 
 public class MgWebReaderTest {
 

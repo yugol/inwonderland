@@ -1,4 +1,4 @@
-package ess.mg.actions;
+package ess.mg.agents.dto;
 
 import ess.common.actions.ActionResult;
 

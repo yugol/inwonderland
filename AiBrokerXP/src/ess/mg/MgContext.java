@@ -3,7 +3,7 @@ package ess.mg;
 import aibroker.util.Moment;
 import ess.common.EssContext;
 import ess.common.Price;
-import ess.mg.driver.model.Transactions;
+import ess.mg.driver.dto.Transactions;
 import ess.mg.goods.Quality;
 
 public class MgContext extends EssContext {

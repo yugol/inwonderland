@@ -3,8 +3,8 @@ package ess.mg.agents.operator;
 import ess.common.Price;
 import ess.common.actions.Action;
 import ess.common.actions.ActionResult;
-import ess.mg.actions.PurchaseResult;
 import ess.mg.agents.MgAgent;
+import ess.mg.agents.dto.PurchaseResult;
 
 public class ABuyNewspapers extends Action<MgAgent, ActionResult> {
 

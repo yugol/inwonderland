@@ -5,8 +5,8 @@ import ess.common.actions.Action;
 import ess.common.actions.ActionResult;
 import ess.mg.MgContext;
 import ess.mg.agents.MgAgent;
-import ess.mg.driver.model.Transaction;
-import ess.mg.driver.model.Transactions;
+import ess.mg.driver.dto.Transaction;
+import ess.mg.driver.dto.Transactions;
 
 public class ALogin extends Action<MgAgent, ActionResult> {
 

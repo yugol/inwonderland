@@ -4,7 +4,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import ess.mg.actions.FightResult;
+import ess.mg.agents.dto.FightResult;
 
 public abstract class MgWebFighter extends MgWebReader {
 

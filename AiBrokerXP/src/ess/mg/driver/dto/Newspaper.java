@@ -1,4 +1,4 @@
-package ess.mg.driver.model;
+package ess.mg.driver.dto;
 
 
 public class Newspaper {

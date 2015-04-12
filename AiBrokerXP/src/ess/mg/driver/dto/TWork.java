@@ -1,4 +1,4 @@
-package ess.mg.driver.model;
+package ess.mg.driver.dto;
 
 import aibroker.util.Moment;
 import ess.common.Price;

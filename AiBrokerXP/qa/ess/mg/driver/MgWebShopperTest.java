@@ -1,7 +1,7 @@
 package ess.mg.driver;
 
 import ess.common.Price;
-import ess.mg.actions.PurchaseResult;
+import ess.mg.agents.dto.PurchaseResult;
 
 public class MgWebShopperTest {
 

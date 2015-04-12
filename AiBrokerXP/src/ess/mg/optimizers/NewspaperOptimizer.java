@@ -11,7 +11,7 @@ import java.util.Set;
 import javax.swing.Timer;
 import ess.mg.driver.MgWebDriver;
 import ess.mg.driver.MgWebReader;
-import ess.mg.driver.model.Newspaper;
+import ess.mg.driver.dto.Newspaper;
 
 public class NewspaperOptimizer {
 

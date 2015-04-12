@@ -2,8 +2,8 @@ package ess.mg.agents.operator;
 
 import ess.common.actions.Action;
 import ess.mg.MgMarket;
-import ess.mg.actions.PurchaseResult;
 import ess.mg.agents.MgAgent;
+import ess.mg.agents.dto.PurchaseResult;
 import ess.mg.goods.Goods;
 
 public class ABuyGoods extends Action<MgAgent, PurchaseResult> {

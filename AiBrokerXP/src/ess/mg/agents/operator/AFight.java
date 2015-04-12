@@ -1,8 +1,8 @@
 package ess.mg.agents.operator;
 
 import ess.common.actions.Action;
-import ess.mg.actions.FightResult;
 import ess.mg.agents.MgAgent;
+import ess.mg.agents.dto.FightResult;
 
 public class AFight extends Action<MgAgent, FightResult> {
 
