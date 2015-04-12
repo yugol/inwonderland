@@ -4,27 +4,37 @@ import ess.common.driver.model.Shares;
 
 public abstract class EssContext {
 
-    private int    activeUsersCount;
+    private Integer activeUsersCount;
 
-    private Shares shares;
+    private Shares  shares;
+    private Double  euroGoldExchangeRate;
+    private Double  goldRonExchangeRate;
 
-    private double euroAmount = 0;
-    private double goldAmount = 0;
-    private double ronAmount  = 0;
+    private Double  euroAmount;
+    private Double  goldAmount;
+    private Double  ronAmount;
 
-    public int getActiveUsersCount() {
+    public Integer getActiveUsersCount() {
         return activeUsersCount;
     }
 
-    public double getEuroAmount() {
+    public Double getEuroAmount() {
         return euroAmount;
     }
 
-    public double getGoldAmount() {
+    public Double getEuroGoldExchangeRate() {
+        return euroGoldExchangeRate;
+    }
+
+    public Double getGoldAmount() {
         return goldAmount;
     }
 
-    public double getRonAmount() {
+    public Double getGoldRonExchangeRate() {
+        return goldRonExchangeRate;
+    }
+
+    public Double getRonAmount() {
         return ronAmount;
     }
 
@@ -32,19 +42,27 @@ public abstract class EssContext {
         return shares;
     }
 
-    public void setActiveUsersCount(final int activeUsersCount) {
+    public void setActiveUsersCount(final Integer activeUsersCount) {
         this.activeUsersCount = activeUsersCount;
     }
 
-    public void setEuroAmount(final double euroAmount) {
+    public void setEuroAmount(final Double euroAmount) {
         this.euroAmount = euroAmount;
     }
 
-    public void setGoldAmount(final double goldAmount) {
+    public void setEuroGoldExchangeRate(final Double euroGoldExchangeRate) {
+        this.euroGoldExchangeRate = euroGoldExchangeRate;
+    }
+
+    public void setGoldAmount(final Double goldAmount) {
         this.goldAmount = goldAmount;
     }
 
-    public void setRonAmount(final double ronAmount) {
+    public void setGoldRonExchangeRate(final Double goldRonExchangeRate) {
+        this.goldRonExchangeRate = goldRonExchangeRate;
+    }
+
+    public void setRonAmount(final Double ronAmount) {
         this.ronAmount = ronAmount;
     }
 

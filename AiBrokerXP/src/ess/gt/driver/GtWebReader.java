@@ -8,7 +8,25 @@ import ess.gt.GtContext;
 
 public class GtWebReader extends GtWebBase {
 
+    public void fetchEuroGoldExchangeRate(final GtContext context) {
+        navigateTo(BASE_URL_ACCOUNT + "/financial/euro2gold");
+
+        final WebElement _mr_buy_center = driver.findElement(By.cssSelector("span[class=\"_mr_buy_center\"]"));
+        final String rate = _mr_buy_center.getText();
+        context.setEuroGoldExchangeRate(parseDouble(normalizeNumberString(rate)));
+    }
+
+    public void fetchGoldRonExchangeRate(final GtContext context) {
+        navigateTo(BASE_URL_ACCOUNT + "/financial/gold2local");
+
+        final WebElement _mr_buy_center = driver.findElement(By.cssSelector("span[class=\"_mr_buy_center\"]"));
+        final String rate = _mr_buy_center.getText();
+        context.setGoldRonExchangeRate(parseDouble(normalizeNumberString(rate)));
+    }
+
     public void fetchPlayerContext(final GtContext context) {
+        navigateTo(BASE_URL_ACCOUNT);
+
         final WebElement mr_right_coins = driver.findElement(By.id("mr_right_coins"));
         final List<WebElement> fortune = mr_right_coins.findElements(By.cssSelector("span[class=\"right\"]"));
         context.setEuroAmount(parseDouble(fortune.get(0).getText()));

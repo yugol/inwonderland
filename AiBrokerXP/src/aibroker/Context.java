@@ -200,10 +200,8 @@ public final class Context extends Properties {
 
     public static final String   APPLICATION_NAME              = "AiBrokerXP";
 
-    private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
-    private static final String  ESS_MG_LOG_FILE_NAME          = "mg.log";
-
     private static final String  PROPERTIES_FILE_PATH_KEY      = "properties.file.path";
+    private static final String  PROPERTIES_FILE_NAME          = "aibroker.properties";
 
     private static final String  FOLDER_BACKUP_KEY             = "folder.backup";
     private static final String  FOLDER_EXPORT_KEY             = "folder.export";
@@ -222,6 +220,8 @@ public final class Context extends Properties {
     private static final String  ESS_USER_KEY                  = "ess.user";
     private static final String  ESS_PASSWORD_KEY              = "ess.password";
     private static final String  ESS_MG_LOG_FOLDER_KEY         = "ess.mg.log.folder";
+    private static final String  ESS_GT_LOG_FILE_NAME          = "gt.log";
+    private static final String  ESS_MG_LOG_FILE_NAME          = "mg.log";
 
     public static final int      FIRST_YEAR                    = 2000;
     public static final int      LAST_YEAR                     = 2016;
@@ -253,7 +253,8 @@ public final class Context extends Properties {
         }
         props.setProperty("log4j.appender.fileAppender.File", getLogFolderPath() + "/HistoricMarketTest.log");
         props.setProperty("log4j.appender.quotesAppender.File", getSibexLogFilePath());
-        props.setProperty("log4j.appender.essFileAppender.File", getEssLogFolderPath() + "/" + ESS_MG_LOG_FILE_NAME);
+        props.setProperty("log4j.appender.essMgFileAppender.File", getEssLogFolderPath() + "/" + ESS_MG_LOG_FILE_NAME);
+        props.setProperty("log4j.appender.essGtFileAppender.File", getEssLogFolderPath() + "/" + ESS_GT_LOG_FILE_NAME);
         LogManager.resetConfiguration();
         PropertyConfigurator.configure(props);
     }

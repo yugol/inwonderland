@@ -44,9 +44,6 @@ public class MgContext extends EssContext {
     private double             knowledge                  = MIN_KNOWKEDGE;
     // market data
     private Double             wage;
-    private Double             euroGoldExchangeRate;
-    private Double             goldRonExchangeRate;
-
     // player history
     private final Transactions transactions               = new Transactions();
     // server time
@@ -82,10 +79,6 @@ public class MgContext extends EssContext {
         return energy;
     }
 
-    public Double getEuroGoldExchangeRate() {
-        return euroGoldExchangeRate;
-    }
-
     public double getExperience() {
         return experience;
     }
@@ -100,10 +93,6 @@ public class MgContext extends EssContext {
 
     public int getFightRemainingMinutes() {
         return fightRemainingMinutes;
-    }
-
-    public Double getGoldRonExchangeRate() {
-        return goldRonExchangeRate;
     }
 
     public double getKnowledge() {
@@ -156,10 +145,6 @@ public class MgContext extends EssContext {
         }
     }
 
-    public void setEuroGoldExchangeRate(final Double euroGoldExchangeRate) {
-        this.euroGoldExchangeRate = euroGoldExchangeRate;
-    }
-
     public void setExperience(final double experience) {
         this.experience = experience;
         if (this.experience < MgContext.MIN_EXPERIENCE) {
@@ -180,10 +165,6 @@ public class MgContext extends EssContext {
 
     public void setFightRemainingMinutes(final int minutes) {
         fightRemainingMinutes = minutes;
-    }
-
-    public void setGoldRonExchangeRate(final Double goldRonExchangeRate) {
-        this.goldRonExchangeRate = goldRonExchangeRate;
     }
 
     public void setKnowledge(final double knowledge) {

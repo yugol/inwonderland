@@ -28,8 +28,6 @@ public class GtWebBase extends EssDriverBase {
         character_name.submit();
         pauseForSubmit();
 
-        navigateTo(BASE_URL_ACCOUNT);
-
         return context;
     }
 
