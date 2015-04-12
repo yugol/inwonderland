@@ -1,4 +1,4 @@
-package ess.mg.driver.model;
+package ess.common.driver.model;
 
 public class Shares {
 
@@ -22,6 +22,11 @@ public class Shares {
 
     public Double getSharePrice() {
         return sharePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Shares [sharePrice=" + sharePrice + ", eurAmount=" + eurAmount + ", goldAmount=" + goldAmount + "]";
     }
 
 }

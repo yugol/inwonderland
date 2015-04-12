@@ -1,7 +1,10 @@
 package ess.common.driver;
 
+import java.awt.Rectangle;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import aibroker.Context;
 import ess.common.EssContext;
 
 public abstract class EssDriverBase {
@@ -12,6 +15,16 @@ public abstract class EssDriverBase {
         } catch (final InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    protected static String normalizeNumberString(String number) {
+        try {
+            number = number.trim();
+            number = number.split(" ")[0];
+            number = number.replace(",", ".");
+        } catch (final Exception e) {
+        }
+        return number;
     }
 
     protected static Double parseDouble(final String doubleValue) {
@@ -42,10 +55,24 @@ public abstract class EssDriverBase {
 
     protected final WebDriver driver = new FirefoxDriver();
 
+    public EssDriverBase() {
+        final Rectangle bounds = Context.getBrowserWindowBounds();
+        if (bounds != null) {
+            driver.manage().window().setPosition(new Point(bounds.x, bounds.y));
+            driver.manage().window().setSize(new org.openqa.selenium.Dimension(bounds.width, bounds.height));
+        }
+    }
+
     public void close() {
         driver.quit();
     }
 
     public abstract EssContext login();
+
+    protected void navigateTo(final String url) {
+        System.out.println("Navigating to: " + url);
+        driver.navigate().to(url);
+        pauseForRead();
+    }
 
 }

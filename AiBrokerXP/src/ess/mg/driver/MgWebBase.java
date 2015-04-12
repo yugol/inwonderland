@@ -1,10 +1,8 @@
 package ess.mg.driver;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import aibroker.Context;
 import ess.common.driver.EssDriverBase;
@@ -16,18 +14,10 @@ import ess.mg.goods.Gradable;
 
 public abstract class MgWebBase extends EssDriverBase {
 
-    public static final String                BASE_URL         = "http://www.marketglory.com";
-    public static final String                BASE_URL_ACCOUNT = BASE_URL + "/account";
+    protected static final String             BASE_URL         = "http://www.marketglory.com";
+    protected static final String             BASE_URL_ACCOUNT = BASE_URL + "/account";
 
     protected final List<MgWebDriverListener> listeners        = new ArrayList<MgWebDriverListener>();
-
-    public MgWebBase() {
-        final Rectangle bounds = Context.getBrowserWindowBounds();
-        if (bounds != null) {
-            driver.manage().window().setPosition(new Point(bounds.x, bounds.y));
-            driver.manage().window().setSize(new org.openqa.selenium.Dimension(bounds.width, bounds.height));
-        }
-    }
 
     public void addRecordLogger(final MgLogger logger) {
         listeners.add(logger);
@@ -50,7 +40,7 @@ public abstract class MgWebBase extends EssDriverBase {
         character_name.submit();
 
         final MgContext context = new MgContext();
-        context.setLoginCount(parseInt(activeUsers));
+        context.setActiveUsersCount(parseInt(activeUsers));
         return context;
     }
 
@@ -63,12 +53,6 @@ public abstract class MgWebBase extends EssDriverBase {
             url.append("/q").append(((Gradable) goods).getQuality().stars);
         }
         return url.toString();
-    }
-
-    protected void navigateTo(final String url) {
-        System.out.println("Navigating to: " + url);
-        driver.navigate().to(url);
-        pauseForRead();
     }
 
 }

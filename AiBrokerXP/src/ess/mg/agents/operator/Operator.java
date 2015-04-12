@@ -40,7 +40,7 @@ public class Operator extends Agent {
     private static final double  MIN_RON_AMOUNT      = 10;
     private static final double  MIN_GOLD_AMOUNT     = 1;
 
-    private static final boolean MANAGE_COMPANIES              = false;
+    private static final boolean MANAGE_COMPANIES    = false;
     private static final double  MAX_HOURLY_WAGE     = 3;
 
     private static final Moment  ACTIVITY_TIME       = Moment.fromIso("03:00:00");

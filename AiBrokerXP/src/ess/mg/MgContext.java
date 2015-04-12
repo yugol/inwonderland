@@ -3,7 +3,6 @@ package ess.mg;
 import aibroker.util.Moment;
 import ess.common.EssContext;
 import ess.common.Price;
-import ess.mg.driver.model.Shares;
 import ess.mg.driver.model.Transactions;
 import ess.mg.goods.Quality;
 
@@ -43,14 +42,11 @@ public class MgContext extends EssContext {
     private double             energy                     = MIN_ENERGY;
     private double             experience                 = MIN_EXPERIENCE;
     private double             knowledge                  = MIN_KNOWKEDGE;
-    private double             euroAmount                 = 0;
-    private double             goldAmount                 = 0;
-    private double             ronAmount                  = 0;
     // market data
     private Double             wage;
     private Double             euroGoldExchangeRate;
     private Double             goldRonExchangeRate;
-    private Shares             shares;
+
     // player history
     private final Transactions transactions               = new Transactions();
     // server time
@@ -86,10 +82,6 @@ public class MgContext extends EssContext {
         return energy;
     }
 
-    public double getEuroAmount() {
-        return euroAmount;
-    }
-
     public Double getEuroGoldExchangeRate() {
         return euroGoldExchangeRate;
     }
@@ -110,10 +102,6 @@ public class MgContext extends EssContext {
         return fightRemainingMinutes;
     }
 
-    public double getGoldAmount() {
-        return goldAmount;
-    }
-
     public Double getGoldRonExchangeRate() {
         return goldRonExchangeRate;
     }
@@ -126,16 +114,8 @@ public class MgContext extends EssContext {
         return (getEnergy() + getExperience() + getKnowledge()) / 3;
     }
 
-    public double getRonAmount() {
-        return ronAmount;
-    }
-
     public Moment getServerTime() {
         return serverTime;
-    }
-
-    public Shares getShares() {
-        return shares;
     }
 
     public Transactions getTransactions() {
@@ -176,10 +156,6 @@ public class MgContext extends EssContext {
         }
     }
 
-    public void setEuroAmount(final double euroAmount) {
-        this.euroAmount = euroAmount;
-    }
-
     public void setEuroGoldExchangeRate(final Double euroGoldExchangeRate) {
         this.euroGoldExchangeRate = euroGoldExchangeRate;
     }
@@ -206,10 +182,6 @@ public class MgContext extends EssContext {
         fightRemainingMinutes = minutes;
     }
 
-    public void setGoldAmount(final double goldAmount) {
-        this.goldAmount = goldAmount;
-    }
-
     public void setGoldRonExchangeRate(final Double goldRonExchangeRate) {
         this.goldRonExchangeRate = goldRonExchangeRate;
     }
@@ -224,16 +196,8 @@ public class MgContext extends EssContext {
         }
     }
 
-    public void setRonAmount(final double ronAmount) {
-        this.ronAmount = ronAmount;
-    }
-
     public void setServerTime(final Moment time) {
         serverTime = time;
-    }
-
-    public void setShares(final Shares shares) {
-        this.shares = shares;
     }
 
     public void setWage(final Double wage) {
