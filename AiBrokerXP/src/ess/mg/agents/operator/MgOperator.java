@@ -16,10 +16,10 @@ import ess.mg.goods.food.Cuisine;
 import ess.mg.goods.food.Dairy;
 import ess.mg.goods.food.Wine;
 
-public class Operator extends MgAgent {
+public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
-        final Operator operator = new Operator();
+        final MgOperator operator = new MgOperator();
         final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
             @Override

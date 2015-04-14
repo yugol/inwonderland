@@ -6,10 +6,10 @@ import javax.swing.Timer;
 import ess.gt.GtContext;
 import ess.gt.agents.GtAgent;
 
-public class Operator extends GtAgent {
+public class GtOperator extends GtAgent {
 
     public static void main(final String... args) {
-        final Operator operator = new Operator();
+        final GtOperator operator = new GtOperator();
         final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
             @Override
@@ -27,7 +27,7 @@ public class Operator extends GtAgent {
     private static final int     LIFE_TIME           = 5 * 60 * 1000;
 
     private static final boolean ENABLE_GOLD_TRADING = true;
-    private static final int     MAX_TRADED_AMOUNT   = 1;
+    private static final int     MAX_TRADED_AMOUNT   = 6;
     private static final double  BUY_GOLD_PRICE      = 420;
     private static final double  SELL_GOLD_PRICE     = 590;
     private static final double  MIN_RON_AMOUNT      = 5000;
