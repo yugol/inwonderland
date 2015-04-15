@@ -2,24 +2,24 @@ package ess.gt.tactics;
 
 public enum Position {
 
-    CF ("center forward", Role.FORWARD),
-    HO ("hole", Role.FORWARD),
-    IF ("inside forward", Role.FORWARD),
-    LW ("left winger", Role.FORWARD),
-    RW ("right winger", Role.FORWARD),
+    CF_ ("center forward", Role.FORWARD),
+    HO_ ("hole", Role.FORWARD),
+    IF_ ("inside forward", Role.FORWARD),
+    LW_ ("left winger", Role.FORWARD),
+    RW_ ("right winger", Role.FORWARD),
 
-    CM ("center midfielder", Role.MIDFIELDER),
-    DM ("defensive midfielder", Role.MIDFIELDER),
+    CM_ ("center midfielder", Role.MIDFIELDER),
+    DM_ ("defensive midfielder", Role.MIDFIELDER),
     MLB ("midfield left back", Role.MIDFIELDER),
     MRB ("midfield right back", Role.MIDFIELDER),
-    OM ("offensive midfielder", Role.MIDFIELDER),
+    OM_ ("offensive midfielder", Role.MIDFIELDER),
     SLM ("side left midfielder", Role.MIDFIELDER),
     SRM ("side right midfielder", Role.MIDFIELDER),
 
-    CB ("center back", Role.DEFENDER),
+    CB_ ("center back", Role.DEFENDER),
     FLB ("full left back", Role.DEFENDER),
     FRB ("full right back", Role.DEFENDER),
-    SW ("sweeper", Role.DEFENDER),
+    SW_ ("sweeper", Role.DEFENDER),
     WLB ("wing left back", Role.DEFENDER),
     WRB ("wing right back", Role.DEFENDER),
 
