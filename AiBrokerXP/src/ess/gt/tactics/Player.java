@@ -1,35 +1,84 @@
 package ess.gt.tactics;
 
-public class Player {
+public abstract class Player {
 
-    private Boolean    health;
-    private Integer    number;
-    private String     name;
-    private Integer    age;
-    private Integer    talent;
+    public static Double getPositionCoefficient(final Pos terrain, final boolean rightLeg, final Pos... preffered) {
+        if (preffered.length == 2) { return Math.max(getPositionCoefficient(terrain, rightLeg, preffered[0]), getPositionCoefficient(terrain, rightLeg, preffered[1])); }
+        if (preffered.length == 1) {
+            double positionCoefficient = 100;
+            if (terrain != preffered[0]) {
+                final int distance = Math.abs(terrain.role.ordinal() - preffered[0].role.ordinal());
+                switch (distance) {
+                    case 0:
+                        positionCoefficient = 75;
+                        break;
+                    case 1:
+                        positionCoefficient = 50;
+                        break;
+                    default:
+                        positionCoefficient = 25;
+                        break;
+                }
+                if (rightLeg && terrain.toString().contains("L")) {
+                    positionCoefficient -= 12;
+                }
+                if (!rightLeg && terrain.toString().contains("R")) {
+                    positionCoefficient -= 12;
+                }
+            }
+            return positionCoefficient;
+        }
+        return null;
+    }
 
-    private Position   terrainPosition;
-    private Position[] preferredPositions;
-    private Double     positionCoefficient;
+    private Boolean       health;
+    private final int     number;
+    private final String  name;
+    private Integer       age;
+    private final Integer talent;
+    private final boolean rightLeg;
 
-    private Integer    moral;
-    private Integer    energy;
-    private Integer    form;
-    private Integer    experience;
-    private Double     efficiencyCoefficient;
+    private Pos           terrainPosition;
+    private final Pos[]   preferredPositions;
 
-    private Integer    speed;
-    private Integer    stamina;
-    private Integer    goalkeeper;
-    private Integer    tackling;
-    private Integer    dribling;
-    private Integer    longShot;
-    private Integer    headShot;
-    private Integer    shot;
-    private Integer    passing;
-    private Double     generalScore;
+    private Integer       moral;
+    private Integer       energy;
+    private Integer       form;
+    private Integer       experience;
+    private Double        efficiencyCoefficient;
 
-    private Double     actualScore;
+    private Integer       speed;
+    private Integer       stamina;
+    private Integer       goalkeeper;
+    private Integer       tackling;
+    private Integer       dribling;
+    private Integer       longShot;
+    private Integer       headShot;
+    private Integer       shot;
+    private Integer       passing;
+    private Double        generalScore;
+
+    private Double        actualScore;
+
+    protected Player(final int number, final String name, final Integer talent, final boolean rightLeg,
+            final Pos... preferredPositions) {
+        super();
+        this.number = number;
+        this.name = name;
+        this.talent = talent;
+        this.rightLeg = rightLeg;
+        this.preferredPositions = preferredPositions;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) { return true; }
+        if (obj == null) { return false; }
+        if (getClass() != obj.getClass()) { return false; }
+        final Player other = (Player) obj;
+        if (number != other.number) { return false; }
+        return true;
+    }
 
     public Double getActualScore() {
         return actualScore;
@@ -87,7 +136,7 @@ public class Player {
         return name;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -96,10 +145,10 @@ public class Player {
     }
 
     public Double getPositionCoefficient() {
-        return positionCoefficient;
+        return getPositionCoefficient(getTerrainPosition(), isRightLeg(), getPreferredPosition());
     }
 
-    public Position[] getPreferredPosition() {
+    public Pos[] getPreferredPosition() {
         return preferredPositions;
     }
 
@@ -123,8 +172,20 @@ public class Player {
         return talent;
     }
 
-    public Position getTerrainPosition() {
+    public Pos getTerrainPosition() {
         return terrainPosition;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + number;
+        return result;
+    }
+
+    public boolean isRightLeg() {
+        return rightLeg;
     }
 
     public void setActualScore(final Double actualScore) {
@@ -179,24 +240,8 @@ public class Player {
         this.moral = moral;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public void setNumber(final Integer number) {
-        this.number = number;
-    }
-
     public void setPassing(final Integer passing) {
         this.passing = passing;
-    }
-
-    public void setPositionCoefficient(final Double positionCoefficient) {
-        this.positionCoefficient = positionCoefficient;
-    }
-
-    public void setPreferredPosition(final Position... preferredPositions) {
-        this.preferredPositions = preferredPositions;
     }
 
     public void setShot(final Integer shot) {
@@ -215,11 +260,7 @@ public class Player {
         this.tackling = tackling;
     }
 
-    public void setTalent(final Integer talent) {
-        this.talent = talent;
-    }
-
-    public void setTerrainPosition(final Position terrainPosition) {
+    public void setTerrainPosition(final Pos terrainPosition) {
         this.terrainPosition = terrainPosition;
     }
 

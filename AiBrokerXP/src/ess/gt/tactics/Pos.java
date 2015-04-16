@@ -1,6 +1,6 @@
 package ess.gt.tactics;
 
-public enum Position {
+public enum Pos {
 
     CF_ ("center forward", Role.FORWARD),
     HO_ ("hole", Role.FORWARD),
@@ -30,7 +30,7 @@ public enum Position {
     public final String name;
     public final Role   role;
 
-    private Position(final String name, final Role role) {
+    private Pos(final String name, final Role role) {
         this.name = name;
         this.role = role;
     }
