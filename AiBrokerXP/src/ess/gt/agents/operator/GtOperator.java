@@ -24,14 +24,14 @@ public class GtOperator extends GtAgent {
         operator.start();
     }
 
-    private static final int     LIFE_TIME           = 5 * 60 * 1000;
+    private static final int     LIFE_TIME              = 5 * 60 * 1000;
 
-    private static final boolean ENABLE_GOLD_TRADING = true;
-    private static final int     MAX_TRADED_AMOUNT   = 6;
-    private static final double  BUY_GOLD_PRICE      = 420;
-    private static final double  SELL_GOLD_PRICE     = 590;
-    private static final double  MIN_RON_AMOUNT      = 5000;
-    private static final double  MIN_GOLD_AMOUNT     = 1;
+    private static final boolean ENABLE_GOLD_TRADING    = true;
+    private static final double  BUY_GOLD_PRICE         = 420;
+    private static final double  SELL_GOLD_PRICE        = 590;
+    private static final double  MIN_RON_STOCK          = 5000;
+    private static final double  MIN_GOLD_STOCK         = 1;
+    private static final int     MAX_TRADED_GOLD_AMOUNT = 10;
 
     @Override
     public void run() {
@@ -53,9 +53,9 @@ public class GtOperator extends GtAgent {
 
         final Double goldPrice = context.getGoldRonExchangeRate();
         if (goldPrice < BUY_GOLD_PRICE) {
-            int goldAmount = (int) ((context.getRonAmount() - MIN_RON_AMOUNT) / goldPrice);
-            if (goldAmount > MAX_TRADED_AMOUNT) {
-                goldAmount = MAX_TRADED_AMOUNT;
+            int goldAmount = (int) ((context.getRonAmount() - MIN_RON_STOCK) / goldPrice);
+            if (goldAmount > MAX_TRADED_GOLD_AMOUNT) {
+                goldAmount = MAX_TRADED_GOLD_AMOUNT;
             }
             if (goldAmount > 0) {
                 if (!ENABLE_GOLD_TRADING) {
@@ -65,9 +65,9 @@ public class GtOperator extends GtAgent {
             }
         }
         if (goldPrice > SELL_GOLD_PRICE) {
-            int goldAmount = (int) (context.getGoldAmount() - MIN_GOLD_AMOUNT);
-            if (goldAmount > MAX_TRADED_AMOUNT) {
-                goldAmount = MAX_TRADED_AMOUNT;
+            int goldAmount = (int) (context.getGoldAmount() - MIN_GOLD_STOCK);
+            if (goldAmount > MAX_TRADED_GOLD_AMOUNT) {
+                goldAmount = MAX_TRADED_GOLD_AMOUNT;
             }
             if (goldAmount > 0) {
                 if (!ENABLE_GOLD_TRADING) {

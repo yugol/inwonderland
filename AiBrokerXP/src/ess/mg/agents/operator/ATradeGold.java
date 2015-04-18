@@ -7,11 +7,12 @@ import ess.mg.agents.MgAgent;
 
 public class ATradeGold extends Action<MgAgent, TradeResult> {
 
-    private double  buyGoldPrice      = 0;
-    private double  sellGoldPrice     = Double.MAX_VALUE;
-    private double  minumumRonAmount  = 0;
-    private double  minumumGoldAmount = 0;
-    private boolean enabled           = false;
+    private double  buyGoldPrice  = 0;
+    private double  sellGoldPrice = Double.MAX_VALUE;
+    private double  minRonAmount  = 0;
+    private double  minGoldAmount = 0;
+    private boolean enabled       = false;
+    private double  maxTradedGoldAmount;
 
     public ATradeGold(final MgAgent performer) {
         super(performer);
@@ -21,12 +22,16 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
         return buyGoldPrice;
     }
 
-    public double getMinumumGoldAmount() {
-        return minumumGoldAmount;
+    public double getMaxTradedGoldAmount() {
+        return maxTradedGoldAmount;
     }
 
-    public double getMinumumRonAmount() {
-        return minumumRonAmount;
+    public double getMinGoldAmount() {
+        return minGoldAmount;
+    }
+
+    public double getMinRonAmount() {
+        return minRonAmount;
     }
 
     public double getSellGoldPrice() {
@@ -45,12 +50,16 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
         this.enabled = enabled;
     }
 
-    public void setMinumumGoldAmount(final double minumumGoldAmount) {
-        this.minumumGoldAmount = minumumGoldAmount;
+    public void setMaxTradedGoldAmount(final double maxTradedGoldAmount) {
+        this.maxTradedGoldAmount = maxTradedGoldAmount;
     }
 
-    public void setMinumumRonAmount(final double minumumRonAmount) {
-        this.minumumRonAmount = minumumRonAmount;
+    public void setMinGoldStock(final double minumumGoldAmount) {
+        minGoldAmount = minumumGoldAmount;
+    }
+
+    public void setMinRonStock(final double minumumRonAmount) {
+        minRonAmount = minumumRonAmount;
     }
 
     public void setSellGoldPrice(final double sellGoldPrice) {
@@ -67,17 +76,23 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
 
         final Double goldPrice = context.getGoldRonExchangeRate();
         if (goldPrice < getBuyGoldPrice()) {
-            int goldAmount = (int) ((context.getRonAmount() - getMinumumRonAmount()) / goldPrice);
+            int goldAmount = (int) ((context.getRonAmount() - getMinRonAmount()) / goldPrice);
             if (goldAmount > 0) {
+                if (goldAmount > getMaxTradedGoldAmount()) {
+                    goldAmount = (int) getMaxTradedGoldAmount();
+                }
                 if (!isEnabled()) {
-                    goldAmount *= 10;
+                    goldAmount *= 100;
                 }
                 result.setSuccessful(getAgent().getDriver().buyGoldFromRon(goldAmount));
             }
         }
         if (goldPrice > getSellGoldPrice()) {
-            int goldAmount = (int) (context.getGoldAmount() - getMinumumGoldAmount());
+            int goldAmount = (int) (context.getGoldAmount() - getMinGoldAmount());
             if (goldAmount > 0) {
+                if (goldAmount > getMaxTradedGoldAmount()) {
+                    goldAmount = (int) getMaxTradedGoldAmount();
+                }
                 if (!isEnabled()) {
                     goldAmount *= 10;
                 }
@@ -87,5 +102,4 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
 
         return result;
     }
-
 }

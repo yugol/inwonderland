@@ -34,23 +34,24 @@ public class MgOperator extends MgAgent {
         operator.start();
     }
 
-    private static final int     LIFE_TIME           = 12 * 60 * 1000;
+    private static final int     LIFE_TIME              = 12 * 60 * 1000;
 
-    private static final double  BUY_GOLD_PRICE      = 10.1000;
-    private static final double  SELL_GOLD_PRICE     = 11.1000;
-    private static final double  MIN_RON_AMOUNT      = 10;
-    private static final double  MIN_GOLD_AMOUNT     = 1;
+    private static final double  BUY_GOLD_PRICE         = 10.1000;
+    private static final double  SELL_GOLD_PRICE        = 11.1000;
+    private static final double  MIN_RON_STOCK          = 10;
+    private static final double  MIN_GOLD_STOCK         = 1;
+    private static final double  MAX_TRADED_GOLD_AMOUNT = 100;
 
-    private static final boolean MANAGE_COMPANIES    = false;
-    private static final double  MAX_HOURLY_WAGE     = 3;
+    private static final boolean MANAGE_COMPANIES       = false;
+    private static final double  MAX_HOURLY_WAGE        = 3;
 
-    private static final Moment  ACTIVITY_TIME       = Moment.fromIso("03:00:00");
-    private static final Moment  PRE_ENERGISE_START  = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment  PRE_ENERGISE_STOP   = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
-    private static final Moment  POST_ENERGISE_START = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
-    private static final Moment  POST_ENERGISE_STOP  = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
-    private static final Moment  ACTIVITY_START      = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
-    private static final Moment  ACTIVITY_STOP       = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
+    private static final Moment  ACTIVITY_TIME          = Moment.fromIso("03:00:00");
+    private static final Moment  PRE_ENERGISE_START     = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
+    private static final Moment  PRE_ENERGISE_STOP      = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
+    private static final Moment  POST_ENERGISE_START    = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
+    private static final Moment  POST_ENERGISE_STOP     = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
+    private static final Moment  ACTIVITY_START         = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
+    private static final Moment  ACTIVITY_STOP          = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
 
     @Override
     public void run() {
@@ -64,8 +65,9 @@ public class MgOperator extends MgAgent {
         final ATradeGold tradeGold = new ATradeGold(this);
         tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
         tradeGold.setSellGoldPrice(SELL_GOLD_PRICE);
-        tradeGold.setMinumumRonAmount(MIN_RON_AMOUNT);
-        tradeGold.setMinumumGoldAmount(MIN_GOLD_AMOUNT);
+        tradeGold.setMinRonStock(MIN_RON_STOCK);
+        tradeGold.setMinGoldStock(MIN_GOLD_STOCK);
+        tradeGold.setMaxTradedGoldAmount(MAX_TRADED_GOLD_AMOUNT);
         tradeGold.setEnabled(true);
         tradeGold.perform();
 
