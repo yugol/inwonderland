@@ -45,7 +45,7 @@ public class MgOperator extends MgAgent {
     private static final boolean MANAGE_COMPANIES       = false;
     private static final double  MAX_HOURLY_WAGE        = 3;
 
-    private static final Moment  ACTIVITY_TIME          = Moment.fromIso("03:00:00");
+    private static final Moment  ACTIVITY_TIME          = Moment.fromIso("15:00:00");
     private static final Moment  PRE_ENERGISE_START     = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
     private static final Moment  PRE_ENERGISE_STOP      = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
     private static final Moment  POST_ENERGISE_START    = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
