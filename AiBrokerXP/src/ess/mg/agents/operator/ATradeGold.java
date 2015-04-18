@@ -7,12 +7,12 @@ import ess.mg.agents.MgAgent;
 
 public class ATradeGold extends Action<MgAgent, TradeResult> {
 
-    private double  buyGoldPrice  = 0;
-    private double  sellGoldPrice = Double.MAX_VALUE;
-    private double  minRonAmount  = 0;
-    private double  minGoldAmount = 0;
-    private boolean enabled       = false;
-    private double  maxTradedGoldAmount;
+    private double  buyGoldPrice        = 0;
+    private double  sellGoldPrice       = Double.MAX_VALUE;
+    private double  minRonAmount        = 0;
+    private double  minGoldAmount       = 0;
+    private double  maxTradedGoldAmount = Double.MAX_VALUE;
+    private boolean enabled             = false;
 
     public ATradeGold(final MgAgent performer) {
         super(performer);
@@ -26,11 +26,11 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
         return maxTradedGoldAmount;
     }
 
-    public double getMinGoldAmount() {
+    public double getMinGoldStock() {
         return minGoldAmount;
     }
 
-    public double getMinRonAmount() {
+    public double getMinRonStock() {
         return minRonAmount;
     }
 
@@ -76,7 +76,7 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
 
         final Double goldPrice = context.getGoldRonExchangeRate();
         if (goldPrice < getBuyGoldPrice()) {
-            int goldAmount = (int) ((context.getRonAmount() - getMinRonAmount()) / goldPrice);
+            int goldAmount = (int) ((context.getRonAmount() - getMinRonStock()) / goldPrice);
             if (goldAmount > 0) {
                 if (goldAmount > getMaxTradedGoldAmount()) {
                     goldAmount = (int) getMaxTradedGoldAmount();
@@ -88,7 +88,7 @@ public class ATradeGold extends Action<MgAgent, TradeResult> {
             }
         }
         if (goldPrice > getSellGoldPrice()) {
-            int goldAmount = (int) (context.getGoldAmount() - getMinGoldAmount());
+            int goldAmount = (int) (context.getGoldAmount() - getMinGoldStock());
             if (goldAmount > 0) {
                 if (goldAmount > getMaxTradedGoldAmount()) {
                     goldAmount = (int) getMaxTradedGoldAmount();
