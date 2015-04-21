@@ -19,31 +19,32 @@ import ess.mg.goods.food.Wine;
 public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
-        final MgOperator operator = new MgOperator();
-        final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
+        final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
+        if (PRE_ENERGISE_START.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0) {
+            final MgOperator operator = new MgOperator();
+            final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                operator.stop();
-                System.exit(1);
-            }
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    operator.stop();
+                    System.exit(1);
+                }
 
-        });
-        timer.setRepeats(false);
-        timer.start();
-        operator.start();
+            });
+            timer.setRepeats(false);
+            timer.start();
+            operator.start();
+        }
     }
 
     private static final int     LIFE_TIME              = 12 * 60 * 1000;
 
+    private static final boolean TRADE_GOLD             = true;
     private static final double  BUY_GOLD_PRICE         = 10.1000;
     private static final double  SELL_GOLD_PRICE        = 11.1000;
     private static final double  MIN_RON_STOCK          = 10;
     private static final double  MIN_GOLD_STOCK         = 1;
     private static final double  MAX_TRADED_GOLD_AMOUNT = 100;
-
-    private static final boolean MANAGE_COMPANIES       = false;
-    private static final double  MAX_HOURLY_WAGE        = 3;
 
     private static final Moment  ACTIVITY_TIME          = Moment.fromIso("15:00:00");
     private static final Moment  PRE_ENERGISE_START     = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
@@ -52,6 +53,9 @@ public class MgOperator extends MgAgent {
     private static final Moment  POST_ENERGISE_STOP     = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
     private static final Moment  ACTIVITY_START         = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
     private static final Moment  ACTIVITY_STOP          = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
+
+    private static final boolean MANAGE_COMPANIES       = false;
+    private static final double  MAX_HOURLY_WAGE        = 3;
 
     @Override
     public void run() {
@@ -62,14 +66,16 @@ public class MgOperator extends MgAgent {
         login.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
         login.perform();
 
-        final ATradeGold tradeGold = new ATradeGold(this);
-        tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
-        tradeGold.setSellGoldPrice(SELL_GOLD_PRICE);
-        tradeGold.setMinRonStock(MIN_RON_STOCK);
-        tradeGold.setMinGoldStock(MIN_GOLD_STOCK);
-        tradeGold.setMaxTradedGoldAmount(MAX_TRADED_GOLD_AMOUNT);
-        tradeGold.setEnabled(true);
-        tradeGold.perform();
+        if (TRADE_GOLD) {
+            final ATradeGold tradeGold = new ATradeGold(this);
+            tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
+            tradeGold.setSellGoldPrice(SELL_GOLD_PRICE);
+            tradeGold.setMinRonStock(MIN_RON_STOCK);
+            tradeGold.setMinGoldStock(MIN_GOLD_STOCK);
+            tradeGold.setMaxTradedGoldAmount(MAX_TRADED_GOLD_AMOUNT);
+            tradeGold.setEnabled(TRADE_GOLD);
+            tradeGold.perform();
+        }
 
         final Moment serverTime = getContext().getServerTime();
         final Transactions transactions = getContext().getTransactions();
@@ -83,31 +89,32 @@ public class MgOperator extends MgAgent {
         }
 
         if (POST_ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(POST_ENERGISE_STOP) < 0) {
-            if (transactions.getMilkCount() <= 0) {
-                final ABuyGoods buyMilk = new ABuyGoods(this);
-                buyMilk.setGoods(new Dairy(Quality.HIGH));
-                final PurchaseResult purchaseResult = buyMilk.perform();
-                if (!purchaseResult.isSuccessful()) {
-                    setRepeatAfter(10 * 1000);
-                }
-            }
             if (transactions.getWineCount() <= 0) {
                 final ABuyGoods buyWine = new ABuyGoods(this);
                 buyWine.setGoods(new Wine());
                 buyWine.perform();
             }
-            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
-                final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
-                buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
-                buyNewspapers.perform();
+            if (transactions.getMilkCount() <= 0) {
+                final ABuyGoods buyMilk = new ABuyGoods(this);
+                buyMilk.setGoods(new Dairy(Quality.HIGH));
+                for (int count = 0; count < 10; ++count) {
+                    final PurchaseResult purchaseResult = buyMilk.perform();
+                    if (purchaseResult.isSuccessful()) {
+                        break;
+                    }
+                    try {
+                        Thread.sleep(50 * 1000);
+                    } catch (final InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
 
-        if (MANAGE_COMPANIES) {
-            final AManageCompany manageCompany = new AManageCompany(this);
-            manageCompany.setCompanyUrl("Vacca-Villa");
-            manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
-            manageCompany.perform();
+            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
+                // final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
+                // buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
+                // buyNewspapers.perform();
+            }
         }
 
         if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
@@ -118,11 +125,25 @@ public class MgOperator extends MgAgent {
             }
             if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
                 final AWork work = new AWork(this);
-                final WorkResult workResult = work.perform();
-                if (!workResult.isSuccessful()) {
-                    setRepeatAfter(30 * 1000);
+                for (int count = 0; count < 10; ++count) {
+                    final WorkResult workResult = work.perform();
+                    if (workResult.isSuccessful()) {
+                        break;
+                    }
+                    try {
+                        Thread.sleep(50 * 1000);
+                    } catch (final InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        }
+
+        if (MANAGE_COMPANIES) {
+            final AManageCompany manageCompany = new AManageCompany(this);
+            manageCompany.setCompanyUrl("Vacca-Villa");
+            manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
+            manageCompany.perform();
         }
     }
 

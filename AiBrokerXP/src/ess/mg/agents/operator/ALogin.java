@@ -57,14 +57,14 @@ public class ALogin extends Action<MgAgent, ActionResult> {
             readTransactions();
         }
 
-        getAgent().getDriver().fetchWage(context);
-        getAgent().getLogger().logWorkWage(context.getWorkWage());
+        // getAgent().getDriver().fetchWage(context);
+        // getAgent().getLogger().logWorkWage(context.getWorkWage());
 
-        getAgent().getDriver().fetchShares(context);
-        getAgent().getLogger().logShares(context.getShares());
+        // getAgent().getDriver().fetchShares(context);
+        // getAgent().getLogger().logShares(context.getShares());
 
-        getAgent().getDriver().fetchEuroGoldExchangeRate(context);
-        getAgent().getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
+        // getAgent().getDriver().fetchEuroGoldExchangeRate(context);
+        // getAgent().getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
 
         getAgent().getDriver().fetchPlayerContext(context);
 
