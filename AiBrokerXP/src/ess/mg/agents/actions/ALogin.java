@@ -1,4 +1,4 @@
-package ess.mg.agents.operator;
+package ess.mg.agents.actions;
 
 import aibroker.util.Moment;
 import ess.common.actions.Action;
@@ -56,15 +56,6 @@ public class ALogin extends Action<MgAgent, ActionResult> {
         if (readTransactions) {
             readTransactions();
         }
-
-        // getAgent().getDriver().fetchWage(context);
-        // getAgent().getLogger().logWorkWage(context.getWorkWage());
-
-        // getAgent().getDriver().fetchShares(context);
-        // getAgent().getLogger().logShares(context.getShares());
-
-        // getAgent().getDriver().fetchEuroGoldExchangeRate(context);
-        // getAgent().getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
 
         getAgent().getDriver().fetchPlayerContext(context);
 

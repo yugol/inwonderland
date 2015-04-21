@@ -7,20 +7,20 @@ import javax.swing.Timer;
 import aibroker.util.Moment;
 import ess.mg.MgContext;
 import ess.mg.agents.MgAgent;
+import ess.mg.agents.actions.ABuyGoods;
+import ess.mg.agents.actions.ALogin;
 import ess.mg.agents.dto.FightResult;
-import ess.mg.agents.dto.PurchaseResult;
 import ess.mg.agents.dto.WorkResult;
 import ess.mg.driver.dto.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
-import ess.mg.goods.food.Dairy;
 import ess.mg.goods.food.Wine;
 
 public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
         final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
-        if (PRE_ENERGISE_START.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0) {
+        if (MEAL_TIME_START.compareTo(nowTime) <= 0 && nowTime.compareTo(WORK_TIME_STOP) < 0) {
             final MgOperator operator = new MgOperator();
             final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
@@ -37,50 +37,30 @@ public class MgOperator extends MgAgent {
         }
     }
 
-    private static final int     LIFE_TIME              = 12 * 60 * 1000;
+    private static final int    LIFE_TIME        = 12 * 60 * 1000;
 
-    private static final boolean TRADE_GOLD             = true;
-    private static final double  BUY_GOLD_PRICE         = 10.1000;
-    private static final double  SELL_GOLD_PRICE        = 11.1000;
-    private static final double  MIN_RON_STOCK          = 10;
-    private static final double  MIN_GOLD_STOCK         = 1;
-    private static final double  MAX_TRADED_GOLD_AMOUNT = 100;
-
-    private static final Moment  ACTIVITY_TIME          = Moment.fromIso("15:00:00");
-    private static final Moment  PRE_ENERGISE_START     = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment  PRE_ENERGISE_STOP      = PRE_ENERGISE_START.newAdd(Calendar.MINUTE, 13);
-    private static final Moment  POST_ENERGISE_START    = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 16);
-    private static final Moment  POST_ENERGISE_STOP     = POST_ENERGISE_START.newAdd(Calendar.MINUTE, 20);
-    private static final Moment  ACTIVITY_START         = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 30);
-    private static final Moment  ACTIVITY_STOP          = ACTIVITY_TIME.newAdd(Calendar.MINUTE, 240);
-
-    private static final boolean MANAGE_COMPANIES       = false;
-    private static final double  MAX_HOURLY_WAGE        = 3;
+    private static final Moment LABOUR_TIME      = Moment.fromIso("15:00:00");
+    private static final Moment MEAL_TIME_START  = LABOUR_TIME.newAdd(Calendar.MINUTE, 1);
+    private static final Moment MEAL_TIME_STOP   = MEAL_TIME_START.newAdd(Calendar.MINUTE, 13);
+    private static final Moment WINE_TIME_START  = LABOUR_TIME.newAdd(Calendar.MINUTE, 16);
+    private static final Moment WINE_TIME_STOP   = WINE_TIME_START.newAdd(Calendar.MINUTE, 20);
+    private static final Moment PAPER_TIME_START = LABOUR_TIME.newAdd(Calendar.MINUTE, 16);
+    private static final Moment PAPER_TIME_STOP  = PAPER_TIME_START.newAdd(Calendar.MINUTE, 40);
+    private static final Moment WORK_TIME_START  = LABOUR_TIME.newAdd(Calendar.MINUTE, 30);
+    private static final Moment WORK_TIME_STOP   = LABOUR_TIME.newAdd(Calendar.MINUTE, 240);
 
     @Override
     public void run() {
-        final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
 
         final ALogin login = new ALogin(this);
-        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), ACTIVITY_TIME.toIsoTime()));
-        login.setReadTransactions(ACTIVITY_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(ACTIVITY_STOP) < 0);
+        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), LABOUR_TIME.toIsoTime()));
+        login.setReadTransactions(true);
         login.perform();
-
-        if (TRADE_GOLD) {
-            final ATradeGold tradeGold = new ATradeGold(this);
-            tradeGold.setBuyGoldPrice(BUY_GOLD_PRICE);
-            tradeGold.setSellGoldPrice(SELL_GOLD_PRICE);
-            tradeGold.setMinRonStock(MIN_RON_STOCK);
-            tradeGold.setMinGoldStock(MIN_GOLD_STOCK);
-            tradeGold.setMaxTradedGoldAmount(MAX_TRADED_GOLD_AMOUNT);
-            tradeGold.setEnabled(TRADE_GOLD);
-            tradeGold.perform();
-        }
 
         final Moment serverTime = getContext().getServerTime();
         final Transactions transactions = getContext().getTransactions();
 
-        if (PRE_ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(PRE_ENERGISE_STOP) < 0) {
+        if (MEAL_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(MEAL_TIME_STOP) < 0) {
             if (transactions.getFoodCount() <= 0) {
                 final ABuyGoods buyCuisine = new ABuyGoods(this);
                 buyCuisine.setGoods(new Cuisine(Quality.HIGH));
@@ -88,36 +68,23 @@ public class MgOperator extends MgAgent {
             }
         }
 
-        if (POST_ENERGISE_START.compareTo(serverTime) <= 0 && serverTime.compareTo(POST_ENERGISE_STOP) < 0) {
+        if (WINE_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(WINE_TIME_STOP) < 0) {
             if (transactions.getWineCount() <= 0) {
                 final ABuyGoods buyWine = new ABuyGoods(this);
                 buyWine.setGoods(new Wine());
                 buyWine.perform();
             }
-            if (transactions.getMilkCount() <= 0) {
-                final ABuyGoods buyMilk = new ABuyGoods(this);
-                buyMilk.setGoods(new Dairy(Quality.HIGH));
-                for (int count = 0; count < 10; ++count) {
-                    final PurchaseResult purchaseResult = buyMilk.perform();
-                    if (purchaseResult.isSuccessful()) {
-                        break;
-                    }
-                    try {
-                        Thread.sleep(50 * 1000);
-                    } catch (final InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        }
 
+        if (PAPER_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(PAPER_TIME_STOP) < 0) {
             if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
-                // final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
-                // buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
-                // buyNewspapers.perform();
+                final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
+                buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
+                buyNewspapers.perform();
             }
         }
 
-        if (ACTIVITY_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ACTIVITY_STOP) < 0) {
+        if (WORK_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(WORK_TIME_STOP) < 0) {
             if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {
                 final AFight fight = new AFight(this);
                 final FightResult result = fight.perform();
@@ -139,12 +106,6 @@ public class MgOperator extends MgAgent {
             }
         }
 
-        if (MANAGE_COMPANIES) {
-            final AManageCompany manageCompany = new AManageCompany(this);
-            manageCompany.setCompanyUrl("Vacca-Villa");
-            manageCompany.setMaxHourlyWage(MAX_HOURLY_WAGE);
-            manageCompany.perform();
-        }
     }
 
 }

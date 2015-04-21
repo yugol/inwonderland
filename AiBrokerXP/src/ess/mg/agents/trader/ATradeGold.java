@@ -1,4 +1,4 @@
-package ess.mg.agents.operator;
+package ess.mg.agents.trader;
 
 import ess.common.actions.Action;
 import ess.common.actions.TradeResult;
