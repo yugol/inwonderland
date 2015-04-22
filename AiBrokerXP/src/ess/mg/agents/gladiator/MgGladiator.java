@@ -1,4 +1,4 @@
-package ess.mg.agents.fighter;
+package ess.mg.agents.gladiator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
