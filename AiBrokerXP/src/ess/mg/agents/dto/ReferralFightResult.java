@@ -2,7 +2,7 @@ package ess.mg.agents.dto;
 
 import ess.common.actions.ActionResult;
 
-public class FightResult extends ActionResult {
+public class ReferralFightResult extends ActionResult {
 
     private boolean maxFightCountReached = false;
     private boolean fighting             = false;

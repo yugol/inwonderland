@@ -2,16 +2,16 @@ package ess.mg.agents.operator;
 
 import ess.common.actions.Action;
 import ess.mg.agents.MgAgent;
-import ess.mg.agents.dto.FightResult;
+import ess.mg.agents.dto.ReferralFightResult;
 
-public class AFight extends Action<MgAgent, FightResult> {
+public class AReferralFight extends Action<MgAgent, ReferralFightResult> {
 
-    public AFight(final MgAgent performer) {
+    public AReferralFight(final MgAgent performer) {
         super(performer);
     }
 
     @Override
-    protected FightResult execute() {
+    protected ReferralFightResult execute() {
         return getAgent().getDriver().referralFightTrainer();
     }
 

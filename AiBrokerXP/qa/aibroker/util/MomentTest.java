@@ -3,7 +3,6 @@ package aibroker.util;
 import static org.junit.Assert.assertEquals;
 import java.util.Calendar;
 import org.junit.Test;
-import aibroker.util.Moment;
 
 public class MomentTest {
 
@@ -45,6 +44,14 @@ public class MomentTest {
         final Moment from = Moment.getBeginningOfToday();
         final Moment to = Moment.getEndOfToday();
         assertEquals(0, Moment.getDaysBetween(from, to));
+    }
+
+    @Test
+    public void testGetDelta() {
+        final Moment t0 = Moment.fromIso("10:23:43");
+        final Moment t1 = Moment.fromIso("10:23:52");
+        assertEquals(9000, t0.getDelta(t1, Calendar.MILLISECOND));
+        assertEquals(9, t0.getDelta(t1, Calendar.SECOND));
     }
 
     @Test

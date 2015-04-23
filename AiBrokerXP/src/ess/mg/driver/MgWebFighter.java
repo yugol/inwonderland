@@ -4,16 +4,16 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import ess.mg.agents.dto.FightResult;
+import ess.mg.agents.dto.ReferralFightResult;
 
 public abstract class MgWebFighter extends MgWebReader {
 
     public static final String FIGHTING = "FIGHTING";
 
-    public FightResult referralFight() {
+    public ReferralFightResult referralFight() {
         navigateTo(BASE_URL_ACCOUNT + "/fight");
 
-        final FightResult result = checkFightCount(new FightResult());
+        final ReferralFightResult result = checkFightCount(new ReferralFightResult());
         if (!result.isMaxFightCountReached()) {
             try {
                 final WebElement buttonFight = driver.findElement(By.className("buttonFight"));
@@ -36,10 +36,10 @@ public abstract class MgWebFighter extends MgWebReader {
         return result;
     }
 
-    public FightResult referralFightTrainer() {
+    public ReferralFightResult referralFightTrainer() {
         navigateTo(BASE_URL_ACCOUNT + "/fight");
 
-        final FightResult result = checkFightCount(new FightResult());
+        final ReferralFightResult result = checkFightCount(new ReferralFightResult());
         if (!result.isMaxFightCountReached()) {
             try {
                 final List<WebElement> navigation = driver.findElement(By.className("nd_pagination")).findElements(By.tagName("a"));
@@ -70,7 +70,7 @@ public abstract class MgWebFighter extends MgWebReader {
         return result;
     }
 
-    private void attackReferral(final FightResult result) {
+    private void attackReferral(final ReferralFightResult result) {
         final WebElement nd_submit_big = driver.findElement(By.className("nd_submit_big"));
         // System.out.println(nd_submit_big.getAttribute("value"));
         nd_submit_big.click();
@@ -80,7 +80,7 @@ public abstract class MgWebFighter extends MgWebReader {
         result.setSuccessful(true);
     }
 
-    private FightResult checkFightCount(final FightResult result) {
+    private ReferralFightResult checkFightCount(final ReferralFightResult result) {
         try {
             final WebElement nd_mess_error = driver.findElement(By.className("nd_mess_error"));
             result.setMessage(nd_mess_error.getText());

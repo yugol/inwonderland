@@ -9,7 +9,6 @@ import ess.mg.agents.MgAgent;
 import ess.mg.agents.actions.ABuyGoods;
 import ess.mg.agents.actions.ALogin;
 import ess.mg.agents.dto.PurchaseResult;
-import ess.mg.driver.dto.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Dairy;
 import ess.mg.goods.weapons.Glasses;
@@ -18,8 +17,13 @@ import ess.mg.goods.weapons.Grenada;
 public class MgGladiator extends MgAgent {
 
     public static void main(final String... args) {
-        final Moment nowTime = Moment.fromIso(Moment.getNow().toIsoTime());
-        if (WEAPON_TIME_START.compareTo(nowTime) <= 0 && nowTime.compareTo(ENERGY_TIME_STOP) < 0) {
+        final Moment nowTime = Moment.getNow().getTimeMoment();
+        boolean active = WEAPON_START_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(PAUSE_TIME) < 0;
+        if (!active) {
+            active = FIGHT_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(STOP_TIME) < 0;
+        }
+        // active = true;
+        if (active) {
             final MgGladiator gladiator = new MgGladiator();
             final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
 
@@ -38,50 +42,56 @@ public class MgGladiator extends MgAgent {
 
     private static final int    LIFE_TIME         = 10 * 60 * 1000;
 
-    private static final Moment ARENA_TIME        = Moment.fromIso("23:30:00");
-    private static final Moment WEAPON_TIME_START = ARENA_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment WEAPON_TIME_STOP  = WEAPON_TIME_START.newAdd(Calendar.MINUTE, 13);
-    private static final Moment ENERGY_TIME_START = ARENA_TIME.newAdd(Calendar.MINUTE, 1);
-    private static final Moment ENERGY_TIME_STOP  = ENERGY_TIME_START.newAdd(Calendar.MINUTE, 29);
+    private static final Moment WEAPON_START_TIME = Moment.fromIso("23:30:00");
+    private static final Moment WEAPON_STOP_TIME  = Moment.fromIso("23:45:00");
+    private static final Moment PAUSE_TIME        = Moment.fromIso("23:59:00");
+
+    private static final Moment FIGHT_TIME        = Moment.fromIso("00:45:00");
+    private static final Moment STOP_TIME         = Moment.fromIso("01:15:00");
 
     @Override
     public void run() {
 
         final ALogin login = new ALogin(this);
-        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), ARENA_TIME.toIsoTime()));
-        login.setReadTransactions(true);
+        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), WEAPON_START_TIME.toIsoTime()));
+        login.setReadTransactions(false);
         login.perform();
 
         final Moment serverTime = getContext().getServerTime();
-        final Transactions transactions = getContext().getTransactions();
 
-        if (WEAPON_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_TIME_STOP) < 0) {
-            final ABuyGoods buyAttack = new ABuyGoods(this);
-            buyAttack.setGoods(new Grenada(Quality.LOW));
-            buyAttack.perform();
-
-            final ABuyGoods buyDefence = new ABuyGoods(this);
-            buyDefence.setGoods(new Glasses(Quality.LOW));
-            buyDefence.perform();
-        }
-
-        if (ENERGY_TIME_START.compareTo(serverTime) <= 0 && serverTime.compareTo(ENERGY_TIME_STOP) < 0) {
-            if (getContext().getEnergy() < 5) {
-                if (transactions.getMilkCount() <= 0) {
-                    final ABuyGoods buyMilk = new ABuyGoods(this);
-                    buyMilk.setGoods(new Dairy(Quality.HIGH));
-                    for (int count = 0; count < 10; ++count) {
-                        final PurchaseResult purchaseResult = buyMilk.perform();
-                        if (purchaseResult.isSuccessful()) {
-                            break;
-                        }
+        if (getContext().getEnergy() < 5) {
+            final ABuyGoods buyMilk = new ABuyGoods(this);
+            buyMilk.setGoods(new Dairy(Quality.HIGH));
+            for (int count = 0; count < 10; ++count) {
+                final PurchaseResult purchaseResult = buyMilk.perform();
+                if (purchaseResult.isSuccessful()) {
+                    break;
+                } else {
+                    final Moment lastBuyTime = purchaseResult.getMessageTime().getTimeMoment();
+                    final long delay = serverTime.getDelta(lastBuyTime, Calendar.MILLISECOND);
+                    if (0 < delay && delay < LIFE_TIME) {
                         try {
-                            Thread.sleep(50 * 1000);
+                            Thread.sleep(delay);
                         } catch (final InterruptedException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        break;
                     }
                 }
+            }
+        } else {
+            if (WEAPON_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_STOP_TIME) < 0) {
+                final ABuyGoods buyAttack = new ABuyGoods(this);
+                buyAttack.setGoods(new Grenada(Quality.LOW));
+                buyAttack.perform();
+
+                final ABuyGoods buyDefence = new ABuyGoods(this);
+                buyDefence.setGoods(new Glasses(Quality.LOW));
+                buyDefence.perform();
+            }
+            if (FIGHT_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(STOP_TIME) < 0) {
+
             }
         }
 

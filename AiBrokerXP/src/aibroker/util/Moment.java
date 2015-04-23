@@ -196,12 +196,33 @@ public class Moment extends GregorianCalendar {
         return get(Calendar.DAY_OF_MONTH);
     }
 
+    public long getDelta(final Moment other, final int field) {
+        final long from = getTimeInMillis();
+        final long to = other.getTimeInMillis();
+        final long delta = to - from;
+        switch (field) {
+            case Calendar.MINUTE:
+                return delta / (60 * 1000);
+            case Calendar.SECOND:
+                return delta / 1000;
+            case Calendar.MILLISECOND:
+                return delta;
+            default:
+                return delta;
+        }
+    }
+
     public Moment getEndOfDay() {
         return new Moment(get(Calendar.YEAR), get(Calendar.MONTH), get(Calendar.DAY_OF_MONTH), 23, 59, 59);
     }
 
     public int getMonth() {
         return get(Calendar.MONTH);
+    }
+
+    public Moment getTimeMoment() {
+        // TODO optimise this
+        return Moment.fromIso(toIsoTime());
     }
 
     public int getYear() {
