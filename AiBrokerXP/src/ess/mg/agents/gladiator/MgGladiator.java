@@ -8,6 +8,7 @@ import aibroker.util.Moment;
 import ess.mg.agents.MgAgent;
 import ess.mg.agents.actions.ABuyGoods;
 import ess.mg.agents.actions.ALogin;
+import ess.mg.agents.dto.ArenaFightResult;
 import ess.mg.agents.dto.PurchaseResult;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Dairy;
@@ -46,7 +47,7 @@ public class MgGladiator extends MgAgent {
     private static final Moment WEAPON_STOP_TIME  = Moment.fromIso("23:45:00");
     private static final Moment PAUSE_TIME        = Moment.fromIso("23:59:00");
 
-    private static final Moment FIGHT_TIME        = Moment.fromIso("00:45:00");
+    private static final Moment FIGHT_TIME        = Moment.fromIso("00:30:00");
     private static final Moment STOP_TIME         = Moment.fromIso("01:15:00");
 
     @Override
@@ -58,6 +59,16 @@ public class MgGladiator extends MgAgent {
         login.perform();
 
         final Moment serverTime = getContext().getServerTime();
+
+        if (WEAPON_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_STOP_TIME) < 0) {
+            final ABuyGoods buyAttack = new ABuyGoods(this);
+            buyAttack.setGoods(new Grenada(Quality.LOW));
+            buyAttack.perform();
+
+            final ABuyGoods buyDefence = new ABuyGoods(this);
+            buyDefence.setGoods(new Glasses(Quality.LOW));
+            buyDefence.perform();
+        }
 
         if (getContext().getEnergy() < 5) {
             final ABuyGoods buyMilk = new ABuyGoods(this);
@@ -80,18 +91,19 @@ public class MgGladiator extends MgAgent {
                     }
                 }
             }
-        } else {
-            if (WEAPON_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_STOP_TIME) < 0) {
-                final ABuyGoods buyAttack = new ABuyGoods(this);
-                buyAttack.setGoods(new Grenada(Quality.LOW));
-                buyAttack.perform();
+        }
 
-                final ABuyGoods buyDefence = new ABuyGoods(this);
-                buyDefence.setGoods(new Glasses(Quality.LOW));
-                buyDefence.perform();
-            }
-            if (FIGHT_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(STOP_TIME) < 0) {
-
+        if (FIGHT_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(STOP_TIME) < 0) {
+            for (int opponentIndex = 50; opponentIndex < 1000;) {
+                try {
+                    final ArenaFightResult result = getDriver().searchArenaOpponent(opponentIndex);
+                    if (result.isOpponentFound() && !result.isSuccessful()) {
+                        break;
+                    }
+                    opponentIndex = result.getOpponentIndex();
+                } catch (final Exception e) {
+                    opponentIndex += 10;
+                }
             }
         }
 

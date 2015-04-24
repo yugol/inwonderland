@@ -4,6 +4,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import ess.mg.agents.dto.ArenaFightResult;
 import ess.mg.agents.dto.ReferralFightResult;
 
 public abstract class MgWebFighter extends MgWebReader {
@@ -68,6 +69,47 @@ public abstract class MgWebFighter extends MgWebReader {
             }
         }
         return result;
+    }
+
+    public ArenaFightResult searchArenaOpponent(final int startFrom) {
+        navigateTo(BASE_URL_ACCOUNT + "/arena/fighters/" + startFrom);
+
+        final ArenaFightResult fightResult = new ArenaFightResult(startFrom);
+        final List<WebElement> fighters = driver.findElements(By.cssSelector("#list_fighters table tbody tr"));
+        for (final WebElement fighter : fighters) {
+            final String energy = fighter.findElement(By.cssSelector("td:nth-of-type(5)")).getText().split("\\.")[0];
+            if ("1".equals(energy)) {
+                fightResult.setOpponentFound(true);
+                final WebElement preview = fighter.findElement(By.cssSelector("td:nth-of-type(6) a"));
+                final String opponentUrl = preview.getAttribute("href");
+                preview.click();
+                pauseForSubmit();
+
+                navigateTo(opponentUrl);
+                // navigateTo(opponentUrl);
+                // navigateTo(opponentUrl);
+
+                final List<WebElement> errors = driver.findElements(By.className("nd_mess_error"));
+                if (errors.size() == 0) {
+                    final List<WebElement> stats = driver.findElements(By.cssSelector("table[class='nd_list mt13'] tbody tr td b"));
+                    final Double totalAttack = Double.parseDouble(stats.get(8).getText());
+                    final Double totalDefense = Double.parseDouble(stats.get(17).getText());
+                    if (totalAttack > totalDefense) {
+                        final WebElement attack = driver.findElement(By.cssSelector("input[class='mt13']"));
+                        // System.out.println(attack.getAttribute("value"));
+                        attack.click();
+                        pauseForSubmit();
+                        fightResult.setSuccessful(true);
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                fightResult.incrementOpponentIndex();
+            }
+        }
+        return fightResult;
     }
 
     private void attackReferral(final ReferralFightResult result) {

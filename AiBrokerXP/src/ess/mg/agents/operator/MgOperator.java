@@ -38,6 +38,7 @@ public class MgOperator extends MgAgent {
     }
 
     private static final int    LIFE_TIME       = 12 * 60 * 1000;
+
     private static final Moment START_TIME      = Moment.fromIso("20:15:00");
     private static final Moment WORK_START_TIME = Moment.fromIso("20:30:00");
     private static final Moment STOP_TIME       = Moment.fromIso("23:30:00");
@@ -58,6 +59,14 @@ public class MgOperator extends MgAgent {
             buyWine.setGoods(new Wine());
             buyWine.perform();
         }
+
+        if (transactions.getFoodCount() <= 0) {
+            final ABuyGoods buyCuisine = new ABuyGoods(this);
+            buyCuisine.setGoods(new Cuisine(Quality.HIGH));
+            buyCuisine.perform();
+        }
+
+        getDriver().fetchPlayerContext(getContext());
 
         if (WORK_START_TIME.compareTo(serverTime) <= 0 || 25 <= getContext().getEnergy()) {
             if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {
@@ -85,12 +94,6 @@ public class MgOperator extends MgAgent {
             final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
             buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
             buyNewspapers.perform();
-        }
-
-        if (transactions.getFoodCount() <= 0) {
-            final ABuyGoods buyCuisine = new ABuyGoods(this);
-            buyCuisine.setGoods(new Cuisine(Quality.HIGH));
-            buyCuisine.perform();
         }
 
     }
