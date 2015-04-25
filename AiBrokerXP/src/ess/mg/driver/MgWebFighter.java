@@ -77,8 +77,8 @@ public abstract class MgWebFighter extends MgWebReader {
         final ArenaFightResult fightResult = new ArenaFightResult(startFrom);
         final List<WebElement> fighters = driver.findElements(By.cssSelector("#list_fighters table tbody tr"));
         for (final WebElement fighter : fighters) {
-            final String energy = fighter.findElement(By.cssSelector("td:nth-of-type(5)")).getText().split("\\.")[0];
-            if ("1".equals(energy)) {
+            final Integer energy = Integer.parseInt(fighter.findElement(By.cssSelector("td:nth-of-type(5)")).getText().split("\\.")[0]);
+            if (energy < 4) {
                 fightResult.setOpponentFound(true);
                 final WebElement preview = fighter.findElement(By.cssSelector("td:nth-of-type(6) a"));
                 final String opponentUrl = preview.getAttribute("href");
@@ -90,6 +90,9 @@ public abstract class MgWebFighter extends MgWebReader {
                 // navigateTo(opponentUrl);
 
                 final List<WebElement> errors = driver.findElements(By.className("nd_mess_error"));
+                if (errors.size() == 1) {
+                    fightResult.setOpponentFound(false);
+                }
                 if (errors.size() == 0) {
                     final List<WebElement> stats = driver.findElements(By.cssSelector("table[class='nd_list mt13'] tbody tr td b"));
                     final Double totalAttack = Double.parseDouble(stats.get(8).getText());

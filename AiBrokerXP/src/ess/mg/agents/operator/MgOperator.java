@@ -69,12 +69,15 @@ public class MgOperator extends MgAgent {
         getDriver().fetchPlayerContext(getContext());
 
         if (WORK_START_TIME.compareTo(serverTime) <= 0 || 25 <= getContext().getEnergy()) {
-            if (transactions.getFightCount() < MgContext.MAX_FIGHTS_PER_DAY) {
+            boolean fightsDone = transactions.getFightCount() >= MgContext.MAX_FIGHTS_PER_DAY;
+            if (!fightsDone) {
                 final AReferralFight fight = new AReferralFight(this);
                 final ReferralFightResult result = fight.perform();
-                if (!result.isMaxFightCountReached()) { return; }
+                if (result.isMaxFightCountReached()) {
+                    fightsDone = true;
+                }
             }
-            if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
+            if (fightsDone && transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
                 final AWork work = new AWork(this);
                 for (int count = 0; count < 10; ++count) {
                     final WorkResult workResult = work.perform();
