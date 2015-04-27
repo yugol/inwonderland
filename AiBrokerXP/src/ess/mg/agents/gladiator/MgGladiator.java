@@ -41,7 +41,7 @@ public class MgGladiator extends MgAgent {
         }
     }
 
-    private static final int    LIFE_TIME         = 10 * 60 * 1000;
+    private static final int    LIFE_TIME         = 7 * 60 * 1000;
 
     private static final Moment WEAPON_START_TIME = Moment.fromIso("23:30:00");
     private static final Moment WEAPON_STOP_TIME  = Moment.fromIso("23:45:00");

@@ -14,6 +14,7 @@
 		<copy file="${soldir}/gt-operator.bat" todir="${pkgdir}" overwrite="true" />
 		<copy file="${soldir}/mg-operator.bat" todir="${pkgdir}" overwrite="true" />
         <copy file="${soldir}/mg-gladiator.bat" todir="${pkgdir}" overwrite="true" />
+        <copy file="${soldir}/mg-trader.bat" todir="${pkgdir}" overwrite="true" />
 	</target>
 
 	<target name="build-jar" depends="build-context">
