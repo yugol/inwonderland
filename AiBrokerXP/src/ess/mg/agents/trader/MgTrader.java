@@ -38,14 +38,9 @@ public class MgTrader extends MgAgent {
         final MgContext context = getDriver().login();
         setContext(context);
 
-        // getAgent().getDriver().fetchWage(context);
-        // getAgent().getLogger().logWorkWage(context.getWorkWage());
-
-        // getDriver().fetchPlayerContext(context);
         getDriver().fetchShares(context);
         getLogger().logShares(context.getShares());
 
-        // getDriver().fetchPlayerContext(context);
         getDriver().fetchEuroGoldExchangeRate(context);
         getLogger().logEuroGoldRate(context.getEuroGoldExchangeRate());
 
