@@ -60,34 +60,35 @@ public class MgGladiator extends MgAgent {
 
         final Moment serverTime = getContext().getServerTime();
 
-        if (WEAPON_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_STOP_TIME) < 0) {
-            final ABuyGoods buyAttack = new ABuyGoods(this);
-            buyAttack.setGoods(new Grenada(Quality.LOW));
-            buyAttack.perform();
+        if (getContext().getRonAmount() > 10) {
+            if (WEAPON_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WEAPON_STOP_TIME) < 0) {
+                final ABuyGoods buyAttack = new ABuyGoods(this);
+                buyAttack.setGoods(new Grenada(Quality.LOW));
+                buyAttack.perform();
 
-            final ABuyGoods buyDefence = new ABuyGoods(this);
-            buyDefence.setGoods(new Glasses(Quality.LOW));
-            buyDefence.perform();
-        }
-
-        if (getContext().getEnergy() < 5) {
-            final ABuyGoods buyMilk = new ABuyGoods(this);
-            buyMilk.setGoods(new Dairy(Quality.HIGH));
-            for (int count = 0; count < 10; ++count) {
-                final PurchaseResult purchaseResult = buyMilk.perform();
-                if (purchaseResult.isSuccessful()) {
-                    break;
-                } else {
-                    final Moment lastBuyTime = purchaseResult.getMessageTime().getTimeMoment();
-                    final long delay = serverTime.getDelta(lastBuyTime, Calendar.MILLISECOND);
-                    if (0 < delay && delay < LIFE_TIME) {
-                        try {
-                            Thread.sleep(delay);
-                        } catch (final InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
+                final ABuyGoods buyDefence = new ABuyGoods(this);
+                buyDefence.setGoods(new Glasses(Quality.LOW));
+                buyDefence.perform();
+            }
+            if (getContext().getEnergy() < 5) {
+                final ABuyGoods buyMilk = new ABuyGoods(this);
+                buyMilk.setGoods(new Dairy(Quality.HIGH));
+                for (int count = 0; count < 10; ++count) {
+                    final PurchaseResult purchaseResult = buyMilk.perform();
+                    if (purchaseResult.isSuccessful()) {
                         break;
+                    } else {
+                        final Moment lastBuyTime = purchaseResult.getMessageTime().getTimeMoment();
+                        final long delay = serverTime.getDelta(lastBuyTime, Calendar.MILLISECOND);
+                        if (0 < delay && delay < LIFE_TIME) {
+                            try {
+                                Thread.sleep(delay);
+                            } catch (final InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            break;
+                        }
                     }
                 }
             }
