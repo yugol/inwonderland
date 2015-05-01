@@ -20,7 +20,12 @@ public abstract class MgWebWorker extends MgWebFighter {
             final WebElement nd_work_submit = driver.findElement(By.className("nd_work_submit"));
             nd_work_submit.click();
             pauseForSubmit();
-            result.setSuccessful(true);
+            try {
+                driver.findElement(By.className("nd_mess_error"));
+                result.setSuccessful(false);
+            } catch (final NoSuchElementException ex) {
+                result.setSuccessful(true);
+            }
         }
         return result;
     }
