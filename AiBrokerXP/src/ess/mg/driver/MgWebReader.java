@@ -19,6 +19,7 @@ import ess.mg.goods.food.Wine;
 
 public abstract class MgWebReader extends MgWebBase {
 
+    @Override
     public void fetchEuroGoldExchangeRate(final EssContext context) {
         navigateTo(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk);
 
@@ -40,6 +41,7 @@ public abstract class MgWebReader extends MgWebBase {
         }
     }
 
+    @Override
     public void fetchGoldRonExchangeRate(final EssContext context) {
         navigateTo(BASE_URL_ACCOUNT + "/" + MgMarket.FINANCIAL.urlChunk + "/moneda_gold");
 
@@ -65,23 +67,25 @@ public abstract class MgWebReader extends MgWebBase {
         navigateTo(BASE_URL_ACCOUNT + "/special/local/latest/" + index);
 
         final Newspaper newspaper = new Newspaper(index);
-        final WebElement _mr_article_big = driver.findElement(By.className("_mr_article_big"));
-        newspaper.setTitle(_mr_article_big.findElement(By.tagName("h2")).getText());
+        try {
+            final WebElement _mr_article_big = driver.findElement(By.className("_mr_article_big"));
+            newspaper.setTitle(_mr_article_big.findElement(By.tagName("h2")).getText());
 
-        final WebElement _mr_newspaper_infos = driver.findElement(By.className("_mr_newspaper_infos"));
+            final WebElement _mr_newspaper_infos = driver.findElement(By.className("_mr_newspaper_infos"));
 
-        final WebElement _mr_split_right = _mr_newspaper_infos.findElement(By.className("_mr_split_right"));
-        final String sold = _mr_split_right.getText().split(" ")[1];
-        newspaper.setSold(parseInt(sold));
+            final WebElement _mr_split_right = _mr_newspaper_infos.findElement(By.className("_mr_split_right"));
+            final String sold = _mr_split_right.getText().split(" ")[1];
+            newspaper.setSold(parseInt(sold));
 
-        final WebElement gray = _mr_newspaper_infos.findElement(By.className("gray"));
-        final String votes = gray.getText().split(" ")[2];
-        newspaper.setVotes(parseInt(votes));
+            final WebElement gray = _mr_newspaper_infos.findElement(By.className("gray"));
+            final String votes = gray.getText().split(" ")[2];
+            newspaper.setVotes(parseInt(votes));
 
-        final WebElement _mr_buy_btn_big = _mr_newspaper_infos.findElement(By.className("_mr_buy_btn_big"));
-        final String price = _mr_buy_btn_big.getText().split(" ")[0];
-        newspaper.setPrice(parseDouble(price));
-
+            final WebElement _mr_buy_btn_big = _mr_newspaper_infos.findElement(By.className("_mr_buy_btn_big"));
+            final String price = _mr_buy_btn_big.getText().split(" ")[0];
+            newspaper.setPrice(parseDouble(price));
+        } catch (final NoSuchElementException e) {
+        }
         return newspaper;
     }
 

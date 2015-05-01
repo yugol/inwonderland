@@ -63,7 +63,7 @@ public abstract class MgWebFighter extends MgWebReader {
                 } catch (final NoSuchElementException ex) {
                     return referralFightTrainer();
                 }
-            } catch (final NoSuchElementException ex) {
+            } catch (final NoSuchElementException | ArrayIndexOutOfBoundsException ex) {
                 result.setMessage(FIGHTING);
                 result.setFighting(true);
             }

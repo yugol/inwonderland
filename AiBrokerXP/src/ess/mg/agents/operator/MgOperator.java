@@ -128,7 +128,7 @@ public class MgOperator extends MgAgent {
 
         }
 
-        if (FIGHT_START_TIME.compareTo(serverTime) <= 0) {
+        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0) {
             if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
                 final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
                 buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
