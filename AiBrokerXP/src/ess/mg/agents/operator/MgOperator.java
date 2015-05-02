@@ -84,13 +84,13 @@ public class MgOperator extends MgAgent {
 
             if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
                 final AWork work = new AWork(this);
-                for (int count = 0; count < 10; ++count) {
+                for (int count = 0; count < 5; ++count) {
                     final WorkResult workResult = work.perform();
                     if (workResult.isSuccessful()) {
                         break;
                     }
                     try {
-                        Thread.sleep(50 * 1000);
+                        Thread.sleep(100 * 1000);
                     } catch (final InterruptedException e) {
                         e.printStackTrace();
                     }
