@@ -10,7 +10,6 @@ import ess.mg.agents.MgAgent;
 import ess.mg.agents.actions.ABuyGoods;
 import ess.mg.agents.actions.ALogin;
 import ess.mg.agents.dto.PurchaseResult;
-import ess.mg.agents.dto.ReferralFightResult;
 import ess.mg.agents.dto.WorkResult;
 import ess.mg.driver.dto.Transactions;
 import ess.mg.goods.Quality;
@@ -42,10 +41,10 @@ public class MgOperator extends MgAgent {
 
     private static final int    LIFE_TIME                = 12 * 60 * 1000;
 
-    private static final Moment WORK_START_TIME          = Moment.fromIso("19:15:00");
+    private static final Moment WORK_START_TIME          = Moment.fromIso("19:30:00");
     private static final Moment PREPARE_FIGHT_START_TIME = Moment.fromIso("20:15:00");
     private static final Moment FIGHT_START_TIME         = Moment.fromIso("20:30:00");
-    private static final Moment STOP_TIME                = Moment.fromIso("23:30:00");
+    private static final Moment STOP_TIME                = Moment.fromIso("23:00:00");
 
     @Override
     public void run() {
@@ -105,27 +104,22 @@ public class MgOperator extends MgAgent {
                 final ABuyGoods buyWine = new ABuyGoods(this);
                 buyWine.setGoods(new Wine());
                 buyWine.perform();
+                getDriver().fetchPlayerContext(getContext());
             }
-
             if (transactions.getFoodCount() <= 0) {
                 final ABuyGoods buyCuisine = new ABuyGoods(this);
                 buyCuisine.setGoods(new Cuisine(Quality.HIGH));
                 buyCuisine.perform();
+                getDriver().fetchPlayerContext(getContext());
             }
-
-            getDriver().fetchPlayerContext(getContext());
         }
 
         if (FIGHT_START_TIME.compareTo(serverTime) <= 0 || 25 <= getContext().getEnergy()) {
-            boolean fightsDone = transactions.getFightCount() >= MgContext.MAX_FIGHTS_PER_DAY;
-            if (!fightsDone) {
+            final boolean fightsCompleted = transactions.getFightCount() >= MgContext.MAX_FIGHTS_PER_DAY;
+            if (!fightsCompleted) {
                 final AReferralFight fight = new AReferralFight(this);
-                final ReferralFightResult result = fight.perform();
-                if (result.isMaxFightCountReached()) {
-                    fightsDone = true;
-                }
+                fight.perform();
             }
-
         }
 
         if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0) {
