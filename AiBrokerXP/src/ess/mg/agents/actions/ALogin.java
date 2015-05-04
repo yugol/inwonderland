@@ -17,14 +17,6 @@ public class ALogin extends Action<MgAgent, ActionResult> {
         super(performer);
     }
 
-    public Moment getEpoch() {
-        return epoch;
-    }
-
-    public boolean isReadTransactions() {
-        return readTransactions;
-    }
-
     public void setEpoch(final Moment epoch) {
         this.epoch = epoch;
     }

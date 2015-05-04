@@ -20,8 +20,8 @@ import ess.mg.goods.food.Wine;
 public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
-        final Moment nowTime = Moment.getNow().getTimeMoment();
-        final boolean active = WORK_START_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(STOP_TIME) < 0;
+
+        final boolean active = WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(STOP_TIME) < 0;
         if (active) {
             final MgOperator operator = new MgOperator();
             final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
@@ -39,25 +39,31 @@ public class MgOperator extends MgAgent {
         }
     }
 
+    private static final Moment CURRENT_TIME             = Moment.getNow().getTimeMoment();
     private static final int    LIFE_TIME                = 12 * 60 * 1000;
 
     private static final Moment WORK_START_TIME          = Moment.fromIso("19:30:00");
     private static final Moment PREPARE_FIGHT_START_TIME = Moment.fromIso("20:15:00");
     private static final Moment FIGHT_START_TIME         = Moment.fromIso("20:30:00");
+    private static final Moment NO_TRANSACTIONS_TIME     = Moment.fromIso("21:00:00");
     private static final Moment STOP_TIME                = Moment.fromIso("23:00:00");
 
     @Override
     public void run() {
 
         final ALogin login = new ALogin(this);
-        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), WORK_START_TIME.toIsoTime()));
-        login.setReadTransactions(true);
+        if (WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(NO_TRANSACTIONS_TIME) < 0) {
+            login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), WORK_START_TIME.toIsoTime()));
+            login.setReadTransactions(true);
+        } else {
+            login.setReadTransactions(false);
+        }
         login.perform();
 
         final Moment serverTime = getContext().getServerTime();
         final Transactions transactions = getContext().getTransactions();
 
-        if (WORK_START_TIME.compareTo(serverTime) <= 0) {
+        if (WORK_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
 
             if (transactions.getMilkCount() == 0 && getContext().getRonAmount() > 1) {
                 final ABuyGoods buyMilk = new ABuyGoods(this);
@@ -99,30 +105,30 @@ public class MgOperator extends MgAgent {
 
         }
 
-        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0) {
+        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
+
             if (transactions.getWineCount() <= 0) {
                 final ABuyGoods buyWine = new ABuyGoods(this);
                 buyWine.setGoods(new Wine());
                 buyWine.perform();
                 getDriver().fetchPlayerContext(getContext());
             }
+
             if (transactions.getFoodCount() <= 0) {
                 final ABuyGoods buyCuisine = new ABuyGoods(this);
                 buyCuisine.setGoods(new Cuisine(Quality.HIGH));
                 buyCuisine.perform();
                 getDriver().fetchPlayerContext(getContext());
             }
+
         }
 
         if (FIGHT_START_TIME.compareTo(serverTime) <= 0 || 25 <= getContext().getEnergy()) {
-            final boolean fightsCompleted = transactions.getFightCount() >= MgContext.MAX_FIGHTS_PER_DAY;
-            if (!fightsCompleted) {
-                final AReferralFight fight = new AReferralFight(this);
-                fight.perform();
-            }
+            final AReferralFight fight = new AReferralFight(this);
+            fight.perform();
         }
 
-        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0) {
+        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
             if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
                 final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
                 buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
