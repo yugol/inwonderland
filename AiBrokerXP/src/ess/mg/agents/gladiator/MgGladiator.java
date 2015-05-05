@@ -51,7 +51,6 @@ public class MgGladiator extends MgAgent {
     public void run() {
 
         final ALogin login = new ALogin(this);
-        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), WEAPON_START_TIME.toIsoTime()));
         login.setReadTransactions(false);
         login.perform();
 

@@ -21,7 +21,7 @@ public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
 
-        final boolean active = WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(STOP_TIME) < 0;
+        final boolean active = WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(FULL_STOP_TIME) < 0;
         if (active) {
             final MgOperator operator = new MgOperator();
             final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
@@ -42,11 +42,13 @@ public class MgOperator extends MgAgent {
     private static final Moment CURRENT_TIME             = Moment.getNow().getTimeMoment();
     private static final int    LIFE_TIME                = 12 * 60 * 1000;
 
-    private static final Moment WORK_START_TIME          = Moment.fromIso("19:30:00");
+    private static final Moment WORK_START_TIME          = Moment.fromIso("19:15:00");
+    private static final Moment WORK_STOP_TIME           = Moment.fromIso("20:15:00");
+
     private static final Moment PREPARE_FIGHT_START_TIME = Moment.fromIso("20:15:00");
     private static final Moment FIGHT_START_TIME         = Moment.fromIso("20:30:00");
     private static final Moment NO_TRANSACTIONS_TIME     = Moment.fromIso("21:00:00");
-    private static final Moment STOP_TIME                = Moment.fromIso("23:00:00");
+    private static final Moment FULL_STOP_TIME           = Moment.fromIso("23:00:00");
 
     @Override
     public void run() {
@@ -63,7 +65,7 @@ public class MgOperator extends MgAgent {
         final Moment serverTime = getContext().getServerTime();
         final Transactions transactions = getContext().getTransactions();
 
-        if (WORK_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
+        if (WORK_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WORK_STOP_TIME) < 0) {
 
             if (transactions.getMilkCount() == 0 && getContext().getRonAmount() > 1) {
                 final ABuyGoods buyMilk = new ABuyGoods(this);
