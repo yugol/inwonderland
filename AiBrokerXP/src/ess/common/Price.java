@@ -1,11 +1,10 @@
 package ess.common;
 
-
 /**
  * @author Iulian
  *
  */
-public class Price {
+public class Price implements Comparable<Price> {
 
     public static Price euro(final double amount) {
         return new Price(amount, Currency.EURO);
@@ -31,6 +30,12 @@ public class Price {
     public Price add(final Price augend) {
         if (currency == augend.currency) { return new Price(amount + augend.amount, currency); }
         throw new IllegalArgumentException("incompatible currencies " + currency + " and " + augend.currency);
+    }
+
+    @Override
+    public int compareTo(final Price other) {
+        if (currency != other.currency) { throw new UnsupportedOperationException(); }
+        return Double.compare(amount, other.amount);
     }
 
     public Price create(final double amount) {

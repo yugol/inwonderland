@@ -1,14 +1,17 @@
 package ess.mg.driver;
 
-import ess.mg.driver.dto.Transactions;
+import ess.common.Price;
+import ess.mg.MgMarket;
+import ess.mg.goods.Quality;
+import ess.mg.goods.weapons.Knife;
 
 public class MgWebReaderTest {
 
     public static void main(final String... args) {
         final MgWebReader reader = new MgWebDriver();
         reader.login();
-        final Transactions ts = reader.fetchTransactions(40);
-        System.out.println(ts.size());
+        final Price price = reader.fetchPrice(new Knife(Quality.LOW), MgMarket.LOCAL);
+        System.out.println(price);
     }
 
 }
