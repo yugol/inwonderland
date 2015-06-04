@@ -67,32 +67,9 @@ public class MgOperator extends MgAgent {
 
         if (WORK_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WORK_STOP_TIME) < 0) {
 
-            if (transactions.getMilkCount() == 0 && getContext().getRonAmount() > 1) {
-                final ABuyGoods buyMilk = new ABuyGoods(this);
-                buyMilk.setGoods(new Dairy(Quality.HIGH));
-                for (int count = 0; count < 10; ++count) {
-                    final PurchaseResult purchaseResult = buyMilk.perform();
-                    if (purchaseResult.isSuccessful()) {
-                        break;
-                    } else {
-                        final Moment lastBuyTime = purchaseResult.getMessageTime().getTimeMoment();
-                        final long delay = serverTime.getDelta(lastBuyTime, Calendar.MILLISECOND);
-                        if (0 < delay && delay < LIFE_TIME) {
-                            try {
-                                Thread.sleep(delay);
-                            } catch (final InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
-                final double minEnergy = getContext().getProductivity() / 10;
-                if (minEnergy < getContext().getEnergy()) {
+            final double minEnergy = getContext().getProductivity() / 10;
+            if (minEnergy < getContext().getEnergy()) {
+                if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
                     final AWork work = new AWork(this);
                     for (int count = 0; count < 5; ++count) {
                         final WorkResult workResult = work.perform();
@@ -105,6 +82,12 @@ public class MgOperator extends MgAgent {
                             e.printStackTrace();
                         }
                     }
+                }
+            } else {
+                if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
+                    final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
+                    buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
+                    buyNewspapers.perform();
                 }
             }
 
@@ -134,13 +117,29 @@ public class MgOperator extends MgAgent {
         }
 
         if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
-            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
-                final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
-                buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
-                buyNewspapers.perform();
+            if (transactions.getMilkCount() == 0 && getContext().getRonAmount() > 1) {
+                final ABuyGoods buyMilk = new ABuyGoods(this);
+                buyMilk.setGoods(new Dairy(Quality.HIGH));
+                for (int count = 0; count < 10; ++count) {
+                    final PurchaseResult purchaseResult = buyMilk.perform();
+                    if (purchaseResult.isSuccessful()) {
+                        break;
+                    } else {
+                        final Moment lastBuyTime = purchaseResult.getMessageTime().getTimeMoment();
+                        final long delay = serverTime.getDelta(lastBuyTime, Calendar.MILLISECOND);
+                        if (0 < delay && delay < LIFE_TIME) {
+                            try {
+                                Thread.sleep(delay);
+                            } catch (final InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                }
             }
         }
-
     }
 
 }
