@@ -10,6 +10,7 @@ import ess.mg.agents.MgAgent;
 import ess.mg.agents.actions.ABuyGoods;
 import ess.mg.agents.actions.ALogin;
 import ess.mg.agents.dto.ArenaFightResult;
+import ess.mg.agents.operator.AReferralFight;
 import ess.mg.goods.Quality;
 import ess.mg.goods.weapons.Glasses;
 import ess.mg.goods.weapons.Grenada;
@@ -21,7 +22,7 @@ public class MgGladiator extends MgAgent {
         final Moment nowTime = Moment.getNow().getTimeMoment();
         boolean active = WEAPON_START_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(PAUSE_TIME) < 0;
         if (!active) {
-            active = FIGHT_ST_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(STOP_TIME) < 0;
+            active = ARENA_START_TIME.compareTo(nowTime) <= 0 && nowTime.compareTo(REFERRAL_STOP_TIME) < 0;
         }
         // active = true;
         if (active) {
@@ -41,16 +42,19 @@ public class MgGladiator extends MgAgent {
         }
     }
 
-    static private final int      LIFE_TIME         = 7 * 60 * 1000;
-    static private final MgMarket WEAPONS_MARKET    = MgMarket.LOCAL;
-    static private final Quality  WEAPONS_QUALITY   = Quality.LOW;
+    static private final int      LIFE_TIME           = 7 * 60 * 1000;
+    static private final MgMarket WEAPONS_MARKET      = MgMarket.LOCAL;
+    static private final Quality  WEAPONS_QUALITY     = Quality.LOW;
 
-    static private final Moment   WEAPON_START_TIME = Moment.fromIso("23:30:00");
-    static private final Moment   WEAPON_STOP_TIME  = Moment.fromIso("23:45:00");
-    static private final Moment   PAUSE_TIME        = Moment.fromIso("23:59:00");
+    static private final Moment   WEAPON_START_TIME   = Moment.fromIso("23:30:00");
+    static private final Moment   WEAPON_STOP_TIME    = Moment.fromIso("23:45:00");
+    static private final Moment   PAUSE_TIME          = Moment.fromIso("23:59:00");
 
-    static private final Moment   FIGHT_ST_TIME     = Moment.fromIso("00:30:00");
-    static private final Moment   STOP_TIME         = Moment.fromIso("01:15:00");
+    static private final Moment   ARENA_START_TIME    = Moment.fromIso("00:30:00");
+    static private final Moment   ARENA_STOP_TIME     = Moment.fromIso("01:15:00");
+
+    static private final Moment   REFERRAL_START_TIME = Moment.fromIso("01:15:00");
+    static private final Moment   REFERRAL_STOP_TIME  = Moment.fromIso("05:00:00");
 
     @Override
     public void run() {
@@ -85,7 +89,7 @@ public class MgGladiator extends MgAgent {
             }
         }
 
-        if (FIGHT_ST_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(STOP_TIME) < 0) {
+        if (ARENA_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(ARENA_STOP_TIME) < 0) {
             for (int opponentIndex = 50; opponentIndex < 1000;) {
                 try {
                     final ArenaFightResult result = getDriver().searchArenaOpponent(opponentIndex);
@@ -97,6 +101,11 @@ public class MgGladiator extends MgAgent {
                     opponentIndex += 10;
                 }
             }
+        }
+
+        if (REFERRAL_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(REFERRAL_STOP_TIME) < 0) {
+            final AReferralFight fight = new AReferralFight(this);
+            fight.perform();
         }
 
     }

@@ -10,7 +10,6 @@ import ess.mg.agents.MgAgent;
 import ess.mg.agents.actions.ABuyGoods;
 import ess.mg.agents.actions.ALogin;
 import ess.mg.agents.dto.PurchaseResult;
-import ess.mg.agents.dto.WorkResult;
 import ess.mg.driver.dto.Transactions;
 import ess.mg.goods.Quality;
 import ess.mg.goods.food.Cuisine;
@@ -21,7 +20,7 @@ public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
 
-        final boolean active = WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(FULL_STOP_TIME) < 0;
+        final boolean active = PRE_ENERGISE_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(WORK_STOP_TIME) < 0;
         if (active) {
             final MgOperator operator = new MgOperator();
             final Timer timer = new Timer(LIFE_TIME, new ActionListener() {
@@ -37,70 +36,30 @@ public class MgOperator extends MgAgent {
             timer.start();
             operator.start();
         }
+
     }
 
-    private static final Moment CURRENT_TIME             = Moment.getNow().getTimeMoment();
-    private static final int    LIFE_TIME                = 12 * 60 * 1000;
+    private static final Moment CURRENT_TIME      = Moment.getNow().getTimeMoment();
+    private static final int    LIFE_TIME         = 12 * 60 * 1000;
 
-    private static final Moment WORK_START_TIME          = Moment.fromIso("19:15:00");
-    private static final Moment WORK_STOP_TIME           = Moment.fromIso("20:15:00");
+    private static final Moment PRE_ENERGISE_TIME = Moment.fromIso("21:00:00");
+    private static final Moment ENERGISE_TIME     = Moment.fromIso("21:15:00");
 
-    private static final Moment PREPARE_FIGHT_START_TIME = Moment.fromIso("20:15:00");
-    private static final Moment FIGHT_START_TIME         = Moment.fromIso("20:30:00");
-    private static final Moment NO_TRANSACTIONS_TIME     = Moment.fromIso("21:00:00");
-    private static final Moment FULL_STOP_TIME           = Moment.fromIso("23:00:00");
+    private static final Moment WORK_START_TIME   = Moment.fromIso("21:45:00");
+    private static final Moment WORK_STOP_TIME    = Moment.fromIso("22:45:00");
 
     @Override
     public void run() {
 
         final ALogin login = new ALogin(this);
-        if (WORK_START_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(NO_TRANSACTIONS_TIME) < 0) {
-            login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), WORK_START_TIME.toIsoTime()));
-            login.setReadTransactions(true);
-        } else {
-            login.setReadTransactions(false);
-        }
+        login.setEpoch(Moment.fromIso(Moment.getNow().toIsoDate(), PRE_ENERGISE_TIME.toIsoTime()));
+        login.setReadTransactions(true);
         login.perform();
 
         final Moment serverTime = getContext().getServerTime();
         final Transactions transactions = getContext().getTransactions();
 
-        if (WORK_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WORK_STOP_TIME) < 0) {
-
-            final double minEnergy = getContext().getProductivity() / 10;
-            if (minEnergy < getContext().getEnergy()) {
-                if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
-                    final AWork work = new AWork(this);
-                    for (int count = 0; count < 5; ++count) {
-                        final WorkResult workResult = work.perform();
-                        if (workResult.isSuccessful()) {
-                            break;
-                        }
-                        try {
-                            Thread.sleep(100 * 1000);
-                        } catch (final InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            } else {
-                if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
-                    final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
-                    buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
-                    buyNewspapers.perform();
-                }
-            }
-
-        }
-
-        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
-
-            if (transactions.getWineCount() <= 0) {
-                final ABuyGoods buyWine = new ABuyGoods(this);
-                buyWine.setGoods(new Wine());
-                buyWine.perform();
-                getDriver().fetchPlayerContext(getContext());
-            }
+        if (PRE_ENERGISE_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(ENERGISE_TIME) < 0) {
 
             if (transactions.getFoodCount() <= 0) {
                 final ABuyGoods buyCuisine = new ABuyGoods(this);
@@ -111,12 +70,21 @@ public class MgOperator extends MgAgent {
 
         }
 
-        if (FIGHT_START_TIME.compareTo(serverTime) <= 0 || 25 <= getContext().getEnergy()) {
-            final AReferralFight fight = new AReferralFight(this);
-            fight.perform();
-        }
+        if (ENERGISE_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(WORK_START_TIME) < 0) {
 
-        if (PREPARE_FIGHT_START_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(NO_TRANSACTIONS_TIME) < 0) {
+            if (transactions.getWineCount() <= 0) {
+                final ABuyGoods buyWine = new ABuyGoods(this);
+                buyWine.setGoods(new Wine());
+                buyWine.perform();
+                getDriver().fetchPlayerContext(getContext());
+            }
+
+            if (transactions.getNewspaperCount() < MgContext.MAX_NEWSPAPRES_PER_DAY) {
+                final ABuyNewspapers buyNewspapers = new ABuyNewspapers(this);
+                buyNewspapers.setPapersLeftToBuy(MgContext.MAX_NEWSPAPRES_PER_DAY - transactions.getNewspaperCount());
+                buyNewspapers.perform();
+            }
+
             if (transactions.getMilkCount() == 0 && getContext().getRonAmount() > 1) {
                 final ABuyGoods buyMilk = new ABuyGoods(this);
                 buyMilk.setGoods(new Dairy(Quality.HIGH));
@@ -139,7 +107,32 @@ public class MgOperator extends MgAgent {
                     }
                 }
             }
+
         }
+
+        if (WORK_START_TIME.compareTo(serverTime) <= 0) {
+
+            if (transactions.getWorkCount() < MgContext.MAX_WORK_PER_DAY) {
+                final AWork work = new AWork(this);
+                for (int foo = 0; foo < 5; ++foo) {
+                    for (int count = 0; count < 5; ++count) {
+                        work.perform();
+                        try {
+                            Thread.sleep(5 * 1000);
+                        } catch (final InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    try {
+                        Thread.sleep(50 * 1000);
+                    } catch (final InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }
+
     }
 
 }

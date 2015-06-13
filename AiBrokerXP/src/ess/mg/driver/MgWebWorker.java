@@ -21,6 +21,8 @@ public abstract class MgWebWorker extends MgWebFighter {
                 final WebElement nd_work_submit = driver.findElement(By.className("nd_work_submit"));
                 nd_work_submit.click();
                 pauseForSubmit();
+                nd_work_submit.click();
+                pauseForSubmit();
                 try {
                     final WebElement nd_mess_error = driver.findElement(By.className("nd_mess_error"));
                     result.setMessage(nd_mess_error.getText());

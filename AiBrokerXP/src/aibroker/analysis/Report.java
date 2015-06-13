@@ -15,23 +15,23 @@ import aibroker.model.drivers.sql.SqlSeq;
 
 public abstract class Report {
 
-    protected final SqlDb        database;
-    protected final SqlSeq        sequence;
+    protected final SqlDb      database;
+    protected final SqlSeq     sequence;
 
-    protected final SeqDesc descriptor;
-    protected final double             blockMultiplier;
-    protected final double             overallMultiplier;
-    protected final double             transactionPrice;
-    protected final double             transactionFee;
-    protected final double             overallPrice;
-    protected final double             profitPoint;
-    protected final double             profitIncrement;
+    protected final SeqDesc    descriptor;
+    protected final double     blockMultiplier;
+    protected final double     overallMultiplier;
+    protected final double     transactionPrice;
+    protected final double     transactionFee;
+    protected final double     overallPrice;
+    protected final double     profitPoint;
+    protected final double     profitIncrement;
 
-    private final XSSFWorkbook         workbook = new XSSFWorkbook();
-    protected final CellStyle          dateStyle;
-    protected final CellStyle          priceStyle;
-    protected final CellStyle          timeStyle;
-    protected final CellStyle          volumeStyle;
+    private final XSSFWorkbook workbook = new XSSFWorkbook();
+    protected final CellStyle  dateStyle;
+    protected final CellStyle  priceStyle;
+    protected final CellStyle  timeStyle;
+    protected final CellStyle  volumeStyle;
 
     public Report(final SqlDb database, final SqlSeq sequence) throws IOException {
         this.database = database;

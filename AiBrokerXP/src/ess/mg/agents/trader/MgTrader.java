@@ -26,12 +26,12 @@ public class MgTrader extends MgAgent {
 
     private static final int     LIFE_TIME              = 5 * 60 * 1000;
 
-    private static final boolean TRADE_GOLD             = false;
-    private static final double  BUY_GOLD_PRICE         = 10.1000;
-    private static final double  SELL_GOLD_PRICE        = 11.1000;
-    private static final double  MIN_RON_STOCK          = 25;
+    private static final boolean TRADE_GOLD             = true;
+    private static final double  BUY_GOLD_PRICE         = 10.2000;
+    private static final double  SELL_GOLD_PRICE        = 11.0000;
+    private static final double  MIN_RON_STOCK          = 50;
     private static final double  MIN_GOLD_STOCK         = 1;
-    private static final double  MAX_TRADED_GOLD_AMOUNT = 100;
+    private static final double  MAX_TRADED_GOLD_AMOUNT = 10;
 
     @Override
     public void run() {
