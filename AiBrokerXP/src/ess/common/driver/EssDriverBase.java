@@ -4,8 +4,19 @@ import java.awt.Rectangle;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import aibroker.Context;
 import ess.common.EssContext;
+
+/**
+ *
+ * @author Iulian
+ *
+ *         http://stackoverflow.com/questions/5771840/how-do-you-reuse-cookies-between-seleniumrc-sessions
+ *
+ *         https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles?redirectlocale=en-US&redirectslug=Managing+profiles
+ */
 
 public abstract class EssDriverBase {
 
@@ -53,9 +64,12 @@ public abstract class EssDriverBase {
         pause(2500);
     }
 
-    protected final WebDriver driver = new FirefoxDriver();
+    protected final WebDriver driver;
 
     public EssDriverBase() {
+        final ProfilesIni profileObj = new ProfilesIni();
+        final FirefoxProfile yourFFProfile = profileObj.getProfile("essSelenium");
+        driver = new FirefoxDriver(yourFFProfile);
         final Rectangle bounds = Context.getBrowserWindowBounds();
         if (bounds != null) {
             driver.manage().window().setPosition(new Point(bounds.x, bounds.y));

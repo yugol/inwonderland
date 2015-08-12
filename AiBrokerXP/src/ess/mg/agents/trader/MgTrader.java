@@ -28,7 +28,7 @@ public class MgTrader extends MgAgent {
 
     private static final boolean TRADE_GOLD             = true;
     private static final double  BUY_GOLD_PRICE         = 10.2000;
-    private static final double  SELL_GOLD_PRICE        = 11.0000;
+    private static final double  SELL_GOLD_PRICE        = 20.0000;
     private static final double  MIN_RON_STOCK          = 50;
     private static final double  MIN_GOLD_STOCK         = 1;
     private static final double  MAX_TRADED_GOLD_AMOUNT = 10;
