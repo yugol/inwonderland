@@ -5,13 +5,16 @@ import ess.common.EssLogger;
 
 public class MgLogger extends EssLogger {
 
-    public static final String ACTIVE_USERS   = "MG_USERS";
-    public static final String EURO_BALANCE   = "MG_EURO_BALANCE";
-    public static final String GOLD_BALANCE   = "MG_GOLD_BALANCE";
-    public static final String SHARE_PRICE    = "MG_SHARE_PRICE";
+    public static final String ACTIVE_USERS = "MG_USERS";
+    public static final String EURO_BALANCE = "MG_EURO_BALANCE";
+    public static final String GOLD_BALANCE = "MG_GOLD_BALANCE";
+    public static final String SHARE_PRICE = "MG_SHARE_PRICE";
     public static final String EURO_GOLD_RATE = "MG_EURO_GOLD";
-    public static final String GOLD_RON_RATE  = "MG_GOLD_RON";
-    public static final String WORK_WAGE      = "MG_WORK_WAGE";
+    public static final String GOLD_RON_RATE = "MG_GOLD_RON";
+    public static final String WORK_WAGE = "MG_WORK_WAGE";
+    public static final String RON_AMOUNT = "MG_USER_RON";
+    public static final String GOLD_AMOUNT = "MG_USER_GOLD";
+    public static final String EUR_AMOUNT = "MG_USER_EUR";
 
     public MgLogger() {
         super(Context.getLogger(MgLogger.class));
@@ -51,4 +54,15 @@ public class MgLogger extends EssLogger {
         log(WORK_WAGE, value);
     }
 
+    public void logRonAmount(final Double value) {
+        log(RON_AMOUNT, value);
+    }
+
+    public void logGoldAmount(final Double value) {
+        log(GOLD_AMOUNT, value);
+    }
+
+    public void logEuroAmount(final Double value) {
+        log(EUR_AMOUNT, value);
+    }
 }

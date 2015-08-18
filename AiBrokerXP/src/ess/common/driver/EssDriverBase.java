@@ -80,7 +80,7 @@ public abstract class EssDriverBase {
     public abstract Boolean buyGoldFromRon(final int goldAmount);
 
     public void close() {
-        driver.quit();
+        driver.close();
     }
 
     public abstract void fetchEuroGoldExchangeRate(final EssContext context);

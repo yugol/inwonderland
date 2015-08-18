@@ -19,7 +19,6 @@ import ess.mg.goods.food.Wine;
 public class MgOperator extends MgAgent {
 
     public static void main(final String... args) {
-
         final boolean active = PRE_ENERGISE_TIME.compareTo(CURRENT_TIME) <= 0 && CURRENT_TIME.compareTo(WORK_STOP_TIME) < 0;
         if (active) {
             final MgOperator operator = new MgOperator();
@@ -36,17 +35,16 @@ public class MgOperator extends MgAgent {
             timer.start();
             operator.start();
         }
-
     }
 
-    private static final Moment CURRENT_TIME      = Moment.getNow().getTimeMoment();
-    private static final int    LIFE_TIME         = 12 * 60 * 1000;
+    private static final Moment CURRENT_TIME = Moment.getNow().getTimeMoment();
+    private static final int LIFE_TIME = 12 * 60 * 1000;
 
     private static final Moment PRE_ENERGISE_TIME = Moment.fromIso("21:00:00");
-    private static final Moment ENERGISE_TIME     = Moment.fromIso("21:15:00");
+    private static final Moment ENERGISE_TIME = Moment.fromIso("21:15:00");
 
-    private static final Moment WORK_START_TIME   = Moment.fromIso("21:45:00");
-    private static final Moment WORK_STOP_TIME    = Moment.fromIso("22:45:00");
+    private static final Moment WORK_START_TIME = Moment.fromIso("21:45:00");
+    private static final Moment WORK_STOP_TIME = Moment.fromIso("22:45:00");
 
     @Override
     public void run() {
@@ -62,6 +60,10 @@ public class MgOperator extends MgAgent {
         if (PRE_ENERGISE_TIME.compareTo(serverTime) <= 0 && serverTime.compareTo(ENERGISE_TIME) < 0) {
 
             if (transactions.getFoodCount() <= 0) {
+                getLogger().logRonAmount(getContext().getRonAmount());
+                getLogger().logGoldAmount(getContext().getGoldAmount());
+                getLogger().logEuroAmount(getContext().getEuroAmount());
+
                 final ABuyGoods buyCuisine = new ABuyGoods(this);
                 buyCuisine.setGoods(new Cuisine(Quality.HIGH));
                 buyCuisine.perform();
